@@ -1,0 +1,47 @@
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+export { ApiError } from './core/ApiError';
+export { OpenAPI } from './core/OpenAPI';
+
+export type { authPermissionResource } from './models/authPermissionResource';
+export type { authRoleCollection } from './models/authRoleCollection';
+export type { authRoleIdentityCollection } from './models/authRoleIdentityCollection';
+export type { authRoleIdentityResource } from './models/authRoleIdentityResource';
+export type { authRoleResource } from './models/authRoleResource';
+export type { baseOrder } from './models/baseOrder';
+export { baseOrderCustomer } from './models/baseOrderCustomer';
+export type { collection } from './models/collection';
+export type { collectionPagination } from './models/collectionPagination';
+export { delivery } from './models/delivery';
+export type { deliveryCollection } from './models/deliveryCollection';
+export type { error } from './models/error';
+export type { errorResponse } from './models/errorResponse';
+export type { getAuthPermissionCollectionResponse } from './models/getAuthPermissionCollectionResponse';
+export type { newOrder } from './models/newOrder';
+export type { newOrderCustomer } from './models/newOrderCustomer';
+export type { newOrderItem } from './models/newOrderItem';
+export { order } from './models/order';
+export type { orderCustomer } from './models/orderCustomer';
+export type { orderCustomerAddress } from './models/orderCustomerAddress';
+export type { orderCustomerDeliveryAddress } from './models/orderCustomerDeliveryAddress';
+export type { orderCustomerInvoiceAddress } from './models/orderCustomerInvoiceAddress';
+export type { orderDelivery } from './models/orderDelivery';
+export type { orderItem } from './models/orderItem';
+export { orderItemPrice } from './models/orderItemPrice';
+export { orderPayment } from './models/orderPayment';
+export { orderShipping } from './models/orderShipping';
+export { shipment } from './models/shipment';
+export type { shipmentLine } from './models/shipmentLine';
+export type { shop } from './models/shop';
+export type { shopCollection } from './models/shopCollection';
+export type { stock } from './models/stock';
+export type { stockCollection } from './models/stockCollection';
+
+export { AuthRoleIdentityService } from './services/AuthRoleIdentityService';
+export { AuthRoleService } from './services/AuthRoleService';
+export { DeliveryService } from './services/DeliveryService';
+export { DocsService } from './services/DocsService';
+export { OrderService } from './services/OrderService';
+export { ShopService } from './services/ShopService';
+export { StockService } from './services/StockService';
