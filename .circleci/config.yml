@@ -1,0 +1,116 @@
+version: 2.1
+aliases:
+  - &workflow-name-continuous "Continuous Deployment Workflow"
+  - &job-name-build "Build Application"
+  - &job-name-test "Test Application"
+  - &job-name-publish "Publish NPM Package"
+  - &context-cloud "cloud_deployment"
+executors:
+  node-dev:
+    docker:
+      - image: europe-docker.pkg.dev/dk-gg-rgstry/base/node:dev
+        auth:
+          username: _json_key
+          password: $GCLOUD_SERVICE_ACCOUNT
+jobs:
+  *job-name-build:
+    working_directory: ~/build/project
+    executor: node-dev
+    steps:
+      - checkout:
+          name: Checkout source code
+      - restore_cache:
+          name: Restore node cache
+          keys:
+            - npm-dependencies-{{ checksum "package-lock.json" }}
+      - run:
+          name: Install dependencies
+          command: npm install
+      - save_cache:
+          name: Save node cache
+          paths:
+            - node_modules
+          key: npm-dependencies-{{ checksum "package-lock.json" }}
+      - run:
+          name: ESLint
+          command: npm run lint
+      - run:
+          name: Build
+          command: npm run build
+      - persist_to_workspace:
+          root: /app/build/project
+          paths:
+            - .
+  *job-name-test:
+    working_directory: ~/build/project
+    executor: node-dev
+    steps:
+      - attach_workspace:
+          at: ~/build/project
+      - run:
+          name: Create folder for tests
+          command: mkdir -p ~/testresults
+      - run:
+          name: Unit tests
+          command: |
+            npm run test \
+              --json \
+              --outputFile=~/testresults/jest.json
+      - store_test_results:
+          path: ~/testresults
+      - store_artifacts:
+          path: ~/testresults
+  *job-name-publish:
+    working_directory: ~/build/project
+    executor: node-dev
+    steps:
+      - attach_workspace:
+          at: ~/build/project
+      - run:
+          name: Authenticate with npm registry
+          command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/build/project/.npmrc
+      - run:
+          name: Bump package version and push to git repository
+          command: |
+            mkdir -p ~/.ssh && \
+            touch ~/.ssh/known_hosts && \
+            ssh-keyscan -H bitbucket.org >> ~/.ssh/known_hosts && \
+            touch ~/.ssh/bitbucket_private_key && \
+            echo $BITBUCKET_PRIVATE_SSH_KEY | base64 -d >> ~/.ssh/bitbucket_private_key && \
+            chmod 400 ~/.ssh/bitbucket_private_key && \
+            eval "$(ssh-agent -s)" && \
+            ssh-add ~/.ssh/bitbucket_private_key && \
+            git config user.email $BITBUCKET_USER_EMAIL && \
+            git config user.name $BITBUCKET_USER_NAME && \
+            git checkout main && \
+            git pull && \
+            npm version from-git -m "Bumped package version to %s" --allow-same-version && \
+            git diff --quiet main origin/main || git push
+      - run:
+          name: Publish npm package
+          command: npm publish --access public
+workflows:
+  version: 2
+  *workflow-name-continuous:
+    jobs:
+      - *job-name-build:
+          context: *context-cloud
+          filters:
+            tags:
+              only: /.*/
+      - *job-name-test:
+          context: *context-cloud
+          requires:
+            - *job-name-build
+          filters:
+            tags:
+              only: /.*/
+      - *job-name-publish:
+          context: *context-cloud
+          requires:
+            - *job-name-test
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$/

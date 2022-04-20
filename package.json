@@ -1,0 +1,56 @@
+{
+  "name": "@datenkraft/bb-frontend-api-ts-client",
+  "homepage": "https://bitbucket.org/datenkraft/bb-frontend-api-ts-client#readme",
+  "version": "1.2.0",
+  "description": "The frontend API TS Client enables you to work with the frontend API",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "watch-build": "tsc -w",
+    "test": "jest",
+    "generate": "openapi --input ./openapi.json --output ./src/Generated --client node",
+    "lint": "eslint . --ext .ts",
+    "lint-and-fix": "eslint . --ext .ts --fix"
+  },
+  "files": [
+    "/dist"
+  ],
+  "keywords": [
+    "apiclient",
+    "backbone",
+    "typescript"
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Datenkraft GmbH"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@bitbucket.org/datenkraft/bb-frontend-api-ts-client.git"
+  },
+  "devDependencies": {
+    "@types/jest": "^27.0.2",
+    "@types/node": "^16.10.3",
+    "@types/node-fetch": "^2.5.12",
+    "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "@typescript-eslint/parser": "^5.0.0",
+    "eslint": "^8.0.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "form-data": "^4.0.0",
+    "jest": "^27.2.5",
+    "node-fetch": "^2.6.5",
+    "node-fetch-middleware": "^1.1.1",
+    "openapi-typescript-codegen": "^0.9.3",
+    "prettier": "^2.4.1",
+    "ts-jest": "^27.0.5",
+    "typescript": "^4.4.3"
+  },
+  "dependencies": {
+    "@datenkraft/bb-base-api-ts-client": "^1.0.0"
+  }
+}
