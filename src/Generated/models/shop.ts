@@ -15,9 +15,9 @@ export type shop = {
      */
     discoShopCode?: string;
     /**
-     * The prefix to the order reference in DISCO.
+     * The prefix to the references in DISCO.
      */
-    discoOrderReferencePrefix?: string;
+    discoReferencePrefix?: string;
     /**
      * The email used in DISCO.
      */

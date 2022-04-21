@@ -3,19 +3,19 @@
     "info": {
         "title": "Fulfillment API",
         "description": "\nAll data is transferred in UTF-8 encoding.\\\nThe API uses stateless HTTP. No cookies have to be kept.\\\nAuthentication via OAuth2 client credentials flow.",
-        "version": "1.0.0"
+        "version": "2.0.0"
     },
     "servers": [
         {
-            "url": "https://fulfillment-api.conqore.niceshops.com/v1",
+            "url": "https://fulfillment-api.conqore.niceshops.com/v2",
             "description": "Production server"
         },
         {
-            "url": "https://fulfillment-api.staging.backbone.datenkraft.info/v1",
+            "url": "https://fulfillment-api.staging.backbone.datenkraft.info/v2",
             "description": "Staging server"
         },
         {
-            "url": "https://localhost:30410/v1",
+            "url": "https://localhost:30410/v2",
             "description": "Development server"
         }
     ],
@@ -823,6 +823,368 @@
                 ]
             }
         },
+        "/supplier": {
+            "get": {
+                "tags": [
+                    "supplier"
+                ],
+                "summary": "Get suppliers filtered by shopCode.",
+                "description": "Get suppliers filtered by shopCode.",
+                "operationId": "getSupplierCollection",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "The page to read. Default is the first page.",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": 1
+                    },
+                    {
+                        "name": "pageSize",
+                        "in": "query",
+                        "description": "The maximum size per page is 100. Default is 20.",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": 20
+                    },
+                    {
+                        "name": "filter[shopCode]",
+                        "in": "query",
+                        "description": "The shopCode used in DISCO (optional).",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/supplierCollection"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Server error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "oAuthAuthorization": []
+                    }
+                ]
+            }
+        },
+        "/inbound-delivery/{inboundDeliveryNumber}": {
+            "get": {
+                "tags": [
+                    "inbound-delivery"
+                ],
+                "summary": "Get an inbound delivery by inbound delivery number.",
+                "description": "Get an inbound delivery by inbound delivery number.",
+                "operationId": "GET::/inbound-delivery/{inboundDeliveryNumber}::App\\Http\\Controllers\\V2\\InboundDeliveryController::getInboundDelivery",
+                "parameters": [
+                    {
+                        "name": "inboundDeliveryNumber",
+                        "in": "path",
+                        "description": "The inbound delivery number as defined during the creation of the order.",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "maxLength": 250
+                        }
+                    },
+                    {
+                        "name": "shopCode",
+                        "in": "query",
+                        "description": "The shopCode used in DISCO (optional).",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/inboundDelivery"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "409": {
+                        "description": "Conflict",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Server error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "oAuthAuthorization": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "inbound-delivery"
+                ],
+                "summary": "Add a new inbound delivery.",
+                "description": "Add a new inbound delivery referenced by the given deliveryNumber.",
+                "operationId": "postInboundDelivery",
+                "parameters": [
+                    {
+                        "name": "inboundDeliveryNumber",
+                        "in": "path",
+                        "description": "The number the inbound delivery should be refered by. This number is user defined, must be unique and has a maximum length (check maxLength field).",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "maxLength": 250
+                        }
+                    },
+                    {
+                        "name": "shopCode",
+                        "in": "query",
+                        "description": "The shopCode used in DISCO (optional).",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/newInboundDelivery"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/inboundDelivery"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Server error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "oAuthAuthorization": []
+                    }
+                ]
+            }
+        },
         "/auth/role": {
             "get": {
                 "tags": [
@@ -1188,32 +1550,45 @@
     },
     "components": {
         "schemas": {
-            "collection": {
-                "title": "collection",
-                "properties": {
-                    "pagination": {
-                        "$ref": "#/components/schemas/collectionPagination"
+            "supplierCollection": {
+                "title": "supplierCollection",
+                "description": "A collection of suppliers",
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/collection"
                     },
-                    "data": {
-                        "description": "",
+                    {
+                        "properties": {
+                            "data": {
+                                "description": "",
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/supplier"
+                                }
+                            }
+                        },
                         "type": "object"
-                    }
-                },
-                "type": "object"
-            },
-            "collectionPagination": {
-                "title": "collectionPagination",
-                "description": "Class AbstractPaginatedResourceCollection",
-                "properties": {
-                    "page": {
-                        "description": "The page contained in this collection.",
-                        "type": "integer",
-                        "format": "int32"
                     },
-                    "pageSize": {
-                        "description": "The page size used for reading the collection.",
-                        "type": "integer",
-                        "format": "int32"
+                    {
+                        "$ref": "#/components/schemas/collectionPagination"
+                    }
+                ]
+            },
+            "supplier": {
+                "title": "supplier",
+                "description": "Data to represent a supplier",
+                "required": [
+                    "supplierNumber",
+                    "name"
+                ],
+                "properties": {
+                    "supplierNumber": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "name": {
+                        "description": "Supplier name",
+                        "type": "string"
                     }
                 },
                 "type": "object"
@@ -1236,9 +1611,6 @@
                             }
                         },
                         "type": "object"
-                    },
-                    {
-                        "$ref": "#/components/schemas/collectionPagination"
                     }
                 ]
             },
@@ -1471,27 +1843,11 @@
             "baseOrderCustomer": {
                 "title": "baseOrderCustomer",
                 "required": [
-                    "email",
-                    "firstname",
-                    "lastname",
                     "gender",
                     "languageCode",
-                    "invoiceAddress"
+                    "deliveryAddress"
                 ],
                 "properties": {
-                    "email": {
-                        "description": "",
-                        "type": "string",
-                        "format": "email"
-                    },
-                    "firstname": {
-                        "description": "",
-                        "type": "string"
-                    },
-                    "lastname": {
-                        "description": "",
-                        "type": "string"
-                    },
                     "gender": {
                         "description": "",
                         "type": "string",
@@ -1501,32 +1857,9 @@
                             "unknown"
                         ]
                     },
-                    "title": {
-                        "description": "",
-                        "type": "string",
-                        "nullable": true
-                    },
-                    "phone": {
-                        "description": "",
-                        "type": "string",
-                        "nullable": true
-                    },
                     "languageCode": {
                         "description": "The language code for any customer communications (ISO 639-1)",
                         "type": "string"
-                    },
-                    "company": {
-                        "description": "",
-                        "type": "string",
-                        "nullable": true
-                    },
-                    "companyVatNumber": {
-                        "description": "Company vat number",
-                        "type": "string",
-                        "nullable": true
-                    },
-                    "invoiceAddress": {
-                        "$ref": "#/components/schemas/orderCustomerInvoiceAddress"
                     },
                     "deliveryAddress": {
                         "$ref": "#/components/schemas/orderCustomerDeliveryAddress"
@@ -1539,16 +1872,6 @@
                 "allOf": [
                     {
                         "$ref": "#/components/schemas/baseOrderCustomer"
-                    },
-                    {
-                        "properties": {
-                            "email": {
-                                "description": "The provided data is used to generate a unique email with orderNumber and shopCode, which must result in a valid email.",
-                                "type": "string",
-                                "format": "email"
-                            }
-                        },
-                        "type": "object"
                     }
                 ]
             },
@@ -1702,6 +2025,72 @@
                 },
                 "type": "object"
             },
+            "newInboundDelivery": {
+                "title": "newInboundDelivery",
+                "description": "Data to create a new inbound delivery",
+                "required": [
+                    "supplierNumber",
+                    "expectedDeliveryDate",
+                    "products"
+                ],
+                "properties": {
+                    "supplierNumber": {
+                        "description": "Number of the supplier",
+                        "type": "string"
+                    },
+                    "expectedDeliveryDate": {
+                        "description": "Expected date of the delivery",
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "products": {
+                        "description": "Products in the inbound delivery",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/inboundDeliveryProduct"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "inboundDelivery": {
+                "title": "inboundDelivery",
+                "description": "Data to represent an inbound delivery",
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/newInboundDelivery"
+                    },
+                    {
+                        "properties": {
+                            "inboundDeliveryNumber": {
+                                "description": "",
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    }
+                ]
+            },
+            "inboundDeliveryProduct": {
+                "title": "inboundDeliveryProduct",
+                "description": "Class InboundDeliveryResource",
+                "required": [
+                    "productNumber",
+                    "count"
+                ],
+                "properties": {
+                    "productNumber": {
+                        "description": "Product number",
+                        "type": "string"
+                    },
+                    "count": {
+                        "description": "Number of products in the inbound delivery",
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                },
+                "type": "object"
+            },
             "delivery": {
                 "description": "A delivery of the order",
                 "properties": {
@@ -1830,9 +2219,6 @@
                             }
                         },
                         "type": "object"
-                    },
-                    {
-                        "$ref": "#/components/schemas/collectionPagination"
                     }
                 ]
             },
@@ -1854,9 +2240,6 @@
                             }
                         },
                         "type": "object"
-                    },
-                    {
-                        "$ref": "#/components/schemas/collectionPagination"
                     }
                 ]
             },
@@ -1871,8 +2254,8 @@
                         "description": "The shopCode used in DISCO.",
                         "type": "string"
                     },
-                    "discoOrderReferencePrefix": {
-                        "description": "The prefix to the order reference in DISCO.",
+                    "discoReferencePrefix": {
+                        "description": "The prefix to the references in DISCO.",
                         "type": "string"
                     },
                     "email": {
@@ -1891,6 +2274,36 @@
                         "type": "object",
                         "nullable": true,
                         "additionalProperties": true
+                    }
+                },
+                "type": "object"
+            },
+            "collection": {
+                "title": "collection",
+                "properties": {
+                    "pagination": {
+                        "$ref": "#/components/schemas/collectionPagination"
+                    },
+                    "data": {
+                        "description": "",
+                        "type": "object"
+                    }
+                },
+                "type": "object"
+            },
+            "collectionPagination": {
+                "title": "collectionPagination",
+                "description": "Class AbstractPaginatedResourceCollection",
+                "properties": {
+                    "page": {
+                        "description": "The page contained in this collection.",
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "pageSize": {
+                        "description": "The page size used for reading the collection.",
+                        "type": "integer",
+                        "format": "int32"
                     }
                 },
                 "type": "object"
