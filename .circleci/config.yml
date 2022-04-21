@@ -82,10 +82,10 @@ jobs:
             ssh-add ~/.ssh/bitbucket_private_key && \
             git config user.email $BITBUCKET_USER_EMAIL && \
             git config user.name $BITBUCKET_USER_NAME && \
-            git checkout main && \
+            git checkout v1 && \
             git pull && \
             npm version from-git -m "Bumped package version to %s" --allow-same-version && \
-            git diff --quiet main origin/main || git push
+            git diff --quiet v1 origin/v1 || git push
       - run:
           name: Publish npm package
           command: npm publish --access public
