@@ -6,6 +6,8 @@ import type { baseOrder } from './baseOrder';
 import type { orderCustomer } from './orderCustomer';
 import type { orderDelivery } from './orderDelivery';
 import type { orderItem } from './orderItem';
+import type { orderPayment } from './orderPayment';
+import type { orderShipping } from './orderShipping';
 
 /**
  * Data to represent an order
@@ -32,6 +34,8 @@ export type order = (baseOrder & {
      */
     orderDate?: string,
     delivery?: Array<orderDelivery> | null,
+    payment?: orderPayment,
+    shipping?: orderShipping,
 });
 
 export namespace order {
