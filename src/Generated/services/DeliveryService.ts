@@ -3,10 +3,34 @@
 /* eslint-disable */
 import type { delivery } from '../models/delivery';
 import type { deliveryCollection } from '../models/deliveryCollection';
+import type { deliveryServiceCollection } from '../models/deliveryServiceCollection';
 import type { errorResponse } from '../models/errorResponse';
 import { request as __request } from '../core/request';
 
 export class DeliveryService {
+
+    /**
+     * Get delivery services.
+     * Get delivery services.
+     * @param page The page to read. Default is the first page.
+     * @param pageSize The maximum size per page is 100. Default is 100.
+     * @returns deliveryServiceCollection OK
+     * @throws ApiError
+     */
+    public static async getDeliveryServiceCollection(
+        page?: number,
+        pageSize?: number,
+    ): Promise<deliveryServiceCollection> {
+        const result = await __request({
+            method: 'GET',
+            path: `/delivery-service`,
+            query: {
+                'page': page,
+                'pageSize': pageSize,
+            },
+        });
+        return result.body;
+    }
 
     /**
      * Get the delivery with the given deliveryNumber.

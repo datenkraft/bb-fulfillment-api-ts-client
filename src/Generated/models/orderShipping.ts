@@ -8,20 +8,7 @@
 export type orderShipping = {
     /**
      * The delivery service to recommend for usage.
+     * The codes of supported delivery services can be retrieved from the 'GET /delivery-service' endpoint.
      */
-    deliveryService: orderShipping.deliveryService;
-}
-
-export namespace orderShipping {
-
-    /**
-     * The delivery service to recommend for usage.
-     */
-    export enum deliveryService {
-        POST_AT = 'post_at',
-        DHL = 'dhl',
-        DACHSER = 'dachser',
-    }
-
-
+    deliveryService: string;
 }
