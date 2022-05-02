@@ -84,6 +84,7 @@ jobs:
             git config user.name $BITBUCKET_USER_NAME && \
             git checkout v1 && \
             git pull && \
+            git reset --hard HEAD && \
             npm version from-git -m "Bumped package version to %s" --allow-same-version && \
             git diff --quiet v1 origin/v1 || git push
       - run:
