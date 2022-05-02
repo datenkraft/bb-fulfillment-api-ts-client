@@ -19,9 +19,10 @@ export type shipment = {
      */
     status?: shipment.status;
     /**
-     * The delivery service used to send this delivery
+     * The delivery service used to send this delivery.
+     * The codes of supported delivery services can be retrieved from the 'GET /delivery-service' endpoint.
      */
-    deliveryService?: shipment.deliveryService | null;
+    deliveryService?: string | null;
     /**
      * Carrier specific tracking code
      */
@@ -52,15 +53,6 @@ export namespace shipment {
      * - delivered: The delivery has been transferred to the delivery agent.
      */
     export enum status {
-        POST_AT = 'post_at',
-        DHL = 'dhl',
-        DACHSER = 'dachser',
-    }
-
-    /**
-     * The delivery service used to send this delivery
-     */
-    export enum deliveryService {
         IN_PROGRESS = 'in_progress',
         DELIVERED = 'delivered',
     }
