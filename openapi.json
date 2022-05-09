@@ -1467,6 +1467,10 @@
                     },
                     {
                         "properties": {
+                            "orderNumber": {
+                                "description": "The order number. Note: This can be null if the order as not created via the API.",
+                                "type": "string"
+                            },
                             "orderItems": {
                                 "description": "Note: canceled orderItems are NOT included.",
                                 "type": "array",
@@ -1671,16 +1675,6 @@
                 "allOf": [
                     {
                         "$ref": "#/components/schemas/baseOrderCustomer"
-                    },
-                    {
-                        "properties": {
-                            "email": {
-                                "description": "The provided data is used to generate a unique email with orderNumber and shopCode, which must result in a valid email.",
-                                "type": "string",
-                                "format": "email"
-                            }
-                        },
-                        "type": "object"
                     }
                 ]
             },
@@ -1693,7 +1687,7 @@
                     {
                         "properties": {
                             "number": {
-                                "description": "Customer number if an existing account should be used for the order",
+                                "description": "",
                                 "type": "string",
                                 "nullable": true
                             },

@@ -14,6 +14,10 @@ import type { orderShipping } from './orderShipping';
  */
 export type order = (baseOrder & {
     /**
+     * The order number. Note: This can be null if the order as not created via the API.
+     */
+    orderNumber?: string,
+    /**
      * Note: canceled orderItems are NOT included.
      */
     orderItems?: Array<orderItem>,
