@@ -2134,6 +2134,10 @@
                     },
                     {
                         "properties": {
+                            "orderNumber": {
+                                "description": "The order number. Note: This can be null if the order as not created via the API.",
+                                "type": "string"
+                            },
                             "orderItems": {
                                 "description": "Note: canceled orderItems are NOT included.",
                                 "type": "array",
@@ -2311,7 +2315,7 @@
                     {
                         "properties": {
                             "number": {
-                                "description": "Customer number if an existing account should be used for the order",
+                                "description": "",
                                 "type": "string",
                                 "nullable": true
                             },
