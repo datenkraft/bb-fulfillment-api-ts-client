@@ -2,9 +2,6 @@
 /* tslint:disable */
 /* eslint-disable */
 
-/**
- * Class AbstractPaginatedResourceCollection
- */
 export type collectionPagination = {
     /**
      * The page contained in this collection.

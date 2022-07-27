@@ -2,14 +2,14 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import type { inboundDeliveryProduct } from './inboundDeliveryProduct';
+import type { newInboundDeliveryProduct } from './newInboundDeliveryProduct';
 
 /**
  * Data to create a new inbound delivery
  */
 export type newInboundDelivery = {
     /**
-     * Number of the supplier
+     * Number of the supplier. Available suppliers can be retrieved from the 'GET /supplier' endpoint.
      */
     supplierNumber: string;
     /**
@@ -19,5 +19,5 @@ export type newInboundDelivery = {
     /**
      * Products in the inbound delivery
      */
-    products: Array<inboundDeliveryProduct>;
+    products: Array<newInboundDeliveryProduct>;
 }

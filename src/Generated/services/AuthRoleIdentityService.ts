@@ -57,17 +57,13 @@ export class AuthRoleIdentityService {
     /**
      * Delete one or more role to identity assignments in this resource server
      * Delete one or more role to identity assignments in this resource server
-     * @param requestBody
      * @returns errorResponse Unexpected error
      * @throws ApiError
      */
-    public static async deleteAuthRoleIdentityCollection(
-        requestBody: authRoleIdentityCollection,
-    ): Promise<errorResponse> {
+    public static async deleteAuthRoleIdentityCollection(): Promise<errorResponse> {
         const result = await __request({
             method: 'DELETE',
             path: `/auth/role-identity`,
-            body: requestBody,
             errors: {
                 400: `Bad Request`,
                 401: `Unauthorized`,

@@ -3,7 +3,6 @@
 /* eslint-disable */
 
 import type { collection } from './collection';
-import type { collectionPagination } from './collectionPagination';
 import type { supplier } from './supplier';
 
 /**
@@ -11,4 +10,4 @@ import type { supplier } from './supplier';
  */
 export type supplierCollection = (collection & {
     data?: Array<supplier>,
-} & collectionPagination);
+});
