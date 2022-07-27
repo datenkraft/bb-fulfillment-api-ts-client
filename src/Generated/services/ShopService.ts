@@ -2,7 +2,9 @@
 /* tslint:disable */
 /* eslint-disable */
 import type { errorResponse } from '../models/errorResponse';
+import type { shop } from '../models/shop';
 import type { shopCollection } from '../models/shopCollection';
+import type { updateShop } from '../models/updateShop';
 import { request as __request } from '../core/request';
 
 export class ShopService {
@@ -33,6 +35,35 @@ export class ShopService {
             errors: {
                 401: `Unauthorized`,
                 403: `Forbidden`,
+                500: `Server error`,
+            },
+        });
+        return result.body;
+    }
+
+    /**
+     * Update a shop
+     * Update one or more fields of a shop. Only a limited set of fields can be updated.
+     * @param shopId Shop Id
+     * @param requestBody
+     * @returns shop OK
+     * @returns errorResponse Unexpected error
+     * @throws ApiError
+     */
+    public static async patchShop(
+        shopId: string,
+        requestBody: updateShop,
+    ): Promise<shop | errorResponse> {
+        const result = await __request({
+            method: 'PATCH',
+            path: `/shop/${shopId}`,
+            body: requestBody,
+            errors: {
+                400: `Bad Request`,
+                401: `Unauthorized`,
+                403: `Forbidden`,
+                404: `Not Found`,
+                409: `Conflict`,
                 500: `Server error`,
             },
         });

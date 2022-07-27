@@ -3,6 +3,7 @@
 /* eslint-disable */
 
 import type { baseOrderCustomer } from './baseOrderCustomer';
+import type { baseOrderOptions } from './baseOrderOptions';
 import type { orderItem } from './orderItem';
 
 /**
@@ -15,8 +16,5 @@ export type baseOrder = {
     shopCode?: string | null;
     customer: baseOrderCustomer;
     orderItems: Array<orderItem>;
-    /**
-     * Additional options (optional, TBD)
-     */
-    options?: any;
+    options?: baseOrderOptions;
 }

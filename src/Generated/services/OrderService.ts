@@ -4,6 +4,7 @@
 import type { errorResponse } from '../models/errorResponse';
 import type { newOrder } from '../models/newOrder';
 import type { order } from '../models/order';
+import type { orderCollection } from '../models/orderCollection';
 import { request as __request } from '../core/request';
 
 export class OrderService {
@@ -97,6 +98,42 @@ export class OrderService {
                  * - ORDER_NOT_CANCELABLE: The order could not be canceled anymore
                  * - ORDER_ALREADY_CANCELED: The order is already canceled
                  * - ORDER_CANCELLATION_ALREADY_EXISTS: An order cancellation request already exists, which needs manual approval`,
+                422: `Unprocessable Entity`,
+                500: `Server error`,
+            },
+        });
+        return result.body;
+    }
+
+    /**
+     * Get a list of shop oders.
+     * Get a list of shop orders.
+     * @param page The page to read. Default is the first page.
+     * @param pageSize The maximum size per page is 100. Default is 100.
+     * @param filterShopCode The shopCode used in DISCO (optional).
+     * @param filterStatus Filter for status/statuses (optional).
+     * @returns orderCollection OK
+     * @returns errorResponse Unexpected error
+     * @throws ApiError
+     */
+    public static async getOrderCollection(
+        page?: number,
+        pageSize?: number,
+        filterShopCode?: string,
+        filterStatus?: string,
+    ): Promise<orderCollection | errorResponse> {
+        const result = await __request({
+            method: 'GET',
+            path: `/order`,
+            query: {
+                'page': page,
+                'pageSize': pageSize,
+                'filter[shopCode]': filterShopCode,
+                'filter[status]': filterStatus,
+            },
+            errors: {
+                401: `Unauthorized`,
+                403: `Forbidden`,
                 422: `Unprocessable Entity`,
                 500: `Server error`,
             },

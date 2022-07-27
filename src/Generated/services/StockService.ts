@@ -8,12 +8,16 @@ import { request as __request } from '../core/request';
 export class StockService {
 
     /**
-     * Get the stock for all products or for a specific product.
-     * Get the stock for all products or for a specific product.
+     * Get the stock for all (per default only valid) products or for a specific product.
+     * Get the stock for all (per default only valid) products or for a specific product.
      * @param page The page to read. Default is the first page.
      * @param pageSize The maximum size per page is 100. Default is 20.
      * @param filterProductNumber product number
      * @param filterShopCode The shopCode used in DISCO (optional).
+     * @param filterProductStatus filter for productStatus\
+     * By default, only valid products (available or in stock) are returned.\
+     * Use '_all' to return all products (also invalid products)\
+     * Use '_invalid' to specifically return invalid products (not available and out of stock)
      * @returns stockCollection OK
      * @returns errorResponse Unexpected error
      * @throws ApiError
@@ -23,6 +27,7 @@ export class StockService {
         pageSize?: number,
         filterProductNumber?: string,
         filterShopCode?: string,
+        filterProductStatus?: '_all' | '_invalid',
     ): Promise<stockCollection | errorResponse> {
         const result = await __request({
             method: 'GET',
@@ -32,6 +37,7 @@ export class StockService {
                 'pageSize': pageSize,
                 'filter[productNumber]': filterProductNumber,
                 'filter[shopCode]': filterShopCode,
+                'filter[productStatus]': filterProductStatus,
             },
             errors: {
                 400: `Bad Request`,

@@ -3,7 +3,6 @@
 /* eslint-disable */
 
 import type { collection } from './collection';
-import type { collectionPagination } from './collectionPagination';
 import type { reportClearingOrder } from './reportClearingOrder';
 
 /**
@@ -11,4 +10,4 @@ import type { reportClearingOrder } from './reportClearingOrder';
  */
 export type reportClearingOrderCollection = (collection & {
     data?: Array<reportClearingOrder>,
-} & collectionPagination);
+});

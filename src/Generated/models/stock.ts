@@ -3,15 +3,23 @@
 /* eslint-disable */
 
 /**
- * Class StockResource
+ * Stock of a product
  */
 export type stock = {
     /**
-     * The product number the stock is available for
+     * Product number
      */
     productNumber?: string;
     /**
-     * The available stock
+     * Amount stocked in the warehouse - without considering the reserved amount for ongoing orders
      */
-    stock?: number;
+    stocked?: number;
+    /**
+     * Amount reserved for ongoing orders
+     */
+    reserved?: number;
+    /**
+     * Amount available for orders - with the reserved amount for ongoing orders taken into account
+     */
+    available?: number;
 }
