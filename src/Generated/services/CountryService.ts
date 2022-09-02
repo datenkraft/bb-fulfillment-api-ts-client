@@ -1,38 +1,34 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
+import type { countryCollection } from '../models/countryCollection';
 import type { errorResponse } from '../models/errorResponse';
-import type { manufacturerCollection } from '../models/manufacturerCollection';
 import { request as __request } from '../core/request';
 
-export class ManufacturerService {
+export class CountryService {
 
     /**
-     * Get a list of manufacturers.
-     * Get a list of manufacturers.
+     * Read a country collection of all countries available for shipments.
+     * Collections are read in multiple pages with a defined page size.
      * @param page The page to read. Default is the first page.
-     * @param pageSize The maximum size per page is 100. Default is 100.
-     * @param filterShopCode The shopCode used internally to distinguish between clients.<br />
-     * _This code is optional, if your identity is assigned to only one shop.
-     * Otherwise the response would be a 422 HTTP Error._
-     * @returns manufacturerCollection OK
+     * @param pageSize The maximum size per page is 100. Default is 20.
+     * @returns countryCollection OK
      * @returns errorResponse Unexpected error
      * @throws ApiError
      */
-    public static async getManufacturerCollection(
+    public static async getCountryCollection(
         page?: number,
         pageSize?: number,
-        filterShopCode?: string,
-    ): Promise<manufacturerCollection | errorResponse> {
+    ): Promise<countryCollection | errorResponse> {
         const result = await __request({
             method: 'GET',
-            path: `/manufacturer`,
+            path: `/country`,
             query: {
                 'page': page,
                 'pageSize': pageSize,
-                'filter[shopCode]': filterShopCode,
             },
             errors: {
+                400: `Bad Request`,
                 401: `Unauthorized`,
                 403: `Forbidden`,
                 422: `Unprocessable Entity`,

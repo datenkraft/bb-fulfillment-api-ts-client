@@ -12,7 +12,9 @@ export class SupplierService {
      * Get suppliers filtered by shopCode.
      * @param page The page to read. Default is the first page.
      * @param pageSize The maximum size per page is 100. Default is 20.
-     * @param filterShopCode The shopCode used in DISCO (optional).
+     * @param filterShopCode The shopCode used internally to distinguish between clients.<br />
+     * _This code is optional, if your identity is assigned to only one shop.
+     * Otherwise the response would be a 422 HTTP Error._
      * @returns supplierCollection OK
      * @returns errorResponse Unexpected error
      * @throws ApiError

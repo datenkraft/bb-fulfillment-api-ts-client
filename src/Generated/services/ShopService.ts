@@ -10,8 +10,8 @@ import { request as __request } from '../core/request';
 export class ShopService {
 
     /**
-     * Get a list of shops.
-     * Get a list of shops.
+     * Get a list of shops the used identity is assigned to.
+     * Get a list of shops the used identity is assigned to.
      * @param page The page to read. Default is the first page.
      * @param pageSize The maximum size per page is 100. Default is 100.
      * @param filterMetaShopifyShopDomain A filter for the Shopify hostname of the shop.

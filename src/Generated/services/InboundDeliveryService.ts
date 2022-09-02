@@ -13,7 +13,9 @@ export class InboundDeliveryService {
      * Get an inbound delivery by inbound delivery number.
      * Get an inbound delivery by inbound delivery number.
      * @param inboundDeliveryNumber The inbound delivery number as defined during the creation of the inbound delivery.
-     * @param shopCode The shopCode used in DISCO (optional).
+     * @param shopCode The shopCode used internally to distinguish between clients.<br />
+     * _This code is optional, if your identity is assigned to only one shop.
+     * Otherwise the response would be a 422 HTTP Error._
      * @returns inboundDelivery OK
      * @returns errorResponse Unexpected error
      * @throws ApiError
@@ -44,9 +46,12 @@ export class InboundDeliveryService {
     /**
      * Add a new inbound delivery.
      * Add a new inbound delivery referenced by the given deliveryNumber.
-     * @param inboundDeliveryNumber The number the inbound delivery should be refered by. This number is user defined, must be unique and has a maximum length (check maxLength field).
+     * @param inboundDeliveryNumber The number the inbound delivery should be refered by.
+     * This number is user defined, must be unique and has a maximum length (check maxLength field).
      * @param requestBody
-     * @param shopCode The shopCode used in DISCO (optional).
+     * @param shopCode The shopCode used internally to distinguish between clients.<br />
+     * _This code is optional, if your identity is assigned to only one shop.
+     * Otherwise the response would be a 422 HTTP Error._
      * @returns errorResponse Unexpected error
      * @returns inboundDelivery Created
      * @throws ApiError
@@ -86,7 +91,9 @@ export class InboundDeliveryService {
      * - in_progress: The inbound delivery is being processed in our warehouse.
      * - completed: The inbound delivery has been processed in our warehouse.
      * - deleted: The inbound delivery has been deleted.
-     * @param filterShopCode The shopCode used in DISCO (optional).
+     * @param filterShopCode The shopCode used internally to distinguish between clients.<br />
+     * _This code is optional, if your identity is assigned to only one shop.
+     * Otherwise the response would be a 422 HTTP Error._
      * @returns inboundDeliveryCollection OK
      * @returns errorResponse Unexpected error
      * @throws ApiError
@@ -119,7 +126,8 @@ export class InboundDeliveryService {
     /**
      * Cancel a inbound delivery.
      * Cancel a inbound delivery referenced by the given deliveryNumber.
-     * @param inboundDeliveryNumber The number the inbound delivery should be refered by. This number is user defined, must be unique and has a maximum length (check maxLength field).
+     * @param inboundDeliveryNumber The number the inbound delivery should be refered by.
+     * This number is user defined, must be unique and has a maximum length (check maxLength field).
      * @returns inboundDelivery OK
      * @returns errorResponse Unexpected error
      * @throws ApiError

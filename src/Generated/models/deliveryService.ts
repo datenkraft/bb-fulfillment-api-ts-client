@@ -10,4 +10,8 @@ export type deliveryService = {
      * Code of the delivery service
      */
     code?: string;
+    /**
+     * Name of the delivery service
+     */
+    name?: string;
 }

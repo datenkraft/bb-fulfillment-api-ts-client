@@ -13,7 +13,9 @@ export class StockService {
      * @param page The page to read. Default is the first page.
      * @param pageSize The maximum size per page is 100. Default is 20.
      * @param filterProductNumber product number
-     * @param filterShopCode The shopCode used in DISCO (optional).
+     * @param filterShopCode The shopCode used internally to distinguish between clients.<br />
+     * _This code is optional, if your identity is assigned to only one shop.
+     * Otherwise the response would be a 422 HTTP Error._
      * @param filterProductStatus filter for productStatus\
      * By default, only valid products (available or in stock) are returned.\
      * Use '_all' to return all products (also invalid products)\

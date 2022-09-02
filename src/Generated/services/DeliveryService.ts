@@ -36,7 +36,9 @@ export class DeliveryService {
      * Get the delivery with the given deliveryNumber.
      * Get the delivery with the given deliveryNumber.
      * @param deliveryNumber delivery number
-     * @param shopCode The shopCode used in DISCO (optional).
+     * @param shopCode The shopCode used internally to distinguish between clients.<br />
+     * _This code is optional, if your identity is assigned to only one shop.
+     * Otherwise the response would be a 422 HTTP Error._
      * @returns delivery OK
      * @returns errorResponse Unexpected error
      * @throws ApiError
@@ -71,7 +73,9 @@ export class DeliveryService {
      * - A single order number can have a maximum length of 59 characters.
      * @param page The page to read. Default is the first page.
      * @param pageSize The maximum size per page is 100. Default is 100.
-     * @param shopCode The shopCode used in DISCO (optional).
+     * @param shopCode The shopCode used internally to distinguish between clients.<br />
+     * _This code is optional, if your identity is assigned to only one shop.
+     * Otherwise the response would be a 422 HTTP Error._
      * @returns deliveryCollection OK
      * @returns errorResponse Unexpected error
      * @throws ApiError

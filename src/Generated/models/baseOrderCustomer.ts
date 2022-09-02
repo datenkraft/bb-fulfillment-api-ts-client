@@ -11,6 +11,10 @@ export type baseOrderCustomer = {
      */
     languageCode: string;
     deliveryAddress: orderCustomerDeliveryAddress;
+    /**
+     * The customer's phone number, preferably in the DIN 5008 format, like:+43 2236 123456-7890
+     */
+    phone?: string | null;
 }
 
 export namespace baseOrderCustomer {
