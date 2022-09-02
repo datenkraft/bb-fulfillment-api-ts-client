@@ -13,7 +13,9 @@ export class ProductService {
      * Get a product by product number.
      * Get a product by product number.
      * @param productNumber The product number as defined during the creation of the product.
-     * @param shopCode The shopCode used in DISCO (optional).
+     * @param shopCode The shopCode used internally to distinguish between clients.<br />
+     * _This code is optional, if your identity is assigned to only one shop.
+     * Otherwise the response would be a 422 HTTP Error._
      * @returns product OK
      * @returns errorResponse Unexpected error
      * @throws ApiError
@@ -43,9 +45,12 @@ export class ProductService {
     /**
      * Add a new product.
      * Add a new product referenced by the given productNumber.
-     * @param productNumber The number the product should be refered by. This number is user defined, must be unique and has a maximum length (check maxLength field).
+     * @param productNumber The number the product should be refered by.
+     * This number is user defined, must be unique and has a maximum length (check maxLength field).
      * @param requestBody
-     * @param shopCode The shopCode used in DISCO (optional).
+     * @param shopCode The shopCode used internally to distinguish between clients.<br />
+     * _This code is optional, if your identity is assigned to only one shop.
+     * Otherwise the response would be a 422 HTTP Error._
      * @returns errorResponse Unexpected error
      * @returns product Created
      * @throws ApiError
@@ -78,7 +83,9 @@ export class ProductService {
      * Get a list of products.
      * @param page The page to read. Default is the first page.
      * @param pageSize The maximum size per page is 100. Default is 100.
-     * @param filterShopCode The shopCode used in DISCO (optional).
+     * @param filterShopCode The shopCode used internally to distinguish between clients.<br />
+     * _This code is optional, if your identity is assigned to only one shop.
+     * Otherwise the response would be a 422 HTTP Error._
      * @returns productCollection OK
      * @returns errorResponse Unexpected error
      * @throws ApiError

@@ -11,15 +11,15 @@ export type shop = {
      */
     id?: string;
     /**
-     * The shopCode used in DISCO.
+     * The shopCode used internally to distinguish between clients
      */
-    discoShopCode?: string;
+    shopCode?: string;
     /**
-     * The prefix to the references in DISCO.
+     * The prefix to the references internally to distinguish between clients.
      */
-    discoReferencePrefix?: string;
+    internalReferencePrefix?: string;
     /**
-     * The email used in DISCO.
+     * The email used internally.
      */
     email?: string;
     /**
@@ -38,5 +38,13 @@ export type shop = {
          * Date time to indicate that the test shop will not be reset before this time.
          */
         testShopResetNotBefore?: string | null,
+        /**
+         * Flag to mark a shop in sandbox mode.
+         */
+        sandboxMode: boolean | null,
+        /**
+         * Flag to mark if a test suffix should be added to internal references.
+         */
+        addTestSuffixToInternalReference: boolean | null,
     } | null;
 }

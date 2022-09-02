@@ -11,7 +11,7 @@ import type { orderItem } from './orderItem';
  */
 export type baseOrder = {
     /**
-     * The shopCode used in DISCO.
+     * The shopCode used internally to distinguish between clients.
      */
     shopCode?: string | null;
     customer: baseOrderCustomer;

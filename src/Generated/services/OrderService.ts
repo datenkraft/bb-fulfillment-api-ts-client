@@ -13,7 +13,9 @@ export class OrderService {
      * Get an order by order number.
      * Get an order by order number.
      * @param orderNumber The order number as defined during the creation of the order.
-     * @param shopCode The shopCode used in DISCO (optional).
+     * @param shopCode The shopCode used internally to distinguish between clients.<br />
+     * _This code is optional, if your identity is assigned to only one shop.
+     * Otherwise the response would be a 422 HTTP Error._
      * @returns order OK
      * @returns errorResponse Unexpected error
      * @throws ApiError
@@ -43,7 +45,8 @@ export class OrderService {
     /**
      * Add a new order.
      * Add a new order referenced by the given orderNumber.
-     * @param orderNumber The number the order should be refered by. This number is user defined, must be unique and has a maximum length (check maxLength field).
+     * @param orderNumber The number the order should be refered by.
+     * This number is user defined, must be unique and has a maximum length (check maxLength field).
      * @param requestBody
      * @returns errorResponse Unexpected error
      * @returns order Created
@@ -72,7 +75,9 @@ export class OrderService {
      * Cancel an order.
      * Cancel the order specified by the given order number (set in param orderNumber).
      * @param orderNumber The number the order is refered by.
-     * @param shopCode The shopCode used in DISCO (optional).
+     * @param shopCode The shopCode used internally to distinguish between clients.<br />
+     * _This code is optional, if your identity is assigned to only one shop.
+     * Otherwise the response would be a 422 HTTP Error._
      * @returns order OK
      * @returns errorResponse Unexpected error
      * @throws ApiError
@@ -110,7 +115,9 @@ export class OrderService {
      * Get a list of shop orders.
      * @param page The page to read. Default is the first page.
      * @param pageSize The maximum size per page is 100. Default is 100.
-     * @param filterShopCode The shopCode used in DISCO (optional).
+     * @param filterShopCode The shopCode used internally to distinguish between clients.<br />
+     * _This code is optional, if your identity is assigned to only one shop.
+     * Otherwise the response would be a 422 HTTP Error._
      * @param filterStatus Filter for status/statuses (optional).
      * @returns orderCollection OK
      * @returns errorResponse Unexpected error

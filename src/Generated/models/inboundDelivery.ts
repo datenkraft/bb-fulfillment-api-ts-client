@@ -28,7 +28,7 @@ export type inboundDelivery = (newInboundDelivery & {
      */
     products?: Array<inboundDeliveryProduct>,
     /**
-     * The shopCode used in DISCO.
+     * The shopCode used internally to distinguish between clients.
      */
     shopCode?: string | null,
     /**
