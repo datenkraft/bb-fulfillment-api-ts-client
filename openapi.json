@@ -4234,6 +4234,18 @@
                                 "type": "string",
                                 "format": "date-time",
                                 "nullable": true
+                            },
+                            "sandboxMode": {
+                                "description": "Flag to mark a shop in sandbox mode.",
+                                "type": "boolean",
+                                "default": false,
+                                "nullable": true
+                            },
+                            "addTestSuffixToInternalReference": {
+                                "description": "Flag to mark if a test suffix should be added to internal references.",
+                                "type": "boolean",
+                                "default": false,
+                                "nullable": true
                             }
                         },
                         "type": "object",
