@@ -18,5 +18,13 @@ export type updateShop = {
          * Date time to indicate that the test shop will not be reset before this time.
          */
         testShopResetNotBefore?: string | null,
+        /**
+         * Flag to mark a shop in sandbox mode.
+         */
+        sandboxMode: boolean | null,
+        /**
+         * Flag to mark if a test suffix should be added to internal references.
+         */
+        addTestSuffixToInternalReference: boolean | null,
     } | null;
 }
