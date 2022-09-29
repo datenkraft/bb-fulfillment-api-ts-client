@@ -4,33 +4,12 @@
 import type { delivery } from '../models/delivery';
 import type { deliveryCollection } from '../models/deliveryCollection';
 import type { deliveryServiceCollection } from '../models/deliveryServiceCollection';
+import type { deliveryShipment } from '../models/deliveryShipment';
 import type { errorResponse } from '../models/errorResponse';
+import type { updateDeliveryShipment } from '../models/updateDeliveryShipment';
 import { request as __request } from '../core/request';
 
 export class DeliveryService {
-
-    /**
-     * Get delivery services.
-     * Get delivery services.
-     * @param page The page to read. Default is the first page.
-     * @param pageSize The maximum size per page is 100. Default is 100.
-     * @returns deliveryServiceCollection OK
-     * @throws ApiError
-     */
-    public static async getDeliveryServiceCollection(
-        page?: number,
-        pageSize?: number,
-    ): Promise<deliveryServiceCollection> {
-        const result = await __request({
-            method: 'GET',
-            path: `/delivery-service`,
-            query: {
-                'page': page,
-                'pageSize': pageSize,
-            },
-        });
-        return result.body;
-    }
 
     /**
      * Get the delivery with the given deliveryNumber.
@@ -100,6 +79,65 @@ export class DeliveryService {
                 403: `Forbidden`,
                 422: `Unprocessable Entity`,
                 500: `Server error`,
+            },
+        });
+        return result.body;
+    }
+
+    /**
+     * Patch data of the shipment of the delivery specified by the given delivery and shipment numbers.
+     * Patch data of the shipment of the delivery specified by the given delivery and shipment numbers.
+     * @param deliveryNumber Number of the delivery.
+     * @param shipmentNumber Number of the shipment
+     * @param requestBody
+     * @param shopCode The shopCode used internally to distinguish between clients.<br />
+     * _This code is optional, if your identity is assigned to only one shop.
+     * Otherwise the response would be a 422 HTTP Error._
+     * @returns deliveryShipment OK
+     * @returns errorResponse Unexpected error
+     * @throws ApiError
+     */
+    public static async patchDeliveryShipment(
+        deliveryNumber: string,
+        shipmentNumber: string,
+        requestBody: updateDeliveryShipment,
+        shopCode?: string,
+    ): Promise<deliveryShipment | errorResponse> {
+        const result = await __request({
+            method: 'PATCH',
+            path: `/delivery/${deliveryNumber}/shipment/${shipmentNumber}`,
+            query: {
+                'shopCode': shopCode,
+            },
+            body: requestBody,
+            errors: {
+                401: `Unauthorized`,
+                403: `Forbidden`,
+                422: `Unprocessable Entity`,
+                500: `Server error`,
+            },
+        });
+        return result.body;
+    }
+
+    /**
+     * Get delivery services.
+     * Get delivery services.
+     * @param page The page to read. Default is the first page.
+     * @param pageSize The maximum size per page is 100. Default is 100.
+     * @returns deliveryServiceCollection OK
+     * @throws ApiError
+     */
+    public static async getDeliveryServiceCollection(
+        page?: number,
+        pageSize?: number,
+    ): Promise<deliveryServiceCollection> {
+        const result = await __request({
+            method: 'GET',
+            path: `/delivery-service`,
+            query: {
+                'page': page,
+                'pageSize': pageSize,
             },
         });
         return result.body;

@@ -7,9 +7,9 @@ import type { shipmentLine } from './shipmentLine';
 /**
  * A shipments defines a single delivered entity (package, parcel, pallet, ...)
  */
-export type shipment = {
+export type deliveryShipment = {
     /**
-     * The delivery number
+     * The shipment number
      */
     number?: string;
     /**
@@ -17,7 +17,7 @@ export type shipment = {
      * - in_progress: The delivery is in the process of being packaged.
      * - delivered: The delivery has been transferred to the delivery agent.
      */
-    status?: shipment.status;
+    status?: deliveryShipment.status;
     /**
      * The delivery service used to send this delivery.
      * The codes of supported delivery services can be retrieved from the 'GET /delivery-service' endpoint.
@@ -43,9 +43,13 @@ export type shipment = {
      * Shipment lines
      */
     shipmentLines?: Array<shipmentLine>;
+    /**
+     * External id of the shipment
+     */
+    externalShipmentId?: string | null;
 }
 
-export namespace shipment {
+export namespace deliveryShipment {
 
     /**
      * Status of the delivery.

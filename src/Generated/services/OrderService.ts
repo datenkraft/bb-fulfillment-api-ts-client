@@ -119,6 +119,7 @@ export class OrderService {
      * _This code is optional, if your identity is assigned to only one shop.
      * Otherwise the response would be a 422 HTTP Error._
      * @param filterStatus Filter for status/statuses (optional).
+     * @param filterExternalOrderId Filter for the external order ID e.g. from third party apps (optional)
      * @returns orderCollection OK
      * @returns errorResponse Unexpected error
      * @throws ApiError
@@ -128,6 +129,7 @@ export class OrderService {
         pageSize?: number,
         filterShopCode?: string,
         filterStatus?: string,
+        filterExternalOrderId?: string,
     ): Promise<orderCollection | errorResponse> {
         const result = await __request({
             method: 'GET',
@@ -137,10 +139,55 @@ export class OrderService {
                 'pageSize': pageSize,
                 'filter[shopCode]': filterShopCode,
                 'filter[status]': filterStatus,
+                'filter[externalOrderId]': filterExternalOrderId,
             },
             errors: {
                 401: `Unauthorized`,
                 403: `Forbidden`,
+                422: `Unprocessable Entity`,
+                500: `Server error`,
+            },
+        });
+        return result.body;
+    }
+
+    /**
+     * Redact an order.
+     * Redact the order and all other orders linked to the given order number (set in the param
+     * orderNumber) in a GDPR article 17 conform way. <br />
+     *
+     * Only orders with one of the following statuses are redactable:
+     * - delivered
+     * - deleted
+     * - canceled
+     * @param orderNumber The number the order is refered by.
+     * @param shopCode The shopCode used internally to distinguish between clients.<br />
+     * _This code is optional, if your identity is assigned to only one shop.
+     * Otherwise the response would be a 422 HTTP Error._
+     * @returns order OK
+     * @returns errorResponse Unexpected error
+     * @throws ApiError
+     */
+    public static async redactOrder(
+        orderNumber: string,
+        shopCode?: string,
+    ): Promise<order | errorResponse> {
+        const result = await __request({
+            method: 'POST',
+            path: `/order/${orderNumber}/redact`,
+            query: {
+                'shopCode': shopCode,
+            },
+            errors: {
+                400: `Bad Request`,
+                401: `Unauthorized`,
+                403: `Forbidden`,
+                404: `Not Found`,
+                409: `Conflict
+                 *
+                 * Available message codes:
+                 * - ORDER_NOT_REDACTABLE: The order is not redactable because of status conflicts
+                 * - ORDER_ALREADY_REDACTED: The order is already redacted`,
                 422: `Unprocessable Entity`,
                 500: `Server error`,
             },
