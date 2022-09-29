@@ -128,16 +128,23 @@ export class InboundDeliveryService {
      * Cancel a inbound delivery referenced by the given deliveryNumber.
      * @param inboundDeliveryNumber The number the inbound delivery should be refered by.
      * This number is user defined, must be unique and has a maximum length (check maxLength field).
+     * @param shopCode The shopCode used internally to distinguish between clients.<br />
+     * _This code is optional, if your identity is assigned to only one shop.
+     * Otherwise the response would be a 422 HTTP Error._
      * @returns inboundDelivery OK
      * @returns errorResponse Unexpected error
      * @throws ApiError
      */
     public static async cancelInboundDelivery(
         inboundDeliveryNumber: string,
+        shopCode?: string,
     ): Promise<inboundDelivery | errorResponse> {
         const result = await __request({
             method: 'POST',
             path: `/inbound-delivery/${inboundDeliveryNumber}/cancel`,
+            query: {
+                'shopCode': shopCode,
+            },
             errors: {
                 400: `Bad Request`,
                 401: `Unauthorized`,

@@ -9,5 +9,5 @@ import type { order } from './order';
  * A collection of shop orders
  */
 export type orderCollection = (collection & {
-    collection?: Array<order>,
+    data?: Array<order>,
 });

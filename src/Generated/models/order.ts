@@ -40,6 +40,14 @@ export type order = (baseOrder & {
     delivery?: Array<orderDelivery> | null,
     payment?: orderPayment,
     shipping?: orderShipping,
+    /**
+     * The external order ID e.g. from third party apps.
+     */
+    externalOrderId?: string | null,
+    /**
+     * Order notes regarding the fulfillment
+     */
+    orderNotes?: string | null,
 });
 
 export namespace order {
