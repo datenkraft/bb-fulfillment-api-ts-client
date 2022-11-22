@@ -10,6 +10,10 @@ export type baseOrderCustomer = {
      * The language code for any customer communications (ISO 639-1)
      */
     languageCode: string;
+    /**
+     * The external id of the order customer.
+     */
+    externalCustomerId?: string | null;
     deliveryAddress: orderCustomerDeliveryAddress;
     /**
      * The customer's phone number, preferably in the DIN 5008 format, like:+43 2236 123456-7890
