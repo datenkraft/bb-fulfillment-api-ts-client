@@ -14,6 +14,10 @@ export type orderItem = {
      * Positive number of items to order
      */
     count: number;
+    /**
+     * Product number of the customer
+     */
+    externalProductNumber?: string | null;
     price?: orderItemPrice | null;
     /**
      * Additional options (optional, TBD)

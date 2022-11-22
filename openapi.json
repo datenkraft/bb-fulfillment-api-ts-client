@@ -659,16 +659,6 @@
                             }
                         }
                     },
-                    "422": {
-                        "description": "Unprocessable Entity",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/errorResponse"
-                                }
-                            }
-                        }
-                    },
                     "500": {
                         "description": "Server error",
                         "content": {
@@ -1156,6 +1146,16 @@
                     },
                     "404": {
                         "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "409": {
+                        "description": "Conflict",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -2156,6 +2156,16 @@
                             "type": "string"
                         },
                         "example": "SY_1042"
+                    },
+                    {
+                        "name": "filter[externalCustomerId]",
+                        "in": "query",
+                        "description": "Filter for the external customer ID e.g. from third party apps (optional)",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "564132551"
                     }
                 ],
                 "responses": {
@@ -2689,6 +2699,16 @@
                             }
                         }
                     },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
                     "422": {
                         "description": "Unprocessable Entity",
                         "content": {
@@ -2855,11 +2875,11 @@
                     "200": {
                         "description": "OK"
                     },
-                    "400": {
-                        "description": "Invalid format"
-                    },
                     "404": {
                         "description": "Changelog not found"
+                    },
+                    "400": {
+                        "description": "Invalid format"
                     }
                 }
             }
@@ -3447,6 +3467,28 @@
                             "$ref": "#/components/schemas/orderItem"
                         }
                     },
+                    "externalOrderId": {
+                        "description": "The external order ID e.g. from third party apps. This field does not have to be unique.\nIt can be used to link and refind multiple orders, for example, if there are multiple fulfilment orders possible for a single customer order.",
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "externalOrderReference": {
+                        "description": "A not unique reference for the order which can be used for identifiying a specific order or for mapping to a third party app.",
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "deliverySlipNotes": {
+                        "description": "Notes for the delivery slip.",
+                        "type": "string",
+                        "maxLength": 65535,
+                        "nullable": true
+                    },
+                    "orderNotes": {
+                        "description": "Order notes regarding the fulfillment",
+                        "type": "string",
+                        "maxLength": 500,
+                        "nullable": true
+                    },
                     "options": {
                         "$ref": "#/components/schemas/baseOrderOptions"
                     }
@@ -3479,17 +3521,6 @@
                             },
                             "options": {
                                 "$ref": "#/components/schemas/newOrderOptions"
-                            },
-                            "externalOrderId": {
-                                "description": "The external order ID e.g. from third party apps.",
-                                "type": "string",
-                                "nullable": true
-                            },
-                            "orderNotes": {
-                                "description": "Order notes regarding the fulfillment",
-                                "type": "string",
-                                "maxLength": 500,
-                                "nullable": true
                             }
                         },
                         "type": "object"
@@ -3512,7 +3543,7 @@
                     {
                         "properties": {
                             "autoProcessState": {
-                                "description": "By setting this option, the order will be processed into the defined state.\\\nThis option is NOT available in the production systems.\\\nThe autoprocessing of the state happens after the order has been sucessfully created.\nIn case of any errors during the autoprocessing of the state, error messages are shown but the order will still have been created and is not rolled back.\n\nAvailable states:\n- order_completed_single_delivery: The order is completely delivered within one shipment\n- order_completed_multiple_deliveries: The order is completely delivered and includes several shipments\n- order_partially_delivered: The order is in progress and one of several shipments is delivered\n- order_canceled: The order is canceled\n- order_locked: The order is locked\n",
+                                "description": "By setting this option, the order will be processed into the defined state.\\\nThis option is NOT available in the production systems.\\\nThe autoprocessing of the state happens after the order has been sucessfully created.\nIn case of any errors during the autoprocessing of the state, error messages are shown but the order will still have been created and will not be rolled back.\n\nAvailable states:\n- order_completed_single_delivery: The order is completely delivered within one delivery.\\\nNote that it might not be possible to create a single delivery for the whole order, for example because of weight restrictions. In those cases multiple deliveries will be created.\n- order_completed_multiple_deliveries: The order is completely delivered and includes several deliveries.\n- order_partially_delivered: The order is in progress and one of several deliveries is delivered.\n- order_canceled: The order is canceled.\n- order_locked: The order is locked.\n",
                                 "type": "string",
                                 "enum": [
                                     "order_completed_single_delivery",
@@ -3538,7 +3569,8 @@
                         "properties": {
                             "orderNumber": {
                                 "description": "The order number. Note: This can be null if the order as not created via the API.",
-                                "type": "string"
+                                "type": "string",
+                                "nullable": true
                             },
                             "orderItems": {
                                 "description": "Note: canceled orderItems are NOT included.",
@@ -3581,17 +3613,6 @@
                             },
                             "shipping": {
                                 "$ref": "#/components/schemas/orderShipping"
-                            },
-                            "externalOrderId": {
-                                "description": "The external order ID e.g. from third party apps.",
-                                "type": "string",
-                                "nullable": true
-                            },
-                            "orderNotes": {
-                                "description": "Order notes regarding the fulfillment",
-                                "type": "string",
-                                "maxLength": 500,
-                                "nullable": true
                             }
                         },
                         "type": "object"
@@ -3618,6 +3639,12 @@
                         "description": "Positive number of items to order",
                         "type": "integer",
                         "format": "int32"
+                    },
+                    "externalProductNumber": {
+                        "description": "Product number of the customer",
+                        "type": "string",
+                        "format": "int32",
+                        "nullable": true
                     },
                     "price": {
                         "nullable": true,
@@ -3701,6 +3728,11 @@
                     "languageCode": {
                         "description": "The language code for any customer communications (ISO 639-1)",
                         "type": "string"
+                    },
+                    "externalCustomerId": {
+                        "description": "The external id of the order customer.",
+                        "type": "string",
+                        "nullable": true
                     },
                     "deliveryAddress": {
                         "$ref": "#/components/schemas/orderCustomerDeliveryAddress"
@@ -4262,8 +4294,7 @@
                         }
                     }
                 },
-                "type": "object",
-                "nullable": true
+                "type": "object"
             },
             "updateDeliveryShipment": {
                 "description": "Fields to update a shipment",

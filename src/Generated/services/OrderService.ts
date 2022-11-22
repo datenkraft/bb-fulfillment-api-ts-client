@@ -120,6 +120,7 @@ export class OrderService {
      * Otherwise the response would be a 422 HTTP Error._
      * @param filterStatus Filter for status/statuses (optional).
      * @param filterExternalOrderId Filter for the external order ID e.g. from third party apps (optional)
+     * @param filterExternalCustomerId Filter for the external customer ID e.g. from third party apps (optional)
      * @returns orderCollection OK
      * @returns errorResponse Unexpected error
      * @throws ApiError
@@ -130,6 +131,7 @@ export class OrderService {
         filterShopCode?: string,
         filterStatus?: string,
         filterExternalOrderId?: string,
+        filterExternalCustomerId?: string,
     ): Promise<orderCollection | errorResponse> {
         const result = await __request({
             method: 'GET',
@@ -140,6 +142,7 @@ export class OrderService {
                 'filter[shopCode]': filterShopCode,
                 'filter[status]': filterStatus,
                 'filter[externalOrderId]': filterExternalOrderId,
+                'filter[externalCustomerId]': filterExternalCustomerId,
             },
             errors: {
                 401: `Unauthorized`,

@@ -14,12 +14,4 @@ export type newOrder = (baseOrder & {
     customer?: newOrderCustomer,
     orderItems?: Array<newOrderItem>,
     options?: newOrderOptions,
-    /**
-     * The external order ID e.g. from third party apps.
-     */
-    externalOrderId?: string | null,
-    /**
-     * Order notes regarding the fulfillment
-     */
-    orderNotes?: string | null,
 });

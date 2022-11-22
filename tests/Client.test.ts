@@ -26,16 +26,16 @@ describe('Client Test (staging)', () => {
                 meta: {
                   shopifyShopDomain: 'test.example.com',
                 },
-              })
+              });
             }
             done();
           })
           .catch((error) => {
-            done(error)
+            done(error);
           });
       })
       .catch((error) => {
-        done(error)
+        done(error);
       });
   });
 });

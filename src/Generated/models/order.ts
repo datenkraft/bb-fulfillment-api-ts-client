@@ -16,7 +16,7 @@ export type order = (baseOrder & {
     /**
      * The order number. Note: This can be null if the order as not created via the API.
      */
-    orderNumber?: string,
+    orderNumber?: string | null,
     /**
      * Note: canceled orderItems are NOT included.
      */
@@ -40,14 +40,6 @@ export type order = (baseOrder & {
     delivery?: Array<orderDelivery> | null,
     payment?: orderPayment,
     shipping?: orderShipping,
-    /**
-     * The external order ID e.g. from third party apps.
-     */
-    externalOrderId?: string | null,
-    /**
-     * Order notes regarding the fulfillment
-     */
-    orderNotes?: string | null,
 });
 
 export namespace order {

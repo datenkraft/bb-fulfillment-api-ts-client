@@ -12,14 +12,15 @@ export type newOrderOptions = (baseOrderOptions & {
      * By setting this option, the order will be processed into the defined state.\
      * This option is NOT available in the production systems.\
      * The autoprocessing of the state happens after the order has been sucessfully created.
-     * In case of any errors during the autoprocessing of the state, error messages are shown but the order will still have been created and is not rolled back.
+     * In case of any errors during the autoprocessing of the state, error messages are shown but the order will still have been created and will not be rolled back.
      *
      * Available states:
-     * - order_completed_single_delivery: The order is completely delivered within one shipment
-     * - order_completed_multiple_deliveries: The order is completely delivered and includes several shipments
-     * - order_partially_delivered: The order is in progress and one of several shipments is delivered
-     * - order_canceled: The order is canceled
-     * - order_locked: The order is locked
+     * - order_completed_single_delivery: The order is completely delivered within one delivery.\
+     * Note that it might not be possible to create a single delivery for the whole order, for example because of weight restrictions. In those cases multiple deliveries will be created.
+     * - order_completed_multiple_deliveries: The order is completely delivered and includes several deliveries.
+     * - order_partially_delivered: The order is in progress and one of several deliveries is delivered.
+     * - order_canceled: The order is canceled.
+     * - order_locked: The order is locked.
      *
      */
     autoProcessState?: newOrderOptions.autoProcessState,
@@ -31,14 +32,15 @@ export namespace newOrderOptions {
      * By setting this option, the order will be processed into the defined state.\
      * This option is NOT available in the production systems.\
      * The autoprocessing of the state happens after the order has been sucessfully created.
-     * In case of any errors during the autoprocessing of the state, error messages are shown but the order will still have been created and is not rolled back.
+     * In case of any errors during the autoprocessing of the state, error messages are shown but the order will still have been created and will not be rolled back.
      *
      * Available states:
-     * - order_completed_single_delivery: The order is completely delivered within one shipment
-     * - order_completed_multiple_deliveries: The order is completely delivered and includes several shipments
-     * - order_partially_delivered: The order is in progress and one of several shipments is delivered
-     * - order_canceled: The order is canceled
-     * - order_locked: The order is locked
+     * - order_completed_single_delivery: The order is completely delivered within one delivery.\
+     * Note that it might not be possible to create a single delivery for the whole order, for example because of weight restrictions. In those cases multiple deliveries will be created.
+     * - order_completed_multiple_deliveries: The order is completely delivered and includes several deliveries.
+     * - order_partially_delivered: The order is in progress and one of several deliveries is delivered.
+     * - order_canceled: The order is canceled.
+     * - order_locked: The order is locked.
      *
      */
     export enum autoProcessState {
