@@ -9,11 +9,15 @@ import type { newInboundDeliveryProduct } from './newInboundDeliveryProduct';
  */
 export type newInboundDelivery = {
     /**
+     * Optional free-text reference for inbound delivery.
+     */
+    inboundDeliveryName?: string | null;
+    /**
      * Number of the supplier. Available suppliers can be retrieved from the 'GET /supplier' endpoint.
      */
     supplierNumber: string;
     /**
-     * Expected date of the delivery
+     * Expected date of the delivery (timezone CET/CEST)
      */
     expectedDeliveryDate: string;
     /**

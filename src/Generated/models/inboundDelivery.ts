@@ -9,6 +9,9 @@ import type { newInboundDelivery } from './newInboundDelivery';
  * Data to represent an inbound delivery
  */
 export type inboundDelivery = (newInboundDelivery & {
+    /**
+     * Number of the inbound delivery
+     */
     inboundDeliveryNumber?: string | null,
     /**
      * The API internal id of the inbound delivery.
@@ -32,13 +35,19 @@ export type inboundDelivery = (newInboundDelivery & {
      */
     shopCode?: string | null,
     /**
-     * Start date of the delivery
+     * Start date of the delivery (timezone CET/CEST)
      */
     startDate?: string | null,
     /**
-     * End date of the delivery
+     * End date of the delivery (timezone CET/CEST)
      */
     endDate?: string | null,
+    /**
+     * Number of the inbound delivery on the delivery slip.
+     * If the field is empty or not set in the database (e.g. the inbound delivery has not yet arrived in our warehouse), null will be returned.
+     * If an empty string (") is returned, it means that no delivery slip number is available for the inbound delivery.
+     */
+    deliverySlipNumber?: string | null,
 });
 
 export namespace inboundDelivery {

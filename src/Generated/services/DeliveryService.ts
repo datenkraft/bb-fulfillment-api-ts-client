@@ -127,18 +127,24 @@ export class DeliveryService {
      * @param page The page to read. Default is the first page.
      * @param pageSize The maximum size per page is 100. Default is 100.
      * @returns deliveryServiceCollection OK
+     * @returns errorResponse Unexpected error
      * @throws ApiError
      */
     public static async getDeliveryServiceCollection(
         page?: number,
         pageSize?: number,
-    ): Promise<deliveryServiceCollection> {
+    ): Promise<deliveryServiceCollection | errorResponse> {
         const result = await __request({
             method: 'GET',
             path: `/delivery-service`,
             query: {
                 'page': page,
                 'pageSize': pageSize,
+            },
+            errors: {
+                401: `Unauthorized`,
+                403: `Forbidden`,
+                500: `Server error`,
             },
         });
         return result.body;

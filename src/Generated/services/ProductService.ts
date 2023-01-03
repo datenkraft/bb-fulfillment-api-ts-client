@@ -5,6 +5,7 @@ import type { errorResponse } from '../models/errorResponse';
 import type { newProduct } from '../models/newProduct';
 import type { product } from '../models/product';
 import type { productCollection } from '../models/productCollection';
+import type { productJournalCollection } from '../models/productJournalCollection';
 import { request as __request } from '../core/request';
 
 export class ProductService {
@@ -86,6 +87,15 @@ export class ProductService {
      * @param filterShopCode The shopCode used internally to distinguish between clients.<br />
      * _This code is optional, if your identity is assigned to only one shop.
      * Otherwise the response would be a 422 HTTP Error._
+     * @param filterSearch Filter for product search.\
+     * Usage:
+     * - Provide one or multiple search terms to filter results.
+     * - Multiple search terms are separated by spaces.
+     * - The search is not case sensitive.
+     * - The search is enabled for the fields productTitle and productNumber.
+     * - Each search term filters the response for products where at least one of the fields contains the search term.
+     * - For example, filter[search]='term1 term2' will filter the result for products where 'term1' is found in any field and 'term2' is also found in any field.\
+     * If only 'term1' or 'term2' is found in the fields, the product is not included in the results.
      * @returns productCollection OK
      * @returns errorResponse Unexpected error
      * @throws ApiError
@@ -94,6 +104,7 @@ export class ProductService {
         page?: number,
         pageSize?: number,
         filterShopCode?: string,
+        filterSearch?: string,
     ): Promise<productCollection | errorResponse> {
         const result = await __request({
             method: 'GET',
@@ -102,10 +113,56 @@ export class ProductService {
                 'page': page,
                 'pageSize': pageSize,
                 'filter[shopCode]': filterShopCode,
+                'filter[search]': filterSearch,
             },
             errors: {
                 401: `Unauthorized`,
                 403: `Forbidden`,
+                422: `Unprocessable Entity`,
+                500: `Server error`,
+            },
+        });
+        return result.body;
+    }
+
+    /**
+     * Read a journal collection for a specific product showing the history of stock changes.
+     * Read a journal collection for a specific product showing the history of stock changes.
+     * @param productNumber The product number as defined during the creation of the product.
+     * @param page The page to read. Default is the first page.
+     * @param pageSize The maximum size per page is 100. Default is 100.
+     * @param shopCode The shopCode used internally to distinguish between clients.<br />
+     * _This code is optional, if your identity is assigned to only one shop.
+     * Otherwise the response would be a 422 HTTP Error._
+     * @param filterDateFrom The start date (inclusive) in format Y-m-d (timezone CET/CEST) for which product journal entries should be returned.
+     * @param filterDateTo The end date (inclusive) in format Y-m-d (timezone CET/CEST) for which product journal entries should be returned.
+     * @returns productJournalCollection OK
+     * @returns errorResponse Unexpected error
+     * @throws ApiError
+     */
+    public static async getProductJournalCollection(
+        productNumber: string,
+        page?: number,
+        pageSize?: number,
+        shopCode?: string,
+        filterDateFrom?: string,
+        filterDateTo?: string,
+    ): Promise<productJournalCollection | errorResponse> {
+        const result = await __request({
+            method: 'GET',
+            path: `/product/${productNumber}/journal`,
+            query: {
+                'page': page,
+                'pageSize': pageSize,
+                'shopCode': shopCode,
+                'filter[dateFrom]': filterDateFrom,
+                'filter[dateTo]': filterDateTo,
+            },
+            errors: {
+                400: `Bad Request`,
+                401: `Unauthorized`,
+                403: `Forbidden`,
+                404: `Not Found`,
                 422: `Unprocessable Entity`,
                 500: `Server error`,
             },

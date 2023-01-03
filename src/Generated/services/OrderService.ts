@@ -73,7 +73,7 @@ export class OrderService {
 
     /**
      * Cancel an order.
-     * Cancel the order specified by the given order number (set in param orderNumber).
+     * Cancel the order specified by the given order number (set in param orderNumber). An orderNumber from a canceled order cannot be used for a new order, because they must always be unique.
      * @param orderNumber The number the order is refered by.
      * @param shopCode The shopCode used internally to distinguish between clients.<br />
      * _This code is optional, if your identity is assigned to only one shop.

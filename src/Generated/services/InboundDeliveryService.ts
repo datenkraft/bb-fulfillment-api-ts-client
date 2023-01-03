@@ -125,7 +125,7 @@ export class InboundDeliveryService {
 
     /**
      * Cancel a inbound delivery.
-     * Cancel a inbound delivery referenced by the given deliveryNumber.
+     * Cancel a inbound delivery referenced by the given inboundDeliveryNumber. An inboundDeliveryNumber from a canceled inbound delivery cannot be used for a new inbound delivery, because they must always be unique.
      * @param inboundDeliveryNumber The number the inbound delivery should be refered by.
      * This number is user defined, must be unique and has a maximum length (check maxLength field).
      * @param shopCode The shopCode used internally to distinguish between clients.<br />
