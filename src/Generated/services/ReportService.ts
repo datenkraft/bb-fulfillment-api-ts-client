@@ -10,8 +10,8 @@ export class ReportService {
     /**
      * Read the created orders for the given shopCode in the given dateRange.
      * Read the created orders for the given shopCode in the given dateRange.
-     * @param filterDateFrom The start date (inclusive) in format Y-m-d for which orders should be returned.
-     * @param filterDateTo The end date (inclusive) in format Y-m-d for which orders should be returned.
+     * @param filterDateFrom The start date (inclusive) in format Y-m-d (timezone CET/CEST) for which orders should be returned.
+     * @param filterDateTo The end date (inclusive) in format Y-m-d (timezone CET/CEST) for which orders should be returned.
      * @param page The page to read. Default is the first page.
      * @param pageSize The maximum size per page is 100. Default is 20.
      * @param filterShopCode The shopCode used internally to distinguish between clients.<br />

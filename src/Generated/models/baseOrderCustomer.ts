@@ -7,7 +7,7 @@ import type { orderCustomerDeliveryAddress } from './orderCustomerDeliveryAddres
 export type baseOrderCustomer = {
     gender: baseOrderCustomer.gender;
     /**
-     * The language code for any customer communications (ISO 639-1)
+     * The language code for any customer communications (ISO 639-1). Currently only 'de' is supported
      */
     languageCode: string;
     /**

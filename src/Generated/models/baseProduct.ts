@@ -21,10 +21,6 @@ export type baseProduct = {
      */
     productTitleOriginal?: string;
     /**
-     * Status of the product regarding sales ('enabled' if no value is provided)
-     */
-    productStatus: baseProduct.productStatus | null;
-    /**
      * Long description of the article
      */
     articleLongDescription?: string;
@@ -126,14 +122,6 @@ export namespace baseProduct {
         SERVICE_ANCILLARY = 'service_ancillary',
         INQUIRY_TESTDRIVE = 'inquiry_testdrive',
         INQUIRY_RAFFLE = 'inquiry_raffle',
-    }
-
-    /**
-     * Status of the product regarding sales ('enabled' if no value is provided)
-     */
-    export enum productStatus {
-        ENABLED = 'enabled',
-        ENABLED_EXTERNAL_ONLY = 'enabled_external_only',
     }
 
     /**

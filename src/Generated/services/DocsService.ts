@@ -20,8 +20,8 @@ export class DocsService {
     }
 
     /**
-     * Get the openapi documentation in the specified format (yaml or json)
-     * Get the openapi documentation in the specified format (yaml or json)
+     * Get the openapi documentation in the specified format
+     * Get the openapi documentation in the specified format
      * @param format Openapi file format
      * @returns any OK
      * @throws ApiError
@@ -37,8 +37,8 @@ export class DocsService {
     }
 
     /**
-     * Get the changelog in the specified format (Markdown or HTML)
-     * Get the changelog in the specified format (Markdown or HTML)
+     * Get the changelog in the specified format
+     * Get the changelog in the specified format
      * @param format Changelog file format
      * @returns any OK
      * @throws ApiError
