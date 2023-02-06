@@ -12,7 +12,7 @@ export class StockService {
      * Get the stock for all (per default only valid) products or for a specific product.
      * @param page The page to read. Default is the first page.
      * @param pageSize The maximum size per page is 100. Default is 20.
-     * @param filterProductNumber product number
+     * @param filterProductNumber Filter for product number(s) (optional).
      * @param filterShopCode The shopCode used internally to distinguish between clients.<br />
      * _This code is optional, if your identity is assigned to only one shop.
      * Otherwise the response would be a 422 HTTP Error._
@@ -27,7 +27,7 @@ export class StockService {
     public static async getStockCollection(
         page?: number,
         pageSize?: number,
-        filterProductNumber?: string,
+        filterProductNumber?: any,
         filterShopCode?: string,
         filterProductStatus?: '_all' | '_invalid',
     ): Promise<stockCollection | errorResponse> {
