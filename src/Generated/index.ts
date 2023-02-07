@@ -28,6 +28,8 @@ export type { getAuthPermissionCollectionResponse } from './models/getAuthPermis
 export { inboundDelivery } from './models/inboundDelivery';
 export type { inboundDeliveryCollection } from './models/inboundDeliveryCollection';
 export type { inboundDeliveryProduct } from './models/inboundDeliveryProduct';
+export type { information } from './models/information';
+export type { informationResponse } from './models/informationResponse';
 export type { manufacturer } from './models/manufacturer';
 export type { manufacturerCollection } from './models/manufacturerCollection';
 export type { newInboundDelivery } from './models/newInboundDelivery';

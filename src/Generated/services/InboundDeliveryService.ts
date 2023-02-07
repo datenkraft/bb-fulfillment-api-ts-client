@@ -166,9 +166,9 @@ export class InboundDeliveryService {
          */
         message: string,
         /**
-         * Reference for the entry tried to post represented by a key-value pair. (string=>mixed)
+         * Reference for the entry tried to post represented by a key-value pair.
          */
-        reference: any,
+        reference: Record<string, string>,
         content: (inboundDelivery | errorResponse),
     }>> {
         const result = await __request({
