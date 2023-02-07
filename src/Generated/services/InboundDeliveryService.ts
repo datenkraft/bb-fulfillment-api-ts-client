@@ -80,6 +80,27 @@ export class InboundDeliveryService {
     }
 
     /**
+     * Get a spreadsheet template for performing POST queries to the respective endpoint.
+     * Get a spreadsheet template for performing POST queries to the respective endpoint.
+     * @param format The inbound delivery number as defined during the creation of the inbound delivery.
+     * @returns any OK
+     * @returns errorResponse Unexpected error
+     * @throws ApiError
+     */
+    public static async getInboundDeliveryBulkImportTemplate(
+        format: 'xlsx' | 'csv',
+    ): Promise<any | errorResponse> {
+        const result = await __request({
+            method: 'GET',
+            path: `/bulk-import/template/inbound-delivery.${format}`,
+            errors: {
+                500: `Server error`,
+            },
+        });
+        return result.body;
+    }
+
+    /**
      * Get a list of inbound deliveries.
      * Get a list of inbound deliveries.
      * @param page The page to read. Default is the first page.
@@ -117,6 +138,47 @@ export class InboundDeliveryService {
                 401: `Unauthorized`,
                 403: `Forbidden`,
                 422: `Unprocessable Entity`,
+                500: `Server error`,
+            },
+        });
+        return result.body;
+    }
+
+    /**
+     * Import one or more new inbound deliveries.
+     * Import one or more new inbound deliveries.
+     * @param format The format for the upload.
+     * @param requestBody
+     * @returns errorResponse Unexpected error
+     * @returns any Multi status
+     * @throws ApiError
+     */
+    public static async inboundDeliveryBulkImport(
+        format: 'xlsx' | 'csv',
+        requestBody: any,
+    ): Promise<errorResponse | Array<{
+        /**
+         * HTTP Status code of the single request
+         */
+        code: number,
+        /**
+         * Description for the HTTP Status code of the single request
+         */
+        message: string,
+        /**
+         * Reference for the entry tried to post represented by a key-value pair. (string=>mixed)
+         */
+        reference: any,
+        content: (inboundDelivery | errorResponse),
+    }>> {
+        const result = await __request({
+            method: 'POST',
+            path: `/bulk-import/inbound-delivery.${format}`,
+            body: requestBody,
+            errors: {
+                400: `Bad Request`,
+                401: `Unauthorized`,
+                403: `Forbidden`,
                 500: `Server error`,
             },
         });
