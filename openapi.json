@@ -3197,6 +3197,9 @@
                         "in": "query",
                         "description": "Filter for product number(s) (optional).",
                         "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
                         "examples": {
                             "single product number": {
                                 "summary": "single product number",

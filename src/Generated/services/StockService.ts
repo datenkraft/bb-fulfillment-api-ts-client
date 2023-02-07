@@ -27,7 +27,7 @@ export class StockService {
     public static async getStockCollection(
         page?: number,
         pageSize?: number,
-        filterProductNumber?: any,
+        filterProductNumber?: string,
         filterShopCode?: string,
         filterProductStatus?: '_all' | '_invalid',
     ): Promise<stockCollection | errorResponse> {
