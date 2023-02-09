@@ -2,7 +2,7 @@
     "openapi": "3.0.0",
     "info": {
         "title": "Fulfillment API",
-        "description": "\n- alpha: Currently developed API version. Subject to major changes.\n- beta: A semi-stable early access version. New features can be added. Breaking changes are possible.\n- stable: The API is recommended for use in production.\n\n[Changelog](https:\/\/fulfillment-api.conqore.niceshops.com\/v2\/docs\/changelog.html)\n\nAll data is transferred in UTF-8 encoding.\\\nThe API uses stateless HTTP. No cookies have to be kept.\\\nAuthentication via OAuth2 client credentials flow.\n\n[Fulfillment API PHP client @Packagist](https:\/\/packagist.org\/packages\/datenkraft\/bb-fulfillment-api-php-client)",
+        "description": "\n- alpha: Currently developed API version. Subject to major changes.\n- beta: A semi-stable early access version. New features can be added. Breaking changes are possible.\n- stable: The API is recommended for use in production.\n\n[Changelog](https://fulfillment-api.conqore.niceshops.com/v2/docs/changelog.html)\n\nAll data is transferred in UTF-8 encoding.\\\nThe API uses stateless HTTP. No cookies have to be kept.\\\nAuthentication via OAuth2 client credentials flow.\n\n[Fulfillment API PHP client @Packagist](https://packagist.org/packages/datenkraft/bb-fulfillment-api-php-client)",
         "version": "v2.beta"
     },
     "servers": [
@@ -1633,8 +1633,11 @@
                                                 "type": "string"
                                             },
                                             "reference": {
-                                                "description": "Reference for the entry tried to post represented by a key-value pair. (string=>mixed)",
-                                                "type": "object"
+                                                "description": "Reference for the entry tried to post represented by a key-value pair.",
+                                                "type": "object",
+                                                "additionalProperties": {
+                                                    "type": "string"
+                                                }
                                             },
                                             "content": {
                                                 "type": "object",
@@ -2765,7 +2768,7 @@
                     "product"
                 ],
                 "summary": "Add a new product.",
-                "description": "Add a new product referenced by the given productNumber.",
+                "description": "Add a new product referenced by the given productNumber.\nPlease note that due to necessary product compliance enabling by our steve team, you might not be able to use all sent products immediately.",
                 "operationId": "postProduct",
                 "parameters": [
                     {
@@ -2805,7 +2808,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/product"
+                                    "$ref": "#/components/schemas/informationResponse"
                                 }
                             }
                         }
@@ -3390,11 +3393,11 @@
                     "200": {
                         "description": "OK"
                     },
-                    "404": {
-                        "description": "Changelog not found"
-                    },
                     "400": {
                         "description": "Invalid format"
+                    },
+                    "404": {
+                        "description": "Changelog not found"
                     }
                 }
             }
@@ -3762,6 +3765,30 @@
                     }
                 },
                 "type": "object"
+            },
+            "informationResponse": {
+                "properties": {
+                    "information": {
+                        "description": "information",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/information"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "information": {
+                "required": [
+                    "code",
+                    "message"
+                ],
+                "type": "object",
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/error"
+                    }
+                ]
             },
             "error": {
                 "required": [

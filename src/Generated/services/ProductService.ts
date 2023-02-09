@@ -2,6 +2,7 @@
 /* tslint:disable */
 /* eslint-disable */
 import type { errorResponse } from '../models/errorResponse';
+import type { informationResponse } from '../models/informationResponse';
 import type { newProduct } from '../models/newProduct';
 import type { product } from '../models/product';
 import type { productCollection } from '../models/productCollection';
@@ -46,6 +47,7 @@ export class ProductService {
     /**
      * Add a new product.
      * Add a new product referenced by the given productNumber.
+     * Please note that due to necessary product compliance enabling by our steve team, you might not be able to use all sent products immediately.
      * @param productNumber The number the product should be refered by.
      * This number is user defined, must be unique and has a maximum length (check maxLength field).
      * @param requestBody
@@ -53,14 +55,14 @@ export class ProductService {
      * _This code is optional, if your identity is assigned to only one shop.
      * Otherwise the response would be a 422 HTTP Error._
      * @returns errorResponse Unexpected error
-     * @returns product Created
+     * @returns informationResponse Created
      * @throws ApiError
      */
     public static async postProduct(
         productNumber: string,
         requestBody: newProduct,
         shopCode?: string,
-    ): Promise<errorResponse | product> {
+    ): Promise<errorResponse | informationResponse> {
         const result = await __request({
             method: 'POST',
             path: `/product/${productNumber}`,
