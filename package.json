@@ -1,5 +1,5 @@
 {
-  "name": "@datenkraft/bb-x-fulfillment-api-ts-client",
+  "name": "@datenkraft/bb-fulfillment-api-ts-client",
   "homepage": "https://bitbucket.org/datenkraft/bb-fulfillment-api-ts-client#readme",
   "version": "2.1.0",
   "description": "The fulfillment API TS Client enables you to work with the fulfillment API",
