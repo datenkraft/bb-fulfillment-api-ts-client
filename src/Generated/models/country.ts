@@ -2,6 +2,8 @@
 /* tslint:disable */
 /* eslint-disable */
 
+import type { countryProvinces } from './countryProvinces';
+
 /**
  * Data to represent a country, steve can ship to
  */
@@ -18,4 +20,5 @@ export type country = {
      * Specifies whether or not a phone number is required when using a shipping address in the country
      */
     phoneRequired?: boolean;
+    provinces?: Array<countryProvinces> | null;
 }

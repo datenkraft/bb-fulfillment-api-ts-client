@@ -15,7 +15,7 @@ export class ProductService {
      * Get a product by product number.
      * Get a product by product number.
      * @param productNumber The product number as defined during the creation of the product.
-     * @param shopCode The shopCode used internally to distinguish between clients.<br />
+     * @param shopCode The shopCode used internally to distinguish between clients.\
      * _This code is optional, if your identity is assigned to only one shop.
      * Otherwise the response would be a 422 HTTP Error._
      * @returns product OK
@@ -47,11 +47,12 @@ export class ProductService {
     /**
      * Add a new product.
      * Add a new product referenced by the given productNumber.
-     * Please note that due to necessary product compliance enabling by our steve team, you might not be able to use all sent products immediately.
+     * Please note that due to necessary product compliance enabling by our steve team, the product might not be usable immediately.
+     * The product number is nevertheless reserved, even before the product can be queried in the GET endpoint.
      * @param productNumber The number the product should be refered by.
      * This number is user defined, must be unique and has a maximum length (check maxLength field).
      * @param requestBody
-     * @param shopCode The shopCode used internally to distinguish between clients.<br />
+     * @param shopCode The shopCode used internally to distinguish between clients.\
      * _This code is optional, if your identity is assigned to only one shop.
      * Otherwise the response would be a 422 HTTP Error._
      * @returns errorResponse Unexpected error
@@ -86,7 +87,7 @@ export class ProductService {
      * Get a list of products.
      * @param page The page to read. Default is the first page.
      * @param pageSize The maximum size per page is 100. Default is 100.
-     * @param filterShopCode The shopCode used internally to distinguish between clients.<br />
+     * @param filterShopCode The shopCode used internally to distinguish between clients.\
      * _This code is optional, if your identity is assigned to only one shop.
      * Otherwise the response would be a 422 HTTP Error._
      * @param filterSearch Filter for product search.\
@@ -133,11 +134,21 @@ export class ProductService {
      * @param productNumber The product number as defined during the creation of the product.
      * @param page The page to read. Default is the first page.
      * @param pageSize The maximum size per page is 100. Default is 100.
-     * @param shopCode The shopCode used internally to distinguish between clients.<br />
+     * @param shopCode The shopCode used internally to distinguish between clients.\
      * _This code is optional, if your identity is assigned to only one shop.
      * Otherwise the response would be a 422 HTTP Error._
      * @param filterDateFrom The start date (inclusive) in format Y-m-d (timezone CET/CEST) for which product journal entries should be returned.
      * @param filterDateTo The end date (inclusive) in format Y-m-d (timezone CET/CEST) for which product journal entries should be returned.
+     * @param filterReason Filter journal entries for one or more reasons
+     *
+     * - expired: Taking an expired product off the books
+     * - damaged: Taking a damaged product off the books
+     * - own_withdrawl: Product taken for own use
+     * - correction: Manual correction
+     * - niceshops_order: Product sold via a shop from niceshops
+     * - inbound: Restocking the product
+     * - fulfillment: steve fulfilled an order
+     * - return: A customer sent the product back to our warehouse
      * @returns productJournalCollection OK
      * @returns errorResponse Unexpected error
      * @throws ApiError
@@ -149,6 +160,7 @@ export class ProductService {
         shopCode?: string,
         filterDateFrom?: string,
         filterDateTo?: string,
+        filterReason?: string,
     ): Promise<productJournalCollection | errorResponse> {
         const result = await __request({
             method: 'GET',
@@ -159,6 +171,7 @@ export class ProductService {
                 'shopCode': shopCode,
                 'filter[dateFrom]': filterDateFrom,
                 'filter[dateTo]': filterDateTo,
+                'filter[reason]': filterReason,
             },
             errors: {
                 400: `Bad Request`,
