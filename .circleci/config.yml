@@ -168,8 +168,8 @@ jobs:
     executor: node-dev
     working_directory: ~/build/project
     steps:
-      - checkout:
-          name: Checkout source code
+      - attach_workspace:
+          at: ~/build/project
       - run:
           name: Check for changes
           command: |
