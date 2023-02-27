@@ -2,6 +2,7 @@
 /* tslint:disable */
 /* eslint-disable */
 
+import type { orderCustomerAddress } from './orderCustomerAddress';
 import type { orderCustomerDeliveryAddress } from './orderCustomerDeliveryAddress';
 
 export type baseOrderCustomer = {
@@ -19,6 +20,42 @@ export type baseOrderCustomer = {
      * The customer's phone number, preferably in the DIN 5008 format, like:+43 2236 123456-7890
      */
     phone?: string | null;
+    /**
+     * The customer's first name.\
+     * Note: This field is relevant for invoicing and whether it is available or not depends on the used shopCode.\
+     * Use the GET /shop endpoint to check if the meta.invoiceEnabled of the shop is set to true.
+     */
+    firstname?: string;
+    /**
+     * The customer's last name.\
+     * Note: This field is relevant for invoicing and whether it is available or not depends on the used shopCode.\
+     * Use the GET /shop endpoint to check if the meta.invoiceEnabled of the shop is set to true.
+     */
+    lastname?: string;
+    /**
+     * The customer's title.\
+     * Note: This field is relevant for invoicing and whether it is available or not depends on the used shopCode.\
+     * Use the GET /shop endpoint to check if the meta.invoiceEnabled of the shop is set to true.
+     */
+    title?: string | null;
+    /**
+     * The customer's company name.\
+     * Note: This field is relevant for invoicing and whether it is available or not depends on the used shopCode.\
+     * Use the GET /shop endpoint to check if the meta.invoiceEnabled of the shop is set to true.
+     */
+    company?: string | null;
+    /**
+     * The customer's company VAT number.\
+     * Note: This field is relevant for invoicing and whether it is available or not depends on the used shopCode.\
+     * Use the GET /shop endpoint to check if the meta.invoiceEnabled of the shop is set to true.
+     */
+    companyVatNumber?: string | null;
+    /**
+     * The customer's invoice address.\
+     * Note: This field is relevant for invoicing and whether it is available or not depends on the used shopCode.\
+     * Use the GET /shop endpoint to check if the meta.invoiceEnabled of the shop is set to true.
+     */
+    invoiceAddress?: orderCustomerAddress | null;
 }
 
 export namespace baseOrderCustomer {

@@ -13,7 +13,7 @@ export class OrderService {
      * Get an order by order number.
      * Get an order by order number.
      * @param orderNumber The order number as defined during the creation of the order.
-     * @param shopCode The shopCode used internally to distinguish between clients.<br />
+     * @param shopCode The shopCode used internally to distinguish between clients.\
      * _This code is optional, if your identity is assigned to only one shop.
      * Otherwise the response would be a 422 HTTP Error._
      * @returns order OK
@@ -75,7 +75,7 @@ export class OrderService {
      * Cancel an order.
      * Cancel the order specified by the given order number (set in param orderNumber). An orderNumber from a canceled order cannot be used for a new order, because they must always be unique.
      * @param orderNumber The number the order is refered by.
-     * @param shopCode The shopCode used internally to distinguish between clients.<br />
+     * @param shopCode The shopCode used internally to distinguish between clients.\
      * _This code is optional, if your identity is assigned to only one shop.
      * Otherwise the response would be a 422 HTTP Error._
      * @returns order OK
@@ -115,7 +115,7 @@ export class OrderService {
      * Get a list of shop orders.
      * @param page The page to read. Default is the first page.
      * @param pageSize The maximum size per page is 100. Default is 100.
-     * @param filterShopCode The shopCode used internally to distinguish between clients.<br />
+     * @param filterShopCode The shopCode used internally to distinguish between clients.\
      * _This code is optional, if your identity is assigned to only one shop.
      * Otherwise the response would be a 422 HTTP Error._
      * @param filterStatus Filter for status/statuses (optional).
@@ -157,14 +157,14 @@ export class OrderService {
     /**
      * Redact an order.
      * Redact the order and all other orders linked to the given order number (set in the param
-     * orderNumber) in a GDPR article 17 conform way. <br />
+     * orderNumber) in a GDPR article 17 conform way. \
      *
      * Only orders with one of the following statuses are redactable:
      * - delivered
      * - deleted
      * - canceled
      * @param orderNumber The number the order is refered by.
-     * @param shopCode The shopCode used internally to distinguish between clients.<br />
+     * @param shopCode The shopCode used internally to distinguish between clients.\
      * _This code is optional, if your identity is assigned to only one shop.
      * Otherwise the response would be a 422 HTTP Error._
      * @returns order OK

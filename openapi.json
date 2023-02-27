@@ -2,7 +2,7 @@
     "openapi": "3.0.0",
     "info": {
         "title": "Fulfillment API",
-        "description": "\n- alpha: Currently developed API version. Subject to major changes.\n- beta: A semi-stable early access version. New features can be added. Breaking changes are possible.\n- stable: The API is recommended for use in production.\n\n[Changelog](https://fulfillment-api.conqore.niceshops.com/v2/docs/changelog.html)\n\nAll data is transferred in UTF-8 encoding.\\\nThe API uses stateless HTTP. No cookies have to be kept.\\\nAuthentication via OAuth2 client credentials flow.\n\n[Fulfillment API PHP client @Packagist](https://packagist.org/packages/datenkraft/bb-fulfillment-api-php-client)",
+        "description": "\n- alpha: Currently developed API version. Subject to major changes.\n- beta: A semi-stable early access version. New features can be added. Breaking changes are possible.\n- stable: The API is recommended for use in production.\n\n[Changelog](https:\/\/fulfillment-api.conqore.niceshops.com\/v2\/docs\/changelog.html)\n\nAll data is transferred in UTF-8 encoding.\\\nThe API uses stateless HTTP. No cookies have to be kept.\\\nAuthentication via OAuth2 client credentials flow.\n\n[Fulfillment API PHP client @Packagist](https:\/\/packagist.org\/packages\/datenkraft\/bb-fulfillment-api-php-client)",
         "version": "v2.beta"
     },
     "servers": [
@@ -34,7 +34,7 @@
                     {
                         "name": "shopCode",
                         "in": "query",
-                        "description": "The shopCode used internally to distinguish between clients.<br />\n_This code is optional, if your identity is assigned to only one shop.\nOtherwise the response would be a 422 HTTP Error._",
+                        "description": "The shopCode used internally to distinguish between clients.\\\n_This code is optional, if your identity is assigned to only one shop.\nOtherwise the response would be a 422 HTTP Error._",
                         "required": false,
                         "schema": {
                             "type": "string"
@@ -266,7 +266,7 @@
                     {
                         "name": "shopCode",
                         "in": "query",
-                        "description": "The shopCode used internally to distinguish between clients.<br />\n_This code is optional, if your identity is assigned to only one shop.\nOtherwise the response would be a 422 HTTP Error._",
+                        "description": "The shopCode used internally to distinguish between clients.\\\n_This code is optional, if your identity is assigned to only one shop.\nOtherwise the response would be a 422 HTTP Error._",
                         "required": false,
                         "schema": {
                             "type": "string"
@@ -408,7 +408,7 @@
                     {
                         "name": "filter[shopCode]",
                         "in": "query",
-                        "description": "The shopCode used internally to distinguish between clients.<br />\n_This code is optional, if your identity is assigned to only one shop.\nOtherwise the response would be a 422 HTTP Error._",
+                        "description": "The shopCode used internally to distinguish between clients.\\\n_This code is optional, if your identity is assigned to only one shop.\nOtherwise the response would be a 422 HTTP Error._",
                         "required": false,
                         "schema": {
                             "type": "string"
@@ -533,7 +533,7 @@
                     "order"
                 ],
                 "summary": "Redact an order.",
-                "description": "Redact the order and all other orders linked to the given order number (set in the param\norderNumber) in a GDPR article 17 conform way. <br />\n\nOnly orders with one of the following statuses are redactable:\n- delivered\n- deleted\n- canceled",
+                "description": "Redact the order and all other orders linked to the given order number (set in the param\norderNumber) in a GDPR article 17 conform way. \\\n\nOnly orders with one of the following statuses are redactable:\n- delivered\n- deleted\n- canceled",
                 "operationId": "redactOrder",
                 "parameters": [
                     {
@@ -549,7 +549,7 @@
                     {
                         "name": "shopCode",
                         "in": "query",
-                        "description": "The shopCode used internally to distinguish between clients.<br />\n_This code is optional, if your identity is assigned to only one shop.\nOtherwise the response would be a 422 HTTP Error._",
+                        "description": "The shopCode used internally to distinguish between clients.\\\n_This code is optional, if your identity is assigned to only one shop.\nOtherwise the response would be a 422 HTTP Error._",
                         "required": false,
                         "schema": {
                             "type": "string"
@@ -680,7 +680,7 @@
                     {
                         "name": "shopCode",
                         "in": "query",
-                        "description": "The shopCode used internally to distinguish between clients.<br />\n_This code is optional, if your identity is assigned to only one shop.\nOtherwise the response would be a 422 HTTP Error._",
+                        "description": "The shopCode used internally to distinguish between clients.\\\n_This code is optional, if your identity is assigned to only one shop.\nOtherwise the response would be a 422 HTTP Error._",
                         "required": false,
                         "schema": {
                             "type": "string"
@@ -825,7 +825,7 @@
                     {
                         "name": "shopCode",
                         "in": "query",
-                        "description": "The shopCode used internally to distinguish between clients.<br />\n_This code is optional, if your identity is assigned to only one shop.\nOtherwise the response would be a 422 HTTP Error._",
+                        "description": "The shopCode used internally to distinguish between clients.\\\n_This code is optional, if your identity is assigned to only one shop.\nOtherwise the response would be a 422 HTTP Error._",
                         "required": false,
                         "schema": {
                             "type": "string"
@@ -937,7 +937,7 @@
                     {
                         "name": "shopCode",
                         "in": "query",
-                        "description": "The shopCode used internally to distinguish between clients.<br />\n_This code is optional, if your identity is assigned to only one shop.\nOtherwise the response would be a 422 HTTP Error._",
+                        "description": "The shopCode used internally to distinguish between clients.\\\n_This code is optional, if your identity is assigned to only one shop.\nOtherwise the response would be a 422 HTTP Error._",
                         "required": false,
                         "schema": {
                             "type": "string"
@@ -1065,6 +1065,16 @@
                             "type": "integer"
                         },
                         "example": 20
+                    },
+                    {
+                        "name": "shopCode",
+                        "in": "query",
+                        "description": "The shopCode used internally to distinguish between clients.\\\n_This code is optional, if your identity is assigned to only one shop.\nOtherwise the response would be a 422 HTTP Error._",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "teststeve"
                     }
                 ],
                 "responses": {
@@ -1080,6 +1090,26 @@
                     },
                     "401": {
                         "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -1141,7 +1171,7 @@
                     {
                         "name": "shopCode",
                         "in": "query",
-                        "description": "The shopCode used internally to distinguish between clients.<br />\n_This code is optional, if your identity is assigned to only one shop.\nOtherwise the response would be a 422 HTTP Error._",
+                        "description": "The shopCode used internally to distinguish between clients.\\\n_This code is optional, if your identity is assigned to only one shop.\nOtherwise the response would be a 422 HTTP Error._",
                         "required": false,
                         "schema": {
                             "type": "string"
@@ -1271,7 +1301,7 @@
                     {
                         "name": "shopCode",
                         "in": "query",
-                        "description": "The shopCode used internally to distinguish between clients.<br />\n_This code is optional, if your identity is assigned to only one shop.\nOtherwise the response would be a 422 HTTP Error._",
+                        "description": "The shopCode used internally to distinguish between clients.\\\n_This code is optional, if your identity is assigned to only one shop.\nOtherwise the response would be a 422 HTTP Error._",
                         "required": false,
                         "schema": {
                             "type": "string"
@@ -1485,7 +1515,7 @@
                     {
                         "name": "filter[shopCode]",
                         "in": "query",
-                        "description": "The shopCode used internally to distinguish between clients.<br />\n_This code is optional, if your identity is assigned to only one shop.\nOtherwise the response would be a 422 HTTP Error._",
+                        "description": "The shopCode used internally to distinguish between clients.\\\n_This code is optional, if your identity is assigned to only one shop.\nOtherwise the response would be a 422 HTTP Error._",
                         "required": false,
                         "schema": {
                             "type": "string"
@@ -1740,7 +1770,7 @@
                     {
                         "name": "shopCode",
                         "in": "query",
-                        "description": "The shopCode used internally to distinguish between clients.<br />\n_This code is optional, if your identity is assigned to only one shop.\nOtherwise the response would be a 422 HTTP Error._",
+                        "description": "The shopCode used internally to distinguish between clients.\\\n_This code is optional, if your identity is assigned to only one shop.\nOtherwise the response would be a 422 HTTP Error._",
                         "required": false,
                         "schema": {
                             "type": "string"
@@ -1878,6 +1908,16 @@
                             "type": "integer"
                         },
                         "example": 20
+                    },
+                    {
+                        "name": "shopCode",
+                        "in": "query",
+                        "description": "The shopCode used internally to distinguish between clients.\\\n_This code is optional, if your identity is assigned to only one shop.\nOtherwise the response would be a 422 HTTP Error._",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "teststeve"
                     }
                 ],
                 "responses": {
@@ -1913,6 +1953,16 @@
                     },
                     "403": {
                         "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -1984,7 +2034,7 @@
                     {
                         "name": "filter[shopCode]",
                         "in": "query",
-                        "description": "The shopCode used internally to distinguish between clients.<br />\n_This code is optional, if your identity is assigned to only one shop.\nOtherwise the response would be a 422 HTTP Error._",
+                        "description": "The shopCode used internally to distinguish between clients.\\\n_This code is optional, if your identity is assigned to only one shop.\nOtherwise the response would be a 422 HTTP Error._",
                         "required": false,
                         "schema": {
                             "type": "string"
@@ -2100,6 +2150,53 @@
                         "required": false,
                         "schema": {
                             "type": "string"
+                        }
+                    },
+                    {
+                        "name": "filter[meta][shopifyDefaultShop]",
+                        "in": "query",
+                        "description": "A filter for Shopify default shops.\\\nNote: For shops that are part of a Shopify installation that uses multiple shops,\n only shops where meta.shopifyShopDefault is true will be considered as default shops.\\\nAll shops that are used for a single shop Shopify installation will also be considered as default shops.",
+                        "required": false,
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    },
+                    {
+                        "name": "filter[meta][shopifyOrderTags]",
+                        "in": "query",
+                        "description": "Filter for Shopify order tag(s).\\\nNote: Filter by a single tag or multiple tags separated by commas.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "examples": {
+                            "single order tag": {
+                                "summary": "single order tag",
+                                "value": "tag1"
+                            },
+                            "multiple order tags": {
+                                "summary": "multiple order tags",
+                                "value": "tag1,tag2,tag3"
+                            }
+                        }
+                    },
+                    {
+                        "name": "filter[shopCode]",
+                        "in": "query",
+                        "description": "one or more shopCode(s) of the shop(s) (optional).",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "examples": {
+                            "single shopCode": {
+                                "summary": "single shopCode",
+                                "value": "teststeve"
+                            },
+                            "multiple shopCodes": {
+                                "summary": "multiple shopCodes",
+                                "value": "teststeve,niceshops"
+                            }
                         }
                     }
                 ],
@@ -2245,16 +2342,6 @@
                             }
                         }
                     },
-                    "409": {
-                        "description": "Conflict",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/errorResponse"
-                                }
-                            }
-                        }
-                    },
                     "500": {
                         "description": "Server error",
                         "content": {
@@ -2318,7 +2405,7 @@
                     {
                         "name": "filter[shopCode]",
                         "in": "query",
-                        "description": "The shopCode used internally to distinguish between clients.<br />\n_This code is optional, if your identity is assigned to only one shop.\nOtherwise the response would be a 422 HTTP Error._",
+                        "description": "The shopCode used internally to distinguish between clients.\\\n_This code is optional, if your identity is assigned to only one shop.\nOtherwise the response would be a 422 HTTP Error._",
                         "required": false,
                         "schema": {
                             "type": "string"
@@ -2552,7 +2639,7 @@
                     {
                         "name": "filter[shopCode]",
                         "in": "query",
-                        "description": "The shopCode used internally to distinguish between clients.<br />\n_This code is optional, if your identity is assigned to only one shop.\nOtherwise the response would be a 422 HTTP Error._",
+                        "description": "The shopCode used internally to distinguish between clients.\\\n_This code is optional, if your identity is assigned to only one shop.\nOtherwise the response would be a 422 HTTP Error._",
                         "required": false,
                         "schema": {
                             "type": "string"
@@ -2664,7 +2751,7 @@
                     {
                         "name": "shopCode",
                         "in": "query",
-                        "description": "The shopCode used internally to distinguish between clients.<br />\n_This code is optional, if your identity is assigned to only one shop.\nOtherwise the response would be a 422 HTTP Error._",
+                        "description": "The shopCode used internally to distinguish between clients.\\\n_This code is optional, if your identity is assigned to only one shop.\nOtherwise the response would be a 422 HTTP Error._",
                         "required": false,
                         "schema": {
                             "type": "string"
@@ -2768,7 +2855,7 @@
                     "product"
                 ],
                 "summary": "Add a new product.",
-                "description": "Add a new product referenced by the given productNumber.\nPlease note that due to necessary product compliance enabling by our steve team, you might not be able to use all sent products immediately.",
+                "description": "Add a new product referenced by the given productNumber.\nPlease note that due to necessary product compliance enabling by our steve team, the product might not be usable immediately.\nThe product number is nevertheless reserved, even before the product can be queried in the GET endpoint.",
                 "operationId": "postProduct",
                 "parameters": [
                     {
@@ -2784,7 +2871,7 @@
                     {
                         "name": "shopCode",
                         "in": "query",
-                        "description": "The shopCode used internally to distinguish between clients.<br />\n_This code is optional, if your identity is assigned to only one shop.\nOtherwise the response would be a 422 HTTP Error._",
+                        "description": "The shopCode used internally to distinguish between clients.\\\n_This code is optional, if your identity is assigned to only one shop.\nOtherwise the response would be a 422 HTTP Error._",
                         "required": false,
                         "schema": {
                             "type": "string"
@@ -2916,7 +3003,7 @@
                     {
                         "name": "filter[shopCode]",
                         "in": "query",
-                        "description": "The shopCode used internally to distinguish between clients.<br />\n_This code is optional, if your identity is assigned to only one shop.\nOtherwise the response would be a 422 HTTP Error._",
+                        "description": "The shopCode used internally to distinguish between clients.\\\n_This code is optional, if your identity is assigned to only one shop.\nOtherwise the response would be a 422 HTTP Error._",
                         "required": false,
                         "schema": {
                             "type": "string"
@@ -3046,7 +3133,7 @@
                     {
                         "name": "shopCode",
                         "in": "query",
-                        "description": "The shopCode used internally to distinguish between clients.<br />\n_This code is optional, if your identity is assigned to only one shop.\nOtherwise the response would be a 422 HTTP Error._",
+                        "description": "The shopCode used internally to distinguish between clients.\\\n_This code is optional, if your identity is assigned to only one shop.\nOtherwise the response would be a 422 HTTP Error._",
                         "required": false,
                         "schema": {
                             "type": "string"
@@ -3071,6 +3158,25 @@
                         "schema": {
                             "type": "string",
                             "format": "date"
+                        }
+                    },
+                    {
+                        "name": "filter[reason]",
+                        "in": "query",
+                        "description": "Filter journal entries for one or more reasons\n\n- expired: Taking an expired product off the books\n- damaged: Taking a damaged product off the books\n- own_withdrawl: Product taken for own use\n- correction: Manual correction\n- niceshops_order: Product sold via a shop from niceshops\n- inbound: Restocking the product\n- fulfillment: steve fulfilled an order\n- return: A customer sent the product back to our warehouse",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "examples": {
+                            "single reason": {
+                                "summary": "product journal reason",
+                                "value": "fulfillment"
+                            },
+                            "multiple status": {
+                                "summary": "multiple journal reasons",
+                                "value": "fulfillment,return,niceshops_order"
+                            }
                         }
                     }
                 ],
@@ -3217,7 +3323,7 @@
                     {
                         "name": "filter[shopCode]",
                         "in": "query",
-                        "description": "The shopCode used internally to distinguish between clients.<br />\n_This code is optional, if your identity is assigned to only one shop.\nOtherwise the response would be a 422 HTTP Error._",
+                        "description": "The shopCode used internally to distinguish between clients.\\\n_This code is optional, if your identity is assigned to only one shop.\nOtherwise the response would be a 422 HTTP Error._",
                         "required": false,
                         "schema": {
                             "type": "string"
@@ -3393,11 +3499,11 @@
                     "200": {
                         "description": "OK"
                     },
-                    "400": {
-                        "description": "Invalid format"
-                    },
                     "404": {
                         "description": "Changelog not found"
+                    },
+                    "400": {
+                        "description": "Invalid format"
                     }
                 }
             }
@@ -4649,6 +4755,21 @@
                             },
                             "shipping": {
                                 "$ref": "#/components/schemas/orderShipping"
+                            },
+                            "source": {
+                                "description": "The source of the order.\n- shopify: This order was created via the steve by niceshops Shopify application\n- nice: This order was created manually by niceshops\n- api: This order was created via the Fulfillment API\n\nIf null, the source could not be determined\n",
+                                "type": "string",
+                                "enum": [
+                                    "shopify",
+                                    "nice",
+                                    "api"
+                                ],
+                                "nullable": true
+                            },
+                            "sourceLink": {
+                                "description": "If available, a hyperlink to the application where this order was created is provided",
+                                "type": "string",
+                                "nullable": true
                             }
                         },
                         "type": "object"
@@ -4777,6 +4898,38 @@
                         "description": "The customer's phone number, preferably in the DIN 5008 format, like:+43 2236 123456-7890",
                         "type": "string",
                         "nullable": true
+                    },
+                    "firstname": {
+                        "description": "The customer's first name.\\\nNote: This field is relevant for invoicing and whether it is available or not depends on the used shopCode.\\\nUse the GET /shop endpoint to check if the meta.invoiceEnabled of the shop is set to true.",
+                        "type": "string"
+                    },
+                    "lastname": {
+                        "description": "The customer's last name.\\\nNote: This field is relevant for invoicing and whether it is available or not depends on the used shopCode.\\\nUse the GET /shop endpoint to check if the meta.invoiceEnabled of the shop is set to true.",
+                        "type": "string"
+                    },
+                    "title": {
+                        "description": "The customer's title.\\\nNote: This field is relevant for invoicing and whether it is available or not depends on the used shopCode.\\\nUse the GET /shop endpoint to check if the meta.invoiceEnabled of the shop is set to true.",
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "company": {
+                        "description": "The customer's company name.\\\nNote: This field is relevant for invoicing and whether it is available or not depends on the used shopCode.\\\nUse the GET /shop endpoint to check if the meta.invoiceEnabled of the shop is set to true.",
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "companyVatNumber": {
+                        "description": "The customer's company VAT number.\\\nNote: This field is relevant for invoicing and whether it is available or not depends on the used shopCode.\\\nUse the GET /shop endpoint to check if the meta.invoiceEnabled of the shop is set to true.",
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "invoiceAddress": {
+                        "description": "The customer's invoice address.\\\nNote: This field is relevant for invoicing and whether it is available or not depends on the used shopCode.\\\nUse the GET /shop endpoint to check if the meta.invoiceEnabled of the shop is set to true.",
+                        "nullable": true,
+                        "allOf": [
+                            {
+                                "$ref": "#/components/schemas/orderCustomerAddress"
+                            }
+                        ]
                     }
                 },
                 "type": "object"
@@ -4844,7 +4997,7 @@
                         "type": "string"
                     },
                     "provinceCode": {
-                        "description": "Province code (ISO 3166-2)",
+                        "description": "Mandatory if province codes for country (GET /country) exist (ISO 3166-2) - https://www.iso.org/iso-3166-country-codes.html",
                         "type": "string",
                         "nullable": true
                     },
@@ -4877,14 +5030,6 @@
                             }
                         },
                         "type": "object"
-                    }
-                ]
-            },
-            "orderCustomerInvoiceAddress": {
-                "title": "orderCustomerInvoiceAddress",
-                "allOf": [
-                    {
-                        "$ref": "#/components/schemas/orderCustomerAddress"
                     }
                 ]
             },
@@ -5207,6 +5352,32 @@
                                 "type": "boolean",
                                 "default": false,
                                 "nullable": true
+                            },
+                            "shopifyMultiShop": {
+                                "description": "Flag to mark the shop as part of a Shopify installation that uses multiple shops.",
+                                "type": "boolean",
+                                "default": false,
+                                "nullable": true
+                            },
+                            "shopifyDefaultShop": {
+                                "description": "Flag to mark the shop as the default shop for a Shopify installation that uses multiple shops.\\\nThe default shop is used for e.g. fetching stock levels.",
+                                "type": "boolean",
+                                "default": true,
+                                "nullable": true
+                            },
+                            "shopifyOrderTags": {
+                                "description": "The order tags to identify which shop to use in a Shopify installation that uses multiple shops.\\\nIf a Shopify order matches a tag, it will be assigned to this shop.",
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                },
+                                "nullable": true
+                            },
+                            "invoiceEnabled": {
+                                "description": "Flag to indicate whether firstname, lastname, and invoiceAddress fields are available for order customers or not.",
+                                "type": "boolean",
+                                "default": false,
+                                "nullable": true
                             }
                         },
                         "type": "object",
@@ -5367,6 +5538,29 @@
                     "phoneRequired": {
                         "description": "Specifies whether or not a phone number is required when using a shipping address in the country",
                         "type": "boolean"
+                    },
+                    "provinces": {
+                        "description": "",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/countryProvinces"
+                        },
+                        "nullable": true
+                    }
+                },
+                "type": "object"
+            },
+            "countryProvinces": {
+                "title": "countryProvinces",
+                "properties": {
+                    "provinceCode": {
+                        "description": "The code of the province (ISO 3166-2)",
+                        "type": "string",
+                        "example": "IT-RM"
+                    },
+                    "name": {
+                        "description": "The name of the province",
+                        "type": "string"
                     }
                 },
                 "type": "object"

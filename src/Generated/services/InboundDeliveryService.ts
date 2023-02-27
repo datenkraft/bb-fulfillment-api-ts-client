@@ -13,7 +13,7 @@ export class InboundDeliveryService {
      * Get an inbound delivery by inbound delivery number.
      * Get an inbound delivery by inbound delivery number.
      * @param inboundDeliveryNumber The inbound delivery number as defined during the creation of the inbound delivery.
-     * @param shopCode The shopCode used internally to distinguish between clients.<br />
+     * @param shopCode The shopCode used internally to distinguish between clients.\
      * _This code is optional, if your identity is assigned to only one shop.
      * Otherwise the response would be a 422 HTTP Error._
      * @returns inboundDelivery OK
@@ -49,7 +49,7 @@ export class InboundDeliveryService {
      * @param inboundDeliveryNumber The number the inbound delivery should be refered by.
      * This number is user defined, must be unique and has a maximum length (check maxLength field).
      * @param requestBody
-     * @param shopCode The shopCode used internally to distinguish between clients.<br />
+     * @param shopCode The shopCode used internally to distinguish between clients.\
      * _This code is optional, if your identity is assigned to only one shop.
      * Otherwise the response would be a 422 HTTP Error._
      * @returns errorResponse Unexpected error
@@ -112,7 +112,7 @@ export class InboundDeliveryService {
      * - in_progress: The inbound delivery is being processed in our warehouse.
      * - completed: The inbound delivery has been processed in our warehouse.
      * - deleted: The inbound delivery has been deleted.
-     * @param filterShopCode The shopCode used internally to distinguish between clients.<br />
+     * @param filterShopCode The shopCode used internally to distinguish between clients.\
      * _This code is optional, if your identity is assigned to only one shop.
      * Otherwise the response would be a 422 HTTP Error._
      * @returns inboundDeliveryCollection OK
@@ -190,7 +190,7 @@ export class InboundDeliveryService {
      * Cancel a inbound delivery referenced by the given inboundDeliveryNumber. An inboundDeliveryNumber from a canceled inbound delivery cannot be used for a new inbound delivery, because they must always be unique.
      * @param inboundDeliveryNumber The number the inbound delivery should be refered by.
      * This number is user defined, must be unique and has a maximum length (check maxLength field).
-     * @param shopCode The shopCode used internally to distinguish between clients.<br />
+     * @param shopCode The shopCode used internally to distinguish between clients.\
      * _This code is optional, if your identity is assigned to only one shop.
      * Otherwise the response would be a 422 HTTP Error._
      * @returns inboundDelivery OK

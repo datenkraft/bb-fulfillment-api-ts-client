@@ -40,6 +40,20 @@ export type order = (baseOrder & {
     delivery?: Array<orderDelivery> | null,
     payment?: orderPayment,
     shipping?: orderShipping,
+    /**
+     * The source of the order.
+     * - shopify: This order was created via the steve by niceshops Shopify application
+     * - nice: This order was created manually by niceshops
+     * - api: This order was created via the Fulfillment API
+     *
+     * If null, the source could not be determined
+     *
+     */
+    source?: order.source | null,
+    /**
+     * If available, a hyperlink to the application where this order was created is provided
+     */
+    sourceLink?: string | null,
 });
 
 export namespace order {
@@ -61,6 +75,21 @@ export namespace order {
         DELETED = 'deleted',
         LOCKED = 'locked',
         EXAMINATION = 'examination',
+    }
+
+    /**
+     * The source of the order.
+     * - shopify: This order was created via the steve by niceshops Shopify application
+     * - nice: This order was created manually by niceshops
+     * - api: This order was created via the Fulfillment API
+     *
+     * If null, the source could not be determined
+     *
+     */
+    export enum source {
+        SHOPIFY = 'shopify',
+        NICE = 'nice',
+        API = 'api',
     }
 
 

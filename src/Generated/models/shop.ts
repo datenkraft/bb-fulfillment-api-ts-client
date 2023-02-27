@@ -46,5 +46,23 @@ export type shop = {
          * Flag to mark if a test suffix should be added to internal references.
          */
         addTestSuffixToInternalReference: boolean | null,
+        /**
+         * Flag to mark the shop as part of a Shopify installation that uses multiple shops.
+         */
+        shopifyMultiShop: boolean | null,
+        /**
+         * Flag to mark the shop as the default shop for a Shopify installation that uses multiple shops.\
+         * The default shop is used for e.g. fetching stock levels.
+         */
+        shopifyDefaultShop: boolean | null,
+        /**
+         * The order tags to identify which shop to use in a Shopify installation that uses multiple shops.\
+         * If a Shopify order matches a tag, it will be assigned to this shop.
+         */
+        shopifyOrderTags?: Array<string> | null,
+        /**
+         * Flag to indicate whether firstname, lastname, and invoiceAddress fields are available for order customers or not.
+         */
+        invoiceEnabled: boolean | null,
     } | null;
 }
