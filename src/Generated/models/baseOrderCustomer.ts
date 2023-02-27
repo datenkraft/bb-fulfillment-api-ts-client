@@ -22,7 +22,7 @@ export type baseOrderCustomer = {
      */
     companyVatNumber?: string | null;
     invoiceAddress: orderCustomerInvoiceAddress;
-    deliveryAddress?: orderCustomerDeliveryAddress;
+    deliveryAddress?: orderCustomerDeliveryAddress | null;
 }
 
 export namespace baseOrderCustomer {

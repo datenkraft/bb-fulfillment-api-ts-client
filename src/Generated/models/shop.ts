@@ -30,5 +30,13 @@ export type shop = {
          * Domain of the Shopify shop.
          */
         shopifyShopDomain?: string | null,
+        /**
+         * Flag to mark a shop used for testing.
+         */
+        testShop: boolean | null,
+        /**
+         * Date time to indicate that the test shop will not be reset before this time.
+         */
+        testShopResetNotBefore?: string | null,
     } | null;
 }

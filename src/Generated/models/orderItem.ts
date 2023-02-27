@@ -14,7 +14,7 @@ export type orderItem = {
      * Positive number of items to order
      */
     count: number;
-    price?: (null | orderItemPrice) | null;
+    price?: orderItemPrice | null;
     /**
      * Additional options (optional, TBD)
      */
