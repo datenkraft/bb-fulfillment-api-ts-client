@@ -18,7 +18,7 @@ type Config = {
 
 export const OpenAPI: Config = {
     BASE: 'https://fulfillment-api.conqore.niceshops.com/v1',
-    VERSION: '1.0.0',
+    VERSION: '1.stable',
     WITH_CREDENTIALS: false,
     TOKEN: undefined,
     USERNAME: undefined,

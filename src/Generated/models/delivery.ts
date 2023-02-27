@@ -2,7 +2,7 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import type { shipment } from './shipment';
+import type { deliveryShipment } from './deliveryShipment';
 
 /**
  * A delivery of the order
@@ -25,7 +25,7 @@ export type delivery = {
     /**
      * List of shipments (= package, parcel, pallet, ...)
      */
-    shipments?: Array<shipment>;
+    shipments?: Array<deliveryShipment>;
 }
 
 export namespace delivery {

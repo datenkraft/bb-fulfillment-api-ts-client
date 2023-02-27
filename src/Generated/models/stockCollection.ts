@@ -3,7 +3,6 @@
 /* eslint-disable */
 
 import type { collection } from './collection';
-import type { collectionPagination } from './collectionPagination';
 import type { stock } from './stock';
 
 /**
@@ -11,4 +10,4 @@ import type { stock } from './stock';
  */
 export type stockCollection = (collection & {
     data?: Array<stock>,
-} & collectionPagination);
+});

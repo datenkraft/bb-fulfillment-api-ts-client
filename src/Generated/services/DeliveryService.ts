@@ -10,29 +10,6 @@ import { request as __request } from '../core/request';
 export class DeliveryService {
 
     /**
-     * Get delivery services.
-     * Get delivery services.
-     * @param page The page to read. Default is the first page.
-     * @param pageSize The maximum size per page is 100. Default is 100.
-     * @returns deliveryServiceCollection OK
-     * @throws ApiError
-     */
-    public static async getDeliveryServiceCollection(
-        page?: number,
-        pageSize?: number,
-    ): Promise<deliveryServiceCollection> {
-        const result = await __request({
-            method: 'GET',
-            path: `/delivery-service`,
-            query: {
-                'page': page,
-                'pageSize': pageSize,
-            },
-        });
-        return result.body;
-    }
-
-    /**
      * Get the delivery with the given deliveryNumber.
      * Get the delivery with the given deliveryNumber.
      * @param deliveryNumber delivery number
@@ -93,6 +70,29 @@ export class DeliveryService {
                 403: `Forbidden`,
                 422: `Unprocessable Entity`,
                 500: `Server error`,
+            },
+        });
+        return result.body;
+    }
+
+    /**
+     * Get delivery services.
+     * Get delivery services.
+     * @param page The page to read. Default is the first page.
+     * @param pageSize The maximum size per page is 100. Default is 100.
+     * @returns deliveryServiceCollection OK
+     * @throws ApiError
+     */
+    public static async getDeliveryServiceCollection(
+        page?: number,
+        pageSize?: number,
+    ): Promise<deliveryServiceCollection> {
+        const result = await __request({
+            method: 'GET',
+            path: `/delivery-service`,
+            query: {
+                'page': page,
+                'pageSize': pageSize,
             },
         });
         return result.body;

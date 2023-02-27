@@ -2,9 +2,6 @@
 /* tslint:disable */
 /* eslint-disable */
 
-/**
- * Class StockResource
- */
 export type stock = {
     /**
      * The product number the stock is available for
