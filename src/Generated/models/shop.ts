@@ -56,12 +56,14 @@ export type shop = {
          */
         shopifyDefaultShop: boolean | null,
         /**
-         * The order tags to identify which shop to use in a Shopify installation that uses multiple shops.\
-         * If a Shopify order matches a tag, it will be assigned to this shop.
+         * The order country code (ISO 3166-1 alpha-2) to identify which shop to use in a Shopify
+         * installation that uses multiple shops.\
+         * If a Shopify order matches this country code, it will be assigned to this shop.
          */
-        shopifyOrderTags?: Array<string> | null,
+        shopifyOrderCountryCode?: string | null,
         /**
-         * Flag to indicate whether firstname, lastname, and invoiceAddress fields are available for order customers or not.
+         * Flag to indicate whether firstname, lastname, and invoiceAddress fields are available for order
+         * customers or not.
          */
         invoiceEnabled: boolean | null,
     } | null;
