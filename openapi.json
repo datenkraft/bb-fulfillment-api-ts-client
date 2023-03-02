@@ -2162,28 +2162,24 @@
                         }
                     },
                     {
-                        "name": "filter[meta][shopifyOrderTags]",
+                        "name": "filter[meta][shopifyOrderCountryCode]",
                         "in": "query",
-                        "description": "Filter for Shopify order tag(s).\\\nNote: Filter by a single tag or multiple tags separated by commas.",
+                        "description": "A filter for the Shopify order country code (ISO 3166-1 alpha-2).",
                         "required": false,
                         "schema": {
                             "type": "string"
                         },
                         "examples": {
-                            "single order tag": {
-                                "summary": "single order tag",
-                                "value": "tag1"
-                            },
-                            "multiple order tags": {
-                                "summary": "multiple order tags",
-                                "value": "tag1,tag2,tag3"
+                            "AT": {
+                                "summary": "Austria",
+                                "value": "AT"
                             }
                         }
                     },
                     {
                         "name": "filter[shopCode]",
                         "in": "query",
-                        "description": "one or more shopCode(s) of the shop(s) (optional).",
+                        "description": "A filter for one or more shopCode(s) of the shop(s) (optional).",
                         "required": false,
                         "schema": {
                             "type": "string"
@@ -5365,16 +5361,13 @@
                                 "default": true,
                                 "nullable": true
                             },
-                            "shopifyOrderTags": {
-                                "description": "The order tags to identify which shop to use in a Shopify installation that uses multiple shops.\\\nIf a Shopify order matches a tag, it will be assigned to this shop.",
-                                "type": "array",
-                                "items": {
-                                    "type": "string"
-                                },
+                            "shopifyOrderCountryCode": {
+                                "description": "The order country code (ISO 3166-1 alpha-2) to identify which shop to use in a Shopify\ninstallation that uses multiple shops.\\\nIf a Shopify order matches this country code, it will be assigned to this shop.",
+                                "type": "string",
                                 "nullable": true
                             },
                             "invoiceEnabled": {
-                                "description": "Flag to indicate whether firstname, lastname, and invoiceAddress fields are available for order customers or not.",
+                                "description": "Flag to indicate whether firstname, lastname, and invoiceAddress fields are available for order\ncustomers or not.",
                                 "type": "boolean",
                                 "default": false,
                                 "nullable": true

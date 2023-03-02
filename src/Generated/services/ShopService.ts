@@ -19,9 +19,8 @@ export class ShopService {
      * Note: For shops that are part of a Shopify installation that uses multiple shops,
      * only shops where meta.shopifyShopDefault is true will be considered as default shops.\
      * All shops that are used for a single shop Shopify installation will also be considered as default shops.
-     * @param filterMetaShopifyOrderTags Filter for Shopify order tag(s).\
-     * Note: Filter by a single tag or multiple tags separated by commas.
-     * @param filterShopCode one or more shopCode(s) of the shop(s) (optional).
+     * @param filterMetaShopifyOrderCountryCode A filter for the Shopify order country code (ISO 3166-1 alpha-2).
+     * @param filterShopCode A filter for one or more shopCode(s) of the shop(s) (optional).
      * @returns shopCollection OK
      * @returns errorResponse Unexpected error
      * @throws ApiError
@@ -31,7 +30,7 @@ export class ShopService {
         pageSize?: number,
         filterMetaShopifyShopDomain?: string,
         filterMetaShopifyDefaultShop?: boolean,
-        filterMetaShopifyOrderTags?: string,
+        filterMetaShopifyOrderCountryCode?: string,
         filterShopCode?: string,
     ): Promise<shopCollection | errorResponse> {
         const result = await __request({
@@ -42,7 +41,7 @@ export class ShopService {
                 'pageSize': pageSize,
                 'filter[meta][shopifyShopDomain]': filterMetaShopifyShopDomain,
                 'filter[meta][shopifyDefaultShop]': filterMetaShopifyDefaultShop,
-                'filter[meta][shopifyOrderTags]': filterMetaShopifyOrderTags,
+                'filter[meta][shopifyOrderCountryCode]': filterMetaShopifyOrderCountryCode,
                 'filter[shopCode]': filterShopCode,
             },
             errors: {
