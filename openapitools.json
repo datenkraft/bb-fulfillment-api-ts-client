@@ -4,7 +4,7 @@
   "generator-cli": {
     "version": "6.4.0",
     "generators": {
-      "bb-xxx-api": {
+      "bb-fulfillment-api": {
         "generatorName": "typescript-axios",
         "output": "src/Generated",
         "glob": "./openapi.json",

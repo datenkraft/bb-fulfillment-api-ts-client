@@ -1,27 +1,36 @@
-import { ConfigOptions } from '@datenkraft/bb-base-api-ts-client';
-import { XxxApiClient } from '../dist';
-import { XxxApi } from '../dist/Generated';
+import { ConfigOptions } from "@datenkraft/bb-base-api-ts-client";
+import { FulfillmentApiClient } from "../dist";
+import { ShopApi } from "../dist/Generated";
 
-describe('Client Test (staging)', () => {
-  test('Initialize and use the generated Client', (done) => {
+describe("Client Test (staging)", () => {
+  test("Initialize and use the generated Client", (done) => {
     const configOptions: ConfigOptions = {
-      clientId: process.env.DEV_CLIENT_ID ?? '',
-      clientSecret: process.env.DEV_CLIENT_SECRET_STAGING ?? '',
+      clientId: process.env.DEV_CLIENT_ID ?? "",
+      clientSecret: process.env.DEV_CLIENT_SECRET_STAGING ?? "",
       oAuthTokenHost:
-        'https://authentication-api.staging.backbone.datenkraft.info',
+        "https://authentication-api.staging.backbone.datenkraft.info",
     };
 
-    XxxApiClient.getApiConfig(
+    FulfillmentApiClient.getApiConfig(
       configOptions,
-      'https://xxx-api.staging.backbone.datenkraft.info/v1'
+      "https://fulfillment-api.staging.backbone.datenkraft.info/v2"
     )
       .then((config) => {
-        const Xxxapi = new XxxApi(config);
+        const api = new ShopApi(config);
 
-        Xxxapi
-          .getXxxCollection()
-          .then((data) => {
-        	//testcase  
+        api
+          .getShopCollection()
+          .then((shops) => {
+            if (shops instanceof Array) {
+              expect(shops).toContain({
+                id: "6df08881-fdb0-42e9-9f18-e9d8253058d9",
+                discoShopCode: "testShop",
+                discoOrderReferencePrefix: "0",
+                email: "test@example.com",
+                meta: {
+                  shopifyShopDomain: "test.example.com",
+                },
+              });
             }
             done();
           })
@@ -30,4 +39,3 @@ describe('Client Test (staging)', () => {
       .catch((error) => done(error));
   });
 });
-
