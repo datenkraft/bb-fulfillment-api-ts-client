@@ -10,7 +10,7 @@ aliases:
   - &context-cloud "cloud_deployment"
   - &branch-trigger "trigger"
   - &branch-filter-publish '/^v[0-9]+\.[0-9]+$/'
-  - &image-name "europe-docker.pkg.dev/dk-gg-rgstry/base/node:dev"
+  - &image-name "europe-docker.pkg.dev/dk-gg-rgstry/base/node-cli-java:dev"
 parameters:
   run_workflow_generate:
     default: false
