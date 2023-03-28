@@ -44,6 +44,12 @@ export interface ProductAllOf {
      * @memberof ProductAllOf
      */
     'shopCode'?: string;
+    /**
+     * Number of the supplier\\ Note: This can be null if the product is a bundle product.
+     * @type {string}
+     * @memberof ProductAllOf
+     */
+    'supplierNumber'?: string | null;
 }
 
 export const ProductAllOfProductStatusEnum = {

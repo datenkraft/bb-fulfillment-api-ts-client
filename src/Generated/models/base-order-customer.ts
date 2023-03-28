@@ -57,31 +57,31 @@ export interface BaseOrderCustomer {
      */
     'phone'?: string | null;
     /**
-     * The customer\'s first name.\\ Note: This field is relevant for invoicing and whether it is available or not depends on the used shopCode.\\ Use the GET /shop endpoint to check if the meta.invoiceEnabled of the shop is set to true.
+     * The customer\'s first name.\\ Note: This field is required for invoicing and whether it is available or not depends on the used shopCode.\\ Use the GET /shop endpoint to check if the meta.invoiceEnabled of the shop is set to true.
      * @type {string}
      * @memberof BaseOrderCustomer
      */
     'firstname'?: string | null;
     /**
-     * The customer\'s last name.\\ Note: This field is relevant for invoicing and whether it is available or not depends on the used shopCode.\\ Use the GET /shop endpoint to check if the meta.invoiceEnabled of the shop is set to true.
+     * The customer\'s last name.\\ Note: This field is required for invoicing and whether it is available or not depends on the used shopCode.\\ Use the GET /shop endpoint to check if the meta.invoiceEnabled of the shop is set to true.
      * @type {string}
      * @memberof BaseOrderCustomer
      */
     'lastname'?: string | null;
     /**
-     * The customer\'s title.\\ Note: This field is relevant for invoicing and whether it is available or not depends on the used shopCode.\\ Use the GET /shop endpoint to check if the meta.invoiceEnabled of the shop is set to true.
+     * The customer\'s title.\\ Note: This field is required for invoicing and whether it is available or not depends on the used shopCode.\\ Use the GET /shop endpoint to check if the meta.invoiceEnabled of the shop is set to true.
      * @type {string}
      * @memberof BaseOrderCustomer
      */
     'title'?: string | null;
     /**
-     * The customer\'s company name.\\ Note: This field is relevant for invoicing and whether it is available or not depends on the used shopCode.\\ Use the GET /shop endpoint to check if the meta.invoiceEnabled of the shop is set to true.
+     * The customer\'s company name.\\ Note: This field is required for invoicing and whether it is available or not depends on the used shopCode.\\ Use the GET /shop endpoint to check if the meta.invoiceEnabled of the shop is set to true.
      * @type {string}
      * @memberof BaseOrderCustomer
      */
     'company'?: string | null;
     /**
-     * The customer\'s company VAT number.\\ Note: This field is relevant for invoicing and whether it is available or not depends on the used shopCode.\\ Use the GET /shop endpoint to check if the meta.invoiceEnabled of the shop is set to true.
+     * The customer\'s company VAT number.\\ Note: This field is required for invoicing and whether it is available or not depends on the used shopCode.\\ Use the GET /shop endpoint to check if the meta.invoiceEnabled of the shop is set to true.
      * @type {string}
      * @memberof BaseOrderCustomer
      */

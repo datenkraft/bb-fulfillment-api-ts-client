@@ -18,10 +18,10 @@
 import { OrderPrice } from './order-price';
 
 /**
- * @type OrderItemPrice
- * The selling price of the item.\\ Note: This field is required if the delivery address of the order requires customs clearance.
+ * @type OrderDeliveryCosts
+ * The delivery costs of the order, which will be charged to the customer.\\ Note: This field is required if customs clearance is necessary for the delivery address of the order.
  * @export
  */
-export type OrderItemPrice = OrderPrice;
+export type OrderDeliveryCosts = OrderPrice;
 
 

@@ -32,6 +32,12 @@ export interface NewProductAllOf {
      * @memberof NewProductAllOf
      */
     'articleShortDescription'?: string;
+    /**
+     * Number of the supplier
+     * @type {string}
+     * @memberof NewProductAllOf
+     */
+    'supplierNumber'?: string;
 }
 
 export const NewProductAllOfProductStatusEnum = {

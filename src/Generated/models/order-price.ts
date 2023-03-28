@@ -13,15 +13,44 @@
  */
 
 
-// May contain unused imports in some cases
-// @ts-ignore
-import { OrderPrice } from './order-price';
 
 /**
- * @type OrderItemPrice
- * The selling price of the item.\\ Note: This field is required if the delivery address of the order requires customs clearance.
+ * 
  * @export
+ * @interface OrderPrice
  */
-export type OrderItemPrice = OrderPrice;
+export interface OrderPrice {
+    /**
+     * The price value rounded to 2 decimals, dot as separator
+     * @type {number}
+     * @memberof OrderPrice
+     */
+    'value': number;
+    /**
+     * The price type
+     * @type {string}
+     * @memberof OrderPrice
+     */
+    'type': OrderPriceTypeEnum;
+    /**
+     * The VAT in percent
+     * @type {number}
+     * @memberof OrderPrice
+     */
+    'vat': number;
+    /**
+     * The currency code (ISO 4217)
+     * @type {string}
+     * @memberof OrderPrice
+     */
+    'currencyCode': string;
+}
+
+export const OrderPriceTypeEnum = {
+    Net: 'net',
+    Gross: 'gross'
+} as const;
+
+export type OrderPriceTypeEnum = typeof OrderPriceTypeEnum[keyof typeof OrderPriceTypeEnum];
 
 

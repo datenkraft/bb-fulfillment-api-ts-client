@@ -39,7 +39,7 @@ import { OrderCollection } from '../models';
 export const OrderApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
-         * Cancel the order specified by the given order number (set in param orderNumber). An orderNumber from a canceled order cannot be used for a new order, because they must always be unique.
+         * Cancel the order specified by the given order number (set in param orderNumber).\\ An orderNumber from a canceled order cannot be used for a new order, because they must always be unique.
          * @summary Cancel an order.
          * @param {string} orderNumber The number the order is refered by.
          * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
@@ -306,7 +306,7 @@ export const OrderApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = OrderApiAxiosParamCreator(configuration)
     return {
         /**
-         * Cancel the order specified by the given order number (set in param orderNumber). An orderNumber from a canceled order cannot be used for a new order, because they must always be unique.
+         * Cancel the order specified by the given order number (set in param orderNumber).\\ An orderNumber from a canceled order cannot be used for a new order, because they must always be unique.
          * @summary Cancel an order.
          * @param {string} orderNumber The number the order is refered by.
          * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
@@ -380,7 +380,7 @@ export const OrderApiFactory = function (configuration?: Configuration, basePath
     const localVarFp = OrderApiFp(configuration)
     return {
         /**
-         * Cancel the order specified by the given order number (set in param orderNumber). An orderNumber from a canceled order cannot be used for a new order, because they must always be unique.
+         * Cancel the order specified by the given order number (set in param orderNumber).\\ An orderNumber from a canceled order cannot be used for a new order, because they must always be unique.
          * @summary Cancel an order.
          * @param {string} orderNumber The number the order is refered by.
          * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
@@ -448,7 +448,7 @@ export const OrderApiFactory = function (configuration?: Configuration, basePath
  */
 export interface OrderApiInterface {
     /**
-     * Cancel the order specified by the given order number (set in param orderNumber). An orderNumber from a canceled order cannot be used for a new order, because they must always be unique.
+     * Cancel the order specified by the given order number (set in param orderNumber).\\ An orderNumber from a canceled order cannot be used for a new order, because they must always be unique.
      * @summary Cancel an order.
      * @param {string} orderNumber The number the order is refered by.
      * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
@@ -516,7 +516,7 @@ export interface OrderApiInterface {
  */
 export class OrderApi extends BaseAPI implements OrderApiInterface {
     /**
-     * Cancel the order specified by the given order number (set in param orderNumber). An orderNumber from a canceled order cannot be used for a new order, because they must always be unique.
+     * Cancel the order specified by the given order number (set in param orderNumber).\\ An orderNumber from a canceled order cannot be used for a new order, because they must always be unique.
      * @summary Cancel an order.
      * @param {string} orderNumber The number the order is refered by.
      * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._

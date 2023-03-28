@@ -24,7 +24,7 @@ import { InboundDeliveryProduct } from './inbound-delivery-product';
  */
 export interface InboundDeliveryAllOf {
     /**
-     * Number of the inbound delivery
+     * The inbound delivery number.\\ Note: If this number is prefixed with \'NICE\', it means that the inbound delivery was created was created manually by niceshops.
      * @type {string}
      * @memberof InboundDeliveryAllOf
      */

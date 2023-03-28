@@ -27,10 +27,17 @@ export interface OrderDelivery {
      */
     'number'?: string;
     /**
-     * Status code of the delivery
+     * Status of the delivery. - delivered: The delivery has been transferred to the delivery agent.
      * @type {string}
      * @memberof OrderDelivery
      */
-    'status'?: string;
+    'status'?: OrderDeliveryStatusEnum;
 }
+
+export const OrderDeliveryStatusEnum = {
+    Delivered: 'delivered'
+} as const;
+
+export type OrderDeliveryStatusEnum = typeof OrderDeliveryStatusEnum[keyof typeof OrderDeliveryStatusEnum];
+
 

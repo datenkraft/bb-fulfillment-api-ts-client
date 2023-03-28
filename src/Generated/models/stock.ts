@@ -27,7 +27,7 @@ export interface Stock {
      */
     'productNumber'?: string;
     /**
-     * Amount stocked in the warehouse - without considering the reserved amount for ongoing orders
+     * Amount stocked in the warehouse - the reserved amount for ongoing orders is NOT subtracted
      * @type {number}
      * @memberof Stock
      */
@@ -39,17 +39,11 @@ export interface Stock {
      */
     'reserved'?: number;
     /**
-     * Amount available for orders - with the reserved amount for ongoing orders taken into account
+     * Amount available for orders - the reserved amount for ongoing orders is subtracted\\ - if the overbookingPossibilityStatus is \'only_inbound_deliveries\', the incoming amount is added
      * @type {number}
      * @memberof Stock
      */
     'available'?: number;
-    /**
-     * Amount of ongoing inbound deliveries
-     * @type {number}
-     * @memberof Stock
-     */
-    'incoming'?: number;
     /**
      * Status regarding the possibility of overbooking - possible: Overbooking is possible - not_possible: Overbooking is not possible - only_inbound_deliveries: Overbooking is only possible for the amount in ongoing inbound deliveries
      * @type {string}

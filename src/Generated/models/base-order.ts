@@ -18,6 +18,9 @@
 import { BaseOrderCustomer } from './base-order-customer';
 // May contain unused imports in some cases
 // @ts-ignore
+import { OrderDeliveryCosts } from './order-delivery-costs';
+// May contain unused imports in some cases
+// @ts-ignore
 import { OrderItem } from './order-item';
 
 /**
@@ -69,11 +72,17 @@ export interface BaseOrder {
      */
     'orderNotes'?: string | null;
     /**
-     * The amazon order Id. Note: This field is relevant for invoicing and whether it is available or not depends on the used shopCode. Use the GET /shop endpoint to check if the meta.invoiceEnabled of the shop is set to true.
+     * The amazon order Id
      * @type {string}
      * @memberof BaseOrder
      */
     'amazonOrderId'?: string | null;
+    /**
+     * 
+     * @type {OrderDeliveryCosts}
+     * @memberof BaseOrder
+     */
+    'deliveryCosts'?: OrderDeliveryCosts | null;
     /**
      * Additional optional options for the order.
      * @type {any}

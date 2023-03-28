@@ -27,6 +27,9 @@ import { OrderCustomer } from './order-customer';
 import { OrderDelivery } from './order-delivery';
 // May contain unused imports in some cases
 // @ts-ignore
+import { OrderDeliveryCosts } from './order-delivery-costs';
+// May contain unused imports in some cases
+// @ts-ignore
 import { OrderItem } from './order-item';
 // May contain unused imports in some cases
 // @ts-ignore
