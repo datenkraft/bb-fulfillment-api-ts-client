@@ -18,7 +18,10 @@
 import { BaseOrderCustomer } from './base-order-customer';
 // May contain unused imports in some cases
 // @ts-ignore
-import { BaseOrderCustomerInvoiceAddress } from './base-order-customer-invoice-address';
+import { NewOrderCustomerAllOf } from './new-order-customer-all-of';
+// May contain unused imports in some cases
+// @ts-ignore
+import { OrderCustomerAddress } from './order-customer-address';
 // May contain unused imports in some cases
 // @ts-ignore
 import { OrderCustomerDeliveryAddress } from './order-customer-delivery-address';
@@ -27,6 +30,6 @@ import { OrderCustomerDeliveryAddress } from './order-customer-delivery-address'
  * @type NewOrderCustomer
  * @export
  */
-export type NewOrderCustomer = BaseOrderCustomer;
+export type NewOrderCustomer = BaseOrderCustomer & NewOrderCustomerAllOf;
 
 

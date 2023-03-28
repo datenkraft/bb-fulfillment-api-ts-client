@@ -41,7 +41,7 @@ import { NewInboundDelivery } from '../models';
 export const InboundDeliveryApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
-         * Cancel a inbound delivery referenced by the given inboundDeliveryNumber. An inboundDeliveryNumber from a canceled inbound delivery cannot be used for a new inbound delivery, because they must always be unique.
+         * Cancel a inbound delivery referenced by the given inboundDeliveryNumber.\\ An inboundDeliveryNumber from a canceled inbound delivery cannot be used for a new inbound delivery, because they must always be unique.
          * @summary Cancel a inbound delivery.
          * @param {string} inboundDeliveryNumber The number the inbound delivery should be refered by. This number is user defined, must be unique and has a maximum length (check maxLength field).
          * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
@@ -343,7 +343,7 @@ export const InboundDeliveryApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = InboundDeliveryApiAxiosParamCreator(configuration)
     return {
         /**
-         * Cancel a inbound delivery referenced by the given inboundDeliveryNumber. An inboundDeliveryNumber from a canceled inbound delivery cannot be used for a new inbound delivery, because they must always be unique.
+         * Cancel a inbound delivery referenced by the given inboundDeliveryNumber.\\ An inboundDeliveryNumber from a canceled inbound delivery cannot be used for a new inbound delivery, because they must always be unique.
          * @summary Cancel a inbound delivery.
          * @param {string} inboundDeliveryNumber The number the inbound delivery should be refered by. This number is user defined, must be unique and has a maximum length (check maxLength field).
          * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
@@ -427,7 +427,7 @@ export const InboundDeliveryApiFactory = function (configuration?: Configuration
     const localVarFp = InboundDeliveryApiFp(configuration)
     return {
         /**
-         * Cancel a inbound delivery referenced by the given inboundDeliveryNumber. An inboundDeliveryNumber from a canceled inbound delivery cannot be used for a new inbound delivery, because they must always be unique.
+         * Cancel a inbound delivery referenced by the given inboundDeliveryNumber.\\ An inboundDeliveryNumber from a canceled inbound delivery cannot be used for a new inbound delivery, because they must always be unique.
          * @summary Cancel a inbound delivery.
          * @param {string} inboundDeliveryNumber The number the inbound delivery should be refered by. This number is user defined, must be unique and has a maximum length (check maxLength field).
          * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
@@ -504,7 +504,7 @@ export const InboundDeliveryApiFactory = function (configuration?: Configuration
  */
 export interface InboundDeliveryApiInterface {
     /**
-     * Cancel a inbound delivery referenced by the given inboundDeliveryNumber. An inboundDeliveryNumber from a canceled inbound delivery cannot be used for a new inbound delivery, because they must always be unique.
+     * Cancel a inbound delivery referenced by the given inboundDeliveryNumber.\\ An inboundDeliveryNumber from a canceled inbound delivery cannot be used for a new inbound delivery, because they must always be unique.
      * @summary Cancel a inbound delivery.
      * @param {string} inboundDeliveryNumber The number the inbound delivery should be refered by. This number is user defined, must be unique and has a maximum length (check maxLength field).
      * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
@@ -581,7 +581,7 @@ export interface InboundDeliveryApiInterface {
  */
 export class InboundDeliveryApi extends BaseAPI implements InboundDeliveryApiInterface {
     /**
-     * Cancel a inbound delivery referenced by the given inboundDeliveryNumber. An inboundDeliveryNumber from a canceled inbound delivery cannot be used for a new inbound delivery, because they must always be unique.
+     * Cancel a inbound delivery referenced by the given inboundDeliveryNumber.\\ An inboundDeliveryNumber from a canceled inbound delivery cannot be used for a new inbound delivery, because they must always be unique.
      * @summary Cancel a inbound delivery.
      * @param {string} inboundDeliveryNumber The number the inbound delivery should be refered by. This number is user defined, must be unique and has a maximum length (check maxLength field).
      * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._

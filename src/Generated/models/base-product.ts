@@ -144,12 +144,6 @@ export interface BaseProduct {
      */
     'manufacturerCountryCode'?: string | null;
     /**
-     * Number of the supplier
-     * @type {string}
-     * @memberof BaseProduct
-     */
-    'supplierNumber'?: string;
-    /**
      * The language code used for the product (ISO 639-1)
      * @type {string}
      * @memberof BaseProduct

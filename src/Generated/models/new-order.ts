@@ -28,6 +28,9 @@ import { NewOrderItem } from './new-order-item';
 // May contain unused imports in some cases
 // @ts-ignore
 import { NewOrderOptions } from './new-order-options';
+// May contain unused imports in some cases
+// @ts-ignore
+import { OrderDeliveryCosts } from './order-delivery-costs';
 
 /**
  * @type NewOrder

@@ -19,7 +19,7 @@ import { OrderCustomerAddress } from './order-customer-address';
 
 /**
  * @type BaseOrderCustomerInvoiceAddress
- * The customer\'s invoice address.\\ Note: This field is relevant for invoicing and whether it is available or not depends on the used shopCode.\\ Use the GET /shop endpoint to check if the meta.invoiceEnabled of the shop is set to true.
+ * The customer\'s invoice address.\\ Note: This field is required for invoicing and whether it is available or not depends on the used shopCode.\\ Use the GET /shop endpoint to check if the meta.invoiceEnabled of the shop is set to true.
  * @export
  */
 export type BaseOrderCustomerInvoiceAddress = OrderCustomerAddress;
