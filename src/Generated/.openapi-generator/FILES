@@ -1,6 +1,7 @@
 .gitignore
 .npmignore
 api.ts
+apis/audit-log-api.ts
 apis/auth-permission-api.ts
 apis/auth-permission-role-api.ts
 apis/auth-role-api.ts
@@ -23,6 +24,9 @@ common.ts
 configuration.ts
 git_push.sh
 index.ts
+models/audit-log-collection-all-of.ts
+models/audit-log-collection.ts
+models/audit-log.ts
 models/auth-permission-resource.ts
 models/auth-permission-role-resource.ts
 models/auth-role-identity-resource.ts
@@ -42,6 +46,7 @@ models/delivery-collection.ts
 models/delivery-service-collection-all-of.ts
 models/delivery-service-collection.ts
 models/delivery-service.ts
+models/delivery-shipment-journal.ts
 models/delivery-shipment.ts
 models/delivery.ts
 models/error-response.ts
@@ -93,6 +98,7 @@ models/product-collection-all-of.ts
 models/product-collection.ts
 models/product-journal-collection-all-of.ts
 models/product-journal-collection.ts
+models/product-journal-reference.ts
 models/product-journal.ts
 models/product-purchase-price.ts
 models/product-unit-collection-all-of.ts

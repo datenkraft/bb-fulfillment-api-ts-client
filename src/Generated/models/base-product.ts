@@ -30,24 +30,6 @@ export interface BaseProduct {
      */
     'productType'?: BaseProductProductTypeEnum;
     /**
-     * Title of the product
-     * @type {string}
-     * @memberof BaseProduct
-     */
-    'productTitle'?: string;
-    /**
-     * Original title of the product
-     * @type {string}
-     * @memberof BaseProduct
-     */
-    'productTitleOriginal'?: string;
-    /**
-     * Long description of the article
-     * @type {string}
-     * @memberof BaseProduct
-     */
-    'articleLongDescription'?: string;
-    /**
      * The title of the article variant. \\ Must not be set when the articleVariantType is \'standard_autotitle\'.
      * @type {string}
      * @memberof BaseProduct
@@ -102,41 +84,17 @@ export interface BaseProduct {
      */
     'ean'?: string | null;
     /**
-     * The TARIC code of the product
-     * @type {string}
-     * @memberof BaseProduct
-     */
-    'taricCode'?: string;
-    /**
-     * The list price of the product in EUR
-     * @type {number}
-     * @memberof BaseProduct
-     */
-    'listPriceEUR'?: number;
-    /**
      * The suggested retail price for the product in EUR
      * @type {number}
      * @memberof BaseProduct
      */
     'suggestedRetailPriceEUR'?: number | null;
     /**
-     * One of the available tax codes. - std: Standard tax rate (AT 20%) - spc: 1st tax rate (AT 13%) - erm: 2nd tax rate (AT 10%) - erm3: 3rd tax rate (AT 5%) - nsp: not taxable (0%)
-     * @type {string}
-     * @memberof BaseProduct
-     */
-    'taxCode'?: BaseProductTaxCodeEnum;
-    /**
      * 
      * @type {Array<ProductPurchasePrice>}
      * @memberof BaseProduct
      */
     'purchasePrices'?: Array<ProductPurchasePrice> | null;
-    /**
-     * Number of the manufacturer.
-     * @type {string}
-     * @memberof BaseProduct
-     */
-    'manufacturerNumber'?: string;
     /**
      * Country code of the manufacturer (ISO 3166-1 alpha-2)
      * @type {string}
@@ -194,14 +152,5 @@ export const BaseProductVariantGroupEnum = {
 } as const;
 
 export type BaseProductVariantGroupEnum = typeof BaseProductVariantGroupEnum[keyof typeof BaseProductVariantGroupEnum];
-export const BaseProductTaxCodeEnum = {
-    Std: 'std',
-    Spc: 'spc',
-    Erm: 'erm',
-    Erm3: 'erm3',
-    Nsp: 'nsp'
-} as const;
-
-export type BaseProductTaxCodeEnum = typeof BaseProductTaxCodeEnum[keyof typeof BaseProductTaxCodeEnum];
 
 

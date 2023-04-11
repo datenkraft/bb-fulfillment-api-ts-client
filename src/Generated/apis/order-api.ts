@@ -141,10 +141,13 @@ export const OrderApiAxiosParamCreator = function (configuration?: Configuration
          * @param {string} [filterStatus] Filter for status/statuses (optional).
          * @param {string} [filterExternalOrderId] Filter for the external order ID e.g. from third party apps (optional)
          * @param {string} [filterExternalCustomerId] Filter for the external customer ID e.g. from third party apps (optional)
+         * @param {string} [filterExternalOrderReference] filter for externalOrderReference
+         * @param {string} [filterOrderDateFrom] filter for orderDate format in ISO 8601 with UTC offsets
+         * @param {string} [filterOrderDateTo] filter for orderDate format in ISO 8601 with UTC offsets
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getOrderCollection: async (page?: number, pageSize?: number, filterShopCode?: string, filterStatus?: string, filterExternalOrderId?: string, filterExternalCustomerId?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getOrderCollection: async (page?: number, pageSize?: number, filterShopCode?: string, filterStatus?: string, filterExternalOrderId?: string, filterExternalCustomerId?: string, filterExternalOrderReference?: string, filterOrderDateFrom?: string, filterOrderDateTo?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/order`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -187,6 +190,22 @@ export const OrderApiAxiosParamCreator = function (configuration?: Configuration
 
             if (filterExternalCustomerId !== undefined) {
                 localVarQueryParameter['filter[externalCustomerId]'] = filterExternalCustomerId;
+            }
+
+            if (filterExternalOrderReference !== undefined) {
+                localVarQueryParameter['filter[externalOrderReference]'] = filterExternalOrderReference;
+            }
+
+            if (filterOrderDateFrom !== undefined) {
+                localVarQueryParameter['filter[orderDateFrom]'] = (filterOrderDateFrom as any instanceof Date) ?
+                    (filterOrderDateFrom as any).toISOString() :
+                    filterOrderDateFrom;
+            }
+
+            if (filterOrderDateTo !== undefined) {
+                localVarQueryParameter['filter[orderDateTo]'] = (filterOrderDateTo as any instanceof Date) ?
+                    (filterOrderDateTo as any).toISOString() :
+                    filterOrderDateTo;
             }
 
 
@@ -338,11 +357,14 @@ export const OrderApiFp = function(configuration?: Configuration) {
          * @param {string} [filterStatus] Filter for status/statuses (optional).
          * @param {string} [filterExternalOrderId] Filter for the external order ID e.g. from third party apps (optional)
          * @param {string} [filterExternalCustomerId] Filter for the external customer ID e.g. from third party apps (optional)
+         * @param {string} [filterExternalOrderReference] filter for externalOrderReference
+         * @param {string} [filterOrderDateFrom] filter for orderDate format in ISO 8601 with UTC offsets
+         * @param {string} [filterOrderDateTo] filter for orderDate format in ISO 8601 with UTC offsets
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getOrderCollection(page?: number, pageSize?: number, filterShopCode?: string, filterStatus?: string, filterExternalOrderId?: string, filterExternalCustomerId?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OrderCollection>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getOrderCollection(page, pageSize, filterShopCode, filterStatus, filterExternalOrderId, filterExternalCustomerId, options);
+        async getOrderCollection(page?: number, pageSize?: number, filterShopCode?: string, filterStatus?: string, filterExternalOrderId?: string, filterExternalCustomerId?: string, filterExternalOrderReference?: string, filterOrderDateFrom?: string, filterOrderDateTo?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OrderCollection>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getOrderCollection(page, pageSize, filterShopCode, filterStatus, filterExternalOrderId, filterExternalCustomerId, filterExternalOrderReference, filterOrderDateFrom, filterOrderDateTo, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -410,11 +432,14 @@ export const OrderApiFactory = function (configuration?: Configuration, basePath
          * @param {string} [filterStatus] Filter for status/statuses (optional).
          * @param {string} [filterExternalOrderId] Filter for the external order ID e.g. from third party apps (optional)
          * @param {string} [filterExternalCustomerId] Filter for the external customer ID e.g. from third party apps (optional)
+         * @param {string} [filterExternalOrderReference] filter for externalOrderReference
+         * @param {string} [filterOrderDateFrom] filter for orderDate format in ISO 8601 with UTC offsets
+         * @param {string} [filterOrderDateTo] filter for orderDate format in ISO 8601 with UTC offsets
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getOrderCollection(page?: number, pageSize?: number, filterShopCode?: string, filterStatus?: string, filterExternalOrderId?: string, filterExternalCustomerId?: string, options?: any): AxiosPromise<OrderCollection> {
-            return localVarFp.getOrderCollection(page, pageSize, filterShopCode, filterStatus, filterExternalOrderId, filterExternalCustomerId, options).then((request) => request(axios, basePath));
+        getOrderCollection(page?: number, pageSize?: number, filterShopCode?: string, filterStatus?: string, filterExternalOrderId?: string, filterExternalCustomerId?: string, filterExternalOrderReference?: string, filterOrderDateFrom?: string, filterOrderDateTo?: string, options?: any): AxiosPromise<OrderCollection> {
+            return localVarFp.getOrderCollection(page, pageSize, filterShopCode, filterStatus, filterExternalOrderId, filterExternalCustomerId, filterExternalOrderReference, filterOrderDateFrom, filterOrderDateTo, options).then((request) => request(axios, basePath));
         },
         /**
          * Add a new order referenced by the given orderNumber.
@@ -478,11 +503,14 @@ export interface OrderApiInterface {
      * @param {string} [filterStatus] Filter for status/statuses (optional).
      * @param {string} [filterExternalOrderId] Filter for the external order ID e.g. from third party apps (optional)
      * @param {string} [filterExternalCustomerId] Filter for the external customer ID e.g. from third party apps (optional)
+     * @param {string} [filterExternalOrderReference] filter for externalOrderReference
+     * @param {string} [filterOrderDateFrom] filter for orderDate format in ISO 8601 with UTC offsets
+     * @param {string} [filterOrderDateTo] filter for orderDate format in ISO 8601 with UTC offsets
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    getOrderCollection(page?: number, pageSize?: number, filterShopCode?: string, filterStatus?: string, filterExternalOrderId?: string, filterExternalCustomerId?: string, options?: AxiosRequestConfig): AxiosPromise<OrderCollection>;
+    getOrderCollection(page?: number, pageSize?: number, filterShopCode?: string, filterStatus?: string, filterExternalOrderId?: string, filterExternalCustomerId?: string, filterExternalOrderReference?: string, filterOrderDateFrom?: string, filterOrderDateTo?: string, options?: AxiosRequestConfig): AxiosPromise<OrderCollection>;
 
     /**
      * Add a new order referenced by the given orderNumber.
@@ -550,12 +578,15 @@ export class OrderApi extends BaseAPI implements OrderApiInterface {
      * @param {string} [filterStatus] Filter for status/statuses (optional).
      * @param {string} [filterExternalOrderId] Filter for the external order ID e.g. from third party apps (optional)
      * @param {string} [filterExternalCustomerId] Filter for the external customer ID e.g. from third party apps (optional)
+     * @param {string} [filterExternalOrderReference] filter for externalOrderReference
+     * @param {string} [filterOrderDateFrom] filter for orderDate format in ISO 8601 with UTC offsets
+     * @param {string} [filterOrderDateTo] filter for orderDate format in ISO 8601 with UTC offsets
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof OrderApi
      */
-    public getOrderCollection(page?: number, pageSize?: number, filterShopCode?: string, filterStatus?: string, filterExternalOrderId?: string, filterExternalCustomerId?: string, options?: AxiosRequestConfig) {
-        return OrderApiFp(this.configuration).getOrderCollection(page, pageSize, filterShopCode, filterStatus, filterExternalOrderId, filterExternalCustomerId, options).then((request) => request(this.axios, this.basePath));
+    public getOrderCollection(page?: number, pageSize?: number, filterShopCode?: string, filterStatus?: string, filterExternalOrderId?: string, filterExternalCustomerId?: string, filterExternalOrderReference?: string, filterOrderDateFrom?: string, filterOrderDateTo?: string, options?: AxiosRequestConfig) {
+        return OrderApiFp(this.configuration).getOrderCollection(page, pageSize, filterShopCode, filterStatus, filterExternalOrderId, filterExternalCustomerId, filterExternalOrderReference, filterOrderDateFrom, filterOrderDateTo, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

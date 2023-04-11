@@ -95,6 +95,12 @@ export interface OrderAllOf {
      * @memberof OrderAllOf
      */
     'sourceLink'?: string | null;
+    /**
+     * Indicates whether the order can be canceled or not
+     * @type {boolean}
+     * @memberof OrderAllOf
+     */
+    'cancelable'?: boolean;
 }
 
 export const OrderAllOfStatusEnum = {
