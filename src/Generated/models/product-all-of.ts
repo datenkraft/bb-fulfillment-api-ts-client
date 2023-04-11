@@ -21,17 +21,65 @@
  */
 export interface ProductAllOf {
     /**
-     * Status of the product regarding sales.  Available values: - enabled: Product is on sale - enabled_external_only: Product is only available in external stores - deleted: Product is deleted - discontinued: Product is disontinued - expired: Product is expired - incorrect: Product was incorrectly created - internal: Product is available for internal sales only - preparation: Product is in preparation for sale
+     * Title of the product.\\ Note: This can be null if the product was not created via the API.
+     * @type {string}
+     * @memberof ProductAllOf
+     */
+    'productTitle'?: string | null;
+    /**
+     * Original title of the product.\\ Note: This can be null if the product was not created via the API.
+     * @type {string}
+     * @memberof ProductAllOf
+     */
+    'productTitleOriginal'?: string | null;
+    /**
+     * Status of the product regarding sales.\\ Available values: - enabled: Product is on sale - enabled_external_only: Product is only available in external stores - deleted: Product is deleted - discontinued: Product is disontinued - expired: Product is expired - incorrect: Product was incorrectly created - internal: Product is available for internal sales only - preparation: Product is in preparation for sale  Note: This can be null if the product was not created via the API.
      * @type {string}
      * @memberof ProductAllOf
      */
     'productStatus'?: ProductAllOfProductStatusEnum;
     /**
-     * Short description of the article. \\ Note: This can be null if the product was not created via the API.
+     * Short description of the article.\\ Note: This can be null if the product was not created via the API.
      * @type {string}
      * @memberof ProductAllOf
      */
     'articleShortDescription'?: string | null;
+    /**
+     * Long description of the article.\\ Note: This can be null if the product was not created via the API.
+     * @type {string}
+     * @memberof ProductAllOf
+     */
+    'articleLongDescription'?: string | null;
+    /**
+     * The TARIC code of the product.\\ Note: This can be null if the product was not created via the API.
+     * @type {string}
+     * @memberof ProductAllOf
+     */
+    'taricCode'?: string | null;
+    /**
+     * The list price of the product in EUR.\\ Note: This can be null if the product was not created via the API.
+     * @type {number}
+     * @memberof ProductAllOf
+     */
+    'listPriceEUR'?: number | null;
+    /**
+     * One of the available tax codes. - std: Standard tax rate (AT 20%) - spc: 1st tax rate (AT 13%) - erm: 2nd tax rate (AT 10%) - erm3: 3rd tax rate (AT 5%) - nsp: not taxable (0%)  Note: This can be null if the product was not created via the API.
+     * @type {string}
+     * @memberof ProductAllOf
+     */
+    'taxCode'?: ProductAllOfTaxCodeEnum;
+    /**
+     * Number of the manufacturer.\\ Note: This can be null if the product was not created via the API.
+     * @type {string}
+     * @memberof ProductAllOf
+     */
+    'manufacturerNumber'?: string | null;
+    /**
+     * Number of the supplier.\\ Note: This can be null if the product was not created via the API.
+     * @type {string}
+     * @memberof ProductAllOf
+     */
+    'supplierNumber'?: string | null;
     /**
      * 
      * @type {string}
@@ -44,12 +92,6 @@ export interface ProductAllOf {
      * @memberof ProductAllOf
      */
     'shopCode'?: string;
-    /**
-     * Number of the supplier\\ Note: This can be null if the product is a bundle product.
-     * @type {string}
-     * @memberof ProductAllOf
-     */
-    'supplierNumber'?: string | null;
 }
 
 export const ProductAllOfProductStatusEnum = {
@@ -64,5 +106,14 @@ export const ProductAllOfProductStatusEnum = {
 } as const;
 
 export type ProductAllOfProductStatusEnum = typeof ProductAllOfProductStatusEnum[keyof typeof ProductAllOfProductStatusEnum];
+export const ProductAllOfTaxCodeEnum = {
+    Std: 'std',
+    Spc: 'spc',
+    Erm: 'erm',
+    Erm3: 'erm3',
+    Nsp: 'nsp'
+} as const;
+
+export type ProductAllOfTaxCodeEnum = typeof ProductAllOfTaxCodeEnum[keyof typeof ProductAllOfTaxCodeEnum];
 
 

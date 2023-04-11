@@ -27,11 +27,53 @@ export interface NewProductAllOf {
      */
     'productStatus'?: NewProductAllOfProductStatusEnum;
     /**
+     * Title of the product
+     * @type {string}
+     * @memberof NewProductAllOf
+     */
+    'productTitle'?: string;
+    /**
+     * Original title of the product
+     * @type {string}
+     * @memberof NewProductAllOf
+     */
+    'productTitleOriginal'?: string;
+    /**
      * Short description of the article.
      * @type {string}
      * @memberof NewProductAllOf
      */
     'articleShortDescription'?: string;
+    /**
+     * Long description of the article
+     * @type {string}
+     * @memberof NewProductAllOf
+     */
+    'articleLongDescription'?: string;
+    /**
+     * The TARIC code of the product
+     * @type {string}
+     * @memberof NewProductAllOf
+     */
+    'taricCode'?: string;
+    /**
+     * The list price of the product in EUR
+     * @type {number}
+     * @memberof NewProductAllOf
+     */
+    'listPriceEUR'?: number;
+    /**
+     * One of the available tax codes. - std: Standard tax rate (AT 20%) - spc: 1st tax rate (AT 13%) - erm: 2nd tax rate (AT 10%) - erm3: 3rd tax rate (AT 5%) - nsp: not taxable (0%)
+     * @type {string}
+     * @memberof NewProductAllOf
+     */
+    'taxCode'?: NewProductAllOfTaxCodeEnum;
+    /**
+     * Number of the manufacturer.
+     * @type {string}
+     * @memberof NewProductAllOf
+     */
+    'manufacturerNumber'?: string;
     /**
      * Number of the supplier
      * @type {string}
@@ -46,5 +88,14 @@ export const NewProductAllOfProductStatusEnum = {
 } as const;
 
 export type NewProductAllOfProductStatusEnum = typeof NewProductAllOfProductStatusEnum[keyof typeof NewProductAllOfProductStatusEnum];
+export const NewProductAllOfTaxCodeEnum = {
+    Std: 'std',
+    Spc: 'spc',
+    Erm: 'erm',
+    Erm3: 'erm3',
+    Nsp: 'nsp'
+} as const;
+
+export type NewProductAllOfTaxCodeEnum = typeof NewProductAllOfTaxCodeEnum[keyof typeof NewProductAllOfTaxCodeEnum];
 
 

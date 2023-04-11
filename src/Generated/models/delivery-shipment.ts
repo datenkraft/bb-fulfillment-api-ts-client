@@ -15,6 +15,9 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
+import { DeliveryShipmentJournal } from './delivery-shipment-journal';
+// May contain unused imports in some cases
+// @ts-ignore
 import { ShipmentLine } from './shipment-line';
 
 /**
@@ -77,6 +80,12 @@ export interface DeliveryShipment {
      * @memberof DeliveryShipment
      */
     'externalShipmentId'?: string | null;
+    /**
+     * Journal entries regarding the shipment.
+     * @type {Array<DeliveryShipmentJournal>}
+     * @memberof DeliveryShipment
+     */
+    'journal'?: Array<DeliveryShipmentJournal>;
 }
 
 export const DeliveryShipmentStatusEnum = {

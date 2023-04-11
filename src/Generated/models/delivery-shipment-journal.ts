@@ -14,22 +14,32 @@
 
 
 
-export * from './apis/audit-log-api';
-export * from './apis/auth-permission-api';
-export * from './apis/auth-permission-role-api';
-export * from './apis/auth-role-api';
-export * from './apis/auth-role-identity-api';
-export * from './apis/country-api';
-export * from './apis/delivery-api';
-export * from './apis/delivery-service-api';
-export * from './apis/docs-api';
-export * from './apis/inbound-delivery-api';
-export * from './apis/manufacturer-api';
-export * from './apis/order-api';
-export * from './apis/product-api';
-export * from './apis/product-unit-api';
-export * from './apis/report-api';
-export * from './apis/shop-api';
-export * from './apis/stock-api';
-export * from './apis/supplier-api';
+/**
+ * Journal entries of a delivery shipment
+ * @export
+ * @interface DeliveryShipmentJournal
+ */
+export interface DeliveryShipmentJournal {
+    /**
+     * The create date for the entry. Format in ISO 8601.
+     * @type {string}
+     * @memberof DeliveryShipmentJournal
+     */
+    'date': string;
+    /**
+     * The type code of the journal entry.
+     * @type {string}
+     * @memberof DeliveryShipmentJournal
+     */
+    'typeCode': DeliveryShipmentJournalTypeCodeEnum;
+}
+
+export const DeliveryShipmentJournalTypeCodeEnum = {
+    Created: 'fulfillment_created',
+    LeftWarehouse: 'fulfillment_left-warehouse',
+    Delivered: 'fulfillment_delivered'
+} as const;
+
+export type DeliveryShipmentJournalTypeCodeEnum = typeof DeliveryShipmentJournalTypeCodeEnum[keyof typeof DeliveryShipmentJournalTypeCodeEnum];
+
 

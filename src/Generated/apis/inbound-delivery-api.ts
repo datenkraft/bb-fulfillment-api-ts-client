@@ -137,7 +137,7 @@ export const InboundDeliveryApiAxiosParamCreator = function (configuration?: Con
         /**
          * Get a spreadsheet template for performing POST queries to the respective endpoint.
          * @summary Get a spreadsheet template for performing POST queries to the respective endpoint.
-         * @param {'xlsx' | 'csv'} format The inbound delivery number as defined during the creation of the inbound delivery.
+         * @param {'xlsx' | 'csv'} format The format of the spreadsheet template
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -369,7 +369,7 @@ export const InboundDeliveryApiFp = function(configuration?: Configuration) {
         /**
          * Get a spreadsheet template for performing POST queries to the respective endpoint.
          * @summary Get a spreadsheet template for performing POST queries to the respective endpoint.
-         * @param {'xlsx' | 'csv'} format The inbound delivery number as defined during the creation of the inbound delivery.
+         * @param {'xlsx' | 'csv'} format The format of the spreadsheet template
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -451,7 +451,7 @@ export const InboundDeliveryApiFactory = function (configuration?: Configuration
         /**
          * Get a spreadsheet template for performing POST queries to the respective endpoint.
          * @summary Get a spreadsheet template for performing POST queries to the respective endpoint.
-         * @param {'xlsx' | 'csv'} format The inbound delivery number as defined during the creation of the inbound delivery.
+         * @param {'xlsx' | 'csv'} format The format of the spreadsheet template
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -528,7 +528,7 @@ export interface InboundDeliveryApiInterface {
     /**
      * Get a spreadsheet template for performing POST queries to the respective endpoint.
      * @summary Get a spreadsheet template for performing POST queries to the respective endpoint.
-     * @param {'xlsx' | 'csv'} format The inbound delivery number as defined during the creation of the inbound delivery.
+     * @param {'xlsx' | 'csv'} format The format of the spreadsheet template
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof InboundDeliveryApiInterface
@@ -609,7 +609,7 @@ export class InboundDeliveryApi extends BaseAPI implements InboundDeliveryApiInt
     /**
      * Get a spreadsheet template for performing POST queries to the respective endpoint.
      * @summary Get a spreadsheet template for performing POST queries to the respective endpoint.
-     * @param {'xlsx' | 'csv'} format The inbound delivery number as defined during the creation of the inbound delivery.
+     * @param {'xlsx' | 'csv'} format The format of the spreadsheet template
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof InboundDeliveryApi

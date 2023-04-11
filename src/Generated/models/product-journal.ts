@@ -13,6 +13,9 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import { ProductJournalReference } from './product-journal-reference';
 
 /**
  * 
@@ -62,6 +65,12 @@ export interface ProductJournal {
      * @memberof ProductJournal
      */
     'stockNew'?: number | null;
+    /**
+     * 
+     * @type {ProductJournalReference}
+     * @memberof ProductJournal
+     */
+    'reference'?: ProductJournalReference;
 }
 
 export const ProductJournalReasonEnum = {
