@@ -21,7 +21,7 @@
  */
 export interface OrderPrice {
     /**
-     * The price value rounded to 2 decimals, dot as separator
+     * The price value rounded to 2 decimals with a dot used as separator. Note: This price value refers to a single unit and is not an aggregated price value, which may be calculated by multiplying this price value by the corresponding item count.
      * @type {number}
      * @memberof OrderPrice
      */
