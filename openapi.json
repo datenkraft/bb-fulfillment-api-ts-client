@@ -4958,6 +4958,10 @@
                         "description": "Amount available for orders\n- the reserved amount for ongoing orders is subtracted\\\n- if the overbookingPossibilityStatus is 'only_inbound_deliveries', the incoming amount is added",
                         "type": "integer"
                     },
+                    "incoming": {
+                        "description": "Amount of ongoing inbound deliveries",
+                        "type": "integer"
+                    },
                     "overbookingPossibilityStatus": {
                         "description": "Status regarding the possibility of overbooking\n- possible: Overbooking is possible\n- not_possible: Overbooking is not possible\n- only_inbound_deliveries: Overbooking is only possible for the amount in ongoing inbound deliveries",
                         "type": "string",
