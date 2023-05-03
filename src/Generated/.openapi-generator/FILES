@@ -1,6 +1,7 @@
 .gitignore
 .npmignore
 api.ts
+apis/audit-log-api.ts
 apis/auth-permission-api.ts
 apis/auth-permission-role-api.ts
 apis/auth-role-api.ts
@@ -16,6 +17,9 @@ common.ts
 configuration.ts
 git_push.sh
 index.ts
+models/audit-log-collection-all-of.ts
+models/audit-log-collection.ts
+models/audit-log.ts
 models/auth-permission-resource.ts
 models/auth-permission-role-resource.ts
 models/auth-role-identity-resource.ts
@@ -40,6 +44,9 @@ models/model-error.ts
 models/new-auth-role-resource.ts
 models/new-order-all-of.ts
 models/new-order-customer.ts
+models/new-order-item-all-of.ts
+models/new-order-item-price-all-of.ts
+models/new-order-item-price.ts
 models/new-order-item.ts
 models/new-order.ts
 models/order-all-of.ts

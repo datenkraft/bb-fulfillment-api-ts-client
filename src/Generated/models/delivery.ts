@@ -36,7 +36,7 @@ export interface Delivery {
      */
     'orderNumber'?: string | null;
     /**
-     * Status of the delivery. - in_progress: The delivery is in the process of being packaged. - delivered: The delivery has been transferred to the delivery agent.
+     * Status of the delivery. - delivered: The delivery has been transferred to the delivery agent.
      * @type {string}
      * @memberof Delivery
      */
@@ -50,7 +50,6 @@ export interface Delivery {
 }
 
 export const DeliveryStatusEnum = {
-    InProgress: 'in_progress',
     Delivered: 'delivered'
 } as const;
 

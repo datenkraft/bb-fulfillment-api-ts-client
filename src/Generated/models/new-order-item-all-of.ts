@@ -13,16 +13,21 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import { NewOrderItemPrice } from './new-order-item-price';
 
-export * from './apis/audit-log-api';
-export * from './apis/auth-permission-api';
-export * from './apis/auth-permission-role-api';
-export * from './apis/auth-role-api';
-export * from './apis/auth-role-identity-api';
-export * from './apis/delivery-api';
-export * from './apis/delivery-service-api';
-export * from './apis/docs-api';
-export * from './apis/order-api';
-export * from './apis/shop-api';
-export * from './apis/stock-api';
+/**
+ * 
+ * @export
+ * @interface NewOrderItemAllOf
+ */
+export interface NewOrderItemAllOf {
+    /**
+     * 
+     * @type {NewOrderItemPrice}
+     * @memberof NewOrderItemAllOf
+     */
+    'price'?: NewOrderItemPrice | null;
+}
 
