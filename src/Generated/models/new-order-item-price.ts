@@ -13,16 +13,17 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import { NewOrderItemPriceAllOf } from './new-order-item-price-all-of';
+// May contain unused imports in some cases
+// @ts-ignore
+import { OrderItemPrice } from './order-item-price';
 
-export * from './apis/audit-log-api';
-export * from './apis/auth-permission-api';
-export * from './apis/auth-permission-role-api';
-export * from './apis/auth-role-api';
-export * from './apis/auth-role-identity-api';
-export * from './apis/delivery-api';
-export * from './apis/delivery-service-api';
-export * from './apis/docs-api';
-export * from './apis/order-api';
-export * from './apis/shop-api';
-export * from './apis/stock-api';
+/**
+ * @type NewOrderItemPrice
+ * @export
+ */
+export type NewOrderItemPrice = NewOrderItemPriceAllOf & OrderItemPrice;
+
 

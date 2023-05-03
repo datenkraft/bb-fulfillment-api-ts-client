@@ -21,7 +21,7 @@
  */
 export interface OrderItemPrice {
     /**
-     * The price value rounded to 2 decimals, dot as separator
+     * The price value rounded to 2 decimals with a dot used as separator. Note: This price value refers to a single unit and is not an aggregated price value, which may be calculated by multiplying this price value by the corresponding item count.
      * @type {number}
      * @memberof OrderItemPrice
      */
@@ -33,11 +33,11 @@ export interface OrderItemPrice {
      */
     'type': OrderItemPriceTypeEnum;
     /**
-     * The VAT in percent
+     * The VAT in percent. Can be null in case of bundle products with mixed VAT percentages.
      * @type {number}
      * @memberof OrderItemPrice
      */
-    'vat': number;
+    'vat': number | null;
     /**
      * The currency code (ISO 4217)
      * @type {string}

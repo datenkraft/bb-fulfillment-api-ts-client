@@ -15,15 +15,18 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { OrderItem } from './order-item';
+import { NewOrderItemAllOf } from './new-order-item-all-of';
 // May contain unused imports in some cases
 // @ts-ignore
-import { OrderItemPrice } from './order-item-price';
+import { NewOrderItemPrice } from './new-order-item-price';
+// May contain unused imports in some cases
+// @ts-ignore
+import { OrderItem } from './order-item';
 
 /**
  * @type NewOrderItem
  * @export
  */
-export type NewOrderItem = OrderItem;
+export type NewOrderItem = NewOrderItemAllOf & OrderItem;
 
 

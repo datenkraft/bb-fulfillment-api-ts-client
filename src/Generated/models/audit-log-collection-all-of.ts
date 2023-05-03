@@ -13,16 +13,21 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import { AuditLog } from './audit-log';
 
-export * from './apis/audit-log-api';
-export * from './apis/auth-permission-api';
-export * from './apis/auth-permission-role-api';
-export * from './apis/auth-role-api';
-export * from './apis/auth-role-identity-api';
-export * from './apis/delivery-api';
-export * from './apis/delivery-service-api';
-export * from './apis/docs-api';
-export * from './apis/order-api';
-export * from './apis/shop-api';
-export * from './apis/stock-api';
+/**
+ * 
+ * @export
+ * @interface AuditLogCollectionAllOf
+ */
+export interface AuditLogCollectionAllOf {
+    /**
+     * 
+     * @type {Array<AuditLog>}
+     * @memberof AuditLogCollectionAllOf
+     */
+    'data'?: Array<AuditLog>;
+}
 
