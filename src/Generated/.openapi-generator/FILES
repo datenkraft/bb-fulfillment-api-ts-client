@@ -71,6 +71,9 @@ models/new-inbound-delivery.ts
 models/new-order-all-of.ts
 models/new-order-customer-all-of.ts
 models/new-order-customer.ts
+models/new-order-item-all-of.ts
+models/new-order-item-price-all-of.ts
+models/new-order-item-price.ts
 models/new-order-item.ts
 models/new-order-options-all-of.ts
 models/new-order-options.ts
@@ -85,8 +88,10 @@ models/order-customer-all-of.ts
 models/order-customer-delivery-address-all-of.ts
 models/order-customer-delivery-address.ts
 models/order-customer.ts
+models/order-delivery-costs-all-of.ts
 models/order-delivery-costs.ts
 models/order-delivery.ts
+models/order-item-price-all-of.ts
 models/order-item-price.ts
 models/order-item.ts
 models/order-payment.ts

@@ -15,6 +15,9 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
+import { OrderDeliveryCostsAllOf } from './order-delivery-costs-all-of';
+// May contain unused imports in some cases
+// @ts-ignore
 import { OrderPrice } from './order-price';
 
 /**
@@ -22,6 +25,6 @@ import { OrderPrice } from './order-price';
  * The delivery costs of the order, which will be charged to the customer.\\ Note: This field is required if customs clearance is necessary for the delivery address of the order.
  * @export
  */
-export type OrderDeliveryCosts = OrderPrice;
+export type OrderDeliveryCosts = OrderDeliveryCostsAllOf & OrderPrice;
 
 
