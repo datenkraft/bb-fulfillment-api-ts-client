@@ -79,10 +79,10 @@ export interface BaseOrder {
     'amazonOrderId'?: string | null;
     /**
      * 
-     * @type {OrderDeliveryCosts}
+     * @type {Array<OrderDeliveryCosts>}
      * @memberof BaseOrder
      */
-    'deliveryCosts'?: OrderDeliveryCosts | null;
+    'deliveryCosts'?: Array<OrderDeliveryCosts> | null;
     /**
      * Additional optional options for the order.
      * @type {any}
