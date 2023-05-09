@@ -175,10 +175,13 @@ export const InboundDeliveryApiAxiosParamCreator = function (configuration?: Con
          * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
          * @param {string} [filterStatus] Status of the inbound delivery (optional).  The status for not yet completed is subject to change. you may poll for changes. - open: The inbound delivery has not yet been delivered. - in_progress: The inbound delivery is being processed in our warehouse. - completed: The inbound delivery has been processed in our warehouse. - deleted: The inbound delivery has been deleted.
          * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+         * @param {string} [filterExpectedDeliveryDateFrom] The start date (inclusive) in format Y-m-d for which inbound deliveries should be returned (regarding the expected delivery date).
+         * @param {string} [filterExpectedDeliveryDateTo] The end date (inclusive) in format Y-m-d for which inbound deliveries should be returned (regarding the expected delivery date).
+         * @param {string} [filterSearch] filter for inbound delivery search.\\ \\ Usage: - Provide one or multiple search terms to filter results. - Multiple search terms are separated by spaces. - The search is not case sensitive. - The search is enabled for the fields inboundDeliveryName and inboundDeliveryNumber (without the numberPrefix of the associated supplier). - Each search term filters the response for inbound deliveries where at least one of the fields contains the search term. - For example, filter[search]&#x3D;\&#39;term1 term2\&#39; will filter the result for products where \&#39;term1\&#39; is found in any field and \&#39;term2\&#39; is also found in any field.\\ If only \&#39;term1\&#39; or \&#39;term2\&#39; is found in the fields, the product is not included in the results.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getInboundDeliveryCollection: async (page?: number, pageSize?: number, filterStatus?: string, filterShopCode?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getInboundDeliveryCollection: async (page?: number, pageSize?: number, filterStatus?: string, filterShopCode?: string, filterExpectedDeliveryDateFrom?: string, filterExpectedDeliveryDateTo?: string, filterSearch?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/inbound-delivery`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -213,6 +216,22 @@ export const InboundDeliveryApiAxiosParamCreator = function (configuration?: Con
 
             if (filterShopCode !== undefined) {
                 localVarQueryParameter['filter[shopCode]'] = filterShopCode;
+            }
+
+            if (filterExpectedDeliveryDateFrom !== undefined) {
+                localVarQueryParameter['filter[expectedDeliveryDateFrom]'] = (filterExpectedDeliveryDateFrom as any instanceof Date) ?
+                    (filterExpectedDeliveryDateFrom as any).toISOString().substr(0,10) :
+                    filterExpectedDeliveryDateFrom;
+            }
+
+            if (filterExpectedDeliveryDateTo !== undefined) {
+                localVarQueryParameter['filter[expectedDeliveryDateTo]'] = (filterExpectedDeliveryDateTo as any instanceof Date) ?
+                    (filterExpectedDeliveryDateTo as any).toISOString().substr(0,10) :
+                    filterExpectedDeliveryDateTo;
+            }
+
+            if (filterSearch !== undefined) {
+                localVarQueryParameter['filter[search]'] = filterSearch;
             }
 
 
@@ -384,11 +403,14 @@ export const InboundDeliveryApiFp = function(configuration?: Configuration) {
          * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
          * @param {string} [filterStatus] Status of the inbound delivery (optional).  The status for not yet completed is subject to change. you may poll for changes. - open: The inbound delivery has not yet been delivered. - in_progress: The inbound delivery is being processed in our warehouse. - completed: The inbound delivery has been processed in our warehouse. - deleted: The inbound delivery has been deleted.
          * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+         * @param {string} [filterExpectedDeliveryDateFrom] The start date (inclusive) in format Y-m-d for which inbound deliveries should be returned (regarding the expected delivery date).
+         * @param {string} [filterExpectedDeliveryDateTo] The end date (inclusive) in format Y-m-d for which inbound deliveries should be returned (regarding the expected delivery date).
+         * @param {string} [filterSearch] filter for inbound delivery search.\\ \\ Usage: - Provide one or multiple search terms to filter results. - Multiple search terms are separated by spaces. - The search is not case sensitive. - The search is enabled for the fields inboundDeliveryName and inboundDeliveryNumber (without the numberPrefix of the associated supplier). - Each search term filters the response for inbound deliveries where at least one of the fields contains the search term. - For example, filter[search]&#x3D;\&#39;term1 term2\&#39; will filter the result for products where \&#39;term1\&#39; is found in any field and \&#39;term2\&#39; is also found in any field.\\ If only \&#39;term1\&#39; or \&#39;term2\&#39; is found in the fields, the product is not included in the results.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getInboundDeliveryCollection(page?: number, pageSize?: number, filterStatus?: string, filterShopCode?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InboundDeliveryCollection>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getInboundDeliveryCollection(page, pageSize, filterStatus, filterShopCode, options);
+        async getInboundDeliveryCollection(page?: number, pageSize?: number, filterStatus?: string, filterShopCode?: string, filterExpectedDeliveryDateFrom?: string, filterExpectedDeliveryDateTo?: string, filterSearch?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InboundDeliveryCollection>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getInboundDeliveryCollection(page, pageSize, filterStatus, filterShopCode, filterExpectedDeliveryDateFrom, filterExpectedDeliveryDateTo, filterSearch, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -465,11 +487,14 @@ export const InboundDeliveryApiFactory = function (configuration?: Configuration
          * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
          * @param {string} [filterStatus] Status of the inbound delivery (optional).  The status for not yet completed is subject to change. you may poll for changes. - open: The inbound delivery has not yet been delivered. - in_progress: The inbound delivery is being processed in our warehouse. - completed: The inbound delivery has been processed in our warehouse. - deleted: The inbound delivery has been deleted.
          * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+         * @param {string} [filterExpectedDeliveryDateFrom] The start date (inclusive) in format Y-m-d for which inbound deliveries should be returned (regarding the expected delivery date).
+         * @param {string} [filterExpectedDeliveryDateTo] The end date (inclusive) in format Y-m-d for which inbound deliveries should be returned (regarding the expected delivery date).
+         * @param {string} [filterSearch] filter for inbound delivery search.\\ \\ Usage: - Provide one or multiple search terms to filter results. - Multiple search terms are separated by spaces. - The search is not case sensitive. - The search is enabled for the fields inboundDeliveryName and inboundDeliveryNumber (without the numberPrefix of the associated supplier). - Each search term filters the response for inbound deliveries where at least one of the fields contains the search term. - For example, filter[search]&#x3D;\&#39;term1 term2\&#39; will filter the result for products where \&#39;term1\&#39; is found in any field and \&#39;term2\&#39; is also found in any field.\\ If only \&#39;term1\&#39; or \&#39;term2\&#39; is found in the fields, the product is not included in the results.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getInboundDeliveryCollection(page?: number, pageSize?: number, filterStatus?: string, filterShopCode?: string, options?: any): AxiosPromise<InboundDeliveryCollection> {
-            return localVarFp.getInboundDeliveryCollection(page, pageSize, filterStatus, filterShopCode, options).then((request) => request(axios, basePath));
+        getInboundDeliveryCollection(page?: number, pageSize?: number, filterStatus?: string, filterShopCode?: string, filterExpectedDeliveryDateFrom?: string, filterExpectedDeliveryDateTo?: string, filterSearch?: string, options?: any): AxiosPromise<InboundDeliveryCollection> {
+            return localVarFp.getInboundDeliveryCollection(page, pageSize, filterStatus, filterShopCode, filterExpectedDeliveryDateFrom, filterExpectedDeliveryDateTo, filterSearch, options).then((request) => request(axios, basePath));
         },
         /**
          * Import one or more new inbound deliveries.
@@ -542,11 +567,14 @@ export interface InboundDeliveryApiInterface {
      * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
      * @param {string} [filterStatus] Status of the inbound delivery (optional).  The status for not yet completed is subject to change. you may poll for changes. - open: The inbound delivery has not yet been delivered. - in_progress: The inbound delivery is being processed in our warehouse. - completed: The inbound delivery has been processed in our warehouse. - deleted: The inbound delivery has been deleted.
      * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+     * @param {string} [filterExpectedDeliveryDateFrom] The start date (inclusive) in format Y-m-d for which inbound deliveries should be returned (regarding the expected delivery date).
+     * @param {string} [filterExpectedDeliveryDateTo] The end date (inclusive) in format Y-m-d for which inbound deliveries should be returned (regarding the expected delivery date).
+     * @param {string} [filterSearch] filter for inbound delivery search.\\ \\ Usage: - Provide one or multiple search terms to filter results. - Multiple search terms are separated by spaces. - The search is not case sensitive. - The search is enabled for the fields inboundDeliveryName and inboundDeliveryNumber (without the numberPrefix of the associated supplier). - Each search term filters the response for inbound deliveries where at least one of the fields contains the search term. - For example, filter[search]&#x3D;\&#39;term1 term2\&#39; will filter the result for products where \&#39;term1\&#39; is found in any field and \&#39;term2\&#39; is also found in any field.\\ If only \&#39;term1\&#39; or \&#39;term2\&#39; is found in the fields, the product is not included in the results.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof InboundDeliveryApiInterface
      */
-    getInboundDeliveryCollection(page?: number, pageSize?: number, filterStatus?: string, filterShopCode?: string, options?: AxiosRequestConfig): AxiosPromise<InboundDeliveryCollection>;
+    getInboundDeliveryCollection(page?: number, pageSize?: number, filterStatus?: string, filterShopCode?: string, filterExpectedDeliveryDateFrom?: string, filterExpectedDeliveryDateTo?: string, filterSearch?: string, options?: AxiosRequestConfig): AxiosPromise<InboundDeliveryCollection>;
 
     /**
      * Import one or more new inbound deliveries.
@@ -625,12 +653,15 @@ export class InboundDeliveryApi extends BaseAPI implements InboundDeliveryApiInt
      * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
      * @param {string} [filterStatus] Status of the inbound delivery (optional).  The status for not yet completed is subject to change. you may poll for changes. - open: The inbound delivery has not yet been delivered. - in_progress: The inbound delivery is being processed in our warehouse. - completed: The inbound delivery has been processed in our warehouse. - deleted: The inbound delivery has been deleted.
      * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+     * @param {string} [filterExpectedDeliveryDateFrom] The start date (inclusive) in format Y-m-d for which inbound deliveries should be returned (regarding the expected delivery date).
+     * @param {string} [filterExpectedDeliveryDateTo] The end date (inclusive) in format Y-m-d for which inbound deliveries should be returned (regarding the expected delivery date).
+     * @param {string} [filterSearch] filter for inbound delivery search.\\ \\ Usage: - Provide one or multiple search terms to filter results. - Multiple search terms are separated by spaces. - The search is not case sensitive. - The search is enabled for the fields inboundDeliveryName and inboundDeliveryNumber (without the numberPrefix of the associated supplier). - Each search term filters the response for inbound deliveries where at least one of the fields contains the search term. - For example, filter[search]&#x3D;\&#39;term1 term2\&#39; will filter the result for products where \&#39;term1\&#39; is found in any field and \&#39;term2\&#39; is also found in any field.\\ If only \&#39;term1\&#39; or \&#39;term2\&#39; is found in the fields, the product is not included in the results.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof InboundDeliveryApi
      */
-    public getInboundDeliveryCollection(page?: number, pageSize?: number, filterStatus?: string, filterShopCode?: string, options?: AxiosRequestConfig) {
-        return InboundDeliveryApiFp(this.configuration).getInboundDeliveryCollection(page, pageSize, filterStatus, filterShopCode, options).then((request) => request(this.axios, this.basePath));
+    public getInboundDeliveryCollection(page?: number, pageSize?: number, filterStatus?: string, filterShopCode?: string, filterExpectedDeliveryDateFrom?: string, filterExpectedDeliveryDateTo?: string, filterSearch?: string, options?: AxiosRequestConfig) {
+        return InboundDeliveryApiFp(this.configuration).getInboundDeliveryCollection(page, pageSize, filterStatus, filterShopCode, filterExpectedDeliveryDateFrom, filterExpectedDeliveryDateTo, filterSearch, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
