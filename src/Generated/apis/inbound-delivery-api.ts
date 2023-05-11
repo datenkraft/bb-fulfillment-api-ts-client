@@ -173,6 +173,7 @@ export const InboundDeliveryApiAxiosParamCreator = function (configuration?: Con
          * @summary Get a list of inbound deliveries.
          * @param {number} [page] The page to read. Default is the first page.
          * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
+         * @param {string} [sortBy] Sort the results by one or more comma-separated sort criteria, with the criterion specified first having priority.  Available sort orders: - asc: ascending order - desc: descending order  Available fields for sorting: - expectedDeliveryDate  The default sort order is expectedDeliveryDate:desc.
          * @param {string} [filterStatus] Status of the inbound delivery (optional).  The status for not yet completed is subject to change. you may poll for changes. - open: The inbound delivery has not yet been delivered. - in_progress: The inbound delivery is being processed in our warehouse. - completed: The inbound delivery has been processed in our warehouse. - deleted: The inbound delivery has been deleted.
          * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
          * @param {string} [filterExpectedDeliveryDateFrom] The start date (inclusive) in format Y-m-d for which inbound deliveries should be returned (regarding the expected delivery date).
@@ -181,7 +182,7 @@ export const InboundDeliveryApiAxiosParamCreator = function (configuration?: Con
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getInboundDeliveryCollection: async (page?: number, pageSize?: number, filterStatus?: string, filterShopCode?: string, filterExpectedDeliveryDateFrom?: string, filterExpectedDeliveryDateTo?: string, filterSearch?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getInboundDeliveryCollection: async (page?: number, pageSize?: number, sortBy?: string, filterStatus?: string, filterShopCode?: string, filterExpectedDeliveryDateFrom?: string, filterExpectedDeliveryDateTo?: string, filterSearch?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/inbound-delivery`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -208,6 +209,10 @@ export const InboundDeliveryApiAxiosParamCreator = function (configuration?: Con
 
             if (pageSize !== undefined) {
                 localVarQueryParameter['pageSize'] = pageSize;
+            }
+
+            if (sortBy !== undefined) {
+                localVarQueryParameter['sortBy'] = sortBy;
             }
 
             if (filterStatus !== undefined) {
@@ -401,6 +406,7 @@ export const InboundDeliveryApiFp = function(configuration?: Configuration) {
          * @summary Get a list of inbound deliveries.
          * @param {number} [page] The page to read. Default is the first page.
          * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
+         * @param {string} [sortBy] Sort the results by one or more comma-separated sort criteria, with the criterion specified first having priority.  Available sort orders: - asc: ascending order - desc: descending order  Available fields for sorting: - expectedDeliveryDate  The default sort order is expectedDeliveryDate:desc.
          * @param {string} [filterStatus] Status of the inbound delivery (optional).  The status for not yet completed is subject to change. you may poll for changes. - open: The inbound delivery has not yet been delivered. - in_progress: The inbound delivery is being processed in our warehouse. - completed: The inbound delivery has been processed in our warehouse. - deleted: The inbound delivery has been deleted.
          * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
          * @param {string} [filterExpectedDeliveryDateFrom] The start date (inclusive) in format Y-m-d for which inbound deliveries should be returned (regarding the expected delivery date).
@@ -409,8 +415,8 @@ export const InboundDeliveryApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getInboundDeliveryCollection(page?: number, pageSize?: number, filterStatus?: string, filterShopCode?: string, filterExpectedDeliveryDateFrom?: string, filterExpectedDeliveryDateTo?: string, filterSearch?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InboundDeliveryCollection>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getInboundDeliveryCollection(page, pageSize, filterStatus, filterShopCode, filterExpectedDeliveryDateFrom, filterExpectedDeliveryDateTo, filterSearch, options);
+        async getInboundDeliveryCollection(page?: number, pageSize?: number, sortBy?: string, filterStatus?: string, filterShopCode?: string, filterExpectedDeliveryDateFrom?: string, filterExpectedDeliveryDateTo?: string, filterSearch?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InboundDeliveryCollection>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getInboundDeliveryCollection(page, pageSize, sortBy, filterStatus, filterShopCode, filterExpectedDeliveryDateFrom, filterExpectedDeliveryDateTo, filterSearch, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -485,6 +491,7 @@ export const InboundDeliveryApiFactory = function (configuration?: Configuration
          * @summary Get a list of inbound deliveries.
          * @param {number} [page] The page to read. Default is the first page.
          * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
+         * @param {string} [sortBy] Sort the results by one or more comma-separated sort criteria, with the criterion specified first having priority.  Available sort orders: - asc: ascending order - desc: descending order  Available fields for sorting: - expectedDeliveryDate  The default sort order is expectedDeliveryDate:desc.
          * @param {string} [filterStatus] Status of the inbound delivery (optional).  The status for not yet completed is subject to change. you may poll for changes. - open: The inbound delivery has not yet been delivered. - in_progress: The inbound delivery is being processed in our warehouse. - completed: The inbound delivery has been processed in our warehouse. - deleted: The inbound delivery has been deleted.
          * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
          * @param {string} [filterExpectedDeliveryDateFrom] The start date (inclusive) in format Y-m-d for which inbound deliveries should be returned (regarding the expected delivery date).
@@ -493,8 +500,8 @@ export const InboundDeliveryApiFactory = function (configuration?: Configuration
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getInboundDeliveryCollection(page?: number, pageSize?: number, filterStatus?: string, filterShopCode?: string, filterExpectedDeliveryDateFrom?: string, filterExpectedDeliveryDateTo?: string, filterSearch?: string, options?: any): AxiosPromise<InboundDeliveryCollection> {
-            return localVarFp.getInboundDeliveryCollection(page, pageSize, filterStatus, filterShopCode, filterExpectedDeliveryDateFrom, filterExpectedDeliveryDateTo, filterSearch, options).then((request) => request(axios, basePath));
+        getInboundDeliveryCollection(page?: number, pageSize?: number, sortBy?: string, filterStatus?: string, filterShopCode?: string, filterExpectedDeliveryDateFrom?: string, filterExpectedDeliveryDateTo?: string, filterSearch?: string, options?: any): AxiosPromise<InboundDeliveryCollection> {
+            return localVarFp.getInboundDeliveryCollection(page, pageSize, sortBy, filterStatus, filterShopCode, filterExpectedDeliveryDateFrom, filterExpectedDeliveryDateTo, filterSearch, options).then((request) => request(axios, basePath));
         },
         /**
          * Import one or more new inbound deliveries.
@@ -565,6 +572,7 @@ export interface InboundDeliveryApiInterface {
      * @summary Get a list of inbound deliveries.
      * @param {number} [page] The page to read. Default is the first page.
      * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
+     * @param {string} [sortBy] Sort the results by one or more comma-separated sort criteria, with the criterion specified first having priority.  Available sort orders: - asc: ascending order - desc: descending order  Available fields for sorting: - expectedDeliveryDate  The default sort order is expectedDeliveryDate:desc.
      * @param {string} [filterStatus] Status of the inbound delivery (optional).  The status for not yet completed is subject to change. you may poll for changes. - open: The inbound delivery has not yet been delivered. - in_progress: The inbound delivery is being processed in our warehouse. - completed: The inbound delivery has been processed in our warehouse. - deleted: The inbound delivery has been deleted.
      * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
      * @param {string} [filterExpectedDeliveryDateFrom] The start date (inclusive) in format Y-m-d for which inbound deliveries should be returned (regarding the expected delivery date).
@@ -574,7 +582,7 @@ export interface InboundDeliveryApiInterface {
      * @throws {RequiredError}
      * @memberof InboundDeliveryApiInterface
      */
-    getInboundDeliveryCollection(page?: number, pageSize?: number, filterStatus?: string, filterShopCode?: string, filterExpectedDeliveryDateFrom?: string, filterExpectedDeliveryDateTo?: string, filterSearch?: string, options?: AxiosRequestConfig): AxiosPromise<InboundDeliveryCollection>;
+    getInboundDeliveryCollection(page?: number, pageSize?: number, sortBy?: string, filterStatus?: string, filterShopCode?: string, filterExpectedDeliveryDateFrom?: string, filterExpectedDeliveryDateTo?: string, filterSearch?: string, options?: AxiosRequestConfig): AxiosPromise<InboundDeliveryCollection>;
 
     /**
      * Import one or more new inbound deliveries.
@@ -651,6 +659,7 @@ export class InboundDeliveryApi extends BaseAPI implements InboundDeliveryApiInt
      * @summary Get a list of inbound deliveries.
      * @param {number} [page] The page to read. Default is the first page.
      * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
+     * @param {string} [sortBy] Sort the results by one or more comma-separated sort criteria, with the criterion specified first having priority.  Available sort orders: - asc: ascending order - desc: descending order  Available fields for sorting: - expectedDeliveryDate  The default sort order is expectedDeliveryDate:desc.
      * @param {string} [filterStatus] Status of the inbound delivery (optional).  The status for not yet completed is subject to change. you may poll for changes. - open: The inbound delivery has not yet been delivered. - in_progress: The inbound delivery is being processed in our warehouse. - completed: The inbound delivery has been processed in our warehouse. - deleted: The inbound delivery has been deleted.
      * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
      * @param {string} [filterExpectedDeliveryDateFrom] The start date (inclusive) in format Y-m-d for which inbound deliveries should be returned (regarding the expected delivery date).
@@ -660,8 +669,8 @@ export class InboundDeliveryApi extends BaseAPI implements InboundDeliveryApiInt
      * @throws {RequiredError}
      * @memberof InboundDeliveryApi
      */
-    public getInboundDeliveryCollection(page?: number, pageSize?: number, filterStatus?: string, filterShopCode?: string, filterExpectedDeliveryDateFrom?: string, filterExpectedDeliveryDateTo?: string, filterSearch?: string, options?: AxiosRequestConfig) {
-        return InboundDeliveryApiFp(this.configuration).getInboundDeliveryCollection(page, pageSize, filterStatus, filterShopCode, filterExpectedDeliveryDateFrom, filterExpectedDeliveryDateTo, filterSearch, options).then((request) => request(this.axios, this.basePath));
+    public getInboundDeliveryCollection(page?: number, pageSize?: number, sortBy?: string, filterStatus?: string, filterShopCode?: string, filterExpectedDeliveryDateFrom?: string, filterExpectedDeliveryDateTo?: string, filterSearch?: string, options?: AxiosRequestConfig) {
+        return InboundDeliveryApiFp(this.configuration).getInboundDeliveryCollection(page, pageSize, sortBy, filterStatus, filterShopCode, filterExpectedDeliveryDateFrom, filterExpectedDeliveryDateTo, filterSearch, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
