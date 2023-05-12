@@ -251,6 +251,57 @@ export const InboundDeliveryApiAxiosParamCreator = function (configuration?: Con
             };
         },
         /**
+         * Allows to download a document associated with the given inbound delivery.
+         * @summary Download inbound delivery related documents
+         * @param {string} inboundDeliveryNumber The inbound delivery number as defined during the creation of the inbound delivery.
+         * @param {'supplierDeliveryLabel' | 'details'} documentCode The document type to download. The file format is determined by the Accept request header.\\ Note: only a limited amount of document type to file format combinations are available: - supplierDeliveryLabel:\\ the label to put on the inbound delivery for warehouse processing.\\ Accept header: application/pdf - details:\\ a spreadsheet containing details about the inbound delivery.\\ Accept header: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet     
+         * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getInboundDeliveryDocument: async (inboundDeliveryNumber: string, documentCode: 'supplierDeliveryLabel' | 'details', shopCode?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'inboundDeliveryNumber' is not null or undefined
+            assertParamExists('getInboundDeliveryDocument', 'inboundDeliveryNumber', inboundDeliveryNumber)
+            // verify required parameter 'documentCode' is not null or undefined
+            assertParamExists('getInboundDeliveryDocument', 'documentCode', documentCode)
+            const localVarPath = `/inbound-delivery/{inboundDeliveryNumber}/document/{documentCode}`
+                .replace(`{${"inboundDeliveryNumber"}}`, encodeURIComponent(String(inboundDeliveryNumber)))
+                .replace(`{${"documentCode"}}`, encodeURIComponent(String(documentCode)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication oAuthAuthorization required
+            // oauth required
+            await setOAuthToObject(localVarHeaderParameter, "oAuthAuthorization", [], configuration)
+
+            // authentication bearerAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (shopCode !== undefined) {
+                localVarQueryParameter['shopCode'] = shopCode;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Import one or more new inbound deliveries.
          * @summary Import one or more new inbound deliveries.
          * @param {'xlsx' | 'csv'} format The format for the upload.
@@ -420,6 +471,19 @@ export const InboundDeliveryApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
+         * Allows to download a document associated with the given inbound delivery.
+         * @summary Download inbound delivery related documents
+         * @param {string} inboundDeliveryNumber The inbound delivery number as defined during the creation of the inbound delivery.
+         * @param {'supplierDeliveryLabel' | 'details'} documentCode The document type to download. The file format is determined by the Accept request header.\\ Note: only a limited amount of document type to file format combinations are available: - supplierDeliveryLabel:\\ the label to put on the inbound delivery for warehouse processing.\\ Accept header: application/pdf - details:\\ a spreadsheet containing details about the inbound delivery.\\ Accept header: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet     
+         * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getInboundDeliveryDocument(inboundDeliveryNumber: string, documentCode: 'supplierDeliveryLabel' | 'details', shopCode?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<File>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getInboundDeliveryDocument(inboundDeliveryNumber, documentCode, shopCode, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
          * Import one or more new inbound deliveries.
          * @summary Import one or more new inbound deliveries.
          * @param {'xlsx' | 'csv'} format The format for the upload.
@@ -504,6 +568,18 @@ export const InboundDeliveryApiFactory = function (configuration?: Configuration
             return localVarFp.getInboundDeliveryCollection(page, pageSize, sortBy, filterStatus, filterShopCode, filterExpectedDeliveryDateFrom, filterExpectedDeliveryDateTo, filterSearch, options).then((request) => request(axios, basePath));
         },
         /**
+         * Allows to download a document associated with the given inbound delivery.
+         * @summary Download inbound delivery related documents
+         * @param {string} inboundDeliveryNumber The inbound delivery number as defined during the creation of the inbound delivery.
+         * @param {'supplierDeliveryLabel' | 'details'} documentCode The document type to download. The file format is determined by the Accept request header.\\ Note: only a limited amount of document type to file format combinations are available: - supplierDeliveryLabel:\\ the label to put on the inbound delivery for warehouse processing.\\ Accept header: application/pdf - details:\\ a spreadsheet containing details about the inbound delivery.\\ Accept header: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet     
+         * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getInboundDeliveryDocument(inboundDeliveryNumber: string, documentCode: 'supplierDeliveryLabel' | 'details', shopCode?: string, options?: any): AxiosPromise<File> {
+            return localVarFp.getInboundDeliveryDocument(inboundDeliveryNumber, documentCode, shopCode, options).then((request) => request(axios, basePath));
+        },
+        /**
          * Import one or more new inbound deliveries.
          * @summary Import one or more new inbound deliveries.
          * @param {'xlsx' | 'csv'} format The format for the upload.
@@ -583,6 +659,18 @@ export interface InboundDeliveryApiInterface {
      * @memberof InboundDeliveryApiInterface
      */
     getInboundDeliveryCollection(page?: number, pageSize?: number, sortBy?: string, filterStatus?: string, filterShopCode?: string, filterExpectedDeliveryDateFrom?: string, filterExpectedDeliveryDateTo?: string, filterSearch?: string, options?: AxiosRequestConfig): AxiosPromise<InboundDeliveryCollection>;
+
+    /**
+     * Allows to download a document associated with the given inbound delivery.
+     * @summary Download inbound delivery related documents
+     * @param {string} inboundDeliveryNumber The inbound delivery number as defined during the creation of the inbound delivery.
+     * @param {'supplierDeliveryLabel' | 'details'} documentCode The document type to download. The file format is determined by the Accept request header.\\ Note: only a limited amount of document type to file format combinations are available: - supplierDeliveryLabel:\\ the label to put on the inbound delivery for warehouse processing.\\ Accept header: application/pdf - details:\\ a spreadsheet containing details about the inbound delivery.\\ Accept header: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet     
+     * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof InboundDeliveryApiInterface
+     */
+    getInboundDeliveryDocument(inboundDeliveryNumber: string, documentCode: 'supplierDeliveryLabel' | 'details', shopCode?: string, options?: AxiosRequestConfig): AxiosPromise<File>;
 
     /**
      * Import one or more new inbound deliveries.
@@ -671,6 +759,20 @@ export class InboundDeliveryApi extends BaseAPI implements InboundDeliveryApiInt
      */
     public getInboundDeliveryCollection(page?: number, pageSize?: number, sortBy?: string, filterStatus?: string, filterShopCode?: string, filterExpectedDeliveryDateFrom?: string, filterExpectedDeliveryDateTo?: string, filterSearch?: string, options?: AxiosRequestConfig) {
         return InboundDeliveryApiFp(this.configuration).getInboundDeliveryCollection(page, pageSize, sortBy, filterStatus, filterShopCode, filterExpectedDeliveryDateFrom, filterExpectedDeliveryDateTo, filterSearch, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Allows to download a document associated with the given inbound delivery.
+     * @summary Download inbound delivery related documents
+     * @param {string} inboundDeliveryNumber The inbound delivery number as defined during the creation of the inbound delivery.
+     * @param {'supplierDeliveryLabel' | 'details'} documentCode The document type to download. The file format is determined by the Accept request header.\\ Note: only a limited amount of document type to file format combinations are available: - supplierDeliveryLabel:\\ the label to put on the inbound delivery for warehouse processing.\\ Accept header: application/pdf - details:\\ a spreadsheet containing details about the inbound delivery.\\ Accept header: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet     
+     * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof InboundDeliveryApi
+     */
+    public getInboundDeliveryDocument(inboundDeliveryNumber: string, documentCode: 'supplierDeliveryLabel' | 'details', shopCode?: string, options?: AxiosRequestConfig) {
+        return InboundDeliveryApiFp(this.configuration).getInboundDeliveryDocument(inboundDeliveryNumber, documentCode, shopCode, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
