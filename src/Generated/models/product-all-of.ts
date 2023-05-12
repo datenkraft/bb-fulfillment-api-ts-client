@@ -97,6 +97,7 @@ export interface ProductAllOf {
 export const ProductAllOfProductStatusEnum = {
     Enabled: 'enabled',
     EnabledExternalOnly: 'enabled_external_only',
+    Null: 'null',
     Deleted: 'deleted',
     Discontinued: 'discontinued',
     Expired: 'expired',
@@ -111,7 +112,8 @@ export const ProductAllOfTaxCodeEnum = {
     Spc: 'spc',
     Erm: 'erm',
     Erm3: 'erm3',
-    Nsp: 'nsp'
+    Nsp: 'nsp',
+    Null: 'null'
 } as const;
 
 export type ProductAllOfTaxCodeEnum = typeof ProductAllOfTaxCodeEnum[keyof typeof ProductAllOfTaxCodeEnum];

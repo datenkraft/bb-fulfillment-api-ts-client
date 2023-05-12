@@ -84,7 +84,8 @@ export interface NewProductAllOf {
 
 export const NewProductAllOfProductStatusEnum = {
     Enabled: 'enabled',
-    EnabledExternalOnly: 'enabled_external_only'
+    EnabledExternalOnly: 'enabled_external_only',
+    Null: 'null'
 } as const;
 
 export type NewProductAllOfProductStatusEnum = typeof NewProductAllOfProductStatusEnum[keyof typeof NewProductAllOfProductStatusEnum];

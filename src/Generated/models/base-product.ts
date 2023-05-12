@@ -130,7 +130,8 @@ export type BaseProductProductTypeEnum = typeof BaseProductProductTypeEnum[keyof
 export const BaseProductArticleVariantTypeEnum = {
     Standard: 'standard',
     StandardAutotitle: 'standard_autotitle',
-    Personalized: 'personalized'
+    Personalized: 'personalized',
+    Null: 'null'
 } as const;
 
 export type BaseProductArticleVariantTypeEnum = typeof BaseProductArticleVariantTypeEnum[keyof typeof BaseProductArticleVariantTypeEnum];
@@ -139,7 +140,8 @@ export const BaseProductArticleStatusEnum = {
     TemporaryInactive: 'temporary_inactive',
     PreparationInactive: 'preparation_inactive',
     InactiveButVisible: 'inactive_but_visible',
-    Inactive: 'inactive'
+    Inactive: 'inactive',
+    Null: 'null'
 } as const;
 
 export type BaseProductArticleStatusEnum = typeof BaseProductArticleStatusEnum[keyof typeof BaseProductArticleStatusEnum];

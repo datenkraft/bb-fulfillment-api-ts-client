@@ -117,7 +117,8 @@ export type OrderAllOfStatusEnum = typeof OrderAllOfStatusEnum[keyof typeof Orde
 export const OrderAllOfSourceEnum = {
     Shopify: 'shopify',
     Nice: 'nice',
-    Api: 'api'
+    Api: 'api',
+    Null: 'null'
 } as const;
 
 export type OrderAllOfSourceEnum = typeof OrderAllOfSourceEnum[keyof typeof OrderAllOfSourceEnum];
