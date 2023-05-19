@@ -137,6 +137,7 @@ export const OrderApiAxiosParamCreator = function (configuration?: Configuration
          * @summary Get a list of shop oders.
          * @param {number} [page] The page to read. Default is the first page.
          * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
+         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
          * @param {string} [sortBy] Sort the results by one or more comma-separated sort criteria, with the criterion specified first having priority.  Available sort orders: - asc: ascending order - desc: descending order  Available fields for sorting: - orderDate  The default sort order is orderDate:desc.
          * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
          * @param {string} [filterStatus] Filter for status/statuses (optional).
@@ -148,7 +149,7 @@ export const OrderApiAxiosParamCreator = function (configuration?: Configuration
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getOrderCollection: async (page?: number, pageSize?: number, sortBy?: string, filterShopCode?: string, filterStatus?: string, filterExternalOrderId?: string, filterExternalCustomerId?: string, filterExternalOrderReference?: string, filterOrderDateFrom?: string, filterOrderDateTo?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getOrderCollection: async (page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', sortBy?: string, filterShopCode?: string, filterStatus?: string, filterExternalOrderId?: string, filterExternalCustomerId?: string, filterExternalOrderReference?: string, filterOrderDateFrom?: string, filterOrderDateTo?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/order`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -175,6 +176,10 @@ export const OrderApiAxiosParamCreator = function (configuration?: Configuration
 
             if (pageSize !== undefined) {
                 localVarQueryParameter['pageSize'] = pageSize;
+            }
+
+            if (paginationMode !== undefined) {
+                localVarQueryParameter['paginationMode'] = paginationMode;
             }
 
             if (sortBy !== undefined) {
@@ -358,6 +363,7 @@ export const OrderApiFp = function(configuration?: Configuration) {
          * @summary Get a list of shop oders.
          * @param {number} [page] The page to read. Default is the first page.
          * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
+         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
          * @param {string} [sortBy] Sort the results by one or more comma-separated sort criteria, with the criterion specified first having priority.  Available sort orders: - asc: ascending order - desc: descending order  Available fields for sorting: - orderDate  The default sort order is orderDate:desc.
          * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
          * @param {string} [filterStatus] Filter for status/statuses (optional).
@@ -369,8 +375,8 @@ export const OrderApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getOrderCollection(page?: number, pageSize?: number, sortBy?: string, filterShopCode?: string, filterStatus?: string, filterExternalOrderId?: string, filterExternalCustomerId?: string, filterExternalOrderReference?: string, filterOrderDateFrom?: string, filterOrderDateTo?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OrderCollection>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getOrderCollection(page, pageSize, sortBy, filterShopCode, filterStatus, filterExternalOrderId, filterExternalCustomerId, filterExternalOrderReference, filterOrderDateFrom, filterOrderDateTo, options);
+        async getOrderCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', sortBy?: string, filterShopCode?: string, filterStatus?: string, filterExternalOrderId?: string, filterExternalCustomerId?: string, filterExternalOrderReference?: string, filterOrderDateFrom?: string, filterOrderDateTo?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OrderCollection>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getOrderCollection(page, pageSize, paginationMode, sortBy, filterShopCode, filterStatus, filterExternalOrderId, filterExternalCustomerId, filterExternalOrderReference, filterOrderDateFrom, filterOrderDateTo, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -434,6 +440,7 @@ export const OrderApiFactory = function (configuration?: Configuration, basePath
          * @summary Get a list of shop oders.
          * @param {number} [page] The page to read. Default is the first page.
          * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
+         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
          * @param {string} [sortBy] Sort the results by one or more comma-separated sort criteria, with the criterion specified first having priority.  Available sort orders: - asc: ascending order - desc: descending order  Available fields for sorting: - orderDate  The default sort order is orderDate:desc.
          * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
          * @param {string} [filterStatus] Filter for status/statuses (optional).
@@ -445,8 +452,8 @@ export const OrderApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getOrderCollection(page?: number, pageSize?: number, sortBy?: string, filterShopCode?: string, filterStatus?: string, filterExternalOrderId?: string, filterExternalCustomerId?: string, filterExternalOrderReference?: string, filterOrderDateFrom?: string, filterOrderDateTo?: string, options?: any): AxiosPromise<OrderCollection> {
-            return localVarFp.getOrderCollection(page, pageSize, sortBy, filterShopCode, filterStatus, filterExternalOrderId, filterExternalCustomerId, filterExternalOrderReference, filterOrderDateFrom, filterOrderDateTo, options).then((request) => request(axios, basePath));
+        getOrderCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', sortBy?: string, filterShopCode?: string, filterStatus?: string, filterExternalOrderId?: string, filterExternalCustomerId?: string, filterExternalOrderReference?: string, filterOrderDateFrom?: string, filterOrderDateTo?: string, options?: any): AxiosPromise<OrderCollection> {
+            return localVarFp.getOrderCollection(page, pageSize, paginationMode, sortBy, filterShopCode, filterStatus, filterExternalOrderId, filterExternalCustomerId, filterExternalOrderReference, filterOrderDateFrom, filterOrderDateTo, options).then((request) => request(axios, basePath));
         },
         /**
          * Add a new order referenced by the given orderNumber.
@@ -506,6 +513,7 @@ export interface OrderApiInterface {
      * @summary Get a list of shop oders.
      * @param {number} [page] The page to read. Default is the first page.
      * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
+     * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
      * @param {string} [sortBy] Sort the results by one or more comma-separated sort criteria, with the criterion specified first having priority.  Available sort orders: - asc: ascending order - desc: descending order  Available fields for sorting: - orderDate  The default sort order is orderDate:desc.
      * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
      * @param {string} [filterStatus] Filter for status/statuses (optional).
@@ -518,7 +526,7 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    getOrderCollection(page?: number, pageSize?: number, sortBy?: string, filterShopCode?: string, filterStatus?: string, filterExternalOrderId?: string, filterExternalCustomerId?: string, filterExternalOrderReference?: string, filterOrderDateFrom?: string, filterOrderDateTo?: string, options?: AxiosRequestConfig): AxiosPromise<OrderCollection>;
+    getOrderCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', sortBy?: string, filterShopCode?: string, filterStatus?: string, filterExternalOrderId?: string, filterExternalCustomerId?: string, filterExternalOrderReference?: string, filterOrderDateFrom?: string, filterOrderDateTo?: string, options?: AxiosRequestConfig): AxiosPromise<OrderCollection>;
 
     /**
      * Add a new order referenced by the given orderNumber.
@@ -582,6 +590,7 @@ export class OrderApi extends BaseAPI implements OrderApiInterface {
      * @summary Get a list of shop oders.
      * @param {number} [page] The page to read. Default is the first page.
      * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
+     * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
      * @param {string} [sortBy] Sort the results by one or more comma-separated sort criteria, with the criterion specified first having priority.  Available sort orders: - asc: ascending order - desc: descending order  Available fields for sorting: - orderDate  The default sort order is orderDate:desc.
      * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
      * @param {string} [filterStatus] Filter for status/statuses (optional).
@@ -594,8 +603,8 @@ export class OrderApi extends BaseAPI implements OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApi
      */
-    public getOrderCollection(page?: number, pageSize?: number, sortBy?: string, filterShopCode?: string, filterStatus?: string, filterExternalOrderId?: string, filterExternalCustomerId?: string, filterExternalOrderReference?: string, filterOrderDateFrom?: string, filterOrderDateTo?: string, options?: AxiosRequestConfig) {
-        return OrderApiFp(this.configuration).getOrderCollection(page, pageSize, sortBy, filterShopCode, filterStatus, filterExternalOrderId, filterExternalCustomerId, filterExternalOrderReference, filterOrderDateFrom, filterOrderDateTo, options).then((request) => request(this.axios, this.basePath));
+    public getOrderCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', sortBy?: string, filterShopCode?: string, filterStatus?: string, filterExternalOrderId?: string, filterExternalCustomerId?: string, filterExternalOrderReference?: string, filterOrderDateFrom?: string, filterOrderDateTo?: string, options?: AxiosRequestConfig) {
+        return OrderApiFp(this.configuration).getOrderCollection(page, pageSize, paginationMode, sortBy, filterShopCode, filterStatus, filterExternalOrderId, filterExternalCustomerId, filterExternalOrderReference, filterOrderDateFrom, filterOrderDateTo, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

@@ -94,12 +94,13 @@ export const ProductApiAxiosParamCreator = function (configuration?: Configurati
          * @summary Get a list of products.
          * @param {number} [page] The page to read. Default is the first page.
          * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
+         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
          * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
          * @param {string} [filterSearch] Filter for product search.\\ Usage: - Provide one or multiple search terms to filter results. - Multiple search terms are separated by spaces. - The search is not case sensitive. - The search is enabled for the fields productTitle and productNumber. - Each search term filters the response for products where at least one of the fields contains the search term. - For example, filter[search]&#x3D;\&#39;term1 term2\&#39; will filter the result for products where \&#39;term1\&#39; is found in any field and \&#39;term2\&#39; is also found in any field.\\ If only \&#39;term1\&#39; or \&#39;term2\&#39; is found in the fields, the product is not included in the results.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getProductCollection: async (page?: number, pageSize?: number, filterShopCode?: string, filterSearch?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getProductCollection: async (page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterShopCode?: string, filterSearch?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/product`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -128,6 +129,10 @@ export const ProductApiAxiosParamCreator = function (configuration?: Configurati
                 localVarQueryParameter['pageSize'] = pageSize;
             }
 
+            if (paginationMode !== undefined) {
+                localVarQueryParameter['paginationMode'] = paginationMode;
+            }
+
             if (filterShopCode !== undefined) {
                 localVarQueryParameter['filter[shopCode]'] = filterShopCode;
             }
@@ -153,6 +158,7 @@ export const ProductApiAxiosParamCreator = function (configuration?: Configurati
          * @param {string} productNumber The product number as defined during the creation of the product.
          * @param {number} [page] The page to read. Default is the first page.
          * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
+         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
          * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
          * @param {string} [filterDateFrom] The start date (inclusive) in format Y-m-d (timezone CET/CEST) for which product journal entries should be returned.
          * @param {string} [filterDateTo] The end date (inclusive) in format Y-m-d (timezone CET/CEST) for which product journal entries should be returned.
@@ -160,7 +166,7 @@ export const ProductApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getProductJournalCollection: async (productNumber: string, page?: number, pageSize?: number, shopCode?: string, filterDateFrom?: string, filterDateTo?: string, filterReason?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getProductJournalCollection: async (productNumber: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', shopCode?: string, filterDateFrom?: string, filterDateTo?: string, filterReason?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'productNumber' is not null or undefined
             assertParamExists('getProductJournalCollection', 'productNumber', productNumber)
             const localVarPath = `/product/{productNumber}/journal`
@@ -190,6 +196,10 @@ export const ProductApiAxiosParamCreator = function (configuration?: Configurati
 
             if (pageSize !== undefined) {
                 localVarQueryParameter['pageSize'] = pageSize;
+            }
+
+            if (paginationMode !== undefined) {
+                localVarQueryParameter['paginationMode'] = paginationMode;
             }
 
             if (shopCode !== undefined) {
@@ -303,13 +313,14 @@ export const ProductApiFp = function(configuration?: Configuration) {
          * @summary Get a list of products.
          * @param {number} [page] The page to read. Default is the first page.
          * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
+         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
          * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
          * @param {string} [filterSearch] Filter for product search.\\ Usage: - Provide one or multiple search terms to filter results. - Multiple search terms are separated by spaces. - The search is not case sensitive. - The search is enabled for the fields productTitle and productNumber. - Each search term filters the response for products where at least one of the fields contains the search term. - For example, filter[search]&#x3D;\&#39;term1 term2\&#39; will filter the result for products where \&#39;term1\&#39; is found in any field and \&#39;term2\&#39; is also found in any field.\\ If only \&#39;term1\&#39; or \&#39;term2\&#39; is found in the fields, the product is not included in the results.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getProductCollection(page?: number, pageSize?: number, filterShopCode?: string, filterSearch?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ProductCollection>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getProductCollection(page, pageSize, filterShopCode, filterSearch, options);
+        async getProductCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterShopCode?: string, filterSearch?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ProductCollection>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getProductCollection(page, pageSize, paginationMode, filterShopCode, filterSearch, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -318,6 +329,7 @@ export const ProductApiFp = function(configuration?: Configuration) {
          * @param {string} productNumber The product number as defined during the creation of the product.
          * @param {number} [page] The page to read. Default is the first page.
          * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
+         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
          * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
          * @param {string} [filterDateFrom] The start date (inclusive) in format Y-m-d (timezone CET/CEST) for which product journal entries should be returned.
          * @param {string} [filterDateTo] The end date (inclusive) in format Y-m-d (timezone CET/CEST) for which product journal entries should be returned.
@@ -325,8 +337,8 @@ export const ProductApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getProductJournalCollection(productNumber: string, page?: number, pageSize?: number, shopCode?: string, filterDateFrom?: string, filterDateTo?: string, filterReason?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ProductJournalCollection>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getProductJournalCollection(productNumber, page, pageSize, shopCode, filterDateFrom, filterDateTo, filterReason, options);
+        async getProductJournalCollection(productNumber: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', shopCode?: string, filterDateFrom?: string, filterDateTo?: string, filterReason?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ProductJournalCollection>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getProductJournalCollection(productNumber, page, pageSize, paginationMode, shopCode, filterDateFrom, filterDateTo, filterReason, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -368,13 +380,14 @@ export const ProductApiFactory = function (configuration?: Configuration, basePa
          * @summary Get a list of products.
          * @param {number} [page] The page to read. Default is the first page.
          * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
+         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
          * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
          * @param {string} [filterSearch] Filter for product search.\\ Usage: - Provide one or multiple search terms to filter results. - Multiple search terms are separated by spaces. - The search is not case sensitive. - The search is enabled for the fields productTitle and productNumber. - Each search term filters the response for products where at least one of the fields contains the search term. - For example, filter[search]&#x3D;\&#39;term1 term2\&#39; will filter the result for products where \&#39;term1\&#39; is found in any field and \&#39;term2\&#39; is also found in any field.\\ If only \&#39;term1\&#39; or \&#39;term2\&#39; is found in the fields, the product is not included in the results.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getProductCollection(page?: number, pageSize?: number, filterShopCode?: string, filterSearch?: string, options?: any): AxiosPromise<ProductCollection> {
-            return localVarFp.getProductCollection(page, pageSize, filterShopCode, filterSearch, options).then((request) => request(axios, basePath));
+        getProductCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterShopCode?: string, filterSearch?: string, options?: any): AxiosPromise<ProductCollection> {
+            return localVarFp.getProductCollection(page, pageSize, paginationMode, filterShopCode, filterSearch, options).then((request) => request(axios, basePath));
         },
         /**
          * Read a journal collection for a specific product showing the history of stock changes.
@@ -382,6 +395,7 @@ export const ProductApiFactory = function (configuration?: Configuration, basePa
          * @param {string} productNumber The product number as defined during the creation of the product.
          * @param {number} [page] The page to read. Default is the first page.
          * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
+         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
          * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
          * @param {string} [filterDateFrom] The start date (inclusive) in format Y-m-d (timezone CET/CEST) for which product journal entries should be returned.
          * @param {string} [filterDateTo] The end date (inclusive) in format Y-m-d (timezone CET/CEST) for which product journal entries should be returned.
@@ -389,8 +403,8 @@ export const ProductApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getProductJournalCollection(productNumber: string, page?: number, pageSize?: number, shopCode?: string, filterDateFrom?: string, filterDateTo?: string, filterReason?: string, options?: any): AxiosPromise<ProductJournalCollection> {
-            return localVarFp.getProductJournalCollection(productNumber, page, pageSize, shopCode, filterDateFrom, filterDateTo, filterReason, options).then((request) => request(axios, basePath));
+        getProductJournalCollection(productNumber: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', shopCode?: string, filterDateFrom?: string, filterDateTo?: string, filterReason?: string, options?: any): AxiosPromise<ProductJournalCollection> {
+            return localVarFp.getProductJournalCollection(productNumber, page, pageSize, paginationMode, shopCode, filterDateFrom, filterDateTo, filterReason, options).then((request) => request(axios, basePath));
         },
         /**
          * Add a new product referenced by the given productNumber. Please note that due to necessary product compliance enabling by our steve team, the product might not be usable immediately. The product number is nevertheless reserved, even before the product can be queried in the GET endpoint.
@@ -429,13 +443,14 @@ export interface ProductApiInterface {
      * @summary Get a list of products.
      * @param {number} [page] The page to read. Default is the first page.
      * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
+     * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
      * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
      * @param {string} [filterSearch] Filter for product search.\\ Usage: - Provide one or multiple search terms to filter results. - Multiple search terms are separated by spaces. - The search is not case sensitive. - The search is enabled for the fields productTitle and productNumber. - Each search term filters the response for products where at least one of the fields contains the search term. - For example, filter[search]&#x3D;\&#39;term1 term2\&#39; will filter the result for products where \&#39;term1\&#39; is found in any field and \&#39;term2\&#39; is also found in any field.\\ If only \&#39;term1\&#39; or \&#39;term2\&#39; is found in the fields, the product is not included in the results.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProductApiInterface
      */
-    getProductCollection(page?: number, pageSize?: number, filterShopCode?: string, filterSearch?: string, options?: AxiosRequestConfig): AxiosPromise<ProductCollection>;
+    getProductCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterShopCode?: string, filterSearch?: string, options?: AxiosRequestConfig): AxiosPromise<ProductCollection>;
 
     /**
      * Read a journal collection for a specific product showing the history of stock changes.
@@ -443,6 +458,7 @@ export interface ProductApiInterface {
      * @param {string} productNumber The product number as defined during the creation of the product.
      * @param {number} [page] The page to read. Default is the first page.
      * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
+     * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
      * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
      * @param {string} [filterDateFrom] The start date (inclusive) in format Y-m-d (timezone CET/CEST) for which product journal entries should be returned.
      * @param {string} [filterDateTo] The end date (inclusive) in format Y-m-d (timezone CET/CEST) for which product journal entries should be returned.
@@ -451,7 +467,7 @@ export interface ProductApiInterface {
      * @throws {RequiredError}
      * @memberof ProductApiInterface
      */
-    getProductJournalCollection(productNumber: string, page?: number, pageSize?: number, shopCode?: string, filterDateFrom?: string, filterDateTo?: string, filterReason?: string, options?: AxiosRequestConfig): AxiosPromise<ProductJournalCollection>;
+    getProductJournalCollection(productNumber: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', shopCode?: string, filterDateFrom?: string, filterDateTo?: string, filterReason?: string, options?: AxiosRequestConfig): AxiosPromise<ProductJournalCollection>;
 
     /**
      * Add a new product referenced by the given productNumber. Please note that due to necessary product compliance enabling by our steve team, the product might not be usable immediately. The product number is nevertheless reserved, even before the product can be queried in the GET endpoint.
@@ -492,14 +508,15 @@ export class ProductApi extends BaseAPI implements ProductApiInterface {
      * @summary Get a list of products.
      * @param {number} [page] The page to read. Default is the first page.
      * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
+     * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
      * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
      * @param {string} [filterSearch] Filter for product search.\\ Usage: - Provide one or multiple search terms to filter results. - Multiple search terms are separated by spaces. - The search is not case sensitive. - The search is enabled for the fields productTitle and productNumber. - Each search term filters the response for products where at least one of the fields contains the search term. - For example, filter[search]&#x3D;\&#39;term1 term2\&#39; will filter the result for products where \&#39;term1\&#39; is found in any field and \&#39;term2\&#39; is also found in any field.\\ If only \&#39;term1\&#39; or \&#39;term2\&#39; is found in the fields, the product is not included in the results.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProductApi
      */
-    public getProductCollection(page?: number, pageSize?: number, filterShopCode?: string, filterSearch?: string, options?: AxiosRequestConfig) {
-        return ProductApiFp(this.configuration).getProductCollection(page, pageSize, filterShopCode, filterSearch, options).then((request) => request(this.axios, this.basePath));
+    public getProductCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterShopCode?: string, filterSearch?: string, options?: AxiosRequestConfig) {
+        return ProductApiFp(this.configuration).getProductCollection(page, pageSize, paginationMode, filterShopCode, filterSearch, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -508,6 +525,7 @@ export class ProductApi extends BaseAPI implements ProductApiInterface {
      * @param {string} productNumber The product number as defined during the creation of the product.
      * @param {number} [page] The page to read. Default is the first page.
      * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
+     * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
      * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
      * @param {string} [filterDateFrom] The start date (inclusive) in format Y-m-d (timezone CET/CEST) for which product journal entries should be returned.
      * @param {string} [filterDateTo] The end date (inclusive) in format Y-m-d (timezone CET/CEST) for which product journal entries should be returned.
@@ -516,8 +534,8 @@ export class ProductApi extends BaseAPI implements ProductApiInterface {
      * @throws {RequiredError}
      * @memberof ProductApi
      */
-    public getProductJournalCollection(productNumber: string, page?: number, pageSize?: number, shopCode?: string, filterDateFrom?: string, filterDateTo?: string, filterReason?: string, options?: AxiosRequestConfig) {
-        return ProductApiFp(this.configuration).getProductJournalCollection(productNumber, page, pageSize, shopCode, filterDateFrom, filterDateTo, filterReason, options).then((request) => request(this.axios, this.basePath));
+    public getProductJournalCollection(productNumber: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', shopCode?: string, filterDateFrom?: string, filterDateTo?: string, filterReason?: string, options?: AxiosRequestConfig) {
+        return ProductApiFp(this.configuration).getProductJournalCollection(productNumber, page, pageSize, paginationMode, shopCode, filterDateFrom, filterDateTo, filterReason, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

@@ -39,11 +39,12 @@ export const ProductUnitApiAxiosParamCreator = function (configuration?: Configu
          * @summary Get all available product unit codes
          * @param {number} [page] The page to read. Default is the first page.
          * @param {number} [pageSize] The maximum size per page is 100. Default is 20.
+         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
          * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getProductUnitCollection: async (page?: number, pageSize?: number, shopCode?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getProductUnitCollection: async (page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', shopCode?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/product-unit`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -70,6 +71,10 @@ export const ProductUnitApiAxiosParamCreator = function (configuration?: Configu
 
             if (pageSize !== undefined) {
                 localVarQueryParameter['pageSize'] = pageSize;
+            }
+
+            if (paginationMode !== undefined) {
+                localVarQueryParameter['paginationMode'] = paginationMode;
             }
 
             if (shopCode !== undefined) {
@@ -102,12 +107,13 @@ export const ProductUnitApiFp = function(configuration?: Configuration) {
          * @summary Get all available product unit codes
          * @param {number} [page] The page to read. Default is the first page.
          * @param {number} [pageSize] The maximum size per page is 100. Default is 20.
+         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
          * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getProductUnitCollection(page?: number, pageSize?: number, shopCode?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ProductUnitCollection>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getProductUnitCollection(page, pageSize, shopCode, options);
+        async getProductUnitCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', shopCode?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ProductUnitCollection>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getProductUnitCollection(page, pageSize, paginationMode, shopCode, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -125,12 +131,13 @@ export const ProductUnitApiFactory = function (configuration?: Configuration, ba
          * @summary Get all available product unit codes
          * @param {number} [page] The page to read. Default is the first page.
          * @param {number} [pageSize] The maximum size per page is 100. Default is 20.
+         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
          * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getProductUnitCollection(page?: number, pageSize?: number, shopCode?: string, options?: any): AxiosPromise<ProductUnitCollection> {
-            return localVarFp.getProductUnitCollection(page, pageSize, shopCode, options).then((request) => request(axios, basePath));
+        getProductUnitCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', shopCode?: string, options?: any): AxiosPromise<ProductUnitCollection> {
+            return localVarFp.getProductUnitCollection(page, pageSize, paginationMode, shopCode, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -146,12 +153,13 @@ export interface ProductUnitApiInterface {
      * @summary Get all available product unit codes
      * @param {number} [page] The page to read. Default is the first page.
      * @param {number} [pageSize] The maximum size per page is 100. Default is 20.
+     * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
      * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProductUnitApiInterface
      */
-    getProductUnitCollection(page?: number, pageSize?: number, shopCode?: string, options?: AxiosRequestConfig): AxiosPromise<ProductUnitCollection>;
+    getProductUnitCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', shopCode?: string, options?: AxiosRequestConfig): AxiosPromise<ProductUnitCollection>;
 
 }
 
@@ -167,12 +175,13 @@ export class ProductUnitApi extends BaseAPI implements ProductUnitApiInterface {
      * @summary Get all available product unit codes
      * @param {number} [page] The page to read. Default is the first page.
      * @param {number} [pageSize] The maximum size per page is 100. Default is 20.
+     * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
      * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProductUnitApi
      */
-    public getProductUnitCollection(page?: number, pageSize?: number, shopCode?: string, options?: AxiosRequestConfig) {
-        return ProductUnitApiFp(this.configuration).getProductUnitCollection(page, pageSize, shopCode, options).then((request) => request(this.axios, this.basePath));
+    public getProductUnitCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', shopCode?: string, options?: AxiosRequestConfig) {
+        return ProductUnitApiFp(this.configuration).getProductUnitCollection(page, pageSize, paginationMode, shopCode, options).then((request) => request(this.axios, this.basePath));
     }
 }

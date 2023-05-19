@@ -93,11 +93,12 @@ export const DeliveryApiAxiosParamCreator = function (configuration?: Configurat
          * @param {string} filterOrderNumber A filter for a single order number or multiple order numbers separted by a comma. - The filter can contain a maximum of 100 order numbers. - The order numbers in the filter must be unique. - A single order number can have a maximum length of 59 characters.
          * @param {number} [page] The page to read. Default is the first page.
          * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
+         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
          * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getDeliveryCollection: async (filterOrderNumber: string, page?: number, pageSize?: number, shopCode?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getDeliveryCollection: async (filterOrderNumber: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', shopCode?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'filterOrderNumber' is not null or undefined
             assertParamExists('getDeliveryCollection', 'filterOrderNumber', filterOrderNumber)
             const localVarPath = `/delivery`;
@@ -126,6 +127,10 @@ export const DeliveryApiAxiosParamCreator = function (configuration?: Configurat
 
             if (pageSize !== undefined) {
                 localVarQueryParameter['pageSize'] = pageSize;
+            }
+
+            if (paginationMode !== undefined) {
+                localVarQueryParameter['paginationMode'] = paginationMode;
             }
 
             if (filterOrderNumber !== undefined) {
@@ -232,12 +237,13 @@ export const DeliveryApiFp = function(configuration?: Configuration) {
          * @param {string} filterOrderNumber A filter for a single order number or multiple order numbers separted by a comma. - The filter can contain a maximum of 100 order numbers. - The order numbers in the filter must be unique. - A single order number can have a maximum length of 59 characters.
          * @param {number} [page] The page to read. Default is the first page.
          * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
+         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
          * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getDeliveryCollection(filterOrderNumber: string, page?: number, pageSize?: number, shopCode?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DeliveryCollection>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getDeliveryCollection(filterOrderNumber, page, pageSize, shopCode, options);
+        async getDeliveryCollection(filterOrderNumber: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', shopCode?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DeliveryCollection>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getDeliveryCollection(filterOrderNumber, page, pageSize, paginationMode, shopCode, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -281,12 +287,13 @@ export const DeliveryApiFactory = function (configuration?: Configuration, baseP
          * @param {string} filterOrderNumber A filter for a single order number or multiple order numbers separted by a comma. - The filter can contain a maximum of 100 order numbers. - The order numbers in the filter must be unique. - A single order number can have a maximum length of 59 characters.
          * @param {number} [page] The page to read. Default is the first page.
          * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
+         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
          * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getDeliveryCollection(filterOrderNumber: string, page?: number, pageSize?: number, shopCode?: string, options?: any): AxiosPromise<DeliveryCollection> {
-            return localVarFp.getDeliveryCollection(filterOrderNumber, page, pageSize, shopCode, options).then((request) => request(axios, basePath));
+        getDeliveryCollection(filterOrderNumber: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', shopCode?: string, options?: any): AxiosPromise<DeliveryCollection> {
+            return localVarFp.getDeliveryCollection(filterOrderNumber, page, pageSize, paginationMode, shopCode, options).then((request) => request(axios, basePath));
         },
         /**
          * Patch data of the shipment of the delivery specified by the given delivery and shipment numbers.
@@ -327,12 +334,13 @@ export interface DeliveryApiInterface {
      * @param {string} filterOrderNumber A filter for a single order number or multiple order numbers separted by a comma. - The filter can contain a maximum of 100 order numbers. - The order numbers in the filter must be unique. - A single order number can have a maximum length of 59 characters.
      * @param {number} [page] The page to read. Default is the first page.
      * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
+     * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
      * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DeliveryApiInterface
      */
-    getDeliveryCollection(filterOrderNumber: string, page?: number, pageSize?: number, shopCode?: string, options?: AxiosRequestConfig): AxiosPromise<DeliveryCollection>;
+    getDeliveryCollection(filterOrderNumber: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', shopCode?: string, options?: AxiosRequestConfig): AxiosPromise<DeliveryCollection>;
 
     /**
      * Patch data of the shipment of the delivery specified by the given delivery and shipment numbers.
@@ -375,13 +383,14 @@ export class DeliveryApi extends BaseAPI implements DeliveryApiInterface {
      * @param {string} filterOrderNumber A filter for a single order number or multiple order numbers separted by a comma. - The filter can contain a maximum of 100 order numbers. - The order numbers in the filter must be unique. - A single order number can have a maximum length of 59 characters.
      * @param {number} [page] The page to read. Default is the first page.
      * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
+     * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
      * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DeliveryApi
      */
-    public getDeliveryCollection(filterOrderNumber: string, page?: number, pageSize?: number, shopCode?: string, options?: AxiosRequestConfig) {
-        return DeliveryApiFp(this.configuration).getDeliveryCollection(filterOrderNumber, page, pageSize, shopCode, options).then((request) => request(this.axios, this.basePath));
+    public getDeliveryCollection(filterOrderNumber: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', shopCode?: string, options?: AxiosRequestConfig) {
+        return DeliveryApiFp(this.configuration).getDeliveryCollection(filterOrderNumber, page, pageSize, paginationMode, shopCode, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

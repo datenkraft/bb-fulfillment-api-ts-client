@@ -39,11 +39,12 @@ export const CountryApiAxiosParamCreator = function (configuration?: Configurati
          * @summary Read a country collection of all countries available for shipments.
          * @param {number} [page] The page to read. Default is the first page.
          * @param {number} [pageSize] The maximum size per page is 100. Default is 20.
+         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
          * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getCountryCollection: async (page?: number, pageSize?: number, shopCode?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getCountryCollection: async (page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', shopCode?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/country`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -70,6 +71,10 @@ export const CountryApiAxiosParamCreator = function (configuration?: Configurati
 
             if (pageSize !== undefined) {
                 localVarQueryParameter['pageSize'] = pageSize;
+            }
+
+            if (paginationMode !== undefined) {
+                localVarQueryParameter['paginationMode'] = paginationMode;
             }
 
             if (shopCode !== undefined) {
@@ -102,12 +107,13 @@ export const CountryApiFp = function(configuration?: Configuration) {
          * @summary Read a country collection of all countries available for shipments.
          * @param {number} [page] The page to read. Default is the first page.
          * @param {number} [pageSize] The maximum size per page is 100. Default is 20.
+         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
          * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getCountryCollection(page?: number, pageSize?: number, shopCode?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CountryCollection>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getCountryCollection(page, pageSize, shopCode, options);
+        async getCountryCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', shopCode?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CountryCollection>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getCountryCollection(page, pageSize, paginationMode, shopCode, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -125,12 +131,13 @@ export const CountryApiFactory = function (configuration?: Configuration, basePa
          * @summary Read a country collection of all countries available for shipments.
          * @param {number} [page] The page to read. Default is the first page.
          * @param {number} [pageSize] The maximum size per page is 100. Default is 20.
+         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
          * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getCountryCollection(page?: number, pageSize?: number, shopCode?: string, options?: any): AxiosPromise<CountryCollection> {
-            return localVarFp.getCountryCollection(page, pageSize, shopCode, options).then((request) => request(axios, basePath));
+        getCountryCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', shopCode?: string, options?: any): AxiosPromise<CountryCollection> {
+            return localVarFp.getCountryCollection(page, pageSize, paginationMode, shopCode, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -146,12 +153,13 @@ export interface CountryApiInterface {
      * @summary Read a country collection of all countries available for shipments.
      * @param {number} [page] The page to read. Default is the first page.
      * @param {number} [pageSize] The maximum size per page is 100. Default is 20.
+     * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
      * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CountryApiInterface
      */
-    getCountryCollection(page?: number, pageSize?: number, shopCode?: string, options?: AxiosRequestConfig): AxiosPromise<CountryCollection>;
+    getCountryCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', shopCode?: string, options?: AxiosRequestConfig): AxiosPromise<CountryCollection>;
 
 }
 
@@ -167,12 +175,13 @@ export class CountryApi extends BaseAPI implements CountryApiInterface {
      * @summary Read a country collection of all countries available for shipments.
      * @param {number} [page] The page to read. Default is the first page.
      * @param {number} [pageSize] The maximum size per page is 100. Default is 20.
+     * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
      * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CountryApi
      */
-    public getCountryCollection(page?: number, pageSize?: number, shopCode?: string, options?: AxiosRequestConfig) {
-        return CountryApiFp(this.configuration).getCountryCollection(page, pageSize, shopCode, options).then((request) => request(this.axios, this.basePath));
+    public getCountryCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', shopCode?: string, options?: AxiosRequestConfig) {
+        return CountryApiFp(this.configuration).getCountryCollection(page, pageSize, paginationMode, shopCode, options).then((request) => request(this.axios, this.basePath));
     }
 }

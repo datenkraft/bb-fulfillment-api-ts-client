@@ -39,10 +39,11 @@ export const DeliveryServiceApiAxiosParamCreator = function (configuration?: Con
          * @summary Get delivery services.
          * @param {number} [page] The page to read. Default is the first page.
          * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
+         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getDeliveryServiceCollection: async (page?: number, pageSize?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getDeliveryServiceCollection: async (page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/delivery-service`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -71,6 +72,10 @@ export const DeliveryServiceApiAxiosParamCreator = function (configuration?: Con
                 localVarQueryParameter['pageSize'] = pageSize;
             }
 
+            if (paginationMode !== undefined) {
+                localVarQueryParameter['paginationMode'] = paginationMode;
+            }
+
 
     
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -97,11 +102,12 @@ export const DeliveryServiceApiFp = function(configuration?: Configuration) {
          * @summary Get delivery services.
          * @param {number} [page] The page to read. Default is the first page.
          * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
+         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getDeliveryServiceCollection(page?: number, pageSize?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DeliveryServiceCollection>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getDeliveryServiceCollection(page, pageSize, options);
+        async getDeliveryServiceCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DeliveryServiceCollection>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getDeliveryServiceCollection(page, pageSize, paginationMode, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -119,11 +125,12 @@ export const DeliveryServiceApiFactory = function (configuration?: Configuration
          * @summary Get delivery services.
          * @param {number} [page] The page to read. Default is the first page.
          * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
+         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getDeliveryServiceCollection(page?: number, pageSize?: number, options?: any): AxiosPromise<DeliveryServiceCollection> {
-            return localVarFp.getDeliveryServiceCollection(page, pageSize, options).then((request) => request(axios, basePath));
+        getDeliveryServiceCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', options?: any): AxiosPromise<DeliveryServiceCollection> {
+            return localVarFp.getDeliveryServiceCollection(page, pageSize, paginationMode, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -139,11 +146,12 @@ export interface DeliveryServiceApiInterface {
      * @summary Get delivery services.
      * @param {number} [page] The page to read. Default is the first page.
      * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
+     * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DeliveryServiceApiInterface
      */
-    getDeliveryServiceCollection(page?: number, pageSize?: number, options?: AxiosRequestConfig): AxiosPromise<DeliveryServiceCollection>;
+    getDeliveryServiceCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', options?: AxiosRequestConfig): AxiosPromise<DeliveryServiceCollection>;
 
 }
 
@@ -159,11 +167,12 @@ export class DeliveryServiceApi extends BaseAPI implements DeliveryServiceApiInt
      * @summary Get delivery services.
      * @param {number} [page] The page to read. Default is the first page.
      * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
+     * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DeliveryServiceApi
      */
-    public getDeliveryServiceCollection(page?: number, pageSize?: number, options?: AxiosRequestConfig) {
-        return DeliveryServiceApiFp(this.configuration).getDeliveryServiceCollection(page, pageSize, options).then((request) => request(this.axios, this.basePath));
+    public getDeliveryServiceCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', options?: AxiosRequestConfig) {
+        return DeliveryServiceApiFp(this.configuration).getDeliveryServiceCollection(page, pageSize, paginationMode, options).then((request) => request(this.axios, this.basePath));
     }
 }
