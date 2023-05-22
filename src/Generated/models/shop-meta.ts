@@ -76,5 +76,20 @@ export interface ShopMeta {
      * @memberof ShopMeta
      */
     'invoiceEnabled'?: boolean | null;
+    /**
+     * Overwrite currency of shopify orders.
+     * @type {string}
+     * @memberof ShopMeta
+     */
+    'defaultCurrency'?: ShopMetaDefaultCurrencyEnum;
 }
+
+export const ShopMetaDefaultCurrencyEnum = {
+    Gbp: 'GBP',
+    Sek: 'SEK',
+    Pln: 'PLN'
+} as const;
+
+export type ShopMetaDefaultCurrencyEnum = typeof ShopMetaDefaultCurrencyEnum[keyof typeof ShopMetaDefaultCurrencyEnum];
+
 

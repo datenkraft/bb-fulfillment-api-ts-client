@@ -39,13 +39,14 @@ export const StockApiAxiosParamCreator = function (configuration?: Configuration
          * @summary Get the stock for all (per default only valid) products or for a specific product.
          * @param {number} [page] The page to read. Default is the first page.
          * @param {number} [pageSize] The maximum size per page is 100. Default is 20.
+         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
          * @param {string} [filterProductNumber] Filter for product number(s) (optional).
          * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
          * @param {'_all' | '_invalid'} [filterProductStatus] filter for productStatus\\ By default, only valid products (available or in stock) are returned.\\ Use \&#39;_all\&#39; to return all products (also invalid products)\\ Use \&#39;_invalid\&#39; to specifically return invalid products (not available and out of stock)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getStockCollection: async (page?: number, pageSize?: number, filterProductNumber?: string, filterShopCode?: string, filterProductStatus?: '_all' | '_invalid', options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getStockCollection: async (page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterProductNumber?: string, filterShopCode?: string, filterProductStatus?: '_all' | '_invalid', options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/stock`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -72,6 +73,10 @@ export const StockApiAxiosParamCreator = function (configuration?: Configuration
 
             if (pageSize !== undefined) {
                 localVarQueryParameter['pageSize'] = pageSize;
+            }
+
+            if (paginationMode !== undefined) {
+                localVarQueryParameter['paginationMode'] = paginationMode;
             }
 
             if (filterProductNumber !== undefined) {
@@ -112,14 +117,15 @@ export const StockApiFp = function(configuration?: Configuration) {
          * @summary Get the stock for all (per default only valid) products or for a specific product.
          * @param {number} [page] The page to read. Default is the first page.
          * @param {number} [pageSize] The maximum size per page is 100. Default is 20.
+         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
          * @param {string} [filterProductNumber] Filter for product number(s) (optional).
          * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
          * @param {'_all' | '_invalid'} [filterProductStatus] filter for productStatus\\ By default, only valid products (available or in stock) are returned.\\ Use \&#39;_all\&#39; to return all products (also invalid products)\\ Use \&#39;_invalid\&#39; to specifically return invalid products (not available and out of stock)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getStockCollection(page?: number, pageSize?: number, filterProductNumber?: string, filterShopCode?: string, filterProductStatus?: '_all' | '_invalid', options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<StockCollection>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getStockCollection(page, pageSize, filterProductNumber, filterShopCode, filterProductStatus, options);
+        async getStockCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterProductNumber?: string, filterShopCode?: string, filterProductStatus?: '_all' | '_invalid', options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<StockCollection>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getStockCollection(page, pageSize, paginationMode, filterProductNumber, filterShopCode, filterProductStatus, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -137,14 +143,15 @@ export const StockApiFactory = function (configuration?: Configuration, basePath
          * @summary Get the stock for all (per default only valid) products or for a specific product.
          * @param {number} [page] The page to read. Default is the first page.
          * @param {number} [pageSize] The maximum size per page is 100. Default is 20.
+         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
          * @param {string} [filterProductNumber] Filter for product number(s) (optional).
          * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
          * @param {'_all' | '_invalid'} [filterProductStatus] filter for productStatus\\ By default, only valid products (available or in stock) are returned.\\ Use \&#39;_all\&#39; to return all products (also invalid products)\\ Use \&#39;_invalid\&#39; to specifically return invalid products (not available and out of stock)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getStockCollection(page?: number, pageSize?: number, filterProductNumber?: string, filterShopCode?: string, filterProductStatus?: '_all' | '_invalid', options?: any): AxiosPromise<StockCollection> {
-            return localVarFp.getStockCollection(page, pageSize, filterProductNumber, filterShopCode, filterProductStatus, options).then((request) => request(axios, basePath));
+        getStockCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterProductNumber?: string, filterShopCode?: string, filterProductStatus?: '_all' | '_invalid', options?: any): AxiosPromise<StockCollection> {
+            return localVarFp.getStockCollection(page, pageSize, paginationMode, filterProductNumber, filterShopCode, filterProductStatus, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -160,6 +167,7 @@ export interface StockApiInterface {
      * @summary Get the stock for all (per default only valid) products or for a specific product.
      * @param {number} [page] The page to read. Default is the first page.
      * @param {number} [pageSize] The maximum size per page is 100. Default is 20.
+     * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
      * @param {string} [filterProductNumber] Filter for product number(s) (optional).
      * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
      * @param {'_all' | '_invalid'} [filterProductStatus] filter for productStatus\\ By default, only valid products (available or in stock) are returned.\\ Use \&#39;_all\&#39; to return all products (also invalid products)\\ Use \&#39;_invalid\&#39; to specifically return invalid products (not available and out of stock)
@@ -167,7 +175,7 @@ export interface StockApiInterface {
      * @throws {RequiredError}
      * @memberof StockApiInterface
      */
-    getStockCollection(page?: number, pageSize?: number, filterProductNumber?: string, filterShopCode?: string, filterProductStatus?: '_all' | '_invalid', options?: AxiosRequestConfig): AxiosPromise<StockCollection>;
+    getStockCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterProductNumber?: string, filterShopCode?: string, filterProductStatus?: '_all' | '_invalid', options?: AxiosRequestConfig): AxiosPromise<StockCollection>;
 
 }
 
@@ -183,6 +191,7 @@ export class StockApi extends BaseAPI implements StockApiInterface {
      * @summary Get the stock for all (per default only valid) products or for a specific product.
      * @param {number} [page] The page to read. Default is the first page.
      * @param {number} [pageSize] The maximum size per page is 100. Default is 20.
+     * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
      * @param {string} [filterProductNumber] Filter for product number(s) (optional).
      * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
      * @param {'_all' | '_invalid'} [filterProductStatus] filter for productStatus\\ By default, only valid products (available or in stock) are returned.\\ Use \&#39;_all\&#39; to return all products (also invalid products)\\ Use \&#39;_invalid\&#39; to specifically return invalid products (not available and out of stock)
@@ -190,7 +199,7 @@ export class StockApi extends BaseAPI implements StockApiInterface {
      * @throws {RequiredError}
      * @memberof StockApi
      */
-    public getStockCollection(page?: number, pageSize?: number, filterProductNumber?: string, filterShopCode?: string, filterProductStatus?: '_all' | '_invalid', options?: AxiosRequestConfig) {
-        return StockApiFp(this.configuration).getStockCollection(page, pageSize, filterProductNumber, filterShopCode, filterProductStatus, options).then((request) => request(this.axios, this.basePath));
+    public getStockCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterProductNumber?: string, filterShopCode?: string, filterProductStatus?: '_all' | '_invalid', options?: AxiosRequestConfig) {
+        return StockApiFp(this.configuration).getStockCollection(page, pageSize, paginationMode, filterProductNumber, filterShopCode, filterProductStatus, options).then((request) => request(this.axios, this.basePath));
     }
 }

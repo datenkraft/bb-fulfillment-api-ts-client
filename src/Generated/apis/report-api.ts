@@ -41,11 +41,12 @@ export const ReportApiAxiosParamCreator = function (configuration?: Configuratio
          * @param {string} filterDateTo The end date (inclusive) in format Y-m-d (timezone CET/CEST) for which orders should be returned.
          * @param {number} [page] The page to read. Default is the first page.
          * @param {number} [pageSize] The maximum size per page is 100. Default is 20.
+         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
          * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getOrderReportClearingCollection: async (filterDateFrom: string, filterDateTo: string, page?: number, pageSize?: number, filterShopCode?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getOrderReportClearingCollection: async (filterDateFrom: string, filterDateTo: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterShopCode?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'filterDateFrom' is not null or undefined
             assertParamExists('getOrderReportClearingCollection', 'filterDateFrom', filterDateFrom)
             // verify required parameter 'filterDateTo' is not null or undefined
@@ -76,6 +77,10 @@ export const ReportApiAxiosParamCreator = function (configuration?: Configuratio
 
             if (pageSize !== undefined) {
                 localVarQueryParameter['pageSize'] = pageSize;
+            }
+
+            if (paginationMode !== undefined) {
+                localVarQueryParameter['paginationMode'] = paginationMode;
             }
 
             if (filterShopCode !== undefined) {
@@ -122,12 +127,13 @@ export const ReportApiFp = function(configuration?: Configuration) {
          * @param {string} filterDateTo The end date (inclusive) in format Y-m-d (timezone CET/CEST) for which orders should be returned.
          * @param {number} [page] The page to read. Default is the first page.
          * @param {number} [pageSize] The maximum size per page is 100. Default is 20.
+         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
          * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getOrderReportClearingCollection(filterDateFrom: string, filterDateTo: string, page?: number, pageSize?: number, filterShopCode?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ReportClearingOrderCollection>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getOrderReportClearingCollection(filterDateFrom, filterDateTo, page, pageSize, filterShopCode, options);
+        async getOrderReportClearingCollection(filterDateFrom: string, filterDateTo: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterShopCode?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ReportClearingOrderCollection>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getOrderReportClearingCollection(filterDateFrom, filterDateTo, page, pageSize, paginationMode, filterShopCode, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -147,12 +153,13 @@ export const ReportApiFactory = function (configuration?: Configuration, basePat
          * @param {string} filterDateTo The end date (inclusive) in format Y-m-d (timezone CET/CEST) for which orders should be returned.
          * @param {number} [page] The page to read. Default is the first page.
          * @param {number} [pageSize] The maximum size per page is 100. Default is 20.
+         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
          * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getOrderReportClearingCollection(filterDateFrom: string, filterDateTo: string, page?: number, pageSize?: number, filterShopCode?: string, options?: any): AxiosPromise<ReportClearingOrderCollection> {
-            return localVarFp.getOrderReportClearingCollection(filterDateFrom, filterDateTo, page, pageSize, filterShopCode, options).then((request) => request(axios, basePath));
+        getOrderReportClearingCollection(filterDateFrom: string, filterDateTo: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterShopCode?: string, options?: any): AxiosPromise<ReportClearingOrderCollection> {
+            return localVarFp.getOrderReportClearingCollection(filterDateFrom, filterDateTo, page, pageSize, paginationMode, filterShopCode, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -170,12 +177,13 @@ export interface ReportApiInterface {
      * @param {string} filterDateTo The end date (inclusive) in format Y-m-d (timezone CET/CEST) for which orders should be returned.
      * @param {number} [page] The page to read. Default is the first page.
      * @param {number} [pageSize] The maximum size per page is 100. Default is 20.
+     * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
      * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ReportApiInterface
      */
-    getOrderReportClearingCollection(filterDateFrom: string, filterDateTo: string, page?: number, pageSize?: number, filterShopCode?: string, options?: AxiosRequestConfig): AxiosPromise<ReportClearingOrderCollection>;
+    getOrderReportClearingCollection(filterDateFrom: string, filterDateTo: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterShopCode?: string, options?: AxiosRequestConfig): AxiosPromise<ReportClearingOrderCollection>;
 
 }
 
@@ -193,12 +201,13 @@ export class ReportApi extends BaseAPI implements ReportApiInterface {
      * @param {string} filterDateTo The end date (inclusive) in format Y-m-d (timezone CET/CEST) for which orders should be returned.
      * @param {number} [page] The page to read. Default is the first page.
      * @param {number} [pageSize] The maximum size per page is 100. Default is 20.
+     * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
      * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ReportApi
      */
-    public getOrderReportClearingCollection(filterDateFrom: string, filterDateTo: string, page?: number, pageSize?: number, filterShopCode?: string, options?: AxiosRequestConfig) {
-        return ReportApiFp(this.configuration).getOrderReportClearingCollection(filterDateFrom, filterDateTo, page, pageSize, filterShopCode, options).then((request) => request(this.axios, this.basePath));
+    public getOrderReportClearingCollection(filterDateFrom: string, filterDateTo: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterShopCode?: string, options?: AxiosRequestConfig) {
+        return ReportApiFp(this.configuration).getOrderReportClearingCollection(filterDateFrom, filterDateTo, page, pageSize, paginationMode, filterShopCode, options).then((request) => request(this.axios, this.basePath));
     }
 }

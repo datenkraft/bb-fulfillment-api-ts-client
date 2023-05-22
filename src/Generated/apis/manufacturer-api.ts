@@ -39,11 +39,12 @@ export const ManufacturerApiAxiosParamCreator = function (configuration?: Config
          * @summary Get a list of manufacturers.
          * @param {number} [page] The page to read. Default is the first page.
          * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
+         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
          * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getManufacturerCollection: async (page?: number, pageSize?: number, filterShopCode?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getManufacturerCollection: async (page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterShopCode?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/manufacturer`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -70,6 +71,10 @@ export const ManufacturerApiAxiosParamCreator = function (configuration?: Config
 
             if (pageSize !== undefined) {
                 localVarQueryParameter['pageSize'] = pageSize;
+            }
+
+            if (paginationMode !== undefined) {
+                localVarQueryParameter['paginationMode'] = paginationMode;
             }
 
             if (filterShopCode !== undefined) {
@@ -102,12 +107,13 @@ export const ManufacturerApiFp = function(configuration?: Configuration) {
          * @summary Get a list of manufacturers.
          * @param {number} [page] The page to read. Default is the first page.
          * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
+         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
          * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getManufacturerCollection(page?: number, pageSize?: number, filterShopCode?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ManufacturerCollection>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getManufacturerCollection(page, pageSize, filterShopCode, options);
+        async getManufacturerCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterShopCode?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ManufacturerCollection>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getManufacturerCollection(page, pageSize, paginationMode, filterShopCode, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -125,12 +131,13 @@ export const ManufacturerApiFactory = function (configuration?: Configuration, b
          * @summary Get a list of manufacturers.
          * @param {number} [page] The page to read. Default is the first page.
          * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
+         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
          * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getManufacturerCollection(page?: number, pageSize?: number, filterShopCode?: string, options?: any): AxiosPromise<ManufacturerCollection> {
-            return localVarFp.getManufacturerCollection(page, pageSize, filterShopCode, options).then((request) => request(axios, basePath));
+        getManufacturerCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterShopCode?: string, options?: any): AxiosPromise<ManufacturerCollection> {
+            return localVarFp.getManufacturerCollection(page, pageSize, paginationMode, filterShopCode, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -146,12 +153,13 @@ export interface ManufacturerApiInterface {
      * @summary Get a list of manufacturers.
      * @param {number} [page] The page to read. Default is the first page.
      * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
+     * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
      * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ManufacturerApiInterface
      */
-    getManufacturerCollection(page?: number, pageSize?: number, filterShopCode?: string, options?: AxiosRequestConfig): AxiosPromise<ManufacturerCollection>;
+    getManufacturerCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterShopCode?: string, options?: AxiosRequestConfig): AxiosPromise<ManufacturerCollection>;
 
 }
 
@@ -167,12 +175,13 @@ export class ManufacturerApi extends BaseAPI implements ManufacturerApiInterface
      * @summary Get a list of manufacturers.
      * @param {number} [page] The page to read. Default is the first page.
      * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
+     * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
      * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ManufacturerApi
      */
-    public getManufacturerCollection(page?: number, pageSize?: number, filterShopCode?: string, options?: AxiosRequestConfig) {
-        return ManufacturerApiFp(this.configuration).getManufacturerCollection(page, pageSize, filterShopCode, options).then((request) => request(this.axios, this.basePath));
+    public getManufacturerCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterShopCode?: string, options?: AxiosRequestConfig) {
+        return ManufacturerApiFp(this.configuration).getManufacturerCollection(page, pageSize, paginationMode, filterShopCode, options).then((request) => request(this.axios, this.basePath));
     }
 }

@@ -39,11 +39,12 @@ export const SupplierApiAxiosParamCreator = function (configuration?: Configurat
          * @summary Get suppliers filtered by shopCode.
          * @param {number} [page] The page to read. Default is the first page.
          * @param {number} [pageSize] The maximum size per page is 100. Default is 20.
+         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
          * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getSupplierCollection: async (page?: number, pageSize?: number, filterShopCode?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getSupplierCollection: async (page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterShopCode?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/supplier`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -70,6 +71,10 @@ export const SupplierApiAxiosParamCreator = function (configuration?: Configurat
 
             if (pageSize !== undefined) {
                 localVarQueryParameter['pageSize'] = pageSize;
+            }
+
+            if (paginationMode !== undefined) {
+                localVarQueryParameter['paginationMode'] = paginationMode;
             }
 
             if (filterShopCode !== undefined) {
@@ -102,12 +107,13 @@ export const SupplierApiFp = function(configuration?: Configuration) {
          * @summary Get suppliers filtered by shopCode.
          * @param {number} [page] The page to read. Default is the first page.
          * @param {number} [pageSize] The maximum size per page is 100. Default is 20.
+         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
          * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getSupplierCollection(page?: number, pageSize?: number, filterShopCode?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SupplierCollection>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getSupplierCollection(page, pageSize, filterShopCode, options);
+        async getSupplierCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterShopCode?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SupplierCollection>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getSupplierCollection(page, pageSize, paginationMode, filterShopCode, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -125,12 +131,13 @@ export const SupplierApiFactory = function (configuration?: Configuration, baseP
          * @summary Get suppliers filtered by shopCode.
          * @param {number} [page] The page to read. Default is the first page.
          * @param {number} [pageSize] The maximum size per page is 100. Default is 20.
+         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
          * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getSupplierCollection(page?: number, pageSize?: number, filterShopCode?: string, options?: any): AxiosPromise<SupplierCollection> {
-            return localVarFp.getSupplierCollection(page, pageSize, filterShopCode, options).then((request) => request(axios, basePath));
+        getSupplierCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterShopCode?: string, options?: any): AxiosPromise<SupplierCollection> {
+            return localVarFp.getSupplierCollection(page, pageSize, paginationMode, filterShopCode, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -146,12 +153,13 @@ export interface SupplierApiInterface {
      * @summary Get suppliers filtered by shopCode.
      * @param {number} [page] The page to read. Default is the first page.
      * @param {number} [pageSize] The maximum size per page is 100. Default is 20.
+     * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
      * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof SupplierApiInterface
      */
-    getSupplierCollection(page?: number, pageSize?: number, filterShopCode?: string, options?: AxiosRequestConfig): AxiosPromise<SupplierCollection>;
+    getSupplierCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterShopCode?: string, options?: AxiosRequestConfig): AxiosPromise<SupplierCollection>;
 
 }
 
@@ -167,12 +175,13 @@ export class SupplierApi extends BaseAPI implements SupplierApiInterface {
      * @summary Get suppliers filtered by shopCode.
      * @param {number} [page] The page to read. Default is the first page.
      * @param {number} [pageSize] The maximum size per page is 100. Default is 20.
+     * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
      * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof SupplierApi
      */
-    public getSupplierCollection(page?: number, pageSize?: number, filterShopCode?: string, options?: AxiosRequestConfig) {
-        return SupplierApiFp(this.configuration).getSupplierCollection(page, pageSize, filterShopCode, options).then((request) => request(this.axios, this.basePath));
+    public getSupplierCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterShopCode?: string, options?: AxiosRequestConfig) {
+        return SupplierApiFp(this.configuration).getSupplierCollection(page, pageSize, paginationMode, filterShopCode, options).then((request) => request(this.axios, this.basePath));
     }
 }

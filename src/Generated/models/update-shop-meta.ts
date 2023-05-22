@@ -44,5 +44,20 @@ export interface UpdateShopMeta {
      * @memberof UpdateShopMeta
      */
     'addTestSuffixToInternalReference'?: boolean | null;
+    /**
+     * Overwrite currency of shopify orders.
+     * @type {string}
+     * @memberof UpdateShopMeta
+     */
+    'defaultCurrency'?: UpdateShopMetaDefaultCurrencyEnum;
 }
+
+export const UpdateShopMetaDefaultCurrencyEnum = {
+    Gbp: 'GBP',
+    Sek: 'SEK',
+    Pln: 'PLN'
+} as const;
+
+export type UpdateShopMetaDefaultCurrencyEnum = typeof UpdateShopMetaDefaultCurrencyEnum[keyof typeof UpdateShopMetaDefaultCurrencyEnum];
+
 
