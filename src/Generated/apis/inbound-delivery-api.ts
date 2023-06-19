@@ -180,10 +180,12 @@ export const InboundDeliveryApiAxiosParamCreator = function (configuration?: Con
          * @param {string} [filterExpectedDeliveryDateFrom] The start date (inclusive) in format Y-m-d for which inbound deliveries should be returned (regarding the expected delivery date).
          * @param {string} [filterExpectedDeliveryDateTo] The end date (inclusive) in format Y-m-d for which inbound deliveries should be returned (regarding the expected delivery date).
          * @param {string} [filterSearch] filter for inbound delivery search.\\ \\ Usage: - Provide one or multiple search terms to filter results. - Multiple search terms are separated by spaces. - The search is not case sensitive. - The search is enabled for the fields inboundDeliveryName and inboundDeliveryNumber (without the numberPrefix of the associated supplier). - Each search term filters the response for inbound deliveries where at least one of the fields contains the search term. - For example, filter[search]&#x3D;\&#39;term1 term2\&#39; will filter the result for products where \&#39;term1\&#39; is found in any field and \&#39;term2\&#39; is also found in any field.\\ If only \&#39;term1\&#39; or \&#39;term2\&#39; is found in the fields, the product is not included in the results.
+         * @param {string} [filterCreateDateFrom] The start date (inclusive) in ISO 8601 format for which inbound deliveries should be returned (regarding the creation date).
+         * @param {string} [filterCreateDateTo] The end date (inclusive) in ISO 8601 format for which inbound deliveries should be returned (regarding the creation date).
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getInboundDeliveryCollection: async (page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', sortBy?: string, filterStatus?: string, filterShopCode?: string, filterExpectedDeliveryDateFrom?: string, filterExpectedDeliveryDateTo?: string, filterSearch?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getInboundDeliveryCollection: async (page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', sortBy?: string, filterStatus?: string, filterShopCode?: string, filterExpectedDeliveryDateFrom?: string, filterExpectedDeliveryDateTo?: string, filterSearch?: string, filterCreateDateFrom?: string, filterCreateDateTo?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/inbound-delivery`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -242,6 +244,18 @@ export const InboundDeliveryApiAxiosParamCreator = function (configuration?: Con
 
             if (filterSearch !== undefined) {
                 localVarQueryParameter['filter[search]'] = filterSearch;
+            }
+
+            if (filterCreateDateFrom !== undefined) {
+                localVarQueryParameter['filter[createDateFrom]'] = (filterCreateDateFrom as any instanceof Date) ?
+                    (filterCreateDateFrom as any).toISOString() :
+                    filterCreateDateFrom;
+            }
+
+            if (filterCreateDateTo !== undefined) {
+                localVarQueryParameter['filter[createDateTo]'] = (filterCreateDateTo as any instanceof Date) ?
+                    (filterCreateDateTo as any).toISOString() :
+                    filterCreateDateTo;
             }
 
 
@@ -469,11 +483,13 @@ export const InboundDeliveryApiFp = function(configuration?: Configuration) {
          * @param {string} [filterExpectedDeliveryDateFrom] The start date (inclusive) in format Y-m-d for which inbound deliveries should be returned (regarding the expected delivery date).
          * @param {string} [filterExpectedDeliveryDateTo] The end date (inclusive) in format Y-m-d for which inbound deliveries should be returned (regarding the expected delivery date).
          * @param {string} [filterSearch] filter for inbound delivery search.\\ \\ Usage: - Provide one or multiple search terms to filter results. - Multiple search terms are separated by spaces. - The search is not case sensitive. - The search is enabled for the fields inboundDeliveryName and inboundDeliveryNumber (without the numberPrefix of the associated supplier). - Each search term filters the response for inbound deliveries where at least one of the fields contains the search term. - For example, filter[search]&#x3D;\&#39;term1 term2\&#39; will filter the result for products where \&#39;term1\&#39; is found in any field and \&#39;term2\&#39; is also found in any field.\\ If only \&#39;term1\&#39; or \&#39;term2\&#39; is found in the fields, the product is not included in the results.
+         * @param {string} [filterCreateDateFrom] The start date (inclusive) in ISO 8601 format for which inbound deliveries should be returned (regarding the creation date).
+         * @param {string} [filterCreateDateTo] The end date (inclusive) in ISO 8601 format for which inbound deliveries should be returned (regarding the creation date).
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getInboundDeliveryCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', sortBy?: string, filterStatus?: string, filterShopCode?: string, filterExpectedDeliveryDateFrom?: string, filterExpectedDeliveryDateTo?: string, filterSearch?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InboundDeliveryCollection>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getInboundDeliveryCollection(page, pageSize, paginationMode, sortBy, filterStatus, filterShopCode, filterExpectedDeliveryDateFrom, filterExpectedDeliveryDateTo, filterSearch, options);
+        async getInboundDeliveryCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', sortBy?: string, filterStatus?: string, filterShopCode?: string, filterExpectedDeliveryDateFrom?: string, filterExpectedDeliveryDateTo?: string, filterSearch?: string, filterCreateDateFrom?: string, filterCreateDateTo?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InboundDeliveryCollection>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getInboundDeliveryCollection(page, pageSize, paginationMode, sortBy, filterStatus, filterShopCode, filterExpectedDeliveryDateFrom, filterExpectedDeliveryDateTo, filterSearch, filterCreateDateFrom, filterCreateDateTo, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -568,11 +584,13 @@ export const InboundDeliveryApiFactory = function (configuration?: Configuration
          * @param {string} [filterExpectedDeliveryDateFrom] The start date (inclusive) in format Y-m-d for which inbound deliveries should be returned (regarding the expected delivery date).
          * @param {string} [filterExpectedDeliveryDateTo] The end date (inclusive) in format Y-m-d for which inbound deliveries should be returned (regarding the expected delivery date).
          * @param {string} [filterSearch] filter for inbound delivery search.\\ \\ Usage: - Provide one or multiple search terms to filter results. - Multiple search terms are separated by spaces. - The search is not case sensitive. - The search is enabled for the fields inboundDeliveryName and inboundDeliveryNumber (without the numberPrefix of the associated supplier). - Each search term filters the response for inbound deliveries where at least one of the fields contains the search term. - For example, filter[search]&#x3D;\&#39;term1 term2\&#39; will filter the result for products where \&#39;term1\&#39; is found in any field and \&#39;term2\&#39; is also found in any field.\\ If only \&#39;term1\&#39; or \&#39;term2\&#39; is found in the fields, the product is not included in the results.
+         * @param {string} [filterCreateDateFrom] The start date (inclusive) in ISO 8601 format for which inbound deliveries should be returned (regarding the creation date).
+         * @param {string} [filterCreateDateTo] The end date (inclusive) in ISO 8601 format for which inbound deliveries should be returned (regarding the creation date).
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getInboundDeliveryCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', sortBy?: string, filterStatus?: string, filterShopCode?: string, filterExpectedDeliveryDateFrom?: string, filterExpectedDeliveryDateTo?: string, filterSearch?: string, options?: any): AxiosPromise<InboundDeliveryCollection> {
-            return localVarFp.getInboundDeliveryCollection(page, pageSize, paginationMode, sortBy, filterStatus, filterShopCode, filterExpectedDeliveryDateFrom, filterExpectedDeliveryDateTo, filterSearch, options).then((request) => request(axios, basePath));
+        getInboundDeliveryCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', sortBy?: string, filterStatus?: string, filterShopCode?: string, filterExpectedDeliveryDateFrom?: string, filterExpectedDeliveryDateTo?: string, filterSearch?: string, filterCreateDateFrom?: string, filterCreateDateTo?: string, options?: any): AxiosPromise<InboundDeliveryCollection> {
+            return localVarFp.getInboundDeliveryCollection(page, pageSize, paginationMode, sortBy, filterStatus, filterShopCode, filterExpectedDeliveryDateFrom, filterExpectedDeliveryDateTo, filterSearch, filterCreateDateFrom, filterCreateDateTo, options).then((request) => request(axios, basePath));
         },
         /**
          * Allows to download a document associated with the given inbound delivery.
@@ -662,11 +680,13 @@ export interface InboundDeliveryApiInterface {
      * @param {string} [filterExpectedDeliveryDateFrom] The start date (inclusive) in format Y-m-d for which inbound deliveries should be returned (regarding the expected delivery date).
      * @param {string} [filterExpectedDeliveryDateTo] The end date (inclusive) in format Y-m-d for which inbound deliveries should be returned (regarding the expected delivery date).
      * @param {string} [filterSearch] filter for inbound delivery search.\\ \\ Usage: - Provide one or multiple search terms to filter results. - Multiple search terms are separated by spaces. - The search is not case sensitive. - The search is enabled for the fields inboundDeliveryName and inboundDeliveryNumber (without the numberPrefix of the associated supplier). - Each search term filters the response for inbound deliveries where at least one of the fields contains the search term. - For example, filter[search]&#x3D;\&#39;term1 term2\&#39; will filter the result for products where \&#39;term1\&#39; is found in any field and \&#39;term2\&#39; is also found in any field.\\ If only \&#39;term1\&#39; or \&#39;term2\&#39; is found in the fields, the product is not included in the results.
+     * @param {string} [filterCreateDateFrom] The start date (inclusive) in ISO 8601 format for which inbound deliveries should be returned (regarding the creation date).
+     * @param {string} [filterCreateDateTo] The end date (inclusive) in ISO 8601 format for which inbound deliveries should be returned (regarding the creation date).
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof InboundDeliveryApiInterface
      */
-    getInboundDeliveryCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', sortBy?: string, filterStatus?: string, filterShopCode?: string, filterExpectedDeliveryDateFrom?: string, filterExpectedDeliveryDateTo?: string, filterSearch?: string, options?: AxiosRequestConfig): AxiosPromise<InboundDeliveryCollection>;
+    getInboundDeliveryCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', sortBy?: string, filterStatus?: string, filterShopCode?: string, filterExpectedDeliveryDateFrom?: string, filterExpectedDeliveryDateTo?: string, filterSearch?: string, filterCreateDateFrom?: string, filterCreateDateTo?: string, options?: AxiosRequestConfig): AxiosPromise<InboundDeliveryCollection>;
 
     /**
      * Allows to download a document associated with the given inbound delivery.
@@ -762,12 +782,14 @@ export class InboundDeliveryApi extends BaseAPI implements InboundDeliveryApiInt
      * @param {string} [filterExpectedDeliveryDateFrom] The start date (inclusive) in format Y-m-d for which inbound deliveries should be returned (regarding the expected delivery date).
      * @param {string} [filterExpectedDeliveryDateTo] The end date (inclusive) in format Y-m-d for which inbound deliveries should be returned (regarding the expected delivery date).
      * @param {string} [filterSearch] filter for inbound delivery search.\\ \\ Usage: - Provide one or multiple search terms to filter results. - Multiple search terms are separated by spaces. - The search is not case sensitive. - The search is enabled for the fields inboundDeliveryName and inboundDeliveryNumber (without the numberPrefix of the associated supplier). - Each search term filters the response for inbound deliveries where at least one of the fields contains the search term. - For example, filter[search]&#x3D;\&#39;term1 term2\&#39; will filter the result for products where \&#39;term1\&#39; is found in any field and \&#39;term2\&#39; is also found in any field.\\ If only \&#39;term1\&#39; or \&#39;term2\&#39; is found in the fields, the product is not included in the results.
+     * @param {string} [filterCreateDateFrom] The start date (inclusive) in ISO 8601 format for which inbound deliveries should be returned (regarding the creation date).
+     * @param {string} [filterCreateDateTo] The end date (inclusive) in ISO 8601 format for which inbound deliveries should be returned (regarding the creation date).
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof InboundDeliveryApi
      */
-    public getInboundDeliveryCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', sortBy?: string, filterStatus?: string, filterShopCode?: string, filterExpectedDeliveryDateFrom?: string, filterExpectedDeliveryDateTo?: string, filterSearch?: string, options?: AxiosRequestConfig) {
-        return InboundDeliveryApiFp(this.configuration).getInboundDeliveryCollection(page, pageSize, paginationMode, sortBy, filterStatus, filterShopCode, filterExpectedDeliveryDateFrom, filterExpectedDeliveryDateTo, filterSearch, options).then((request) => request(this.axios, this.basePath));
+    public getInboundDeliveryCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', sortBy?: string, filterStatus?: string, filterShopCode?: string, filterExpectedDeliveryDateFrom?: string, filterExpectedDeliveryDateTo?: string, filterSearch?: string, filterCreateDateFrom?: string, filterCreateDateTo?: string, options?: AxiosRequestConfig) {
+        return InboundDeliveryApiFp(this.configuration).getInboundDeliveryCollection(page, pageSize, paginationMode, sortBy, filterStatus, filterShopCode, filterExpectedDeliveryDateFrom, filterExpectedDeliveryDateTo, filterSearch, filterCreateDateFrom, filterCreateDateTo, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

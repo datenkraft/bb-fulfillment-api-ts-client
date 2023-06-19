@@ -71,6 +71,12 @@ export interface InboundDeliveryAllOf {
      * @memberof InboundDeliveryAllOf
      */
     'deliverySlipNumber'?: string | null;
+    /**
+     * Creation date of the inbound delivery. Format in ISO 8601 (timezone CET/CEST)
+     * @type {string}
+     * @memberof InboundDeliveryAllOf
+     */
+    'createDate'?: string | null;
 }
 
 export const InboundDeliveryAllOfStatusEnum = {

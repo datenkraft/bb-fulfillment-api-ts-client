@@ -96,11 +96,12 @@ export const ProductApiAxiosParamCreator = function (configuration?: Configurati
          * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
          * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
          * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
-         * @param {string} [filterSearch] Filter for product search.\\ Usage: - Provide one or multiple search terms to filter results. - Multiple search terms are separated by spaces. - The search is not case sensitive. - The search is enabled for the fields productTitle and productNumber. - Each search term filters the response for products where at least one of the fields contains the search term. - For example, filter[search]&#x3D;\&#39;term1 term2\&#39; will filter the result for products where \&#39;term1\&#39; is found in any field and \&#39;term2\&#39; is also found in any field.\\ If only \&#39;term1\&#39; or \&#39;term2\&#39; is found in the fields, the product is not included in the results.
+         * @param {string} [filterSearch] Filter for product search.\\ Usage: - Provide one or multiple search terms to filter results. - Multiple search terms are separated by spaces. - The search is not case sensitive. - The search is enabled for the fields productTitle, productNumber and ean. - Each search term filters the response for products where at least one of the fields contains the search term. - For example, filter[search]&#x3D;\&#39;term1 term2\&#39; will filter the result for products where \&#39;term1\&#39; is found in any field and \&#39;term2\&#39; is also found in any field.\\ If only \&#39;term1\&#39; or \&#39;term2\&#39; is found in the fields, the product is not included in the results.
+         * @param {'self' | 'nice'} [filterSource] Filter for product source.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getProductCollection: async (page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterShopCode?: string, filterSearch?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getProductCollection: async (page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterShopCode?: string, filterSearch?: string, filterSource?: 'self' | 'nice', options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/product`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -141,6 +142,10 @@ export const ProductApiAxiosParamCreator = function (configuration?: Configurati
                 localVarQueryParameter['filter[search]'] = filterSearch;
             }
 
+            if (filterSource !== undefined) {
+                localVarQueryParameter['filter[source]'] = filterSource;
+            }
+
 
     
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -153,7 +158,7 @@ export const ProductApiAxiosParamCreator = function (configuration?: Configurati
             };
         },
         /**
-         * Read a journal collection for a specific product showing the history of stock changes.
+         * Read a journal collection for a specific product showing the history of stock changes. Only products with the source \'self\' can be queried.
          * @summary Read a journal collection for a specific product showing the history of stock changes.
          * @param {string} productNumber The product number as defined during the creation of the product.
          * @param {number} [page] The page to read. Default is the first page.
@@ -315,16 +320,17 @@ export const ProductApiFp = function(configuration?: Configuration) {
          * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
          * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
          * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
-         * @param {string} [filterSearch] Filter for product search.\\ Usage: - Provide one or multiple search terms to filter results. - Multiple search terms are separated by spaces. - The search is not case sensitive. - The search is enabled for the fields productTitle and productNumber. - Each search term filters the response for products where at least one of the fields contains the search term. - For example, filter[search]&#x3D;\&#39;term1 term2\&#39; will filter the result for products where \&#39;term1\&#39; is found in any field and \&#39;term2\&#39; is also found in any field.\\ If only \&#39;term1\&#39; or \&#39;term2\&#39; is found in the fields, the product is not included in the results.
+         * @param {string} [filterSearch] Filter for product search.\\ Usage: - Provide one or multiple search terms to filter results. - Multiple search terms are separated by spaces. - The search is not case sensitive. - The search is enabled for the fields productTitle, productNumber and ean. - Each search term filters the response for products where at least one of the fields contains the search term. - For example, filter[search]&#x3D;\&#39;term1 term2\&#39; will filter the result for products where \&#39;term1\&#39; is found in any field and \&#39;term2\&#39; is also found in any field.\\ If only \&#39;term1\&#39; or \&#39;term2\&#39; is found in the fields, the product is not included in the results.
+         * @param {'self' | 'nice'} [filterSource] Filter for product source.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getProductCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterShopCode?: string, filterSearch?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ProductCollection>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getProductCollection(page, pageSize, paginationMode, filterShopCode, filterSearch, options);
+        async getProductCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterShopCode?: string, filterSearch?: string, filterSource?: 'self' | 'nice', options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ProductCollection>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getProductCollection(page, pageSize, paginationMode, filterShopCode, filterSearch, filterSource, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * Read a journal collection for a specific product showing the history of stock changes.
+         * Read a journal collection for a specific product showing the history of stock changes. Only products with the source \'self\' can be queried.
          * @summary Read a journal collection for a specific product showing the history of stock changes.
          * @param {string} productNumber The product number as defined during the creation of the product.
          * @param {number} [page] The page to read. Default is the first page.
@@ -382,15 +388,16 @@ export const ProductApiFactory = function (configuration?: Configuration, basePa
          * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
          * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
          * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
-         * @param {string} [filterSearch] Filter for product search.\\ Usage: - Provide one or multiple search terms to filter results. - Multiple search terms are separated by spaces. - The search is not case sensitive. - The search is enabled for the fields productTitle and productNumber. - Each search term filters the response for products where at least one of the fields contains the search term. - For example, filter[search]&#x3D;\&#39;term1 term2\&#39; will filter the result for products where \&#39;term1\&#39; is found in any field and \&#39;term2\&#39; is also found in any field.\\ If only \&#39;term1\&#39; or \&#39;term2\&#39; is found in the fields, the product is not included in the results.
+         * @param {string} [filterSearch] Filter for product search.\\ Usage: - Provide one or multiple search terms to filter results. - Multiple search terms are separated by spaces. - The search is not case sensitive. - The search is enabled for the fields productTitle, productNumber and ean. - Each search term filters the response for products where at least one of the fields contains the search term. - For example, filter[search]&#x3D;\&#39;term1 term2\&#39; will filter the result for products where \&#39;term1\&#39; is found in any field and \&#39;term2\&#39; is also found in any field.\\ If only \&#39;term1\&#39; or \&#39;term2\&#39; is found in the fields, the product is not included in the results.
+         * @param {'self' | 'nice'} [filterSource] Filter for product source.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getProductCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterShopCode?: string, filterSearch?: string, options?: any): AxiosPromise<ProductCollection> {
-            return localVarFp.getProductCollection(page, pageSize, paginationMode, filterShopCode, filterSearch, options).then((request) => request(axios, basePath));
+        getProductCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterShopCode?: string, filterSearch?: string, filterSource?: 'self' | 'nice', options?: any): AxiosPromise<ProductCollection> {
+            return localVarFp.getProductCollection(page, pageSize, paginationMode, filterShopCode, filterSearch, filterSource, options).then((request) => request(axios, basePath));
         },
         /**
-         * Read a journal collection for a specific product showing the history of stock changes.
+         * Read a journal collection for a specific product showing the history of stock changes. Only products with the source \'self\' can be queried.
          * @summary Read a journal collection for a specific product showing the history of stock changes.
          * @param {string} productNumber The product number as defined during the creation of the product.
          * @param {number} [page] The page to read. Default is the first page.
@@ -445,15 +452,16 @@ export interface ProductApiInterface {
      * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
      * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
      * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
-     * @param {string} [filterSearch] Filter for product search.\\ Usage: - Provide one or multiple search terms to filter results. - Multiple search terms are separated by spaces. - The search is not case sensitive. - The search is enabled for the fields productTitle and productNumber. - Each search term filters the response for products where at least one of the fields contains the search term. - For example, filter[search]&#x3D;\&#39;term1 term2\&#39; will filter the result for products where \&#39;term1\&#39; is found in any field and \&#39;term2\&#39; is also found in any field.\\ If only \&#39;term1\&#39; or \&#39;term2\&#39; is found in the fields, the product is not included in the results.
+     * @param {string} [filterSearch] Filter for product search.\\ Usage: - Provide one or multiple search terms to filter results. - Multiple search terms are separated by spaces. - The search is not case sensitive. - The search is enabled for the fields productTitle, productNumber and ean. - Each search term filters the response for products where at least one of the fields contains the search term. - For example, filter[search]&#x3D;\&#39;term1 term2\&#39; will filter the result for products where \&#39;term1\&#39; is found in any field and \&#39;term2\&#39; is also found in any field.\\ If only \&#39;term1\&#39; or \&#39;term2\&#39; is found in the fields, the product is not included in the results.
+     * @param {'self' | 'nice'} [filterSource] Filter for product source.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProductApiInterface
      */
-    getProductCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterShopCode?: string, filterSearch?: string, options?: AxiosRequestConfig): AxiosPromise<ProductCollection>;
+    getProductCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterShopCode?: string, filterSearch?: string, filterSource?: 'self' | 'nice', options?: AxiosRequestConfig): AxiosPromise<ProductCollection>;
 
     /**
-     * Read a journal collection for a specific product showing the history of stock changes.
+     * Read a journal collection for a specific product showing the history of stock changes. Only products with the source \'self\' can be queried.
      * @summary Read a journal collection for a specific product showing the history of stock changes.
      * @param {string} productNumber The product number as defined during the creation of the product.
      * @param {number} [page] The page to read. Default is the first page.
@@ -510,17 +518,18 @@ export class ProductApi extends BaseAPI implements ProductApiInterface {
      * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
      * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
      * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
-     * @param {string} [filterSearch] Filter for product search.\\ Usage: - Provide one or multiple search terms to filter results. - Multiple search terms are separated by spaces. - The search is not case sensitive. - The search is enabled for the fields productTitle and productNumber. - Each search term filters the response for products where at least one of the fields contains the search term. - For example, filter[search]&#x3D;\&#39;term1 term2\&#39; will filter the result for products where \&#39;term1\&#39; is found in any field and \&#39;term2\&#39; is also found in any field.\\ If only \&#39;term1\&#39; or \&#39;term2\&#39; is found in the fields, the product is not included in the results.
+     * @param {string} [filterSearch] Filter for product search.\\ Usage: - Provide one or multiple search terms to filter results. - Multiple search terms are separated by spaces. - The search is not case sensitive. - The search is enabled for the fields productTitle, productNumber and ean. - Each search term filters the response for products where at least one of the fields contains the search term. - For example, filter[search]&#x3D;\&#39;term1 term2\&#39; will filter the result for products where \&#39;term1\&#39; is found in any field and \&#39;term2\&#39; is also found in any field.\\ If only \&#39;term1\&#39; or \&#39;term2\&#39; is found in the fields, the product is not included in the results.
+     * @param {'self' | 'nice'} [filterSource] Filter for product source.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProductApi
      */
-    public getProductCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterShopCode?: string, filterSearch?: string, options?: AxiosRequestConfig) {
-        return ProductApiFp(this.configuration).getProductCollection(page, pageSize, paginationMode, filterShopCode, filterSearch, options).then((request) => request(this.axios, this.basePath));
+    public getProductCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterShopCode?: string, filterSearch?: string, filterSource?: 'self' | 'nice', options?: AxiosRequestConfig) {
+        return ProductApiFp(this.configuration).getProductCollection(page, pageSize, paginationMode, filterShopCode, filterSearch, filterSource, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
-     * Read a journal collection for a specific product showing the history of stock changes.
+     * Read a journal collection for a specific product showing the history of stock changes. Only products with the source \'self\' can be queried.
      * @summary Read a journal collection for a specific product showing the history of stock changes.
      * @param {string} productNumber The product number as defined during the creation of the product.
      * @param {number} [page] The page to read. Default is the first page.

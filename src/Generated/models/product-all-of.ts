@@ -92,6 +92,12 @@ export interface ProductAllOf {
      * @memberof ProductAllOf
      */
     'shopCode'?: string;
+    /**
+     * The source of the product. - self: Own product - nice: Product of another supplier
+     * @type {string}
+     * @memberof ProductAllOf
+     */
+    'source'?: string;
 }
 
 export const ProductAllOfProductStatusEnum = {

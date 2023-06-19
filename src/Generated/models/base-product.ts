@@ -24,7 +24,7 @@ import { ProductPurchasePrice } from './product-purchase-price';
  */
 export interface BaseProduct {
     /**
-     * Type of the product (\'standard\' if no value is provided)
+     * Type of the product
      * @type {string}
      * @memberof BaseProduct
      */
@@ -36,7 +36,7 @@ export interface BaseProduct {
      */
     'articleVariantTitle'?: string | null;
     /**
-     * The type of the article variant (\'standard_autotitle\' if no value is provided). \\ The articleVariantType \'standard_autotitle\' is only allowed for the variantGroup \'content\'
+     * The type of the article variant. \\ The articleVariantType \'standard_autotitle\' is only allowed for the variantGroup \'content\'
      * @type {string}
      * @memberof BaseProduct
      */
@@ -111,26 +111,48 @@ export interface BaseProduct {
 
 export const BaseProductProductTypeEnum = {
     Standard: 'standard',
+    ChilledProduct: 'chilled_product',
     Sample: 'sample',
     SellableSample: 'sellable_sample',
     Tester: 'tester',
     PackingMaterial: 'packing_material',
+    LimitedEdition: 'limited_edition',
     BookingSeminar: 'booking_seminar',
     BookingAppointment: 'booking_appointment',
+    VoucherPrint: 'voucher_print',
+    VoucherDigital: 'voucher_digital',
+    Bundle: 'bundle',
+    PrintGreetingcard: 'print_greetingcard',
     PromoMaterial: 'promo_material',
+    Personalized: 'personalized',
     RawMaterial: 'raw_material',
     WorkingMaterial: 'working_material',
     ServicePrincipal: 'service_principal',
     ServiceAncillary: 'service_ancillary',
     InquiryTestdrive: 'inquiry_testdrive',
-    InquiryRaffle: 'inquiry_raffle'
+    InquiryRaffle: 'inquiry_raffle',
+    OtherServices: 'other_services'
 } as const;
 
 export type BaseProductProductTypeEnum = typeof BaseProductProductTypeEnum[keyof typeof BaseProductProductTypeEnum];
 export const BaseProductArticleVariantTypeEnum = {
+    BookingAppointment: 'booking_appointment',
+    BookingSeminar: 'booking_seminar',
+    Bundle: 'bundle',
+    BundleChangeable: 'bundle_changeable',
+    BundleConfigurable: 'bundle_configurable',
+    Generic: 'generic',
+    InquiryRaffle: 'inquiry_raffle',
+    InquiryTestdrive: 'inquiry_testdrive',
+    OtherServices: 'other_services',
+    Personalized: 'personalized',
+    PrintGreetingcard: 'print_greetingcard',
+    ServiceAncillary: 'service_ancillary',
+    ServicePrincipal: 'service_principal',
     Standard: 'standard',
     StandardAutotitle: 'standard_autotitle',
-    Personalized: 'personalized',
+    VoucherDigital: 'voucher_digital',
+    VoucherPrint: 'voucher_print',
     Null: 'null'
 } as const;
 
