@@ -15,22 +15,13 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { BaseProduct } from './base-product';
-// May contain unused imports in some cases
-// @ts-ignore
-import { BaseProductVariantGroup } from './base-product-variant-group';
-// May contain unused imports in some cases
-// @ts-ignore
-import { ProductAllOf } from './product-all-of';
-// May contain unused imports in some cases
-// @ts-ignore
-import { ProductPurchasePrice } from './product-purchase-price';
+import { VariantGroupEnum } from './variant-group-enum';
 
 /**
- * @type Product
- * Data to represent a product
+ * @type BaseProductVariantGroup
+ * The variant group of the product
  * @export
  */
-export type Product = BaseProduct & ProductAllOf;
+export type BaseProductVariantGroup = VariantGroupEnum | string;
 
 

@@ -15,6 +15,9 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
+import { BaseProductVariantGroup } from './base-product-variant-group';
+// May contain unused imports in some cases
+// @ts-ignore
 import { ProductPurchasePrice } from './product-purchase-price';
 
 /**
@@ -72,11 +75,11 @@ export interface BaseProduct {
      */
     'weightGram'?: number | null;
     /**
-     * The variant group of the product
-     * @type {string}
+     * 
+     * @type {BaseProductVariantGroup}
      * @memberof BaseProduct
      */
-    'variantGroup'?: BaseProductVariantGroupEnum;
+    'variantGroup'?: BaseProductVariantGroup;
     /**
      * The EAN of the product
      * @type {string}
@@ -167,14 +170,5 @@ export const BaseProductArticleStatusEnum = {
 } as const;
 
 export type BaseProductArticleStatusEnum = typeof BaseProductArticleStatusEnum[keyof typeof BaseProductArticleStatusEnum];
-export const BaseProductVariantGroupEnum = {
-    Color: 'color',
-    Size: 'size',
-    Content: 'content',
-    Einzelvariante: 'einzelvariante',
-    StandardTitle: 'standard_title'
-} as const;
-
-export type BaseProductVariantGroupEnum = typeof BaseProductVariantGroupEnum[keyof typeof BaseProductVariantGroupEnum];
 
 

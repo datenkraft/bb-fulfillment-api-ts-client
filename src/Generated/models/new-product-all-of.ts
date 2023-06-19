@@ -13,6 +13,9 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import { VariantGroupEnum } from './variant-group-enum';
 
 /**
  * 
@@ -20,6 +23,12 @@
  * @interface NewProductAllOf
  */
 export interface NewProductAllOf {
+    /**
+     * 
+     * @type {VariantGroupEnum}
+     * @memberof NewProductAllOf
+     */
+    'variantGroup'?: VariantGroupEnum;
     /**
      * Status of the product regarding sales.  Available values: - enabled: Product is on sale (default) - enabled_external_only: Product is only available in external stores
      * @type {string}

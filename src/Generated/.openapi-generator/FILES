@@ -34,6 +34,7 @@ models/auth-role-resource.ts
 models/base-order-customer-invoice-address.ts
 models/base-order-customer.ts
 models/base-order.ts
+models/base-product-variant-group.ts
 models/base-product.ts
 models/collection-pagination.ts
 models/collection.ts
@@ -127,3 +128,4 @@ models/supplier.ts
 models/update-delivery-shipment.ts
 models/update-shop-meta.ts
 models/update-shop.ts
+models/variant-group-enum.ts
