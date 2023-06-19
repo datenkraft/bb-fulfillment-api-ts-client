@@ -13,24 +13,22 @@
  */
 
 
-// May contain unused imports in some cases
-// @ts-ignore
-import { BaseProduct } from './base-product';
-// May contain unused imports in some cases
-// @ts-ignore
-import { BaseProductVariantGroup } from './base-product-variant-group';
-// May contain unused imports in some cases
-// @ts-ignore
-import { ProductAllOf } from './product-all-of';
-// May contain unused imports in some cases
-// @ts-ignore
-import { ProductPurchasePrice } from './product-purchase-price';
 
 /**
- * @type Product
- * Data to represent a product
+ * 
  * @export
+ * @enum {string}
  */
-export type Product = BaseProduct & ProductAllOf;
+
+export const VariantGroupEnum = {
+    Color: 'color',
+    Size: 'size',
+    Content: 'content',
+    Einzelvariante: 'einzelvariante',
+    StandardTitle: 'standard_title'
+} as const;
+
+export type VariantGroupEnum = typeof VariantGroupEnum[keyof typeof VariantGroupEnum];
+
 
 

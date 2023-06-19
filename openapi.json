@@ -5593,14 +5593,14 @@
                     },
                     "variantGroup": {
                         "description": "The variant group of the product",
-                        "type": "string",
                         "default": "content",
-                        "enum": [
-                            "color",
-                            "size",
-                            "content",
-                            "einzelvariante",
-                            "standard_title"
+                        "oneOf": [
+                            {
+                                "$ref": "#/components/schemas/variantGroupEnum"
+                            },
+                            {
+                                "type": "string"
+                            }
                         ]
                     },
                     "ean": {
@@ -6344,6 +6344,9 @@
                     },
                     {
                         "properties": {
+                            "variantGroup": {
+                                "$ref": "#/components/schemas/variantGroupEnum"
+                            },
                             "productStatus": {
                                 "description": "Status of the product regarding sales.\n\nAvailable values:\n- enabled: Product is on sale (default)\n- enabled_external_only: Product is only available in external stores",
                                 "type": "string",
@@ -7368,6 +7371,16 @@
                     }
                 },
                 "type": "object"
+            },
+            "variantGroupEnum": {
+                "type": "string",
+                "enum": [
+                    "color",
+                    "size",
+                    "content",
+                    "einzelvariante",
+                    "standard_title"
+                ]
             }
         },
         "securitySchemes": {
