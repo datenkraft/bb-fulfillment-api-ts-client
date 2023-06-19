@@ -47,5 +47,11 @@ export interface Country {
      * @memberof Country
      */
     'provinces'?: Array<CountryProvinces> | null;
+    /**
+     * The currency code which should be used for orders to the country (ISO 4217)
+     * @type {string}
+     * @memberof Country
+     */
+    'currencyCode'?: string;
 }
 
