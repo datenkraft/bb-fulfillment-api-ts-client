@@ -2120,7 +2120,7 @@
                     "inbound-delivery"
                 ],
                 "summary": "Get a spreadsheet template for performing POST queries to the respective endpoint.",
-                "description": "Get a spreadsheet template for performing POST queries to the respective endpoint.\n        The file type is controlled by the accept header.",
+                "description": "Get a spreadsheet template for performing POST queries to the respective endpoint.\n        The file type is controlled by the accept header.\n        The fill-in help in the second line can be removed or remain.",
                 "operationId": "getInboundDeliveryBulkImportTemplate",
                 "responses": {
                     "200": {
@@ -2160,7 +2160,14 @@
                         }
                     }
                 },
-                "security": []
+                "security": [
+                    {
+                        "oAuthAuthorization": []
+                    },
+                    {
+                        "bearerAuth": []
+                    }
+                ]
             }
         },
         "/inbound-delivery": {
@@ -2507,7 +2514,7 @@
                     {
                         "name": "inboundDeliveryNumber",
                         "in": "path",
-                        "description": "The number the inbound delivery should be refered by.\nThis number is user defined, must be unique and has a maximum length (check maxLength field).",
+                        "description": "The number the inbound delivery should be refered by.\\\nThis number is user defined, must be unique and has a maximum length (check maxLength field).\\\nPlease ensure that it does not contain forward slashes or their URL-encoded equivalents ('/', '%2F', '%2f'),\nas this will result in the route not being found.",
                         "required": true,
                         "schema": {
                             "type": "string",
@@ -3361,7 +3368,7 @@
                     {
                         "name": "orderNumber",
                         "in": "path",
-                        "description": "The number the order should be refered by.\n    This number is user defined, must be unique and has a maximum length (check maxLength field).",
+                        "description": "The number the order should be refered by.\\\nThis number is user defined, must be unique and has a maximum length (check maxLength field).\\\nPlease ensure that it does not contain forward slashes or their URL-encoded equivalents ('/', '%2F', '%2f'),\nas this will result in the route not being found.",
                         "required": true,
                         "schema": {
                             "type": "string",
@@ -4131,7 +4138,7 @@
                     {
                         "name": "productNumber",
                         "in": "path",
-                        "description": "The number the product should be refered by.\n    This number is user defined, must be unique and has a maximum length (check maxLength field).",
+                        "description": "The number the product should be refered by.\\\nThis number is user defined, must be unique and has a maximum length (check maxLength field).\\\nPlease ensure that it does not contain forward slashes or their URL-encoded equivalents ('/', '%2F', '%2f'),\nas this will result in the route not being found.",
                         "required": true,
                         "schema": {
                             "type": "string",
