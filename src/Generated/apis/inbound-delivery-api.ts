@@ -135,17 +135,13 @@ export const InboundDeliveryApiAxiosParamCreator = function (configuration?: Con
             };
         },
         /**
-         * Get a spreadsheet template for performing POST queries to the respective endpoint.
+         * Get a spreadsheet template for performing POST queries to the respective endpoint.         The file type is controlled by the accept header.
          * @summary Get a spreadsheet template for performing POST queries to the respective endpoint.
-         * @param {'xlsx' | 'csv'} format The format of the spreadsheet template
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getInboundDeliveryBulkImportTemplate: async (format: 'xlsx' | 'csv', options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'format' is not null or undefined
-            assertParamExists('getInboundDeliveryBulkImportTemplate', 'format', format)
-            const localVarPath = `/bulk-import/template/inbound-delivery.{format}`
-                .replace(`{${"format"}}`, encodeURIComponent(String(format)));
+        getInboundDeliveryBulkImportTemplate: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/bulk-import/template/inbound-delivery`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -321,20 +317,16 @@ export const InboundDeliveryApiAxiosParamCreator = function (configuration?: Con
             };
         },
         /**
-         * Import one or more new inbound deliveries.
+         * Import one or more new inbound deliveries.         The file type is controlled by the content type attribute of the uploaded file
          * @summary Import one or more new inbound deliveries.
-         * @param {'xlsx' | 'csv'} format The format for the upload.
-         * @param {File} file file to upload
+         * @param {File} file File to upload
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        inboundDeliveryBulkImport: async (format: 'xlsx' | 'csv', file: File, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'format' is not null or undefined
-            assertParamExists('inboundDeliveryBulkImport', 'format', format)
+        inboundDeliveryBulkImport: async (file: File, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'file' is not null or undefined
             assertParamExists('inboundDeliveryBulkImport', 'file', file)
-            const localVarPath = `/bulk-import/inbound-delivery.{format}`
-                .replace(`{${"format"}}`, encodeURIComponent(String(format)));
+            const localVarPath = `/bulk-import/inbound-delivery`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -461,14 +453,13 @@ export const InboundDeliveryApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * Get a spreadsheet template for performing POST queries to the respective endpoint.
+         * Get a spreadsheet template for performing POST queries to the respective endpoint.         The file type is controlled by the accept header.
          * @summary Get a spreadsheet template for performing POST queries to the respective endpoint.
-         * @param {'xlsx' | 'csv'} format The format of the spreadsheet template
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getInboundDeliveryBulkImportTemplate(format: 'xlsx' | 'csv', options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<string>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getInboundDeliveryBulkImportTemplate(format, options);
+        async getInboundDeliveryBulkImportTemplate(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<string>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getInboundDeliveryBulkImportTemplate(options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -506,15 +497,14 @@ export const InboundDeliveryApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * Import one or more new inbound deliveries.
+         * Import one or more new inbound deliveries.         The file type is controlled by the content type attribute of the uploaded file
          * @summary Import one or more new inbound deliveries.
-         * @param {'xlsx' | 'csv'} format The format for the upload.
-         * @param {File} file file to upload
+         * @param {File} file File to upload
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async inboundDeliveryBulkImport(format: 'xlsx' | 'csv', file: File, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<InboundDeliveryBulkImport207ResponseInner>>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.inboundDeliveryBulkImport(format, file, options);
+        async inboundDeliveryBulkImport(file: File, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<InboundDeliveryBulkImport207ResponseInner>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.inboundDeliveryBulkImport(file, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -563,14 +553,13 @@ export const InboundDeliveryApiFactory = function (configuration?: Configuration
             return localVarFp.getInboundDelivery(inboundDeliveryNumber, shopCode, options).then((request) => request(axios, basePath));
         },
         /**
-         * Get a spreadsheet template for performing POST queries to the respective endpoint.
+         * Get a spreadsheet template for performing POST queries to the respective endpoint.         The file type is controlled by the accept header.
          * @summary Get a spreadsheet template for performing POST queries to the respective endpoint.
-         * @param {'xlsx' | 'csv'} format The format of the spreadsheet template
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getInboundDeliveryBulkImportTemplate(format: 'xlsx' | 'csv', options?: any): AxiosPromise<string> {
-            return localVarFp.getInboundDeliveryBulkImportTemplate(format, options).then((request) => request(axios, basePath));
+        getInboundDeliveryBulkImportTemplate(options?: any): AxiosPromise<string> {
+            return localVarFp.getInboundDeliveryBulkImportTemplate(options).then((request) => request(axios, basePath));
         },
         /**
          * Get a list of inbound deliveries.
@@ -605,15 +594,14 @@ export const InboundDeliveryApiFactory = function (configuration?: Configuration
             return localVarFp.getInboundDeliveryDocument(inboundDeliveryNumber, documentCode, shopCode, options).then((request) => request(axios, basePath));
         },
         /**
-         * Import one or more new inbound deliveries.
+         * Import one or more new inbound deliveries.         The file type is controlled by the content type attribute of the uploaded file
          * @summary Import one or more new inbound deliveries.
-         * @param {'xlsx' | 'csv'} format The format for the upload.
-         * @param {File} file file to upload
+         * @param {File} file File to upload
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        inboundDeliveryBulkImport(format: 'xlsx' | 'csv', file: File, options?: any): AxiosPromise<Array<InboundDeliveryBulkImport207ResponseInner>> {
-            return localVarFp.inboundDeliveryBulkImport(format, file, options).then((request) => request(axios, basePath));
+        inboundDeliveryBulkImport(file: File, options?: any): AxiosPromise<Array<InboundDeliveryBulkImport207ResponseInner>> {
+            return localVarFp.inboundDeliveryBulkImport(file, options).then((request) => request(axios, basePath));
         },
         /**
          * Add a new inbound delivery referenced by the given deliveryNumber.
@@ -659,14 +647,13 @@ export interface InboundDeliveryApiInterface {
     getInboundDelivery(inboundDeliveryNumber: string, shopCode?: string, options?: AxiosRequestConfig): AxiosPromise<InboundDelivery>;
 
     /**
-     * Get a spreadsheet template for performing POST queries to the respective endpoint.
+     * Get a spreadsheet template for performing POST queries to the respective endpoint.         The file type is controlled by the accept header.
      * @summary Get a spreadsheet template for performing POST queries to the respective endpoint.
-     * @param {'xlsx' | 'csv'} format The format of the spreadsheet template
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof InboundDeliveryApiInterface
      */
-    getInboundDeliveryBulkImportTemplate(format: 'xlsx' | 'csv', options?: AxiosRequestConfig): AxiosPromise<string>;
+    getInboundDeliveryBulkImportTemplate(options?: AxiosRequestConfig): AxiosPromise<string>;
 
     /**
      * Get a list of inbound deliveries.
@@ -701,15 +688,14 @@ export interface InboundDeliveryApiInterface {
     getInboundDeliveryDocument(inboundDeliveryNumber: string, documentCode: 'supplierDeliveryLabel' | 'details', shopCode?: string, options?: AxiosRequestConfig): AxiosPromise<File>;
 
     /**
-     * Import one or more new inbound deliveries.
+     * Import one or more new inbound deliveries.         The file type is controlled by the content type attribute of the uploaded file
      * @summary Import one or more new inbound deliveries.
-     * @param {'xlsx' | 'csv'} format The format for the upload.
-     * @param {File} file file to upload
+     * @param {File} file File to upload
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof InboundDeliveryApiInterface
      */
-    inboundDeliveryBulkImport(format: 'xlsx' | 'csv', file: File, options?: AxiosRequestConfig): AxiosPromise<Array<InboundDeliveryBulkImport207ResponseInner>>;
+    inboundDeliveryBulkImport(file: File, options?: AxiosRequestConfig): AxiosPromise<Array<InboundDeliveryBulkImport207ResponseInner>>;
 
     /**
      * Add a new inbound delivery referenced by the given deliveryNumber.
@@ -759,15 +745,14 @@ export class InboundDeliveryApi extends BaseAPI implements InboundDeliveryApiInt
     }
 
     /**
-     * Get a spreadsheet template for performing POST queries to the respective endpoint.
+     * Get a spreadsheet template for performing POST queries to the respective endpoint.         The file type is controlled by the accept header.
      * @summary Get a spreadsheet template for performing POST queries to the respective endpoint.
-     * @param {'xlsx' | 'csv'} format The format of the spreadsheet template
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof InboundDeliveryApi
      */
-    public getInboundDeliveryBulkImportTemplate(format: 'xlsx' | 'csv', options?: AxiosRequestConfig) {
-        return InboundDeliveryApiFp(this.configuration).getInboundDeliveryBulkImportTemplate(format, options).then((request) => request(this.axios, this.basePath));
+    public getInboundDeliveryBulkImportTemplate(options?: AxiosRequestConfig) {
+        return InboundDeliveryApiFp(this.configuration).getInboundDeliveryBulkImportTemplate(options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -807,16 +792,15 @@ export class InboundDeliveryApi extends BaseAPI implements InboundDeliveryApiInt
     }
 
     /**
-     * Import one or more new inbound deliveries.
+     * Import one or more new inbound deliveries.         The file type is controlled by the content type attribute of the uploaded file
      * @summary Import one or more new inbound deliveries.
-     * @param {'xlsx' | 'csv'} format The format for the upload.
-     * @param {File} file file to upload
+     * @param {File} file File to upload
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof InboundDeliveryApi
      */
-    public inboundDeliveryBulkImport(format: 'xlsx' | 'csv', file: File, options?: AxiosRequestConfig) {
-        return InboundDeliveryApiFp(this.configuration).inboundDeliveryBulkImport(format, file, options).then((request) => request(this.axios, this.basePath));
+    public inboundDeliveryBulkImport(file: File, options?: AxiosRequestConfig) {
+        return InboundDeliveryApiFp(this.configuration).inboundDeliveryBulkImport(file, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
