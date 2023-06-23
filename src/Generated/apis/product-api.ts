@@ -241,7 +241,7 @@ export const ProductApiAxiosParamCreator = function (configuration?: Configurati
         /**
          * Add a new product referenced by the given productNumber. Please note that due to necessary product compliance enabling by our steve team, the product might not be usable immediately. The product number is nevertheless reserved, even before the product can be queried in the GET endpoint.
          * @summary Add a new product.
-         * @param {string} productNumber The number the product should be refered by.     This number is user defined, must be unique and has a maximum length (check maxLength field).
+         * @param {string} productNumber The number the product should be refered by.\\ This number is user defined, must be unique and has a maximum length (check maxLength field).\\ Please ensure that it does not contain forward slashes or their URL-encoded equivalents (\&#39;/\&#39;, \&#39;%2F\&#39;, \&#39;%2f\&#39;), as this will result in the route not being found.
          * @param {NewProduct} newProduct 
          * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
          * @param {*} [options] Override http request option.
@@ -350,7 +350,7 @@ export const ProductApiFp = function(configuration?: Configuration) {
         /**
          * Add a new product referenced by the given productNumber. Please note that due to necessary product compliance enabling by our steve team, the product might not be usable immediately. The product number is nevertheless reserved, even before the product can be queried in the GET endpoint.
          * @summary Add a new product.
-         * @param {string} productNumber The number the product should be refered by.     This number is user defined, must be unique and has a maximum length (check maxLength field).
+         * @param {string} productNumber The number the product should be refered by.\\ This number is user defined, must be unique and has a maximum length (check maxLength field).\\ Please ensure that it does not contain forward slashes or their URL-encoded equivalents (\&#39;/\&#39;, \&#39;%2F\&#39;, \&#39;%2f\&#39;), as this will result in the route not being found.
          * @param {NewProduct} newProduct 
          * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
          * @param {*} [options] Override http request option.
@@ -416,7 +416,7 @@ export const ProductApiFactory = function (configuration?: Configuration, basePa
         /**
          * Add a new product referenced by the given productNumber. Please note that due to necessary product compliance enabling by our steve team, the product might not be usable immediately. The product number is nevertheless reserved, even before the product can be queried in the GET endpoint.
          * @summary Add a new product.
-         * @param {string} productNumber The number the product should be refered by.     This number is user defined, must be unique and has a maximum length (check maxLength field).
+         * @param {string} productNumber The number the product should be refered by.\\ This number is user defined, must be unique and has a maximum length (check maxLength field).\\ Please ensure that it does not contain forward slashes or their URL-encoded equivalents (\&#39;/\&#39;, \&#39;%2F\&#39;, \&#39;%2f\&#39;), as this will result in the route not being found.
          * @param {NewProduct} newProduct 
          * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
          * @param {*} [options] Override http request option.
@@ -480,7 +480,7 @@ export interface ProductApiInterface {
     /**
      * Add a new product referenced by the given productNumber. Please note that due to necessary product compliance enabling by our steve team, the product might not be usable immediately. The product number is nevertheless reserved, even before the product can be queried in the GET endpoint.
      * @summary Add a new product.
-     * @param {string} productNumber The number the product should be refered by.     This number is user defined, must be unique and has a maximum length (check maxLength field).
+     * @param {string} productNumber The number the product should be refered by.\\ This number is user defined, must be unique and has a maximum length (check maxLength field).\\ Please ensure that it does not contain forward slashes or their URL-encoded equivalents (\&#39;/\&#39;, \&#39;%2F\&#39;, \&#39;%2f\&#39;), as this will result in the route not being found.
      * @param {NewProduct} newProduct 
      * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
      * @param {*} [options] Override http request option.
@@ -550,7 +550,7 @@ export class ProductApi extends BaseAPI implements ProductApiInterface {
     /**
      * Add a new product referenced by the given productNumber. Please note that due to necessary product compliance enabling by our steve team, the product might not be usable immediately. The product number is nevertheless reserved, even before the product can be queried in the GET endpoint.
      * @summary Add a new product.
-     * @param {string} productNumber The number the product should be refered by.     This number is user defined, must be unique and has a maximum length (check maxLength field).
+     * @param {string} productNumber The number the product should be refered by.\\ This number is user defined, must be unique and has a maximum length (check maxLength field).\\ Please ensure that it does not contain forward slashes or their URL-encoded equivalents (\&#39;/\&#39;, \&#39;%2F\&#39;, \&#39;%2f\&#39;), as this will result in the route not being found.
      * @param {NewProduct} newProduct 
      * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
      * @param {*} [options] Override http request option.

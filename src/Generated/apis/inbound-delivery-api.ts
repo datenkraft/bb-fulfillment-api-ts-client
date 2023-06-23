@@ -135,7 +135,7 @@ export const InboundDeliveryApiAxiosParamCreator = function (configuration?: Con
             };
         },
         /**
-         * Get a spreadsheet template for performing POST queries to the respective endpoint.         The file type is controlled by the accept header.
+         * Get a spreadsheet template for performing POST queries to the respective endpoint.         The file type is controlled by the accept header.         The fill-in help in the second line can be removed or remain.
          * @summary Get a spreadsheet template for performing POST queries to the respective endpoint.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -152,6 +152,14 @@ export const InboundDeliveryApiAxiosParamCreator = function (configuration?: Con
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            // authentication oAuthAuthorization required
+            // oauth required
+            await setOAuthToObject(localVarHeaderParameter, "oAuthAuthorization", [], configuration)
+
+            // authentication bearerAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
 
     
@@ -368,7 +376,7 @@ export const InboundDeliveryApiAxiosParamCreator = function (configuration?: Con
         /**
          * Add a new inbound delivery referenced by the given deliveryNumber.
          * @summary Add a new inbound delivery.
-         * @param {string} inboundDeliveryNumber The number the inbound delivery should be refered by. This number is user defined, must be unique and has a maximum length (check maxLength field).
+         * @param {string} inboundDeliveryNumber The number the inbound delivery should be refered by.\\ This number is user defined, must be unique and has a maximum length (check maxLength field).\\ Please ensure that it does not contain forward slashes or their URL-encoded equivalents (\&#39;/\&#39;, \&#39;%2F\&#39;, \&#39;%2f\&#39;), as this will result in the route not being found.
          * @param {NewInboundDelivery} newInboundDelivery 
          * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
          * @param {*} [options] Override http request option.
@@ -453,7 +461,7 @@ export const InboundDeliveryApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * Get a spreadsheet template for performing POST queries to the respective endpoint.         The file type is controlled by the accept header.
+         * Get a spreadsheet template for performing POST queries to the respective endpoint.         The file type is controlled by the accept header.         The fill-in help in the second line can be removed or remain.
          * @summary Get a spreadsheet template for performing POST queries to the respective endpoint.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -510,7 +518,7 @@ export const InboundDeliveryApiFp = function(configuration?: Configuration) {
         /**
          * Add a new inbound delivery referenced by the given deliveryNumber.
          * @summary Add a new inbound delivery.
-         * @param {string} inboundDeliveryNumber The number the inbound delivery should be refered by. This number is user defined, must be unique and has a maximum length (check maxLength field).
+         * @param {string} inboundDeliveryNumber The number the inbound delivery should be refered by.\\ This number is user defined, must be unique and has a maximum length (check maxLength field).\\ Please ensure that it does not contain forward slashes or their URL-encoded equivalents (\&#39;/\&#39;, \&#39;%2F\&#39;, \&#39;%2f\&#39;), as this will result in the route not being found.
          * @param {NewInboundDelivery} newInboundDelivery 
          * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
          * @param {*} [options] Override http request option.
@@ -553,7 +561,7 @@ export const InboundDeliveryApiFactory = function (configuration?: Configuration
             return localVarFp.getInboundDelivery(inboundDeliveryNumber, shopCode, options).then((request) => request(axios, basePath));
         },
         /**
-         * Get a spreadsheet template for performing POST queries to the respective endpoint.         The file type is controlled by the accept header.
+         * Get a spreadsheet template for performing POST queries to the respective endpoint.         The file type is controlled by the accept header.         The fill-in help in the second line can be removed or remain.
          * @summary Get a spreadsheet template for performing POST queries to the respective endpoint.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -606,7 +614,7 @@ export const InboundDeliveryApiFactory = function (configuration?: Configuration
         /**
          * Add a new inbound delivery referenced by the given deliveryNumber.
          * @summary Add a new inbound delivery.
-         * @param {string} inboundDeliveryNumber The number the inbound delivery should be refered by. This number is user defined, must be unique and has a maximum length (check maxLength field).
+         * @param {string} inboundDeliveryNumber The number the inbound delivery should be refered by.\\ This number is user defined, must be unique and has a maximum length (check maxLength field).\\ Please ensure that it does not contain forward slashes or their URL-encoded equivalents (\&#39;/\&#39;, \&#39;%2F\&#39;, \&#39;%2f\&#39;), as this will result in the route not being found.
          * @param {NewInboundDelivery} newInboundDelivery 
          * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
          * @param {*} [options] Override http request option.
@@ -647,7 +655,7 @@ export interface InboundDeliveryApiInterface {
     getInboundDelivery(inboundDeliveryNumber: string, shopCode?: string, options?: AxiosRequestConfig): AxiosPromise<InboundDelivery>;
 
     /**
-     * Get a spreadsheet template for performing POST queries to the respective endpoint.         The file type is controlled by the accept header.
+     * Get a spreadsheet template for performing POST queries to the respective endpoint.         The file type is controlled by the accept header.         The fill-in help in the second line can be removed or remain.
      * @summary Get a spreadsheet template for performing POST queries to the respective endpoint.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -700,7 +708,7 @@ export interface InboundDeliveryApiInterface {
     /**
      * Add a new inbound delivery referenced by the given deliveryNumber.
      * @summary Add a new inbound delivery.
-     * @param {string} inboundDeliveryNumber The number the inbound delivery should be refered by. This number is user defined, must be unique and has a maximum length (check maxLength field).
+     * @param {string} inboundDeliveryNumber The number the inbound delivery should be refered by.\\ This number is user defined, must be unique and has a maximum length (check maxLength field).\\ Please ensure that it does not contain forward slashes or their URL-encoded equivalents (\&#39;/\&#39;, \&#39;%2F\&#39;, \&#39;%2f\&#39;), as this will result in the route not being found.
      * @param {NewInboundDelivery} newInboundDelivery 
      * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
      * @param {*} [options] Override http request option.
@@ -745,7 +753,7 @@ export class InboundDeliveryApi extends BaseAPI implements InboundDeliveryApiInt
     }
 
     /**
-     * Get a spreadsheet template for performing POST queries to the respective endpoint.         The file type is controlled by the accept header.
+     * Get a spreadsheet template for performing POST queries to the respective endpoint.         The file type is controlled by the accept header.         The fill-in help in the second line can be removed or remain.
      * @summary Get a spreadsheet template for performing POST queries to the respective endpoint.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -806,7 +814,7 @@ export class InboundDeliveryApi extends BaseAPI implements InboundDeliveryApiInt
     /**
      * Add a new inbound delivery referenced by the given deliveryNumber.
      * @summary Add a new inbound delivery.
-     * @param {string} inboundDeliveryNumber The number the inbound delivery should be refered by. This number is user defined, must be unique and has a maximum length (check maxLength field).
+     * @param {string} inboundDeliveryNumber The number the inbound delivery should be refered by.\\ This number is user defined, must be unique and has a maximum length (check maxLength field).\\ Please ensure that it does not contain forward slashes or their URL-encoded equivalents (\&#39;/\&#39;, \&#39;%2F\&#39;, \&#39;%2f\&#39;), as this will result in the route not being found.
      * @param {NewInboundDelivery} newInboundDelivery 
      * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
      * @param {*} [options] Override http request option.
