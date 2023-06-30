@@ -93,7 +93,7 @@ export interface ProductAllOf {
      */
     'shopCode'?: string;
     /**
-     * The source of the product. - self: Own product - nice: Product of another supplier
+     * The source of the product. - self: Own product - nice: Product of another supplier - bundle: Product that is composed of individual positions
      * @type {string}
      * @memberof ProductAllOf
      */
