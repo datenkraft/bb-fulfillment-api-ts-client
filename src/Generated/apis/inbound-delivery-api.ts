@@ -376,7 +376,7 @@ export const InboundDeliveryApiAxiosParamCreator = function (configuration?: Con
         /**
          * Add a new inbound delivery referenced by the given deliveryNumber.
          * @summary Add a new inbound delivery.
-         * @param {string} inboundDeliveryNumber The number the inbound delivery should be refered by.\\ This number is user defined, must be unique and has a maximum length (check maxLength field).\\ Please ensure that it does not contain forward slashes or their URL-encoded equivalents (\&#39;/\&#39;, \&#39;%2F\&#39;, \&#39;%2f\&#39;), as this will result in the route not being found.
+         * @param {string} inboundDeliveryNumber The number the inbound delivery should be refered by.\\ This number is user defined, must be unique and has a maximum length (check maxLength field).\\ Please ensure that it does not contain any of the following character sequences: \&#39;/\&#39;, \&#39;%2F\&#39;, \&#39;%2f\&#39;, \&#39;?\&#39;, \&#39;%3F\&#39;, \&#39;%3f\&#39;, \&#39;#\&#39;, \&#39;%23\&#39;, \&#39;&amp;\&#39;, \&#39;%26\&#39;. Using any of these will result in the route not being handled correctly.
          * @param {NewInboundDelivery} newInboundDelivery 
          * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
          * @param {*} [options] Override http request option.
@@ -518,7 +518,7 @@ export const InboundDeliveryApiFp = function(configuration?: Configuration) {
         /**
          * Add a new inbound delivery referenced by the given deliveryNumber.
          * @summary Add a new inbound delivery.
-         * @param {string} inboundDeliveryNumber The number the inbound delivery should be refered by.\\ This number is user defined, must be unique and has a maximum length (check maxLength field).\\ Please ensure that it does not contain forward slashes or their URL-encoded equivalents (\&#39;/\&#39;, \&#39;%2F\&#39;, \&#39;%2f\&#39;), as this will result in the route not being found.
+         * @param {string} inboundDeliveryNumber The number the inbound delivery should be refered by.\\ This number is user defined, must be unique and has a maximum length (check maxLength field).\\ Please ensure that it does not contain any of the following character sequences: \&#39;/\&#39;, \&#39;%2F\&#39;, \&#39;%2f\&#39;, \&#39;?\&#39;, \&#39;%3F\&#39;, \&#39;%3f\&#39;, \&#39;#\&#39;, \&#39;%23\&#39;, \&#39;&amp;\&#39;, \&#39;%26\&#39;. Using any of these will result in the route not being handled correctly.
          * @param {NewInboundDelivery} newInboundDelivery 
          * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
          * @param {*} [options] Override http request option.
@@ -614,7 +614,7 @@ export const InboundDeliveryApiFactory = function (configuration?: Configuration
         /**
          * Add a new inbound delivery referenced by the given deliveryNumber.
          * @summary Add a new inbound delivery.
-         * @param {string} inboundDeliveryNumber The number the inbound delivery should be refered by.\\ This number is user defined, must be unique and has a maximum length (check maxLength field).\\ Please ensure that it does not contain forward slashes or their URL-encoded equivalents (\&#39;/\&#39;, \&#39;%2F\&#39;, \&#39;%2f\&#39;), as this will result in the route not being found.
+         * @param {string} inboundDeliveryNumber The number the inbound delivery should be refered by.\\ This number is user defined, must be unique and has a maximum length (check maxLength field).\\ Please ensure that it does not contain any of the following character sequences: \&#39;/\&#39;, \&#39;%2F\&#39;, \&#39;%2f\&#39;, \&#39;?\&#39;, \&#39;%3F\&#39;, \&#39;%3f\&#39;, \&#39;#\&#39;, \&#39;%23\&#39;, \&#39;&amp;\&#39;, \&#39;%26\&#39;. Using any of these will result in the route not being handled correctly.
          * @param {NewInboundDelivery} newInboundDelivery 
          * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
          * @param {*} [options] Override http request option.
@@ -708,7 +708,7 @@ export interface InboundDeliveryApiInterface {
     /**
      * Add a new inbound delivery referenced by the given deliveryNumber.
      * @summary Add a new inbound delivery.
-     * @param {string} inboundDeliveryNumber The number the inbound delivery should be refered by.\\ This number is user defined, must be unique and has a maximum length (check maxLength field).\\ Please ensure that it does not contain forward slashes or their URL-encoded equivalents (\&#39;/\&#39;, \&#39;%2F\&#39;, \&#39;%2f\&#39;), as this will result in the route not being found.
+     * @param {string} inboundDeliveryNumber The number the inbound delivery should be refered by.\\ This number is user defined, must be unique and has a maximum length (check maxLength field).\\ Please ensure that it does not contain any of the following character sequences: \&#39;/\&#39;, \&#39;%2F\&#39;, \&#39;%2f\&#39;, \&#39;?\&#39;, \&#39;%3F\&#39;, \&#39;%3f\&#39;, \&#39;#\&#39;, \&#39;%23\&#39;, \&#39;&amp;\&#39;, \&#39;%26\&#39;. Using any of these will result in the route not being handled correctly.
      * @param {NewInboundDelivery} newInboundDelivery 
      * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
      * @param {*} [options] Override http request option.
@@ -814,7 +814,7 @@ export class InboundDeliveryApi extends BaseAPI implements InboundDeliveryApiInt
     /**
      * Add a new inbound delivery referenced by the given deliveryNumber.
      * @summary Add a new inbound delivery.
-     * @param {string} inboundDeliveryNumber The number the inbound delivery should be refered by.\\ This number is user defined, must be unique and has a maximum length (check maxLength field).\\ Please ensure that it does not contain forward slashes or their URL-encoded equivalents (\&#39;/\&#39;, \&#39;%2F\&#39;, \&#39;%2f\&#39;), as this will result in the route not being found.
+     * @param {string} inboundDeliveryNumber The number the inbound delivery should be refered by.\\ This number is user defined, must be unique and has a maximum length (check maxLength field).\\ Please ensure that it does not contain any of the following character sequences: \&#39;/\&#39;, \&#39;%2F\&#39;, \&#39;%2f\&#39;, \&#39;?\&#39;, \&#39;%3F\&#39;, \&#39;%3f\&#39;, \&#39;#\&#39;, \&#39;%23\&#39;, \&#39;&amp;\&#39;, \&#39;%26\&#39;. Using any of these will result in the route not being handled correctly.
      * @param {NewInboundDelivery} newInboundDelivery 
      * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
      * @param {*} [options] Override http request option.
