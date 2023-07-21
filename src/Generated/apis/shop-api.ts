@@ -39,11 +39,12 @@ export const ShopApiAxiosParamCreator = function (configuration?: Configuration)
          * @summary Get a list of shops.
          * @param {number} [page] The page to read. Default is the first page.
          * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
+         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
          * @param {string} [filterMetaShopifyShopDomain] A filter for the Shopify hostname of the shop.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getShopCollection: async (page?: number, pageSize?: number, filterMetaShopifyShopDomain?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getShopCollection: async (page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterMetaShopifyShopDomain?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/shop`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -70,6 +71,10 @@ export const ShopApiAxiosParamCreator = function (configuration?: Configuration)
 
             if (pageSize !== undefined) {
                 localVarQueryParameter['pageSize'] = pageSize;
+            }
+
+            if (paginationMode !== undefined) {
+                localVarQueryParameter['paginationMode'] = paginationMode;
             }
 
             if (filterMetaShopifyShopDomain !== undefined) {
@@ -102,12 +107,13 @@ export const ShopApiFp = function(configuration?: Configuration) {
          * @summary Get a list of shops.
          * @param {number} [page] The page to read. Default is the first page.
          * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
+         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
          * @param {string} [filterMetaShopifyShopDomain] A filter for the Shopify hostname of the shop.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getShopCollection(page?: number, pageSize?: number, filterMetaShopifyShopDomain?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ShopCollection>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getShopCollection(page, pageSize, filterMetaShopifyShopDomain, options);
+        async getShopCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterMetaShopifyShopDomain?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ShopCollection>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getShopCollection(page, pageSize, paginationMode, filterMetaShopifyShopDomain, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -125,12 +131,13 @@ export const ShopApiFactory = function (configuration?: Configuration, basePath?
          * @summary Get a list of shops.
          * @param {number} [page] The page to read. Default is the first page.
          * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
+         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
          * @param {string} [filterMetaShopifyShopDomain] A filter for the Shopify hostname of the shop.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getShopCollection(page?: number, pageSize?: number, filterMetaShopifyShopDomain?: string, options?: any): AxiosPromise<ShopCollection> {
-            return localVarFp.getShopCollection(page, pageSize, filterMetaShopifyShopDomain, options).then((request) => request(axios, basePath));
+        getShopCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterMetaShopifyShopDomain?: string, options?: any): AxiosPromise<ShopCollection> {
+            return localVarFp.getShopCollection(page, pageSize, paginationMode, filterMetaShopifyShopDomain, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -146,12 +153,13 @@ export interface ShopApiInterface {
      * @summary Get a list of shops.
      * @param {number} [page] The page to read. Default is the first page.
      * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
+     * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
      * @param {string} [filterMetaShopifyShopDomain] A filter for the Shopify hostname of the shop.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ShopApiInterface
      */
-    getShopCollection(page?: number, pageSize?: number, filterMetaShopifyShopDomain?: string, options?: AxiosRequestConfig): AxiosPromise<ShopCollection>;
+    getShopCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterMetaShopifyShopDomain?: string, options?: AxiosRequestConfig): AxiosPromise<ShopCollection>;
 
 }
 
@@ -167,12 +175,13 @@ export class ShopApi extends BaseAPI implements ShopApiInterface {
      * @summary Get a list of shops.
      * @param {number} [page] The page to read. Default is the first page.
      * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
+     * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
      * @param {string} [filterMetaShopifyShopDomain] A filter for the Shopify hostname of the shop.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ShopApi
      */
-    public getShopCollection(page?: number, pageSize?: number, filterMetaShopifyShopDomain?: string, options?: AxiosRequestConfig) {
-        return ShopApiFp(this.configuration).getShopCollection(page, pageSize, filterMetaShopifyShopDomain, options).then((request) => request(this.axios, this.basePath));
+    public getShopCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterMetaShopifyShopDomain?: string, options?: AxiosRequestConfig) {
+        return ShopApiFp(this.configuration).getShopCollection(page, pageSize, paginationMode, filterMetaShopifyShopDomain, options).then((request) => request(this.axios, this.basePath));
     }
 }
