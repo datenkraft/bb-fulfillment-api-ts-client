@@ -20,23 +20,6 @@ export class DocsService {
     }
 
     /**
-     * Get the openapi documentation in the specified format
-     * Get the openapi documentation in the specified format
-     * @param format Openapi file format
-     * @returns any OK
-     * @throws ApiError
-     */
-    public static async getOpenApiInFormat(
-        format: 'yaml' | 'json',
-    ): Promise<any> {
-        const result = await __request({
-            method: 'GET',
-            path: `/docs/openapi.${format}`,
-        });
-        return result.body;
-    }
-
-    /**
      * Get the changelog in the specified format
      * Get the changelog in the specified format
      * @param format Changelog file format
@@ -53,6 +36,23 @@ export class DocsService {
                 400: `Invalid format`,
                 404: `Changelog not found`,
             },
+        });
+        return result.body;
+    }
+
+    /**
+     * Get the openapi documentation in the specified format
+     * Get the openapi documentation in the specified format
+     * @param format Openapi file format
+     * @returns any OK
+     * @throws ApiError
+     */
+    public static async getOpenApiInFormat(
+        format: 'yaml' | 'json',
+    ): Promise<any> {
+        const result = await __request({
+            method: 'GET',
+            path: `/docs/openapi.${format}`,
         });
         return result.body;
     }

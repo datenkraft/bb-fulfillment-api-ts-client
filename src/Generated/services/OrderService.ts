@@ -42,7 +42,8 @@ export class OrderService {
     /**
      * Add a new order.
      * Add a new order referenced by the given orderNumber.
-     * @param orderNumber The number the order should be refered by. This number is user defined, must be unique and has a maximum length (check maxLength field).
+     * @param orderNumber The number the order should be refered by. This number is user defined, must be unique and has
+     * a maximum length (check maxLength field).
      * @param requestBody
      * @returns errorResponse Unexpected error
      * @returns order Created
@@ -60,7 +61,11 @@ export class OrderService {
                 400: `Bad Request`,
                 401: `Unauthorized`,
                 403: `Forbidden`,
-                422: `Unprocessable Entity`,
+                422: `Unprocessable Entity
+                 *
+                 * Available message codes:
+                 * - PRODUCT_NOT_FOUND: A product could not be found.
+                 * - DUPLICATED_PRODUCT: There are multiple orderItems with the same productNumber.`,
                 500: `Server error`,
             },
         });
