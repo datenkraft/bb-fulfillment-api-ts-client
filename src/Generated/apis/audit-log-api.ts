@@ -39,13 +39,14 @@ export const AuditLogApiAxiosParamCreator = function (configuration?: Configurat
          * @summary Get the audit log.
          * @param {number} [page] The page to read. Default is the first page.
          * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
+         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
          * @param {string} [filterEndpoint] A filter for restricting the audit log to a endpoint.
          * @param {string} [filterVersion] A filter for restricting the audit log to a endpoint version.
          * @param {any} [filterIdentifier] A filter for querying actions for a identifier.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getAuditLogCollection: async (page?: number, pageSize?: number, filterEndpoint?: string, filterVersion?: string, filterIdentifier?: any, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getAuditLogCollection: async (page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterEndpoint?: string, filterVersion?: string, filterIdentifier?: any, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/audit-log`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -72,6 +73,10 @@ export const AuditLogApiAxiosParamCreator = function (configuration?: Configurat
 
             if (pageSize !== undefined) {
                 localVarQueryParameter['pageSize'] = pageSize;
+            }
+
+            if (paginationMode !== undefined) {
+                localVarQueryParameter['paginationMode'] = paginationMode;
             }
 
             if (filterEndpoint !== undefined) {
@@ -112,14 +117,15 @@ export const AuditLogApiFp = function(configuration?: Configuration) {
          * @summary Get the audit log.
          * @param {number} [page] The page to read. Default is the first page.
          * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
+         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
          * @param {string} [filterEndpoint] A filter for restricting the audit log to a endpoint.
          * @param {string} [filterVersion] A filter for restricting the audit log to a endpoint version.
          * @param {any} [filterIdentifier] A filter for querying actions for a identifier.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getAuditLogCollection(page?: number, pageSize?: number, filterEndpoint?: string, filterVersion?: string, filterIdentifier?: any, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AuditLogCollection>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getAuditLogCollection(page, pageSize, filterEndpoint, filterVersion, filterIdentifier, options);
+        async getAuditLogCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterEndpoint?: string, filterVersion?: string, filterIdentifier?: any, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AuditLogCollection>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getAuditLogCollection(page, pageSize, paginationMode, filterEndpoint, filterVersion, filterIdentifier, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -137,14 +143,15 @@ export const AuditLogApiFactory = function (configuration?: Configuration, baseP
          * @summary Get the audit log.
          * @param {number} [page] The page to read. Default is the first page.
          * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
+         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
          * @param {string} [filterEndpoint] A filter for restricting the audit log to a endpoint.
          * @param {string} [filterVersion] A filter for restricting the audit log to a endpoint version.
          * @param {any} [filterIdentifier] A filter for querying actions for a identifier.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getAuditLogCollection(page?: number, pageSize?: number, filterEndpoint?: string, filterVersion?: string, filterIdentifier?: any, options?: any): AxiosPromise<AuditLogCollection> {
-            return localVarFp.getAuditLogCollection(page, pageSize, filterEndpoint, filterVersion, filterIdentifier, options).then((request) => request(axios, basePath));
+        getAuditLogCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterEndpoint?: string, filterVersion?: string, filterIdentifier?: any, options?: any): AxiosPromise<AuditLogCollection> {
+            return localVarFp.getAuditLogCollection(page, pageSize, paginationMode, filterEndpoint, filterVersion, filterIdentifier, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -160,6 +167,7 @@ export interface AuditLogApiInterface {
      * @summary Get the audit log.
      * @param {number} [page] The page to read. Default is the first page.
      * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
+     * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
      * @param {string} [filterEndpoint] A filter for restricting the audit log to a endpoint.
      * @param {string} [filterVersion] A filter for restricting the audit log to a endpoint version.
      * @param {any} [filterIdentifier] A filter for querying actions for a identifier.
@@ -167,7 +175,7 @@ export interface AuditLogApiInterface {
      * @throws {RequiredError}
      * @memberof AuditLogApiInterface
      */
-    getAuditLogCollection(page?: number, pageSize?: number, filterEndpoint?: string, filterVersion?: string, filterIdentifier?: any, options?: AxiosRequestConfig): AxiosPromise<AuditLogCollection>;
+    getAuditLogCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterEndpoint?: string, filterVersion?: string, filterIdentifier?: any, options?: AxiosRequestConfig): AxiosPromise<AuditLogCollection>;
 
 }
 
@@ -183,6 +191,7 @@ export class AuditLogApi extends BaseAPI implements AuditLogApiInterface {
      * @summary Get the audit log.
      * @param {number} [page] The page to read. Default is the first page.
      * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
+     * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
      * @param {string} [filterEndpoint] A filter for restricting the audit log to a endpoint.
      * @param {string} [filterVersion] A filter for restricting the audit log to a endpoint version.
      * @param {any} [filterIdentifier] A filter for querying actions for a identifier.
@@ -190,7 +199,7 @@ export class AuditLogApi extends BaseAPI implements AuditLogApiInterface {
      * @throws {RequiredError}
      * @memberof AuditLogApi
      */
-    public getAuditLogCollection(page?: number, pageSize?: number, filterEndpoint?: string, filterVersion?: string, filterIdentifier?: any, options?: AxiosRequestConfig) {
-        return AuditLogApiFp(this.configuration).getAuditLogCollection(page, pageSize, filterEndpoint, filterVersion, filterIdentifier, options).then((request) => request(this.axios, this.basePath));
+    public getAuditLogCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterEndpoint?: string, filterVersion?: string, filterIdentifier?: any, options?: AxiosRequestConfig) {
+        return AuditLogApiFp(this.configuration).getAuditLogCollection(page, pageSize, paginationMode, filterEndpoint, filterVersion, filterIdentifier, options).then((request) => request(this.axios, this.basePath));
     }
 }
