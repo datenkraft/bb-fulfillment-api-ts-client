@@ -1,0 +1,25 @@
+.build-client:
+  stage: build
+  extends:
+    - .use-service-image
+  before_script:
+    - git config --global --add safe.directory ${CI_PROJECT_DIR}
+    - ls -al
+    - env
+  script:
+    - '## Install dependencies'
+    - npm install
+    - '## ESLint'
+    - npm run lint
+    - '## Build'
+    - npm run build
+  artifacts:
+    expire_in: 1 hour
+    untracked: true
+  cache:
+    key:
+      prefix: '${CI_PROJECT_PATH_SLUG}-dev'
+      files:
+        - package-lock.json
+    paths:
+      - node_modules

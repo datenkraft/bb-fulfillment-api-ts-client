@@ -1,0 +1,24 @@
+.test-client:
+  stage: test
+  extends:
+    - .use-service-image
+  needs:
+    - job: build-client
+      artifacts: true
+  before_script:
+    - git config --global --add safe.directory ${CI_PROJECT_DIR}
+    - ls -al
+    - env
+  script:
+    - '## Create folder for test results'
+    - mkdir -p testresults
+    - '## Unit tests'
+    - |
+      npm run test \
+        --json \
+        --outputFile=testresults/jest.json
+  artifacts:
+    expire_in: 1 week
+    when: always
+    paths:
+      - testresults/
