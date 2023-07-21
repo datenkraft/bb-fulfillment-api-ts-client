@@ -10,6 +10,151 @@ import { request as __request } from '../core/request';
 export class InboundDeliveryService {
 
     /**
+     * Import one or more new inbound deliveries.
+     * Import one or more new inbound deliveries.
+     * The file type is controlled by the content type attribute of the uploaded file
+     * @param requestBody
+     * @returns errorResponse Unexpected Error
+     * @returns any Multi Status
+     * @throws ApiError
+     */
+    public static async inboundDeliveryBulkImport(
+        requestBody: any,
+    ): Promise<errorResponse | Array<{
+        /**
+         * HTTP Status code of the single request
+         */
+        code: number,
+        /**
+         * Description for the HTTP Status code of the single request
+         */
+        message: string,
+        /**
+         * Reference for the entry tried to post represented by a key-value pair.
+         */
+        reference: Record<string, string>,
+        content: (inboundDelivery | errorResponse),
+    }>> {
+        const result = await __request({
+            method: 'POST',
+            path: `/bulk-import/inbound-delivery`,
+            body: requestBody,
+            errors: {
+                400: `Bad Request`,
+                401: `Unauthorized`,
+                403: `Forbidden`,
+                500: `Server Error`,
+            },
+        });
+        return result.body;
+    }
+
+    /**
+     * Get a spreadsheet template for performing POST queries to the respective endpoint.
+     * Get a spreadsheet template for performing POST queries to the respective endpoint.
+     * The file type is controlled by the accept header.
+     * The fill-in help in the second line can be removed or remain.
+     * @returns any OK
+     * @returns errorResponse Unexpected Error
+     * @throws ApiError
+     */
+    public static async getInboundDeliveryBulkImportTemplate(): Promise<any | errorResponse> {
+        const result = await __request({
+            method: 'GET',
+            path: `/bulk-import/template/inbound-delivery`,
+            errors: {
+                500: `Server Error`,
+            },
+        });
+        return result.body;
+    }
+
+    /**
+     * Get a list of inbound deliveries.
+     * Get a list of inbound deliveries.
+     * @param page The page to read. Default is the first page.
+     * @param pageSize The maximum size per page is 100. Default is 100.
+     * @param paginationMode The paginationMode to use:
+     * - default: The total number of items in the collection will not be calculated.
+     * - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
+     * @param sortBy Sort the results by one or more comma-separated sort criteria, with the criterion specified first having priority.
+     *
+     * Available sort orders:
+     * - asc: ascending order
+     * - desc: descending order
+     *
+     * Available fields for sorting:
+     * - expectedDeliveryDate
+     *
+     * The default sort order is expectedDeliveryDate:desc.
+     * @param filterStatus Status of the inbound delivery (optional).
+     *
+     * The status for not yet completed is subject to change. you may poll for changes.
+     * - open: The inbound delivery has not yet been delivered.
+     * - in_progress: The inbound delivery is being processed in our warehouse.
+     * - completed: The inbound delivery has been processed in our warehouse.
+     * - deleted: The inbound delivery has been deleted.
+     * @param filterShopCode The shopCode used internally to distinguish between clients.\
+     * _This code is optional, if your identity is assigned to only one shop.
+     * Otherwise the response would be a 422 HTTP Error._
+     * @param filterExpectedDeliveryDateFrom The start date (inclusive) in format Y-m-d for which inbound deliveries should be returned (regarding the expected delivery date).
+     * @param filterExpectedDeliveryDateTo The end date (inclusive) in format Y-m-d for which inbound deliveries should be returned (regarding the expected delivery date).
+     * @param filterSearch filter for inbound delivery search.\
+     * \
+     * Usage:
+     * - Provide one or multiple search terms to filter results.
+     * - Multiple search terms are separated by spaces.
+     * - The search is not case sensitive.
+     * - The search is enabled for the fields inboundDeliveryName and inboundDeliveryNumber (without the numberPrefix of the associated supplier).
+     * - Each search term filters the response for inbound deliveries where at least one of the fields contains the search term.
+     * - For example, filter[search]='term1 term2' will filter the result for products where 'term1' is found in any field and 'term2' is also found in any field.\
+     * If only 'term1' or 'term2' is found in the fields, the product is not included in the results.
+     * @param filterCreateDateFrom The start date (inclusive) in ISO 8601 format for which inbound deliveries should be returned (regarding the creation date).
+     * @param filterCreateDateTo The end date (inclusive) in ISO 8601 format for which inbound deliveries should be returned (regarding the creation date).
+     * @returns inboundDeliveryCollection OK
+     * @returns errorResponse Unexpected error
+     * @throws ApiError
+     */
+    public static async getInboundDeliveryCollection(
+        page?: number,
+        pageSize?: number,
+        paginationMode: 'default' | 'totalCount' = 'default',
+        sortBy?: string,
+        filterStatus?: string,
+        filterShopCode?: string,
+        filterExpectedDeliveryDateFrom?: string,
+        filterExpectedDeliveryDateTo?: string,
+        filterSearch?: string,
+        filterCreateDateFrom?: string,
+        filterCreateDateTo?: string,
+    ): Promise<inboundDeliveryCollection | errorResponse> {
+        const result = await __request({
+            method: 'GET',
+            path: `/inbound-delivery`,
+            query: {
+                'page': page,
+                'pageSize': pageSize,
+                'paginationMode': paginationMode,
+                'sortBy': sortBy,
+                'filter[status]': filterStatus,
+                'filter[shopCode]': filterShopCode,
+                'filter[expectedDeliveryDateFrom]': filterExpectedDeliveryDateFrom,
+                'filter[expectedDeliveryDateTo]': filterExpectedDeliveryDateTo,
+                'filter[search]': filterSearch,
+                'filter[createDateFrom]': filterCreateDateFrom,
+                'filter[createDateTo]': filterCreateDateTo,
+            },
+            errors: {
+                401: `Unauthorized`,
+                403: `Forbidden`,
+                422: `Unprocessable Entity`,
+                500: `Server error`,
+            },
+        });
+        return result.body;
+    }
+
+    /**
      * Get an inbound delivery by inbound delivery number.
      * Get an inbound delivery by inbound delivery number.
      * @param inboundDeliveryNumber The inbound delivery number as defined during the creation of the inbound delivery.
@@ -35,7 +180,10 @@ export class InboundDeliveryService {
                 401: `Unauthorized`,
                 403: `Forbidden`,
                 404: `Not Found`,
-                409: `Conflict`,
+                409: `Conflict
+                 *
+                 * Available message codes:
+                 * - AMBIGUOUS_INBOUND_DELIVERY: Multiple inbound deliveries were found.`,
                 422: `Unprocessable Entity`,
                 500: `Server error`,
             },
@@ -46,8 +194,10 @@ export class InboundDeliveryService {
     /**
      * Add a new inbound delivery.
      * Add a new inbound delivery referenced by the given deliveryNumber.
-     * @param inboundDeliveryNumber The number the inbound delivery should be refered by.
-     * This number is user defined, must be unique and has a maximum length (check maxLength field).
+     * @param inboundDeliveryNumber The number the inbound delivery should be refered by.\
+     * This number is user defined, must be unique and has a maximum length (check maxLength field).\
+     * Please ensure that it does not contain any of the following character sequences: '/', '%2F', '%2f', '?', '%3F', '%3f',
+     * '#', '%23', '&', '%26'. Using any of these will result in the route not being handled correctly.
      * @param requestBody
      * @param shopCode The shopCode used internally to distinguish between clients.\
      * _This code is optional, if your identity is assigned to only one shop.
@@ -72,113 +222,17 @@ export class InboundDeliveryService {
                 400: `Bad Request`,
                 401: `Unauthorized`,
                 403: `Forbidden`,
-                422: `Unprocessable Entity`,
-                500: `Server error`,
-            },
-        });
-        return result.body;
-    }
-
-    /**
-     * Get a spreadsheet template for performing POST queries to the respective endpoint.
-     * Get a spreadsheet template for performing POST queries to the respective endpoint.
-     * @param format The inbound delivery number as defined during the creation of the inbound delivery.
-     * @returns any OK
-     * @returns errorResponse Unexpected error
-     * @throws ApiError
-     */
-    public static async getInboundDeliveryBulkImportTemplate(
-        format: 'xlsx' | 'csv',
-    ): Promise<any | errorResponse> {
-        const result = await __request({
-            method: 'GET',
-            path: `/bulk-import/template/inbound-delivery.${format}`,
-            errors: {
-                500: `Server error`,
-            },
-        });
-        return result.body;
-    }
-
-    /**
-     * Get a list of inbound deliveries.
-     * Get a list of inbound deliveries.
-     * @param page The page to read. Default is the first page.
-     * @param pageSize The maximum size per page is 100. Default is 100.
-     * @param filterStatus Status of the inbound delivery (optional).
-     *
-     * The status for not yet completed is subject to change. you may poll for changes.
-     * - open: The inbound delivery has not yet been delivered.
-     * - in_progress: The inbound delivery is being processed in our warehouse.
-     * - completed: The inbound delivery has been processed in our warehouse.
-     * - deleted: The inbound delivery has been deleted.
-     * @param filterShopCode The shopCode used internally to distinguish between clients.\
-     * _This code is optional, if your identity is assigned to only one shop.
-     * Otherwise the response would be a 422 HTTP Error._
-     * @returns inboundDeliveryCollection OK
-     * @returns errorResponse Unexpected error
-     * @throws ApiError
-     */
-    public static async getInboundDeliveryCollection(
-        page?: number,
-        pageSize?: number,
-        filterStatus?: string,
-        filterShopCode?: string,
-    ): Promise<inboundDeliveryCollection | errorResponse> {
-        const result = await __request({
-            method: 'GET',
-            path: `/inbound-delivery`,
-            query: {
-                'page': page,
-                'pageSize': pageSize,
-                'filter[status]': filterStatus,
-                'filter[shopCode]': filterShopCode,
-            },
-            errors: {
-                401: `Unauthorized`,
-                403: `Forbidden`,
-                422: `Unprocessable Entity`,
-                500: `Server error`,
-            },
-        });
-        return result.body;
-    }
-
-    /**
-     * Import one or more new inbound deliveries.
-     * Import one or more new inbound deliveries.
-     * @param format The format for the upload.
-     * @param requestBody
-     * @returns errorResponse Unexpected error
-     * @returns any Multi status
-     * @throws ApiError
-     */
-    public static async inboundDeliveryBulkImport(
-        format: 'xlsx' | 'csv',
-        requestBody: any,
-    ): Promise<errorResponse | Array<{
-        /**
-         * HTTP Status code of the single request
-         */
-        code: number,
-        /**
-         * Description for the HTTP Status code of the single request
-         */
-        message: string,
-        /**
-         * Reference for the entry tried to post represented by a key-value pair.
-         */
-        reference: Record<string, string>,
-        content: (inboundDelivery | errorResponse),
-    }>> {
-        const result = await __request({
-            method: 'POST',
-            path: `/bulk-import/inbound-delivery.${format}`,
-            body: requestBody,
-            errors: {
-                400: `Bad Request`,
-                401: `Unauthorized`,
-                403: `Forbidden`,
+                422: `Unprocessable Entity
+                 *
+                 * Available message codes:
+                 * - SUPPLIER_NOT_FOUND: The supplier with the given supplierNumber could not be found.
+                 * - PRODUCT_NOT_FOUND: The product with the given productNumber could not be found.
+                 * - DUPLICATED_PRODUCT: There are multiple products with the same productNumber.
+                 * - PRODUCT_COULD_NOT_BE_ADDED_FOR_SUPPLIER: At least one of the the given products could not be added for the supplier.
+                 * - INBOUND_DELIVERY_NOTIFICATION_NOT_SENDABLE: Could not send the delivery notification to the supplier. The inbound
+                 * delivery has been deleted.
+                 * - INBOUND_DELIVERY_NUMBER_STARTS_WITH_RESERVED_NUMBER_PREFIX: The inboundDeliveryNumber starts with a prefix that is
+                 * reserved for internal references.`,
                 500: `Server error`,
             },
         });
@@ -187,7 +241,9 @@ export class InboundDeliveryService {
 
     /**
      * Cancel a inbound delivery.
-     * Cancel a inbound delivery referenced by the given inboundDeliveryNumber. An inboundDeliveryNumber from a canceled inbound delivery cannot be used for a new inbound delivery, because they must always be unique.
+     * Cancel a inbound delivery referenced by the given inboundDeliveryNumber.\
+     * An inboundDeliveryNumber from a canceled inbound delivery cannot be used for a new inbound delivery, because they must
+     * always be unique.
      * @param inboundDeliveryNumber The number the inbound delivery should be refered by.
      * This number is user defined, must be unique and has a maximum length (check maxLength field).
      * @param shopCode The shopCode used internally to distinguish between clients.\
@@ -212,7 +268,57 @@ export class InboundDeliveryService {
                 401: `Unauthorized`,
                 403: `Forbidden`,
                 404: `Not Found`,
-                409: `Conflict`,
+                409: `Conflict
+                 *
+                 * Available message codes:
+                 * - AMBIGUOUS_INBOUND_DELIVERY: Multiple inbound deliveries were found.
+                 * - INBOUND_DELIVERY_ALREADY_CANCELED: The inbound delivery is already canceled.
+                 * - INBOUND_DELIVERY_NOT_CANCELABLE: The inbound delivery could not be canceled.`,
+                422: `Unprocessable Entity`,
+                500: `Server error`,
+            },
+        });
+        return result.body;
+    }
+
+    /**
+     * Download inbound delivery related documents
+     * Allows to download a document associated with the given inbound delivery.
+     * @param inboundDeliveryNumber The inbound delivery number as defined during the creation of the inbound delivery.
+     * @param documentCode The document type to download. The file format is determined by the Accept request header.\
+     * Note: only a limited amount of document type to file format combinations are available:
+     * - supplierDeliveryLabel:\
+     * the label to put on the inbound delivery for warehouse processing.\
+     * Accept header: application/pdf
+     * - details:\
+     * a spreadsheet containing details about the inbound delivery.\
+     * Accept header: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+     *
+     * @param shopCode The shopCode used internally to distinguish between clients.\
+     * _This code is optional, if your identity is assigned to only one shop.
+     * Otherwise the response would be a 422 HTTP Error._
+     * @returns any Returns the document with the file format according to the sent Accept request header.
+     * @returns errorResponse Unexpected error
+     * @throws ApiError
+     */
+    public static async getInboundDeliveryDocument(
+        inboundDeliveryNumber: string,
+        documentCode: 'supplierDeliveryLabel' | 'details',
+        shopCode?: string,
+    ): Promise<any | errorResponse> {
+        const result = await __request({
+            method: 'GET',
+            path: `/inbound-delivery/${inboundDeliveryNumber}/document/${documentCode}`,
+            query: {
+                'shopCode': shopCode,
+            },
+            errors: {
+                400: `Bad Request`,
+                401: `Unauthorized`,
+                403: `Forbidden`,
+                404: `Not Found`,
+                406: `The requested document could not be generated in
+                 * the format specified by the Accept request header.`,
                 422: `Unprocessable Entity`,
                 500: `Server error`,
             },

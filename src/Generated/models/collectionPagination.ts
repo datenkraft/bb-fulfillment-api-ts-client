@@ -11,4 +11,9 @@ export type collectionPagination = {
      * The page size used for reading the collection.
      */
     pageSize?: number;
+    /**
+     * The total number of items in the collection.\
+     * Note: This can be null depending on the used paginationMode.
+     */
+    totalCount?: number | null;
 }

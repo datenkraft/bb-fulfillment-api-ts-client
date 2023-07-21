@@ -1,46 +1,50 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
+import type { auditLogCollection } from '../models/auditLogCollection';
 import type { errorResponse } from '../models/errorResponse';
-import type { manufacturerCollection } from '../models/manufacturerCollection';
 import { request as __request } from '../core/request';
 
-export class ManufacturerService {
+export class AuditLogService {
 
     /**
-     * Get a list of manufacturers.
-     * Get a list of manufacturers.
+     * Get the audit log.
+     * Get the audit log.
      * @param page The page to read. Default is the first page.
      * @param pageSize The maximum size per page is 100. Default is 100.
      * @param paginationMode The paginationMode to use:
      * - default: The total number of items in the collection will not be calculated.
      * - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
-     * @param filterShopCode The shopCode used internally to distinguish between clients.\
-     * _This code is optional, if your identity is assigned to only one shop.
-     * Otherwise the response would be a 422 HTTP Error._
-     * @returns manufacturerCollection OK
+     * @param filterEndpoint A filter for restricting the audit log to a endpoint.
+     * @param filterVersion A filter for restricting the audit log to a endpoint version.
+     * @param filterIdentifier A filter for querying actions for a identifier.
+     * @returns auditLogCollection OK
      * @returns errorResponse Unexpected error
      * @throws ApiError
      */
-    public static async getManufacturerCollection(
+    public static async getAuditLogCollection(
         page?: number,
         pageSize?: number,
         paginationMode: 'default' | 'totalCount' = 'default',
-        filterShopCode?: string,
-    ): Promise<manufacturerCollection | errorResponse> {
+        filterEndpoint?: string,
+        filterVersion?: string,
+        filterIdentifier?: any,
+    ): Promise<auditLogCollection | errorResponse> {
         const result = await __request({
             method: 'GET',
-            path: `/manufacturer`,
+            path: `/audit-log`,
             query: {
                 'page': page,
                 'pageSize': pageSize,
                 'paginationMode': paginationMode,
-                'filter[shopCode]': filterShopCode,
+                'filter[endpoint]': filterEndpoint,
+                'filter[version]': filterVersion,
+                'filter[identifier]': filterIdentifier,
             },
             errors: {
+                400: `Bad Request`,
                 401: `Unauthorized`,
                 403: `Forbidden`,
-                422: `Unprocessable Entity`,
                 500: `Server error`,
             },
         });

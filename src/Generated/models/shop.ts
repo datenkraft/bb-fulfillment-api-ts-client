@@ -66,5 +66,23 @@ export type shop = {
          * customers or not.
          */
         invoiceEnabled: boolean | null,
+        /**
+         * Overwrite currency of shopify orders.
+         */
+        defaultCurrency?: shop.defaultCurrency | null,
     } | null;
+}
+
+export namespace shop {
+
+    /**
+     * Overwrite currency of shopify orders.
+     */
+    export enum defaultCurrency {
+        GBP = 'GBP',
+        SEK = 'SEK',
+        PLN = 'PLN',
+    }
+
+
 }

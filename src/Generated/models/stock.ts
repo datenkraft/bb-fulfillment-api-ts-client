@@ -11,7 +11,8 @@ export type stock = {
      */
     productNumber?: string;
     /**
-     * Amount stocked in the warehouse - without considering the reserved amount for ongoing orders
+     * Amount stocked in the warehouse
+     * - the reserved amount for ongoing orders is NOT subtracted
      */
     stocked?: number;
     /**
@@ -19,7 +20,9 @@ export type stock = {
      */
     reserved?: number;
     /**
-     * Amount available for orders - with the reserved amount for ongoing orders taken into account
+     * Amount available for orders
+     * - the reserved amount for ongoing orders is subtracted\
+     * - if the overbookingPossibilityStatus is 'only_inbound_deliveries', the incoming amount is added
      */
     available?: number;
     /**

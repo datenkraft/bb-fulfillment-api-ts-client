@@ -8,7 +8,21 @@
 export type orderDelivery = {
     number?: string;
     /**
-     * Status code of the delivery
+     * Status of the delivery.
+     * - delivered: The delivery has been transferred to the delivery agent.
      */
-    status?: string;
+    status?: orderDelivery.status;
+}
+
+export namespace orderDelivery {
+
+    /**
+     * Status of the delivery.
+     * - delivered: The delivery has been transferred to the delivery agent.
+     */
+    export enum status {
+        DELIVERED = 'delivered',
+    }
+
+
 }

@@ -26,5 +26,23 @@ export type updateShop = {
          * Flag to mark if a test suffix should be added to internal references.
          */
         addTestSuffixToInternalReference: boolean | null,
+        /**
+         * Overwrite currency of shopify orders.
+         */
+        defaultCurrency?: updateShop.defaultCurrency | null,
     } | null;
+}
+
+export namespace updateShop {
+
+    /**
+     * Overwrite currency of shopify orders.
+     */
+    export enum defaultCurrency {
+        GBP = 'GBP',
+        SEK = 'SEK',
+        PLN = 'PLN',
+    }
+
+
 }
