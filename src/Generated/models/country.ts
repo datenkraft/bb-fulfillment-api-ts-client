@@ -21,4 +21,8 @@ export type country = {
      */
     phoneRequired?: boolean;
     provinces?: Array<countryProvinces> | null;
+    /**
+     * The currency code which should be used for orders to the country (ISO 4217)
+     */
+    currencyCode?: string;
 }

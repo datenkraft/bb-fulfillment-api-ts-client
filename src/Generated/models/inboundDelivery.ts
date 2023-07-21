@@ -10,7 +10,8 @@ import type { newInboundDelivery } from './newInboundDelivery';
  */
 export type inboundDelivery = (newInboundDelivery & {
     /**
-     * Number of the inbound delivery
+     * The inbound delivery number.\
+     * Note: If this number is prefixed with 'NICE', it means that the inbound delivery was created was created manually by niceshops.
      */
     inboundDeliveryNumber?: string | null,
     /**
@@ -48,6 +49,10 @@ export type inboundDelivery = (newInboundDelivery & {
      * If an empty string (") is returned, it means that no delivery slip number is available for the inbound delivery.
      */
     deliverySlipNumber?: string | null,
+    /**
+     * Creation date of the inbound delivery. Format in ISO 8601 (timezone CET/CEST)
+     */
+    createDate?: string | null,
 });
 
 export namespace inboundDelivery {

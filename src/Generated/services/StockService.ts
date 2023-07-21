@@ -12,6 +12,9 @@ export class StockService {
      * Get the stock for all (per default only valid) products or for a specific product.
      * @param page The page to read. Default is the first page.
      * @param pageSize The maximum size per page is 100. Default is 20.
+     * @param paginationMode The paginationMode to use:
+     * - default: The total number of items in the collection will not be calculated.
+     * - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
      * @param filterProductNumber Filter for product number(s) (optional).
      * @param filterShopCode The shopCode used internally to distinguish between clients.\
      * _This code is optional, if your identity is assigned to only one shop.
@@ -27,6 +30,7 @@ export class StockService {
     public static async getStockCollection(
         page?: number,
         pageSize?: number,
+        paginationMode: 'default' | 'totalCount' = 'default',
         filterProductNumber?: string,
         filterShopCode?: string,
         filterProductStatus?: '_all' | '_invalid',
@@ -37,6 +41,7 @@ export class StockService {
             query: {
                 'page': page,
                 'pageSize': pageSize,
+                'paginationMode': paginationMode,
                 'filter[productNumber]': filterProductNumber,
                 'filter[shopCode]': filterShopCode,
                 'filter[productStatus]': filterProductStatus,

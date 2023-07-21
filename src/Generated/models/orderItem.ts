@@ -18,7 +18,7 @@ export type orderItem = {
      * Product number of the customer
      */
     externalProductNumber?: string | null;
-    price?: orderItemPrice | null;
+    price?: orderItemPrice;
     /**
      * Additional options (optional, TBD)
      */

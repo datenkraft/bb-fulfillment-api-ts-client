@@ -14,6 +14,9 @@ export class ShopService {
      * Get a list of shops the used identity is assigned to.
      * @param page The page to read. Default is the first page.
      * @param pageSize The maximum size per page is 100. Default is 100.
+     * @param paginationMode The paginationMode to use:
+     * - default: The total number of items in the collection will not be calculated.
+     * - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
      * @param filterMetaShopifyShopDomain A filter for the Shopify hostname of the shop.
      * @param filterMetaShopifyDefaultShop A filter for Shopify default shops.\
      * Note: For shops that are part of a Shopify installation that uses multiple shops,
@@ -28,6 +31,7 @@ export class ShopService {
     public static async getShopCollection(
         page?: number,
         pageSize?: number,
+        paginationMode: 'default' | 'totalCount' = 'default',
         filterMetaShopifyShopDomain?: string,
         filterMetaShopifyDefaultShop?: boolean,
         filterMetaShopifyOrderCountryCode?: string,
@@ -39,6 +43,7 @@ export class ShopService {
             query: {
                 'page': page,
                 'pageSize': pageSize,
+                'paginationMode': paginationMode,
                 'filter[meta][shopifyShopDomain]': filterMetaShopifyShopDomain,
                 'filter[meta][shopifyDefaultShop]': filterMetaShopifyDefaultShop,
                 'filter[meta][shopifyOrderCountryCode]': filterMetaShopifyOrderCountryCode,

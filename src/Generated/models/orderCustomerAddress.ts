@@ -9,7 +9,8 @@ export type orderCustomerAddress = {
     district?: string | null;
     city: string;
     /**
-     * Mandatory if province codes for country (GET /country) exist (ISO 3166-2) - https://www.iso.org/iso-3166-country-codes.html
+     * Mandatory if province codes for country (GET /country) exist
+     * (ISO 3166-2) - https://www.iso.org/iso-3166-country-codes.html
      */
     provinceCode?: string | null;
     /**

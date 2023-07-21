@@ -2,6 +2,8 @@
 /* tslint:disable */
 /* eslint-disable */
 
+import type { productJournalReference } from './productJournalReference';
+
 export type productJournal = {
     /**
      * The API internal id of the journal entry.
@@ -34,6 +36,7 @@ export type productJournal = {
      * Note: This might not be set for all reasons.
      */
     stockNew?: number | null;
+    reference?: productJournalReference;
 }
 
 export namespace productJournal {

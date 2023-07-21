@@ -18,7 +18,6 @@ export type delivery = {
     orderNumber?: string | null;
     /**
      * Status of the delivery.
-     * - in_progress: The delivery is in the process of being packaged.
      * - delivered: The delivery has been transferred to the delivery agent.
      */
     status?: delivery.status;
@@ -32,11 +31,9 @@ export namespace delivery {
 
     /**
      * Status of the delivery.
-     * - in_progress: The delivery is in the process of being packaged.
      * - delivered: The delivery has been transferred to the delivery agent.
      */
     export enum status {
-        IN_PROGRESS = 'in_progress',
         DELIVERED = 'delivered',
     }
 

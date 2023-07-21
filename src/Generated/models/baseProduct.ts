@@ -3,34 +3,23 @@
 /* eslint-disable */
 
 import type { productPurchasePrice } from './productPurchasePrice';
+import type { variantGroupEnum } from './variantGroupEnum';
 
 /**
  * Data to represent a product
  */
 export type baseProduct = {
     /**
-     * Type of the product ('standard' if no value is provided)
+     * Type of the product
      */
     productType: baseProduct.productType;
-    /**
-     * Title of the product
-     */
-    productTitle?: string;
-    /**
-     * Original title of the product
-     */
-    productTitleOriginal?: string;
-    /**
-     * Long description of the article
-     */
-    articleLongDescription?: string;
     /**
      * The title of the article variant. \
      * Must not be set when the articleVariantType is 'standard_autotitle'.
      */
     articleVariantTitle?: string | null;
     /**
-     * The type of the article variant ('standard_autotitle' if no value is provided). \
+     * The type of the article variant. \
      * The articleVariantType 'standard_autotitle' is only allowed for the variantGroup 'content'
      */
     articleVariantType: baseProduct.articleVariantType | null;
@@ -57,45 +46,20 @@ export type baseProduct = {
     /**
      * The variant group of the product
      */
-    variantGroup: baseProduct.variantGroup;
+    variantGroup: (variantGroupEnum | string);
     /**
      * The EAN of the product
      */
     ean?: string | null;
     /**
-     * The TARIC code of the product
-     */
-    taricCode?: string;
-    /**
-     * The list price of the product in EUR
-     */
-    listPriceEUR?: number;
-    /**
      * The suggested retail price for the product in EUR
      */
     suggestedRetailPriceEUR?: number | null;
-    /**
-     * One of the available tax codes.
-     * - std: Standard tax rate (AT 20%)
-     * - spc: 1st tax rate (AT 13%)
-     * - erm: 2nd tax rate (AT 10%)
-     * - erm3: 3rd tax rate (AT 5%)
-     * - nsp: not taxable (0%)
-     */
-    taxCode?: baseProduct.taxCode;
     purchasePrices?: Array<productPurchasePrice> | null;
-    /**
-     * Number of the manufacturer.
-     */
-    manufacturerNumber?: string;
     /**
      * Country code of the manufacturer (ISO 3166-1 alpha-2)
      */
     manufacturerCountryCode: string | null;
-    /**
-     * Number of the supplier
-     */
-    supplierNumber?: string;
     /**
      * The language code used for the product (ISO 639-1)
      */
@@ -105,33 +69,55 @@ export type baseProduct = {
 export namespace baseProduct {
 
     /**
-     * Type of the product ('standard' if no value is provided)
+     * Type of the product
      */
     export enum productType {
         STANDARD = 'standard',
+        CHILLED_PRODUCT = 'chilled_product',
         SAMPLE = 'sample',
         SELLABLE_SAMPLE = 'sellable_sample',
         TESTER = 'tester',
         PACKING_MATERIAL = 'packing_material',
+        LIMITED_EDITION = 'limited_edition',
         BOOKING_SEMINAR = 'booking_seminar',
         BOOKING_APPOINTMENT = 'booking_appointment',
+        VOUCHER_PRINT = 'voucher_print',
+        VOUCHER_DIGITAL = 'voucher_digital',
+        BUNDLE = 'bundle',
+        PRINT_GREETINGCARD = 'print_greetingcard',
         PROMO_MATERIAL = 'promo_material',
+        PERSONALIZED = 'personalized',
         RAW_MATERIAL = 'raw_material',
         WORKING_MATERIAL = 'working_material',
         SERVICE_PRINCIPAL = 'service_principal',
         SERVICE_ANCILLARY = 'service_ancillary',
         INQUIRY_TESTDRIVE = 'inquiry_testdrive',
         INQUIRY_RAFFLE = 'inquiry_raffle',
+        OTHER_SERVICES = 'other_services',
     }
 
     /**
-     * The type of the article variant ('standard_autotitle' if no value is provided). \
+     * The type of the article variant. \
      * The articleVariantType 'standard_autotitle' is only allowed for the variantGroup 'content'
      */
     export enum articleVariantType {
+        BOOKING_APPOINTMENT = 'booking_appointment',
+        BOOKING_SEMINAR = 'booking_seminar',
+        BUNDLE = 'bundle',
+        BUNDLE_CHANGEABLE = 'bundle_changeable',
+        BUNDLE_CONFIGURABLE = 'bundle_configurable',
+        GENERIC = 'generic',
+        INQUIRY_RAFFLE = 'inquiry_raffle',
+        INQUIRY_TESTDRIVE = 'inquiry_testdrive',
+        OTHER_SERVICES = 'other_services',
+        PERSONALIZED = 'personalized',
+        PRINT_GREETINGCARD = 'print_greetingcard',
+        SERVICE_ANCILLARY = 'service_ancillary',
+        SERVICE_PRINCIPAL = 'service_principal',
         STANDARD = 'standard',
         STANDARD_AUTOTITLE = 'standard_autotitle',
-        PERSONALIZED = 'personalized',
+        VOUCHER_DIGITAL = 'voucher_digital',
+        VOUCHER_PRINT = 'voucher_print',
     }
 
     /**
@@ -143,33 +129,6 @@ export namespace baseProduct {
         PREPARATION_INACTIVE = 'preparation_inactive',
         INACTIVE_BUT_VISIBLE = 'inactive_but_visible',
         INACTIVE = 'inactive',
-    }
-
-    /**
-     * The variant group of the product
-     */
-    export enum variantGroup {
-        COLOR = 'color',
-        SIZE = 'size',
-        CONTENT = 'content',
-        EINZELVARIANTE = 'einzelvariante',
-        STANDARD_TITLE = 'standard_title',
-    }
-
-    /**
-     * One of the available tax codes.
-     * - std: Standard tax rate (AT 20%)
-     * - spc: 1st tax rate (AT 13%)
-     * - erm: 2nd tax rate (AT 10%)
-     * - erm3: 3rd tax rate (AT 5%)
-     * - nsp: not taxable (0%)
-     */
-    export enum taxCode {
-        STD = 'std',
-        SPC = 'spc',
-        ERM = 'erm',
-        ERM3 = 'erm3',
-        NSP = 'nsp',
     }
 
 

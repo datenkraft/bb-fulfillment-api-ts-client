@@ -12,6 +12,9 @@ export class ProductUnitService {
      * Get all available product unit codes.
      * @param page The page to read. Default is the first page.
      * @param pageSize The maximum size per page is 100. Default is 20.
+     * @param paginationMode The paginationMode to use:
+     * - default: The total number of items in the collection will not be calculated.
+     * - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
      * @param shopCode The shopCode used internally to distinguish between clients.\
      * _This code is optional, if your identity is assigned to only one shop.
      * Otherwise the response would be a 422 HTTP Error._
@@ -22,6 +25,7 @@ export class ProductUnitService {
     public static async getProductUnitCollection(
         page?: number,
         pageSize?: number,
+        paginationMode: 'default' | 'totalCount' = 'default',
         shopCode?: string,
     ): Promise<productUnitCollection | errorResponse> {
         const result = await __request({
@@ -30,6 +34,7 @@ export class ProductUnitService {
             query: {
                 'page': page,
                 'pageSize': pageSize,
+                'paginationMode': paginationMode,
                 'shopCode': shopCode,
             },
             errors: {
