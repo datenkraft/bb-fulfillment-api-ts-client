@@ -15,6 +15,7 @@ apis/manufacturer-api.ts
 apis/order-api.ts
 apis/product-api.ts
 apis/product-unit-api.ts
+apis/reconsignment-api.ts
 apis/report-api.ts
 apis/shop-api.ts
 apis/stock-api.ts
@@ -50,6 +51,7 @@ models/delivery-service.ts
 models/delivery-shipment-journal.ts
 models/delivery-shipment.ts
 models/delivery.ts
+models/error-references-inner.ts
 models/error-response.ts
 models/inbound-delivery-all-of.ts
 models/inbound-delivery-bulk-import207-response-inner-content.ts
@@ -111,6 +113,12 @@ models/product-unit-collection-all-of.ts
 models/product-unit-collection.ts
 models/product-unit.ts
 models/product.ts
+models/reconsignment-collection-all-of.ts
+models/reconsignment-collection.ts
+models/reconsignment-line-collection-all-of.ts
+models/reconsignment-line-collection.ts
+models/reconsignment-line.ts
+models/reconsignment.ts
 models/report-clearing-order-collection-all-of.ts
 models/report-clearing-order-collection.ts
 models/report-clearing-order.ts

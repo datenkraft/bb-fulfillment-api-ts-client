@@ -13,33 +13,30 @@
  */
 
 
-// May contain unused imports in some cases
-// @ts-ignore
-import { ErrorReferencesInner } from './error-references-inner';
 
 /**
  * 
  * @export
- * @interface ModelError
+ * @interface ErrorReferencesInner
  */
-export interface ModelError {
+export interface ErrorReferencesInner {
     /**
-     * Code
+     * The key of the field causing the error
      * @type {string}
-     * @memberof ModelError
+     * @memberof ErrorReferencesInner
      */
-    'code': string;
+    'key'?: string;
     /**
-     * Message
+     * The value of the field causing the error
+     * @type {any}
+     * @memberof ErrorReferencesInner
+     */
+    'value'?: any;
+    /**
+     * The exact reference to the field causing the error
      * @type {string}
-     * @memberof ModelError
+     * @memberof ErrorReferencesInner
      */
-    'message': string;
-    /**
-     * References
-     * @type {Array<ErrorReferencesInner>}
-     * @memberof ModelError
-     */
-    'references'?: Array<ErrorReferencesInner>;
+    'fieldReference'?: string | null;
 }
 

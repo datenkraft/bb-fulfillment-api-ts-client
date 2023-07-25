@@ -55,7 +55,8 @@ export interface UpdateShopMeta {
 export const UpdateShopMetaDefaultCurrencyEnum = {
     Gbp: 'GBP',
     Sek: 'SEK',
-    Pln: 'PLN'
+    Pln: 'PLN',
+    Null: 'null'
 } as const;
 
 export type UpdateShopMetaDefaultCurrencyEnum = typeof UpdateShopMetaDefaultCurrencyEnum[keyof typeof UpdateShopMetaDefaultCurrencyEnum];
