@@ -17,6 +17,7 @@ export * from './delivery-service';
 export * from './delivery-service-collection';
 export * from './delivery-service-collection-all-of';
 export * from './delivery-shipment';
+export * from './error-references-inner';
 export * from './error-response';
 export * from './information';
 export * from './information-response';
