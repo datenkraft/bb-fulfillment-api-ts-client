@@ -11,4 +11,21 @@ export type error = {
      * Message
      */
     message: string;
+    /**
+     * References
+     */
+    references?: Array<{
+        /**
+         * The key of the field causing the error
+         */
+        key?: string,
+        /**
+         * The value of the field causing the error
+         */
+        value?: any,
+        /**
+         * The exact reference to the field causing the error
+         */
+        fieldReference?: string | null,
+    }>;
 }
