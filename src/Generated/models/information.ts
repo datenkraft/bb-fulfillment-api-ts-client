@@ -15,6 +15,9 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
+import { ErrorReferencesInner } from './error-references-inner';
+// May contain unused imports in some cases
+// @ts-ignore
 import { ModelError } from './model-error';
 
 /**

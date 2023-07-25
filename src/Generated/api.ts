@@ -28,6 +28,7 @@ export * from './apis/manufacturer-api';
 export * from './apis/order-api';
 export * from './apis/product-api';
 export * from './apis/product-unit-api';
+export * from './apis/reconsignment-api';
 export * from './apis/report-api';
 export * from './apis/shop-api';
 export * from './apis/stock-api';

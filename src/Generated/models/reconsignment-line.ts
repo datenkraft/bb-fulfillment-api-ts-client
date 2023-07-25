@@ -13,33 +13,48 @@
  */
 
 
-// May contain unused imports in some cases
-// @ts-ignore
-import { ErrorReferencesInner } from './error-references-inner';
 
 /**
- * 
+ * One piece of content in a reconsignment.
  * @export
- * @interface ModelError
+ * @interface ReconsignmentLine
  */
-export interface ModelError {
+export interface ReconsignmentLine {
     /**
-     * Code
+     * 
      * @type {string}
-     * @memberof ModelError
+     * @memberof ReconsignmentLine
      */
-    'code': string;
+    'productNumber'?: string;
     /**
-     * Message
+     * Number of items which have been put back to stock.
+     * @type {number}
+     * @memberof ReconsignmentLine
+     */
+    'putBackToStockCount'?: number;
+    /**
+     * Number of items included in the reconsignment.
+     * @type {number}
+     * @memberof ReconsignmentLine
+     */
+    'count'?: number;
+    /**
+     * Product unit
      * @type {string}
-     * @memberof ModelError
+     * @memberof ReconsignmentLine
      */
-    'message': string;
+    'unit'?: string;
     /**
-     * References
-     * @type {Array<ErrorReferencesInner>}
-     * @memberof ModelError
+     * Weight of a single product
+     * @type {number}
+     * @memberof ReconsignmentLine
      */
-    'references'?: Array<ErrorReferencesInner>;
+    'productWeight'?: number;
+    /**
+     * Product weight unit
+     * @type {string}
+     * @memberof ReconsignmentLine
+     */
+    'productWeightUnit'?: string;
 }
 

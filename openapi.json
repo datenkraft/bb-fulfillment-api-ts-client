@@ -4452,6 +4452,291 @@
                 ]
             }
         },
+        "/reconsignment": {
+            "get": {
+                "tags": [
+                    "reconsignment"
+                ],
+                "summary": "Read the reconsignments in the given dateRange.",
+                "description": "Read the reconsignments in the given dateRange.",
+                "operationId": "getReconsignmentCollection",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "The page to read. Default is the first page.",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": 1
+                    },
+                    {
+                        "name": "pageSize",
+                        "in": "query",
+                        "description": "The maximum size per page is 100. Default is 20.",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": 20
+                    },
+                    {
+                        "name": "paginationMode",
+                        "in": "query",
+                        "description": "'default': Total count will not be calculated. 'totalCount': The total number of entries for the request will be calculated. This can mean loss of performance. If not given, 'default' pagination mode is used.",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "default",
+                                "totalCount"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "sortBy",
+                        "in": "query",
+                        "description": "Sort the results by one or more comma-separated sort criteria, with the criterion specified first having priority.\n\nAvailable sort orders:\n- asc: ascending order\n- desc: descending order\n\nAvailable fields for sorting:\n- reconsignmentDate\n\nThe default sort order is reconsignmentDate:desc.",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "reconsignmentDate:asc"
+                    },
+                    {
+                        "name": "filter[shopCode]",
+                        "in": "query",
+                        "description": "The shop to which the reconsignments belongs to.",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "filter[orderNumber]",
+                        "in": "query",
+                        "description": "The order number which the reconsignments belong to.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "filter[reconsignmentDateFrom]",
+                        "in": "query",
+                        "description": "filter for reconsignmentDate format in ISO 8601 with UTC offsets",
+                        "schema": {
+                            "type": "string",
+                            "format": "date-time"
+                        },
+                        "example": "2020-04-24T12:27:00+02:00"
+                    },
+                    {
+                        "name": "filter[reconsignmentDateTo]",
+                        "in": "query",
+                        "description": "filter for reconsignmentDate format in ISO 8601 with UTC offsets",
+                        "schema": {
+                            "type": "string",
+                            "format": "date-time"
+                        },
+                        "example": "2020-04-24T12:27:00+02:00"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/reconsignmentCollection"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Server error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "oAuthAuthorization": []
+                    },
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/reconsignment/{reconsignmentNumber}": {
+            "get": {
+                "tags": [
+                    "reconsignment"
+                ],
+                "summary": "Read the reconsignment specified by the given reconsignment number (set in param reconsignmentNumber).",
+                "description": "Read the reconsignment specified by the given reconsignment number (set in param reconsignmentNumber).",
+                "operationId": "getReconsignment",
+                "parameters": [
+                    {
+                        "name": "reconsignmentNumber",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "shopCode",
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/reconsignment"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Server error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "oAuthAuthorization": []
+                    },
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
         "/report/clearing/orders": {
             "get": {
                 "tags": [
@@ -5905,6 +6190,27 @@
                     "message": {
                         "description": "Message",
                         "type": "string"
+                    },
+                    "references": {
+                        "description": "References",
+                        "type": "array",
+                        "items": {
+                            "properties": {
+                                "key": {
+                                    "description": "The key of the field causing the error",
+                                    "type": "string"
+                                },
+                                "value": {
+                                    "description": "The value of the field causing the error"
+                                },
+                                "fieldReference": {
+                                    "description": "The exact reference to the field causing the error",
+                                    "type": "string",
+                                    "nullable": true
+                                }
+                            },
+                            "type": "object"
+                        }
                     }
                 },
                 "type": "object"
@@ -7019,6 +7325,128 @@
                     }
                 ]
             },
+            "reconsignment": {
+                "title": "reconsignment",
+                "description": "A reconsignment",
+                "properties": {
+                    "reconsignmentNumber": {
+                        "description": "The number the reconsignment is referred by.",
+                        "type": "string"
+                    },
+                    "reconsignmentDate": {
+                        "description": "The date the reconsignment was created.",
+                        "type": "string"
+                    },
+                    "reconsignmentReason": {
+                        "description": "The reason for the reconsignment.",
+                        "type": "string",
+                        "enum": [
+                            "reconsignment_other_default",
+                            "reconsignment_other_unknown",
+                            "reconsignment_product_damage",
+                            "reconsignment_product_defect",
+                            "reconsignment_product_dislike",
+                            "reconsignment_product_guarantee",
+                            "reconsignment_product_missing",
+                            "reconsignment_product_outofdate",
+                            "reconsignment_product_wrong",
+                            "reconsignment_transport_damage",
+                            "reconsignment_transport_invalidaddress",
+                            "reconsignment_transport_lost",
+                            "reconsignment_transport_nopickup",
+                            "reconsignment_transport_rejected"
+                        ]
+                    },
+                    "orderNumber": {
+                        "description": "The order number. Note: This can be null if the order was not created via the API.",
+                        "type": "string"
+                    },
+                    "reconsignmentLines": {
+                        "description": "",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/reconsignmentLine"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "reconsignmentCollection": {
+                "title": "reconsignmentCollection",
+                "description": "A collection of reconsignments",
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/collection"
+                    },
+                    {
+                        "properties": {
+                            "data": {
+                                "description": "Class ReconsignmentResourceCollection",
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/reconsignment"
+                                }
+                            }
+                        },
+                        "type": "object"
+                    }
+                ]
+            },
+            "reconsignmentLine": {
+                "title": "reconsignmentLine",
+                "description": "One piece of content in a reconsignment.",
+                "properties": {
+                    "productNumber": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "putBackToStockCount": {
+                        "description": "Number of items which have been put back to stock.",
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "count": {
+                        "description": "Number of items included in the reconsignment.",
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "unit": {
+                        "description": "Product unit",
+                        "type": "string"
+                    },
+                    "productWeight": {
+                        "description": "Weight of a single product",
+                        "type": "number",
+                        "format": "float"
+                    },
+                    "productWeightUnit": {
+                        "description": "Product weight unit",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "reconsignmentLineCollection": {
+                "title": "reconsignmentLineCollection",
+                "description": "A collection of reconsignment lines",
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/collection"
+                    },
+                    {
+                        "properties": {
+                            "data": {
+                                "description": "Class ReconsignmentLineResourceCollection",
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/reconsignmentLine"
+                                }
+                            }
+                        },
+                        "type": "object"
+                    }
+                ]
+            },
             "reportClearingOrder": {
                 "description": "An order for clearing",
                 "properties": {
@@ -7170,7 +7598,8 @@
                                 "enum": [
                                     "GBP",
                                     "SEK",
-                                    "PLN"
+                                    "PLN",
+                                    null
                                 ],
                                 "nullable": true
                             }
@@ -7347,7 +7776,8 @@
                                 "enum": [
                                     "GBP",
                                     "SEK",
-                                    "PLN"
+                                    "PLN",
+                                    null
                                 ],
                                 "nullable": true
                             }

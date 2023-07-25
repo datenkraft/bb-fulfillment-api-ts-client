@@ -15,31 +15,22 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { ErrorReferencesInner } from './error-references-inner';
+import { Collection } from './collection';
+// May contain unused imports in some cases
+// @ts-ignore
+import { CollectionPagination } from './collection-pagination';
+// May contain unused imports in some cases
+// @ts-ignore
+import { ReconsignmentLine } from './reconsignment-line';
+// May contain unused imports in some cases
+// @ts-ignore
+import { ReconsignmentLineCollectionAllOf } from './reconsignment-line-collection-all-of';
 
 /**
- * 
+ * @type ReconsignmentLineCollection
+ * A collection of reconsignment lines
  * @export
- * @interface ModelError
  */
-export interface ModelError {
-    /**
-     * Code
-     * @type {string}
-     * @memberof ModelError
-     */
-    'code': string;
-    /**
-     * Message
-     * @type {string}
-     * @memberof ModelError
-     */
-    'message': string;
-    /**
-     * References
-     * @type {Array<ErrorReferencesInner>}
-     * @memberof ModelError
-     */
-    'references'?: Array<ErrorReferencesInner>;
-}
+export type ReconsignmentLineCollection = Collection & ReconsignmentLineCollectionAllOf;
+
 
