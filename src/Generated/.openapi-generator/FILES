@@ -36,6 +36,7 @@ models/delivery-service-collection.ts
 models/delivery-service.ts
 models/delivery-shipment.ts
 models/delivery.ts
+models/error-references-inner.ts
 models/error-response.ts
 models/index.ts
 models/information-response.ts
