@@ -15,6 +15,10 @@ export type inboundDelivery = (newInboundDelivery & {
      */
     inboundDeliveryNumber?: string | null,
     /**
+     * Notes from the steve warehouse team.
+     */
+    inboundDeliveryNote?: string | null,
+    /**
      * The API internal id of the inbound delivery.
      */
     shopWAWIDeliveryId?: number,

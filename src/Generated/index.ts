@@ -48,6 +48,7 @@ export type { newOrderItem } from './models/newOrderItem';
 export type { newOrderItemPrice } from './models/newOrderItemPrice';
 export { newOrderOptions } from './models/newOrderOptions';
 export { newProduct } from './models/newProduct';
+export type { newProductStockAdd } from './models/newProductStockAdd';
 export { order } from './models/order';
 export type { orderCollection } from './models/orderCollection';
 export type { orderCustomer } from './models/orderCustomer';

@@ -3898,7 +3898,7 @@
                     {
                         "name": "paginationMode",
                         "in": "query",
-                        "description": "The paginationMode to use:\n- default: The total number of items in the collection will not be calculated.\n- totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.",
+                        "description": "The paginationMode to use:\n- default: The total number of items in the collection will not be calculated.\n- totalCount: The total number of items in the collection will be calculated. \\\nThis can mean loss of performance.",
                         "required": false,
                         "schema": {
                             "type": "string",
@@ -3907,12 +3907,13 @@
                                 "default",
                                 "totalCount"
                             ]
-                        }
+                        },
+                        "example": 20
                     },
                     {
                         "name": "filter[shopCode]",
                         "in": "query",
-                        "description": "The shopCode used internally to distinguish between clients.\\\n_This code is optional, if your identity is assigned to only one shop.\nOtherwise the response would be a 422 HTTP Error._",
+                        "description": "The shopCode used internally to distinguish between clients. \\\n_This code is optional, if your identity is assigned to only one shop.\nOtherwise the response would be a 422 HTTP Error._",
                         "required": false,
                         "schema": {
                             "type": "string"
@@ -3922,7 +3923,8 @@
                     {
                         "name": "filter[search]",
                         "in": "query",
-                        "description": "Filter for product search.\\\nUsage:\n- Provide one or multiple search terms to filter results.\n- Multiple search terms are separated by spaces.\n- The search is not case sensitive.\n- The search is enabled for the fields productTitle, productNumber and ean.\n- Each search term filters the response for products where at least one of the fields contains the search term.\n- For example, filter[search]='term1 term2' will filter the result for products where 'term1' is found in any field and 'term2' is also found in any field.\\\nIf only 'term1' or 'term2' is found in the fields, the product is not included in the results.",
+                        "description": "Filter for product search. \\\nUsage:\n- Provide one or multiple search terms to filter results. \n- Multiple search terms are separated by spaces.\n- The search is not case sensitive.\n- The search is enabled for the fields productTitle, productNumber and ean.\n- Each search term filters the response for products where at least one of the\nfields contains the search term.\n- For example, filter[search]='term1 term2' will filter the result for products where 'term1'\nis found in any field and 'term2' is also found in any field.\nIf only 'term1' or 'term2' is found in the fields, the product is not included in the results.",
+                        "required": false,
                         "schema": {
                             "type": "string"
                         }
@@ -3950,6 +3952,16 @@
                             "application/json": {
                                 "schema": {
                                     "$ref": "#/components/schemas/productCollection"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
                                 }
                             }
                         }
@@ -3985,7 +3997,7 @@
                         }
                     },
                     "500": {
-                        "description": "Server error",
+                        "description": "Server Error",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -3995,7 +4007,7 @@
                         }
                     },
                     "default": {
-                        "description": "Unexpected error",
+                        "description": "Unexpected Error",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -4037,7 +4049,7 @@
                     {
                         "name": "shopCode",
                         "in": "query",
-                        "description": "The shopCode used internally to distinguish between clients.\\\n_This code is optional, if your identity is assigned to only one shop.\nOtherwise the response would be a 422 HTTP Error._",
+                        "description": "The shopCode used internally to distinguish between clients. \\\n_This code is optional, if your identity is assigned to only one shop.\nOtherwise the response would be a 422 HTTP Error._",
                         "required": false,
                         "schema": {
                             "type": "string"
@@ -4086,16 +4098,6 @@
                             }
                         }
                     },
-                    "404": {
-                        "description": "Not Found",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/errorResponse"
-                                }
-                            }
-                        }
-                    },
                     "422": {
                         "description": "Unprocessable Entity",
                         "content": {
@@ -4107,7 +4109,7 @@
                         }
                     },
                     "500": {
-                        "description": "Server error",
+                        "description": "Server Error",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -4117,7 +4119,7 @@
                         }
                     },
                     "default": {
-                        "description": "Unexpected error",
+                        "description": "Unexpected Error",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -4140,14 +4142,14 @@
                 "tags": [
                     "product"
                 ],
-                "summary": "Add a new product.",
-                "description": "Add a new product referenced by the given productNumber.\nPlease note that due to necessary product compliance enabling by our steve team, the product might not be usable immediately.\nThe product number is nevertheless reserved, even before the product can be queried in the GET endpoint.",
+                "summary": "Add a new product",
+                "description": "Add a new product referenced by the given productNumber. \\\n_Please note that due to necessary product compliance enabling by our steve team,\nthe product might not be usable immediately.\nThe product number is nevertheless reserved, even before the product can be queried in the GET endpoint._",
                 "operationId": "postProduct",
                 "parameters": [
                     {
                         "name": "productNumber",
                         "in": "path",
-                        "description": "The number the product should be refered by.\\\nThis number is user defined, must be unique and has a maximum length (check maxLength field).\\\nPlease ensure that it does not contain any of the following character sequences: '/', '%2F', '%2f', '?', '%3F', '%3f',\n'#', '%23', '&', '%26'. Using any of these will result in the route not being handled correctly.",
+                        "description": "The number the product should be referred by. \\\nThis number is user defined, must be unique and has a maximum length (check maxLength field).\\\nPlease ensure that it does not contain any of the following character sequences:\n'/', '%2F', '%2f', '?', '%3F', '%3f', '#', '%23', '&', '%26'.\nUsing any of these will result in the route not being handled correctly.",
                         "required": true,
                         "schema": {
                             "type": "string",
@@ -4157,7 +4159,7 @@
                     {
                         "name": "shopCode",
                         "in": "query",
-                        "description": "The shopCode used internally to distinguish between clients.\\\n_This code is optional, if your identity is assigned to only one shop.\nOtherwise the response would be a 422 HTTP Error._",
+                        "description": "The shopCode used internally to distinguish between clients. \\\n_This code is optional, if your identity is assigned to only one shop.\nOtherwise the response would be a 422 HTTP Error._",
                         "required": false,
                         "schema": {
                             "type": "string"
@@ -4227,7 +4229,7 @@
                         }
                     },
                     "500": {
-                        "description": "Server error",
+                        "description": "Server Error",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -4237,7 +4239,7 @@
                         }
                     },
                     "default": {
-                        "description": "Unexpected error",
+                        "description": "Unexpected Error",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -4263,7 +4265,7 @@
                     "product"
                 ],
                 "summary": "Read a journal collection for a specific product showing the history of stock changes.",
-                "description": "Read a journal collection for a specific product showing the history of stock changes.\nOnly products with the source 'self' can be queried.",
+                "description": "Read a journal collection for a specific product showing the history of stock changes.\n_Only products with the source 'self' can be queried._",
                 "operationId": "getProductJournalCollection",
                 "parameters": [
                     {
@@ -4299,7 +4301,7 @@
                     {
                         "name": "paginationMode",
                         "in": "query",
-                        "description": "The paginationMode to use:\n- default: The total number of items in the collection will not be calculated.\n- totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.",
+                        "description": "The paginationMode to use:\\\n- default: The total number of items in the collection will not be calculated.\\\n- totalCount: The total number of items in the collection will be calculated.\nThis can mean loss of performance.",
                         "required": false,
                         "schema": {
                             "type": "string",
@@ -4308,7 +4310,8 @@
                                 "default",
                                 "totalCount"
                             ]
-                        }
+                        },
+                        "example": 20
                     },
                     {
                         "name": "shopCode",
@@ -4343,18 +4346,18 @@
                     {
                         "name": "filter[reason]",
                         "in": "query",
-                        "description": "Filter journal entries for one or more reasons\n\n- expired: Taking an expired product off the books\n- damaged: Taking a damaged product off the books\n- own_withdrawl: Product taken for own use\n- correction: Manual correction\n- niceshops_order: Product sold via a shop from niceshops\n- inbound: Restocking the product\n- fulfillment: steve fulfilled an order\n- return: A customer sent the product back to our warehouse",
+                        "description": "Filter journal entries for one or more reasons\n- expired: Taking an expired product off the books\n- damaged: Taking a damaged product off the books\n- own_withdrawl: Product taken for own use\n- correction: Manual correction\n- niceshops_order: Product sold via a shop from niceshops\n- inbound: Restocking the product\n- fulfillment: steve fulfilled an order\n- return: A customer sent the product back to our warehouse",
                         "required": false,
                         "schema": {
                             "type": "string"
                         },
                         "examples": {
                             "single reason": {
-                                "summary": "product journal reason",
+                                "summary": "Product Journal Reason",
                                 "value": "fulfillment"
                             },
-                            "multiple status": {
-                                "summary": "multiple journal reasons",
+                            "multiple reasons": {
+                                "summary": "Multiple Product Journal Reasons",
                                 "value": "fulfillment,return,niceshops_order"
                             }
                         }
@@ -4401,16 +4404,6 @@
                             }
                         }
                     },
-                    "404": {
-                        "description": "Not Found or source of product is not 'self'",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/errorResponse"
-                                }
-                            }
-                        }
-                    },
                     "422": {
                         "description": "Unprocessable Entity",
                         "content": {
@@ -4422,7 +4415,7 @@
                         }
                     },
                     "500": {
-                        "description": "Server error",
+                        "description": "Server Error",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -4432,7 +4425,7 @@
                         }
                     },
                     "default": {
-                        "description": "Unexpected error",
+                        "description": "Unexpected Error",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -6252,6 +6245,11 @@
                                 "type": "string",
                                 "nullable": true
                             },
+                            "inboundDeliveryNote": {
+                                "description": "Notes from the steve warehouse team.",
+                                "type": "string",
+                                "nullable": true
+                            },
                             "shopWAWIDeliveryId": {
                                 "description": "The API internal id of the inbound delivery.",
                                 "type": "integer",
@@ -6698,6 +6696,18 @@
                         "type": "object"
                     }
                 ]
+            },
+            "newProductStockAdd": {
+                "title": "newProductStockAdd",
+                "description": "Data to add stock to a product",
+                "properties": {
+                    "quantity": {
+                        "description": "Quantity (greater than zero) to be added to the stock.",
+                        "type": "integer",
+                        "minimum": 1
+                    }
+                },
+                "type": "object"
             },
             "order": {
                 "title": "order",
