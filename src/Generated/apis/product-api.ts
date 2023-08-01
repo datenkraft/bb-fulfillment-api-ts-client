@@ -46,7 +46,7 @@ export const ProductApiAxiosParamCreator = function (configuration?: Configurati
          * Get a product by product number.
          * @summary Get a product by product number.
          * @param {string} productNumber The product number as defined during the creation of the product.
-         * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+         * @param {string} [shopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -94,9 +94,9 @@ export const ProductApiAxiosParamCreator = function (configuration?: Configurati
          * @summary Get a list of products.
          * @param {number} [page] The page to read. Default is the first page.
          * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
-         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
-         * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
-         * @param {string} [filterSearch] Filter for product search.\\ Usage: - Provide one or multiple search terms to filter results. - Multiple search terms are separated by spaces. - The search is not case sensitive. - The search is enabled for the fields productTitle, productNumber and ean. - Each search term filters the response for products where at least one of the fields contains the search term. - For example, filter[search]&#x3D;\&#39;term1 term2\&#39; will filter the result for products where \&#39;term1\&#39; is found in any field and \&#39;term2\&#39; is also found in any field.\\ If only \&#39;term1\&#39; or \&#39;term2\&#39; is found in the fields, the product is not included in the results.
+         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. \\ This can mean loss of performance.
+         * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+         * @param {string} [filterSearch] Filter for product search. \\ Usage: - Provide one or multiple search terms to filter results.  - Multiple search terms are separated by spaces. - The search is not case sensitive. - The search is enabled for the fields productTitle, productNumber and ean. - Each search term filters the response for products where at least one of the fields contains the search term. - For example, filter[search]&#x3D;\&#39;term1 term2\&#39; will filter the result for products where \&#39;term1\&#39; is found in any field and \&#39;term2\&#39; is also found in any field. If only \&#39;term1\&#39; or \&#39;term2\&#39; is found in the fields, the product is not included in the results.
          * @param {'self' | 'nice' | 'bundle'} [filterSource] Filter for product source.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -158,16 +158,16 @@ export const ProductApiAxiosParamCreator = function (configuration?: Configurati
             };
         },
         /**
-         * Read a journal collection for a specific product showing the history of stock changes. Only products with the source \'self\' can be queried.
+         * Read a journal collection for a specific product showing the history of stock changes. _Only products with the source \'self\' can be queried._
          * @summary Read a journal collection for a specific product showing the history of stock changes.
          * @param {string} productNumber The product number as defined during the creation of the product.
          * @param {number} [page] The page to read. Default is the first page.
          * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
-         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
+         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use:\\ - default: The total number of items in the collection will not be calculated.\\ - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
          * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
          * @param {string} [filterDateFrom] The start date (inclusive) in format Y-m-d (timezone CET/CEST) for which product journal entries should be returned.
          * @param {string} [filterDateTo] The end date (inclusive) in format Y-m-d (timezone CET/CEST) for which product journal entries should be returned.
-         * @param {string} [filterReason] Filter journal entries for one or more reasons  - expired: Taking an expired product off the books - damaged: Taking a damaged product off the books - own_withdrawl: Product taken for own use - correction: Manual correction - niceshops_order: Product sold via a shop from niceshops - inbound: Restocking the product - fulfillment: steve fulfilled an order - return: A customer sent the product back to our warehouse
+         * @param {string} [filterReason] Filter journal entries for one or more reasons - expired: Taking an expired product off the books - damaged: Taking a damaged product off the books - own_withdrawl: Product taken for own use - correction: Manual correction - niceshops_order: Product sold via a shop from niceshops - inbound: Restocking the product - fulfillment: steve fulfilled an order - return: A customer sent the product back to our warehouse
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -239,11 +239,11 @@ export const ProductApiAxiosParamCreator = function (configuration?: Configurati
             };
         },
         /**
-         * Add a new product referenced by the given productNumber. Please note that due to necessary product compliance enabling by our steve team, the product might not be usable immediately. The product number is nevertheless reserved, even before the product can be queried in the GET endpoint.
-         * @summary Add a new product.
-         * @param {string} productNumber The number the product should be refered by.\\ This number is user defined, must be unique and has a maximum length (check maxLength field).\\ Please ensure that it does not contain any of the following character sequences: \&#39;/\&#39;, \&#39;%2F\&#39;, \&#39;%2f\&#39;, \&#39;?\&#39;, \&#39;%3F\&#39;, \&#39;%3f\&#39;, \&#39;#\&#39;, \&#39;%23\&#39;, \&#39;&amp;\&#39;, \&#39;%26\&#39;. Using any of these will result in the route not being handled correctly.
+         * Add a new product referenced by the given productNumber. \\ _Please note that due to necessary product compliance enabling by our steve team, the product might not be usable immediately. The product number is nevertheless reserved, even before the product can be queried in the GET endpoint._
+         * @summary Add a new product
+         * @param {string} productNumber The number the product should be referred by. \\ This number is user defined, must be unique and has a maximum length (check maxLength field).\\ Please ensure that it does not contain any of the following character sequences: \&#39;/\&#39;, \&#39;%2F\&#39;, \&#39;%2f\&#39;, \&#39;?\&#39;, \&#39;%3F\&#39;, \&#39;%3f\&#39;, \&#39;#\&#39;, \&#39;%23\&#39;, \&#39;&amp;\&#39;, \&#39;%26\&#39;. Using any of these will result in the route not being handled correctly.
          * @param {NewProduct} newProduct 
-         * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+         * @param {string} [shopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -305,7 +305,7 @@ export const ProductApiFp = function(configuration?: Configuration) {
          * Get a product by product number.
          * @summary Get a product by product number.
          * @param {string} productNumber The product number as defined during the creation of the product.
-         * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+         * @param {string} [shopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -318,9 +318,9 @@ export const ProductApiFp = function(configuration?: Configuration) {
          * @summary Get a list of products.
          * @param {number} [page] The page to read. Default is the first page.
          * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
-         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
-         * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
-         * @param {string} [filterSearch] Filter for product search.\\ Usage: - Provide one or multiple search terms to filter results. - Multiple search terms are separated by spaces. - The search is not case sensitive. - The search is enabled for the fields productTitle, productNumber and ean. - Each search term filters the response for products where at least one of the fields contains the search term. - For example, filter[search]&#x3D;\&#39;term1 term2\&#39; will filter the result for products where \&#39;term1\&#39; is found in any field and \&#39;term2\&#39; is also found in any field.\\ If only \&#39;term1\&#39; or \&#39;term2\&#39; is found in the fields, the product is not included in the results.
+         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. \\ This can mean loss of performance.
+         * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+         * @param {string} [filterSearch] Filter for product search. \\ Usage: - Provide one or multiple search terms to filter results.  - Multiple search terms are separated by spaces. - The search is not case sensitive. - The search is enabled for the fields productTitle, productNumber and ean. - Each search term filters the response for products where at least one of the fields contains the search term. - For example, filter[search]&#x3D;\&#39;term1 term2\&#39; will filter the result for products where \&#39;term1\&#39; is found in any field and \&#39;term2\&#39; is also found in any field. If only \&#39;term1\&#39; or \&#39;term2\&#39; is found in the fields, the product is not included in the results.
          * @param {'self' | 'nice' | 'bundle'} [filterSource] Filter for product source.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -330,16 +330,16 @@ export const ProductApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * Read a journal collection for a specific product showing the history of stock changes. Only products with the source \'self\' can be queried.
+         * Read a journal collection for a specific product showing the history of stock changes. _Only products with the source \'self\' can be queried._
          * @summary Read a journal collection for a specific product showing the history of stock changes.
          * @param {string} productNumber The product number as defined during the creation of the product.
          * @param {number} [page] The page to read. Default is the first page.
          * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
-         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
+         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use:\\ - default: The total number of items in the collection will not be calculated.\\ - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
          * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
          * @param {string} [filterDateFrom] The start date (inclusive) in format Y-m-d (timezone CET/CEST) for which product journal entries should be returned.
          * @param {string} [filterDateTo] The end date (inclusive) in format Y-m-d (timezone CET/CEST) for which product journal entries should be returned.
-         * @param {string} [filterReason] Filter journal entries for one or more reasons  - expired: Taking an expired product off the books - damaged: Taking a damaged product off the books - own_withdrawl: Product taken for own use - correction: Manual correction - niceshops_order: Product sold via a shop from niceshops - inbound: Restocking the product - fulfillment: steve fulfilled an order - return: A customer sent the product back to our warehouse
+         * @param {string} [filterReason] Filter journal entries for one or more reasons - expired: Taking an expired product off the books - damaged: Taking a damaged product off the books - own_withdrawl: Product taken for own use - correction: Manual correction - niceshops_order: Product sold via a shop from niceshops - inbound: Restocking the product - fulfillment: steve fulfilled an order - return: A customer sent the product back to our warehouse
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -348,11 +348,11 @@ export const ProductApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * Add a new product referenced by the given productNumber. Please note that due to necessary product compliance enabling by our steve team, the product might not be usable immediately. The product number is nevertheless reserved, even before the product can be queried in the GET endpoint.
-         * @summary Add a new product.
-         * @param {string} productNumber The number the product should be refered by.\\ This number is user defined, must be unique and has a maximum length (check maxLength field).\\ Please ensure that it does not contain any of the following character sequences: \&#39;/\&#39;, \&#39;%2F\&#39;, \&#39;%2f\&#39;, \&#39;?\&#39;, \&#39;%3F\&#39;, \&#39;%3f\&#39;, \&#39;#\&#39;, \&#39;%23\&#39;, \&#39;&amp;\&#39;, \&#39;%26\&#39;. Using any of these will result in the route not being handled correctly.
+         * Add a new product referenced by the given productNumber. \\ _Please note that due to necessary product compliance enabling by our steve team, the product might not be usable immediately. The product number is nevertheless reserved, even before the product can be queried in the GET endpoint._
+         * @summary Add a new product
+         * @param {string} productNumber The number the product should be referred by. \\ This number is user defined, must be unique and has a maximum length (check maxLength field).\\ Please ensure that it does not contain any of the following character sequences: \&#39;/\&#39;, \&#39;%2F\&#39;, \&#39;%2f\&#39;, \&#39;?\&#39;, \&#39;%3F\&#39;, \&#39;%3f\&#39;, \&#39;#\&#39;, \&#39;%23\&#39;, \&#39;&amp;\&#39;, \&#39;%26\&#39;. Using any of these will result in the route not being handled correctly.
          * @param {NewProduct} newProduct 
-         * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+         * @param {string} [shopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -374,7 +374,7 @@ export const ProductApiFactory = function (configuration?: Configuration, basePa
          * Get a product by product number.
          * @summary Get a product by product number.
          * @param {string} productNumber The product number as defined during the creation of the product.
-         * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+         * @param {string} [shopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -386,9 +386,9 @@ export const ProductApiFactory = function (configuration?: Configuration, basePa
          * @summary Get a list of products.
          * @param {number} [page] The page to read. Default is the first page.
          * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
-         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
-         * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
-         * @param {string} [filterSearch] Filter for product search.\\ Usage: - Provide one or multiple search terms to filter results. - Multiple search terms are separated by spaces. - The search is not case sensitive. - The search is enabled for the fields productTitle, productNumber and ean. - Each search term filters the response for products where at least one of the fields contains the search term. - For example, filter[search]&#x3D;\&#39;term1 term2\&#39; will filter the result for products where \&#39;term1\&#39; is found in any field and \&#39;term2\&#39; is also found in any field.\\ If only \&#39;term1\&#39; or \&#39;term2\&#39; is found in the fields, the product is not included in the results.
+         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. \\ This can mean loss of performance.
+         * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+         * @param {string} [filterSearch] Filter for product search. \\ Usage: - Provide one or multiple search terms to filter results.  - Multiple search terms are separated by spaces. - The search is not case sensitive. - The search is enabled for the fields productTitle, productNumber and ean. - Each search term filters the response for products where at least one of the fields contains the search term. - For example, filter[search]&#x3D;\&#39;term1 term2\&#39; will filter the result for products where \&#39;term1\&#39; is found in any field and \&#39;term2\&#39; is also found in any field. If only \&#39;term1\&#39; or \&#39;term2\&#39; is found in the fields, the product is not included in the results.
          * @param {'self' | 'nice' | 'bundle'} [filterSource] Filter for product source.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -397,16 +397,16 @@ export const ProductApiFactory = function (configuration?: Configuration, basePa
             return localVarFp.getProductCollection(page, pageSize, paginationMode, filterShopCode, filterSearch, filterSource, options).then((request) => request(axios, basePath));
         },
         /**
-         * Read a journal collection for a specific product showing the history of stock changes. Only products with the source \'self\' can be queried.
+         * Read a journal collection for a specific product showing the history of stock changes. _Only products with the source \'self\' can be queried._
          * @summary Read a journal collection for a specific product showing the history of stock changes.
          * @param {string} productNumber The product number as defined during the creation of the product.
          * @param {number} [page] The page to read. Default is the first page.
          * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
-         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
+         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use:\\ - default: The total number of items in the collection will not be calculated.\\ - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
          * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
          * @param {string} [filterDateFrom] The start date (inclusive) in format Y-m-d (timezone CET/CEST) for which product journal entries should be returned.
          * @param {string} [filterDateTo] The end date (inclusive) in format Y-m-d (timezone CET/CEST) for which product journal entries should be returned.
-         * @param {string} [filterReason] Filter journal entries for one or more reasons  - expired: Taking an expired product off the books - damaged: Taking a damaged product off the books - own_withdrawl: Product taken for own use - correction: Manual correction - niceshops_order: Product sold via a shop from niceshops - inbound: Restocking the product - fulfillment: steve fulfilled an order - return: A customer sent the product back to our warehouse
+         * @param {string} [filterReason] Filter journal entries for one or more reasons - expired: Taking an expired product off the books - damaged: Taking a damaged product off the books - own_withdrawl: Product taken for own use - correction: Manual correction - niceshops_order: Product sold via a shop from niceshops - inbound: Restocking the product - fulfillment: steve fulfilled an order - return: A customer sent the product back to our warehouse
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -414,11 +414,11 @@ export const ProductApiFactory = function (configuration?: Configuration, basePa
             return localVarFp.getProductJournalCollection(productNumber, page, pageSize, paginationMode, shopCode, filterDateFrom, filterDateTo, filterReason, options).then((request) => request(axios, basePath));
         },
         /**
-         * Add a new product referenced by the given productNumber. Please note that due to necessary product compliance enabling by our steve team, the product might not be usable immediately. The product number is nevertheless reserved, even before the product can be queried in the GET endpoint.
-         * @summary Add a new product.
-         * @param {string} productNumber The number the product should be refered by.\\ This number is user defined, must be unique and has a maximum length (check maxLength field).\\ Please ensure that it does not contain any of the following character sequences: \&#39;/\&#39;, \&#39;%2F\&#39;, \&#39;%2f\&#39;, \&#39;?\&#39;, \&#39;%3F\&#39;, \&#39;%3f\&#39;, \&#39;#\&#39;, \&#39;%23\&#39;, \&#39;&amp;\&#39;, \&#39;%26\&#39;. Using any of these will result in the route not being handled correctly.
+         * Add a new product referenced by the given productNumber. \\ _Please note that due to necessary product compliance enabling by our steve team, the product might not be usable immediately. The product number is nevertheless reserved, even before the product can be queried in the GET endpoint._
+         * @summary Add a new product
+         * @param {string} productNumber The number the product should be referred by. \\ This number is user defined, must be unique and has a maximum length (check maxLength field).\\ Please ensure that it does not contain any of the following character sequences: \&#39;/\&#39;, \&#39;%2F\&#39;, \&#39;%2f\&#39;, \&#39;?\&#39;, \&#39;%3F\&#39;, \&#39;%3f\&#39;, \&#39;#\&#39;, \&#39;%23\&#39;, \&#39;&amp;\&#39;, \&#39;%26\&#39;. Using any of these will result in the route not being handled correctly.
          * @param {NewProduct} newProduct 
-         * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+         * @param {string} [shopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -438,7 +438,7 @@ export interface ProductApiInterface {
      * Get a product by product number.
      * @summary Get a product by product number.
      * @param {string} productNumber The product number as defined during the creation of the product.
-     * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+     * @param {string} [shopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProductApiInterface
@@ -450,9 +450,9 @@ export interface ProductApiInterface {
      * @summary Get a list of products.
      * @param {number} [page] The page to read. Default is the first page.
      * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
-     * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
-     * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
-     * @param {string} [filterSearch] Filter for product search.\\ Usage: - Provide one or multiple search terms to filter results. - Multiple search terms are separated by spaces. - The search is not case sensitive. - The search is enabled for the fields productTitle, productNumber and ean. - Each search term filters the response for products where at least one of the fields contains the search term. - For example, filter[search]&#x3D;\&#39;term1 term2\&#39; will filter the result for products where \&#39;term1\&#39; is found in any field and \&#39;term2\&#39; is also found in any field.\\ If only \&#39;term1\&#39; or \&#39;term2\&#39; is found in the fields, the product is not included in the results.
+     * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. \\ This can mean loss of performance.
+     * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+     * @param {string} [filterSearch] Filter for product search. \\ Usage: - Provide one or multiple search terms to filter results.  - Multiple search terms are separated by spaces. - The search is not case sensitive. - The search is enabled for the fields productTitle, productNumber and ean. - Each search term filters the response for products where at least one of the fields contains the search term. - For example, filter[search]&#x3D;\&#39;term1 term2\&#39; will filter the result for products where \&#39;term1\&#39; is found in any field and \&#39;term2\&#39; is also found in any field. If only \&#39;term1\&#39; or \&#39;term2\&#39; is found in the fields, the product is not included in the results.
      * @param {'self' | 'nice' | 'bundle'} [filterSource] Filter for product source.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -461,16 +461,16 @@ export interface ProductApiInterface {
     getProductCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterShopCode?: string, filterSearch?: string, filterSource?: 'self' | 'nice' | 'bundle', options?: AxiosRequestConfig): AxiosPromise<ProductCollection>;
 
     /**
-     * Read a journal collection for a specific product showing the history of stock changes. Only products with the source \'self\' can be queried.
+     * Read a journal collection for a specific product showing the history of stock changes. _Only products with the source \'self\' can be queried._
      * @summary Read a journal collection for a specific product showing the history of stock changes.
      * @param {string} productNumber The product number as defined during the creation of the product.
      * @param {number} [page] The page to read. Default is the first page.
      * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
-     * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
+     * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use:\\ - default: The total number of items in the collection will not be calculated.\\ - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
      * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
      * @param {string} [filterDateFrom] The start date (inclusive) in format Y-m-d (timezone CET/CEST) for which product journal entries should be returned.
      * @param {string} [filterDateTo] The end date (inclusive) in format Y-m-d (timezone CET/CEST) for which product journal entries should be returned.
-     * @param {string} [filterReason] Filter journal entries for one or more reasons  - expired: Taking an expired product off the books - damaged: Taking a damaged product off the books - own_withdrawl: Product taken for own use - correction: Manual correction - niceshops_order: Product sold via a shop from niceshops - inbound: Restocking the product - fulfillment: steve fulfilled an order - return: A customer sent the product back to our warehouse
+     * @param {string} [filterReason] Filter journal entries for one or more reasons - expired: Taking an expired product off the books - damaged: Taking a damaged product off the books - own_withdrawl: Product taken for own use - correction: Manual correction - niceshops_order: Product sold via a shop from niceshops - inbound: Restocking the product - fulfillment: steve fulfilled an order - return: A customer sent the product back to our warehouse
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProductApiInterface
@@ -478,11 +478,11 @@ export interface ProductApiInterface {
     getProductJournalCollection(productNumber: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', shopCode?: string, filterDateFrom?: string, filterDateTo?: string, filterReason?: string, options?: AxiosRequestConfig): AxiosPromise<ProductJournalCollection>;
 
     /**
-     * Add a new product referenced by the given productNumber. Please note that due to necessary product compliance enabling by our steve team, the product might not be usable immediately. The product number is nevertheless reserved, even before the product can be queried in the GET endpoint.
-     * @summary Add a new product.
-     * @param {string} productNumber The number the product should be refered by.\\ This number is user defined, must be unique and has a maximum length (check maxLength field).\\ Please ensure that it does not contain any of the following character sequences: \&#39;/\&#39;, \&#39;%2F\&#39;, \&#39;%2f\&#39;, \&#39;?\&#39;, \&#39;%3F\&#39;, \&#39;%3f\&#39;, \&#39;#\&#39;, \&#39;%23\&#39;, \&#39;&amp;\&#39;, \&#39;%26\&#39;. Using any of these will result in the route not being handled correctly.
+     * Add a new product referenced by the given productNumber. \\ _Please note that due to necessary product compliance enabling by our steve team, the product might not be usable immediately. The product number is nevertheless reserved, even before the product can be queried in the GET endpoint._
+     * @summary Add a new product
+     * @param {string} productNumber The number the product should be referred by. \\ This number is user defined, must be unique and has a maximum length (check maxLength field).\\ Please ensure that it does not contain any of the following character sequences: \&#39;/\&#39;, \&#39;%2F\&#39;, \&#39;%2f\&#39;, \&#39;?\&#39;, \&#39;%3F\&#39;, \&#39;%3f\&#39;, \&#39;#\&#39;, \&#39;%23\&#39;, \&#39;&amp;\&#39;, \&#39;%26\&#39;. Using any of these will result in the route not being handled correctly.
      * @param {NewProduct} newProduct 
-     * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+     * @param {string} [shopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProductApiInterface
@@ -502,7 +502,7 @@ export class ProductApi extends BaseAPI implements ProductApiInterface {
      * Get a product by product number.
      * @summary Get a product by product number.
      * @param {string} productNumber The product number as defined during the creation of the product.
-     * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+     * @param {string} [shopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProductApi
@@ -516,9 +516,9 @@ export class ProductApi extends BaseAPI implements ProductApiInterface {
      * @summary Get a list of products.
      * @param {number} [page] The page to read. Default is the first page.
      * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
-     * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
-     * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
-     * @param {string} [filterSearch] Filter for product search.\\ Usage: - Provide one or multiple search terms to filter results. - Multiple search terms are separated by spaces. - The search is not case sensitive. - The search is enabled for the fields productTitle, productNumber and ean. - Each search term filters the response for products where at least one of the fields contains the search term. - For example, filter[search]&#x3D;\&#39;term1 term2\&#39; will filter the result for products where \&#39;term1\&#39; is found in any field and \&#39;term2\&#39; is also found in any field.\\ If only \&#39;term1\&#39; or \&#39;term2\&#39; is found in the fields, the product is not included in the results.
+     * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. \\ This can mean loss of performance.
+     * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+     * @param {string} [filterSearch] Filter for product search. \\ Usage: - Provide one or multiple search terms to filter results.  - Multiple search terms are separated by spaces. - The search is not case sensitive. - The search is enabled for the fields productTitle, productNumber and ean. - Each search term filters the response for products where at least one of the fields contains the search term. - For example, filter[search]&#x3D;\&#39;term1 term2\&#39; will filter the result for products where \&#39;term1\&#39; is found in any field and \&#39;term2\&#39; is also found in any field. If only \&#39;term1\&#39; or \&#39;term2\&#39; is found in the fields, the product is not included in the results.
      * @param {'self' | 'nice' | 'bundle'} [filterSource] Filter for product source.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -529,16 +529,16 @@ export class ProductApi extends BaseAPI implements ProductApiInterface {
     }
 
     /**
-     * Read a journal collection for a specific product showing the history of stock changes. Only products with the source \'self\' can be queried.
+     * Read a journal collection for a specific product showing the history of stock changes. _Only products with the source \'self\' can be queried._
      * @summary Read a journal collection for a specific product showing the history of stock changes.
      * @param {string} productNumber The product number as defined during the creation of the product.
      * @param {number} [page] The page to read. Default is the first page.
      * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
-     * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
+     * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use:\\ - default: The total number of items in the collection will not be calculated.\\ - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
      * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
      * @param {string} [filterDateFrom] The start date (inclusive) in format Y-m-d (timezone CET/CEST) for which product journal entries should be returned.
      * @param {string} [filterDateTo] The end date (inclusive) in format Y-m-d (timezone CET/CEST) for which product journal entries should be returned.
-     * @param {string} [filterReason] Filter journal entries for one or more reasons  - expired: Taking an expired product off the books - damaged: Taking a damaged product off the books - own_withdrawl: Product taken for own use - correction: Manual correction - niceshops_order: Product sold via a shop from niceshops - inbound: Restocking the product - fulfillment: steve fulfilled an order - return: A customer sent the product back to our warehouse
+     * @param {string} [filterReason] Filter journal entries for one or more reasons - expired: Taking an expired product off the books - damaged: Taking a damaged product off the books - own_withdrawl: Product taken for own use - correction: Manual correction - niceshops_order: Product sold via a shop from niceshops - inbound: Restocking the product - fulfillment: steve fulfilled an order - return: A customer sent the product back to our warehouse
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProductApi
@@ -548,11 +548,11 @@ export class ProductApi extends BaseAPI implements ProductApiInterface {
     }
 
     /**
-     * Add a new product referenced by the given productNumber. Please note that due to necessary product compliance enabling by our steve team, the product might not be usable immediately. The product number is nevertheless reserved, even before the product can be queried in the GET endpoint.
-     * @summary Add a new product.
-     * @param {string} productNumber The number the product should be refered by.\\ This number is user defined, must be unique and has a maximum length (check maxLength field).\\ Please ensure that it does not contain any of the following character sequences: \&#39;/\&#39;, \&#39;%2F\&#39;, \&#39;%2f\&#39;, \&#39;?\&#39;, \&#39;%3F\&#39;, \&#39;%3f\&#39;, \&#39;#\&#39;, \&#39;%23\&#39;, \&#39;&amp;\&#39;, \&#39;%26\&#39;. Using any of these will result in the route not being handled correctly.
+     * Add a new product referenced by the given productNumber. \\ _Please note that due to necessary product compliance enabling by our steve team, the product might not be usable immediately. The product number is nevertheless reserved, even before the product can be queried in the GET endpoint._
+     * @summary Add a new product
+     * @param {string} productNumber The number the product should be referred by. \\ This number is user defined, must be unique and has a maximum length (check maxLength field).\\ Please ensure that it does not contain any of the following character sequences: \&#39;/\&#39;, \&#39;%2F\&#39;, \&#39;%2f\&#39;, \&#39;?\&#39;, \&#39;%3F\&#39;, \&#39;%3f\&#39;, \&#39;#\&#39;, \&#39;%23\&#39;, \&#39;&amp;\&#39;, \&#39;%26\&#39;. Using any of these will result in the route not being handled correctly.
      * @param {NewProduct} newProduct 
-     * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+     * @param {string} [shopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProductApi

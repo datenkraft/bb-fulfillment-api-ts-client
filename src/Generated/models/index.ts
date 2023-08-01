@@ -55,6 +55,7 @@ export * from './new-order-options';
 export * from './new-order-options-all-of';
 export * from './new-product';
 export * from './new-product-all-of';
+export * from './new-product-stock-add';
 export * from './order';
 export * from './order-all-of';
 export * from './order-collection';
