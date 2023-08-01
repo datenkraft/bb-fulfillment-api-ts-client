@@ -30,6 +30,12 @@ export interface InboundDeliveryAllOf {
      */
     'inboundDeliveryNumber'?: string | null;
     /**
+     * Notes from the steve warehouse team.
+     * @type {string}
+     * @memberof InboundDeliveryAllOf
+     */
+    'inboundDeliveryNote'?: string | null;
+    /**
      * The API internal id of the inbound delivery.
      * @type {number}
      * @memberof InboundDeliveryAllOf
