@@ -4752,7 +4752,7 @@
                     {
                         "name": "pageSize",
                         "in": "query",
-                        "description": "The maximum size per page is 100. Default is 20.",
+                        "description": "The maximum size per page is 100. Default is 100.",
                         "required": false,
                         "schema": {
                             "type": "integer"
@@ -4762,7 +4762,7 @@
                     {
                         "name": "paginationMode",
                         "in": "query",
-                        "description": "The paginationMode to use:\n- default: The total number of items in the collection will not be calculated.\n- totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.",
+                        "description": "The paginationMode to use:\n- default: The total number of items in the collection will not be calculated.\n- totalCount: The total number of items in the collection will be calculated. \\\nThis can mean loss of performance.",
                         "required": false,
                         "schema": {
                             "type": "string",
@@ -4771,12 +4771,13 @@
                                 "default",
                                 "totalCount"
                             ]
-                        }
+                        },
+                        "example": 20
                     },
                     {
                         "name": "filter[shopCode]",
                         "in": "query",
-                        "description": "The shopCode used internally to distinguish between clients.\\\n_This code is optional, if your identity is assigned to only one shop.\nOtherwise the response would be a 422 HTTP Error._",
+                        "description": "The shopCode used internally to distinguish between clients. \\\n_This code is optional, if your identity is assigned to only one shop.\nOtherwise the response would be a 422 HTTP Error._",
                         "required": false,
                         "schema": {
                             "type": "string"
@@ -4787,7 +4788,7 @@
                         "name": "filter[dateFrom]",
                         "in": "query",
                         "description": "The start date (inclusive) in format Y-m-d (timezone CET/CEST) for which orders should be returned.",
-                        "required": true,
+                        "required": false,
                         "schema": {
                             "type": "string",
                             "format": "date"
@@ -4797,7 +4798,7 @@
                         "name": "filter[dateTo]",
                         "in": "query",
                         "description": "The end date (inclusive) in format Y-m-d (timezone CET/CEST) for which orders should be returned.",
-                        "required": true,
+                        "required": false,
                         "schema": {
                             "type": "string",
                             "format": "date"
@@ -4856,7 +4857,7 @@
                         }
                     },
                     "500": {
-                        "description": "Server error",
+                        "description": "Server Error",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -4866,7 +4867,186 @@
                         }
                     },
                     "default": {
-                        "description": "Unexpected error",
+                        "description": "Unexpected Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "oAuthAuthorization": []
+                    },
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/report/inventory-movements": {
+            "get": {
+                "tags": [
+                    "report"
+                ],
+                "summary": "Read the inventory movements for the given shopCode in the given month and year.",
+                "description": "Read the inventory movements for the given shopCode in the given month and year.",
+                "operationId": "getReportInventoryMovementCollection",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "The page to read. Default is the first page.",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": 1
+                    },
+                    {
+                        "name": "pageSize",
+                        "in": "query",
+                        "description": "The maximum size per page is 100. Default is 100.",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": 20
+                    },
+                    {
+                        "name": "paginationMode",
+                        "in": "query",
+                        "description": "The paginationMode to use:\n- default: The total number of items in the collection will not be calculated.\n- totalCount: The total number of items in the collection will be calculated. \\\nThis can mean loss of performance.",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "default": "default",
+                            "enum": [
+                                "default",
+                                "totalCount"
+                            ]
+                        },
+                        "example": 20
+                    },
+                    {
+                        "name": "filter[shopCode]",
+                        "in": "query",
+                        "description": "The shopCode used internally to distinguish between clients. \\\n_This code is optional, if your identity is assigned to only one shop.\nOtherwise the response would be a 422 HTTP Error._",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "teststeve"
+                    },
+                    {
+                        "name": "filter[year]",
+                        "in": "query",
+                        "description": "The year for which inventory movements should be returned.",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": 2023
+                    },
+                    {
+                        "name": "filter[month]",
+                        "in": "query",
+                        "description": "The month for which inventory movements should be returned.",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": 7
+                    },
+                    {
+                        "name": "filter[productNumbers]",
+                        "in": "query",
+                        "description": "The productNumber(s) as comma delimited string for which inventory movements should be returned (optional).",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "examples": {
+                            "single product number": {
+                                "summary": "Product Number",
+                                "value": "productNumber1"
+                            },
+                            "multiple product numbers": {
+                                "summary": "Multiple Product Numbers",
+                                "value": "productNumber1,productNumber2"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/reportInventoryMovementEntryCollection"
+                                }
+                            }
+                        }
+                    },
+                    "204": {
+                        "description": "No (more) inventory movements could be found"
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected Error",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -7494,6 +7674,92 @@
                                 "type": "array",
                                 "items": {
                                     "$ref": "#/components/schemas/reportClearingOrder"
+                                }
+                            }
+                        },
+                        "type": "object"
+                    }
+                ]
+            },
+            "reportInventoryMovement": {
+                "description": "Inventory Movement",
+                "properties": {
+                    "productNumber": {
+                        "description": "Number of the product",
+                        "type": "string"
+                    },
+                    "stockStart": {
+                        "description": "Stock at the start of the period",
+                        "type": "integer"
+                    },
+                    "stockEnd": {
+                        "description": "Stock at the end of the period",
+                        "type": "integer"
+                    },
+                    "stockAdded": {
+                        "description": "Stock added in the period",
+                        "type": "integer"
+                    },
+                    "stockSubtracted": {
+                        "description": "Stock subtracted in the period",
+                        "type": "integer"
+                    },
+                    "stockCorrected": {
+                        "description": "Stock corrections in the period",
+                        "type": "integer"
+                    },
+                    "stockUsedForOwnPurposes": {
+                        "description": "Stock used for internal purposes in the period",
+                        "type": "integer"
+                    },
+                    "stockReturned": {
+                        "description": "Stock returned in the period",
+                        "type": "integer"
+                    },
+                    "movementEntries": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/reportInventoryMovementEntry"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "reportInventoryMovementEntry": {
+                "description": "Inventory movement entry",
+                "properties": {
+                    "typeCode": {
+                        "description": "The type code of the movement entry",
+                        "type": "string",
+                        "enum": [
+                            "added",
+                            "subtracted",
+                            "corrected",
+                            "forOwnPurpose",
+                            "returned"
+                        ]
+                    },
+                    "stock": {
+                        "description": "The amount of moved stock",
+                        "type": "integer"
+                    }
+                },
+                "type": "object"
+            },
+            "reportInventoryMovementEntryCollection": {
+                "title": "Inventory movement entry collection",
+                "description": "A collection of inventory movement entries",
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/collection"
+                    },
+                    {
+                        "properties": {
+                            "data": {
+                                "description": "Data of the collection",
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/reportInventoryMovement"
                                 }
                             }
                         },
