@@ -28,6 +28,8 @@ import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } fr
 import { ErrorResponse } from '../models';
 // @ts-ignore
 import { ReportClearingOrderCollection } from '../models';
+// @ts-ignore
+import { ReportInventoryMovementEntryCollection } from '../models';
 /**
  * ReportApi - axios parameter creator
  * @export
@@ -37,20 +39,16 @@ export const ReportApiAxiosParamCreator = function (configuration?: Configuratio
         /**
          * Read the created orders for the given shopCode in the given dateRange.
          * @summary Read the created orders for the given shopCode in the given dateRange.
-         * @param {string} filterDateFrom The start date (inclusive) in format Y-m-d (timezone CET/CEST) for which orders should be returned.
-         * @param {string} filterDateTo The end date (inclusive) in format Y-m-d (timezone CET/CEST) for which orders should be returned.
          * @param {number} [page] The page to read. Default is the first page.
-         * @param {number} [pageSize] The maximum size per page is 100. Default is 20.
-         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
-         * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+         * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
+         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. \\ This can mean loss of performance.
+         * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+         * @param {string} [filterDateFrom] The start date (inclusive) in format Y-m-d (timezone CET/CEST) for which orders should be returned.
+         * @param {string} [filterDateTo] The end date (inclusive) in format Y-m-d (timezone CET/CEST) for which orders should be returned.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getOrderReportClearingCollection: async (filterDateFrom: string, filterDateTo: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterShopCode?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'filterDateFrom' is not null or undefined
-            assertParamExists('getOrderReportClearingCollection', 'filterDateFrom', filterDateFrom)
-            // verify required parameter 'filterDateTo' is not null or undefined
-            assertParamExists('getOrderReportClearingCollection', 'filterDateTo', filterDateTo)
+        getOrderReportClearingCollection: async (page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterShopCode?: string, filterDateFrom?: string, filterDateTo?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/report/clearing/orders`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -110,6 +108,83 @@ export const ReportApiAxiosParamCreator = function (configuration?: Configuratio
                 options: localVarRequestOptions,
             };
         },
+        /**
+         * Read the inventory movements for the given shopCode in the given month and year.
+         * @summary Read the inventory movements for the given shopCode in the given month and year.
+         * @param {number} filterYear The year for which inventory movements should be returned.
+         * @param {number} filterMonth The month for which inventory movements should be returned.
+         * @param {number} [page] The page to read. Default is the first page.
+         * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
+         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. \\ This can mean loss of performance.
+         * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+         * @param {string} [filterProductNumbers] The productNumber(s) as comma delimited string for which inventory movements should be returned (optional).
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getReportInventoryMovementCollection: async (filterYear: number, filterMonth: number, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterShopCode?: string, filterProductNumbers?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'filterYear' is not null or undefined
+            assertParamExists('getReportInventoryMovementCollection', 'filterYear', filterYear)
+            // verify required parameter 'filterMonth' is not null or undefined
+            assertParamExists('getReportInventoryMovementCollection', 'filterMonth', filterMonth)
+            const localVarPath = `/report/inventory-movements`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication oAuthAuthorization required
+            // oauth required
+            await setOAuthToObject(localVarHeaderParameter, "oAuthAuthorization", [], configuration)
+
+            // authentication bearerAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
+            }
+
+            if (pageSize !== undefined) {
+                localVarQueryParameter['pageSize'] = pageSize;
+            }
+
+            if (paginationMode !== undefined) {
+                localVarQueryParameter['paginationMode'] = paginationMode;
+            }
+
+            if (filterShopCode !== undefined) {
+                localVarQueryParameter['filter[shopCode]'] = filterShopCode;
+            }
+
+            if (filterYear !== undefined) {
+                localVarQueryParameter['filter[year]'] = filterYear;
+            }
+
+            if (filterMonth !== undefined) {
+                localVarQueryParameter['filter[month]'] = filterMonth;
+            }
+
+            if (filterProductNumbers !== undefined) {
+                localVarQueryParameter['filter[productNumbers]'] = filterProductNumbers;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
     }
 };
 
@@ -123,17 +198,34 @@ export const ReportApiFp = function(configuration?: Configuration) {
         /**
          * Read the created orders for the given shopCode in the given dateRange.
          * @summary Read the created orders for the given shopCode in the given dateRange.
-         * @param {string} filterDateFrom The start date (inclusive) in format Y-m-d (timezone CET/CEST) for which orders should be returned.
-         * @param {string} filterDateTo The end date (inclusive) in format Y-m-d (timezone CET/CEST) for which orders should be returned.
          * @param {number} [page] The page to read. Default is the first page.
-         * @param {number} [pageSize] The maximum size per page is 100. Default is 20.
-         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
-         * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+         * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
+         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. \\ This can mean loss of performance.
+         * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+         * @param {string} [filterDateFrom] The start date (inclusive) in format Y-m-d (timezone CET/CEST) for which orders should be returned.
+         * @param {string} [filterDateTo] The end date (inclusive) in format Y-m-d (timezone CET/CEST) for which orders should be returned.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getOrderReportClearingCollection(filterDateFrom: string, filterDateTo: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterShopCode?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ReportClearingOrderCollection>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getOrderReportClearingCollection(filterDateFrom, filterDateTo, page, pageSize, paginationMode, filterShopCode, options);
+        async getOrderReportClearingCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterShopCode?: string, filterDateFrom?: string, filterDateTo?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ReportClearingOrderCollection>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getOrderReportClearingCollection(page, pageSize, paginationMode, filterShopCode, filterDateFrom, filterDateTo, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Read the inventory movements for the given shopCode in the given month and year.
+         * @summary Read the inventory movements for the given shopCode in the given month and year.
+         * @param {number} filterYear The year for which inventory movements should be returned.
+         * @param {number} filterMonth The month for which inventory movements should be returned.
+         * @param {number} [page] The page to read. Default is the first page.
+         * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
+         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. \\ This can mean loss of performance.
+         * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+         * @param {string} [filterProductNumbers] The productNumber(s) as comma delimited string for which inventory movements should be returned (optional).
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getReportInventoryMovementCollection(filterYear: number, filterMonth: number, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterShopCode?: string, filterProductNumbers?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ReportInventoryMovementEntryCollection>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getReportInventoryMovementCollection(filterYear, filterMonth, page, pageSize, paginationMode, filterShopCode, filterProductNumbers, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -149,17 +241,33 @@ export const ReportApiFactory = function (configuration?: Configuration, basePat
         /**
          * Read the created orders for the given shopCode in the given dateRange.
          * @summary Read the created orders for the given shopCode in the given dateRange.
-         * @param {string} filterDateFrom The start date (inclusive) in format Y-m-d (timezone CET/CEST) for which orders should be returned.
-         * @param {string} filterDateTo The end date (inclusive) in format Y-m-d (timezone CET/CEST) for which orders should be returned.
          * @param {number} [page] The page to read. Default is the first page.
-         * @param {number} [pageSize] The maximum size per page is 100. Default is 20.
-         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
-         * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+         * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
+         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. \\ This can mean loss of performance.
+         * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+         * @param {string} [filterDateFrom] The start date (inclusive) in format Y-m-d (timezone CET/CEST) for which orders should be returned.
+         * @param {string} [filterDateTo] The end date (inclusive) in format Y-m-d (timezone CET/CEST) for which orders should be returned.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getOrderReportClearingCollection(filterDateFrom: string, filterDateTo: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterShopCode?: string, options?: any): AxiosPromise<ReportClearingOrderCollection> {
-            return localVarFp.getOrderReportClearingCollection(filterDateFrom, filterDateTo, page, pageSize, paginationMode, filterShopCode, options).then((request) => request(axios, basePath));
+        getOrderReportClearingCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterShopCode?: string, filterDateFrom?: string, filterDateTo?: string, options?: any): AxiosPromise<ReportClearingOrderCollection> {
+            return localVarFp.getOrderReportClearingCollection(page, pageSize, paginationMode, filterShopCode, filterDateFrom, filterDateTo, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Read the inventory movements for the given shopCode in the given month and year.
+         * @summary Read the inventory movements for the given shopCode in the given month and year.
+         * @param {number} filterYear The year for which inventory movements should be returned.
+         * @param {number} filterMonth The month for which inventory movements should be returned.
+         * @param {number} [page] The page to read. Default is the first page.
+         * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
+         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. \\ This can mean loss of performance.
+         * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+         * @param {string} [filterProductNumbers] The productNumber(s) as comma delimited string for which inventory movements should be returned (optional).
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getReportInventoryMovementCollection(filterYear: number, filterMonth: number, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterShopCode?: string, filterProductNumbers?: string, options?: any): AxiosPromise<ReportInventoryMovementEntryCollection> {
+            return localVarFp.getReportInventoryMovementCollection(filterYear, filterMonth, page, pageSize, paginationMode, filterShopCode, filterProductNumbers, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -173,17 +281,33 @@ export interface ReportApiInterface {
     /**
      * Read the created orders for the given shopCode in the given dateRange.
      * @summary Read the created orders for the given shopCode in the given dateRange.
-     * @param {string} filterDateFrom The start date (inclusive) in format Y-m-d (timezone CET/CEST) for which orders should be returned.
-     * @param {string} filterDateTo The end date (inclusive) in format Y-m-d (timezone CET/CEST) for which orders should be returned.
      * @param {number} [page] The page to read. Default is the first page.
-     * @param {number} [pageSize] The maximum size per page is 100. Default is 20.
-     * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
-     * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+     * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
+     * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. \\ This can mean loss of performance.
+     * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+     * @param {string} [filterDateFrom] The start date (inclusive) in format Y-m-d (timezone CET/CEST) for which orders should be returned.
+     * @param {string} [filterDateTo] The end date (inclusive) in format Y-m-d (timezone CET/CEST) for which orders should be returned.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ReportApiInterface
      */
-    getOrderReportClearingCollection(filterDateFrom: string, filterDateTo: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterShopCode?: string, options?: AxiosRequestConfig): AxiosPromise<ReportClearingOrderCollection>;
+    getOrderReportClearingCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterShopCode?: string, filterDateFrom?: string, filterDateTo?: string, options?: AxiosRequestConfig): AxiosPromise<ReportClearingOrderCollection>;
+
+    /**
+     * Read the inventory movements for the given shopCode in the given month and year.
+     * @summary Read the inventory movements for the given shopCode in the given month and year.
+     * @param {number} filterYear The year for which inventory movements should be returned.
+     * @param {number} filterMonth The month for which inventory movements should be returned.
+     * @param {number} [page] The page to read. Default is the first page.
+     * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
+     * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. \\ This can mean loss of performance.
+     * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+     * @param {string} [filterProductNumbers] The productNumber(s) as comma delimited string for which inventory movements should be returned (optional).
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ReportApiInterface
+     */
+    getReportInventoryMovementCollection(filterYear: number, filterMonth: number, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterShopCode?: string, filterProductNumbers?: string, options?: AxiosRequestConfig): AxiosPromise<ReportInventoryMovementEntryCollection>;
 
 }
 
@@ -197,17 +321,35 @@ export class ReportApi extends BaseAPI implements ReportApiInterface {
     /**
      * Read the created orders for the given shopCode in the given dateRange.
      * @summary Read the created orders for the given shopCode in the given dateRange.
-     * @param {string} filterDateFrom The start date (inclusive) in format Y-m-d (timezone CET/CEST) for which orders should be returned.
-     * @param {string} filterDateTo The end date (inclusive) in format Y-m-d (timezone CET/CEST) for which orders should be returned.
      * @param {number} [page] The page to read. Default is the first page.
-     * @param {number} [pageSize] The maximum size per page is 100. Default is 20.
-     * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
-     * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+     * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
+     * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. \\ This can mean loss of performance.
+     * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+     * @param {string} [filterDateFrom] The start date (inclusive) in format Y-m-d (timezone CET/CEST) for which orders should be returned.
+     * @param {string} [filterDateTo] The end date (inclusive) in format Y-m-d (timezone CET/CEST) for which orders should be returned.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ReportApi
      */
-    public getOrderReportClearingCollection(filterDateFrom: string, filterDateTo: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterShopCode?: string, options?: AxiosRequestConfig) {
-        return ReportApiFp(this.configuration).getOrderReportClearingCollection(filterDateFrom, filterDateTo, page, pageSize, paginationMode, filterShopCode, options).then((request) => request(this.axios, this.basePath));
+    public getOrderReportClearingCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterShopCode?: string, filterDateFrom?: string, filterDateTo?: string, options?: AxiosRequestConfig) {
+        return ReportApiFp(this.configuration).getOrderReportClearingCollection(page, pageSize, paginationMode, filterShopCode, filterDateFrom, filterDateTo, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Read the inventory movements for the given shopCode in the given month and year.
+     * @summary Read the inventory movements for the given shopCode in the given month and year.
+     * @param {number} filterYear The year for which inventory movements should be returned.
+     * @param {number} filterMonth The month for which inventory movements should be returned.
+     * @param {number} [page] The page to read. Default is the first page.
+     * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
+     * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. \\ This can mean loss of performance.
+     * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+     * @param {string} [filterProductNumbers] The productNumber(s) as comma delimited string for which inventory movements should be returned (optional).
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ReportApi
+     */
+    public getReportInventoryMovementCollection(filterYear: number, filterMonth: number, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterShopCode?: string, filterProductNumbers?: string, options?: AxiosRequestConfig) {
+        return ReportApiFp(this.configuration).getReportInventoryMovementCollection(filterYear, filterMonth, page, pageSize, paginationMode, filterShopCode, filterProductNumbers, options).then((request) => request(this.axios, this.basePath));
     }
 }
