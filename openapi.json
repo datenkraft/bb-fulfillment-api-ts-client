@@ -2,7 +2,7 @@
     "openapi": "3.0.0",
     "info": {
         "title": "Fulfillment API",
-        "description": "\n- alpha: Currently developed API version. Subject to major changes.\n- beta: A semi-stable early access version. New features can be added. Breaking changes are possible.\n- stable: The API is recommended for use in production.\n\n[Changelog](https:\/\/fulfillment-api.conqore.niceshops.com\/v2\/docs\/changelog.html)\n\nAll data is transferred in UTF-8 encoding.\\\nThe API uses stateless HTTP. No cookies have to be kept.\\\nAuthentication via OAuth2 client credentials flow.\n\n[Fulfillment API PHP client @Packagist](https:\/\/packagist.org\/packages\/datenkraft\/bb-fulfillment-api-php-client)",
+        "description": "\n- alpha: Currently developed API version. Subject to major changes.\n- beta: A semi-stable early access version. New features can be added. Breaking changes are possible.\n- stable: The API is recommended for use in production.\n\n[Changelog](https:\/\/fulfillment-api.conqore.niceshops.com\/v2\/docs\/changelog.html)\n\nAll data is transferred in UTF-8 encoding.\\\nThe API uses stateless HTTP. No cookies have to be kept.\\\nAuthentication via OAuth2 client credentials flow.\n\n[Privacy Policy](https:\/\/www.niceshops.com\/en\/dienstleistungen\/data-privacy-policy)\n\n[Fulfillment API PHP client @Packagist](https:\/\/packagist.org\/packages\/datenkraft\/bb-fulfillment-api-php-client)",
         "version": "v2.beta"
     },
     "servers": [
@@ -1524,7 +1524,7 @@
                     {
                         "name": "paginationMode",
                         "in": "query",
-                        "description": "The paginationMode to use:\n- default: The total number of items in the collection will not be calculated.\n- totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.",
+                        "description": "The paginationMode to use:\n- default: The total number of items in the collection will not be calculated.\n- totalCount: The total number of items in the collection will be calculated. \\\nThis can mean loss of performance.",
                         "required": false,
                         "schema": {
                             "type": "string",
@@ -1536,37 +1536,33 @@
                         }
                     },
                     {
+                        "name": "shopCode",
+                        "in": "query",
+                        "description": "The shopCode used internally to distinguish between clients. \\\n_This code is optional, if your identity is assigned to only one shop.\nOtherwise the response would be a 422 HTTP Error._",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "teststeve"
+                    },
+                    {
                         "name": "filter[orderNumber]",
                         "in": "query",
-                        "description": "A filter for a single order number or multiple order numbers separted by a comma.\n- The filter can contain a maximum of 100 order numbers.\n- The order numbers in the filter must be unique.\n- A single order number can have a maximum length of 59 characters.",
+                        "description": "A filter for a single order number or multiple order numbers separated by a comma.\n- The filter can contain a maximum of 100 order numbers.\n- The order numbers in the filter must be unique.\n- A single order number can have a maximum length of 59 characters.",
                         "required": true,
                         "schema": {
                             "type": "string"
                         },
                         "examples": {
                             "single order number": {
-                                "summary": "single order number",
-                                "value": [
-                                    "100123123"
-                                ]
+                                "summary": "Order Number",
+                                "value": "100123123"
                             },
                             "multiple order numbers": {
-                                "summary": "multiple order numbers",
-                                "value": [
-                                    "100123123,100123124"
-                                ]
+                                "summary": "Multiple Order Numbers",
+                                "value": "100123123,100123124"
                             }
                         }
-                    },
-                    {
-                        "name": "shopCode",
-                        "in": "query",
-                        "description": "The shopCode used internally to distinguish between clients.\\\n_This code is optional, if your identity is assigned to only one shop.\nOtherwise the response would be a 422 HTTP Error._",
-                        "required": false,
-                        "schema": {
-                            "type": "string"
-                        },
-                        "example": "teststeve"
                     }
                 ],
                 "responses": {
@@ -1576,6 +1572,16 @@
                             "application/json": {
                                 "schema": {
                                     "$ref": "#/components/schemas/deliveryCollection"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
                                 }
                             }
                         }
@@ -1611,7 +1617,7 @@
                         }
                     },
                     "500": {
-                        "description": "Server error",
+                        "description": "Server Error",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -1621,7 +1627,7 @@
                         }
                     },
                     "default": {
-                        "description": "Unexpected error",
+                        "description": "Unexpected Error",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -1653,7 +1659,7 @@
                     {
                         "name": "deliveryNumber",
                         "in": "path",
-                        "description": "delivery number",
+                        "description": "Number of the delivery",
                         "required": true,
                         "schema": {
                             "type": "string"
@@ -1662,7 +1668,7 @@
                     {
                         "name": "shopCode",
                         "in": "query",
-                        "description": "The shopCode used internally to distinguish between clients.\\\n_This code is optional, if your identity is assigned to only one shop.\nOtherwise the response would be a 422 HTTP Error._",
+                        "description": "The shopCode used internally to distinguish between clients. \\\n_This code is optional, if your identity is assigned to only one shop.\nOtherwise the response would be a 422 HTTP Error._",
                         "required": false,
                         "schema": {
                             "type": "string"
@@ -1677,6 +1683,16 @@
                             "application/json": {
                                 "schema": {
                                     "$ref": "#/components/schemas/delivery"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
                                 }
                             }
                         }
@@ -1722,7 +1738,7 @@
                         }
                     },
                     "500": {
-                        "description": "Server error",
+                        "description": "Server Error",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -1732,7 +1748,152 @@
                         }
                     },
                     "default": {
-                        "description": "Unexpected error",
+                        "description": "Unexpected Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "oAuthAuthorization": []
+                    },
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/delivery/{deliveryNumber}/document/{documentCode}": {
+            "get": {
+                "tags": [
+                    "delivery"
+                ],
+                "summary": "Download delivery related documents",
+                "description": "Allows to download a document associated with the given delivery.",
+                "operationId": "getDeliveryDocument",
+                "parameters": [
+                    {
+                        "name": "deliveryNumber",
+                        "in": "path",
+                        "description": "The number of the delivery",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "maxLength": 54
+                        }
+                    },
+                    {
+                        "name": "documentCode",
+                        "in": "path",
+                        "description": "The document type to download. The file format is determined by the Accept request header.\\\n**Note:** Only a limited amount of document type to file format combinations are available:\n- deliverySlipNote: The delivery slip note to confirm successful delivery.\\\nAccept header: application/pdf",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "deliverySlipNote"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "shopCode",
+                        "in": "query",
+                        "description": "The shopCode used internally to distinguish between clients. \\\n_This code is optional, if your identity is assigned to only one shop.\nOtherwise the response would be a 422 HTTP Error._",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "teststeve"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns the document with the file format according to the sent Accept request header.",
+                        "content": {
+                            "application/pdf": {
+                                "schema": {
+                                    "type": "string",
+                                    "format": "binary"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "406": {
+                        "description": "The requested document could not be generated in the format specified by the accept header",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected Error",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -1774,7 +1935,7 @@
                     {
                         "name": "shipmentNumber",
                         "in": "path",
-                        "description": "Number of the shipment",
+                        "description": "Number of the shipment.",
                         "required": true,
                         "schema": {
                             "type": "string"
@@ -1784,7 +1945,7 @@
                     {
                         "name": "shopCode",
                         "in": "query",
-                        "description": "The shopCode used internally to distinguish between clients.\\\n_This code is optional, if your identity is assigned to only one shop.\nOtherwise the response would be a 422 HTTP Error._",
+                        "description": "The shopCode used internally to distinguish between clients. \\\n_This code is optional, if your identity is assigned to only one shop.\nOtherwise the response would be a 422 HTTP Error._",
                         "required": false,
                         "schema": {
                             "type": "string"
@@ -1809,6 +1970,16 @@
                             "application/json": {
                                 "schema": {
                                     "$ref": "#/components/schemas/deliveryShipment"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
                                 }
                             }
                         }
@@ -1844,7 +2015,7 @@
                         }
                     },
                     "409": {
-                        "description": "Conflict\n\nAvailable message codes:\n- SHIPMENT_WITH_STEVE_EXTERNAL_SHIPMENT_ID_ALREADY_EXISTS: Another shipment with the given steveExternalShipmentId\nalready exists.",
+                        "description": "Conflict \\\nAvailable message codes:\n- SHIPMENT_WITH_STEVE_EXTERNAL_SHIPMENT_ID_ALREADY_EXISTS: Another shipment with the given \nshipmentId already exists.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -1864,7 +2035,7 @@
                         }
                     },
                     "500": {
-                        "description": "Server error",
+                        "description": "Server Error",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -1874,7 +2045,7 @@
                         }
                     },
                     "default": {
-                        "description": "Unexpected error",
+                        "description": "Unexpected Error",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -3907,8 +4078,7 @@
                                 "default",
                                 "totalCount"
                             ]
-                        },
-                        "example": 20
+                        }
                     },
                     {
                         "name": "filter[shopCode]",
@@ -4310,8 +4480,7 @@
                                 "default",
                                 "totalCount"
                             ]
-                        },
-                        "example": 20
+                        }
                     },
                     {
                         "name": "shopCode",
@@ -4771,8 +4940,7 @@
                                 "default",
                                 "totalCount"
                             ]
-                        },
-                        "example": 20
+                        }
                     },
                     {
                         "name": "filter[shopCode]",
@@ -4928,8 +5096,7 @@
                                 "default",
                                 "totalCount"
                             ]
-                        },
-                        "example": 20
+                        }
                     },
                     {
                         "name": "filter[shopCode]",
