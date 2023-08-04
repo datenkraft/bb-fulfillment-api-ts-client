@@ -2,7 +2,7 @@
 /* eslint-disable */
 /**
  * Fulfillment API
- *  - alpha: Currently developed API version. Subject to major changes. - beta: A semi-stable early access version. New features can be added. Breaking changes are possible. - stable: The API is recommended for use in production.  [Changelog](https://fulfillment-api.conqore.niceshops.com/v2/docs/changelog.html)  All data is transferred in UTF-8 encoding.\\ The API uses stateless HTTP. No cookies have to be kept.\\ Authentication via OAuth2 client credentials flow.  [Fulfillment API PHP client @Packagist](https://packagist.org/packages/datenkraft/bb-fulfillment-api-php-client)
+ *  - alpha: Currently developed API version. Subject to major changes. - beta: A semi-stable early access version. New features can be added. Breaking changes are possible. - stable: The API is recommended for use in production.  [Changelog](https://fulfillment-api.conqore.niceshops.com/v2/docs/changelog.html)  All data is transferred in UTF-8 encoding.\\ The API uses stateless HTTP. No cookies have to be kept.\\ Authentication via OAuth2 client credentials flow.  [Privacy Policy](https://www.niceshops.com/en/dienstleistungen/data-privacy-policy)  [Fulfillment API PHP client @Packagist](https://packagist.org/packages/datenkraft/bb-fulfillment-api-php-client)
  *
  * The version of the OpenAPI document: v2.beta
  * 
@@ -43,8 +43,8 @@ export const DeliveryApiAxiosParamCreator = function (configuration?: Configurat
         /**
          * Get the delivery with the given deliveryNumber.
          * @summary Get the delivery with the given deliveryNumber.
-         * @param {string} deliveryNumber delivery number
-         * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+         * @param {string} deliveryNumber Number of the delivery
+         * @param {string} [shopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -90,11 +90,11 @@ export const DeliveryApiAxiosParamCreator = function (configuration?: Configurat
         /**
          * Get deliveries filtered by a single or multiple order numbers.
          * @summary Get deliveries filtered by a single or multiple order numbers.
-         * @param {string} filterOrderNumber A filter for a single order number or multiple order numbers separted by a comma. - The filter can contain a maximum of 100 order numbers. - The order numbers in the filter must be unique. - A single order number can have a maximum length of 59 characters.
+         * @param {string} filterOrderNumber A filter for a single order number or multiple order numbers separated by a comma. - The filter can contain a maximum of 100 order numbers. - The order numbers in the filter must be unique. - A single order number can have a maximum length of 59 characters.
          * @param {number} [page] The page to read. Default is the first page.
          * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
-         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
-         * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. \\ This can mean loss of performance.
+         * @param {string} [shopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -133,9 +133,60 @@ export const DeliveryApiAxiosParamCreator = function (configuration?: Configurat
                 localVarQueryParameter['paginationMode'] = paginationMode;
             }
 
+            if (shopCode !== undefined) {
+                localVarQueryParameter['shopCode'] = shopCode;
+            }
+
             if (filterOrderNumber !== undefined) {
                 localVarQueryParameter['filter[orderNumber]'] = filterOrderNumber;
             }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Allows to download a document associated with the given delivery.
+         * @summary Download delivery related documents
+         * @param {string} deliveryNumber The number of the delivery
+         * @param {'deliverySlipNote'} documentCode The document type to download. The file format is determined by the Accept request header.\\ **Note:** Only a limited amount of document type to file format combinations are available: - deliverySlipNote: The delivery slip note to confirm successful delivery.\\ Accept header: application/pdf
+         * @param {string} [shopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getDeliveryDocument: async (deliveryNumber: string, documentCode: 'deliverySlipNote', shopCode?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'deliveryNumber' is not null or undefined
+            assertParamExists('getDeliveryDocument', 'deliveryNumber', deliveryNumber)
+            // verify required parameter 'documentCode' is not null or undefined
+            assertParamExists('getDeliveryDocument', 'documentCode', documentCode)
+            const localVarPath = `/delivery/{deliveryNumber}/document/{documentCode}`
+                .replace(`{${"deliveryNumber"}}`, encodeURIComponent(String(deliveryNumber)))
+                .replace(`{${"documentCode"}}`, encodeURIComponent(String(documentCode)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication oAuthAuthorization required
+            // oauth required
+            await setOAuthToObject(localVarHeaderParameter, "oAuthAuthorization", [], configuration)
+
+            // authentication bearerAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
             if (shopCode !== undefined) {
                 localVarQueryParameter['shopCode'] = shopCode;
@@ -156,9 +207,9 @@ export const DeliveryApiAxiosParamCreator = function (configuration?: Configurat
          * Patch data of the shipment of the delivery specified by the given delivery and shipment numbers.
          * @summary Patch data of the shipment of the delivery specified by the given delivery and shipment numbers.
          * @param {string} deliveryNumber Number of the delivery.
-         * @param {string} shipmentNumber Number of the shipment
+         * @param {string} shipmentNumber Number of the shipment.
          * @param {UpdateDeliveryShipment} updateDeliveryShipment 
-         * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+         * @param {string} [shopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -222,8 +273,8 @@ export const DeliveryApiFp = function(configuration?: Configuration) {
         /**
          * Get the delivery with the given deliveryNumber.
          * @summary Get the delivery with the given deliveryNumber.
-         * @param {string} deliveryNumber delivery number
-         * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+         * @param {string} deliveryNumber Number of the delivery
+         * @param {string} [shopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -234,11 +285,11 @@ export const DeliveryApiFp = function(configuration?: Configuration) {
         /**
          * Get deliveries filtered by a single or multiple order numbers.
          * @summary Get deliveries filtered by a single or multiple order numbers.
-         * @param {string} filterOrderNumber A filter for a single order number or multiple order numbers separted by a comma. - The filter can contain a maximum of 100 order numbers. - The order numbers in the filter must be unique. - A single order number can have a maximum length of 59 characters.
+         * @param {string} filterOrderNumber A filter for a single order number or multiple order numbers separated by a comma. - The filter can contain a maximum of 100 order numbers. - The order numbers in the filter must be unique. - A single order number can have a maximum length of 59 characters.
          * @param {number} [page] The page to read. Default is the first page.
          * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
-         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
-         * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. \\ This can mean loss of performance.
+         * @param {string} [shopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -247,12 +298,25 @@ export const DeliveryApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
+         * Allows to download a document associated with the given delivery.
+         * @summary Download delivery related documents
+         * @param {string} deliveryNumber The number of the delivery
+         * @param {'deliverySlipNote'} documentCode The document type to download. The file format is determined by the Accept request header.\\ **Note:** Only a limited amount of document type to file format combinations are available: - deliverySlipNote: The delivery slip note to confirm successful delivery.\\ Accept header: application/pdf
+         * @param {string} [shopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getDeliveryDocument(deliveryNumber: string, documentCode: 'deliverySlipNote', shopCode?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<File>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getDeliveryDocument(deliveryNumber, documentCode, shopCode, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
          * Patch data of the shipment of the delivery specified by the given delivery and shipment numbers.
          * @summary Patch data of the shipment of the delivery specified by the given delivery and shipment numbers.
          * @param {string} deliveryNumber Number of the delivery.
-         * @param {string} shipmentNumber Number of the shipment
+         * @param {string} shipmentNumber Number of the shipment.
          * @param {UpdateDeliveryShipment} updateDeliveryShipment 
-         * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+         * @param {string} [shopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -273,8 +337,8 @@ export const DeliveryApiFactory = function (configuration?: Configuration, baseP
         /**
          * Get the delivery with the given deliveryNumber.
          * @summary Get the delivery with the given deliveryNumber.
-         * @param {string} deliveryNumber delivery number
-         * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+         * @param {string} deliveryNumber Number of the delivery
+         * @param {string} [shopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -284,11 +348,11 @@ export const DeliveryApiFactory = function (configuration?: Configuration, baseP
         /**
          * Get deliveries filtered by a single or multiple order numbers.
          * @summary Get deliveries filtered by a single or multiple order numbers.
-         * @param {string} filterOrderNumber A filter for a single order number or multiple order numbers separted by a comma. - The filter can contain a maximum of 100 order numbers. - The order numbers in the filter must be unique. - A single order number can have a maximum length of 59 characters.
+         * @param {string} filterOrderNumber A filter for a single order number or multiple order numbers separated by a comma. - The filter can contain a maximum of 100 order numbers. - The order numbers in the filter must be unique. - A single order number can have a maximum length of 59 characters.
          * @param {number} [page] The page to read. Default is the first page.
          * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
-         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
-         * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. \\ This can mean loss of performance.
+         * @param {string} [shopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -296,12 +360,24 @@ export const DeliveryApiFactory = function (configuration?: Configuration, baseP
             return localVarFp.getDeliveryCollection(filterOrderNumber, page, pageSize, paginationMode, shopCode, options).then((request) => request(axios, basePath));
         },
         /**
+         * Allows to download a document associated with the given delivery.
+         * @summary Download delivery related documents
+         * @param {string} deliveryNumber The number of the delivery
+         * @param {'deliverySlipNote'} documentCode The document type to download. The file format is determined by the Accept request header.\\ **Note:** Only a limited amount of document type to file format combinations are available: - deliverySlipNote: The delivery slip note to confirm successful delivery.\\ Accept header: application/pdf
+         * @param {string} [shopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getDeliveryDocument(deliveryNumber: string, documentCode: 'deliverySlipNote', shopCode?: string, options?: any): AxiosPromise<File> {
+            return localVarFp.getDeliveryDocument(deliveryNumber, documentCode, shopCode, options).then((request) => request(axios, basePath));
+        },
+        /**
          * Patch data of the shipment of the delivery specified by the given delivery and shipment numbers.
          * @summary Patch data of the shipment of the delivery specified by the given delivery and shipment numbers.
          * @param {string} deliveryNumber Number of the delivery.
-         * @param {string} shipmentNumber Number of the shipment
+         * @param {string} shipmentNumber Number of the shipment.
          * @param {UpdateDeliveryShipment} updateDeliveryShipment 
-         * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+         * @param {string} [shopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -320,8 +396,8 @@ export interface DeliveryApiInterface {
     /**
      * Get the delivery with the given deliveryNumber.
      * @summary Get the delivery with the given deliveryNumber.
-     * @param {string} deliveryNumber delivery number
-     * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+     * @param {string} deliveryNumber Number of the delivery
+     * @param {string} [shopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DeliveryApiInterface
@@ -331,11 +407,11 @@ export interface DeliveryApiInterface {
     /**
      * Get deliveries filtered by a single or multiple order numbers.
      * @summary Get deliveries filtered by a single or multiple order numbers.
-     * @param {string} filterOrderNumber A filter for a single order number or multiple order numbers separted by a comma. - The filter can contain a maximum of 100 order numbers. - The order numbers in the filter must be unique. - A single order number can have a maximum length of 59 characters.
+     * @param {string} filterOrderNumber A filter for a single order number or multiple order numbers separated by a comma. - The filter can contain a maximum of 100 order numbers. - The order numbers in the filter must be unique. - A single order number can have a maximum length of 59 characters.
      * @param {number} [page] The page to read. Default is the first page.
      * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
-     * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
-     * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+     * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. \\ This can mean loss of performance.
+     * @param {string} [shopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DeliveryApiInterface
@@ -343,12 +419,24 @@ export interface DeliveryApiInterface {
     getDeliveryCollection(filterOrderNumber: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', shopCode?: string, options?: AxiosRequestConfig): AxiosPromise<DeliveryCollection>;
 
     /**
+     * Allows to download a document associated with the given delivery.
+     * @summary Download delivery related documents
+     * @param {string} deliveryNumber The number of the delivery
+     * @param {'deliverySlipNote'} documentCode The document type to download. The file format is determined by the Accept request header.\\ **Note:** Only a limited amount of document type to file format combinations are available: - deliverySlipNote: The delivery slip note to confirm successful delivery.\\ Accept header: application/pdf
+     * @param {string} [shopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DeliveryApiInterface
+     */
+    getDeliveryDocument(deliveryNumber: string, documentCode: 'deliverySlipNote', shopCode?: string, options?: AxiosRequestConfig): AxiosPromise<File>;
+
+    /**
      * Patch data of the shipment of the delivery specified by the given delivery and shipment numbers.
      * @summary Patch data of the shipment of the delivery specified by the given delivery and shipment numbers.
      * @param {string} deliveryNumber Number of the delivery.
-     * @param {string} shipmentNumber Number of the shipment
+     * @param {string} shipmentNumber Number of the shipment.
      * @param {UpdateDeliveryShipment} updateDeliveryShipment 
-     * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+     * @param {string} [shopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DeliveryApiInterface
@@ -367,8 +455,8 @@ export class DeliveryApi extends BaseAPI implements DeliveryApiInterface {
     /**
      * Get the delivery with the given deliveryNumber.
      * @summary Get the delivery with the given deliveryNumber.
-     * @param {string} deliveryNumber delivery number
-     * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+     * @param {string} deliveryNumber Number of the delivery
+     * @param {string} [shopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DeliveryApi
@@ -380,11 +468,11 @@ export class DeliveryApi extends BaseAPI implements DeliveryApiInterface {
     /**
      * Get deliveries filtered by a single or multiple order numbers.
      * @summary Get deliveries filtered by a single or multiple order numbers.
-     * @param {string} filterOrderNumber A filter for a single order number or multiple order numbers separted by a comma. - The filter can contain a maximum of 100 order numbers. - The order numbers in the filter must be unique. - A single order number can have a maximum length of 59 characters.
+     * @param {string} filterOrderNumber A filter for a single order number or multiple order numbers separated by a comma. - The filter can contain a maximum of 100 order numbers. - The order numbers in the filter must be unique. - A single order number can have a maximum length of 59 characters.
      * @param {number} [page] The page to read. Default is the first page.
      * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
-     * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
-     * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+     * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. \\ This can mean loss of performance.
+     * @param {string} [shopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DeliveryApi
@@ -394,12 +482,26 @@ export class DeliveryApi extends BaseAPI implements DeliveryApiInterface {
     }
 
     /**
+     * Allows to download a document associated with the given delivery.
+     * @summary Download delivery related documents
+     * @param {string} deliveryNumber The number of the delivery
+     * @param {'deliverySlipNote'} documentCode The document type to download. The file format is determined by the Accept request header.\\ **Note:** Only a limited amount of document type to file format combinations are available: - deliverySlipNote: The delivery slip note to confirm successful delivery.\\ Accept header: application/pdf
+     * @param {string} [shopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DeliveryApi
+     */
+    public getDeliveryDocument(deliveryNumber: string, documentCode: 'deliverySlipNote', shopCode?: string, options?: AxiosRequestConfig) {
+        return DeliveryApiFp(this.configuration).getDeliveryDocument(deliveryNumber, documentCode, shopCode, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
      * Patch data of the shipment of the delivery specified by the given delivery and shipment numbers.
      * @summary Patch data of the shipment of the delivery specified by the given delivery and shipment numbers.
      * @param {string} deliveryNumber Number of the delivery.
-     * @param {string} shipmentNumber Number of the shipment
+     * @param {string} shipmentNumber Number of the shipment.
      * @param {UpdateDeliveryShipment} updateDeliveryShipment 
-     * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+     * @param {string} [shopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DeliveryApi
