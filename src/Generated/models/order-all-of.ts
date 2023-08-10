@@ -84,7 +84,7 @@ export interface OrderAllOf {
      */
     'shipping'?: OrderShipping;
     /**
-     * The source of the order. - shopify: This order was created via the steve by niceshops Shopify application - nice: This order was created manually by niceshops - api: This order was created via the Fulfillment API\\ If null, the source could not be determined
+     * The source of the order. - shopify: This order was created via the steve by niceshops Shopify application - nice: This order was created manually by niceshops - api: This order was created via the Fulfillment API
      * @type {string}
      * @memberof OrderAllOf
      */
@@ -117,8 +117,7 @@ export type OrderAllOfStatusEnum = typeof OrderAllOfStatusEnum[keyof typeof Orde
 export const OrderAllOfSourceEnum = {
     Shopify: 'shopify',
     Nice: 'nice',
-    Api: 'api',
-    Null: 'null'
+    Api: 'api'
 } as const;
 
 export type OrderAllOfSourceEnum = typeof OrderAllOfSourceEnum[keyof typeof OrderAllOfSourceEnum];
