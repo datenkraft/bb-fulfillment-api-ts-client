@@ -7117,15 +7117,13 @@
                                 "$ref": "#/components/schemas/orderShipping"
                             },
                             "source": {
-                                "description": "The source of the order.\n- shopify: This order was created via the steve by niceshops Shopify application\n- nice: This order was created manually by niceshops\n- api: This order was created via the Fulfillment API\\\nIf null, the source could not be determined",
+                                "description": "The source of the order.\n- shopify: This order was created via the steve by niceshops Shopify application\n- nice: This order was created manually by niceshops\n- api: This order was created via the Fulfillment API",
                                 "type": "string",
                                 "enum": [
                                     "shopify",
                                     "nice",
-                                    "api",
-                                    null
-                                ],
-                                "nullable": true
+                                    "api"
+                                ]
                             },
                             "sourceLink": {
                                 "description": "If available, a hyperlink to the application where this order was created is provided",

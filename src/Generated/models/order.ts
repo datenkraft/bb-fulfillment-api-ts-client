@@ -52,10 +52,9 @@ export type order = (baseOrder & {
      * The source of the order.
      * - shopify: This order was created via the steve by niceshops Shopify application
      * - nice: This order was created manually by niceshops
-     * - api: This order was created via the Fulfillment API\
-     * If null, the source could not be determined
+     * - api: This order was created via the Fulfillment API
      */
-    source?: order.source | null,
+    source?: order.source,
     /**
      * If available, a hyperlink to the application where this order was created is provided
      */
@@ -95,8 +94,7 @@ export namespace order {
      * The source of the order.
      * - shopify: This order was created via the steve by niceshops Shopify application
      * - nice: This order was created manually by niceshops
-     * - api: This order was created via the Fulfillment API\
-     * If null, the source could not be determined
+     * - api: This order was created via the Fulfillment API
      */
     export enum source {
         SHOPIFY = 'shopify',
