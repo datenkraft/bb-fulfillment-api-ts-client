@@ -42,6 +42,12 @@ export interface Country {
      */
     'phoneRequired'?: boolean;
     /**
+     * Specifies whether or not customs clearance is necessary
+     * @type {boolean}
+     * @memberof Country
+     */
+    'customsClearanceRequired'?: boolean;
+    /**
      * 
      * @type {Array<CountryProvinces>}
      * @memberof Country
