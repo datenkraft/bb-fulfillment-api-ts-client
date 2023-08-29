@@ -24,6 +24,14 @@ export type reconsignment = {
      * The order number. Note: This can be null if the order was not created via the API.
      */
     orderNumber?: string;
+    /**
+     * The delivery service used for the creation of the order.
+     */
+    orderDeliveryServiceCode?: string;
+    /**
+     * The delivery service used for the reconsignment.
+     */
+    reconsignmentDeliveryServiceCode?: string;
     reconsignmentLines?: Array<reconsignmentLine>;
 }
 
