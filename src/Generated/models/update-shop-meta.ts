@@ -50,6 +50,12 @@ export interface UpdateShopMeta {
      * @memberof UpdateShopMeta
      */
     'defaultCurrency'?: UpdateShopMetaDefaultCurrencyEnum;
+    /**
+     * Flag to mark if it is allowed to set a customer\'s email in shopify. If false the shop email will be used as default.
+     * @type {boolean}
+     * @memberof UpdateShopMeta
+     */
+    'shopifyOverwriteCustomerEmailEnabled'?: boolean | null;
 }
 
 export const UpdateShopMetaDefaultCurrencyEnum = {

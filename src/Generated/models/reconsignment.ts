@@ -48,6 +48,18 @@ export interface Reconsignment {
      */
     'orderNumber'?: string;
     /**
+     * The delivery service used for the creation of the order.
+     * @type {string}
+     * @memberof Reconsignment
+     */
+    'orderDeliveryServiceCode'?: string;
+    /**
+     * The delivery service used for the reconsignment.
+     * @type {string}
+     * @memberof Reconsignment
+     */
+    'reconsignmentDeliveryServiceCode'?: string;
+    /**
      * 
      * @type {Array<ReconsignmentLine>}
      * @memberof Reconsignment
