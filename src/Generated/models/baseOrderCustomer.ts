@@ -17,6 +17,10 @@ export type baseOrderCustomer = {
     externalCustomerId?: string | null;
     deliveryAddress: orderCustomerDeliveryAddress;
     /**
+     * The customer's email.
+     */
+    email?: string | null;
+    /**
      * The customer's phone number, preferably in the DIN 5008 format, like:+43 2236 123456-7890
      */
     phone?: string | null;

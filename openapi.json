@@ -6052,6 +6052,11 @@
                     "deliveryAddress": {
                         "$ref": "#/components/schemas/orderCustomerDeliveryAddress"
                     },
+                    "email": {
+                        "description": "The customer's email.",
+                        "type": "string",
+                        "nullable": true
+                    },
                     "phone": {
                         "description": "The customer's phone number, preferably in the DIN 5008 format, like:+43 2236 123456-7890",
                         "type": "string",
@@ -7720,6 +7725,14 @@
                         "description": "The order number. Note: This can be null if the order was not created via the API.",
                         "type": "string"
                     },
+                    "orderDeliveryServiceCode": {
+                        "description": "The delivery service used for the creation of the order.",
+                        "type": "string"
+                    },
+                    "reconsignmentDeliveryServiceCode": {
+                        "description": "The delivery service used for the reconsignment.",
+                        "type": "string"
+                    },
                     "reconsignmentLines": {
                         "description": "",
                         "type": "array",
@@ -8047,6 +8060,11 @@
                                     null
                                 ],
                                 "nullable": true
+                            },
+                            "shopifyOverwriteCustomerEmailEnabled": {
+                                "description": "Flag to mark if it is allowed to set a customer's email in shopify. If false the shop email will be used as default.",
+                                "type": "boolean",
+                                "nullable": true
                             }
                         },
                         "type": "object",
@@ -8224,6 +8242,11 @@
                                     "PLN",
                                     null
                                 ],
+                                "nullable": true
+                            },
+                            "shopifyOverwriteCustomerEmailEnabled": {
+                                "description": "Flag to mark if it is allowed to set a customer's email in shopify. If false the shop email will be used as default.",
+                                "type": "boolean",
                                 "nullable": true
                             }
                         },
