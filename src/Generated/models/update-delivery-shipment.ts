@@ -21,10 +21,10 @@
  */
 export interface UpdateDeliveryShipment {
     /**
-     * The external id of the shipment
+     * External id of the shipment
      * @type {string}
      * @memberof UpdateDeliveryShipment
      */
-    'externalShipmentId': string;
+    'externalShipmentId': string | null;
 }
 

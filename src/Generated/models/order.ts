@@ -40,7 +40,7 @@ import { OrderShipping } from './order-shipping';
 
 /**
  * @type Order
- * Data to represent an order
+ * Data to represent an order.
  * @export
  */
 export type Order = BaseOrder & OrderAllOf;

@@ -18,7 +18,7 @@
 import { NewInboundDeliveryProduct } from './new-inbound-delivery-product';
 
 /**
- * Data to create a new inbound delivery
+ * Data to create a new inbound delivery.
  * @export
  * @interface NewInboundDelivery
  */
@@ -30,7 +30,7 @@ export interface NewInboundDelivery {
      */
     'inboundDeliveryName'?: string | null;
     /**
-     * Number of the supplier. Available suppliers can be retrieved from the \'GET /supplier\' endpoint.
+     * Number of the supplier.\\ Available suppliers can be retrieved from the \'GET /supplier\' endpoint.
      * @type {string}
      * @memberof NewInboundDelivery
      */

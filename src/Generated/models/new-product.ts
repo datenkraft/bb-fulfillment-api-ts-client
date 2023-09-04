@@ -18,13 +18,13 @@
 import { BaseProduct } from './base-product';
 // May contain unused imports in some cases
 // @ts-ignore
+import { BaseProductVariantGroup } from './base-product-variant-group';
+// May contain unused imports in some cases
+// @ts-ignore
 import { NewProductAllOf } from './new-product-all-of';
 // May contain unused imports in some cases
 // @ts-ignore
 import { ProductPurchasePrice } from './product-purchase-price';
-// May contain unused imports in some cases
-// @ts-ignore
-import { VariantGroupEnum } from './variant-group-enum';
 
 /**
  * @type NewProduct

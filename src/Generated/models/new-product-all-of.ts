@@ -13,9 +13,6 @@
  */
 
 
-// May contain unused imports in some cases
-// @ts-ignore
-import { VariantGroupEnum } from './variant-group-enum';
 
 /**
  * 
@@ -24,31 +21,37 @@ import { VariantGroupEnum } from './variant-group-enum';
  */
 export interface NewProductAllOf {
     /**
-     * 
-     * @type {VariantGroupEnum}
+     * Type of the product
+     * @type {string}
      * @memberof NewProductAllOf
      */
-    'variantGroup'?: VariantGroupEnum;
+    'productType'?: NewProductAllOfProductTypeEnum;
     /**
-     * Status of the product regarding sales.  Available values: - enabled: Product is on sale (default) - enabled_external_only: Product is only available in external stores
+     * Status of the product regarding sales.\\ Available values: - enabled: Product is on sale (default) - enabled_external_only: Product is only available in external stores
      * @type {string}
      * @memberof NewProductAllOf
      */
     'productStatus'?: NewProductAllOfProductStatusEnum;
     /**
-     * Title of the product
+     * The type of the article variant. \\ The articleVariantType \'standard_autotitle\' is only allowed for the variantGroup \'content\'
+     * @type {string}
+     * @memberof NewProductAllOf
+     */
+    'articleVariantType'?: NewProductAllOfArticleVariantTypeEnum;
+    /**
+     * Title of the Product
      * @type {string}
      * @memberof NewProductAllOf
      */
     'productTitle'?: string;
     /**
-     * Original title of the product
+     * Original title of the Product
      * @type {string}
      * @memberof NewProductAllOf
      */
     'productTitleOriginal'?: string;
     /**
-     * Short description of the article.
+     * Short description of the article
      * @type {string}
      * @memberof NewProductAllOf
      */
@@ -78,19 +81,37 @@ export interface NewProductAllOf {
      */
     'taxCode'?: NewProductAllOfTaxCodeEnum;
     /**
-     * Number of the manufacturer.
+     * Number of the manufacturer
      * @type {string}
      * @memberof NewProductAllOf
      */
     'manufacturerNumber'?: string;
     /**
-     * Number of the supplier
+     * Number of the supplier.\\ A list from available suppliers can be queried with the GET /supplier endpoint
      * @type {string}
      * @memberof NewProductAllOf
      */
     'supplierNumber'?: string;
 }
 
+export const NewProductAllOfProductTypeEnum = {
+    Standard: 'standard',
+    Sample: 'sample',
+    SellableSample: 'sellable_sample',
+    Tester: 'tester',
+    PackagingMaterial: 'packaging_material',
+    BookingSeminar: 'booking_seminar',
+    BookingAppointment: 'booking_appointment',
+    PromoMaterial: 'promo_material',
+    RawMaterial: 'raw_material',
+    WorkingMaterial: 'working_material',
+    ServicePrincipal: 'service_principal',
+    ServiceAncillary: 'service_ancillary',
+    InquiryTestdrive: 'inquiry_testdrive',
+    InquiryRaffle: 'inquiry_raffle'
+} as const;
+
+export type NewProductAllOfProductTypeEnum = typeof NewProductAllOfProductTypeEnum[keyof typeof NewProductAllOfProductTypeEnum];
 export const NewProductAllOfProductStatusEnum = {
     Enabled: 'enabled',
     EnabledExternalOnly: 'enabled_external_only',
@@ -98,12 +119,19 @@ export const NewProductAllOfProductStatusEnum = {
 } as const;
 
 export type NewProductAllOfProductStatusEnum = typeof NewProductAllOfProductStatusEnum[keyof typeof NewProductAllOfProductStatusEnum];
+export const NewProductAllOfArticleVariantTypeEnum = {
+    Standard: 'standard',
+    StandardAutotitle: 'standard_autotitle',
+    Personalized: 'personalized'
+} as const;
+
+export type NewProductAllOfArticleVariantTypeEnum = typeof NewProductAllOfArticleVariantTypeEnum[keyof typeof NewProductAllOfArticleVariantTypeEnum];
 export const NewProductAllOfTaxCodeEnum = {
     Std: 'std',
     Spc: 'spc',
     Erm: 'erm',
     Erm3: 'erm3',
-    Nsp: 'nsp'
+    Nsb: 'nsb'
 } as const;
 
 export type NewProductAllOfTaxCodeEnum = typeof NewProductAllOfTaxCodeEnum[keyof typeof NewProductAllOfTaxCodeEnum];

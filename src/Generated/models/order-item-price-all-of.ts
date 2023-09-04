@@ -21,7 +21,7 @@
  */
 export interface OrderItemPriceAllOf {
     /**
-     * The VAT in percent. Can be null in case of bundle products with mixed VAT percentages.
+     * The VAT in percent. Can be null in case of bundle products with mixedVAT percentages. (might be validated for country)
      * @type {number}
      * @memberof OrderItemPriceAllOf
      */

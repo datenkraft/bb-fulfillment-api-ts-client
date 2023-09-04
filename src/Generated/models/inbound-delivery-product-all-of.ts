@@ -15,34 +15,22 @@
 
 
 /**
- * One piece of content in a shipment
+ * 
  * @export
- * @interface ShipmentLine
+ * @interface InboundDeliveryProductAllOf
  */
-export interface ShipmentLine {
+export interface InboundDeliveryProductAllOf {
     /**
-     * Product number
+     * Title of the product
      * @type {string}
-     * @memberof ShipmentLine
+     * @memberof InboundDeliveryProductAllOf
      */
-    'productNumber'?: string;
+    'productTitle'?: string;
     /**
-     * Number of items contained in the delivery
+     * Number of actual delivered products in the inbound delivery
      * @type {number}
-     * @memberof ShipmentLine
+     * @memberof InboundDeliveryProductAllOf
      */
-    'count'?: number;
-    /**
-     * Product unit
-     * @type {string}
-     * @memberof ShipmentLine
-     */
-    'unit'?: string | null;
-    /**
-     * Serial numbers
-     * @type {Array<string>}
-     * @memberof ShipmentLine
-     */
-    'serialNumbers'?: Array<string>;
+    'deliveredCount'?: number;
 }
 

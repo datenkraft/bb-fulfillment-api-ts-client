@@ -58,6 +58,7 @@ models/inbound-delivery-bulk-import207-response-inner-content.ts
 models/inbound-delivery-bulk-import207-response-inner.ts
 models/inbound-delivery-collection-all-of.ts
 models/inbound-delivery-collection.ts
+models/inbound-delivery-product-all-of.ts
 models/inbound-delivery-product.ts
 models/inbound-delivery.ts
 models/index.ts

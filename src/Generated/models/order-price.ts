@@ -33,7 +33,7 @@ export interface OrderPrice {
      */
     'type': OrderPriceTypeEnum;
     /**
-     * The VAT in percent
+     * The VAT in percent (might be validated for country)
      * @type {number}
      * @memberof OrderPrice
      */

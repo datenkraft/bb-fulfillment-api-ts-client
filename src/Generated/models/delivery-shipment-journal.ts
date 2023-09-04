@@ -15,7 +15,7 @@
 
 
 /**
- * Journal entries of a delivery shipment
+ * 
  * @export
  * @interface DeliveryShipmentJournal
  */

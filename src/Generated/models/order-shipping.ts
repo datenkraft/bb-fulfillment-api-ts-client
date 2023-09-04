@@ -15,13 +15,13 @@
 
 
 /**
- * Options regarding the shipping of the order
+ * Options regarding the shipping of the order.
  * @export
  * @interface OrderShipping
  */
 export interface OrderShipping {
     /**
-     * The delivery service to recommend for usage. The codes of supported delivery services can be retrieved from the \'GET /delivery-service\' endpoint.
+     * The delivery service to recommend for usage.\\ The codes of supported delivery services can be retrieved from the \'GET /delivery-service\' endpoint.
      * @type {string}
      * @memberof OrderShipping
      */

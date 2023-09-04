@@ -18,12 +18,13 @@
 import { NewOrderItemPriceAllOf } from './new-order-item-price-all-of';
 // May contain unused imports in some cases
 // @ts-ignore
-import { OrderItemPrice } from './order-item-price';
+import { OrderPrice } from './order-price';
 
 /**
  * @type NewOrderItemPrice
+ * The selling price of the item.\\ Note: This field is required if the delivery address of the order requires customs clearance.
  * @export
  */
-export type NewOrderItemPrice = NewOrderItemPriceAllOf & OrderItemPrice;
+export type NewOrderItemPrice = NewOrderItemPriceAllOf & OrderPrice;
 
 

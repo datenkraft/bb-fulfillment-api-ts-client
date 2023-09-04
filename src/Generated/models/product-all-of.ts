@@ -21,66 +21,6 @@
  */
 export interface ProductAllOf {
     /**
-     * Title of the product.\\ Note: This can be null if the product was not created via the API.
-     * @type {string}
-     * @memberof ProductAllOf
-     */
-    'productTitle'?: string | null;
-    /**
-     * Original title of the product.\\ Note: This can be null if the product was not created via the API.
-     * @type {string}
-     * @memberof ProductAllOf
-     */
-    'productTitleOriginal'?: string | null;
-    /**
-     * Status of the product regarding sales.\\ Available values: - enabled: Product is on sale - enabled_external_only: Product is only available in external stores - deleted: Product is deleted - discontinued: Product is disontinued - expired: Product is expired - incorrect: Product was incorrectly created - internal: Product is available for internal sales only - preparation: Product is in preparation for sale  Note: This can be null if the product was not created via the API.
-     * @type {string}
-     * @memberof ProductAllOf
-     */
-    'productStatus'?: ProductAllOfProductStatusEnum;
-    /**
-     * Short description of the article.\\ Note: This can be null if the product was not created via the API.
-     * @type {string}
-     * @memberof ProductAllOf
-     */
-    'articleShortDescription'?: string | null;
-    /**
-     * Long description of the article.\\ Note: This can be null if the product was not created via the API.
-     * @type {string}
-     * @memberof ProductAllOf
-     */
-    'articleLongDescription'?: string | null;
-    /**
-     * The TARIC code of the product.\\ Note: This can be null if the product was not created via the API.
-     * @type {string}
-     * @memberof ProductAllOf
-     */
-    'taricCode'?: string | null;
-    /**
-     * The list price of the product in EUR.\\ Note: This can be null if the product was not created via the API.
-     * @type {number}
-     * @memberof ProductAllOf
-     */
-    'listPriceEUR'?: number | null;
-    /**
-     * One of the available tax codes. - std: Standard tax rate (AT 20%) - spc: 1st tax rate (AT 13%) - erm: 2nd tax rate (AT 10%) - erm3: 3rd tax rate (AT 5%) - nsp: not taxable (0%)  Note: This can be null if the product was not created via the API.
-     * @type {string}
-     * @memberof ProductAllOf
-     */
-    'taxCode'?: ProductAllOfTaxCodeEnum;
-    /**
-     * Number of the manufacturer.\\ Note: This can be null if the product was not created via the API.
-     * @type {string}
-     * @memberof ProductAllOf
-     */
-    'manufacturerNumber'?: string | null;
-    /**
-     * Number of the supplier.\\ Note: This can be null if the product was not created via the API.
-     * @type {string}
-     * @memberof ProductAllOf
-     */
-    'supplierNumber'?: string | null;
-    /**
      * 
      * @type {string}
      * @memberof ProductAllOf
@@ -93,11 +33,71 @@ export interface ProductAllOf {
      */
     'shopCode'?: string;
     /**
+     * Status of the product regarding sales.\\ Available values: - enabled: Product is on sale - enabled_external_only: Product is only available in external stores - deleted: Product is deleted - discontinued: Product is discontinued - expired: Product is expired - incorrect: Product was incorrectly created - internal: Product is available for internal sales only - preparation: Product is in preparation for sale\\  Note: This can be null if the product was not created via the API.
+     * @type {string}
+     * @memberof ProductAllOf
+     */
+    'productStatus'?: ProductAllOfProductStatusEnum;
+    /**
+     * Title of the Product\\ Note: This can be null if the product was not created via the API.
+     * @type {string}
+     * @memberof ProductAllOf
+     */
+    'productTitle'?: string | null;
+    /**
+     * Original title of the Product\\ Note: This can be null if the product was not created via the API.
+     * @type {string}
+     * @memberof ProductAllOf
+     */
+    'productTitleOriginal'?: string | null;
+    /**
+     * Short description of the article\\ Note: This can be null if the product was not created via the API.
+     * @type {string}
+     * @memberof ProductAllOf
+     */
+    'articleShortDescription'?: string | null;
+    /**
+     * Long description of the article\\ Note: This can be null if the product was not created via the API.
+     * @type {string}
+     * @memberof ProductAllOf
+     */
+    'articleLongDescription'?: string | null;
+    /**
+     * The TARIC Code of the product\\ Note: This can be null if the product was not created via the API.
+     * @type {string}
+     * @memberof ProductAllOf
+     */
+    'taricCode'?: string | null;
+    /**
+     * The list price of the product in EUR.\\ Note: This can be null if the product was not created via the API.
+     * @type {number}
+     * @memberof ProductAllOf
+     */
+    'listPriceEUR'?: number | null;
+    /**
+     * One of the available tax codes. - std: Standard tax rate (AT 20%) - spc: 1st tax rate (AT 13%) - erm: 2nd tax rate (AT 10%) - erm3: 3rd tax rate (AT 5%) - nsp: not taxable (0%)\\  Note: This can be null if the product was not created via the API.
+     * @type {string}
+     * @memberof ProductAllOf
+     */
+    'taxCode'?: ProductAllOfTaxCodeEnum;
+    /**
+     * Number of the manufacturer\\ Note: This can be null if the product was not created via the API.
+     * @type {string}
+     * @memberof ProductAllOf
+     */
+    'manufacturerNumber'?: string | null;
+    /**
+     * Number of the supplier.\\ Note: This can be null if the product was not created via the API.
+     * @type {string}
+     * @memberof ProductAllOf
+     */
+    'supplierNumber'?: string | null;
+    /**
      * The source of the product. - self: Own product - nice: Product of another supplier - bundle: Product that is composed of individual positions
      * @type {string}
      * @memberof ProductAllOf
      */
-    'source'?: string;
+    'source'?: ProductAllOfSourceEnum;
 }
 
 export const ProductAllOfProductStatusEnum = {
@@ -118,10 +118,16 @@ export const ProductAllOfTaxCodeEnum = {
     Spc: 'spc',
     Erm: 'erm',
     Erm3: 'erm3',
-    Nsp: 'nsp',
-    Null: 'null'
+    Nsb: 'nsb'
 } as const;
 
 export type ProductAllOfTaxCodeEnum = typeof ProductAllOfTaxCodeEnum[keyof typeof ProductAllOfTaxCodeEnum];
+export const ProductAllOfSourceEnum = {
+    Self: 'self',
+    Nice: 'nice',
+    Bundle: 'bundle'
+} as const;
+
+export type ProductAllOfSourceEnum = typeof ProductAllOfSourceEnum[keyof typeof ProductAllOfSourceEnum];
 
 
