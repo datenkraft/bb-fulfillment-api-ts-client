@@ -5,7 +5,7 @@
 import type { newInboundDeliveryProduct } from './newInboundDeliveryProduct';
 
 /**
- * Data to create a new inbound delivery
+ * Data to create a new inbound delivery.
  */
 export type newInboundDelivery = {
     /**
@@ -13,7 +13,8 @@ export type newInboundDelivery = {
      */
     inboundDeliveryName?: string | null;
     /**
-     * Number of the supplier. Available suppliers can be retrieved from the 'GET /supplier' endpoint.
+     * Number of the supplier.\
+     * Available suppliers can be retrieved from the 'GET /supplier' endpoint.
      */
     supplierNumber: string;
     /**

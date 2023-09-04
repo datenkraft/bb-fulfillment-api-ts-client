@@ -5,9 +5,12 @@
 import type { orderItemPrice } from './orderItemPrice';
 
 export type orderItem = {
+    /**
+     * Valid product number
+     */
     productNumber: string;
     /**
-     * Item title (optional)
+     * Item Title (optional)
      */
     title?: string | null;
     /**

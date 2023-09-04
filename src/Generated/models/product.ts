@@ -8,43 +8,48 @@ import type { baseProduct } from './baseProduct';
  * Data to represent a product
  */
 export type product = (baseProduct & {
+    productNumber?: string,
     /**
-     * Title of the product.\
-     * Note: This can be null if the product was not created via the API.
+     * The shop to which the product belongs
      */
-    productTitle?: string | null,
-    /**
-     * Original title of the product.\
-     * Note: This can be null if the product was not created via the API.
-     */
-    productTitleOriginal?: string | null,
+    shopCode?: string,
     /**
      * Status of the product regarding sales.\
      * Available values:
      * - enabled: Product is on sale
      * - enabled_external_only: Product is only available in external stores
      * - deleted: Product is deleted
-     * - discontinued: Product is disontinued
+     * - discontinued: Product is discontinued
      * - expired: Product is expired
      * - incorrect: Product was incorrectly created
      * - internal: Product is available for internal sales only
-     * - preparation: Product is in preparation for sale
+     * - preparation: Product is in preparation for sale\
      *
      * Note: This can be null if the product was not created via the API.
      */
     productStatus?: product.productStatus | null,
     /**
-     * Short description of the article.\
+     * Title of the Product\
+     * Note: This can be null if the product was not created via the API.
+     */
+    productTitle?: string | null,
+    /**
+     * Original title of the Product\
+     * Note: This can be null if the product was not created via the API.
+     */
+    productTitleOriginal?: string | null,
+    /**
+     * Short description of the article\
      * Note: This can be null if the product was not created via the API.
      */
     articleShortDescription?: string | null,
     /**
-     * Long description of the article.\
+     * Long description of the article\
      * Note: This can be null if the product was not created via the API.
      */
     articleLongDescription?: string | null,
     /**
-     * The TARIC code of the product.\
+     * The TARIC Code of the product\
      * Note: This can be null if the product was not created via the API.
      */
     taricCode?: string | null,
@@ -59,13 +64,13 @@ export type product = (baseProduct & {
      * - spc: 1st tax rate (AT 13%)
      * - erm: 2nd tax rate (AT 10%)
      * - erm3: 3rd tax rate (AT 5%)
-     * - nsp: not taxable (0%)
+     * - nsp: not taxable (0%)\
      *
      * Note: This can be null if the product was not created via the API.
      */
-    taxCode?: product.taxCode | null,
+    taxCode: product.taxCode | null,
     /**
-     * Number of the manufacturer.\
+     * Number of the manufacturer\
      * Note: This can be null if the product was not created via the API.
      */
     manufacturerNumber?: string | null,
@@ -74,18 +79,13 @@ export type product = (baseProduct & {
      * Note: This can be null if the product was not created via the API.
      */
     supplierNumber?: string | null,
-    productNumber?: string,
-    /**
-     * The shop to which the product belongs
-     */
-    shopCode?: string,
     /**
      * The source of the product.
      * - self: Own product
      * - nice: Product of another supplier
      * - bundle: Product that is composed of individual positions
      */
-    source?: string,
+    source?: product.source,
 });
 
 export namespace product {
@@ -96,11 +96,11 @@ export namespace product {
      * - enabled: Product is on sale
      * - enabled_external_only: Product is only available in external stores
      * - deleted: Product is deleted
-     * - discontinued: Product is disontinued
+     * - discontinued: Product is discontinued
      * - expired: Product is expired
      * - incorrect: Product was incorrectly created
      * - internal: Product is available for internal sales only
-     * - preparation: Product is in preparation for sale
+     * - preparation: Product is in preparation for sale\
      *
      * Note: This can be null if the product was not created via the API.
      */
@@ -121,7 +121,7 @@ export namespace product {
      * - spc: 1st tax rate (AT 13%)
      * - erm: 2nd tax rate (AT 10%)
      * - erm3: 3rd tax rate (AT 5%)
-     * - nsp: not taxable (0%)
+     * - nsp: not taxable (0%)\
      *
      * Note: This can be null if the product was not created via the API.
      */
@@ -130,7 +130,19 @@ export namespace product {
         SPC = 'spc',
         ERM = 'erm',
         ERM3 = 'erm3',
-        NSP = 'nsp',
+        NSB = 'nsb',
+    }
+
+    /**
+     * The source of the product.
+     * - self: Own product
+     * - nice: Product of another supplier
+     * - bundle: Product that is composed of individual positions
+     */
+    export enum source {
+        SELF = 'self',
+        NICE = 'nice',
+        BUNDLE = 'bundle',
     }
 
 

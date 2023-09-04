@@ -2,9 +2,6 @@
 /* tslint:disable */
 /* eslint-disable */
 
-/**
- * Journal entries of a delivery shipment
- */
 export type deliveryShipmentJournal = {
     /**
      * The create date for the entry. Format in ISO 8601.

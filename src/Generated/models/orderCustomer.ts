@@ -7,7 +7,7 @@ import type { baseOrderCustomer } from './baseOrderCustomer';
 export type orderCustomer = (baseOrderCustomer & {
     number?: string | null,
     /**
-     * The customer type
+     * The customer's type
      */
     type?: string | null,
 });

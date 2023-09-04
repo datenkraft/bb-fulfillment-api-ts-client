@@ -5981,34 +5981,37 @@
                     "orderItems": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/components/schemas/orderItem"
+                            "$ref": "#/components/schemas/newOrderItem"
                         }
                     },
                     "externalOrderId": {
-                        "description": "The external order ID e.g. from third party apps. This field does not have to be unique.\nIt can be used to link and refind multiple orders, for example, if there are multiple fulfilment orders possible for a\nsingle customer order.",
+                        "description": "A not unique reference for the order which can be used for identifying a specific order or for\nmapping to a third party app.",
                         "type": "string",
-                        "nullable": true
-                    },
-                    "externalOrderReference": {
-                        "description": "A not unique reference for the order which can be used for identifiying a specific order or for\nmapping to a third party app.",
-                        "type": "string",
+                        "maxLength": 255,
                         "nullable": true
                     },
                     "deliverySlipNotes": {
-                        "description": "Notes for the delivery slip.",
+                        "description": "Notes to be printed on the delivery slip.",
                         "type": "string",
-                        "maxLength": 65535,
+                        "maxLength": 500,
+                        "nullable": true
+                    },
+                    "externalOrderReference": {
+                        "description": "External reference for the order",
+                        "type": "string",
+                        "maxLength": 255,
                         "nullable": true
                     },
                     "orderNotes": {
-                        "description": "Order notes regarding the fulfillment",
+                        "description": "Notes for the steve team regarding the fulfillment.",
                         "type": "string",
                         "maxLength": 500,
                         "nullable": true
                     },
                     "amazonOrderId": {
-                        "description": "The amazon order Id",
+                        "description": "The amazon order id.",
                         "type": "string",
+                        "maxLength": 500,
                         "nullable": true
                     },
                     "deliveryCosts": {
@@ -6042,48 +6045,55 @@
                     },
                     "languageCode": {
                         "description": "The language code for any customer communications (ISO 639-1). Currently only 'de' is supported",
-                        "type": "string"
+                        "type": "string",
+                        "example": "de"
                     },
                     "externalCustomerId": {
-                        "description": "The external id of the order customer.",
+                        "description": "The external id of the order customer",
                         "type": "string",
+                        "maxLength": 255,
                         "nullable": true
                     },
                     "deliveryAddress": {
                         "$ref": "#/components/schemas/orderCustomerDeliveryAddress"
                     },
                     "email": {
-                        "description": "The customer's email.",
+                        "description": "The customer's email",
                         "type": "string",
                         "nullable": true
                     },
                     "phone": {
-                        "description": "The customer's phone number, preferably in the DIN 5008 format, like:+43 2236 123456-7890",
+                        "description": "The customer's phone number, preferably in the DIN 5008 format, like: +43 2236 123456-7890",
                         "type": "string",
+                        "maxLength": 150,
                         "nullable": true
                     },
                     "firstname": {
                         "description": "The customer's first name.\\\nNote: This field is required for invoicing and whether it is available or not depends on the used shopCode.\\\nUse the GET /shop endpoint to check if the meta.invoiceEnabled of the shop is set to true.",
                         "type": "string",
+                        "maxLength": 40,
                         "nullable": true
                     },
                     "lastname": {
                         "description": "The customer's last name.\\\nNote: This field is required for invoicing and whether it is available or not depends on the used shopCode.\\\nUse the GET /shop endpoint to check if the meta.invoiceEnabled of the shop is set to true.",
                         "type": "string",
+                        "maxLength": 40,
                         "nullable": true
                     },
                     "title": {
                         "description": "The customer's title.\\\nNote: This field is required for invoicing and whether it is available or not depends on the used shopCode.\\\nUse the GET /shop endpoint to check if the meta.invoiceEnabled of the shop is set to true.",
                         "type": "string",
+                        "maxLength": 100,
                         "nullable": true
                     },
                     "company": {
                         "description": "The customer's company name.\\\nNote: This field is required for invoicing and whether it is available or not depends on the used shopCode.\\\nUse the GET /shop endpoint to check if the meta.invoiceEnabled of the shop is set to true.",
                         "type": "string",
+                        "maxLength": 150,
                         "nullable": true
                     },
                     "companyVatNumber": {
-                        "description": "The customer's company VAT number.\\\nNote: This field is required for invoicing and whether it is available or not depends on the used shopCode.\\\nUse the GET /shop endpoint to check if the meta.invoiceEnabled of the shop is set to true.",
+                        "description": "The customer's company vat number (might be validated).\\\nNote: This field is required for invoicing and whether it is available or not depends on the used shopCode.\\\nUse the GET /shop endpoint to check if the meta.invoiceEnabled of the shop is set to true.",
                         "type": "string",
                         "nullable": true
                     },
@@ -6114,32 +6124,33 @@
                         "default": "standard",
                         "enum": [
                             "standard",
-                            "chilled_product",
                             "sample",
                             "sellable_sample",
                             "tester",
-                            "packing_material",
-                            "limited_edition",
+                            "packaging_material",
                             "booking_seminar",
                             "booking_appointment",
-                            "voucher_print",
-                            "voucher_digital",
-                            "bundle",
-                            "print_greetingcard",
                             "promo_material",
-                            "personalized",
                             "raw_material",
                             "working_material",
                             "service_principal",
                             "service_ancillary",
                             "inquiry_testdrive",
                             "inquiry_raffle",
+                            "chilled_product",
+                            "limited_edition",
+                            "voucher_print",
+                            "voucher_digital",
+                            "bundle",
+                            "print_greetingcard",
+                            "personalized",
                             "other_services"
                         ]
                     },
                     "articleVariantTitle": {
                         "description": "The title of the article variant. \\\nMust not be set when the articleVariantType is 'standard_autotitle'.",
                         "type": "string",
+                        "maxLength": 255,
                         "nullable": true
                     },
                     "articleVariantType": {
@@ -6147,6 +6158,9 @@
                         "type": "string",
                         "default": "standard_autotitle",
                         "enum": [
+                            "standard",
+                            "standard_autotitle",
+                            "personalized",
                             "booking_appointment",
                             "booking_seminar",
                             "bundle",
@@ -6156,12 +6170,9 @@
                             "inquiry_raffle",
                             "inquiry_testdrive",
                             "other_services",
-                            "personalized",
                             "print_greetingcard",
                             "service_ancillary",
                             "service_principal",
-                            "standard",
-                            "standard_autotitle",
                             "voucher_digital",
                             "voucher_print",
                             null
@@ -6186,11 +6197,11 @@
                         "description": "Amount of the product contents (1 if no value is provided)",
                         "type": "number",
                         "format": "float",
-                        "default": "1",
+                        "default": 1,
                         "nullable": true
                     },
                     "contentsUnit": {
-                        "description": "Unit of the product contents ('stk' if no value is provided).",
+                        "description": "Unit of the product contents ('stk' if no value is provided).\\\nValid units can be queried with a GET /product-unit call",
                         "type": "string",
                         "default": "stk",
                         "nullable": true
@@ -6222,6 +6233,7 @@
                     "ean": {
                         "description": "The EAN of the product",
                         "type": "string",
+                        "maxLength": 255,
                         "nullable": true
                     },
                     "suggestedRetailPriceEUR": {
@@ -6237,6 +6249,12 @@
                         },
                         "nullable": true
                     },
+                    "productNumberManufacturer": {
+                        "description": "Product number of the manufacturer",
+                        "type": "string",
+                        "maxLength": 255,
+                        "nullable": true
+                    },
                     "manufacturerCountryCode": {
                         "description": "Country code of the manufacturer (ISO 3166-1 alpha-2)",
                         "type": "string",
@@ -6246,7 +6264,8 @@
                     "languageCode": {
                         "description": "The language code used for the product (ISO 639-1)",
                         "type": "string",
-                        "default": "de"
+                        "default": "de",
+                        "nullable": true
                     }
                 },
                 "type": "object"
@@ -6444,6 +6463,7 @@
                 ]
             },
             "deliveryShipment": {
+                "title": "deliveryShipment",
                 "description": "A shipments defines a single delivered entity (package, parcel, pallet, ...)",
                 "properties": {
                     "number": {
@@ -6458,7 +6478,7 @@
                         ]
                     },
                     "deliveryService": {
-                        "description": "The delivery service used to send this delivery.\nThe codes of supported delivery services can be retrieved from the 'GET /delivery-service' endpoint.",
+                        "description": "The delivery service used to send this delivery.\\\nThe codes of supported delivery services can be retrieved from the 'GET /delivery-service' endpoint.",
                         "type": "string",
                         "nullable": true
                     },
@@ -6467,11 +6487,10 @@
                         "type": "string"
                     },
                     "link": {
-                        "description": "Link to the carrier's tracking site",
+                        "description": "Link to the carrier's specific tracking site",
                         "type": "string"
                     },
                     "weight": {
-                        "description": "Weight",
                         "type": "number",
                         "format": "float"
                     },
@@ -6489,10 +6508,11 @@
                     "externalShipmentId": {
                         "description": "External id of the shipment",
                         "type": "string",
+                        "maxLength": 255,
                         "nullable": true
                     },
                     "journal": {
-                        "description": "Journal entries regarding the shipment.",
+                        "description": "Journal entries regarding the shipment",
                         "type": "array",
                         "items": {
                             "$ref": "#/components/schemas/deliveryShipmentJournal"
@@ -6502,7 +6522,7 @@
                 "type": "object"
             },
             "deliveryShipmentJournal": {
-                "description": "Journal entries of a delivery shipment",
+                "title": "deliveryShipmentJournal",
                 "required": [
                     "date",
                     "typeCode"
@@ -6597,26 +6617,27 @@
                     {
                         "properties": {
                             "inboundDeliveryNumber": {
-                                "description": "The inbound delivery number.\\\nNote: If this number is prefixed with 'NICE', it means that the inbound delivery was created was created manually by niceshops.",
+                                "description": "The inbound delivery number.\\\nNote: If this number is prefixed with 'NICE', it means that the inbound delivery was \ncreated was created manually by niceshops.",
                                 "type": "string",
-                                "nullable": true
+                                "maxLength": 250,
+                                "nullable": false
                             },
                             "inboundDeliveryNote": {
-                                "description": "Notes from the steve warehouse team.",
+                                "description": "Notes from the steve warehouse team",
                                 "type": "string",
                                 "nullable": true
                             },
                             "shopWAWIDeliveryId": {
-                                "description": "The API internal id of the inbound delivery.",
+                                "description": "The API internal id of the inbound delivery",
                                 "type": "integer",
                                 "format": "int32"
                             },
                             "status": {
-                                "description": "Status of the inbound delivery.\nThe status for not yet completed is subject to change. you may poll for changes.\n- open: The inbound delivery has not yet been delivered.\n- in_progress: The inbound delivery is being processed in our warehouse.\n- completed: The inbound delivery has been processed in our warehouse.\n- deleted: The inbound delivery has been deleted.",
+                                "description": "Status of the inbound delivery.\\\nThe status for not yet completed is subject to change. you may poll for changes.\n- open: The inbound delivery has not yet been delivered.\n- in_progress: The inbound delivery is being processed in our warehouse.\n- completed: The inbound delivery has been processed in our warehouse.\n- deleted: The inbound delivery has been deleted.",
                                 "type": "string",
                                 "enum": [
-                                    "in_progress",
                                     "open",
+                                    "in_progress",
                                     "completed",
                                     "deleted"
                                 ]
@@ -6631,7 +6652,7 @@
                             "shopCode": {
                                 "description": "The shopCode used internally to distinguish between clients.",
                                 "type": "string",
-                                "nullable": true
+                                "maxLength": 40
                             },
                             "startDate": {
                                 "description": "Start date of the delivery (timezone CET/CEST)",
@@ -6646,15 +6667,14 @@
                                 "nullable": true
                             },
                             "deliverySlipNumber": {
-                                "description": "Number of the inbound delivery on the delivery slip.\nIf the field is empty or not set in the database (e.g. the inbound delivery has not yet arrived in our warehouse), null will be returned.\nIf an empty string (\") is returned, it means that no delivery slip number is available for the inbound delivery.",
+                                "description": "Number of the inbound delivery on the delivery slip.\\\nIf the field is empty or not set in the database\n(e.g. the inbound delivery has not yet arrived in our warehouse), null will be returned.\\\nIf an empty string (\"\") is returned, it means that no delivery slip number is \navailable for the inbound delivery.",
                                 "type": "string",
                                 "nullable": true
                             },
                             "createDate": {
                                 "description": "Creation date of the inbound delivery. Format in ISO 8601 (timezone CET/CEST)",
                                 "type": "string",
-                                "format": "date-time",
-                                "nullable": true
+                                "format": "date-time"
                             }
                         },
                         "type": "object"
@@ -6688,27 +6708,25 @@
                     "productNumber",
                     "announcedCount"
                 ],
-                "properties": {
-                    "productNumber": {
-                        "description": "Product number",
-                        "type": "string"
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/newInboundDeliveryProduct"
                     },
-                    "announcedCount": {
-                        "description": "Number of announced products in the inbound delivery",
-                        "type": "integer",
-                        "format": "int32"
-                    },
-                    "productTitle": {
-                        "description": "Title of the product",
-                        "type": "string"
-                    },
-                    "deliveredCount": {
-                        "description": "Number of actual delivered products in the inbound delivery",
-                        "type": "integer",
-                        "format": "int32"
+                    {
+                        "properties": {
+                            "productTitle": {
+                                "description": "Title of the product",
+                                "type": "string"
+                            },
+                            "deliveredCount": {
+                                "description": "Number of actual delivered products in the inbound delivery",
+                                "type": "integer",
+                                "format": "int32"
+                            }
+                        },
+                        "type": "object"
                     }
-                },
-                "type": "object"
+                ]
             },
             "information": {
                 "required": [
@@ -6787,7 +6805,7 @@
             },
             "newInboundDelivery": {
                 "title": "newInboundDelivery",
-                "description": "Data to create a new inbound delivery",
+                "description": "Data to create a new inbound delivery.",
                 "required": [
                     "supplierNumber",
                     "expectedDeliveryDate",
@@ -6797,10 +6815,11 @@
                     "inboundDeliveryName": {
                         "description": "Optional free-text reference for inbound delivery.",
                         "type": "string",
+                        "maxLength": 255,
                         "nullable": true
                     },
                     "supplierNumber": {
-                        "description": "Number of the supplier. Available suppliers can be retrieved from the 'GET /supplier' endpoint.",
+                        "description": "Number of the supplier.\\\nAvailable suppliers can be retrieved from the 'GET /supplier' endpoint.",
                         "type": "string"
                     },
                     "expectedDeliveryDate": {
@@ -6826,13 +6845,14 @@
                 ],
                 "properties": {
                     "productNumber": {
-                        "description": "Product number",
+                        "description": "Number of the product",
                         "type": "string"
                     },
                     "announcedCount": {
-                        "description": "Number of announced products in the inbound delivery",
+                        "description": "Number of the announced products in the inbound delivery",
                         "type": "integer",
-                        "format": "int32"
+                        "format": "int32",
+                        "minimum": 1
                     }
                 },
                 "type": "object"
@@ -6850,15 +6870,15 @@
                     },
                     {
                         "properties": {
-                            "customer": {
-                                "$ref": "#/components/schemas/newOrderCustomer"
-                            },
                             "orderItems": {
                                 "type": "array",
                                 "items": {
                                     "$ref": "#/components/schemas/newOrderItem"
                                 },
                                 "maxItems": 1000
+                            },
+                            "customer": {
+                                "$ref": "#/components/schemas/newOrderCustomer"
                             },
                             "options": {
                                 "$ref": "#/components/schemas/newOrderOptions"
@@ -6884,11 +6904,13 @@
                             "firstname": {
                                 "description": "The customer's first name.\\\nNote: This field is required for invoicing and whether it is available or not depends on the used shopCode.\\\nUse the GET /shop endpoint to check if the meta.invoiceEnabled of the shop is set to true.\\\nBecause of internal requirements, this field may be set with a fallback, if it is not provided.\\\nIf a lastname is provided, this field is required.",
                                 "type": "string",
+                                "maxLength": 40,
                                 "nullable": true
                             },
                             "lastname": {
                                 "description": "The customer's last name.\\\nNote: This field is required for invoicing and whether it is available or not depends on the used shopCode.\\\nUse the GET /shop endpoint to check if the meta.invoiceEnabled of the shop is set to true.\\\nBecause of internal requirements, this field may be set with a fallback, if it is not provided.\\\nIf a lastname is provided, this field is required.",
                                 "type": "string",
+                                "maxLength": 40,
                                 "nullable": true
                             },
                             "invoiceAddress": {
@@ -6923,18 +6945,19 @@
             },
             "newOrderItemPrice": {
                 "title": "newOrderItemPrice",
+                "description": "The selling price of the item.\\\nNote: This field is required if the delivery address of the order requires customs clearance.",
                 "nullable": true,
                 "allOf": [
                     {
-                        "$ref": "#/components/schemas/orderItemPrice"
+                        "$ref": "#/components/schemas/orderPrice"
                     },
                     {
                         "properties": {
                             "vat": {
-                                "description": "The VAT in percent",
+                                "description": "The VAT in percent. (might be validated for country)",
                                 "type": "number",
                                 "format": "float",
-                                "example": "20",
+                                "example": 20,
                                 "nullable": false
                             }
                         },
@@ -6953,12 +6976,12 @@
                     {
                         "properties": {
                             "autoProcessState": {
-                                "description": "By setting this option, the order will be processed into the defined state.\\\nThis option is NOT available in the production systems.\\\nThe autoprocessing of the state happens after the order has been sucessfully created.\nIn case of any errors during the autoprocessing of the state, error messages are shown but the order will still have\nbeen created and will not be rolled back.\\\nAvailable states:\n- order_completed_single_delivery: The order is completely delivered within one delivery.\\\nNote that it might not be possible to create a single delivery for the whole order, for example because of weight\nrestrictions. In those cases multiple deliveries will be created.\n- order_completed_multiple_deliveries: The order is completely delivered and includes several deliveries.\n- order_partially_delivered: The order is in progress and one of several deliveries is delivered.\n- order_canceled: The order is canceled.\n- order_locked: The order is locked.",
+                                "description": "By setting this option, the order will be processed into the defined state.\\\nThis option is NOT available in the production systems.\\\nThe autoprocessing of the state happens after the order has been successfully created.\nIn case of any errors during the autoprocessing of the state, error messages are shown but the\norder will still have been created and will not be rolled back.\\\nAvailable states:\n- order_completed_single_delivery: The order is completely delivered within one delivery.\\\nNote that it might not be possible to create a single delivery for the whole order, for example\nbecause of weight restrictions. In those cases multiple deliveries will be created.\n- order_completed_multiple_deliveries: The order is completely delivered and includes\nseveral deliveries.\n- order_partially_delivered: The order is in progress and one of several deliveries is delivered.\n- order_canceled: The order is canceled.\n- order_locked: The order is locked.",
                                 "type": "string",
                                 "enum": [
                                     "order_completed_single_delivery",
-                                    "order_completed_multiple_deliveries",
                                     "order_partially_delivered",
+                                    "order_completed_multiple_deliveries",
                                     "order_canceled",
                                     "order_locked"
                                 ]
@@ -6990,11 +7013,29 @@
                     },
                     {
                         "properties": {
-                            "variantGroup": {
-                                "$ref": "#/components/schemas/variantGroupEnum"
+                            "productType": {
+                                "description": "Type of the product",
+                                "type": "string",
+                                "default": "standard",
+                                "enum": [
+                                    "standard",
+                                    "sample",
+                                    "sellable_sample",
+                                    "tester",
+                                    "packaging_material",
+                                    "booking_seminar",
+                                    "booking_appointment",
+                                    "promo_material",
+                                    "raw_material",
+                                    "working_material",
+                                    "service_principal",
+                                    "service_ancillary",
+                                    "inquiry_testdrive",
+                                    "inquiry_raffle"
+                                ]
                             },
                             "productStatus": {
-                                "description": "Status of the product regarding sales.\n\nAvailable values:\n- enabled: Product is on sale (default)\n- enabled_external_only: Product is only available in external stores",
+                                "description": "Status of the product regarding sales.\\\nAvailable values:\n- enabled: Product is on sale (default)\n- enabled_external_only: Product is only available in external stores",
                                 "type": "string",
                                 "default": "enabled",
                                 "enum": [
@@ -7004,21 +7045,36 @@
                                 ],
                                 "nullable": true
                             },
+                            "articleVariantType": {
+                                "description": "The type of the article variant. \\\nThe articleVariantType 'standard_autotitle' is only allowed for the variantGroup 'content'",
+                                "type": "string",
+                                "default": "standard_autotitle",
+                                "enum": [
+                                    "standard",
+                                    "standard_autotitle",
+                                    "personalized"
+                                ],
+                                "nullable": true
+                            },
                             "productTitle": {
-                                "description": "Title of the product",
-                                "type": "string"
+                                "description": "Title of the Product",
+                                "type": "string",
+                                "maxLength": 255
                             },
                             "productTitleOriginal": {
-                                "description": "Original title of the product",
-                                "type": "string"
+                                "description": "Original title of the Product",
+                                "type": "string",
+                                "maxLength": 255
                             },
                             "articleShortDescription": {
-                                "description": "Short description of the article.",
-                                "type": "string"
+                                "description": "Short description of the article",
+                                "type": "string",
+                                "maxLength": 255
                             },
                             "articleLongDescription": {
                                 "description": "Long description of the article",
-                                "type": "string"
+                                "type": "string",
+                                "maxLength": 255
                             },
                             "taricCode": {
                                 "description": "The TARIC code of the product",
@@ -7032,20 +7088,21 @@
                             "taxCode": {
                                 "description": "One of the available tax codes.\n- std: Standard tax rate (AT 20%)\n- spc: 1st tax rate (AT 13%)\n- erm: 2nd tax rate (AT 10%)\n- erm3: 3rd tax rate (AT 5%)\n- nsp: not taxable (0%)",
                                 "type": "string",
+                                "default": "std",
                                 "enum": [
                                     "std",
                                     "spc",
                                     "erm",
                                     "erm3",
-                                    "nsp"
+                                    "nsb"
                                 ]
                             },
                             "manufacturerNumber": {
-                                "description": "Number of the manufacturer.",
+                                "description": "Number of the manufacturer",
                                 "type": "string"
                             },
                             "supplierNumber": {
-                                "description": "Number of the supplier",
+                                "description": "Number of the supplier.\\\nA list from available suppliers can be queried with the GET /supplier endpoint",
                                 "type": "string"
                             }
                         },
@@ -7067,7 +7124,7 @@
             },
             "order": {
                 "title": "order",
-                "description": "Data to represent an order",
+                "description": "Data to represent an order.",
                 "required": [
                     "cancelable"
                 ],
@@ -7078,9 +7135,7 @@
                     {
                         "properties": {
                             "orderNumber": {
-                                "description": "The order number.\\\nNote: If this number is prefixed with 'NICE', it means that the order was created was created manually by niceshops (see\n`source`).",
-                                "type": "string",
-                                "nullable": true
+                                "description": "The order number.\\\nNote: If this number is prefixed with 'NICE', it means that the order was created\nmanually by niceshops (see 'source')."
                             },
                             "orderItems": {
                                 "description": "Note: canceled orderItems are NOT included.",
@@ -7093,7 +7148,7 @@
                                 "$ref": "#/components/schemas/orderCustomer"
                             },
                             "status": {
-                                "description": "The current status of the order.\n- new: The order was created but not every required information was given. The order can not be processed without manual\nintervention.\n- processing: The order is being processed. For split deliveries, some of the shipments might have already been\ntransferred to the delivery agent.\n- delivered: The orders shipments have all been transferred to the delivery agent (Note that the update to this status\nmight be delayed and not yet reflect the status of the linked deliveries).\n- deleted: The order has been marked as deleted.\n- canceled: The order has been canceled.\n- locked: The order is locked. The order can not be processed without manual intervention.\n- examination: The order has been manually locked. The order can not be processed without manual intervention.",
+                                "description": "The current status of the order.\n- new: The order was created but not every required information was given.\nThe order can not be processed without manual intervention.\n- processing: The order is being processed. For split deliveries, some of the shipments might have\nalready been transferred to the delivery agent.\n- delivered: The orders shipments have all been transferred to the delivery agent (Note that the\nupdate to this status might be delayed and not yet reflect the status of the linked deliveries).\n- deleted: The order has been marked as deleted.\n- canceled: The order has been canceled.\n- locked: The order is locked. The order can not be processed without manual intervention.\n- examination: The order has been manually locked. The order can not be processed without manual\nintervention.",
                                 "type": "string",
                                 "enum": [
                                     "new",
@@ -7106,7 +7161,7 @@
                                 ]
                             },
                             "orderDate": {
-                                "description": "The create date for the order. Default is the current date. Format in ISO 8601",
+                                "description": "The create date for the order. Format in ISO 8601",
                                 "type": "string",
                                 "format": "date-time",
                                 "example": "2020-04-24T12:27:00+02:00"
@@ -7182,7 +7237,7 @@
                                 "nullable": true
                             },
                             "type": {
-                                "description": "The customer type",
+                                "description": "The customer's type",
                                 "type": "string",
                                 "nullable": true
                             }
@@ -7202,20 +7257,25 @@
                 ],
                 "properties": {
                     "street": {
-                        "type": "string"
+                        "type": "string",
+                        "maxLength": 35
                     },
                     "streetNumber": {
-                        "type": "string"
+                        "description": "Note: Must not contain more than 5 letters",
+                        "type": "string",
+                        "maxLength": 15
                     },
                     "zipCode": {
                         "type": "string"
                     },
                     "district": {
                         "type": "string",
+                        "maxLength": 35,
                         "nullable": true
                     },
                     "city": {
-                        "type": "string"
+                        "type": "string",
+                        "maxLength": 255
                     },
                     "provinceCode": {
                         "description": "Mandatory if province codes for country (GET /country) exist\n(ISO 3166-2) - https://www.iso.org/iso-3166-country-codes.html",
@@ -7231,20 +7291,22 @@
             },
             "orderCustomerDeliveryAddress": {
                 "title": "orderCustomerDeliveryAddress",
+                "required": [
+                    "nameLine1"
+                ],
                 "allOf": [
                     {
                         "$ref": "#/components/schemas/orderCustomerAddress"
                     },
                     {
-                        "required": [
-                            "nameLine1"
-                        ],
                         "properties": {
                             "nameLine1": {
-                                "type": "string"
+                                "type": "string",
+                                "maxLength": 150
                             },
                             "nameLine2": {
                                 "type": "string",
+                                "maxLength": 150,
                                 "nullable": true
                             }
                         },
@@ -7280,6 +7342,7 @@
                         "properties": {
                             "title": {
                                 "type": "string",
+                                "maxLength": 255,
                                 "nullable": true
                             }
                         },
@@ -7295,11 +7358,13 @@
                 ],
                 "properties": {
                     "productNumber": {
+                        "description": "Valid product number",
                         "type": "string"
                     },
                     "title": {
-                        "description": "Item title (optional)",
+                        "description": "Item Title (optional)",
                         "type": "string",
+                        "maxLength": 255,
                         "nullable": true
                     },
                     "count": {
@@ -7310,7 +7375,7 @@
                     "externalProductNumber": {
                         "description": "Product number of the customer",
                         "type": "string",
-                        "format": "int32",
+                        "maxLength": 255,
                         "nullable": true
                     },
                     "price": {
@@ -7335,10 +7400,10 @@
                     {
                         "properties": {
                             "vat": {
-                                "description": "The VAT in percent. Can be null in case of bundle products with mixed VAT percentages.",
+                                "description": "The VAT in percent. Can be null in case of bundle products with mixedVAT percentages. (might be validated for country)",
                                 "type": "number",
                                 "format": "float",
-                                "example": "20",
+                                "example": 20,
                                 "nullable": true
                             }
                         },
@@ -7373,10 +7438,10 @@
                 ],
                 "properties": {
                     "value": {
-                        "description": "The price value rounded to 2 decimals with a dot used as separator. Note: This price value refers to\na single unit and is not an aggregated price value, which may be calculated by multiplying this price value by the\ncorresponding item count.",
+                        "description": "The price value rounded to 2 decimals with a dot used as separator. Note: This price value refers to\na single unit and is not an aggregated price value, which may be calculated by multiplying this price\nvalue by the corresponding item count.",
                         "type": "number",
                         "format": "float",
-                        "example": "10.99"
+                        "example": 10.99
                     },
                     "type": {
                         "description": "The price type",
@@ -7388,10 +7453,10 @@
                         "example": "gross"
                     },
                     "vat": {
-                        "description": "The VAT in percent",
+                        "description": "The VAT in percent (might be validated for country)",
                         "type": "number",
                         "format": "float",
-                        "example": "20"
+                        "example": 20
                     },
                     "currencyCode": {
                         "description": "The currency code (ISO 4217)",
@@ -7403,13 +7468,13 @@
             },
             "orderShipping": {
                 "title": "orderShipping",
-                "description": "Options regarding the shipping of the order",
+                "description": "Options regarding the shipping of the order.",
                 "required": [
                     "deliveryService"
                 ],
                 "properties": {
                     "deliveryService": {
-                        "description": "The delivery service to recommend for usage.\nThe codes of supported delivery services can be retrieved from the 'GET /delivery-service' endpoint.",
+                        "description": "The delivery service to recommend for usage.\\\nThe codes of supported delivery services can be retrieved from the 'GET /delivery-service' endpoint.",
                         "type": "string"
                     }
                 },
@@ -7418,24 +7483,26 @@
             "product": {
                 "title": "product",
                 "description": "Data to represent a product",
+                "required": [
+                    "productNumber",
+                    "shopCode",
+                    "source"
+                ],
                 "allOf": [
                     {
                         "$ref": "#/components/schemas/baseProduct"
                     },
                     {
                         "properties": {
-                            "productTitle": {
-                                "description": "Title of the product.\\\nNote: This can be null if the product was not created via the API.",
-                                "type": "string",
-                                "nullable": true
+                            "productNumber": {
+                                "type": "string"
                             },
-                            "productTitleOriginal": {
-                                "description": "Original title of the product.\\\nNote: This can be null if the product was not created via the API.",
-                                "type": "string",
-                                "nullable": true
+                            "shopCode": {
+                                "description": "The shop to which the product belongs",
+                                "type": "string"
                             },
                             "productStatus": {
-                                "description": "Status of the product regarding sales.\\\nAvailable values:\n- enabled: Product is on sale\n- enabled_external_only: Product is only available in external stores\n- deleted: Product is deleted\n- discontinued: Product is disontinued\n- expired: Product is expired\n- incorrect: Product was incorrectly created\n- internal: Product is available for internal sales only\n- preparation: Product is in preparation for sale\n\nNote: This can be null if the product was not created via the API.",
+                                "description": "Status of the product regarding sales.\\\nAvailable values:\n- enabled: Product is on sale\n- enabled_external_only: Product is only available in external stores\n- deleted: Product is deleted\n- discontinued: Product is discontinued\n- expired: Product is expired\n- incorrect: Product was incorrectly created\n- internal: Product is available for internal sales only\n- preparation: Product is in preparation for sale\\\n\nNote: This can be null if the product was not created via the API.",
                                 "type": "string",
                                 "enum": [
                                     "enabled",
@@ -7450,18 +7517,32 @@
                                 ],
                                 "nullable": true
                             },
-                            "articleShortDescription": {
-                                "description": "Short description of the article.\\\nNote: This can be null if the product was not created via the API.",
+                            "productTitle": {
+                                "description": "Title of the Product\\\nNote: This can be null if the product was not created via the API.",
                                 "type": "string",
+                                "maxLength": 255,
+                                "nullable": true
+                            },
+                            "productTitleOriginal": {
+                                "description": "Original title of the Product\\\nNote: This can be null if the product was not created via the API.",
+                                "type": "string",
+                                "maxLength": 255,
+                                "nullable": true
+                            },
+                            "articleShortDescription": {
+                                "description": "Short description of the article\\\nNote: This can be null if the product was not created via the API.",
+                                "type": "string",
+                                "maxLength": 255,
                                 "nullable": true
                             },
                             "articleLongDescription": {
-                                "description": "Long description of the article.\\\nNote: This can be null if the product was not created via the API.",
+                                "description": "Long description of the article\\\nNote: This can be null if the product was not created via the API.",
                                 "type": "string",
+                                "maxLength": 255,
                                 "nullable": true
                             },
                             "taricCode": {
-                                "description": "The TARIC code of the product.\\\nNote: This can be null if the product was not created via the API.",
+                                "description": "The TARIC Code of the product\\\nNote: This can be null if the product was not created via the API.",
                                 "type": "string",
                                 "nullable": true
                             },
@@ -7472,20 +7553,20 @@
                                 "nullable": true
                             },
                             "taxCode": {
-                                "description": "One of the available tax codes.\n- std: Standard tax rate (AT 20%)\n- spc: 1st tax rate (AT 13%)\n- erm: 2nd tax rate (AT 10%)\n- erm3: 3rd tax rate (AT 5%)\n- nsp: not taxable (0%)\n\nNote: This can be null if the product was not created via the API.",
+                                "description": "One of the available tax codes.\n- std: Standard tax rate (AT 20%)\n- spc: 1st tax rate (AT 13%)\n- erm: 2nd tax rate (AT 10%)\n- erm3: 3rd tax rate (AT 5%)\n- nsp: not taxable (0%)\\\n\nNote: This can be null if the product was not created via the API.",
                                 "type": "string",
+                                "default": "std",
                                 "enum": [
                                     "std",
                                     "spc",
                                     "erm",
                                     "erm3",
-                                    "nsp",
-                                    null
+                                    "nsb"
                                 ],
                                 "nullable": true
                             },
                             "manufacturerNumber": {
-                                "description": "Number of the manufacturer.\\\nNote: This can be null if the product was not created via the API.",
+                                "description": "Number of the manufacturer\\\nNote: This can be null if the product was not created via the API.",
                                 "type": "string",
                                 "nullable": true
                             },
@@ -7494,17 +7575,14 @@
                                 "type": "string",
                                 "nullable": true
                             },
-                            "productNumber": {
-                                "description": "",
-                                "type": "string"
-                            },
-                            "shopCode": {
-                                "description": "The shop to which the product belongs",
-                                "type": "string"
-                            },
                             "source": {
                                 "description": "The source of the product.\n- self: Own product\n- nice: Product of another supplier\n- bundle: Product that is composed of individual positions",
-                                "type": "string"
+                                "type": "string",
+                                "enum": [
+                                    "self",
+                                    "nice",
+                                    "bundle"
+                                ]
                             }
                         },
                         "type": "object"
@@ -7632,8 +7710,7 @@
                 "required": [
                     "currencyCode",
                     "amount",
-                    "pricePerUnit",
-                    "source"
+                    "pricePerUnit"
                 ],
                 "properties": {
                     "currencyCode": {
@@ -7950,24 +8027,25 @@
                 ]
             },
             "shipmentLine": {
+                "title": "shipmentLine",
                 "description": "One piece of content in a shipment",
                 "properties": {
                     "productNumber": {
-                        "description": "product number",
+                        "description": "Product number",
                         "type": "string"
                     },
                     "count": {
                         "description": "Number of items contained in the delivery",
-                        "type": "integer",
+                        "type": "number",
                         "format": "int32"
                     },
                     "unit": {
-                        "description": "product unit",
+                        "description": "Product unit",
                         "type": "string",
                         "nullable": true
                     },
                     "serialNumbers": {
-                        "description": "serial numbers",
+                        "description": "Serial numbers",
                         "type": "array",
                         "items": {
                             "type": "string"
@@ -8192,14 +8270,17 @@
                 ]
             },
             "updateDeliveryShipment": {
+                "title": "updateDeliveryShipment",
                 "description": "Fields to update a shipment",
                 "required": [
                     "externalShipmentId"
                 ],
                 "properties": {
                     "externalShipmentId": {
-                        "description": "The external id of the shipment",
-                        "type": "string"
+                        "description": "External id of the shipment",
+                        "type": "string",
+                        "maxLength": 255,
+                        "nullable": true
                     }
                 },
                 "type": "object"
@@ -8257,6 +8338,7 @@
                 "type": "object"
             },
             "variantGroupEnum": {
+                "title": "variantGroupEnum",
                 "type": "string",
                 "enum": [
                     "color",
