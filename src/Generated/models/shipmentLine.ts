@@ -7,7 +7,7 @@
  */
 export type shipmentLine = {
     /**
-     * product number
+     * Product number
      */
     productNumber?: string;
     /**
@@ -15,11 +15,11 @@ export type shipmentLine = {
      */
     count?: number;
     /**
-     * product unit
+     * Product unit
      */
     unit?: string | null;
     /**
-     * serial numbers
+     * Serial numbers
      */
     serialNumbers?: Array<string>;
 }

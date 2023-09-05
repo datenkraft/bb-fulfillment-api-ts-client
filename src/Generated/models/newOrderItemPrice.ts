@@ -2,11 +2,15 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import type { orderItemPrice } from './orderItemPrice';
+import type { orderPrice } from './orderPrice';
 
-export type newOrderItemPrice = (orderItemPrice & {
+/**
+ * The selling price of the item.\
+ * Note: This field is required if the delivery address of the order requires customs clearance.
+ */
+export type newOrderItemPrice = (orderPrice & {
     /**
-     * The VAT in percent
+     * The VAT in percent. (might be validated for country)
      */
     vat?: number,
 }) | null;

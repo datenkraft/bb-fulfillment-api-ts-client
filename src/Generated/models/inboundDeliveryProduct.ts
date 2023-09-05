@@ -2,21 +2,15 @@
 /* tslint:disable */
 /* eslint-disable */
 
-export type inboundDeliveryProduct = {
-    /**
-     * Product number
-     */
-    productNumber: string;
-    /**
-     * Number of announced products in the inbound delivery
-     */
-    announcedCount: number;
+import type { newInboundDeliveryProduct } from './newInboundDeliveryProduct';
+
+export type inboundDeliveryProduct = (newInboundDeliveryProduct & {
     /**
      * Title of the product
      */
-    productTitle?: string;
+    productTitle?: string,
     /**
      * Number of actual delivered products in the inbound delivery
      */
-    deliveredCount?: number;
-}
+    deliveredCount?: number,
+});

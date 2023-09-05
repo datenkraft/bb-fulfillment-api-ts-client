@@ -3,31 +3,37 @@
 /* eslint-disable */
 
 import type { baseProduct } from './baseProduct';
-import type { variantGroupEnum } from './variantGroupEnum';
 
 /**
  * Data to create a new product
  */
 export type newProduct = (baseProduct & {
-    variantGroup?: variantGroupEnum,
     /**
-     * Status of the product regarding sales.
-     *
+     * Type of the product
+     */
+    productType: newProduct.productType,
+    /**
+     * Status of the product regarding sales.\
      * Available values:
      * - enabled: Product is on sale (default)
      * - enabled_external_only: Product is only available in external stores
      */
     productStatus: newProduct.productStatus | null,
     /**
-     * Title of the product
+     * The type of the article variant. \
+     * The articleVariantType 'standard_autotitle' is only allowed for the variantGroup 'content'
+     */
+    articleVariantType: newProduct.articleVariantType | null,
+    /**
+     * Title of the Product
      */
     productTitle?: string,
     /**
-     * Original title of the product
+     * Original title of the Product
      */
     productTitleOriginal?: string,
     /**
-     * Short description of the article.
+     * Short description of the article
      */
     articleShortDescription?: string,
     /**
@@ -50,13 +56,14 @@ export type newProduct = (baseProduct & {
      * - erm3: 3rd tax rate (AT 5%)
      * - nsp: not taxable (0%)
      */
-    taxCode?: newProduct.taxCode,
+    taxCode: newProduct.taxCode,
     /**
-     * Number of the manufacturer.
+     * Number of the manufacturer
      */
     manufacturerNumber?: string,
     /**
-     * Number of the supplier
+     * Number of the supplier.\
+     * A list from available suppliers can be queried with the GET /supplier endpoint
      */
     supplierNumber?: string,
 });
@@ -64,8 +71,27 @@ export type newProduct = (baseProduct & {
 export namespace newProduct {
 
     /**
-     * Status of the product regarding sales.
-     *
+     * Type of the product
+     */
+    export enum productType {
+        STANDARD = 'standard',
+        SAMPLE = 'sample',
+        SELLABLE_SAMPLE = 'sellable_sample',
+        TESTER = 'tester',
+        PACKAGING_MATERIAL = 'packaging_material',
+        BOOKING_SEMINAR = 'booking_seminar',
+        BOOKING_APPOINTMENT = 'booking_appointment',
+        PROMO_MATERIAL = 'promo_material',
+        RAW_MATERIAL = 'raw_material',
+        WORKING_MATERIAL = 'working_material',
+        SERVICE_PRINCIPAL = 'service_principal',
+        SERVICE_ANCILLARY = 'service_ancillary',
+        INQUIRY_TESTDRIVE = 'inquiry_testdrive',
+        INQUIRY_RAFFLE = 'inquiry_raffle',
+    }
+
+    /**
+     * Status of the product regarding sales.\
      * Available values:
      * - enabled: Product is on sale (default)
      * - enabled_external_only: Product is only available in external stores
@@ -73,6 +99,16 @@ export namespace newProduct {
     export enum productStatus {
         ENABLED = 'enabled',
         ENABLED_EXTERNAL_ONLY = 'enabled_external_only',
+    }
+
+    /**
+     * The type of the article variant. \
+     * The articleVariantType 'standard_autotitle' is only allowed for the variantGroup 'content'
+     */
+    export enum articleVariantType {
+        STANDARD = 'standard',
+        STANDARD_AUTOTITLE = 'standard_autotitle',
+        PERSONALIZED = 'personalized',
     }
 
     /**
@@ -88,7 +124,7 @@ export namespace newProduct {
         SPC = 'spc',
         ERM = 'erm',
         ERM3 = 'erm3',
-        NSP = 'nsp',
+        NSB = 'nsb',
     }
 
 

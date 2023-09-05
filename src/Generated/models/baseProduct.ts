@@ -32,7 +32,8 @@ export type baseProduct = {
      */
     contentsAmount: number | null;
     /**
-     * Unit of the product contents ('stk' if no value is provided).
+     * Unit of the product contents ('stk' if no value is provided).\
+     * Valid units can be queried with a GET /product-unit call
      */
     contentsUnit: string | null;
     /**
@@ -57,13 +58,17 @@ export type baseProduct = {
     suggestedRetailPriceEUR?: number | null;
     purchasePrices?: Array<productPurchasePrice> | null;
     /**
+     * Product number of the manufacturer
+     */
+    productNumberManufacturer?: string | null;
+    /**
      * Country code of the manufacturer (ISO 3166-1 alpha-2)
      */
     manufacturerCountryCode: string | null;
     /**
      * The language code used for the product (ISO 639-1)
      */
-    languageCode: string;
+    languageCode: string | null;
 }
 
 export namespace baseProduct {
@@ -73,26 +78,26 @@ export namespace baseProduct {
      */
     export enum productType {
         STANDARD = 'standard',
-        CHILLED_PRODUCT = 'chilled_product',
         SAMPLE = 'sample',
         SELLABLE_SAMPLE = 'sellable_sample',
         TESTER = 'tester',
-        PACKING_MATERIAL = 'packing_material',
-        LIMITED_EDITION = 'limited_edition',
+        PACKAGING_MATERIAL = 'packaging_material',
         BOOKING_SEMINAR = 'booking_seminar',
         BOOKING_APPOINTMENT = 'booking_appointment',
-        VOUCHER_PRINT = 'voucher_print',
-        VOUCHER_DIGITAL = 'voucher_digital',
-        BUNDLE = 'bundle',
-        PRINT_GREETINGCARD = 'print_greetingcard',
         PROMO_MATERIAL = 'promo_material',
-        PERSONALIZED = 'personalized',
         RAW_MATERIAL = 'raw_material',
         WORKING_MATERIAL = 'working_material',
         SERVICE_PRINCIPAL = 'service_principal',
         SERVICE_ANCILLARY = 'service_ancillary',
         INQUIRY_TESTDRIVE = 'inquiry_testdrive',
         INQUIRY_RAFFLE = 'inquiry_raffle',
+        CHILLED_PRODUCT = 'chilled_product',
+        LIMITED_EDITION = 'limited_edition',
+        VOUCHER_PRINT = 'voucher_print',
+        VOUCHER_DIGITAL = 'voucher_digital',
+        BUNDLE = 'bundle',
+        PRINT_GREETINGCARD = 'print_greetingcard',
+        PERSONALIZED = 'personalized',
         OTHER_SERVICES = 'other_services',
     }
 
@@ -101,6 +106,9 @@ export namespace baseProduct {
      * The articleVariantType 'standard_autotitle' is only allowed for the variantGroup 'content'
      */
     export enum articleVariantType {
+        STANDARD = 'standard',
+        STANDARD_AUTOTITLE = 'standard_autotitle',
+        PERSONALIZED = 'personalized',
         BOOKING_APPOINTMENT = 'booking_appointment',
         BOOKING_SEMINAR = 'booking_seminar',
         BUNDLE = 'bundle',
@@ -110,12 +118,9 @@ export namespace baseProduct {
         INQUIRY_RAFFLE = 'inquiry_raffle',
         INQUIRY_TESTDRIVE = 'inquiry_testdrive',
         OTHER_SERVICES = 'other_services',
-        PERSONALIZED = 'personalized',
         PRINT_GREETINGCARD = 'print_greetingcard',
         SERVICE_ANCILLARY = 'service_ancillary',
         SERVICE_PRINCIPAL = 'service_principal',
-        STANDARD = 'standard',
-        STANDARD_AUTOTITLE = 'standard_autotitle',
         VOUCHER_DIGITAL = 'voucher_digital',
         VOUCHER_PRINT = 'voucher_print',
     }

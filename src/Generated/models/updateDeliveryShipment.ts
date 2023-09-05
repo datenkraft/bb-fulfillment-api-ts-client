@@ -7,7 +7,7 @@
  */
 export type updateDeliveryShipment = {
     /**
-     * The external id of the shipment
+     * External id of the shipment
      */
-    externalShipmentId: string;
+    externalShipmentId: string | null;
 }

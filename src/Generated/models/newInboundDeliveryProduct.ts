@@ -4,11 +4,11 @@
 
 export type newInboundDeliveryProduct = {
     /**
-     * Product number
+     * Number of the product
      */
     productNumber: string;
     /**
-     * Number of announced products in the inbound delivery
+     * Number of the announced products in the inbound delivery
      */
     announcedCount: number;
 }

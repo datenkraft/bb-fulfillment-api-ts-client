@@ -11,7 +11,7 @@ import type { newOrderOptions } from './newOrderOptions';
  * Data to create a new order
  */
 export type newOrder = (baseOrder & {
-    customer?: newOrderCustomer,
     orderItems?: Array<newOrderItem>,
+    customer?: newOrderCustomer,
     options?: newOrderOptions,
 });

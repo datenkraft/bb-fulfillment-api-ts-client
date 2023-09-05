@@ -4,6 +4,9 @@
 
 export type orderCustomerAddress = {
     street: string;
+    /**
+     * Note: Must not contain more than 5 letters
+     */
     streetNumber: string;
     zipCode: string;
     district?: string | null;

@@ -12,16 +12,16 @@ export type baseOrderCustomer = {
      */
     languageCode: string;
     /**
-     * The external id of the order customer.
+     * The external id of the order customer
      */
     externalCustomerId?: string | null;
     deliveryAddress: orderCustomerDeliveryAddress;
     /**
-     * The customer's email.
+     * The customer's email
      */
     email?: string | null;
     /**
-     * The customer's phone number, preferably in the DIN 5008 format, like:+43 2236 123456-7890
+     * The customer's phone number, preferably in the DIN 5008 format, like: +43 2236 123456-7890
      */
     phone?: string | null;
     /**
@@ -49,7 +49,7 @@ export type baseOrderCustomer = {
      */
     company?: string | null;
     /**
-     * The customer's company VAT number.\
+     * The customer's company vat number (might be validated).\
      * Note: This field is required for invoicing and whether it is available or not depends on the used shopCode.\
      * Use the GET /shop endpoint to check if the meta.invoiceEnabled of the shop is set to true.
      */

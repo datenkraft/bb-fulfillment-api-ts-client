@@ -19,7 +19,7 @@ export type deliveryShipment = {
      */
     status?: deliveryShipment.status;
     /**
-     * The delivery service used to send this delivery.
+     * The delivery service used to send this delivery.\
      * The codes of supported delivery services can be retrieved from the 'GET /delivery-service' endpoint.
      */
     deliveryService?: string | null;
@@ -28,12 +28,9 @@ export type deliveryShipment = {
      */
     code?: string;
     /**
-     * Link to the carrier's tracking site
+     * Link to the carrier's specific tracking site
      */
     link?: string;
-    /**
-     * Weight
-     */
     weight?: number;
     /**
      * Weight unit
@@ -48,7 +45,7 @@ export type deliveryShipment = {
      */
     externalShipmentId?: string | null;
     /**
-     * Journal entries regarding the shipment.
+     * Journal entries regarding the shipment
      */
     journal?: Array<deliveryShipmentJournal>;
 }
