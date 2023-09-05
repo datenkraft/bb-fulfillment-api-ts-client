@@ -27,7 +27,7 @@ export interface OrderCustomerAllOf {
      */
     'number'?: string | null;
     /**
-     * The customer type
+     * The customer\'s type
      * @type {string}
      * @memberof OrderCustomerAllOf
      */

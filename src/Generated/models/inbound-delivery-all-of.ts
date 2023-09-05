@@ -24,25 +24,25 @@ import { InboundDeliveryProduct } from './inbound-delivery-product';
  */
 export interface InboundDeliveryAllOf {
     /**
-     * The inbound delivery number.\\ Note: If this number is prefixed with \'NICE\', it means that the inbound delivery was created was created manually by niceshops.
+     * The inbound delivery number.\\ Note: If this number is prefixed with \'NICE\', it means that the inbound delivery was  created was created manually by niceshops.
      * @type {string}
      * @memberof InboundDeliveryAllOf
      */
-    'inboundDeliveryNumber'?: string | null;
+    'inboundDeliveryNumber'?: string;
     /**
-     * Notes from the steve warehouse team.
+     * Notes from the steve warehouse team
      * @type {string}
      * @memberof InboundDeliveryAllOf
      */
     'inboundDeliveryNote'?: string | null;
     /**
-     * The API internal id of the inbound delivery.
+     * The API internal id of the inbound delivery
      * @type {number}
      * @memberof InboundDeliveryAllOf
      */
     'shopWAWIDeliveryId'?: number;
     /**
-     * Status of the inbound delivery. The status for not yet completed is subject to change. you may poll for changes. - open: The inbound delivery has not yet been delivered. - in_progress: The inbound delivery is being processed in our warehouse. - completed: The inbound delivery has been processed in our warehouse. - deleted: The inbound delivery has been deleted.
+     * Status of the inbound delivery.\\ The status for not yet completed is subject to change. you may poll for changes. - open: The inbound delivery has not yet been delivered. - in_progress: The inbound delivery is being processed in our warehouse. - completed: The inbound delivery has been processed in our warehouse. - deleted: The inbound delivery has been deleted.
      * @type {string}
      * @memberof InboundDeliveryAllOf
      */
@@ -58,7 +58,7 @@ export interface InboundDeliveryAllOf {
      * @type {string}
      * @memberof InboundDeliveryAllOf
      */
-    'shopCode'?: string | null;
+    'shopCode'?: string;
     /**
      * Start date of the delivery (timezone CET/CEST)
      * @type {string}
@@ -72,7 +72,7 @@ export interface InboundDeliveryAllOf {
      */
     'endDate'?: string | null;
     /**
-     * Number of the inbound delivery on the delivery slip. If the field is empty or not set in the database (e.g. the inbound delivery has not yet arrived in our warehouse), null will be returned. If an empty string (\") is returned, it means that no delivery slip number is available for the inbound delivery.
+     * Number of the inbound delivery on the delivery slip.\\ If the field is empty or not set in the database (e.g. the inbound delivery has not yet arrived in our warehouse), null will be returned.\\ If an empty string (\"\") is returned, it means that no delivery slip number is  available for the inbound delivery.
      * @type {string}
      * @memberof InboundDeliveryAllOf
      */
@@ -82,12 +82,12 @@ export interface InboundDeliveryAllOf {
      * @type {string}
      * @memberof InboundDeliveryAllOf
      */
-    'createDate'?: string | null;
+    'createDate'?: string;
 }
 
 export const InboundDeliveryAllOfStatusEnum = {
-    InProgress: 'in_progress',
     Open: 'open',
+    InProgress: 'in_progress',
     Completed: 'completed',
     Deleted: 'deleted'
 } as const;

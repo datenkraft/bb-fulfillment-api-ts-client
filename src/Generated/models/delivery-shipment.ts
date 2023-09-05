@@ -39,7 +39,7 @@ export interface DeliveryShipment {
      */
     'status'?: DeliveryShipmentStatusEnum;
     /**
-     * The delivery service used to send this delivery. The codes of supported delivery services can be retrieved from the \'GET /delivery-service\' endpoint.
+     * The delivery service used to send this delivery.\\ The codes of supported delivery services can be retrieved from the \'GET /delivery-service\' endpoint.
      * @type {string}
      * @memberof DeliveryShipment
      */
@@ -51,13 +51,13 @@ export interface DeliveryShipment {
      */
     'code'?: string;
     /**
-     * Link to the carrier\'s tracking site
+     * Link to the carrier\'s specific tracking site
      * @type {string}
      * @memberof DeliveryShipment
      */
     'link'?: string;
     /**
-     * Weight
+     * 
      * @type {number}
      * @memberof DeliveryShipment
      */
@@ -81,7 +81,7 @@ export interface DeliveryShipment {
      */
     'externalShipmentId'?: string | null;
     /**
-     * Journal entries regarding the shipment.
+     * Journal entries regarding the shipment
      * @type {Array<DeliveryShipmentJournal>}
      * @memberof DeliveryShipment
      */

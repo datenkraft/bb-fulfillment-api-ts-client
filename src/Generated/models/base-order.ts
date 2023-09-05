@@ -18,10 +18,10 @@
 import { BaseOrderCustomer } from './base-order-customer';
 // May contain unused imports in some cases
 // @ts-ignore
-import { OrderDeliveryCosts } from './order-delivery-costs';
+import { NewOrderItem } from './new-order-item';
 // May contain unused imports in some cases
 // @ts-ignore
-import { OrderItem } from './order-item';
+import { OrderDeliveryCosts } from './order-delivery-costs';
 
 /**
  * Data to represent an order
@@ -43,36 +43,36 @@ export interface BaseOrder {
     'customer': BaseOrderCustomer;
     /**
      * 
-     * @type {Array<OrderItem>}
+     * @type {Array<NewOrderItem>}
      * @memberof BaseOrder
      */
-    'orderItems': Array<OrderItem>;
+    'orderItems': Array<NewOrderItem>;
     /**
-     * The external order ID e.g. from third party apps. This field does not have to be unique. It can be used to link and refind multiple orders, for example, if there are multiple fulfilment orders possible for a single customer order.
+     * A not unique reference for the order which can be used for identifying a specific order or for mapping to a third party app.
      * @type {string}
      * @memberof BaseOrder
      */
     'externalOrderId'?: string | null;
     /**
-     * A not unique reference for the order which can be used for identifiying a specific order or for mapping to a third party app.
-     * @type {string}
-     * @memberof BaseOrder
-     */
-    'externalOrderReference'?: string | null;
-    /**
-     * Notes for the delivery slip.
+     * Notes to be printed on the delivery slip.
      * @type {string}
      * @memberof BaseOrder
      */
     'deliverySlipNotes'?: string | null;
     /**
-     * Order notes regarding the fulfillment
+     * External reference for the order
+     * @type {string}
+     * @memberof BaseOrder
+     */
+    'externalOrderReference'?: string | null;
+    /**
+     * Notes for the steve team regarding the fulfillment.
      * @type {string}
      * @memberof BaseOrder
      */
     'orderNotes'?: string | null;
     /**
-     * The amazon order Id
+     * The amazon order id.
      * @type {string}
      * @memberof BaseOrder
      */

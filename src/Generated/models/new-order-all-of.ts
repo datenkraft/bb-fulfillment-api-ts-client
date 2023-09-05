@@ -31,16 +31,16 @@ import { NewOrderOptions } from './new-order-options';
 export interface NewOrderAllOf {
     /**
      * 
-     * @type {NewOrderCustomer}
-     * @memberof NewOrderAllOf
-     */
-    'customer'?: NewOrderCustomer;
-    /**
-     * 
      * @type {Array<NewOrderItem>}
      * @memberof NewOrderAllOf
      */
     'orderItems'?: Array<NewOrderItem>;
+    /**
+     * 
+     * @type {NewOrderCustomer}
+     * @memberof NewOrderAllOf
+     */
+    'customer'?: NewOrderCustomer;
     /**
      * 
      * @type {NewOrderOptions}

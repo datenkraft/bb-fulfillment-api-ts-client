@@ -13,36 +13,17 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import { InboundDeliveryProductAllOf } from './inbound-delivery-product-all-of';
+// May contain unused imports in some cases
+// @ts-ignore
+import { NewInboundDeliveryProduct } from './new-inbound-delivery-product';
 
 /**
- * 
+ * @type InboundDeliveryProduct
  * @export
- * @interface InboundDeliveryProduct
  */
-export interface InboundDeliveryProduct {
-    /**
-     * Product number
-     * @type {string}
-     * @memberof InboundDeliveryProduct
-     */
-    'productNumber': string;
-    /**
-     * Number of announced products in the inbound delivery
-     * @type {number}
-     * @memberof InboundDeliveryProduct
-     */
-    'announcedCount': number;
-    /**
-     * Title of the product
-     * @type {string}
-     * @memberof InboundDeliveryProduct
-     */
-    'productTitle'?: string;
-    /**
-     * Number of actual delivered products in the inbound delivery
-     * @type {number}
-     * @memberof InboundDeliveryProduct
-     */
-    'deliveredCount'?: number;
-}
+export type InboundDeliveryProduct = InboundDeliveryProductAllOf & NewInboundDeliveryProduct;
+
 

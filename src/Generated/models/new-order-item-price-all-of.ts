@@ -21,7 +21,7 @@
  */
 export interface NewOrderItemPriceAllOf {
     /**
-     * The VAT in percent
+     * The VAT in percent. (might be validated for country)
      * @type {number}
      * @memberof NewOrderItemPriceAllOf
      */

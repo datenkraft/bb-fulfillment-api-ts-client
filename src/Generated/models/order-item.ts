@@ -24,13 +24,13 @@ import { OrderItemPrice } from './order-item-price';
  */
 export interface OrderItem {
     /**
-     * 
+     * Valid product number
      * @type {string}
      * @memberof OrderItem
      */
     'productNumber': string;
     /**
-     * Item title (optional)
+     * Item Title (optional)
      * @type {string}
      * @memberof OrderItem
      */

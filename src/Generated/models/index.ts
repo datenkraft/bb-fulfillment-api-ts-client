@@ -33,6 +33,7 @@ export * from './inbound-delivery-bulk-import207-response-inner-content';
 export * from './inbound-delivery-collection';
 export * from './inbound-delivery-collection-all-of';
 export * from './inbound-delivery-product';
+export * from './inbound-delivery-product-all-of';
 export * from './information';
 export * from './information-response';
 export * from './manufacturer';

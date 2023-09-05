@@ -25,7 +25,7 @@ export interface OrderCustomerDeliveryAddressAllOf {
      * @type {string}
      * @memberof OrderCustomerDeliveryAddressAllOf
      */
-    'nameLine1': string;
+    'nameLine1'?: string;
     /**
      * 
      * @type {string}

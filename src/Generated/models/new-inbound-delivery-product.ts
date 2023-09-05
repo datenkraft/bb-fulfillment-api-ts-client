@@ -21,13 +21,13 @@
  */
 export interface NewInboundDeliveryProduct {
     /**
-     * Product number
+     * Number of the product
      * @type {string}
      * @memberof NewInboundDeliveryProduct
      */
     'productNumber': string;
     /**
-     * Number of announced products in the inbound delivery
+     * Number of the announced products in the inbound delivery
      * @type {number}
      * @memberof NewInboundDeliveryProduct
      */

@@ -57,7 +57,7 @@ export interface BaseProduct {
      */
     'contentsAmount'?: number | null;
     /**
-     * Unit of the product contents (\'stk\' if no value is provided).
+     * Unit of the product contents (\'stk\' if no value is provided).\\ Valid units can be queried with a GET /product-unit call
      * @type {string}
      * @memberof BaseProduct
      */
@@ -99,6 +99,12 @@ export interface BaseProduct {
      */
     'purchasePrices'?: Array<ProductPurchasePrice> | null;
     /**
+     * Product number of the manufacturer
+     * @type {string}
+     * @memberof BaseProduct
+     */
+    'productNumberManufacturer'?: string | null;
+    /**
      * Country code of the manufacturer (ISO 3166-1 alpha-2)
      * @type {string}
      * @memberof BaseProduct
@@ -109,36 +115,39 @@ export interface BaseProduct {
      * @type {string}
      * @memberof BaseProduct
      */
-    'languageCode'?: string;
+    'languageCode'?: string | null;
 }
 
 export const BaseProductProductTypeEnum = {
     Standard: 'standard',
-    ChilledProduct: 'chilled_product',
     Sample: 'sample',
     SellableSample: 'sellable_sample',
     Tester: 'tester',
-    PackingMaterial: 'packing_material',
-    LimitedEdition: 'limited_edition',
+    PackagingMaterial: 'packaging_material',
     BookingSeminar: 'booking_seminar',
     BookingAppointment: 'booking_appointment',
-    VoucherPrint: 'voucher_print',
-    VoucherDigital: 'voucher_digital',
-    Bundle: 'bundle',
-    PrintGreetingcard: 'print_greetingcard',
     PromoMaterial: 'promo_material',
-    Personalized: 'personalized',
     RawMaterial: 'raw_material',
     WorkingMaterial: 'working_material',
     ServicePrincipal: 'service_principal',
     ServiceAncillary: 'service_ancillary',
     InquiryTestdrive: 'inquiry_testdrive',
     InquiryRaffle: 'inquiry_raffle',
+    ChilledProduct: 'chilled_product',
+    LimitedEdition: 'limited_edition',
+    VoucherPrint: 'voucher_print',
+    VoucherDigital: 'voucher_digital',
+    Bundle: 'bundle',
+    PrintGreetingcard: 'print_greetingcard',
+    Personalized: 'personalized',
     OtherServices: 'other_services'
 } as const;
 
 export type BaseProductProductTypeEnum = typeof BaseProductProductTypeEnum[keyof typeof BaseProductProductTypeEnum];
 export const BaseProductArticleVariantTypeEnum = {
+    Standard: 'standard',
+    StandardAutotitle: 'standard_autotitle',
+    Personalized: 'personalized',
     BookingAppointment: 'booking_appointment',
     BookingSeminar: 'booking_seminar',
     Bundle: 'bundle',
@@ -148,12 +157,9 @@ export const BaseProductArticleVariantTypeEnum = {
     InquiryRaffle: 'inquiry_raffle',
     InquiryTestdrive: 'inquiry_testdrive',
     OtherServices: 'other_services',
-    Personalized: 'personalized',
     PrintGreetingcard: 'print_greetingcard',
     ServiceAncillary: 'service_ancillary',
     ServicePrincipal: 'service_principal',
-    Standard: 'standard',
-    StandardAutotitle: 'standard_autotitle',
     VoucherDigital: 'voucher_digital',
     VoucherPrint: 'voucher_print',
     Null: 'null'

@@ -27,7 +27,7 @@ export interface OrderCustomerAddress {
      */
     'street': string;
     /**
-     * 
+     * Note: Must not contain more than 5 letters
      * @type {string}
      * @memberof OrderCustomerAddress
      */

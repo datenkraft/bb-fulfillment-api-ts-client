@@ -36,11 +36,11 @@ import { OrderShipping } from './order-shipping';
  */
 export interface OrderAllOf {
     /**
-     * The order number.\\ Note: If this number is prefixed with \'NICE\', it means that the order was created was created manually by niceshops (see `source`).
-     * @type {string}
+     * The order number.\\ Note: If this number is prefixed with \'NICE\', it means that the order was created manually by niceshops (see \'source\').
+     * @type {any}
      * @memberof OrderAllOf
      */
-    'orderNumber'?: string | null;
+    'orderNumber'?: any;
     /**
      * Note: canceled orderItems are NOT included.
      * @type {Array<OrderItem>}
@@ -60,7 +60,7 @@ export interface OrderAllOf {
      */
     'status'?: OrderAllOfStatusEnum;
     /**
-     * The create date for the order. Default is the current date. Format in ISO 8601
+     * The create date for the order. Format in ISO 8601
      * @type {string}
      * @memberof OrderAllOf
      */
