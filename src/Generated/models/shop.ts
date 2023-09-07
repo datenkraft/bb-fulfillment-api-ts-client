@@ -48,6 +48,12 @@ export interface Shop {
      */
     'email'?: string;
     /**
+     * The id of the project to which the shop belongs.
+     * @type {string}
+     * @memberof Shop
+     */
+    'projectId'?: string;
+    /**
      * 
      * @type {ShopMeta}
      * @memberof Shop
