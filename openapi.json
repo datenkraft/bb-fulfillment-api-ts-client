@@ -8073,6 +8073,10 @@
                         "description": "The email used internally.",
                         "type": "string"
                     },
+                    "projectId": {
+                        "description": "The id of the project to which the shop belongs.",
+                        "type": "string"
+                    },
                     "meta": {
                         "description": "Meta data of the shop.",
                         "properties": {
