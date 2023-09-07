@@ -23,6 +23,10 @@ export type shop = {
      */
     email?: string;
     /**
+     * The id of the project to which the shop belongs.
+     */
+    projectId?: string;
+    /**
      * Meta data of the shop.
      */
     meta?: {
