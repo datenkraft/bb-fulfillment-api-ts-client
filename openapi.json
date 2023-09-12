@@ -7094,7 +7094,8 @@
                                     "spc",
                                     "erm",
                                     "erm3",
-                                    "nsb"
+                                    "nsb",
+                                    null
                                 ]
                             },
                             "manufacturerNumber": {
@@ -7561,7 +7562,8 @@
                                     "spc",
                                     "erm",
                                     "erm3",
-                                    "nsb"
+                                    "nsb",
+                                    null
                                 ],
                                 "nullable": true
                             },
@@ -7808,6 +7810,14 @@
                     },
                     "reconsignmentDeliveryServiceCode": {
                         "description": "The delivery service used for the reconsignment.",
+                        "type": "string"
+                    },
+                    "reconsignmentWasPreAnnounced": {
+                        "description": "Indicates whether the reconsignment was pre-announced or not.",
+                        "type": "string"
+                    },
+                    "reconsignmentCountryCode": {
+                        "description": "The country, from where the reconsignment was shipped (ISO 3166-1 alpha-2).",
                         "type": "string"
                     },
                     "reconsignmentLines": {

@@ -32,6 +32,14 @@ export type reconsignment = {
      * The delivery service used for the reconsignment.
      */
     reconsignmentDeliveryServiceCode?: string;
+    /**
+     * Indicates whether the reconsignment was pre-announced or not.
+     */
+    reconsignmentWasPreAnnounced?: string;
+    /**
+     * The country, from where the reconsignment was shipped (ISO 3166-1 alpha-2).
+     */
+    reconsignmentCountryCode?: string;
     reconsignmentLines?: Array<reconsignmentLine>;
 }
 
