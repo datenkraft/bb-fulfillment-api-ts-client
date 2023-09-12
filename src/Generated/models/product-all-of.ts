@@ -118,7 +118,8 @@ export const ProductAllOfTaxCodeEnum = {
     Spc: 'spc',
     Erm: 'erm',
     Erm3: 'erm3',
-    Nsb: 'nsb'
+    Nsb: 'nsb',
+    Null: 'null'
 } as const;
 
 export type ProductAllOfTaxCodeEnum = typeof ProductAllOfTaxCodeEnum[keyof typeof ProductAllOfTaxCodeEnum];
