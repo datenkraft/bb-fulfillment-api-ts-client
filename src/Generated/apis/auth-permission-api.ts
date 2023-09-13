@@ -25,9 +25,9 @@ import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObj
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base';
 // @ts-ignore
-import { AuthPermissionResource } from '../models';
-// @ts-ignore
 import { ErrorResponse } from '../models';
+// @ts-ignore
+import { GetAuthPermissionCollectionResponse } from '../models';
 /**
  * AuthPermissionApi - axios parameter creator
  * @export
@@ -37,10 +37,13 @@ export const AuthPermissionApiAxiosParamCreator = function (configuration?: Conf
         /**
          * Get all permissions from this resource server
          * @summary Get all permissions from this resource server
+         * @param {number} [page] The page to read. Default is the first page.
+         * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
+         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getAuthPermissionCollection: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getAuthPermissionCollection: async (page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/auth/permission`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -60,6 +63,18 @@ export const AuthPermissionApiAxiosParamCreator = function (configuration?: Conf
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
+            }
+
+            if (pageSize !== undefined) {
+                localVarQueryParameter['pageSize'] = pageSize;
+            }
+
+            if (paginationMode !== undefined) {
+                localVarQueryParameter['paginationMode'] = paginationMode;
+            }
 
 
     
@@ -85,11 +100,14 @@ export const AuthPermissionApiFp = function(configuration?: Configuration) {
         /**
          * Get all permissions from this resource server
          * @summary Get all permissions from this resource server
+         * @param {number} [page] The page to read. Default is the first page.
+         * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
+         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getAuthPermissionCollection(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<AuthPermissionResource>>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getAuthPermissionCollection(options);
+        async getAuthPermissionCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetAuthPermissionCollectionResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getAuthPermissionCollection(page, pageSize, paginationMode, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -105,11 +123,14 @@ export const AuthPermissionApiFactory = function (configuration?: Configuration,
         /**
          * Get all permissions from this resource server
          * @summary Get all permissions from this resource server
+         * @param {number} [page] The page to read. Default is the first page.
+         * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
+         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getAuthPermissionCollection(options?: any): AxiosPromise<Array<AuthPermissionResource>> {
-            return localVarFp.getAuthPermissionCollection(options).then((request) => request(axios, basePath));
+        getAuthPermissionCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', options?: any): AxiosPromise<GetAuthPermissionCollectionResponse> {
+            return localVarFp.getAuthPermissionCollection(page, pageSize, paginationMode, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -123,11 +144,14 @@ export interface AuthPermissionApiInterface {
     /**
      * Get all permissions from this resource server
      * @summary Get all permissions from this resource server
+     * @param {number} [page] The page to read. Default is the first page.
+     * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
+     * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AuthPermissionApiInterface
      */
-    getAuthPermissionCollection(options?: AxiosRequestConfig): AxiosPromise<Array<AuthPermissionResource>>;
+    getAuthPermissionCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', options?: AxiosRequestConfig): AxiosPromise<GetAuthPermissionCollectionResponse>;
 
 }
 
@@ -141,11 +165,14 @@ export class AuthPermissionApi extends BaseAPI implements AuthPermissionApiInter
     /**
      * Get all permissions from this resource server
      * @summary Get all permissions from this resource server
+     * @param {number} [page] The page to read. Default is the first page.
+     * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
+     * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AuthPermissionApi
      */
-    public getAuthPermissionCollection(options?: AxiosRequestConfig) {
-        return AuthPermissionApiFp(this.configuration).getAuthPermissionCollection(options).then((request) => request(this.axios, this.basePath));
+    public getAuthPermissionCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', options?: AxiosRequestConfig) {
+        return AuthPermissionApiFp(this.configuration).getAuthPermissionCollection(page, pageSize, paginationMode, options).then((request) => request(this.axios, this.basePath));
     }
 }
