@@ -25,6 +25,8 @@ import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObj
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base';
 // @ts-ignore
+import { AuthRoleCollection } from '../models';
+// @ts-ignore
 import { AuthRoleResource } from '../models';
 // @ts-ignore
 import { ErrorResponse } from '../models';
@@ -123,10 +125,13 @@ export const AuthRoleApiAxiosParamCreator = function (configuration?: Configurat
         /**
          * Get all available roles from this resource server
          * @summary Get all available roles from this resource server
+         * @param {number} [page] The page to read. Default is the first page.
+         * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
+         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getAuthRoleCollection: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getAuthRoleCollection: async (page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/auth/role`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -146,6 +151,18 @@ export const AuthRoleApiAxiosParamCreator = function (configuration?: Configurat
             // authentication bearerAuth required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
+            }
+
+            if (pageSize !== undefined) {
+                localVarQueryParameter['pageSize'] = pageSize;
+            }
+
+            if (paginationMode !== undefined) {
+                localVarQueryParameter['paginationMode'] = paginationMode;
+            }
 
 
     
@@ -289,11 +306,14 @@ export const AuthRoleApiFp = function(configuration?: Configuration) {
         /**
          * Get all available roles from this resource server
          * @summary Get all available roles from this resource server
+         * @param {number} [page] The page to read. Default is the first page.
+         * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
+         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getAuthRoleCollection(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<AuthRoleResource>>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getAuthRoleCollection(options);
+        async getAuthRoleCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AuthRoleCollection>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getAuthRoleCollection(page, pageSize, paginationMode, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -353,11 +373,14 @@ export const AuthRoleApiFactory = function (configuration?: Configuration, baseP
         /**
          * Get all available roles from this resource server
          * @summary Get all available roles from this resource server
+         * @param {number} [page] The page to read. Default is the first page.
+         * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
+         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getAuthRoleCollection(options?: any): AxiosPromise<Array<AuthRoleResource>> {
-            return localVarFp.getAuthRoleCollection(options).then((request) => request(axios, basePath));
+        getAuthRoleCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', options?: any): AxiosPromise<AuthRoleCollection> {
+            return localVarFp.getAuthRoleCollection(page, pageSize, paginationMode, options).then((request) => request(axios, basePath));
         },
         /**
          * Patch a role for this resource server
@@ -413,11 +436,14 @@ export interface AuthRoleApiInterface {
     /**
      * Get all available roles from this resource server
      * @summary Get all available roles from this resource server
+     * @param {number} [page] The page to read. Default is the first page.
+     * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
+     * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AuthRoleApiInterface
      */
-    getAuthRoleCollection(options?: AxiosRequestConfig): AxiosPromise<Array<AuthRoleResource>>;
+    getAuthRoleCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', options?: AxiosRequestConfig): AxiosPromise<AuthRoleCollection>;
 
     /**
      * Patch a role for this resource server
@@ -477,12 +503,15 @@ export class AuthRoleApi extends BaseAPI implements AuthRoleApiInterface {
     /**
      * Get all available roles from this resource server
      * @summary Get all available roles from this resource server
+     * @param {number} [page] The page to read. Default is the first page.
+     * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
+     * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AuthRoleApi
      */
-    public getAuthRoleCollection(options?: AxiosRequestConfig) {
-        return AuthRoleApiFp(this.configuration).getAuthRoleCollection(options).then((request) => request(this.axios, this.basePath));
+    public getAuthRoleCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', options?: AxiosRequestConfig) {
+        return AuthRoleApiFp(this.configuration).getAuthRoleCollection(page, pageSize, paginationMode, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
