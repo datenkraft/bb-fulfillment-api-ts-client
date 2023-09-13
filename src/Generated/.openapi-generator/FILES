@@ -29,7 +29,13 @@ models/audit-log-collection-all-of.ts
 models/audit-log-collection.ts
 models/audit-log.ts
 models/auth-permission-resource.ts
+models/auth-permission-role-paginated-collection-all-of.ts
+models/auth-permission-role-paginated-collection.ts
 models/auth-permission-role-resource.ts
+models/auth-role-collection-all-of.ts
+models/auth-role-collection.ts
+models/auth-role-identity-paginated-collection-all-of.ts
+models/auth-role-identity-paginated-collection.ts
 models/auth-role-identity-resource.ts
 models/auth-role-resource.ts
 models/base-order-customer-invoice-address.ts
@@ -53,6 +59,8 @@ models/delivery-shipment.ts
 models/delivery.ts
 models/error-references-inner.ts
 models/error-response.ts
+models/get-auth-permission-collection-response-all-of.ts
+models/get-auth-permission-collection-response.ts
 models/inbound-delivery-all-of.ts
 models/inbound-delivery-bulk-import207-response-inner-content.ts
 models/inbound-delivery-bulk-import207-response-inner.ts
