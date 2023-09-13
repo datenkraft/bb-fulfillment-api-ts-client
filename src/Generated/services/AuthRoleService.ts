@@ -12,14 +12,28 @@ export class AuthRoleService {
     /**
      * Get all available roles from this resource server
      * Get all available roles from this resource server
+     * @param page The page to read. Default is the first page.
+     * @param pageSize The maximum size per page is 100. Default is 100.
+     * @param paginationMode The paginationMode to use:
+     * - default: The total number of items in the collection will not be calculated.
+     * - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
      * @returns authRoleCollection OK
      * @returns errorResponse Unexpected error
      * @throws ApiError
      */
-    public static async getAuthRoleCollection(): Promise<authRoleCollection | errorResponse> {
+    public static async getAuthRoleCollection(
+        page?: number,
+        pageSize?: number,
+        paginationMode: 'default' | 'totalCount' = 'default',
+    ): Promise<authRoleCollection | errorResponse> {
         const result = await __request({
             method: 'GET',
             path: `/auth/role`,
+            query: {
+                'page': page,
+                'pageSize': pageSize,
+                'paginationMode': paginationMode,
+            },
             errors: {
                 401: `Unauthorized`,
                 403: `Forbidden`,
