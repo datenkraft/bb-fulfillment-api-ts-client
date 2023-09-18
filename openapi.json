@@ -2444,6 +2444,26 @@
                             }
                         }
                     },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "406": {
+                        "description": "The requested document could not be generated in the format specified by the accept header",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
                     "500": {
                         "description": "Server Error",
                         "content": {
@@ -5055,7 +5075,7 @@
                     {
                         "name": "pageSize",
                         "in": "query",
-                        "description": "The maximum size per page is 100. Default is 100.",
+                        "description": "The maximum size per page is 100. Default is 20.",
                         "required": false,
                         "schema": {
                             "type": "integer"
@@ -5090,7 +5110,7 @@
                         "name": "filter[dateFrom]",
                         "in": "query",
                         "description": "The start date (inclusive) in format Y-m-d (timezone CET/CEST) for which orders should be returned.",
-                        "required": false,
+                        "required": true,
                         "schema": {
                             "type": "string",
                             "format": "date"
@@ -5100,7 +5120,7 @@
                         "name": "filter[dateTo]",
                         "in": "query",
                         "description": "The end date (inclusive) in format Y-m-d (timezone CET/CEST) for which orders should be returned.",
-                        "required": false,
+                        "required": true,
                         "schema": {
                             "type": "string",
                             "format": "date"
@@ -5211,7 +5231,7 @@
                     {
                         "name": "pageSize",
                         "in": "query",
-                        "description": "The maximum size per page is 100. Default is 100.",
+                        "description": "The maximum size per page is 100. Default is 20.",
                         "required": false,
                         "schema": {
                             "type": "integer"

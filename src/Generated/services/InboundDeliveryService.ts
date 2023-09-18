@@ -63,6 +63,8 @@ export class InboundDeliveryService {
             method: 'GET',
             path: `/bulk-import/template/inbound-delivery`,
             errors: {
+                401: `Unauthorized`,
+                406: `The requested document could not be generated in the format specified by the accept header`,
                 500: `Server Error`,
             },
         });
