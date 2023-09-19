@@ -61,10 +61,10 @@ export interface Reconsignment {
     'reconsignmentDeliveryServiceCode'?: string;
     /**
      * Indicates whether the reconsignment was pre-announced or not.
-     * @type {string}
+     * @type {boolean}
      * @memberof Reconsignment
      */
-    'reconsignmentWasPreAnnounced'?: string;
+    'reconsignmentWasPreAnnounced'?: boolean;
     /**
      * The country, from where the reconsignment was shipped (ISO 3166-1 alpha-2).
      * @type {string}
