@@ -8031,7 +8031,7 @@
                     },
                     "reconsignmentWasPreAnnounced": {
                         "description": "Indicates whether the reconsignment was pre-announced or not.",
-                        "type": "string"
+                        "type": "boolean"
                     },
                     "reconsignmentCountryCode": {
                         "description": "The country, from where the reconsignment was shipped (ISO 3166-1 alpha-2).",
