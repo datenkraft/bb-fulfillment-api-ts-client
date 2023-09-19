@@ -35,7 +35,7 @@ export type reconsignment = {
     /**
      * Indicates whether the reconsignment was pre-announced or not.
      */
-    reconsignmentWasPreAnnounced?: string;
+    reconsignmentWasPreAnnounced?: boolean;
     /**
      * The country, from where the reconsignment was shipped (ISO 3166-1 alpha-2).
      */
