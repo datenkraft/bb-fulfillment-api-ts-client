@@ -7910,16 +7910,19 @@
                 "title": "productJournalReference",
                 "properties": {
                     "companyName": {
-                        "description": "Company name. Set if Journal entry reason is 'niceshops_order' and a company is set.",
-                        "type": "string"
+                        "description": "Company name. Is provided if Journal entry reason is 'niceshops_order' and a company is set.",
+                        "type": "string",
+                        "nullable": true
                     },
                     "inboundDeliveryNumber": {
-                        "description": "Inbound delivery number. Set if Journal entry reason is 'inbound'.",
-                        "type": "string"
+                        "description": "Inbound delivery number. Is provided if Journal entry reason is 'inbound'.",
+                        "type": "string",
+                        "nullable": true
                     },
                     "orderNumber": {
-                        "description": "Order number. Set if Journal entry reason is 'fulfillment' or 'return'.",
-                        "type": "string"
+                        "description": "Order number. Is provided if Journal entry reason is 'fulfillment' or 'return'.",
+                        "type": "string",
+                        "nullable": true
                     }
                 },
                 "type": "object"
