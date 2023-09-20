@@ -4,15 +4,15 @@
 
 export type productJournalReference = {
     /**
-     * Company name. Set if Journal entry reason is 'niceshops_order' and a company is set.
+     * Company name. Is provided if Journal entry reason is 'niceshops_order' and a company is set.
      */
-    companyName?: string;
+    companyName?: string | null;
     /**
-     * Inbound delivery number. Set if Journal entry reason is 'inbound'.
+     * Inbound delivery number. Is provided if Journal entry reason is 'inbound'.
      */
-    inboundDeliveryNumber?: string;
+    inboundDeliveryNumber?: string | null;
     /**
-     * Order number. Set if Journal entry reason is 'fulfillment' or 'return'.
+     * Order number. Is provided if Journal entry reason is 'fulfillment' or 'return'.
      */
-    orderNumber?: string;
+    orderNumber?: string | null;
 }
