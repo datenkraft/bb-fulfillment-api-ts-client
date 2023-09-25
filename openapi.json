@@ -8204,7 +8204,11 @@
                         "type": "integer"
                     },
                     "stockSubtracted": {
-                        "description": "Stock subtracted in the period",
+                        "description": "Stock subtracted (internal and external) in the period",
+                        "type": "integer"
+                    },
+                    "stockSubtractedExternal": {
+                        "description": "Stock subtracted in the period.\\\nNote: 'stockSubtracted' already contains 'stockSubtractedExternal'.",
                         "type": "integer"
                     },
                     "stockCorrected": {
@@ -8216,7 +8220,11 @@
                         "type": "integer"
                     },
                     "stockReturned": {
-                        "description": "Stock returned in the period",
+                        "description": "Stock returned (internal and external) in the period",
+                        "type": "integer"
+                    },
+                    "stockReturnedExternal": {
+                        "description": "Stock subtracted in the period.\\\nNote: 'stockReturned' already contains 'stockReturnedExternal'.",
                         "type": "integer"
                     },
                     "movementEntries": {
