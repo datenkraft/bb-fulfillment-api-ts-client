@@ -25,9 +25,14 @@ export type reportInventoryMovement = {
      */
     stockAdded?: number;
     /**
-     * Stock subtracted in the period
+     * Stock subtracted (internal and external) in the period
      */
     stockSubtracted?: number;
+    /**
+     * Stock subtracted in the period.\
+     * Note: 'stockSubtracted' already contains 'stockSubtractedExternal'.
+     */
+    stockSubtractedExternal?: number;
     /**
      * Stock corrections in the period
      */
@@ -37,8 +42,13 @@ export type reportInventoryMovement = {
      */
     stockUsedForOwnPurposes?: number;
     /**
-     * Stock returned in the period
+     * Stock returned (internal and external) in the period
      */
     stockReturned?: number;
+    /**
+     * Stock subtracted in the period.\
+     * Note: 'stockReturned' already contains 'stockReturnedExternal'.
+     */
+    stockReturnedExternal?: number;
     movementEntries?: Array<reportInventoryMovementEntry>;
 }
