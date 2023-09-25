@@ -53,6 +53,9 @@ export class DocsService {
         const result = await __request({
             method: 'GET',
             path: `/docs/openapi.${format}`,
+            errors: {
+                400: `Invalid format`,
+            },
         });
         return result.body;
     }
