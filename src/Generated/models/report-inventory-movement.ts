@@ -48,11 +48,17 @@ export interface ReportInventoryMovement {
      */
     'stockAdded'?: number;
     /**
-     * Stock subtracted in the period
+     * Stock subtracted (internal and external) in the period
      * @type {number}
      * @memberof ReportInventoryMovement
      */
     'stockSubtracted'?: number;
+    /**
+     * Stock subtracted in the period.\\ Note: \'stockSubtracted\' already contains \'stockSubtractedExternal\'.
+     * @type {number}
+     * @memberof ReportInventoryMovement
+     */
+    'stockSubtractedExternal'?: number;
     /**
      * Stock corrections in the period
      * @type {number}
@@ -66,11 +72,17 @@ export interface ReportInventoryMovement {
      */
     'stockUsedForOwnPurposes'?: number;
     /**
-     * Stock returned in the period
+     * Stock returned (internal and external) in the period
      * @type {number}
      * @memberof ReportInventoryMovement
      */
     'stockReturned'?: number;
+    /**
+     * Stock subtracted in the period.\\ Note: \'stockReturned\' already contains \'stockReturnedExternal\'.
+     * @type {number}
+     * @memberof ReportInventoryMovement
+     */
+    'stockReturnedExternal'?: number;
     /**
      * 
      * @type {Array<ReportInventoryMovementEntry>}
