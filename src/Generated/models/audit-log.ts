@@ -69,7 +69,7 @@ export interface AuditLog {
      */
     'oauthClientId'?: string;
     /**
-     * The timestamp of the action.
+     * The timestamp of the action. Format in ISO 8601.
      * @type {string}
      * @memberof AuditLog
      */
