@@ -39,7 +39,7 @@ export type auditLog = {
      */
     oauthClientId?: string;
     /**
-     * The timestamp of the action.
+     * The timestamp of the action. Format in ISO 8601.
      */
     timestamp?: string;
 }
