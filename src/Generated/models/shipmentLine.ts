@@ -22,4 +22,8 @@ export type shipmentLine = {
      * Serial numbers
      */
     serialNumbers?: Array<string>;
+    /**
+     * Allows the traceability of the products in the deliveries.
+     */
+    traceCodes?: Array<string>;
 }
