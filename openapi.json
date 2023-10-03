@@ -8303,6 +8303,13 @@
                         "items": {
                             "type": "string"
                         }
+                    },
+                    "traceCodes": {
+                        "description": "Allows the traceability of the products in the deliveries.",
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
                     }
                 },
                 "type": "object"
