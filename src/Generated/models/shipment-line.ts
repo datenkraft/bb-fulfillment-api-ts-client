@@ -44,5 +44,11 @@ export interface ShipmentLine {
      * @memberof ShipmentLine
      */
     'serialNumbers'?: Array<string>;
+    /**
+     * Allows the traceability of the products in the deliveries.
+     * @type {Array<string>}
+     * @memberof ShipmentLine
+     */
+    'traceCodes'?: Array<string>;
 }
 
