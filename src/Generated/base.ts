@@ -2,7 +2,7 @@
 /* eslint-disable */
 /**
  * Fulfillment API
- *  - alpha: Currently developed API version. Subject to major changes. - beta: A semi-stable early access version. New features can be added. Breaking changes are possible. - stable: The API is recommended for use in production.  [Changelog](https://fulfillment-api.conqore.niceshops.com/v1/docs/changelog.html)  All data is transferred in UTF-8 encoding.\\ The API uses stateless HTTP. No cookies have to be kept.\\ Authentication via OAuth2 client credentials flow.  [Privacy Policy](https://www.niceshops.com/en/dienstleistungen/data-privacy-policy)  [Fulfillment API PHP client @Packagist](https://packagist.org/packages/datenkraft/bb-fulfillment-api-php-client)
+ *  - alpha: Currently developed API version. Subject to major changes. - beta: A semi-stable early access version. New features can be added. Breaking changes are possible. - stable: The API is recommended for use in production.  [Changelog](https://fulfillment-api.steve.niceshops.com/v1/docs/changelog.html)  All data is transferred in UTF-8 encoding.\\ The API uses stateless HTTP. No cookies have to be kept.\\ Authentication via OAuth2 client credentials flow.  [Privacy Policy](https://www.niceshops.com/en/dienstleistungen/data-privacy-policy)  [Fulfillment API PHP client @Packagist](https://packagist.org/packages/datenkraft/bb-fulfillment-api-php-client)
  *
  * The version of the OpenAPI document: v1.stable
  * 
@@ -19,7 +19,7 @@ import type { Configuration } from './configuration';
 import type { AxiosPromise, AxiosInstance, AxiosRequestConfig } from 'axios';
 import globalAxios from 'axios';
 
-export const BASE_PATH = "https://fulfillment-api.conqore.niceshops.com/v1".replace(/\/+$/, "");
+export const BASE_PATH = "https://fulfillment-api.steve.niceshops.com/v1".replace(/\/+$/, "");
 
 /**
  *
