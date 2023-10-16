@@ -90,9 +90,7 @@ models/new-order-item.ts
 models/new-order-options-all-of.ts
 models/new-order-options.ts
 models/new-order.ts
-models/new-product-all-of.ts
 models/new-product-stock-add.ts
-models/new-product.ts
 models/order-all-of.ts
 models/order-collection-all-of.ts
 models/order-collection.ts

@@ -27,10 +27,6 @@ import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } fr
 // @ts-ignore
 import { ErrorResponse } from '../models';
 // @ts-ignore
-import { InformationResponse } from '../models';
-// @ts-ignore
-import { NewProduct } from '../models';
-// @ts-ignore
 import { Product } from '../models';
 // @ts-ignore
 import { ProductCollection } from '../models';
@@ -96,7 +92,7 @@ export const ProductApiAxiosParamCreator = function (configuration?: Configurati
          * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
          * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. \\ This can mean loss of performance.
          * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
-         * @param {string} [filterSearch] Filter for product search. \\ Usage: - Provide one or multiple search terms to filter results.  - Multiple search terms are separated by spaces. - The search is not case sensitive. - The search is enabled for the fields productTitle, productNumber and ean. - Each search term filters the response for products where at least one of the fields contains the search term. - For example, filter[search]&#x3D;\&#39;term1 term2\&#39; will filter the result for products where \&#39;term1\&#39; is found in any field and \&#39;term2\&#39; is also found in any field. If only \&#39;term1\&#39; or \&#39;term2\&#39; is found in the fields, the product is not included in the results.
+         * @param {string} [filterSearch] Filter for product search. \\ Usage: - Provide one or multiple search terms to filter results. - Multiple search terms are separated by spaces. - The search is not case sensitive. - The search is enabled for the fields productTitle, productNumber and ean. - Each search term filters the response for products where at least one of the fields contains the search term. - For example, filter[search]&#x3D;\&#39;term1 term2\&#39; will filter the result for products where \&#39;term1\&#39; is found in any field and \&#39;term2\&#39; is also found in any field. If only \&#39;term1\&#39; or \&#39;term2\&#39; is found in the fields, the product is not included in the results.
          * @param {'self' | 'nice' | 'bundle'} [filterSource] Filter for product source.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -238,59 +234,6 @@ export const ProductApiAxiosParamCreator = function (configuration?: Configurati
                 options: localVarRequestOptions,
             };
         },
-        /**
-         * Add a new product referenced by the given productNumber. \\ _Please note that due to necessary product compliance enabling by our steve team, the product might not be usable immediately. The product number is nevertheless reserved, even before the product can be queried in the GET endpoint._
-         * @summary Add a new product
-         * @param {string} productNumber The number the product should be referred by. \\ This number is user defined, must be unique and has a maximum length (check maxLength field).\\ Please ensure that it does not contain any of the following character sequences: \&#39;/\&#39;, \&#39;%2F\&#39;, \&#39;%2f\&#39;, \&#39;?\&#39;, \&#39;%3F\&#39;, \&#39;%3f\&#39;, \&#39;#\&#39;, \&#39;%23\&#39;, \&#39;&amp;\&#39;, \&#39;%26\&#39;. Using any of these will result in the route not being handled correctly.
-         * @param {NewProduct} newProduct 
-         * @param {string} [shopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        postProduct: async (productNumber: string, newProduct: NewProduct, shopCode?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'productNumber' is not null or undefined
-            assertParamExists('postProduct', 'productNumber', productNumber)
-            // verify required parameter 'newProduct' is not null or undefined
-            assertParamExists('postProduct', 'newProduct', newProduct)
-            const localVarPath = `/product/{productNumber}`
-                .replace(`{${"productNumber"}}`, encodeURIComponent(String(productNumber)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication oAuthAuthorization required
-            // oauth required
-            await setOAuthToObject(localVarHeaderParameter, "oAuthAuthorization", [], configuration)
-
-            // authentication bearerAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-            if (shopCode !== undefined) {
-                localVarQueryParameter['shopCode'] = shopCode;
-            }
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(newProduct, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
     }
 };
 
@@ -320,7 +263,7 @@ export const ProductApiFp = function(configuration?: Configuration) {
          * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
          * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. \\ This can mean loss of performance.
          * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
-         * @param {string} [filterSearch] Filter for product search. \\ Usage: - Provide one or multiple search terms to filter results.  - Multiple search terms are separated by spaces. - The search is not case sensitive. - The search is enabled for the fields productTitle, productNumber and ean. - Each search term filters the response for products where at least one of the fields contains the search term. - For example, filter[search]&#x3D;\&#39;term1 term2\&#39; will filter the result for products where \&#39;term1\&#39; is found in any field and \&#39;term2\&#39; is also found in any field. If only \&#39;term1\&#39; or \&#39;term2\&#39; is found in the fields, the product is not included in the results.
+         * @param {string} [filterSearch] Filter for product search. \\ Usage: - Provide one or multiple search terms to filter results. - Multiple search terms are separated by spaces. - The search is not case sensitive. - The search is enabled for the fields productTitle, productNumber and ean. - Each search term filters the response for products where at least one of the fields contains the search term. - For example, filter[search]&#x3D;\&#39;term1 term2\&#39; will filter the result for products where \&#39;term1\&#39; is found in any field and \&#39;term2\&#39; is also found in any field. If only \&#39;term1\&#39; or \&#39;term2\&#39; is found in the fields, the product is not included in the results.
          * @param {'self' | 'nice' | 'bundle'} [filterSource] Filter for product source.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -345,19 +288,6 @@ export const ProductApiFp = function(configuration?: Configuration) {
          */
         async getProductJournalCollection(productNumber: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', shopCode?: string, filterDateFrom?: string, filterDateTo?: string, filterReason?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ProductJournalCollection>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getProductJournalCollection(productNumber, page, pageSize, paginationMode, shopCode, filterDateFrom, filterDateTo, filterReason, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * Add a new product referenced by the given productNumber. \\ _Please note that due to necessary product compliance enabling by our steve team, the product might not be usable immediately. The product number is nevertheless reserved, even before the product can be queried in the GET endpoint._
-         * @summary Add a new product
-         * @param {string} productNumber The number the product should be referred by. \\ This number is user defined, must be unique and has a maximum length (check maxLength field).\\ Please ensure that it does not contain any of the following character sequences: \&#39;/\&#39;, \&#39;%2F\&#39;, \&#39;%2f\&#39;, \&#39;?\&#39;, \&#39;%3F\&#39;, \&#39;%3f\&#39;, \&#39;#\&#39;, \&#39;%23\&#39;, \&#39;&amp;\&#39;, \&#39;%26\&#39;. Using any of these will result in the route not being handled correctly.
-         * @param {NewProduct} newProduct 
-         * @param {string} [shopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async postProduct(productNumber: string, newProduct: NewProduct, shopCode?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InformationResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.postProduct(productNumber, newProduct, shopCode, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -388,7 +318,7 @@ export const ProductApiFactory = function (configuration?: Configuration, basePa
          * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
          * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. \\ This can mean loss of performance.
          * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
-         * @param {string} [filterSearch] Filter for product search. \\ Usage: - Provide one or multiple search terms to filter results.  - Multiple search terms are separated by spaces. - The search is not case sensitive. - The search is enabled for the fields productTitle, productNumber and ean. - Each search term filters the response for products where at least one of the fields contains the search term. - For example, filter[search]&#x3D;\&#39;term1 term2\&#39; will filter the result for products where \&#39;term1\&#39; is found in any field and \&#39;term2\&#39; is also found in any field. If only \&#39;term1\&#39; or \&#39;term2\&#39; is found in the fields, the product is not included in the results.
+         * @param {string} [filterSearch] Filter for product search. \\ Usage: - Provide one or multiple search terms to filter results. - Multiple search terms are separated by spaces. - The search is not case sensitive. - The search is enabled for the fields productTitle, productNumber and ean. - Each search term filters the response for products where at least one of the fields contains the search term. - For example, filter[search]&#x3D;\&#39;term1 term2\&#39; will filter the result for products where \&#39;term1\&#39; is found in any field and \&#39;term2\&#39; is also found in any field. If only \&#39;term1\&#39; or \&#39;term2\&#39; is found in the fields, the product is not included in the results.
          * @param {'self' | 'nice' | 'bundle'} [filterSource] Filter for product source.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -412,18 +342,6 @@ export const ProductApiFactory = function (configuration?: Configuration, basePa
          */
         getProductJournalCollection(productNumber: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', shopCode?: string, filterDateFrom?: string, filterDateTo?: string, filterReason?: string, options?: any): AxiosPromise<ProductJournalCollection> {
             return localVarFp.getProductJournalCollection(productNumber, page, pageSize, paginationMode, shopCode, filterDateFrom, filterDateTo, filterReason, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * Add a new product referenced by the given productNumber. \\ _Please note that due to necessary product compliance enabling by our steve team, the product might not be usable immediately. The product number is nevertheless reserved, even before the product can be queried in the GET endpoint._
-         * @summary Add a new product
-         * @param {string} productNumber The number the product should be referred by. \\ This number is user defined, must be unique and has a maximum length (check maxLength field).\\ Please ensure that it does not contain any of the following character sequences: \&#39;/\&#39;, \&#39;%2F\&#39;, \&#39;%2f\&#39;, \&#39;?\&#39;, \&#39;%3F\&#39;, \&#39;%3f\&#39;, \&#39;#\&#39;, \&#39;%23\&#39;, \&#39;&amp;\&#39;, \&#39;%26\&#39;. Using any of these will result in the route not being handled correctly.
-         * @param {NewProduct} newProduct 
-         * @param {string} [shopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        postProduct(productNumber: string, newProduct: NewProduct, shopCode?: string, options?: any): AxiosPromise<InformationResponse> {
-            return localVarFp.postProduct(productNumber, newProduct, shopCode, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -452,7 +370,7 @@ export interface ProductApiInterface {
      * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
      * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. \\ This can mean loss of performance.
      * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
-     * @param {string} [filterSearch] Filter for product search. \\ Usage: - Provide one or multiple search terms to filter results.  - Multiple search terms are separated by spaces. - The search is not case sensitive. - The search is enabled for the fields productTitle, productNumber and ean. - Each search term filters the response for products where at least one of the fields contains the search term. - For example, filter[search]&#x3D;\&#39;term1 term2\&#39; will filter the result for products where \&#39;term1\&#39; is found in any field and \&#39;term2\&#39; is also found in any field. If only \&#39;term1\&#39; or \&#39;term2\&#39; is found in the fields, the product is not included in the results.
+     * @param {string} [filterSearch] Filter for product search. \\ Usage: - Provide one or multiple search terms to filter results. - Multiple search terms are separated by spaces. - The search is not case sensitive. - The search is enabled for the fields productTitle, productNumber and ean. - Each search term filters the response for products where at least one of the fields contains the search term. - For example, filter[search]&#x3D;\&#39;term1 term2\&#39; will filter the result for products where \&#39;term1\&#39; is found in any field and \&#39;term2\&#39; is also found in any field. If only \&#39;term1\&#39; or \&#39;term2\&#39; is found in the fields, the product is not included in the results.
      * @param {'self' | 'nice' | 'bundle'} [filterSource] Filter for product source.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -476,18 +394,6 @@ export interface ProductApiInterface {
      * @memberof ProductApiInterface
      */
     getProductJournalCollection(productNumber: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', shopCode?: string, filterDateFrom?: string, filterDateTo?: string, filterReason?: string, options?: AxiosRequestConfig): AxiosPromise<ProductJournalCollection>;
-
-    /**
-     * Add a new product referenced by the given productNumber. \\ _Please note that due to necessary product compliance enabling by our steve team, the product might not be usable immediately. The product number is nevertheless reserved, even before the product can be queried in the GET endpoint._
-     * @summary Add a new product
-     * @param {string} productNumber The number the product should be referred by. \\ This number is user defined, must be unique and has a maximum length (check maxLength field).\\ Please ensure that it does not contain any of the following character sequences: \&#39;/\&#39;, \&#39;%2F\&#39;, \&#39;%2f\&#39;, \&#39;?\&#39;, \&#39;%3F\&#39;, \&#39;%3f\&#39;, \&#39;#\&#39;, \&#39;%23\&#39;, \&#39;&amp;\&#39;, \&#39;%26\&#39;. Using any of these will result in the route not being handled correctly.
-     * @param {NewProduct} newProduct 
-     * @param {string} [shopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProductApiInterface
-     */
-    postProduct(productNumber: string, newProduct: NewProduct, shopCode?: string, options?: AxiosRequestConfig): AxiosPromise<InformationResponse>;
 
 }
 
@@ -518,7 +424,7 @@ export class ProductApi extends BaseAPI implements ProductApiInterface {
      * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
      * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. \\ This can mean loss of performance.
      * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
-     * @param {string} [filterSearch] Filter for product search. \\ Usage: - Provide one or multiple search terms to filter results.  - Multiple search terms are separated by spaces. - The search is not case sensitive. - The search is enabled for the fields productTitle, productNumber and ean. - Each search term filters the response for products where at least one of the fields contains the search term. - For example, filter[search]&#x3D;\&#39;term1 term2\&#39; will filter the result for products where \&#39;term1\&#39; is found in any field and \&#39;term2\&#39; is also found in any field. If only \&#39;term1\&#39; or \&#39;term2\&#39; is found in the fields, the product is not included in the results.
+     * @param {string} [filterSearch] Filter for product search. \\ Usage: - Provide one or multiple search terms to filter results. - Multiple search terms are separated by spaces. - The search is not case sensitive. - The search is enabled for the fields productTitle, productNumber and ean. - Each search term filters the response for products where at least one of the fields contains the search term. - For example, filter[search]&#x3D;\&#39;term1 term2\&#39; will filter the result for products where \&#39;term1\&#39; is found in any field and \&#39;term2\&#39; is also found in any field. If only \&#39;term1\&#39; or \&#39;term2\&#39; is found in the fields, the product is not included in the results.
      * @param {'self' | 'nice' | 'bundle'} [filterSource] Filter for product source.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -545,19 +451,5 @@ export class ProductApi extends BaseAPI implements ProductApiInterface {
      */
     public getProductJournalCollection(productNumber: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', shopCode?: string, filterDateFrom?: string, filterDateTo?: string, filterReason?: string, options?: AxiosRequestConfig) {
         return ProductApiFp(this.configuration).getProductJournalCollection(productNumber, page, pageSize, paginationMode, shopCode, filterDateFrom, filterDateTo, filterReason, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * Add a new product referenced by the given productNumber. \\ _Please note that due to necessary product compliance enabling by our steve team, the product might not be usable immediately. The product number is nevertheless reserved, even before the product can be queried in the GET endpoint._
-     * @summary Add a new product
-     * @param {string} productNumber The number the product should be referred by. \\ This number is user defined, must be unique and has a maximum length (check maxLength field).\\ Please ensure that it does not contain any of the following character sequences: \&#39;/\&#39;, \&#39;%2F\&#39;, \&#39;%2f\&#39;, \&#39;?\&#39;, \&#39;%3F\&#39;, \&#39;%3f\&#39;, \&#39;#\&#39;, \&#39;%23\&#39;, \&#39;&amp;\&#39;, \&#39;%26\&#39;. Using any of these will result in the route not being handled correctly.
-     * @param {NewProduct} newProduct 
-     * @param {string} [shopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProductApi
-     */
-    public postProduct(productNumber: string, newProduct: NewProduct, shopCode?: string, options?: AxiosRequestConfig) {
-        return ProductApiFp(this.configuration).postProduct(productNumber, newProduct, shopCode, options).then((request) => request(this.axios, this.basePath));
     }
 }
