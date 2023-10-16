@@ -2,8 +2,6 @@
 /* tslint:disable */
 /* eslint-disable */
 import type { errorResponse } from '../models/errorResponse';
-import type { informationResponse } from '../models/informationResponse';
-import type { newProduct } from '../models/newProduct';
 import type { product } from '../models/product';
 import type { productCollection } from '../models/productCollection';
 import type { productJournalCollection } from '../models/productJournalCollection';
@@ -90,48 +88,6 @@ export class ProductService {
             query: {
                 'shopCode': shopCode,
             },
-            errors: {
-                400: `Bad Request`,
-                401: `Unauthorized`,
-                403: `Forbidden`,
-                422: `Unprocessable Entity`,
-                500: `Server Error`,
-            },
-        });
-        return result.body;
-    }
-
-    /**
-     * Add a new product
-     * Add a new product referenced by the given productNumber. \
-     * _Please note that due to necessary product compliance enabling by our steve team,
-     * the product might not be usable immediately.
-     * The product number is nevertheless reserved, even before the product can be queried in the GET endpoint._
-     * @param productNumber The number the product should be referred by. \
-     * This number is user defined, must be unique and has a maximum length (check maxLength field).\
-     * Please ensure that it does not contain any of the following character sequences:
-     * '/', '%2F', '%2f', '?', '%3F', '%3f', '#', '%23', '&', '%26'.
-     * Using any of these will result in the route not being handled correctly.
-     * @param requestBody
-     * @param shopCode The shopCode used internally to distinguish between clients. \
-     * _This code is optional, if your identity is assigned to only one shop.
-     * Otherwise the response would be a 422 HTTP Error._
-     * @returns errorResponse Unexpected Error
-     * @returns informationResponse Created
-     * @throws ApiError
-     */
-    public static async postProduct(
-        productNumber: string,
-        requestBody: newProduct,
-        shopCode?: string,
-    ): Promise<errorResponse | informationResponse> {
-        const result = await __request({
-            method: 'POST',
-            path: `/product/${productNumber}`,
-            query: {
-                'shopCode': shopCode,
-            },
-            body: requestBody,
             errors: {
                 400: `Bad Request`,
                 401: `Unauthorized`,
