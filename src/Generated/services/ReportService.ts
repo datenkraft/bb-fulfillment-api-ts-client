@@ -59,6 +59,7 @@ export class ReportService {
     /**
      * Read the inventory movements for the given shopCode in the given month and year.
      * Read the inventory movements for the given shopCode in the given month and year.
+     * _Only inventory movements for products with source 'self' are returned._
      * @param filterYear The year for which inventory movements should be returned.
      * @param filterMonth The month for which inventory movements should be returned.
      * @param page The page to read. Default is the first page.
