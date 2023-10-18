@@ -5109,7 +5109,7 @@
                     "report"
                 ],
                 "summary": "Read the inventory movements for the given shopCode in the given month and year.",
-                "description": "Read the inventory movements for the given shopCode in the given month and year.",
+                "description": "Read the inventory movements for the given shopCode in the given month and year.\n_Only inventory movements for products with source 'self' are returned._",
                 "operationId": "getReportInventoryMovementCollection",
                 "parameters": [
                     {
@@ -5206,9 +5206,6 @@
                                 }
                             }
                         }
-                    },
-                    "204": {
-                        "description": "No (more) inventory movements could be found"
                     },
                     "400": {
                         "description": "Bad Request",

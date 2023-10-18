@@ -113,7 +113,7 @@ export const ReportApiAxiosParamCreator = function (configuration?: Configuratio
             };
         },
         /**
-         * Read the inventory movements for the given shopCode in the given month and year.
+         * Read the inventory movements for the given shopCode in the given month and year. _Only inventory movements for products with source \'self\' are returned._
          * @summary Read the inventory movements for the given shopCode in the given month and year.
          * @param {number} filterYear The year for which inventory movements should be returned.
          * @param {number} filterMonth The month for which inventory movements should be returned.
@@ -216,7 +216,7 @@ export const ReportApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * Read the inventory movements for the given shopCode in the given month and year.
+         * Read the inventory movements for the given shopCode in the given month and year. _Only inventory movements for products with source \'self\' are returned._
          * @summary Read the inventory movements for the given shopCode in the given month and year.
          * @param {number} filterYear The year for which inventory movements should be returned.
          * @param {number} filterMonth The month for which inventory movements should be returned.
@@ -258,7 +258,7 @@ export const ReportApiFactory = function (configuration?: Configuration, basePat
             return localVarFp.getOrderReportClearingCollection(filterDateFrom, filterDateTo, page, pageSize, paginationMode, filterShopCode, options).then((request) => request(axios, basePath));
         },
         /**
-         * Read the inventory movements for the given shopCode in the given month and year.
+         * Read the inventory movements for the given shopCode in the given month and year. _Only inventory movements for products with source \'self\' are returned._
          * @summary Read the inventory movements for the given shopCode in the given month and year.
          * @param {number} filterYear The year for which inventory movements should be returned.
          * @param {number} filterMonth The month for which inventory movements should be returned.
@@ -298,7 +298,7 @@ export interface ReportApiInterface {
     getOrderReportClearingCollection(filterDateFrom: string, filterDateTo: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterShopCode?: string, options?: AxiosRequestConfig): AxiosPromise<ReportClearingOrderCollection>;
 
     /**
-     * Read the inventory movements for the given shopCode in the given month and year.
+     * Read the inventory movements for the given shopCode in the given month and year. _Only inventory movements for products with source \'self\' are returned._
      * @summary Read the inventory movements for the given shopCode in the given month and year.
      * @param {number} filterYear The year for which inventory movements should be returned.
      * @param {number} filterMonth The month for which inventory movements should be returned.
@@ -340,7 +340,7 @@ export class ReportApi extends BaseAPI implements ReportApiInterface {
     }
 
     /**
-     * Read the inventory movements for the given shopCode in the given month and year.
+     * Read the inventory movements for the given shopCode in the given month and year. _Only inventory movements for products with source \'self\' are returned._
      * @summary Read the inventory movements for the given shopCode in the given month and year.
      * @param {number} filterYear The year for which inventory movements should be returned.
      * @param {number} filterMonth The month for which inventory movements should be returned.
