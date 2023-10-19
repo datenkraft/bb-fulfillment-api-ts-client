@@ -25,6 +25,7 @@ import { OrderItem } from './order-item';
 
 /**
  * @type NewOrderItem
+ * Note: Only one Order Item may be sent per product.\\ This means that if a product appears in the shopping cart more than once, it must be aggregated to a single  OrderItem with a correspondingly increased count.
  * @export
  */
 export type NewOrderItem = NewOrderItemAllOf & OrderItem;
