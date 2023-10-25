@@ -6,6 +6,7 @@ apis/auth-permission-api.ts
 apis/auth-permission-role-api.ts
 apis/auth-role-api.ts
 apis/auth-role-identity-api.ts
+apis/brand-api.ts
 apis/country-api.ts
 apis/delivery-api.ts
 apis/delivery-service-api.ts
@@ -14,6 +15,7 @@ apis/inbound-delivery-api.ts
 apis/manufacturer-api.ts
 apis/order-api.ts
 apis/product-api.ts
+apis/product-draft-api.ts
 apis/product-unit-api.ts
 apis/reconsignment-api.ts
 apis/report-api.ts
@@ -41,8 +43,12 @@ models/auth-role-resource.ts
 models/base-order-customer-invoice-address.ts
 models/base-order-customer.ts
 models/base-order.ts
+models/base-product-draft.ts
 models/base-product-variant-group.ts
 models/base-product.ts
+models/brand-collection-all-of.ts
+models/brand-collection.ts
+models/brand.ts
 models/collection-pagination.ts
 models/collection.ts
 models/country-collection-all-of.ts
@@ -90,6 +96,8 @@ models/new-order-item.ts
 models/new-order-options-all-of.ts
 models/new-order-options.ts
 models/new-order.ts
+models/new-product-draft-all-of.ts
+models/new-product-draft.ts
 models/new-product-stock-add.ts
 models/order-all-of.ts
 models/order-collection-all-of.ts
@@ -112,6 +120,10 @@ models/order.ts
 models/product-all-of.ts
 models/product-collection-all-of.ts
 models/product-collection.ts
+models/product-draft-all-of.ts
+models/product-draft-collection-all-of.ts
+models/product-draft-collection.ts
+models/product-draft.ts
 models/product-journal-collection-all-of.ts
 models/product-journal-collection.ts
 models/product-journal-reference.ts

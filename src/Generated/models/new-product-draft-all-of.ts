@@ -14,25 +14,17 @@
 
 
 
-export * from './apis/audit-log-api';
-export * from './apis/auth-permission-api';
-export * from './apis/auth-permission-role-api';
-export * from './apis/auth-role-api';
-export * from './apis/auth-role-identity-api';
-export * from './apis/brand-api';
-export * from './apis/country-api';
-export * from './apis/delivery-api';
-export * from './apis/delivery-service-api';
-export * from './apis/docs-api';
-export * from './apis/inbound-delivery-api';
-export * from './apis/manufacturer-api';
-export * from './apis/order-api';
-export * from './apis/product-api';
-export * from './apis/product-draft-api';
-export * from './apis/product-unit-api';
-export * from './apis/reconsignment-api';
-export * from './apis/report-api';
-export * from './apis/shop-api';
-export * from './apis/stock-api';
-export * from './apis/supplier-api';
+/**
+ * 
+ * @export
+ * @interface NewProductDraftAllOf
+ */
+export interface NewProductDraftAllOf {
+    /**
+     * Product number to be used for the final product\\ This number is user defined, must be unique and has a maximum length (check maxLength field).\\ Please ensure that it does not contain any of the following character sequences: \'/\', \'%2F\', \'%2f\', \'?\', \'%3F\', \'%3f\', \'#\', \'%23\', \'&\', \'%26\'. Using any of these will result in the route not being handled correctly.
+     * @type {string}
+     * @memberof NewProductDraftAllOf
+     */
+    'productNumber'?: string;
+}
 
