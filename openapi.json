@@ -1374,6 +1374,142 @@
                 ]
             }
         },
+        "/brand": {
+            "get": {
+                "tags": [
+                    "brand"
+                ],
+                "summary": "Get all available brands for a shop code.",
+                "description": "Get all available brands for a shop code.",
+                "operationId": "getBrandCollection",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "The page to read. Default is the first page.",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": 1
+                    },
+                    {
+                        "name": "pageSize",
+                        "in": "query",
+                        "description": "The maximum size per page is 100. Default is 100.",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": 20
+                    },
+                    {
+                        "name": "paginationMode",
+                        "in": "query",
+                        "description": "The paginationMode to use:\n- default: The total number of items in the collection will not be calculated.\n- totalCount: The total number of items in the collection will be calculated. \\\nThis can mean loss of performance.",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "default": "default",
+                            "enum": [
+                                "default",
+                                "totalCount"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "filter[shopCode]",
+                        "in": "query",
+                        "description": "The shopCode used internally to distinguish between clients.",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "teststeve"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/brandCollection"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "oAuthAuthorization": []
+                    },
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
         "/country": {
             "get": {
                 "tags": [
@@ -2727,7 +2863,7 @@
                         "required": true,
                         "schema": {
                             "type": "string",
-                            "maxLength": 250
+                            "maxLength": 248
                         }
                     },
                     {
@@ -2857,7 +2993,7 @@
                         "required": true,
                         "schema": {
                             "type": "string",
-                            "maxLength": 250
+                            "maxLength": 248
                         }
                     },
                     {
@@ -2979,7 +3115,7 @@
                         "required": true,
                         "schema": {
                             "type": "string",
-                            "maxLength": 250
+                            "maxLength": 248
                         }
                     },
                     {
@@ -3111,7 +3247,7 @@
                         "required": true,
                         "schema": {
                             "type": "string",
-                            "maxLength": 250
+                            "maxLength": 248
                         }
                     },
                     {
@@ -4079,6 +4215,474 @@
                 ]
             }
         },
+        "/product-draft": {
+            "get": {
+                "tags": [
+                    "product-draft"
+                ],
+                "summary": "Read a product draft collection.",
+                "description": "Read a product draft collection. These are read in multiple pages with a defined page size.",
+                "operationId": "getProductDraftCollection",
+                "parameters": [
+                    {
+                        "name": "filter[shopCode]",
+                        "in": "query",
+                        "description": "The shopCode used internally to distinguish between clients.",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "teststeve"
+                    },
+                    {
+                        "name": "filter[productNumber]",
+                        "in": "query",
+                        "description": "Filter by a productNumber",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "filter[productDraftStatus]",
+                        "in": "query",
+                        "description": "Filter by a product draft status",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "pending",
+                                "accepted",
+                                "declined"
+                            ]
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/productDraftCollection"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "oAuthAuthorization": []
+                    },
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "product-draft"
+                ],
+                "summary": "Create a new product draft to initiate the creation new products.",
+                "description": "Create a new product draft to initiate the creation new products.Product drafts will be put into a queue for manual approval.",
+                "operationId": "postProductDraft",
+                "parameters": [
+                    {
+                        "name": "shopCode",
+                        "in": "query",
+                        "description": "The shopCode used internally to distinguish between clients.",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "teststeve"
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/newProductDraft"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/productDraft"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request\\\nExtract of the available message codes:\n- PRODUCT_UNIT_NOT_FOUND: Unknown product unit in field contentsUnit.\n- TARIC_CODE_NOT_FOUND: Unknown taricCode.\n- MANUFACTURER_NOT_FOUND: Unknown manufacturerNumber.\n- BRAND_NOT_FOUND: Unknown brandNumber.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "409": {
+                        "description": "Conflict\\\nAvailable message codes:\n- PRODUCT_DRAFT_ALREADY_EXISTS: There already exists a pending product draft with the given \nproductNumber.\n- PRODUCT_ALREADY_EXISTS: There already exists a product with the given productNumber.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity\\\nExtract of the available message codes:\n- SUPPLIER_NOT_FOUND: Unknown supplierNumber.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "oAuthAuthorization": []
+                    },
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/product-draft/{productDraftId}": {
+            "get": {
+                "tags": [
+                    "product-draft"
+                ],
+                "summary": "Read the product draft specified by the given product draft ID.",
+                "description": "Read the product draft specified by the given product draft ID.",
+                "operationId": "getProductDraft",
+                "parameters": [
+                    {
+                        "name": "productDraftId",
+                        "in": "path",
+                        "description": "ID of the product draft",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "shopCode",
+                        "in": "query",
+                        "description": "The shopCode used internally to distinguish between clients.",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "teststeve"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/productDraft"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "oAuthAuthorization": []
+                    },
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "product-draft"
+                ],
+                "summary": "Delete a product draft.",
+                "description": "Delete a product draft.\\\n**The product draft may only be deleted while it is still in pending state.**",
+                "operationId": "deleteProductDraft",
+                "parameters": [
+                    {
+                        "name": "productDraftId",
+                        "in": "path",
+                        "description": "ID of the product draft",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "shopCode",
+                        "in": "query",
+                        "description": "The shopCode used internally to distinguish between clients.",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "teststeve"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "oAuthAuthorization": []
+                    },
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
         "/product-unit": {
             "get": {
                 "tags": [
@@ -4381,7 +4985,7 @@
                         "required": true,
                         "schema": {
                             "type": "string",
-                            "maxLength": 250
+                            "maxLength": 248
                         }
                     },
                     {
@@ -4493,7 +5097,7 @@
                         "required": true,
                         "schema": {
                             "type": "string",
-                            "maxLength": 250
+                            "maxLength": 248
                         }
                     },
                     {
@@ -6375,6 +6979,125 @@
                 },
                 "type": "object"
             },
+            "baseProductDraft": {
+                "title": "baseProductDraft",
+                "description": "Data to represent a product draft",
+                "properties": {
+                    "productNumber": {
+                        "description": "Product number to be used for the final product",
+                        "type": "string"
+                    },
+                    "productTitle": {
+                        "description": "Title of the Product",
+                        "type": "string",
+                        "maxLength": 255
+                    },
+                    "contentsAmount": {
+                        "description": "Amount of the product contents",
+                        "type": "number",
+                        "format": "float",
+                        "default": 1
+                    },
+                    "contentsUnit": {
+                        "description": "Unit of the product contents ('stk' if no value is provided).\\\nValid units can be queried with a GET /product-unit call",
+                        "type": "string",
+                        "default": "stk"
+                    },
+                    "contentsWeightGram": {
+                        "description": "Weight of the product contents in gram",
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "weightGram": {
+                        "description": "Total weight of the product in gram",
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "ean": {
+                        "description": "The EAN of the product",
+                        "type": "string",
+                        "maxLength": 255,
+                        "nullable": true
+                    },
+                    "taricCode": {
+                        "description": "The TARIC Code of the product",
+                        "type": "string"
+                    },
+                    "suggestedRetailPriceEUR": {
+                        "description": "The suggested retail price for the product in EUR",
+                        "type": "number",
+                        "format": "float"
+                    },
+                    "listPriceEUR": {
+                        "description": "The net list price of the product in EUR",
+                        "type": "number",
+                        "format": "float"
+                    },
+                    "taxCode": {
+                        "description": "One of the available tax codes.\n- default: Default tax rate (in e.g. Austria 20 %)\n- reduced1: 1st reduced tax rate (in e.g. Austria 13 %)\n- reduced2: 2nd reduced tax rate (in e.g. Austria 10 %)\n- none: not taxable (0%)",
+                        "type": "string",
+                        "default": "default",
+                        "enum": [
+                            "default",
+                            "reduced1",
+                            "reduced2",
+                            "none",
+                            null
+                        ]
+                    },
+                    "supplierNumber": {
+                        "description": "Number of the supplier.\\\nValid suppliers can be queried with a GET /supplier call",
+                        "type": "string"
+                    },
+                    "manufacturerNumber": {
+                        "description": "Number of the manufacturer.\\\nValid manufacturers can be queried with a GET /manufacturer call",
+                        "type": "string"
+                    },
+                    "brandNumber": {
+                        "description": "Number of the brand.\\\nValid brands can be queried with a GET /brand call",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "brand": {
+                "title": "brand",
+                "required": [
+                    "brandNumber",
+                    "name"
+                ],
+                "properties": {
+                    "brandNumber": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "description": "Brand name",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "brandCollection": {
+                "title": "Brand collection",
+                "description": "A collection of brands",
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/collection"
+                    },
+                    {
+                        "properties": {
+                            "data": {
+                                "description": "Data of the collection",
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/brand"
+                                }
+                            }
+                        },
+                        "type": "object"
+                    }
+                ]
+            },
             "collection": {
                 "title": "collection",
                 "properties": {
@@ -6737,7 +7460,7 @@
                             "inboundDeliveryNumber": {
                                 "description": "The inbound delivery number.\\\nNote: If this number is prefixed with 'NICE', it means that the inbound delivery was \ncreated was created manually by niceshops.",
                                 "type": "string",
-                                "maxLength": 250,
+                                "maxLength": 248,
                                 "nullable": false
                             },
                             "inboundDeliveryNote": {
@@ -7104,6 +7827,38 @@
                                     "order_canceled",
                                     "order_locked"
                                 ]
+                            }
+                        },
+                        "type": "object"
+                    }
+                ]
+            },
+            "newProductDraft": {
+                "title": "newProductDraft",
+                "description": "Data to represent a new product draft",
+                "required": [
+                    "productNumber",
+                    "productTitle",
+                    "contentsAmount",
+                    "contentsWeightGram",
+                    "weightGram",
+                    "taricCode",
+                    "suggestedRetailPriceEUR",
+                    "taxCode",
+                    "supplierNumber",
+                    "manufacturerNumber",
+                    "brandNumber"
+                ],
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/baseProductDraft"
+                    },
+                    {
+                        "properties": {
+                            "productNumber": {
+                                "description": "Product number to be used for the final product\\\nThis number is user defined, must be unique and has a maximum length (check maxLength field).\\\nPlease ensure that it does not contain any of the following character sequences:\n'/', '%2F', '%2f', '?', '%3F', '%3f',\n'#', '%23', '&', '%26'. Using any of these will result in the route not being handled correctly.",
+                                "type": "string",
+                                "maxLength": 248
                             }
                         },
                         "type": "object"
@@ -7604,6 +8359,81 @@
                                 "type": "array",
                                 "items": {
                                     "$ref": "#/components/schemas/product"
+                                }
+                            }
+                        },
+                        "type": "object"
+                    }
+                ]
+            },
+            "productDraft": {
+                "title": "productDraft",
+                "description": "Data to represent a product draft",
+                "required": [
+                    "productNumber",
+                    "productTitle",
+                    "contentsAmount",
+                    "contentsWeightGram",
+                    "weightGram",
+                    "taricCode",
+                    "suggestedRetailPriceEUR",
+                    "taxCode",
+                    "supplierNumber",
+                    "manufacturerNumber",
+                    "brandNumber",
+                    "source",
+                    "shopCode",
+                    "productDraftId",
+                    "productDraftStatus"
+                ],
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/baseProductDraft"
+                    },
+                    {
+                        "properties": {
+                            "shopCode": {
+                                "description": "The shop to which the product belongs",
+                                "type": "string"
+                            },
+                            "source": {
+                                "description": "The source of the product draft",
+                                "type": "string",
+                                "enum": [
+                                    "api"
+                                ]
+                            },
+                            "productDraftId": {
+                                "type": "string"
+                            },
+                            "productDraftStatus": {
+                                "description": "Status of the product draft.\\\nAvailable values:\n- pending: The product draft is subject to be checked by the steve team\n- accepted: The product draft is accepted and the product can be used in the /product endpoints\n- declined: The product draft is declined by the steve team",
+                                "type": "string",
+                                "enum": [
+                                    "pending",
+                                    "accepted",
+                                    "declined"
+                                ]
+                            }
+                        },
+                        "type": "object"
+                    }
+                ]
+            },
+            "productDraftCollection": {
+                "title": "Product draft collection",
+                "description": "A collection of brands",
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/collection"
+                    },
+                    {
+                        "properties": {
+                            "data": {
+                                "description": "Data of the collection",
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/productDraft"
                                 }
                             }
                         },
