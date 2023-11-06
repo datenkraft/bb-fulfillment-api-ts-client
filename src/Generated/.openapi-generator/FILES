@@ -121,6 +121,8 @@ models/product-all-of.ts
 models/product-collection-all-of.ts
 models/product-collection.ts
 models/product-draft-all-of.ts
+models/product-draft-bulk-import207-response-inner-content.ts
+models/product-draft-bulk-import207-response-inner.ts
 models/product-draft-collection-all-of.ts
 models/product-draft-collection.ts
 models/product-draft.ts
