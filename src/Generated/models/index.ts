@@ -93,6 +93,8 @@ export * from './product-collection';
 export * from './product-collection-all-of';
 export * from './product-draft';
 export * from './product-draft-all-of';
+export * from './product-draft-bulk-import207-response-inner';
+export * from './product-draft-bulk-import207-response-inner-content';
 export * from './product-draft-collection';
 export * from './product-draft-collection-all-of';
 export * from './product-journal';
