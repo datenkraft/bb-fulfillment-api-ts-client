@@ -20,6 +20,7 @@ export { baseOrderCustomer } from './models/baseOrderCustomer';
 export type { baseOrderOptions } from './models/baseOrderOptions';
 export { baseProduct } from './models/baseProduct';
 export { baseProductDraft } from './models/baseProductDraft';
+export type { batch } from './models/batch';
 export type { brand } from './models/brand';
 export type { brandCollection } from './models/brandCollection';
 export type { collection } from './models/collection';

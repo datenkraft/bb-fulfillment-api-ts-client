@@ -7274,6 +7274,25 @@
                 },
                 "type": "object"
             },
+            "batch": {
+                "title": "batch",
+                "description": "Which batch the product belongs",
+                "required": [
+                    "number",
+                    "expirationDate"
+                ],
+                "properties": {
+                    "number": {
+                        "description": "Batch number",
+                        "type": "string"
+                    },
+                    "expirationDate": {
+                        "type": "string",
+                        "format": "date"
+                    }
+                },
+                "type": "object"
+            },
             "brand": {
                 "title": "brand",
                 "required": [
@@ -9120,6 +9139,13 @@
                         "type": "array",
                         "items": {
                             "type": "string"
+                        }
+                    },
+                    "batches": {
+                        "description": "Batches",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/batch"
                         }
                     }
                 },

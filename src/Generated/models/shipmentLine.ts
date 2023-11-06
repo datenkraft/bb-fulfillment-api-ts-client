@@ -2,6 +2,8 @@
 /* tslint:disable */
 /* eslint-disable */
 
+import type { batch } from './batch';
+
 /**
  * One piece of content in a shipment
  */
@@ -26,4 +28,8 @@ export type shipmentLine = {
      * Allows the traceability of the products in the deliveries.
      */
     traceCodes?: Array<string>;
+    /**
+     * Batches
+     */
+    batches?: Array<batch>;
 }
