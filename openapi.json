@@ -4215,6 +4215,220 @@
                 ]
             }
         },
+        "/bulk-import/product-draft": {
+            "post": {
+                "tags": [
+                    "product-draft"
+                ],
+                "summary": "Import one or more new product drafts.",
+                "description": "Import one or more new product draft(s).\n        The file type is controlled by the content type attribute of the uploaded file",
+                "operationId": "productDraftBulkImport",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "file"
+                                ],
+                                "properties": {
+                                    "file": {
+                                        "description": "File to upload",
+                                        "type": "string",
+                                        "format": "binary"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "207": {
+                        "description": "Multi Status",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "required": [
+                                            "code",
+                                            "message",
+                                            "content",
+                                            "reference"
+                                        ],
+                                        "properties": {
+                                            "code": {
+                                                "description": "HTTP Status code of the single request",
+                                                "type": "integer",
+                                                "format": "int32"
+                                            },
+                                            "message": {
+                                                "description": "Description for the HTTP Status code of the single request",
+                                                "type": "string"
+                                            },
+                                            "reference": {
+                                                "description": "Reference for the entry tried to post represented by a key-value pair.",
+                                                "type": "object",
+                                                "additionalProperties": {
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "content": {
+                                                "type": "object",
+                                                "oneOf": [
+                                                    {
+                                                        "$ref": "#/components/schemas/productDraft"
+                                                    },
+                                                    {
+                                                        "$ref": "#/components/schemas/errorResponse"
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "oAuthAuthorization": []
+                    },
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/bulk-import/template/product-draft": {
+            "get": {
+                "tags": [
+                    "product-draft"
+                ],
+                "summary": "Get a spreadsheet template for performing POST queries to the respective endpoint.",
+                "description": "Get a spreadsheet template for performing POST queries to the respective endpoint.\n        The file type is controlled by the accept header.\n        The fill-in help in the second line can be removed or remain.",
+                "operationId": "getProductDraftBulkImportTemplate",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "text/csv": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet": {
+                                "schema": {
+                                    "type": "string",
+                                    "format": "binary"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "406": {
+                        "description": "The requested document could not be generated in the format specified by the accept header",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "oAuthAuthorization": []
+                    },
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
         "/product-draft": {
             "get": {
                 "tags": [
