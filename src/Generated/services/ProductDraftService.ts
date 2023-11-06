@@ -10,6 +10,68 @@ import { request as __request } from '../core/request';
 export class ProductDraftService {
 
     /**
+     * Import one or more new product drafts.
+     * Import one or more new product draft(s).
+     * The file type is controlled by the content type attribute of the uploaded file
+     * @param requestBody
+     * @returns errorResponse Unexpected Error
+     * @returns any Multi Status
+     * @throws ApiError
+     */
+    public static async productDraftBulkImport(
+        requestBody: any,
+    ): Promise<errorResponse | Array<{
+        /**
+         * HTTP Status code of the single request
+         */
+        code: number,
+        /**
+         * Description for the HTTP Status code of the single request
+         */
+        message: string,
+        /**
+         * Reference for the entry tried to post represented by a key-value pair.
+         */
+        reference: Record<string, string>,
+        content: (productDraft | errorResponse),
+    }>> {
+        const result = await __request({
+            method: 'POST',
+            path: `/bulk-import/product-draft`,
+            body: requestBody,
+            errors: {
+                400: `Bad Request`,
+                401: `Unauthorized`,
+                403: `Forbidden`,
+                500: `Server Error`,
+            },
+        });
+        return result.body;
+    }
+
+    /**
+     * Get a spreadsheet template for performing POST queries to the respective endpoint.
+     * Get a spreadsheet template for performing POST queries to the respective endpoint.
+     * The file type is controlled by the accept header.
+     * The fill-in help in the second line can be removed or remain.
+     * @returns any OK
+     * @returns errorResponse Unexpected Error
+     * @throws ApiError
+     */
+    public static async getProductDraftBulkImportTemplate(): Promise<any | errorResponse> {
+        const result = await __request({
+            method: 'GET',
+            path: `/bulk-import/template/product-draft`,
+            errors: {
+                401: `Unauthorized`,
+                406: `The requested document could not be generated in the format specified by the accept header`,
+                500: `Server Error`,
+            },
+        });
+        return result.body;
+    }
+
+    /**
      * Read a product draft collection.
      * Read a product draft collection. These are read in multiple pages with a defined page size.
      * @param filterShopCode The shopCode used internally to distinguish between clients.
