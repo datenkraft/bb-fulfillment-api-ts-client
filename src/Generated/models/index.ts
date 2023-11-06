@@ -17,6 +17,7 @@ export * from './base-order-customer-invoice-address';
 export * from './base-product';
 export * from './base-product-draft';
 export * from './base-product-variant-group';
+export * from './batch';
 export * from './brand';
 export * from './brand-collection';
 export * from './brand-collection-all-of';
