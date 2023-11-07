@@ -46,6 +46,7 @@ models/base-order.ts
 models/base-product-draft.ts
 models/base-product-variant-group.ts
 models/base-product.ts
+models/batch.ts
 models/brand-collection-all-of.ts
 models/brand-collection.ts
 models/brand.ts

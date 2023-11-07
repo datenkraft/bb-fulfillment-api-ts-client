@@ -13,51 +13,24 @@
  */
 
 
-// May contain unused imports in some cases
-// @ts-ignore
-import { Batch } from './batch';
 
 /**
- * One piece of content in a shipment
+ * Which batch the product belongs
  * @export
- * @interface ShipmentLine
+ * @interface Batch
  */
-export interface ShipmentLine {
+export interface Batch {
     /**
-     * Product number
+     * Batch number
      * @type {string}
-     * @memberof ShipmentLine
+     * @memberof Batch
      */
-    'productNumber'?: string;
+    'number': string;
     /**
-     * Number of items contained in the delivery
-     * @type {number}
-     * @memberof ShipmentLine
-     */
-    'count'?: number;
-    /**
-     * Product unit
+     * 
      * @type {string}
-     * @memberof ShipmentLine
+     * @memberof Batch
      */
-    'unit'?: string | null;
-    /**
-     * Serial numbers
-     * @type {Array<string>}
-     * @memberof ShipmentLine
-     */
-    'serialNumbers'?: Array<string>;
-    /**
-     * Allows the traceability of the products in the deliveries.
-     * @type {Array<string>}
-     * @memberof ShipmentLine
-     */
-    'traceCodes'?: Array<string>;
-    /**
-     * Batches
-     * @type {Array<Batch>}
-     * @memberof ShipmentLine
-     */
-    'batches'?: Array<Batch>;
+    'expirationDate': string;
 }
 
