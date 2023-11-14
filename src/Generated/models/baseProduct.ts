@@ -81,7 +81,7 @@ export namespace baseProduct {
         SAMPLE = 'sample',
         SELLABLE_SAMPLE = 'sellable_sample',
         TESTER = 'tester',
-        PACKAGING_MATERIAL = 'packaging_material',
+        PACKING_MATERIAL = 'packing_material',
         BOOKING_SEMINAR = 'booking_seminar',
         BOOKING_APPOINTMENT = 'booking_appointment',
         PROMO_MATERIAL = 'promo_material',
