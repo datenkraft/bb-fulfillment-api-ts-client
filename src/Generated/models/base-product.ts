@@ -123,7 +123,7 @@ export const BaseProductProductTypeEnum = {
     Sample: 'sample',
     SellableSample: 'sellable_sample',
     Tester: 'tester',
-    PackagingMaterial: 'packaging_material',
+    PackingMaterial: 'packing_material',
     BookingSeminar: 'booking_seminar',
     BookingAppointment: 'booking_appointment',
     PromoMaterial: 'promo_material',
