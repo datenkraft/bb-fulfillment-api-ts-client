@@ -75,6 +75,12 @@ export class ProductDraftService {
      * Read a product draft collection.
      * Read a product draft collection. These are read in multiple pages with a defined page size.
      * @param filterShopCode The shopCode used internally to distinguish between clients.
+     * @param page The page to read. Default is the first page.
+     * @param pageSize The maximum size per page is 100. Default is 100.
+     * @param paginationMode The paginationMode to use:
+     * - default: The total number of items in the collection will not be calculated.
+     * - totalCount: The total number of items in the collection will be calculated. \
+     * This can mean loss of performance.
      * @param filterProductNumber Filter by a productNumber
      * @param filterProductDraftStatus Filter by a product draft status
      * @returns productDraftCollection OK
@@ -83,6 +89,9 @@ export class ProductDraftService {
      */
     public static async getProductDraftCollection(
         filterShopCode: string,
+        page?: number,
+        pageSize?: number,
+        paginationMode: 'default' | 'totalCount' = 'default',
         filterProductNumber?: string,
         filterProductDraftStatus?: 'pending' | 'accepted' | 'declined',
     ): Promise<productDraftCollection | errorResponse> {
@@ -91,6 +100,9 @@ export class ProductDraftService {
             path: `/product-draft`,
             query: {
                 'filter[shopCode]': filterShopCode,
+                'page': page,
+                'pageSize': pageSize,
+                'paginationMode': paginationMode,
                 'filter[productNumber]': filterProductNumber,
                 'filter[productDraftStatus]': filterProductDraftStatus,
             },
