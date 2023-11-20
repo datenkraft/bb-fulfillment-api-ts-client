@@ -4504,6 +4504,15 @@
                                 "declined"
                             ]
                         }
+                    },
+                    {
+                        "name": "filter[search]",
+                        "in": "query",
+                        "description": "Search for parts of a productNumber",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
                     }
                 ],
                 "responses": {
