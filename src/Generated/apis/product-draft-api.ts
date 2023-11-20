@@ -185,10 +185,11 @@ export const ProductDraftApiAxiosParamCreator = function (configuration?: Config
          * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. \\ This can mean loss of performance.
          * @param {string} [filterProductNumber] Filter by a productNumber
          * @param {'pending' | 'accepted' | 'declined'} [filterProductDraftStatus] Filter by a product draft status
+         * @param {string} [filterSearch] Search for parts of a productNumber
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getProductDraftCollection: async (filterShopCode: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterProductNumber?: string, filterProductDraftStatus?: 'pending' | 'accepted' | 'declined', options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getProductDraftCollection: async (filterShopCode: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterProductNumber?: string, filterProductDraftStatus?: 'pending' | 'accepted' | 'declined', filterSearch?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'filterShopCode' is not null or undefined
             assertParamExists('getProductDraftCollection', 'filterShopCode', filterShopCode)
             const localVarPath = `/product-draft`;
@@ -233,6 +234,10 @@ export const ProductDraftApiAxiosParamCreator = function (configuration?: Config
 
             if (filterProductDraftStatus !== undefined) {
                 localVarQueryParameter['filter[productDraftStatus]'] = filterProductDraftStatus;
+            }
+
+            if (filterSearch !== undefined) {
+                localVarQueryParameter['filter[search]'] = filterSearch;
             }
 
 
@@ -399,11 +404,12 @@ export const ProductDraftApiFp = function(configuration?: Configuration) {
          * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. \\ This can mean loss of performance.
          * @param {string} [filterProductNumber] Filter by a productNumber
          * @param {'pending' | 'accepted' | 'declined'} [filterProductDraftStatus] Filter by a product draft status
+         * @param {string} [filterSearch] Search for parts of a productNumber
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getProductDraftCollection(filterShopCode: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterProductNumber?: string, filterProductDraftStatus?: 'pending' | 'accepted' | 'declined', options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ProductDraftCollection>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getProductDraftCollection(filterShopCode, page, pageSize, paginationMode, filterProductNumber, filterProductDraftStatus, options);
+        async getProductDraftCollection(filterShopCode: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterProductNumber?: string, filterProductDraftStatus?: 'pending' | 'accepted' | 'declined', filterSearch?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ProductDraftCollection>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getProductDraftCollection(filterShopCode, page, pageSize, paginationMode, filterProductNumber, filterProductDraftStatus, filterSearch, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -479,11 +485,12 @@ export const ProductDraftApiFactory = function (configuration?: Configuration, b
          * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. \\ This can mean loss of performance.
          * @param {string} [filterProductNumber] Filter by a productNumber
          * @param {'pending' | 'accepted' | 'declined'} [filterProductDraftStatus] Filter by a product draft status
+         * @param {string} [filterSearch] Search for parts of a productNumber
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getProductDraftCollection(filterShopCode: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterProductNumber?: string, filterProductDraftStatus?: 'pending' | 'accepted' | 'declined', options?: any): AxiosPromise<ProductDraftCollection> {
-            return localVarFp.getProductDraftCollection(filterShopCode, page, pageSize, paginationMode, filterProductNumber, filterProductDraftStatus, options).then((request) => request(axios, basePath));
+        getProductDraftCollection(filterShopCode: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterProductNumber?: string, filterProductDraftStatus?: 'pending' | 'accepted' | 'declined', filterSearch?: string, options?: any): AxiosPromise<ProductDraftCollection> {
+            return localVarFp.getProductDraftCollection(filterShopCode, page, pageSize, paginationMode, filterProductNumber, filterProductDraftStatus, filterSearch, options).then((request) => request(axios, basePath));
         },
         /**
          * Create a new product draft to initiate the creation new products.Product drafts will be put into a queue for manual approval.
@@ -555,11 +562,12 @@ export interface ProductDraftApiInterface {
      * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. \\ This can mean loss of performance.
      * @param {string} [filterProductNumber] Filter by a productNumber
      * @param {'pending' | 'accepted' | 'declined'} [filterProductDraftStatus] Filter by a product draft status
+     * @param {string} [filterSearch] Search for parts of a productNumber
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProductDraftApiInterface
      */
-    getProductDraftCollection(filterShopCode: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterProductNumber?: string, filterProductDraftStatus?: 'pending' | 'accepted' | 'declined', options?: AxiosRequestConfig): AxiosPromise<ProductDraftCollection>;
+    getProductDraftCollection(filterShopCode: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterProductNumber?: string, filterProductDraftStatus?: 'pending' | 'accepted' | 'declined', filterSearch?: string, options?: AxiosRequestConfig): AxiosPromise<ProductDraftCollection>;
 
     /**
      * Create a new product draft to initiate the creation new products.Product drafts will be put into a queue for manual approval.
@@ -637,12 +645,13 @@ export class ProductDraftApi extends BaseAPI implements ProductDraftApiInterface
      * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. \\ This can mean loss of performance.
      * @param {string} [filterProductNumber] Filter by a productNumber
      * @param {'pending' | 'accepted' | 'declined'} [filterProductDraftStatus] Filter by a product draft status
+     * @param {string} [filterSearch] Search for parts of a productNumber
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProductDraftApi
      */
-    public getProductDraftCollection(filterShopCode: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterProductNumber?: string, filterProductDraftStatus?: 'pending' | 'accepted' | 'declined', options?: AxiosRequestConfig) {
-        return ProductDraftApiFp(this.configuration).getProductDraftCollection(filterShopCode, page, pageSize, paginationMode, filterProductNumber, filterProductDraftStatus, options).then((request) => request(this.axios, this.basePath));
+    public getProductDraftCollection(filterShopCode: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterProductNumber?: string, filterProductDraftStatus?: 'pending' | 'accepted' | 'declined', filterSearch?: string, options?: AxiosRequestConfig) {
+        return ProductDraftApiFp(this.configuration).getProductDraftCollection(filterShopCode, page, pageSize, paginationMode, filterProductNumber, filterProductDraftStatus, filterSearch, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
