@@ -83,6 +83,7 @@ export class ProductDraftService {
      * This can mean loss of performance.
      * @param filterProductNumber Filter by a productNumber
      * @param filterProductDraftStatus Filter by a product draft status
+     * @param filterSearch Search for parts of a productNumber
      * @returns productDraftCollection OK
      * @returns errorResponse Unexpected Error
      * @throws ApiError
@@ -94,6 +95,7 @@ export class ProductDraftService {
         paginationMode: 'default' | 'totalCount' = 'default',
         filterProductNumber?: string,
         filterProductDraftStatus?: 'pending' | 'accepted' | 'declined',
+        filterSearch?: string,
     ): Promise<productDraftCollection | errorResponse> {
         const result = await __request({
             method: 'GET',
@@ -105,6 +107,7 @@ export class ProductDraftService {
                 'paginationMode': paginationMode,
                 'filter[productNumber]': filterProductNumber,
                 'filter[productDraftStatus]': filterProductDraftStatus,
+                'filter[search]': filterSearch,
             },
             errors: {
                 400: `Bad Request`,
