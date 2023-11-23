@@ -40,10 +40,22 @@ export class ProductDraftService {
             path: `/bulk-import/product-draft`,
             body: requestBody,
             errors: {
-                400: `Bad Request`,
-                401: `Unauthorized`,
-                403: `Forbidden`,
-                500: `Server Error`,
+                400: `Bad Request
+                 *
+                 * Error codes:
+                 * - DATA_INVALID: Invalid data was given.`,
+                401: `Unauthorized
+                 *
+                 * Error codes:
+                 * - AUTHORIZATION_MISSING: No valid authentication information was given.`,
+                403: `Forbidden
+                 *
+                 * Error codes:
+                 * - PERMISSIONS_MISSING: No authorization for the called action was found.`,
+                500: `Server error
+                 *
+                 * Error codes:
+                 * - SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.`,
             },
         });
         return result.body;
@@ -63,9 +75,18 @@ export class ProductDraftService {
             method: 'GET',
             path: `/bulk-import/template/product-draft`,
             errors: {
-                401: `Unauthorized`,
-                406: `The requested document could not be generated in the format specified by the accept header`,
-                500: `Server Error`,
+                401: `Unauthorized
+                 *
+                 * Error codes:
+                 * - AUTHORIZATION_MISSING: No valid authentication information was given.`,
+                406: `The requested document could not be generated in the format specified by the Accept request header.
+                 *
+                 * Error codes:
+                 * - ACCEPTABLE_RESPONSE_NOT_AVAILABLE: No response can be provided for the requested accept header.`,
+                500: `Server error
+                 *
+                 * Error codes:
+                 * - SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.`,
             },
         });
         return result.body;
@@ -79,7 +100,7 @@ export class ProductDraftService {
      * @param pageSize The maximum size per page is 100. Default is 100.
      * @param paginationMode The paginationMode to use:
      * - default: The total number of items in the collection will not be calculated.
-     * - totalCount: The total number of items in the collection will be calculated. \
+     * - totalCount: The total number of items in the collection will be calculated.
      * This can mean loss of performance.
      * @param filterProductNumber Filter by a productNumber
      * @param filterProductDraftStatus Filter by a product draft status
@@ -110,11 +131,26 @@ export class ProductDraftService {
                 'filter[search]': filterSearch,
             },
             errors: {
-                400: `Bad Request`,
-                401: `Unauthorized`,
-                403: `Forbidden`,
-                404: `Not Found`,
-                500: `Server Error`,
+                400: `Bad Request
+                 *
+                 * Error codes:
+                 * - DATA_INVALID: Invalid data was given.`,
+                401: `Unauthorized
+                 *
+                 * Error codes:
+                 * - AUTHORIZATION_MISSING: No valid authentication information was given.`,
+                403: `Forbidden
+                 *
+                 * Error codes:
+                 * - PERMISSIONS_MISSING: No authorization for the called action was found.`,
+                404: `Not Found
+                 *
+                 * Error codes:
+                 * - DATA_NOT_FOUND: The requested data could not be found.`,
+                500: `Server error
+                 *
+                 * Error codes:
+                 * - SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.`,
             },
         });
         return result.body;
@@ -141,23 +177,34 @@ export class ProductDraftService {
             },
             body: requestBody,
             errors: {
-                400: `Bad Request\
-                 * Extract of the available message codes:
+                400: `Bad Request
+                 *
+                 * Error codes:
                  * - PRODUCT_UNIT_NOT_FOUND: Unknown product unit in field contentsUnit.
                  * - TARIC_CODE_NOT_FOUND: Unknown taricCode.
                  * - MANUFACTURER_NOT_FOUND: Unknown manufacturerNumber.
                  * - BRAND_NOT_FOUND: Unknown brandNumber.`,
-                401: `Unauthorized`,
-                403: `Forbidden`,
-                409: `Conflict\
-                 * Available message codes:
-                 * - PRODUCT_DRAFT_ALREADY_EXISTS: There already exists a pending product draft with the given
-                 * productNumber.
+                401: `Unauthorized
+                 *
+                 * Error codes:
+                 * - AUTHORIZATION_MISSING: No valid authentication information was given.`,
+                403: `Forbidden
+                 *
+                 * Error codes:
+                 * - PERMISSIONS_MISSING: No authorization for the called action was found.`,
+                409: `Conflict
+                 *
+                 * Error codes:
+                 * - PRODUCT_DRAFT_ALREADY_EXISTS: There already exists a pending product draft with the given productNumber.
                  * - PRODUCT_ALREADY_EXISTS: There already exists a product with the given productNumber.`,
-                422: `Unprocessable Entity\
-                 * Extract of the available message codes:
+                422: `Unprocessable Entity
+                 *
+                 * Error codes:
                  * - SUPPLIER_NOT_FOUND: Unknown supplierNumber.`,
-                500: `Server Error`,
+                500: `Server error
+                 *
+                 * Error codes:
+                 * - SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.`,
             },
         });
         return result.body;
@@ -183,12 +230,30 @@ export class ProductDraftService {
                 'shopCode': shopCode,
             },
             errors: {
-                400: `Bad Request`,
-                401: `Unauthorized`,
-                403: `Forbidden`,
-                404: `Not Found`,
-                422: `Unprocessable Entity`,
-                500: `Server Error`,
+                400: `Bad Request
+                 *
+                 * Error codes:
+                 * - DATA_INVALID: Invalid data was given.`,
+                401: `Unauthorized
+                 *
+                 * Error codes:
+                 * - AUTHORIZATION_MISSING: No valid authentication information was given.`,
+                403: `Forbidden
+                 *
+                 * Error codes:
+                 * - PERMISSIONS_MISSING: No authorization for the called action was found.`,
+                404: `Not Found
+                 *
+                 * Error codes:
+                 * - DATA_NOT_FOUND: The requested data could not be found.`,
+                422: `Unprocessable Entity
+                 *
+                 * Error codes:
+                 * - SHOP_NOT_FOUND: Shop not found.`,
+                500: `Server error
+                 *
+                 * Error codes:
+                 * - SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.`,
             },
         });
         return result.body;
@@ -214,11 +279,30 @@ export class ProductDraftService {
                 'shopCode': shopCode,
             },
             errors: {
-                400: `Bad Request`,
-                401: `Unauthorized`,
-                403: `Forbidden`,
-                404: `Not Found`,
-                500: `Server Error`,
+                400: `Bad Request
+                 *
+                 * Error codes:
+                 * - DATA_INVALID: Invalid data was given.`,
+                401: `Unauthorized
+                 *
+                 * Error codes:
+                 * - AUTHORIZATION_MISSING: No valid authentication information was given.`,
+                403: `Forbidden
+                 *
+                 * Error codes:
+                 * - PERMISSIONS_MISSING: No authorization for the called action was found.`,
+                404: `Not Found
+                 *
+                 * Error codes:
+                 * - DATA_NOT_FOUND: The requested data could not be found.`,
+                409: `Conflict
+                 *
+                 * Error codes:
+                 * - PRODUCT_DRAFT_NOT_DELETABLE: The state of the product draft does not allow deleting.`,
+                500: `Server error
+                 *
+                 * Error codes:
+                 * - SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.`,
             },
         });
         return result.body;

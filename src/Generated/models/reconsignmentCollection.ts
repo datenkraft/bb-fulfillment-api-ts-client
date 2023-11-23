@@ -9,8 +9,5 @@ import type { reconsignment } from './reconsignment';
  * A collection of reconsignments
  */
 export type reconsignmentCollection = (collection & {
-    /**
-     * Class ReconsignmentResourceCollection
-     */
     data?: Array<reconsignment>,
 });

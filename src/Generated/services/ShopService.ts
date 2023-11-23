@@ -16,7 +16,8 @@ export class ShopService {
      * @param pageSize The maximum size per page is 100. Default is 100.
      * @param paginationMode The paginationMode to use:
      * - default: The total number of items in the collection will not be calculated.
-     * - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
+     * - totalCount: The total number of items in the collection will be calculated.
+     * This can mean loss of performance.
      * @param filterMetaShopifyShopDomain A filter for the Shopify hostname of the shop.
      * @param filterMetaShopifyDefaultShop A filter for Shopify default shops.\
      * Note: For shops that are part of a Shopify installation that uses multiple shops,
@@ -50,9 +51,18 @@ export class ShopService {
                 'filter[shopCode]': filterShopCode,
             },
             errors: {
-                401: `Unauthorized`,
-                403: `Forbidden`,
-                500: `Server error`,
+                401: `Unauthorized
+                 *
+                 * Error codes:
+                 * - AUTHORIZATION_MISSING: No valid authentication information was given.`,
+                403: `Forbidden
+                 *
+                 * Error codes:
+                 * - PERMISSIONS_MISSING: No authorization for the called action was found.`,
+                500: `Server error
+                 *
+                 * Error codes:
+                 * - SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.`,
             },
         });
         return result.body;
@@ -60,7 +70,7 @@ export class ShopService {
 
     /**
      * Update a shop
-     * Update one or more fields of a shop. Only a limited set of fields can be updated.
+     * Set one or more fields of a shop. Only a limited set of fields can be updated.
      * @param shopId Shop Id
      * @param requestBody
      * @returns shop OK
@@ -76,11 +86,26 @@ export class ShopService {
             path: `/shop/${shopId}`,
             body: requestBody,
             errors: {
-                400: `Bad Request`,
-                401: `Unauthorized`,
-                403: `Forbidden`,
-                404: `Not Found`,
-                500: `Server error`,
+                400: `Bad Request
+                 *
+                 * Error codes:
+                 * - DATA_INVALID: Invalid data was given.`,
+                401: `Unauthorized
+                 *
+                 * Error codes:
+                 * - AUTHORIZATION_MISSING: No valid authentication information was given.`,
+                403: `Forbidden
+                 *
+                 * Error codes:
+                 * - PERMISSIONS_MISSING: No authorization for the called action was found.`,
+                404: `Not Found
+                 *
+                 * Error codes:
+                 * - DATA_NOT_FOUND: The requested data could not be found.`,
+                500: `Server error
+                 *
+                 * Error codes:
+                 * - SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.`,
             },
         });
         return result.body;

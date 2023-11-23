@@ -21,7 +21,7 @@ export type stock = {
     reserved?: number;
     /**
      * Amount available for orders
-     * - the reserved amount for ongoing orders is subtracted\
+     * - the reserved amount for ongoing orders is subtracted
      * - if the overbookingPossibilityStatus is 'only_inbound_deliveries', the incoming amount is added
      */
     available?: number;
@@ -30,8 +30,8 @@ export type stock = {
      */
     incoming?: number;
     /**
-     * Status regarding the possibility of overbooking
-     * - possible: Overbooking is possible
+     * Status regarding the possibility of overbookinge
+     * - possible: Overbooking is possiblee
      * - not_possible: Overbooking is not possible
      * - only_inbound_deliveries: Overbooking is only possible for the amount in ongoing inbound deliveries
      */
@@ -41,8 +41,8 @@ export type stock = {
 export namespace stock {
 
     /**
-     * Status regarding the possibility of overbooking
-     * - possible: Overbooking is possible
+     * Status regarding the possibility of overbookinge
+     * - possible: Overbooking is possiblee
      * - not_possible: Overbooking is not possible
      * - only_inbound_deliveries: Overbooking is only possible for the amount in ongoing inbound deliveries
      */

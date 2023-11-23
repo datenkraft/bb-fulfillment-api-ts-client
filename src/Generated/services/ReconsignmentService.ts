@@ -13,8 +13,12 @@ export class ReconsignmentService {
      * Read the reconsignments in the given dateRange.
      * @param page The page to read. Default is the first page.
      * @param pageSize The maximum size per page is 100. Default is 20.
-     * @param paginationMode 'default': Total count will not be calculated. 'totalCount': The total number of entries for the request will be calculated. This can mean loss of performance. If not given, 'default' pagination mode is used.
-     * @param sortBy Sort the results by one or more comma-separated sort criteria, with the criterion specified first having priority.
+     * @param paginationMode The paginationMode to use:
+     * - default: The total number of items in the collection will not be calculated.
+     * - totalCount: The total number of items in the collection will be calculated.
+     * This can mean loss of performance.
+     * @param sortBy Sort the results by one or more comma-separated sort criteria, with the criterion specified first having
+     * priority.
      *
      * Available sort orders:
      * - asc: ascending order
@@ -35,7 +39,7 @@ export class ReconsignmentService {
     public static async getReconsignmentCollection(
         page?: number,
         pageSize?: number,
-        paginationMode?: 'default' | 'totalCount',
+        paginationMode: 'default' | 'totalCount' = 'default',
         sortBy?: string,
         filterShopCode?: string,
         filterOrderNumber?: string,
@@ -56,11 +60,26 @@ export class ReconsignmentService {
                 'filter[reconsignmentDateTo]': filterReconsignmentDateTo,
             },
             errors: {
-                400: `Bad Request`,
-                401: `Unauthorized`,
-                403: `Forbidden`,
-                422: `Unprocessable Entity`,
-                500: `Server error`,
+                400: `Bad Request
+                 *
+                 * Error codes:
+                 * - DATA_INVALID: Invalid data was given.`,
+                401: `Unauthorized
+                 *
+                 * Error codes:
+                 * - AUTHORIZATION_MISSING: No valid authentication information was given.`,
+                403: `Forbidden
+                 *
+                 * Error codes:
+                 * - PERMISSIONS_MISSING: No authorization for the called action was found.`,
+                422: `Unprocessable Entity
+                 *
+                 * Error codes:
+                 * - SHOP_NOT_FOUND: Shop not found.`,
+                500: `Server error
+                 *
+                 * Error codes:
+                 * - SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.`,
             },
         });
         return result.body;
@@ -86,12 +105,30 @@ export class ReconsignmentService {
                 'shopCode': shopCode,
             },
             errors: {
-                400: `Bad Request`,
-                401: `Unauthorized`,
-                403: `Forbidden`,
-                404: `Not Found`,
-                422: `Unprocessable Entity`,
-                500: `Server error`,
+                400: `Bad Request
+                 *
+                 * Error codes:
+                 * - DATA_INVALID: Invalid data was given.`,
+                401: `Unauthorized
+                 *
+                 * Error codes:
+                 * - AUTHORIZATION_MISSING: No valid authentication information was given.`,
+                403: `Forbidden
+                 *
+                 * Error codes:
+                 * - PERMISSIONS_MISSING: No authorization for the called action was found.`,
+                404: `Not Found
+                 *
+                 * Error codes:
+                 * - DATA_NOT_FOUND: The requested data could not be found.`,
+                422: `Unprocessable Entity
+                 *
+                 * Error codes:
+                 * - SHOP_NOT_FOUND: Shop not found.`,
+                500: `Server error
+                 *
+                 * Error codes:
+                 * - SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.`,
             },
         });
         return result.body;

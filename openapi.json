@@ -1406,7 +1406,7 @@
                     {
                         "name": "paginationMode",
                         "in": "query",
-                        "description": "The paginationMode to use:\n- default: The total number of items in the collection will not be calculated.\n- totalCount: The total number of items in the collection will be calculated. \\\nThis can mean loss of performance.",
+                        "description": "The paginationMode to use:\n- default: The total number of items in the collection will not be calculated.\n- totalCount: The total number of items in the collection will be calculated.\nThis can mean loss of performance.",
                         "required": false,
                         "schema": {
                             "type": "string",
@@ -1440,7 +1440,7 @@
                         }
                     },
                     "400": {
-                        "description": "Bad Request",
+                        "description": "Bad Request\n\nError codes:\n- DATA_INVALID: Invalid data was given.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -1450,7 +1450,7 @@
                         }
                     },
                     "401": {
-                        "description": "Unauthorized",
+                        "description": "Unauthorized\n\nError codes:\n- AUTHORIZATION_MISSING: No valid authentication information was given.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -1460,7 +1460,7 @@
                         }
                     },
                     "403": {
-                        "description": "Forbidden",
+                        "description": "Forbidden\n\nError codes:\n- PERMISSIONS_MISSING: No authorization for the called action was found.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -1470,7 +1470,7 @@
                         }
                     },
                     "422": {
-                        "description": "Unprocessable Entity",
+                        "description": "Unprocessable Entity\n\nError codes:\n- SHOP_NOT_FOUND: Shop not found.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -1480,7 +1480,7 @@
                         }
                     },
                     "500": {
-                        "description": "Server Error",
+                        "description": "Server error\n\nError codes:\n- SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -1542,7 +1542,7 @@
                     {
                         "name": "paginationMode",
                         "in": "query",
-                        "description": "The paginationMode to use:\n- default: The total number of items in the collection will not be calculated.\n- totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.",
+                        "description": "The paginationMode to use:\n- default: The total number of items in the collection will not be calculated.\n- totalCount: The total number of items in the collection will be calculated.\nThis can mean loss of performance.",
                         "required": false,
                         "schema": {
                             "type": "string",
@@ -1576,7 +1576,7 @@
                         }
                     },
                     "400": {
-                        "description": "Bad Request",
+                        "description": "Bad Request\n\nError codes:\n- DATA_INVALID: Invalid data was given.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -1586,7 +1586,7 @@
                         }
                     },
                     "401": {
-                        "description": "Unauthorized",
+                        "description": "Unauthorized\n\nError codes:\n- AUTHORIZATION_MISSING: No valid authentication information was given.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -1596,7 +1596,7 @@
                         }
                     },
                     "403": {
-                        "description": "Forbidden",
+                        "description": "Forbidden\n\nError codes:\n- PERMISSIONS_MISSING: No authorization for the called action was found.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -1606,7 +1606,7 @@
                         }
                     },
                     "422": {
-                        "description": "Unprocessable Entity",
+                        "description": "Unprocessable Entity\n\nError codes:\n- SHOP_NOT_FOUND: Shop not found.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -1616,7 +1616,7 @@
                         }
                     },
                     "500": {
-                        "description": "Server error",
+                        "description": "Server error\n\nError codes:\n- SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -1678,7 +1678,7 @@
                     {
                         "name": "paginationMode",
                         "in": "query",
-                        "description": "The paginationMode to use:\n- default: The total number of items in the collection will not be calculated.\n- totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.",
+                        "description": "The paginationMode to use:\n- default: The total number of items in the collection will not be calculated.\n- totalCount: The total number of items in the collection will be calculated.\nThis can mean loss of performance.",
                         "required": false,
                         "schema": {
                             "type": "string",
@@ -1702,7 +1702,7 @@
                         }
                     },
                     "401": {
-                        "description": "Unauthorized",
+                        "description": "Unauthorized\n\nError codes:\n- AUTHORIZATION_MISSING: No valid authentication information was given.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -1712,7 +1712,7 @@
                         }
                     },
                     "403": {
-                        "description": "Forbidden",
+                        "description": "Forbidden\n\nError codes:\n- PERMISSIONS_MISSING: No authorization for the called action was found.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -1722,7 +1722,7 @@
                         }
                     },
                     "500": {
-                        "description": "Server error",
+                        "description": "Server error\n\nError codes:\n- SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -1784,7 +1784,7 @@
                     {
                         "name": "paginationMode",
                         "in": "query",
-                        "description": "The paginationMode to use:\n- default: The total number of items in the collection will not be calculated.\n- totalCount: The total number of items in the collection will be calculated. \\\nThis can mean loss of performance.",
+                        "description": "The paginationMode to use:\n- default: The total number of items in the collection will not be calculated.\n- totalCount: The total number of items in the collection will be calculated.\nThis can mean loss of performance.",
                         "required": false,
                         "schema": {
                             "type": "string",
@@ -1837,7 +1837,7 @@
                         }
                     },
                     "400": {
-                        "description": "Bad Request",
+                        "description": "Bad Request\n\nError codes:\n- DATA_INVALID: Invalid data was given.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -1847,7 +1847,7 @@
                         }
                     },
                     "401": {
-                        "description": "Unauthorized",
+                        "description": "Unauthorized\n\nError codes:\n- AUTHORIZATION_MISSING: No valid authentication information was given.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -1857,7 +1857,7 @@
                         }
                     },
                     "403": {
-                        "description": "Forbidden",
+                        "description": "Forbidden\n\nError codes:\n- PERMISSIONS_MISSING: No authorization for the called action was found.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -1867,7 +1867,7 @@
                         }
                     },
                     "422": {
-                        "description": "Unprocessable Entity",
+                        "description": "Unprocessable Entity\n\nError codes:\n- SHOP_NOT_FOUND: Shop not found.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -1877,7 +1877,7 @@
                         }
                     },
                     "500": {
-                        "description": "Server Error",
+                        "description": "Server error\n\nError codes:\n- SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -1948,7 +1948,7 @@
                         }
                     },
                     "400": {
-                        "description": "Bad Request",
+                        "description": "Bad Request\n\nError codes:\n- DATA_INVALID: Invalid data was given.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -1958,7 +1958,7 @@
                         }
                     },
                     "401": {
-                        "description": "Unauthorized",
+                        "description": "Unauthorized\n\nError codes:\n- AUTHORIZATION_MISSING: No valid authentication information was given.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -1968,7 +1968,7 @@
                         }
                     },
                     "403": {
-                        "description": "Forbidden",
+                        "description": "Forbidden\n\nError codes:\n- PERMISSIONS_MISSING: No authorization for the called action was found.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -1978,7 +1978,7 @@
                         }
                     },
                     "404": {
-                        "description": "Not Found",
+                        "description": "Not Found\n\nError codes:\n- DATA_NOT_FOUND: The requested data could not be found.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -1988,7 +1988,7 @@
                         }
                     },
                     "422": {
-                        "description": "Unprocessable Entity",
+                        "description": "Unprocessable Entity\n\nError codes:\n- SHOP_NOT_FOUND: Shop not found.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -1998,7 +1998,7 @@
                         }
                     },
                     "500": {
-                        "description": "Server Error",
+                        "description": "Server error\n\nError codes:\n- SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -2083,7 +2083,7 @@
                         }
                     },
                     "400": {
-                        "description": "Bad Request",
+                        "description": "Bad Request\n\nError codes:\n- DATA_INVALID: Invalid data was given.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -2093,7 +2093,7 @@
                         }
                     },
                     "401": {
-                        "description": "Unauthorized",
+                        "description": "Unauthorized\n\nError codes:\n- AUTHORIZATION_MISSING: No valid authentication information was given.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -2103,7 +2103,7 @@
                         }
                     },
                     "403": {
-                        "description": "Forbidden",
+                        "description": "Forbidden\n\nError codes:\n- PERMISSIONS_MISSING: No authorization for the called action was found.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -2113,7 +2113,7 @@
                         }
                     },
                     "404": {
-                        "description": "Not Found",
+                        "description": "Not Found\n\nError codes:\n- DATA_NOT_FOUND: The requested data could not be found.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -2123,7 +2123,7 @@
                         }
                     },
                     "406": {
-                        "description": "The requested document could not be generated in the format specified by the accept header",
+                        "description": "The requested document could not be generated in the format specified by the Accept request header.\n\nError codes:\n- ACCEPTABLE_RESPONSE_NOT_AVAILABLE: No response can be provided for the requested accept header.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -2133,7 +2133,7 @@
                         }
                     },
                     "422": {
-                        "description": "Unprocessable Entity",
+                        "description": "Unprocessable Entity\n\nError codes:\n- SHOP_NOT_FOUND: Shop not found.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -2143,7 +2143,7 @@
                         }
                     },
                     "500": {
-                        "description": "Server Error",
+                        "description": "Server error\n\nError codes:\n- SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -2235,7 +2235,7 @@
                         }
                     },
                     "400": {
-                        "description": "Bad Request",
+                        "description": "Bad Request\n\nError codes:\n- DATA_INVALID: Invalid data was given.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -2245,7 +2245,7 @@
                         }
                     },
                     "401": {
-                        "description": "Unauthorized",
+                        "description": "Unauthorized\n\nError codes:\n- AUTHORIZATION_MISSING: No valid authentication information was given.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -2255,7 +2255,7 @@
                         }
                     },
                     "403": {
-                        "description": "Forbidden",
+                        "description": "Forbidden\n\nError codes:\n- PERMISSIONS_MISSING: No authorization for the called action was found.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -2265,7 +2265,7 @@
                         }
                     },
                     "404": {
-                        "description": "Not Found",
+                        "description": "Not Found\n\nError codes:\n- DATA_NOT_FOUND: The requested data could not be found.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -2275,7 +2275,7 @@
                         }
                     },
                     "409": {
-                        "description": "Conflict \\\nAvailable message codes:\n- SHIPMENT_WITH_STEVE_EXTERNAL_SHIPMENT_ID_ALREADY_EXISTS: Another shipment with the given \nshipmentId already exists.",
+                        "description": "Conflict\n\nError codes:\n- SHIPMENT_WITH_STEVE_EXTERNAL_SHIPMENT_ID_ALREADY_EXISTS: Another shipment with the given shipmentId already exists.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -2285,7 +2285,7 @@
                         }
                     },
                     "422": {
-                        "description": "Unprocessable Entity",
+                        "description": "Unprocessable Entity\n\nError codes:\n- SHOP_NOT_FOUND: Shop not found.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -2295,7 +2295,7 @@
                         }
                     },
                     "500": {
-                        "description": "Server Error",
+                        "description": "Server error\n\nError codes:\n- SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -2509,7 +2509,7 @@
                         }
                     },
                     "400": {
-                        "description": "Bad Request",
+                        "description": "Bad Request\n\nError codes:\n- DATA_INVALID: Invalid data was given.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -2519,7 +2519,7 @@
                         }
                     },
                     "401": {
-                        "description": "Unauthorized",
+                        "description": "Unauthorized\n\nError codes:\n- AUTHORIZATION_MISSING: No valid authentication information was given.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -2529,7 +2529,7 @@
                         }
                     },
                     "403": {
-                        "description": "Forbidden",
+                        "description": "Forbidden\n\nError codes:\n- PERMISSIONS_MISSING: No authorization for the called action was found.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -2539,7 +2539,7 @@
                         }
                     },
                     "500": {
-                        "description": "Server Error",
+                        "description": "Server error\n\nError codes:\n- SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -2595,7 +2595,7 @@
                         }
                     },
                     "401": {
-                        "description": "Unauthorized",
+                        "description": "Unauthorized\n\nError codes:\n- AUTHORIZATION_MISSING: No valid authentication information was given.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -2605,7 +2605,7 @@
                         }
                     },
                     "406": {
-                        "description": "The requested document could not be generated in the format specified by the accept header",
+                        "description": "The requested document could not be generated in the format specified by the Accept request header.\n\nError codes:\n- ACCEPTABLE_RESPONSE_NOT_AVAILABLE: No response can be provided for the requested accept header.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -2615,7 +2615,7 @@
                         }
                     },
                     "500": {
-                        "description": "Server Error",
+                        "description": "Server error\n\nError codes:\n- SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -2677,7 +2677,7 @@
                     {
                         "name": "paginationMode",
                         "in": "query",
-                        "description": "The paginationMode to use:\n- default: The total number of items in the collection will not be calculated.\n- totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.",
+                        "description": "The paginationMode to use:\n- default: The total number of items in the collection will not be calculated.\n- totalCount: The total number of items in the collection will be calculated.\nThis can mean loss of performance.",
                         "required": false,
                         "schema": {
                             "type": "string",
@@ -2691,7 +2691,7 @@
                     {
                         "name": "sortBy",
                         "in": "query",
-                        "description": "Sort the results by one or more comma-separated sort criteria, with the criterion specified first having priority.\n\nAvailable sort orders:\n- asc: ascending order\n- desc: descending order\n\nAvailable fields for sorting:\n- expectedDeliveryDate\n\nThe default sort order is expectedDeliveryDate:desc.",
+                        "description": "Sort the results by one or more comma-separated sort criteria, with the criterion specified first having\npriority.\n\nAvailable sort orders:\n- asc: ascending order\n- desc: descending order\n\nAvailable fields for sorting:\n- expectedDeliveryDate\n\nThe default sort order is expectedDeliveryDate:desc.",
                         "schema": {
                             "type": "string"
                         },
@@ -2719,7 +2719,7 @@
                     {
                         "name": "filter[shopCode]",
                         "in": "query",
-                        "description": "The shopCode used internally to distinguish between clients.\\\n_This code is optional, if your identity is assigned to only one shop.\nOtherwise the response would be a 422 HTTP Error._",
+                        "description": "The shopCode used internally to distinguish between clients. \\\n_This code is optional, if your identity is assigned to only one shop.\nOtherwise the response would be a 422 HTTP Error._",
                         "required": false,
                         "schema": {
                             "type": "string"
@@ -2729,7 +2729,7 @@
                     {
                         "name": "filter[expectedDeliveryDateFrom]",
                         "in": "query",
-                        "description": "The start date (inclusive) in format Y-m-d for which inbound deliveries should be returned (regarding the expected delivery date).",
+                        "description": "The start date (inclusive) in format Y-m-d for which inbound deliveries should be returned\n(regarding the expected delivery date).",
                         "required": false,
                         "schema": {
                             "type": "string",
@@ -2739,7 +2739,7 @@
                     {
                         "name": "filter[expectedDeliveryDateTo]",
                         "in": "query",
-                        "description": "The end date (inclusive) in format Y-m-d for which inbound deliveries should be returned (regarding the expected delivery date).",
+                        "description": "The end date (inclusive) in format Y-m-d for which inbound deliveries should be returned\n(regarding the expected delivery date).",
                         "required": false,
                         "schema": {
                             "type": "string",
@@ -2749,7 +2749,7 @@
                     {
                         "name": "filter[search]",
                         "in": "query",
-                        "description": "filter for inbound delivery search.\\\n\\\nUsage:\n- Provide one or multiple search terms to filter results.\n- Multiple search terms are separated by spaces.\n- The search is not case sensitive.\n- The search is enabled for the fields inboundDeliveryName and inboundDeliveryNumber (without the numberPrefix of the associated supplier).\n- Each search term filters the response for inbound deliveries where at least one of the fields contains the search term.\n- For example, filter[search]='term1 term2' will filter the result for products where 'term1' is found in any field and 'term2' is also found in any field.\\\nIf only 'term1' or 'term2' is found in the fields, the product is not included in the results.",
+                        "description": "filter for inbound delivery search.\n\nUsage:\n- Provide one or multiple search terms to filter results.\n- Multiple search terms are separated by spaces.\n- The search is not case sensitive.\n- The search is enabled for the fields inboundDeliveryName and inboundDeliveryNumber (without the\nnumberPrefix of the associated supplier).\n- Each search term filters the response for inbound deliveries where at least one of the fields contains\nthe search term.\n- For example, filter[search]='term1 term2' will filter the result for products where 'term1' is found\nin any field and 'term2' is also found in any field.\nIf only 'term1' or 'term2' is found in the fields, the product is not included in the results.",
                         "schema": {
                             "type": "string"
                         }
@@ -2757,7 +2757,7 @@
                     {
                         "name": "filter[createDateFrom]",
                         "in": "query",
-                        "description": "The start date (inclusive) in ISO 8601 format for which inbound deliveries should be returned (regarding the creation date).",
+                        "description": "The start date (inclusive) in ISO 8601 format for which inbound deliveries should be returned\n(regarding the creation date).",
                         "required": false,
                         "schema": {
                             "type": "string",
@@ -2767,7 +2767,7 @@
                     {
                         "name": "filter[createDateTo]",
                         "in": "query",
-                        "description": "The end date (inclusive) in ISO 8601 format for which inbound deliveries should be returned (regarding the creation date).",
+                        "description": "The end date (inclusive) in ISO 8601 format for which inbound deliveries should be returned\n(regarding the creation date).",
                         "required": false,
                         "schema": {
                             "type": "string",
@@ -2787,7 +2787,7 @@
                         }
                     },
                     "401": {
-                        "description": "Unauthorized",
+                        "description": "Unauthorized\n\nError codes:\n- AUTHORIZATION_MISSING: No valid authentication information was given.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -2797,7 +2797,7 @@
                         }
                     },
                     "403": {
-                        "description": "Forbidden",
+                        "description": "Forbidden\n\nError codes:\n- PERMISSIONS_MISSING: No authorization for the called action was found.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -2807,7 +2807,7 @@
                         }
                     },
                     "422": {
-                        "description": "Unprocessable Entity",
+                        "description": "Unprocessable Entity\n\nError codes:\n- SHOP_NOT_FOUND: Shop not found.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -2817,7 +2817,7 @@
                         }
                     },
                     "500": {
-                        "description": "Server error",
+                        "description": "Server error\n\nError codes:\n- SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -2869,7 +2869,7 @@
                     {
                         "name": "shopCode",
                         "in": "query",
-                        "description": "The shopCode used internally to distinguish between clients.\\\n_This code is optional, if your identity is assigned to only one shop.\nOtherwise the response would be a 422 HTTP Error._",
+                        "description": "The shopCode used internally to distinguish between clients. \\\n_This code is optional, if your identity is assigned to only one shop.\nOtherwise the response would be a 422 HTTP Error._",
                         "required": false,
                         "schema": {
                             "type": "string"
@@ -2889,7 +2889,7 @@
                         }
                     },
                     "400": {
-                        "description": "Bad Request",
+                        "description": "Bad Request\n\nError codes:\n- DATA_INVALID: Invalid data was given.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -2899,7 +2899,7 @@
                         }
                     },
                     "401": {
-                        "description": "Unauthorized",
+                        "description": "Unauthorized\n\nError codes:\n- AUTHORIZATION_MISSING: No valid authentication information was given.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -2909,7 +2909,7 @@
                         }
                     },
                     "403": {
-                        "description": "Forbidden",
+                        "description": "Forbidden\n\nError codes:\n- PERMISSIONS_MISSING: No authorization for the called action was found.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -2919,7 +2919,7 @@
                         }
                     },
                     "404": {
-                        "description": "Not Found",
+                        "description": "Not Found\n\nError codes:\n- DATA_NOT_FOUND: The requested data could not be found.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -2929,7 +2929,7 @@
                         }
                     },
                     "409": {
-                        "description": "Conflict\n\nAvailable message codes:\n- AMBIGUOUS_INBOUND_DELIVERY: Multiple inbound deliveries were found.",
+                        "description": "Conflict\n\nError codes:\n- AMBIGUOUS_INBOUND_DELIVERY: Multiple inbound deliveries were found.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -2939,7 +2939,7 @@
                         }
                     },
                     "422": {
-                        "description": "Unprocessable Entity",
+                        "description": "Unprocessable Entity\n\nError codes:\n- SHOP_NOT_FOUND: Shop not found.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -2949,7 +2949,7 @@
                         }
                     },
                     "500": {
-                        "description": "Server error",
+                        "description": "Server error\n\nError codes:\n- SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -2989,7 +2989,7 @@
                     {
                         "name": "inboundDeliveryNumber",
                         "in": "path",
-                        "description": "The number the inbound delivery should be refered by.\\\nThis number is user defined, must be unique and has a maximum length (check maxLength field).\\\nPlease ensure that it does not contain any of the following character sequences: '/', '%2F', '%2f', '?', '%3F', '%3f',\n'#', '%23', '&', '%26'. Using any of these will result in the route not being handled correctly.",
+                        "description": "The number the inbound delivery should be referred by. \\\nThis number is user defined, must be unique and has a maximum length (check maxLength field). \\\nPlease ensure that it does not contain any of the following character sequences: '/', '%2F', '%2f', '?',\n'%3F', '%3f', '#', '%23', '&', '%26'. \\\nUsing any of these will result in the route not being handled correctly.",
                         "required": true,
                         "schema": {
                             "type": "string",
@@ -2999,7 +2999,7 @@
                     {
                         "name": "shopCode",
                         "in": "query",
-                        "description": "The shopCode used internally to distinguish between clients.\\\n_This code is optional, if your identity is assigned to only one shop.\nOtherwise the response would be a 422 HTTP Error._",
+                        "description": "The shopCode used internally to distinguish between clients. \\\n_This code is optional, if your identity is assigned to only one shop.\nOtherwise the response would be a 422 HTTP Error._",
                         "required": false,
                         "schema": {
                             "type": "string"
@@ -3029,7 +3029,7 @@
                         }
                     },
                     "400": {
-                        "description": "Bad Request",
+                        "description": "Bad Request\n\nError codes:\n- DATA_INVALID: Invalid data was given.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -3039,7 +3039,7 @@
                         }
                     },
                     "401": {
-                        "description": "Unauthorized",
+                        "description": "Unauthorized\n\nError codes:\n- AUTHORIZATION_MISSING: No valid authentication information was given.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -3049,7 +3049,7 @@
                         }
                     },
                     "403": {
-                        "description": "Forbidden",
+                        "description": "Forbidden\n\nError codes:\n- PERMISSIONS_MISSING: No authorization for the called action was found.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -3059,7 +3059,7 @@
                         }
                     },
                     "422": {
-                        "description": "Unprocessable Entity\n\nAvailable message codes:\n- SUPPLIER_NOT_FOUND: The supplier with the given supplierNumber could not be found.\n- PRODUCT_NOT_FOUND: The product with the given productNumber could not be found.\n- DUPLICATED_PRODUCT: There are multiple products with the same productNumber.\n- PRODUCT_COULD_NOT_BE_ADDED_FOR_SUPPLIER: At least one of the the given products could not be added for the supplier.\n- INBOUND_DELIVERY_NOTIFICATION_NOT_SENDABLE: Could not send the delivery notification to the supplier. The inbound\ndelivery has been deleted.\n- INBOUND_DELIVERY_NUMBER_STARTS_WITH_RESERVED_NUMBER_PREFIX: The inboundDeliveryNumber starts with a prefix that is\n  reserved for internal references.",
+                        "description": "Unprocessable Entity\n\nError codes:\n- SUPPLIER_NOT_FOUND: Unknown supplierNumber.\n- PRODUCT_NOT_FOUND: Unknown productNumber.\n- DUPLICATED_PRODUCT: There are multiple products with the same productNumber.\n- PRODUCT_COULD_NOT_BE_ADDED_FOR_SUPPLIER: At least one of the the given products could not be added for the supplier.\n- INBOUND_DELIVERY_NOTIFICATION_NOT_SENDABLE: Could not send the delivery notification to the supplier. The inbound delivery has been deleted.\n- INBOUND_DELIVERY_NUMBER_STARTS_WITH_RESERVED_NUMBER_PREFIX: The inboundDeliveryNumber starts with a prefix that is reserved for internal references.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -3069,7 +3069,7 @@
                         }
                     },
                     "500": {
-                        "description": "Server error",
+                        "description": "Server error\n\nError codes:\n- SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -3105,13 +3105,13 @@
                     "inbound-delivery"
                 ],
                 "summary": "Cancel a inbound delivery.",
-                "description": "Cancel a inbound delivery referenced by the given inboundDeliveryNumber.\\\nAn inboundDeliveryNumber from a canceled inbound delivery cannot be used for a new inbound delivery, because they must\nalways be unique.",
+                "description": "Cancel a inbound delivery referenced by the given inboundDeliveryNumber. \\\nAn inboundDeliveryNumber from a canceled inbound delivery cannot be used for a new inbound delivery, because\nthey must always be unique.",
                 "operationId": "cancelInboundDelivery",
                 "parameters": [
                     {
                         "name": "inboundDeliveryNumber",
                         "in": "path",
-                        "description": "The number the inbound delivery should be refered by.\nThis number is user defined, must be unique and has a maximum length (check maxLength field).",
+                        "description": "The number the inbound delivery should be referred by. \\\nThis number is user defined, must be unique and has a maximum length (check maxLength field).",
                         "required": true,
                         "schema": {
                             "type": "string",
@@ -3121,7 +3121,7 @@
                     {
                         "name": "shopCode",
                         "in": "query",
-                        "description": "The shopCode used internally to distinguish between clients.\\\n_This code is optional, if your identity is assigned to only one shop.\nOtherwise the response would be a 422 HTTP Error._",
+                        "description": "The shopCode used internally to distinguish between clients. \\\n_This code is optional, if your identity is assigned to only one shop.\nOtherwise the response would be a 422 HTTP Error._",
                         "required": false,
                         "schema": {
                             "type": "string"
@@ -3141,7 +3141,7 @@
                         }
                     },
                     "400": {
-                        "description": "Bad Request",
+                        "description": "Bad Request\n\nError codes:\n- DATA_INVALID: Invalid data was given.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -3151,7 +3151,7 @@
                         }
                     },
                     "401": {
-                        "description": "Unauthorized",
+                        "description": "Unauthorized\n\nError codes:\n- AUTHORIZATION_MISSING: No valid authentication information was given.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -3161,7 +3161,7 @@
                         }
                     },
                     "403": {
-                        "description": "Forbidden",
+                        "description": "Forbidden\n\nError codes:\n- PERMISSIONS_MISSING: No authorization for the called action was found.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -3171,7 +3171,7 @@
                         }
                     },
                     "404": {
-                        "description": "Not Found",
+                        "description": "Not Found\n\nError codes:\n- DATA_NOT_FOUND: The requested data could not be found.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -3181,7 +3181,7 @@
                         }
                     },
                     "409": {
-                        "description": "Conflict\n\nAvailable message codes:\n- AMBIGUOUS_INBOUND_DELIVERY: Multiple inbound deliveries were found.\n- INBOUND_DELIVERY_ALREADY_CANCELED: The inbound delivery is already canceled.\n- INBOUND_DELIVERY_NOT_CANCELABLE: The inbound delivery could not be canceled.",
+                        "description": "Conflict\n\nError codes:\n- AMBIGUOUS_INBOUND_DELIVERY: Multiple inbound deliveries were found.\n- INBOUND_DELIVERY_ALREADY_CANCELED: The inbound delivery is already canceled.\n- INBOUND_DELIVERY_NOT_CANCELABLE: The inbound delivery could not be canceled.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -3191,7 +3191,7 @@
                         }
                     },
                     "422": {
-                        "description": "Unprocessable Entity",
+                        "description": "Unprocessable Entity\n\nError codes:\n- SHOP_NOT_FOUND: Shop not found.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -3201,7 +3201,7 @@
                         }
                     },
                     "500": {
-                        "description": "Server error",
+                        "description": "Server error\n\nError codes:\n- SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -3253,7 +3253,7 @@
                     {
                         "name": "documentCode",
                         "in": "path",
-                        "description": "The document type to download. The file format is determined by the Accept request header.\\\nNote: only a limited amount of document type to file format combinations are available:\n- supplierDeliveryLabel:\\\nthe label to put on the inbound delivery for warehouse processing.\\\nAccept header: application/pdf\n- details:\\\na spreadsheet containing details about the inbound delivery.\\\nAccept header: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet\n    ",
+                        "description": "The document type to download. The file format is determined by the Accept request header.\n\nNote: only a limited amount of document type to file format combinations are available:\n- supplierDeliveryLabel: the label to put on the inbound delivery for warehouse processing.\nAccept header: application/pdf\n- details: a spreadsheet containing details about the inbound delivery.\nAccept header: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
                         "required": true,
                         "schema": {
                             "type": "string",
@@ -3266,7 +3266,7 @@
                     {
                         "name": "shopCode",
                         "in": "query",
-                        "description": "The shopCode used internally to distinguish between clients.\\\n_This code is optional, if your identity is assigned to only one shop.\nOtherwise the response would be a 422 HTTP Error._",
+                        "description": "The shopCode used internally to distinguish between clients. \\\n_This code is optional, if your identity is assigned to only one shop.\nOtherwise the response would be a 422 HTTP Error._",
                         "required": false,
                         "schema": {
                             "type": "string"
@@ -3278,13 +3278,13 @@
                     "200": {
                         "description": "Returns the document with the file format according to the sent Accept request header.",
                         "content": {
-                            "application/pdf": {
+                            "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet": {
                                 "schema": {
                                     "type": "string",
                                     "format": "binary"
                                 }
                             },
-                            "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet": {
+                            "application/pdf": {
                                 "schema": {
                                     "type": "string",
                                     "format": "binary"
@@ -3333,7 +3333,7 @@
                         }
                     },
                     "406": {
-                        "description": "The requested document could not be generated in\nthe format specified by the Accept request header.",
+                        "description": "The requested document could not be generated in the format specified by the Accept request header.\n\nError codes:\n- ACCEPTABLE_RESPONSE_NOT_AVAILABLE: No response can be provided for the requested accept header.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -3343,7 +3343,7 @@
                         }
                     },
                     "422": {
-                        "description": "Unprocessable Entity",
+                        "description": "Unprocessable Entity\n\nError codes:\n- SHOP_NOT_FOUND: Shop not found.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -3353,7 +3353,7 @@
                         }
                     },
                     "500": {
-                        "description": "Server error",
+                        "description": "Server error\n\nError codes:\n- SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -3415,7 +3415,7 @@
                     {
                         "name": "paginationMode",
                         "in": "query",
-                        "description": "The paginationMode to use:\n- default: The total number of items in the collection will not be calculated.\n- totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.",
+                        "description": "The paginationMode to use:\n- default: The total number of items in the collection will not be calculated.\n- totalCount: The total number of items in the collection will be calculated.\nThis can mean loss of performance.",
                         "required": false,
                         "schema": {
                             "type": "string",
@@ -3429,7 +3429,7 @@
                     {
                         "name": "filter[shopCode]",
                         "in": "query",
-                        "description": "The shopCode used internally to distinguish between clients.\\\n_This code is optional, if your identity is assigned to only one shop.\nOtherwise the response would be a 422 HTTP Error._",
+                        "description": "The shopCode used internally to distinguish between clients. \\\n_This code is optional, if your identity is assigned to only one shop.\nOtherwise the response would be a 422 HTTP Error._",
                         "required": false,
                         "schema": {
                             "type": "string"
@@ -3449,7 +3449,7 @@
                         }
                     },
                     "401": {
-                        "description": "Unauthorized",
+                        "description": "Unauthorized\n\nError codes:\n- AUTHORIZATION_MISSING: No valid authentication information was given.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -3459,7 +3459,7 @@
                         }
                     },
                     "403": {
-                        "description": "Forbidden",
+                        "description": "Forbidden\n\nError codes:\n- PERMISSIONS_MISSING: No authorization for the called action was found.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -3469,7 +3469,7 @@
                         }
                     },
                     "422": {
-                        "description": "Unprocessable Entity",
+                        "description": "Unprocessable Entity\n\nError codes:\n- SHOP_NOT_FOUND: Shop not found.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -3479,7 +3479,7 @@
                         }
                     },
                     "500": {
-                        "description": "Server error",
+                        "description": "Server error\n\nError codes:\n- SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -3541,7 +3541,7 @@
                     {
                         "name": "paginationMode",
                         "in": "query",
-                        "description": "The paginationMode to use:\n- default: The total number of items in the collection will not be calculated.\n- totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.",
+                        "description": "The paginationMode to use:\n- default: The total number of items in the collection will not be calculated.\n- totalCount: The total number of items in the collection will be calculated.\nThis can mean loss of performance.",
                         "required": false,
                         "schema": {
                             "type": "string",
@@ -3555,7 +3555,7 @@
                     {
                         "name": "sortBy",
                         "in": "query",
-                        "description": "Sort the results by one or more comma-separated sort criteria, with the criterion specified first having priority.\n\nAvailable sort orders:\n- asc: ascending order\n- desc: descending order\n\nAvailable fields for sorting:\n- orderDate\n\nThe default sort order is orderDate:desc.",
+                        "description": "Sort the results by one or more comma-separated sort criteria, with the criterion specified first having\npriority.\n\nAvailable sort orders:\n- asc: ascending order\n- desc: descending order\n\nAvailable fields for sorting:\n- orderDate\n\nThe default sort order is orderDate:desc.",
                         "schema": {
                             "type": "string"
                         },
@@ -3564,7 +3564,7 @@
                     {
                         "name": "filter[shopCode]",
                         "in": "query",
-                        "description": "The shopCode used internally to distinguish between clients.\\\n_This code is optional, if your identity is assigned to only one shop.\nOtherwise the response would be a 422 HTTP Error._",
+                        "description": "The shopCode used internally to distinguish between clients. \\\n_This code is optional, if your identity is assigned to only one shop.\nOtherwise the response would be a 422 HTTP Error._",
                         "required": false,
                         "schema": {
                             "type": "string"
@@ -3641,7 +3641,7 @@
                     {
                         "name": "filter[search]",
                         "in": "query",
-                        "description": "filter for order search.\\\n\\\nUsage:\n- Provide one or multiple search terms to filter results.\n- Multiple search terms are separated by spaces.\n- The search is not case sensitive.\n- The search is enabled for the fields 'externalOrderReference', 'orderNumber' and the tracking code of the orders shipments.\n- Each search term filters the response for orders where at least one of the fields contains the search term.\n- For example, filter[search]='term1 term2' will filter the result for orders where 'term1' is found in any field and 'term2' is also found in any field.\\\nIf only 'term1' or 'term2' is found in the fields, the order is not included in the results.",
+                        "description": "filter for order search.\n\nUsage:\n- Provide one or multiple search terms to filter results.\n- Multiple search terms are separated by spaces.\n- The search is not case sensitive.\n- The search is enabled for the fields 'externalOrderReference', 'orderNumber' and the tracking code of\nthe orders shipments.\n- Each search term filters the response for orders where at least one of the fields contains the search\nterm.\n- For example, filter[search]='term1 term2' will filter the result for orders where 'term1' is found in\nany field and 'term2' is also found in any field.\nIf only 'term1' or 'term2' is found in the fields, the order is not included in the results.",
                         "schema": {
                             "type": "string"
                         }
@@ -3659,7 +3659,7 @@
                         }
                     },
                     "401": {
-                        "description": "Unauthorized",
+                        "description": "Unauthorized\n\nError codes:\n- AUTHORIZATION_MISSING: No valid authentication information was given.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -3669,7 +3669,7 @@
                         }
                     },
                     "403": {
-                        "description": "Forbidden",
+                        "description": "Forbidden\n\nError codes:\n- PERMISSIONS_MISSING: No authorization for the called action was found.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -3679,7 +3679,7 @@
                         }
                     },
                     "422": {
-                        "description": "Unprocessable Entity",
+                        "description": "Unprocessable Entity\n\nError codes:\n- SHOP_NOT_FOUND: Shop not found.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -3689,7 +3689,7 @@
                         }
                     },
                     "500": {
-                        "description": "Server error",
+                        "description": "Server error\n\nError codes:\n- SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -3761,7 +3761,7 @@
                         }
                     },
                     "400": {
-                        "description": "Bad Request",
+                        "description": "Bad Request\n\nError codes:\n- DATA_INVALID: Invalid data was given.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -3771,7 +3771,7 @@
                         }
                     },
                     "401": {
-                        "description": "Unauthorized",
+                        "description": "Unauthorized\n\nError codes:\n- AUTHORIZATION_MISSING: No valid authentication information was given.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -3781,7 +3781,7 @@
                         }
                     },
                     "403": {
-                        "description": "Forbidden",
+                        "description": "Forbidden\n\nError codes:\n- PERMISSIONS_MISSING: No authorization for the called action was found.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -3791,7 +3791,7 @@
                         }
                     },
                     "404": {
-                        "description": "Not Found",
+                        "description": "Not Found\n\nError codes:\n- DATA_NOT_FOUND: The requested data could not be found.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -3801,7 +3801,7 @@
                         }
                     },
                     "422": {
-                        "description": "Unprocessable Entity",
+                        "description": "Unprocessable Entity\n\nError codes:\n- SHOP_NOT_FOUND: Shop not found.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -3811,7 +3811,7 @@
                         }
                     },
                     "500": {
-                        "description": "Server error",
+                        "description": "Server error\n\nError codes:\n- SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -3851,7 +3851,7 @@
                     {
                         "name": "orderNumber",
                         "in": "path",
-                        "description": "The number the order should be refered by.\\\nThis number is user defined, must be unique and has a maximum length (check maxLength field).\\\nPlease ensure that it does not contain any of the following character sequences: '/', '%2F', '%2f', '?', '%3F', '%3f',\n'#', '%23', '&', '%26'. Using any of these will result in the route not being handled correctly.",
+                        "description": "The number the order should be referred by. \\\nThis number is user defined, must be unique and has a maximum length (check maxLength field). \\\nPlease ensure that it does not contain any of the following character sequences: '/', '%2F', '%2f', '?',\n'%3F', '%3f','#', '%23', '&', '%26'. \\\nUsing any of these will result in the route not being handled correctly.",
                         "required": true,
                         "schema": {
                             "type": "string",
@@ -3881,7 +3881,7 @@
                         }
                     },
                     "400": {
-                        "description": "Bad Request",
+                        "description": "Bad Request\n\nError codes:\n- DATA_INVALID: Invalid data was given.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -3891,7 +3891,7 @@
                         }
                     },
                     "401": {
-                        "description": "Unauthorized",
+                        "description": "Unauthorized\n\nError codes:\n- AUTHORIZATION_MISSING: No valid authentication information was given.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -3901,7 +3901,7 @@
                         }
                     },
                     "403": {
-                        "description": "Forbidden",
+                        "description": "Forbidden\n\nError codes:\n- PERMISSIONS_MISSING: No authorization for the called action was found.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -3911,7 +3911,7 @@
                         }
                     },
                     "422": {
-                        "description": "Unprocessable Entity\n\nAvailable message codes:\n- PRODUCT_NOT_FOUND: A product could not be found.\n- DUPLICATED_PRODUCT: There are multiple orderItems with the same productNumber.\n- ORDER_CUSTOMS_CLEARANCE_REQUIRED_FIELD_MISSING: A field required for customs clearance is missing.\n- ORDER_NUMBER_STARTS_WITH_RESERVED_NUMBER_PREFIX: The orderNumber starts with a prefix that is reserved for internal\n  references.\n- ORDER_INVALID_CURRENCY_CODE: An invalid currencyCode was given for the delivery country.",
+                        "description": "Unprocessable Entity\n\nError codes:\n- PRODUCT_NOT_FOUND: Unknown productNumber.\n- DUPLICATED_PRODUCT: There are multiple orderItems with the same productNumber.\n- ORDER_CUSTOMS_CLEARANCE_REQUIRED_FIELD_MISSING: A field required for customs clearance is missing.\n- ORDER_NUMBER_STARTS_WITH_RESERVED_NUMBER_PREFIX: The orderNumber starts with a prefix that is reserved for internal references.\n- ORDER_INVALID_CURRENCY_CODE: An invalid currencyCode was given for the delivery country.\n- ORDER_ITEM_NOT_ORDERABLE: A specific orderItem can not be ordered.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -3921,7 +3921,7 @@
                         }
                     },
                     "500": {
-                        "description": "Server error",
+                        "description": "Server error\n\nError codes:\n- SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -3957,13 +3957,13 @@
                     "order"
                 ],
                 "summary": "Cancel an order.",
-                "description": "Cancel the order specified by the given order number (set in param orderNumber).\\\nAn orderNumber from a canceled order cannot be used for a new order, because they must always be unique.",
+                "description": "Cancel the order specified by the given order number (set in param orderNumber).\nAn orderNumber from a canceled order cannot be used for a new order, because they must always be unique.",
                 "operationId": "cancelOrder",
                 "parameters": [
                     {
                         "name": "orderNumber",
                         "in": "path",
-                        "description": "The number the order is refered by.",
+                        "description": "The number the order is referred by.",
                         "required": true,
                         "schema": {
                             "type": "string",
@@ -3993,7 +3993,7 @@
                         }
                     },
                     "400": {
-                        "description": "Bad Request",
+                        "description": "Bad Request\n\nError codes:\n- DATA_INVALID: Invalid data was given.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -4003,7 +4003,7 @@
                         }
                     },
                     "401": {
-                        "description": "Unauthorized",
+                        "description": "Unauthorized\n\nError codes:\n- AUTHORIZATION_MISSING: No valid authentication information was given.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -4013,7 +4013,7 @@
                         }
                     },
                     "403": {
-                        "description": "Forbidden",
+                        "description": "Forbidden\n\nError codes:\n- PERMISSIONS_MISSING: No authorization for the called action was found.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -4023,7 +4023,7 @@
                         }
                     },
                     "404": {
-                        "description": "Not Found",
+                        "description": "Not Found\n\nError codes:\n- DATA_NOT_FOUND: The requested data could not be found.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -4033,7 +4033,7 @@
                         }
                     },
                     "409": {
-                        "description": "Conflict\n\nAvailable message codes:\n- ORDER_NOT_CANCELABLE: The order could not be canceled anymore\n- ORDER_ALREADY_CANCELED: The order is already canceled\n- ORDER_CANCELLATION_ALREADY_EXISTS: An order cancellation request already exists, which needs manual approval",
+                        "description": "Conflict\n\nError codes:\n- ORDER_NOT_CANCELABLE: The order could not be canceled anymore.\n- ORDER_ALREADY_CANCELED: The order is already canceled.\n- ORDER_CANCELLATION_ALREADY_EXISTS: An order cancellation request already exists, which needs manual approval.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -4043,7 +4043,7 @@
                         }
                     },
                     "422": {
-                        "description": "Unprocessable Entity",
+                        "description": "Unprocessable Entity\n\nError codes:\n- SHOP_NOT_FOUND: Shop not found.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -4053,7 +4053,7 @@
                         }
                     },
                     "500": {
-                        "description": "Server error",
+                        "description": "Server error\n\nError codes:\n- SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -4089,13 +4089,13 @@
                     "order"
                 ],
                 "summary": "Redact an order.",
-                "description": "Redact the order and all other orders linked to the given order number (set in the param\norderNumber) in a GDPR article 17 conform way. \\\n\nOnly orders with one of the following statuses are redactable:\n- delivered\n- deleted\n- canceled",
+                "description": "Redact the order and all other orders linked to the given order number (set in the param orderNumber) in a GDPR\narticle 17 conform way. \\\n\nOnly orders with one of the following statuses are redactable:\n- delivered\n- deleted\n- canceled",
                 "operationId": "redactOrder",
                 "parameters": [
                     {
                         "name": "orderNumber",
                         "in": "path",
-                        "description": "The number the order is refered by.",
+                        "description": "The number the order is referred by.",
                         "required": true,
                         "schema": {
                             "type": "string",
@@ -4125,7 +4125,7 @@
                         }
                     },
                     "400": {
-                        "description": "Bad Request",
+                        "description": "Bad Request\n\nError codes:\n- DATA_INVALID: Invalid data was given.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -4135,7 +4135,7 @@
                         }
                     },
                     "401": {
-                        "description": "Unauthorized",
+                        "description": "Unauthorized\n\nError codes:\n- AUTHORIZATION_MISSING: No valid authentication information was given.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -4145,7 +4145,7 @@
                         }
                     },
                     "403": {
-                        "description": "Forbidden",
+                        "description": "Forbidden\n\nError codes:\n- PERMISSIONS_MISSING: No authorization for the called action was found.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -4155,7 +4155,7 @@
                         }
                     },
                     "404": {
-                        "description": "Not Found",
+                        "description": "Not Found\n\nError codes:\n- DATA_NOT_FOUND: The requested data could not be found.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -4165,7 +4165,7 @@
                         }
                     },
                     "409": {
-                        "description": "Conflict\n\nAvailable message codes:\n- ORDER_NOT_REDACTABLE: The order is not redactable because of status conflicts\n- ORDER_ALREADY_REDACTED: The order is already redacted",
+                        "description": "Conflict\n\nError codes:\n- ORDER_NOT_REDACTABLE: The order is not redactable because of status conflicts.\n- ORDER_ALREADY_REDACTED: The order is already redacted.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -4175,7 +4175,7 @@
                         }
                     },
                     "422": {
-                        "description": "Unprocessable Entity",
+                        "description": "Unprocessable Entity\n\nError codes:\n- SHOP_NOT_FOUND: Shop not found.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -4185,7 +4185,7 @@
                         }
                     },
                     "500": {
-                        "description": "Server error",
+                        "description": "Server error\n\nError codes:\n- SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -4293,7 +4293,7 @@
                         }
                     },
                     "400": {
-                        "description": "Bad Request",
+                        "description": "Bad Request\n\nError codes:\n- DATA_INVALID: Invalid data was given.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -4303,7 +4303,7 @@
                         }
                     },
                     "401": {
-                        "description": "Unauthorized",
+                        "description": "Unauthorized\n\nError codes:\n- AUTHORIZATION_MISSING: No valid authentication information was given.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -4313,7 +4313,7 @@
                         }
                     },
                     "403": {
-                        "description": "Forbidden",
+                        "description": "Forbidden\n\nError codes:\n- PERMISSIONS_MISSING: No authorization for the called action was found.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -4323,7 +4323,7 @@
                         }
                     },
                     "500": {
-                        "description": "Server Error",
+                        "description": "Server error\n\nError codes:\n- SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -4379,7 +4379,7 @@
                         }
                     },
                     "401": {
-                        "description": "Unauthorized",
+                        "description": "Unauthorized\n\nError codes:\n- AUTHORIZATION_MISSING: No valid authentication information was given.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -4389,7 +4389,7 @@
                         }
                     },
                     "406": {
-                        "description": "The requested document could not be generated in the format specified by the accept header",
+                        "description": "The requested document could not be generated in the format specified by the Accept request header.\n\nError codes:\n- ACCEPTABLE_RESPONSE_NOT_AVAILABLE: No response can be provided for the requested accept header.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -4399,7 +4399,7 @@
                         }
                     },
                     "500": {
-                        "description": "Server Error",
+                        "description": "Server error\n\nError codes:\n- SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -4461,7 +4461,7 @@
                     {
                         "name": "paginationMode",
                         "in": "query",
-                        "description": "The paginationMode to use:\n- default: The total number of items in the collection will not be calculated.\n- totalCount: The total number of items in the collection will be calculated. \\\nThis can mean loss of performance.",
+                        "description": "The paginationMode to use:\n- default: The total number of items in the collection will not be calculated.\n- totalCount: The total number of items in the collection will be calculated.\nThis can mean loss of performance.",
                         "required": false,
                         "schema": {
                             "type": "string",
@@ -4527,7 +4527,7 @@
                         }
                     },
                     "400": {
-                        "description": "Bad Request",
+                        "description": "Bad Request\n\nError codes:\n- DATA_INVALID: Invalid data was given.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -4537,7 +4537,7 @@
                         }
                     },
                     "401": {
-                        "description": "Unauthorized",
+                        "description": "Unauthorized\n\nError codes:\n- AUTHORIZATION_MISSING: No valid authentication information was given.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -4547,7 +4547,7 @@
                         }
                     },
                     "403": {
-                        "description": "Forbidden",
+                        "description": "Forbidden\n\nError codes:\n- PERMISSIONS_MISSING: No authorization for the called action was found.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -4557,7 +4557,7 @@
                         }
                     },
                     "404": {
-                        "description": "Not Found",
+                        "description": "Not Found\n\nError codes:\n- DATA_NOT_FOUND: The requested data could not be found.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -4567,7 +4567,7 @@
                         }
                     },
                     "500": {
-                        "description": "Server Error",
+                        "description": "Server error\n\nError codes:\n- SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -4637,7 +4637,7 @@
                         }
                     },
                     "400": {
-                        "description": "Bad Request\\\nExtract of the available message codes:\n- PRODUCT_UNIT_NOT_FOUND: Unknown product unit in field contentsUnit.\n- TARIC_CODE_NOT_FOUND: Unknown taricCode.\n- MANUFACTURER_NOT_FOUND: Unknown manufacturerNumber.\n- BRAND_NOT_FOUND: Unknown brandNumber.",
+                        "description": "Bad Request\n\nError codes:\n- PRODUCT_UNIT_NOT_FOUND: Unknown product unit in field contentsUnit.\n- TARIC_CODE_NOT_FOUND: Unknown taricCode.\n- MANUFACTURER_NOT_FOUND: Unknown manufacturerNumber.\n- BRAND_NOT_FOUND: Unknown brandNumber.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -4647,7 +4647,7 @@
                         }
                     },
                     "401": {
-                        "description": "Unauthorized",
+                        "description": "Unauthorized\n\nError codes:\n- AUTHORIZATION_MISSING: No valid authentication information was given.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -4657,7 +4657,7 @@
                         }
                     },
                     "403": {
-                        "description": "Forbidden",
+                        "description": "Forbidden\n\nError codes:\n- PERMISSIONS_MISSING: No authorization for the called action was found.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -4667,7 +4667,7 @@
                         }
                     },
                     "409": {
-                        "description": "Conflict\\\nAvailable message codes:\n- PRODUCT_DRAFT_ALREADY_EXISTS: There already exists a pending product draft with the given\nproductNumber.\n- PRODUCT_ALREADY_EXISTS: There already exists a product with the given productNumber.",
+                        "description": "Conflict\n\nError codes:\n- PRODUCT_DRAFT_ALREADY_EXISTS: There already exists a pending product draft with the given productNumber.\n- PRODUCT_ALREADY_EXISTS: There already exists a product with the given productNumber.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -4677,7 +4677,7 @@
                         }
                     },
                     "422": {
-                        "description": "Unprocessable Entity\\\nExtract of the available message codes:\n- SUPPLIER_NOT_FOUND: Unknown supplierNumber.",
+                        "description": "Unprocessable Entity\n\nError codes:\n- SUPPLIER_NOT_FOUND: Unknown supplierNumber.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -4687,7 +4687,7 @@
                         }
                     },
                     "500": {
-                        "description": "Server Error",
+                        "description": "Server error\n\nError codes:\n- SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -4758,7 +4758,7 @@
                         }
                     },
                     "400": {
-                        "description": "Bad Request",
+                        "description": "Bad Request\n\nError codes:\n- DATA_INVALID: Invalid data was given.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -4768,7 +4768,7 @@
                         }
                     },
                     "401": {
-                        "description": "Unauthorized",
+                        "description": "Unauthorized\n\nError codes:\n- AUTHORIZATION_MISSING: No valid authentication information was given.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -4778,7 +4778,7 @@
                         }
                     },
                     "403": {
-                        "description": "Forbidden",
+                        "description": "Forbidden\n\nError codes:\n- PERMISSIONS_MISSING: No authorization for the called action was found.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -4788,7 +4788,7 @@
                         }
                     },
                     "404": {
-                        "description": "Not Found",
+                        "description": "Not Found\n\nError codes:\n- DATA_NOT_FOUND: The requested data could not be found.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -4798,7 +4798,7 @@
                         }
                     },
                     "422": {
-                        "description": "Unprocessable Entity",
+                        "description": "Unprocessable Entity\n\nError codes:\n- SHOP_NOT_FOUND: Shop not found.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -4808,7 +4808,7 @@
                         }
                     },
                     "500": {
-                        "description": "Server Error",
+                        "description": "Server error\n\nError codes:\n- SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -4870,7 +4870,7 @@
                         "description": "No Content"
                     },
                     "400": {
-                        "description": "Bad Request",
+                        "description": "Bad Request\n\nError codes:\n- DATA_INVALID: Invalid data was given.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -4880,7 +4880,7 @@
                         }
                     },
                     "401": {
-                        "description": "Unauthorized",
+                        "description": "Unauthorized\n\nError codes:\n- AUTHORIZATION_MISSING: No valid authentication information was given.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -4890,7 +4890,7 @@
                         }
                     },
                     "403": {
-                        "description": "Forbidden",
+                        "description": "Forbidden\n\nError codes:\n- PERMISSIONS_MISSING: No authorization for the called action was found.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -4900,7 +4900,17 @@
                         }
                     },
                     "404": {
-                        "description": "Not Found",
+                        "description": "Not Found\n\nError codes:\n- DATA_NOT_FOUND: The requested data could not be found.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "409": {
+                        "description": "Conflict\n\nError codes:\n- PRODUCT_DRAFT_NOT_DELETABLE: The state of the product draft does not allow deleting.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -4910,7 +4920,7 @@
                         }
                     },
                     "500": {
-                        "description": "Server Error",
+                        "description": "Server error\n\nError codes:\n- SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -4972,7 +4982,7 @@
                     {
                         "name": "paginationMode",
                         "in": "query",
-                        "description": "The paginationMode to use:\n- default: The total number of items in the collection will not be calculated.\n- totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.",
+                        "description": "The paginationMode to use:\n- default: The total number of items in the collection will not be calculated.\n- totalCount: The total number of items in the collection will be calculated.\nThis can mean loss of performance.",
                         "required": false,
                         "schema": {
                             "type": "string",
@@ -5006,7 +5016,7 @@
                         }
                     },
                     "401": {
-                        "description": "Unauthorized",
+                        "description": "Unauthorized\n\nError codes:\n- AUTHORIZATION_MISSING: No valid authentication information was given.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -5016,7 +5026,7 @@
                         }
                     },
                     "403": {
-                        "description": "Forbidden",
+                        "description": "Forbidden\n\nError codes:\n- PERMISSIONS_MISSING: No authorization for the called action was found.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -5026,7 +5036,7 @@
                         }
                     },
                     "422": {
-                        "description": "Unprocessable Entity",
+                        "description": "Unprocessable Entity\n\nError codes:\n- SHOP_NOT_FOUND: Shop not found.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -5036,7 +5046,7 @@
                         }
                     },
                     "500": {
-                        "description": "Server error",
+                        "description": "Server error\n\nError codes:\n- SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -5098,7 +5108,7 @@
                     {
                         "name": "paginationMode",
                         "in": "query",
-                        "description": "The paginationMode to use:\n- default: The total number of items in the collection will not be calculated.\n- totalCount: The total number of items in the collection will be calculated. \\\nThis can mean loss of performance.",
+                        "description": "The paginationMode to use:\n- default: The total number of items in the collection will not be calculated.\n- totalCount: The total number of items in the collection will be calculated.\nThis can mean loss of performance.",
                         "required": false,
                         "schema": {
                             "type": "string",
@@ -5156,7 +5166,7 @@
                         }
                     },
                     "400": {
-                        "description": "Bad Request",
+                        "description": "Bad Request\n\nError codes:\n- DATA_INVALID: Invalid data was given.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -5166,7 +5176,7 @@
                         }
                     },
                     "401": {
-                        "description": "Unauthorized",
+                        "description": "Unauthorized\n\nError codes:\n- AUTHORIZATION_MISSING: No valid authentication information was given.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -5176,7 +5186,7 @@
                         }
                     },
                     "403": {
-                        "description": "Forbidden",
+                        "description": "Forbidden\n\nError codes:\n- PERMISSIONS_MISSING: No authorization for the called action was found.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -5186,7 +5196,7 @@
                         }
                     },
                     "422": {
-                        "description": "Unprocessable Entity",
+                        "description": "Unprocessable Entity\n\nError codes:\n- SHOP_NOT_FOUND: Shop not found.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -5196,7 +5206,7 @@
                         }
                     },
                     "500": {
-                        "description": "Server Error",
+                        "description": "Server error\n\nError codes:\n- SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -5268,7 +5278,7 @@
                         }
                     },
                     "400": {
-                        "description": "Bad Request",
+                        "description": "Bad Request\n\nError codes:\n- DATA_INVALID: Invalid data was given.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -5278,7 +5288,7 @@
                         }
                     },
                     "401": {
-                        "description": "Unauthorized",
+                        "description": "Unauthorized\n\nError codes:\n- AUTHORIZATION_MISSING: No valid authentication information was given.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -5288,7 +5298,7 @@
                         }
                     },
                     "403": {
-                        "description": "Forbidden",
+                        "description": "Forbidden\n\nError codes:\n- PERMISSIONS_MISSING: No authorization for the called action was found.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -5298,7 +5308,7 @@
                         }
                     },
                     "422": {
-                        "description": "Unprocessable Entity",
+                        "description": "Unprocessable Entity\n\nError codes:\n- SHOP_NOT_FOUND: Shop not found.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -5308,7 +5318,7 @@
                         }
                     },
                     "500": {
-                        "description": "Server Error",
+                        "description": "Server error\n\nError codes:\n- SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -5453,7 +5463,7 @@
                         }
                     },
                     "400": {
-                        "description": "Bad Request",
+                        "description": "Bad Request\n\nError codes:\n- DATA_INVALID: Invalid data was given.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -5463,7 +5473,7 @@
                         }
                     },
                     "401": {
-                        "description": "Unauthorized",
+                        "description": "Unauthorized\n\nError codes:\n- AUTHORIZATION_MISSING: No valid authentication information was given.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -5473,7 +5483,7 @@
                         }
                     },
                     "403": {
-                        "description": "Forbidden",
+                        "description": "Forbidden\n\nError codes:\n- PERMISSIONS_MISSING: No authorization for the called action was found.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -5483,7 +5493,7 @@
                         }
                     },
                     "422": {
-                        "description": "Unprocessable Entity",
+                        "description": "Unprocessable Entity\n\nError codes:\n- SHOP_NOT_FOUND: Shop not found.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -5493,7 +5503,7 @@
                         }
                     },
                     "500": {
-                        "description": "Server Error",
+                        "description": "Server error\n\nError codes:\n- SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -5553,9 +5563,11 @@
                     {
                         "name": "paginationMode",
                         "in": "query",
-                        "description": "'default': Total count will not be calculated. 'totalCount': The total number of entries for the request will be calculated. This can mean loss of performance. If not given, 'default' pagination mode is used.",
+                        "description": "The paginationMode to use:\n- default: The total number of items in the collection will not be calculated.\n- totalCount: The total number of items in the collection will be calculated.\nThis can mean loss of performance.",
+                        "required": false,
                         "schema": {
                             "type": "string",
+                            "default": "default",
                             "enum": [
                                 "default",
                                 "totalCount"
@@ -5565,7 +5577,7 @@
                     {
                         "name": "sortBy",
                         "in": "query",
-                        "description": "Sort the results by one or more comma-separated sort criteria, with the criterion specified first having priority.\n\nAvailable sort orders:\n- asc: ascending order\n- desc: descending order\n\nAvailable fields for sorting:\n- reconsignmentDate\n\nThe default sort order is reconsignmentDate:desc.",
+                        "description": "Sort the results by one or more comma-separated sort criteria, with the criterion specified first having\npriority.\n\nAvailable sort orders:\n- asc: ascending order\n- desc: descending order\n\nAvailable fields for sorting:\n- reconsignmentDate\n\nThe default sort order is reconsignmentDate:desc.",
                         "schema": {
                             "type": "string"
                         },
@@ -5621,7 +5633,7 @@
                         }
                     },
                     "400": {
-                        "description": "Bad Request",
+                        "description": "Bad Request\n\nError codes:\n- DATA_INVALID: Invalid data was given.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -5631,7 +5643,7 @@
                         }
                     },
                     "401": {
-                        "description": "Unauthorized",
+                        "description": "Unauthorized\n\nError codes:\n- AUTHORIZATION_MISSING: No valid authentication information was given.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -5641,7 +5653,7 @@
                         }
                     },
                     "403": {
-                        "description": "Forbidden",
+                        "description": "Forbidden\n\nError codes:\n- PERMISSIONS_MISSING: No authorization for the called action was found.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -5651,7 +5663,7 @@
                         }
                     },
                     "422": {
-                        "description": "Unprocessable Entity",
+                        "description": "Unprocessable Entity\n\nError codes:\n- SHOP_NOT_FOUND: Shop not found.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -5661,7 +5673,7 @@
                         }
                     },
                     "500": {
-                        "description": "Server error",
+                        "description": "Server error\n\nError codes:\n- SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -5728,7 +5740,7 @@
                         }
                     },
                     "400": {
-                        "description": "Bad Request",
+                        "description": "Bad Request\n\nError codes:\n- DATA_INVALID: Invalid data was given.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -5738,7 +5750,7 @@
                         }
                     },
                     "401": {
-                        "description": "Unauthorized",
+                        "description": "Unauthorized\n\nError codes:\n- AUTHORIZATION_MISSING: No valid authentication information was given.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -5748,7 +5760,7 @@
                         }
                     },
                     "403": {
-                        "description": "Forbidden",
+                        "description": "Forbidden\n\nError codes:\n- PERMISSIONS_MISSING: No authorization for the called action was found.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -5758,7 +5770,7 @@
                         }
                     },
                     "404": {
-                        "description": "Not Found",
+                        "description": "Not Found\n\nError codes:\n- DATA_NOT_FOUND: The requested data could not be found.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -5768,7 +5780,7 @@
                         }
                     },
                     "422": {
-                        "description": "Unprocessable Entity",
+                        "description": "Unprocessable Entity\n\nError codes:\n- SHOP_NOT_FOUND: Shop not found.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -5778,7 +5790,7 @@
                         }
                     },
                     "500": {
-                        "description": "Server error",
+                        "description": "Server error\n\nError codes:\n- SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -5840,7 +5852,7 @@
                     {
                         "name": "paginationMode",
                         "in": "query",
-                        "description": "The paginationMode to use:\n- default: The total number of items in the collection will not be calculated.\n- totalCount: The total number of items in the collection will be calculated. \\\nThis can mean loss of performance.",
+                        "description": "The paginationMode to use:\n- default: The total number of items in the collection will not be calculated.\n- totalCount: The total number of items in the collection will be calculated.\nThis can mean loss of performance.",
                         "required": false,
                         "schema": {
                             "type": "string",
@@ -5894,7 +5906,7 @@
                         }
                     },
                     "400": {
-                        "description": "Bad Request",
+                        "description": "Bad Request\n\nError codes:\n- DATA_INVALID: Invalid data was given.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -5904,7 +5916,7 @@
                         }
                     },
                     "401": {
-                        "description": "Unauthorized",
+                        "description": "Unauthorized\n\nError codes:\n- AUTHORIZATION_MISSING: No valid authentication information was given.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -5914,7 +5926,7 @@
                         }
                     },
                     "403": {
-                        "description": "Forbidden",
+                        "description": "Forbidden\n\nError codes:\n- PERMISSIONS_MISSING: No authorization for the called action was found.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -5924,7 +5936,7 @@
                         }
                     },
                     "422": {
-                        "description": "Unprocessable Entity",
+                        "description": "Unprocessable Entity\n\nError codes:\n- SHOP_NOT_FOUND: Shop not found.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -5934,7 +5946,7 @@
                         }
                     },
                     "500": {
-                        "description": "Server Error",
+                        "description": "Server error\n\nError codes:\n- SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -5996,7 +6008,7 @@
                     {
                         "name": "paginationMode",
                         "in": "query",
-                        "description": "The paginationMode to use:\n- default: The total number of items in the collection will not be calculated.\n- totalCount: The total number of items in the collection will be calculated. \\\nThis can mean loss of performance.",
+                        "description": "The paginationMode to use:\n- default: The total number of items in the collection will not be calculated.\n- totalCount: The total number of items in the collection will be calculated.\nThis can mean loss of performance.",
                         "required": false,
                         "schema": {
                             "type": "string",
@@ -6069,7 +6081,7 @@
                         }
                     },
                     "400": {
-                        "description": "Bad Request",
+                        "description": "Bad Request\n\nError codes:\n- DATA_INVALID: Invalid data was given.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -6079,7 +6091,7 @@
                         }
                     },
                     "401": {
-                        "description": "Unauthorized",
+                        "description": "Unauthorized\n\nError codes:\n- AUTHORIZATION_MISSING: No valid authentication information was given.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -6089,7 +6101,7 @@
                         }
                     },
                     "403": {
-                        "description": "Forbidden",
+                        "description": "Forbidden\n\nError codes:\n- PERMISSIONS_MISSING: No authorization for the called action was found.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -6099,7 +6111,7 @@
                         }
                     },
                     "422": {
-                        "description": "Unprocessable Entity",
+                        "description": "Unprocessable Entity\n\nError codes:\n- SHOP_NOT_FOUND: Shop not found.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -6109,7 +6121,7 @@
                         }
                     },
                     "500": {
-                        "description": "Server Error",
+                        "description": "Server error\n\nError codes:\n- SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -6171,7 +6183,7 @@
                     {
                         "name": "paginationMode",
                         "in": "query",
-                        "description": "The paginationMode to use:\n- default: The total number of items in the collection will not be calculated.\n- totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.",
+                        "description": "The paginationMode to use:\n- default: The total number of items in the collection will not be calculated.\n- totalCount: The total number of items in the collection will be calculated.\nThis can mean loss of performance.",
                         "required": false,
                         "schema": {
                             "type": "string",
@@ -6194,7 +6206,7 @@
                     {
                         "name": "filter[meta][shopifyDefaultShop]",
                         "in": "query",
-                        "description": "A filter for Shopify default shops.\\\nNote: For shops that are part of a Shopify installation that uses multiple shops,\n only shops where meta.shopifyShopDefault is true will be considered as default shops.\\\nAll shops that are used for a single shop Shopify installation will also be considered as default shops.",
+                        "description": "A filter for Shopify default shops.\\\nNote: For shops that are part of a Shopify installation that uses multiple shops,\nonly shops where meta.shopifyShopDefault is true will be considered as default shops.\\\nAll shops that are used for a single shop Shopify installation will also be considered as default shops.",
                         "required": false,
                         "schema": {
                             "type": "boolean"
@@ -6247,7 +6259,7 @@
                         }
                     },
                     "401": {
-                        "description": "Unauthorized",
+                        "description": "Unauthorized\n\nError codes:\n- AUTHORIZATION_MISSING: No valid authentication information was given.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -6257,7 +6269,7 @@
                         }
                     },
                     "403": {
-                        "description": "Forbidden",
+                        "description": "Forbidden\n\nError codes:\n- PERMISSIONS_MISSING: No authorization for the called action was found.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -6267,7 +6279,7 @@
                         }
                     },
                     "500": {
-                        "description": "Server error",
+                        "description": "Server error\n\nError codes:\n- SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -6303,7 +6315,7 @@
                     "shop"
                 ],
                 "summary": "Update a shop",
-                "description": "Update one or more fields of a shop. Only a limited set of fields can be updated.",
+                "description": "Set one or more fields of a shop. Only a limited set of fields can be updated.",
                 "operationId": "patchShop",
                 "parameters": [
                     {
@@ -6338,7 +6350,7 @@
                         }
                     },
                     "400": {
-                        "description": "Bad Request",
+                        "description": "Bad Request\n\nError codes:\n- DATA_INVALID: Invalid data was given.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -6348,7 +6360,7 @@
                         }
                     },
                     "401": {
-                        "description": "Unauthorized",
+                        "description": "Unauthorized\n\nError codes:\n- AUTHORIZATION_MISSING: No valid authentication information was given.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -6358,7 +6370,7 @@
                         }
                     },
                     "403": {
-                        "description": "Forbidden",
+                        "description": "Forbidden\n\nError codes:\n- PERMISSIONS_MISSING: No authorization for the called action was found.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -6368,7 +6380,7 @@
                         }
                     },
                     "404": {
-                        "description": "Not Found",
+                        "description": "Not Found\n\nError codes:\n- DATA_NOT_FOUND: The requested data could not be found.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -6378,7 +6390,7 @@
                         }
                     },
                     "500": {
-                        "description": "Server error",
+                        "description": "Server error\n\nError codes:\n- SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -6515,7 +6527,7 @@
                         }
                     },
                     "400": {
-                        "description": "Bad Request",
+                        "description": "Bad Request\n\nError codes:\n- DATA_INVALID: Invalid data was given.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -6525,7 +6537,7 @@
                         }
                     },
                     "401": {
-                        "description": "Unauthorized",
+                        "description": "Unauthorized\n\nError codes:\n- AUTHORIZATION_MISSING: No valid authentication information was given.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -6535,7 +6547,7 @@
                         }
                     },
                     "403": {
-                        "description": "Forbidden",
+                        "description": "Forbidden\n\nError codes:\n- PERMISSIONS_MISSING: No authorization for the called action was found.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -6545,7 +6557,7 @@
                         }
                     },
                     "422": {
-                        "description": "Unprocessable Entity",
+                        "description": "Unprocessable Entity\n\nError codes:\n- SHOP_NOT_FOUND: Shop not found.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -6555,7 +6567,7 @@
                         }
                     },
                     "500": {
-                        "description": "Server error",
+                        "description": "Server error\n\nError codes:\n- SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -6617,7 +6629,7 @@
                     {
                         "name": "paginationMode",
                         "in": "query",
-                        "description": "The paginationMode to use:\n- default: The total number of items in the collection will not be calculated.\n- totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.",
+                        "description": "The paginationMode to use:\n- default: The total number of items in the collection will not be calculated.\n- totalCount: The total number of items in the collection will be calculated.\nThis can mean loss of performance.",
                         "required": false,
                         "schema": {
                             "type": "string",
@@ -6631,7 +6643,7 @@
                     {
                         "name": "filter[shopCode]",
                         "in": "query",
-                        "description": "The shopCode used internally to distinguish between clients.\\\n_This code is optional, if your identity is assigned to only one shop.\nOtherwise the response would be a 422 HTTP Error._",
+                        "description": "The shopCode used internally to distinguish between clients. \\\n_This code is optional, if your identity is assigned to only one shop.\nOtherwise the response would be a 422 HTTP Error._",
                         "required": false,
                         "schema": {
                             "type": "string"
@@ -6651,7 +6663,7 @@
                         }
                     },
                     "400": {
-                        "description": "Bad Request",
+                        "description": "Bad Request\n\nError codes:\n- DATA_INVALID: Invalid data was given.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -6661,7 +6673,7 @@
                         }
                     },
                     "401": {
-                        "description": "Unauthorized",
+                        "description": "Unauthorized\n\nError codes:\n- AUTHORIZATION_MISSING: No valid authentication information was given.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -6671,7 +6683,7 @@
                         }
                     },
                     "403": {
-                        "description": "Forbidden",
+                        "description": "Forbidden\n\nError codes:\n- PERMISSIONS_MISSING: No authorization for the called action was found.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -6681,7 +6693,7 @@
                         }
                     },
                     "422": {
-                        "description": "Unprocessable Entity",
+                        "description": "Unprocessable Entity\n\nError codes:\n- SHOP_NOT_FOUND: Shop not found.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -6691,7 +6703,7 @@
                         }
                     },
                     "500": {
-                        "description": "Server error",
+                        "description": "Server error\n\nError codes:\n- SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -7454,7 +7466,6 @@
                     {
                         "properties": {
                             "data": {
-                                "description": "",
                                 "type": "array",
                                 "items": {
                                     "$ref": "#/components/schemas/country"
@@ -7519,7 +7530,6 @@
                     {
                         "properties": {
                             "data": {
-                                "description": "",
                                 "type": "array",
                                 "items": {
                                     "$ref": "#/components/schemas/delivery"
@@ -7555,7 +7565,6 @@
                     {
                         "properties": {
                             "data": {
-                                "description": "",
                                 "type": "array",
                                 "items": {
                                     "$ref": "#/components/schemas/deliveryService"
@@ -7734,7 +7743,7 @@
                     {
                         "properties": {
                             "inboundDeliveryNumber": {
-                                "description": "The inbound delivery number.\\\nNote: If this number is prefixed with 'NICE', it means that the inbound delivery was \ncreated was created manually by niceshops.",
+                                "description": "The inbound delivery number.\\\nNote: If this number is prefixed with 'NICE', it means that the inbound delivery was\ncreated was created manually by niceshops.",
                                 "type": "string",
                                 "maxLength": 248,
                                 "nullable": false
@@ -7784,7 +7793,7 @@
                                 "nullable": true
                             },
                             "deliverySlipNumber": {
-                                "description": "Number of the inbound delivery on the delivery slip.\\\nIf the field is empty or not set in the database\n(e.g. the inbound delivery has not yet arrived in our warehouse), null will be returned.\\\nIf an empty string (\"\") is returned, it means that no delivery slip number is \navailable for the inbound delivery.",
+                                "description": "Number of the inbound delivery on the delivery slip.\\\nIf the field is empty or not set in the database\n(e.g. the inbound delivery has not yet arrived in our warehouse), null will be returned.\\\nIf an empty string (\"\") is returned, it means that no delivery slip number is\navailable for the inbound delivery.",
                                 "type": "string",
                                 "nullable": true
                             },
@@ -7808,7 +7817,6 @@
                     {
                         "properties": {
                             "data": {
-                                "description": "",
                                 "type": "array",
                                 "items": {
                                     "$ref": "#/components/schemas/inboundDelivery"
@@ -7897,7 +7905,6 @@
                     {
                         "properties": {
                             "data": {
-                                "description": "",
                                 "type": "array",
                                 "items": {
                                     "$ref": "#/components/schemas/manufacturer"
@@ -8244,7 +8251,6 @@
                     {
                         "properties": {
                             "data": {
-                                "description": "",
                                 "type": "array",
                                 "items": {
                                     "$ref": "#/components/schemas/order"
@@ -8631,7 +8637,6 @@
                     {
                         "properties": {
                             "data": {
-                                "description": "",
                                 "type": "array",
                                 "items": {
                                     "$ref": "#/components/schemas/product"
@@ -8750,19 +8755,19 @@
                         ]
                     },
                     "stockDelta": {
-                        "description": "The change of the stock.\\\nNote: This might not be set for all reasons.",
+                        "description": "The change of the stock.\\Note: This might not be set for all reasons.",
                         "type": "integer",
                         "format": "int32",
                         "nullable": true
                     },
                     "stockOld": {
-                        "description": "The old value of the stock before applying the delta.\\\nNote: This might not be set for all reasons.",
+                        "description": "The old value of the stock before applying the delta.\\Note: This might not be set for all reasons.",
                         "type": "integer",
                         "format": "int32",
                         "nullable": true
                     },
                     "stockNew": {
-                        "description": "The new value of the stock when the journal entry was created.\\\nNote: This might not be set for all reasons.",
+                        "description": "The new value of the stock when the journal entry was created.\\Note: This might not be set for all reasons.",
                         "type": "integer",
                         "format": "int32",
                         "nullable": true
@@ -8783,7 +8788,6 @@
                     {
                         "properties": {
                             "data": {
-                                "description": "",
                                 "type": "array",
                                 "items": {
                                     "$ref": "#/components/schemas/productJournal"
@@ -8865,7 +8869,6 @@
                     {
                         "properties": {
                             "data": {
-                                "description": "",
                                 "type": "array",
                                 "items": {
                                     "$ref": "#/components/schemas/productUnit"
@@ -8948,7 +8951,6 @@
                     {
                         "properties": {
                             "data": {
-                                "description": "Class ReconsignmentResourceCollection",
                                 "type": "array",
                                 "items": {
                                     "$ref": "#/components/schemas/reconsignment"
@@ -9003,7 +9005,6 @@
                     {
                         "properties": {
                             "data": {
-                                "description": "Class ReconsignmentLineResourceCollection",
                                 "type": "array",
                                 "items": {
                                     "$ref": "#/components/schemas/reconsignmentLine"
@@ -9047,7 +9048,6 @@
                     {
                         "properties": {
                             "data": {
-                                "description": "",
                                 "type": "array",
                                 "items": {
                                     "$ref": "#/components/schemas/reportClearingOrder"
@@ -9262,7 +9262,7 @@
                                 "nullable": true
                             },
                             "shopifyOrderCountryCode": {
-                                "description": "The order country code (ISO 3166-1 alpha-2) to identify which shop to use in a Shopify\ninstallation that uses multiple shops.\\\nIf a Shopify order matches this country code, it will be assigned to this shop.",
+                                "description": "The order country code (ISO 3166-1 alpha-2) to identify which shop to use in a Shopify installation\nthat uses multiple shops.\\\nIf a Shopify order matches this country code, it will be assigned to this shop.",
                                 "type": "string",
                                 "nullable": true
                             },
@@ -9284,14 +9284,14 @@
                                 "nullable": true
                             },
                             "shopifyOverwriteCustomerEmailEnabled": {
-                                "description": "Flag to mark if it is allowed to set a customer's email in shopify. If false the shop email will be used as default.",
+                                "description": "Flag to mark if it is allowed to set a customer's email in shopify. If false the shop email will be\nused as default.",
                                 "type": "boolean",
                                 "nullable": true
                             }
                         },
                         "type": "object",
                         "nullable": true,
-                        "additionalProperties": true
+                        "additionalProperties": {}
                     }
                 },
                 "type": "object"
@@ -9306,7 +9306,6 @@
                     {
                         "properties": {
                             "data": {
-                                "description": "",
                                 "type": "array",
                                 "items": {
                                     "$ref": "#/components/schemas/shop"
@@ -9333,7 +9332,7 @@
                         "type": "integer"
                     },
                     "available": {
-                        "description": "Amount available for orders\n- the reserved amount for ongoing orders is subtracted\\\n- if the overbookingPossibilityStatus is 'only_inbound_deliveries', the incoming amount is added",
+                        "description": "Amount available for orders\n- the reserved amount for ongoing orders is subtracted\n- if the overbookingPossibilityStatus is 'only_inbound_deliveries', the incoming amount is added",
                         "type": "integer"
                     },
                     "incoming": {
@@ -9341,7 +9340,7 @@
                         "type": "integer"
                     },
                     "overbookingPossibilityStatus": {
-                        "description": "Status regarding the possibility of overbooking\n- possible: Overbooking is possible\n- not_possible: Overbooking is not possible\n- only_inbound_deliveries: Overbooking is only possible for the amount in ongoing inbound deliveries",
+                        "description": "Status regarding the possibility of overbookinge\n- possible: Overbooking is possiblee\n- not_possible: Overbooking is not possible\n- only_inbound_deliveries: Overbooking is only possible for the amount in ongoing inbound deliveries",
                         "type": "string",
                         "enum": [
                             "possible",
@@ -9362,7 +9361,6 @@
                     {
                         "properties": {
                             "data": {
-                                "description": "",
                                 "type": "array",
                                 "items": {
                                     "$ref": "#/components/schemas/stock"
@@ -9402,7 +9400,6 @@
                     {
                         "properties": {
                             "data": {
-                                "description": "",
                                 "type": "array",
                                 "items": {
                                     "$ref": "#/components/schemas/supplier"
@@ -9470,7 +9467,7 @@
                                 "nullable": true
                             },
                             "shopifyOverwriteCustomerEmailEnabled": {
-                                "description": "Flag to mark if it is allowed to set a customer's email in shopify. If false the shop email will be used as default.",
+                                "description": "Flag to mark if it is allowed to set a customer's email in shopify. If false the shop email will be\nused as default.",
                                 "type": "boolean",
                                 "nullable": true
                             }
