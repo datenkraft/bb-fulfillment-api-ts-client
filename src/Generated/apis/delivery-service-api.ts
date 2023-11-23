@@ -26,6 +26,8 @@ import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObj
 import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base';
 // @ts-ignore
 import { DeliveryServiceCollection } from '../models';
+// @ts-ignore
+import { ErrorResponse } from '../models';
 /**
  * DeliveryServiceApi - axios parameter creator
  * @export

@@ -15,18 +15,19 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { NewOrderItemAllOf } from './new-order-item-all-of';
-// May contain unused imports in some cases
-// @ts-ignore
 import { NewOrderItemPrice } from './new-order-item-price';
-// May contain unused imports in some cases
-// @ts-ignore
-import { OrderItem } from './order-item';
 
 /**
- * @type NewOrderItem
+ * 
  * @export
+ * @interface NewOrderItemAllOf
  */
-export type NewOrderItem = NewOrderItemAllOf & OrderItem;
-
+export interface NewOrderItemAllOf {
+    /**
+     * 
+     * @type {NewOrderItemPrice}
+     * @memberof NewOrderItemAllOf
+     */
+    'price'?: NewOrderItemPrice | null;
+}
 
