@@ -33,7 +33,7 @@ export interface CollectionPagination {
      */
     'pageSize'?: number;
     /**
-     * The total number of items in the collection.\\ Note: This can be null depending on the used paginationMode.
+     * The total number of items in the collection.\\ Note: This can be null depending on the used paginationMode
      * @type {number}
      * @memberof CollectionPagination
      */
