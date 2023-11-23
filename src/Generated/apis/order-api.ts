@@ -39,7 +39,7 @@ export const OrderApiAxiosParamCreator = function (configuration?: Configuration
         /**
          * Cancel the order specified by the given order number (set in param orderNumber).
          * @summary Cancel an order.
-         * @param {string} orderNumber The number the order is refered by.
+         * @param {string} orderNumber The number the order is referred by.
          * @param {string} [shopCode] The shopCode used in DISCO (optional).
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -133,7 +133,7 @@ export const OrderApiAxiosParamCreator = function (configuration?: Configuration
         /**
          * Add a new order referenced by the given orderNumber.
          * @summary Add a new order.
-         * @param {string} orderNumber The number the order should be refered by. This number is user defined, must be unique and has a maximum length (check maxLength field).
+         * @param {string} orderNumber The number the order should be referred by. This number is user defined, must be unique and has a maximum length (check maxLength field).
          * @param {NewOrder} newOrder 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -191,7 +191,7 @@ export const OrderApiFp = function(configuration?: Configuration) {
         /**
          * Cancel the order specified by the given order number (set in param orderNumber).
          * @summary Cancel an order.
-         * @param {string} orderNumber The number the order is refered by.
+         * @param {string} orderNumber The number the order is referred by.
          * @param {string} [shopCode] The shopCode used in DISCO (optional).
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -215,7 +215,7 @@ export const OrderApiFp = function(configuration?: Configuration) {
         /**
          * Add a new order referenced by the given orderNumber.
          * @summary Add a new order.
-         * @param {string} orderNumber The number the order should be refered by. This number is user defined, must be unique and has a maximum length (check maxLength field).
+         * @param {string} orderNumber The number the order should be referred by. This number is user defined, must be unique and has a maximum length (check maxLength field).
          * @param {NewOrder} newOrder 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -237,7 +237,7 @@ export const OrderApiFactory = function (configuration?: Configuration, basePath
         /**
          * Cancel the order specified by the given order number (set in param orderNumber).
          * @summary Cancel an order.
-         * @param {string} orderNumber The number the order is refered by.
+         * @param {string} orderNumber The number the order is referred by.
          * @param {string} [shopCode] The shopCode used in DISCO (optional).
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -259,7 +259,7 @@ export const OrderApiFactory = function (configuration?: Configuration, basePath
         /**
          * Add a new order referenced by the given orderNumber.
          * @summary Add a new order.
-         * @param {string} orderNumber The number the order should be refered by. This number is user defined, must be unique and has a maximum length (check maxLength field).
+         * @param {string} orderNumber The number the order should be referred by. This number is user defined, must be unique and has a maximum length (check maxLength field).
          * @param {NewOrder} newOrder 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -279,7 +279,7 @@ export interface OrderApiInterface {
     /**
      * Cancel the order specified by the given order number (set in param orderNumber).
      * @summary Cancel an order.
-     * @param {string} orderNumber The number the order is refered by.
+     * @param {string} orderNumber The number the order is referred by.
      * @param {string} [shopCode] The shopCode used in DISCO (optional).
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -301,7 +301,7 @@ export interface OrderApiInterface {
     /**
      * Add a new order referenced by the given orderNumber.
      * @summary Add a new order.
-     * @param {string} orderNumber The number the order should be refered by. This number is user defined, must be unique and has a maximum length (check maxLength field).
+     * @param {string} orderNumber The number the order should be referred by. This number is user defined, must be unique and has a maximum length (check maxLength field).
      * @param {NewOrder} newOrder 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -321,7 +321,7 @@ export class OrderApi extends BaseAPI implements OrderApiInterface {
     /**
      * Cancel the order specified by the given order number (set in param orderNumber).
      * @summary Cancel an order.
-     * @param {string} orderNumber The number the order is refered by.
+     * @param {string} orderNumber The number the order is referred by.
      * @param {string} [shopCode] The shopCode used in DISCO (optional).
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -347,7 +347,7 @@ export class OrderApi extends BaseAPI implements OrderApiInterface {
     /**
      * Add a new order referenced by the given orderNumber.
      * @summary Add a new order.
-     * @param {string} orderNumber The number the order should be refered by. This number is user defined, must be unique and has a maximum length (check maxLength field).
+     * @param {string} orderNumber The number the order should be referred by. This number is user defined, must be unique and has a maximum length (check maxLength field).
      * @param {NewOrder} newOrder 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}

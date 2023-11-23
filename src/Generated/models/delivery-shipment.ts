@@ -36,7 +36,7 @@ export interface DeliveryShipment {
      */
     'status'?: DeliveryShipmentStatusEnum;
     /**
-     * The delivery service used to send this delivery. The codes of supported delivery services can be retrieved from the \'GET /delivery-service\' endpoint.
+     * The delivery service used to send this delivery. \\ The codes of supported delivery services can be retrieved from the \'GET /delivery-service\' endpoint.
      * @type {string}
      * @memberof DeliveryShipment
      */
