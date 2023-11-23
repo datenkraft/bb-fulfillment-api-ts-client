@@ -182,7 +182,7 @@ export const ProductDraftApiAxiosParamCreator = function (configuration?: Config
          * @param {string} filterShopCode The shopCode used internally to distinguish between clients.
          * @param {number} [page] The page to read. Default is the first page.
          * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
-         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. \\ This can mean loss of performance.
+         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
          * @param {string} [filterProductNumber] Filter by a productNumber
          * @param {'pending' | 'accepted' | 'declined'} [filterProductDraftStatus] Filter by a product draft status
          * @param {string} [filterSearch] Search for parts of a productNumber
@@ -401,7 +401,7 @@ export const ProductDraftApiFp = function(configuration?: Configuration) {
          * @param {string} filterShopCode The shopCode used internally to distinguish between clients.
          * @param {number} [page] The page to read. Default is the first page.
          * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
-         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. \\ This can mean loss of performance.
+         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
          * @param {string} [filterProductNumber] Filter by a productNumber
          * @param {'pending' | 'accepted' | 'declined'} [filterProductDraftStatus] Filter by a product draft status
          * @param {string} [filterSearch] Search for parts of a productNumber
@@ -482,7 +482,7 @@ export const ProductDraftApiFactory = function (configuration?: Configuration, b
          * @param {string} filterShopCode The shopCode used internally to distinguish between clients.
          * @param {number} [page] The page to read. Default is the first page.
          * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
-         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. \\ This can mean loss of performance.
+         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
          * @param {string} [filterProductNumber] Filter by a productNumber
          * @param {'pending' | 'accepted' | 'declined'} [filterProductDraftStatus] Filter by a product draft status
          * @param {string} [filterSearch] Search for parts of a productNumber
@@ -559,7 +559,7 @@ export interface ProductDraftApiInterface {
      * @param {string} filterShopCode The shopCode used internally to distinguish between clients.
      * @param {number} [page] The page to read. Default is the first page.
      * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
-     * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. \\ This can mean loss of performance.
+     * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
      * @param {string} [filterProductNumber] Filter by a productNumber
      * @param {'pending' | 'accepted' | 'declined'} [filterProductDraftStatus] Filter by a product draft status
      * @param {string} [filterSearch] Search for parts of a productNumber
@@ -642,7 +642,7 @@ export class ProductDraftApi extends BaseAPI implements ProductDraftApiInterface
      * @param {string} filterShopCode The shopCode used internally to distinguish between clients.
      * @param {number} [page] The page to read. Default is the first page.
      * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
-     * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. \\ This can mean loss of performance.
+     * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
      * @param {string} [filterProductNumber] Filter by a productNumber
      * @param {'pending' | 'accepted' | 'declined'} [filterProductDraftStatus] Filter by a product draft status
      * @param {string} [filterSearch] Search for parts of a productNumber

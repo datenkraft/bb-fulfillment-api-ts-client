@@ -88,7 +88,7 @@ export const ReconsignmentApiAxiosParamCreator = function (configuration?: Confi
          * @summary Read the reconsignments in the given dateRange.
          * @param {number} [page] The page to read. Default is the first page.
          * @param {number} [pageSize] The maximum size per page is 100. Default is 20.
-         * @param {'default' | 'totalCount'} [paginationMode] \&#39;default\&#39;: Total count will not be calculated. \&#39;totalCount\&#39;: The total number of entries for the request will be calculated. This can mean loss of performance. If not given, \&#39;default\&#39; pagination mode is used.
+         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
          * @param {string} [sortBy] Sort the results by one or more comma-separated sort criteria, with the criterion specified first having priority.  Available sort orders: - asc: ascending order - desc: descending order  Available fields for sorting: - reconsignmentDate  The default sort order is reconsignmentDate:desc.
          * @param {string} [filterShopCode] The shop to which the reconsignments belongs to.
          * @param {string} [filterOrderNumber] The order number which the reconsignments belong to.
@@ -192,7 +192,7 @@ export const ReconsignmentApiFp = function(configuration?: Configuration) {
          * @summary Read the reconsignments in the given dateRange.
          * @param {number} [page] The page to read. Default is the first page.
          * @param {number} [pageSize] The maximum size per page is 100. Default is 20.
-         * @param {'default' | 'totalCount'} [paginationMode] \&#39;default\&#39;: Total count will not be calculated. \&#39;totalCount\&#39;: The total number of entries for the request will be calculated. This can mean loss of performance. If not given, \&#39;default\&#39; pagination mode is used.
+         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
          * @param {string} [sortBy] Sort the results by one or more comma-separated sort criteria, with the criterion specified first having priority.  Available sort orders: - asc: ascending order - desc: descending order  Available fields for sorting: - reconsignmentDate  The default sort order is reconsignmentDate:desc.
          * @param {string} [filterShopCode] The shop to which the reconsignments belongs to.
          * @param {string} [filterOrderNumber] The order number which the reconsignments belong to.
@@ -231,7 +231,7 @@ export const ReconsignmentApiFactory = function (configuration?: Configuration, 
          * @summary Read the reconsignments in the given dateRange.
          * @param {number} [page] The page to read. Default is the first page.
          * @param {number} [pageSize] The maximum size per page is 100. Default is 20.
-         * @param {'default' | 'totalCount'} [paginationMode] \&#39;default\&#39;: Total count will not be calculated. \&#39;totalCount\&#39;: The total number of entries for the request will be calculated. This can mean loss of performance. If not given, \&#39;default\&#39; pagination mode is used.
+         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
          * @param {string} [sortBy] Sort the results by one or more comma-separated sort criteria, with the criterion specified first having priority.  Available sort orders: - asc: ascending order - desc: descending order  Available fields for sorting: - reconsignmentDate  The default sort order is reconsignmentDate:desc.
          * @param {string} [filterShopCode] The shop to which the reconsignments belongs to.
          * @param {string} [filterOrderNumber] The order number which the reconsignments belong to.
@@ -268,7 +268,7 @@ export interface ReconsignmentApiInterface {
      * @summary Read the reconsignments in the given dateRange.
      * @param {number} [page] The page to read. Default is the first page.
      * @param {number} [pageSize] The maximum size per page is 100. Default is 20.
-     * @param {'default' | 'totalCount'} [paginationMode] \&#39;default\&#39;: Total count will not be calculated. \&#39;totalCount\&#39;: The total number of entries for the request will be calculated. This can mean loss of performance. If not given, \&#39;default\&#39; pagination mode is used.
+     * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
      * @param {string} [sortBy] Sort the results by one or more comma-separated sort criteria, with the criterion specified first having priority.  Available sort orders: - asc: ascending order - desc: descending order  Available fields for sorting: - reconsignmentDate  The default sort order is reconsignmentDate:desc.
      * @param {string} [filterShopCode] The shop to which the reconsignments belongs to.
      * @param {string} [filterOrderNumber] The order number which the reconsignments belong to.
@@ -307,7 +307,7 @@ export class ReconsignmentApi extends BaseAPI implements ReconsignmentApiInterfa
      * @summary Read the reconsignments in the given dateRange.
      * @param {number} [page] The page to read. Default is the first page.
      * @param {number} [pageSize] The maximum size per page is 100. Default is 20.
-     * @param {'default' | 'totalCount'} [paginationMode] \&#39;default\&#39;: Total count will not be calculated. \&#39;totalCount\&#39;: The total number of entries for the request will be calculated. This can mean loss of performance. If not given, \&#39;default\&#39; pagination mode is used.
+     * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
      * @param {string} [sortBy] Sort the results by one or more comma-separated sort criteria, with the criterion specified first having priority.  Available sort orders: - asc: ascending order - desc: descending order  Available fields for sorting: - reconsignmentDate  The default sort order is reconsignmentDate:desc.
      * @param {string} [filterShopCode] The shop to which the reconsignments belongs to.
      * @param {string} [filterOrderNumber] The order number which the reconsignments belong to.

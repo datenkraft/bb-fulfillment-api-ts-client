@@ -48,19 +48,19 @@ export interface ProductJournal {
      */
     'reason'?: ProductJournalReasonEnum;
     /**
-     * The change of the stock.\\ Note: This might not be set for all reasons.
+     * The change of the stock.\\Note: This might not be set for all reasons.
      * @type {number}
      * @memberof ProductJournal
      */
     'stockDelta'?: number | null;
     /**
-     * The old value of the stock before applying the delta.\\ Note: This might not be set for all reasons.
+     * The old value of the stock before applying the delta.\\Note: This might not be set for all reasons.
      * @type {number}
      * @memberof ProductJournal
      */
     'stockOld'?: number | null;
     /**
-     * The new value of the stock when the journal entry was created.\\ Note: This might not be set for all reasons.
+     * The new value of the stock when the journal entry was created.\\Note: This might not be set for all reasons.
      * @type {number}
      * @memberof ProductJournal
      */

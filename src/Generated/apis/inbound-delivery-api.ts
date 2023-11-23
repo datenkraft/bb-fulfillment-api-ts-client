@@ -41,10 +41,10 @@ import { NewInboundDelivery } from '../models';
 export const InboundDeliveryApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
-         * Cancel a inbound delivery referenced by the given inboundDeliveryNumber.\\ An inboundDeliveryNumber from a canceled inbound delivery cannot be used for a new inbound delivery, because they must always be unique.
+         * Cancel a inbound delivery referenced by the given inboundDeliveryNumber. \\ An inboundDeliveryNumber from a canceled inbound delivery cannot be used for a new inbound delivery, because they must always be unique.
          * @summary Cancel a inbound delivery.
-         * @param {string} inboundDeliveryNumber The number the inbound delivery should be refered by. This number is user defined, must be unique and has a maximum length (check maxLength field).
-         * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+         * @param {string} inboundDeliveryNumber The number the inbound delivery should be referred by. \\ This number is user defined, must be unique and has a maximum length (check maxLength field).
+         * @param {string} [shopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -91,7 +91,7 @@ export const InboundDeliveryApiAxiosParamCreator = function (configuration?: Con
          * Get an inbound delivery by inbound delivery number.
          * @summary Get an inbound delivery by inbound delivery number.
          * @param {string} inboundDeliveryNumber The inbound delivery number as defined during the creation of the inbound delivery.
-         * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+         * @param {string} [shopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -180,10 +180,10 @@ export const InboundDeliveryApiAxiosParamCreator = function (configuration?: Con
          * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
          * @param {string} [sortBy] Sort the results by one or more comma-separated sort criteria, with the criterion specified first having priority.  Available sort orders: - asc: ascending order - desc: descending order  Available fields for sorting: - expectedDeliveryDate  The default sort order is expectedDeliveryDate:desc.
          * @param {string} [filterStatus] Status of the inbound delivery (optional).  The status for not yet completed is subject to change. you may poll for changes. - open: The inbound delivery has not yet been delivered. - in_progress: The inbound delivery is being processed in our warehouse. - completed: The inbound delivery has been processed in our warehouse. - deleted: The inbound delivery has been deleted.
-         * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+         * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
          * @param {string} [filterExpectedDeliveryDateFrom] The start date (inclusive) in format Y-m-d for which inbound deliveries should be returned (regarding the expected delivery date).
          * @param {string} [filterExpectedDeliveryDateTo] The end date (inclusive) in format Y-m-d for which inbound deliveries should be returned (regarding the expected delivery date).
-         * @param {string} [filterSearch] filter for inbound delivery search.\\ \\ Usage: - Provide one or multiple search terms to filter results. - Multiple search terms are separated by spaces. - The search is not case sensitive. - The search is enabled for the fields inboundDeliveryName and inboundDeliveryNumber (without the numberPrefix of the associated supplier). - Each search term filters the response for inbound deliveries where at least one of the fields contains the search term. - For example, filter[search]&#x3D;\&#39;term1 term2\&#39; will filter the result for products where \&#39;term1\&#39; is found in any field and \&#39;term2\&#39; is also found in any field.\\ If only \&#39;term1\&#39; or \&#39;term2\&#39; is found in the fields, the product is not included in the results.
+         * @param {string} [filterSearch] filter for inbound delivery search.  Usage: - Provide one or multiple search terms to filter results. - Multiple search terms are separated by spaces. - The search is not case sensitive. - The search is enabled for the fields inboundDeliveryName and inboundDeliveryNumber (without the numberPrefix of the associated supplier). - Each search term filters the response for inbound deliveries where at least one of the fields contains the search term. - For example, filter[search]&#x3D;\&#39;term1 term2\&#39; will filter the result for products where \&#39;term1\&#39; is found in any field and \&#39;term2\&#39; is also found in any field. If only \&#39;term1\&#39; or \&#39;term2\&#39; is found in the fields, the product is not included in the results.
          * @param {string} [filterCreateDateFrom] The start date (inclusive) in ISO 8601 format for which inbound deliveries should be returned (regarding the creation date).
          * @param {string} [filterCreateDateTo] The end date (inclusive) in ISO 8601 format for which inbound deliveries should be returned (regarding the creation date).
          * @param {*} [options] Override http request option.
@@ -277,8 +277,8 @@ export const InboundDeliveryApiAxiosParamCreator = function (configuration?: Con
          * Allows to download a document associated with the given inbound delivery.
          * @summary Download inbound delivery related documents
          * @param {string} inboundDeliveryNumber The inbound delivery number as defined during the creation of the inbound delivery.
-         * @param {'supplierDeliveryLabel' | 'details'} documentCode The document type to download. The file format is determined by the Accept request header.\\ Note: only a limited amount of document type to file format combinations are available: - supplierDeliveryLabel:\\ the label to put on the inbound delivery for warehouse processing.\\ Accept header: application/pdf - details:\\ a spreadsheet containing details about the inbound delivery.\\ Accept header: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet     
-         * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+         * @param {'supplierDeliveryLabel' | 'details'} documentCode The document type to download. The file format is determined by the Accept request header.  Note: only a limited amount of document type to file format combinations are available: - supplierDeliveryLabel: the label to put on the inbound delivery for warehouse processing. Accept header: application/pdf - details: a spreadsheet containing details about the inbound delivery. Accept header: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+         * @param {string} [shopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -376,9 +376,9 @@ export const InboundDeliveryApiAxiosParamCreator = function (configuration?: Con
         /**
          * Add a new inbound delivery referenced by the given deliveryNumber.
          * @summary Add a new inbound delivery.
-         * @param {string} inboundDeliveryNumber The number the inbound delivery should be refered by.\\ This number is user defined, must be unique and has a maximum length (check maxLength field).\\ Please ensure that it does not contain any of the following character sequences: \&#39;/\&#39;, \&#39;%2F\&#39;, \&#39;%2f\&#39;, \&#39;?\&#39;, \&#39;%3F\&#39;, \&#39;%3f\&#39;, \&#39;#\&#39;, \&#39;%23\&#39;, \&#39;&amp;\&#39;, \&#39;%26\&#39;. Using any of these will result in the route not being handled correctly.
+         * @param {string} inboundDeliveryNumber The number the inbound delivery should be referred by. \\ This number is user defined, must be unique and has a maximum length (check maxLength field). \\ Please ensure that it does not contain any of the following character sequences: \&#39;/\&#39;, \&#39;%2F\&#39;, \&#39;%2f\&#39;, \&#39;?\&#39;, \&#39;%3F\&#39;, \&#39;%3f\&#39;, \&#39;#\&#39;, \&#39;%23\&#39;, \&#39;&amp;\&#39;, \&#39;%26\&#39;. \\ Using any of these will result in the route not being handled correctly.
          * @param {NewInboundDelivery} newInboundDelivery 
-         * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+         * @param {string} [shopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -437,10 +437,10 @@ export const InboundDeliveryApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = InboundDeliveryApiAxiosParamCreator(configuration)
     return {
         /**
-         * Cancel a inbound delivery referenced by the given inboundDeliveryNumber.\\ An inboundDeliveryNumber from a canceled inbound delivery cannot be used for a new inbound delivery, because they must always be unique.
+         * Cancel a inbound delivery referenced by the given inboundDeliveryNumber. \\ An inboundDeliveryNumber from a canceled inbound delivery cannot be used for a new inbound delivery, because they must always be unique.
          * @summary Cancel a inbound delivery.
-         * @param {string} inboundDeliveryNumber The number the inbound delivery should be refered by. This number is user defined, must be unique and has a maximum length (check maxLength field).
-         * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+         * @param {string} inboundDeliveryNumber The number the inbound delivery should be referred by. \\ This number is user defined, must be unique and has a maximum length (check maxLength field).
+         * @param {string} [shopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -452,7 +452,7 @@ export const InboundDeliveryApiFp = function(configuration?: Configuration) {
          * Get an inbound delivery by inbound delivery number.
          * @summary Get an inbound delivery by inbound delivery number.
          * @param {string} inboundDeliveryNumber The inbound delivery number as defined during the creation of the inbound delivery.
-         * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+         * @param {string} [shopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -478,10 +478,10 @@ export const InboundDeliveryApiFp = function(configuration?: Configuration) {
          * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
          * @param {string} [sortBy] Sort the results by one or more comma-separated sort criteria, with the criterion specified first having priority.  Available sort orders: - asc: ascending order - desc: descending order  Available fields for sorting: - expectedDeliveryDate  The default sort order is expectedDeliveryDate:desc.
          * @param {string} [filterStatus] Status of the inbound delivery (optional).  The status for not yet completed is subject to change. you may poll for changes. - open: The inbound delivery has not yet been delivered. - in_progress: The inbound delivery is being processed in our warehouse. - completed: The inbound delivery has been processed in our warehouse. - deleted: The inbound delivery has been deleted.
-         * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+         * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
          * @param {string} [filterExpectedDeliveryDateFrom] The start date (inclusive) in format Y-m-d for which inbound deliveries should be returned (regarding the expected delivery date).
          * @param {string} [filterExpectedDeliveryDateTo] The end date (inclusive) in format Y-m-d for which inbound deliveries should be returned (regarding the expected delivery date).
-         * @param {string} [filterSearch] filter for inbound delivery search.\\ \\ Usage: - Provide one or multiple search terms to filter results. - Multiple search terms are separated by spaces. - The search is not case sensitive. - The search is enabled for the fields inboundDeliveryName and inboundDeliveryNumber (without the numberPrefix of the associated supplier). - Each search term filters the response for inbound deliveries where at least one of the fields contains the search term. - For example, filter[search]&#x3D;\&#39;term1 term2\&#39; will filter the result for products where \&#39;term1\&#39; is found in any field and \&#39;term2\&#39; is also found in any field.\\ If only \&#39;term1\&#39; or \&#39;term2\&#39; is found in the fields, the product is not included in the results.
+         * @param {string} [filterSearch] filter for inbound delivery search.  Usage: - Provide one or multiple search terms to filter results. - Multiple search terms are separated by spaces. - The search is not case sensitive. - The search is enabled for the fields inboundDeliveryName and inboundDeliveryNumber (without the numberPrefix of the associated supplier). - Each search term filters the response for inbound deliveries where at least one of the fields contains the search term. - For example, filter[search]&#x3D;\&#39;term1 term2\&#39; will filter the result for products where \&#39;term1\&#39; is found in any field and \&#39;term2\&#39; is also found in any field. If only \&#39;term1\&#39; or \&#39;term2\&#39; is found in the fields, the product is not included in the results.
          * @param {string} [filterCreateDateFrom] The start date (inclusive) in ISO 8601 format for which inbound deliveries should be returned (regarding the creation date).
          * @param {string} [filterCreateDateTo] The end date (inclusive) in ISO 8601 format for which inbound deliveries should be returned (regarding the creation date).
          * @param {*} [options] Override http request option.
@@ -495,8 +495,8 @@ export const InboundDeliveryApiFp = function(configuration?: Configuration) {
          * Allows to download a document associated with the given inbound delivery.
          * @summary Download inbound delivery related documents
          * @param {string} inboundDeliveryNumber The inbound delivery number as defined during the creation of the inbound delivery.
-         * @param {'supplierDeliveryLabel' | 'details'} documentCode The document type to download. The file format is determined by the Accept request header.\\ Note: only a limited amount of document type to file format combinations are available: - supplierDeliveryLabel:\\ the label to put on the inbound delivery for warehouse processing.\\ Accept header: application/pdf - details:\\ a spreadsheet containing details about the inbound delivery.\\ Accept header: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet     
-         * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+         * @param {'supplierDeliveryLabel' | 'details'} documentCode The document type to download. The file format is determined by the Accept request header.  Note: only a limited amount of document type to file format combinations are available: - supplierDeliveryLabel: the label to put on the inbound delivery for warehouse processing. Accept header: application/pdf - details: a spreadsheet containing details about the inbound delivery. Accept header: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+         * @param {string} [shopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -518,9 +518,9 @@ export const InboundDeliveryApiFp = function(configuration?: Configuration) {
         /**
          * Add a new inbound delivery referenced by the given deliveryNumber.
          * @summary Add a new inbound delivery.
-         * @param {string} inboundDeliveryNumber The number the inbound delivery should be refered by.\\ This number is user defined, must be unique and has a maximum length (check maxLength field).\\ Please ensure that it does not contain any of the following character sequences: \&#39;/\&#39;, \&#39;%2F\&#39;, \&#39;%2f\&#39;, \&#39;?\&#39;, \&#39;%3F\&#39;, \&#39;%3f\&#39;, \&#39;#\&#39;, \&#39;%23\&#39;, \&#39;&amp;\&#39;, \&#39;%26\&#39;. Using any of these will result in the route not being handled correctly.
+         * @param {string} inboundDeliveryNumber The number the inbound delivery should be referred by. \\ This number is user defined, must be unique and has a maximum length (check maxLength field). \\ Please ensure that it does not contain any of the following character sequences: \&#39;/\&#39;, \&#39;%2F\&#39;, \&#39;%2f\&#39;, \&#39;?\&#39;, \&#39;%3F\&#39;, \&#39;%3f\&#39;, \&#39;#\&#39;, \&#39;%23\&#39;, \&#39;&amp;\&#39;, \&#39;%26\&#39;. \\ Using any of these will result in the route not being handled correctly.
          * @param {NewInboundDelivery} newInboundDelivery 
-         * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+         * @param {string} [shopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -539,10 +539,10 @@ export const InboundDeliveryApiFactory = function (configuration?: Configuration
     const localVarFp = InboundDeliveryApiFp(configuration)
     return {
         /**
-         * Cancel a inbound delivery referenced by the given inboundDeliveryNumber.\\ An inboundDeliveryNumber from a canceled inbound delivery cannot be used for a new inbound delivery, because they must always be unique.
+         * Cancel a inbound delivery referenced by the given inboundDeliveryNumber. \\ An inboundDeliveryNumber from a canceled inbound delivery cannot be used for a new inbound delivery, because they must always be unique.
          * @summary Cancel a inbound delivery.
-         * @param {string} inboundDeliveryNumber The number the inbound delivery should be refered by. This number is user defined, must be unique and has a maximum length (check maxLength field).
-         * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+         * @param {string} inboundDeliveryNumber The number the inbound delivery should be referred by. \\ This number is user defined, must be unique and has a maximum length (check maxLength field).
+         * @param {string} [shopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -553,7 +553,7 @@ export const InboundDeliveryApiFactory = function (configuration?: Configuration
          * Get an inbound delivery by inbound delivery number.
          * @summary Get an inbound delivery by inbound delivery number.
          * @param {string} inboundDeliveryNumber The inbound delivery number as defined during the creation of the inbound delivery.
-         * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+         * @param {string} [shopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -577,10 +577,10 @@ export const InboundDeliveryApiFactory = function (configuration?: Configuration
          * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
          * @param {string} [sortBy] Sort the results by one or more comma-separated sort criteria, with the criterion specified first having priority.  Available sort orders: - asc: ascending order - desc: descending order  Available fields for sorting: - expectedDeliveryDate  The default sort order is expectedDeliveryDate:desc.
          * @param {string} [filterStatus] Status of the inbound delivery (optional).  The status for not yet completed is subject to change. you may poll for changes. - open: The inbound delivery has not yet been delivered. - in_progress: The inbound delivery is being processed in our warehouse. - completed: The inbound delivery has been processed in our warehouse. - deleted: The inbound delivery has been deleted.
-         * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+         * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
          * @param {string} [filterExpectedDeliveryDateFrom] The start date (inclusive) in format Y-m-d for which inbound deliveries should be returned (regarding the expected delivery date).
          * @param {string} [filterExpectedDeliveryDateTo] The end date (inclusive) in format Y-m-d for which inbound deliveries should be returned (regarding the expected delivery date).
-         * @param {string} [filterSearch] filter for inbound delivery search.\\ \\ Usage: - Provide one or multiple search terms to filter results. - Multiple search terms are separated by spaces. - The search is not case sensitive. - The search is enabled for the fields inboundDeliveryName and inboundDeliveryNumber (without the numberPrefix of the associated supplier). - Each search term filters the response for inbound deliveries where at least one of the fields contains the search term. - For example, filter[search]&#x3D;\&#39;term1 term2\&#39; will filter the result for products where \&#39;term1\&#39; is found in any field and \&#39;term2\&#39; is also found in any field.\\ If only \&#39;term1\&#39; or \&#39;term2\&#39; is found in the fields, the product is not included in the results.
+         * @param {string} [filterSearch] filter for inbound delivery search.  Usage: - Provide one or multiple search terms to filter results. - Multiple search terms are separated by spaces. - The search is not case sensitive. - The search is enabled for the fields inboundDeliveryName and inboundDeliveryNumber (without the numberPrefix of the associated supplier). - Each search term filters the response for inbound deliveries where at least one of the fields contains the search term. - For example, filter[search]&#x3D;\&#39;term1 term2\&#39; will filter the result for products where \&#39;term1\&#39; is found in any field and \&#39;term2\&#39; is also found in any field. If only \&#39;term1\&#39; or \&#39;term2\&#39; is found in the fields, the product is not included in the results.
          * @param {string} [filterCreateDateFrom] The start date (inclusive) in ISO 8601 format for which inbound deliveries should be returned (regarding the creation date).
          * @param {string} [filterCreateDateTo] The end date (inclusive) in ISO 8601 format for which inbound deliveries should be returned (regarding the creation date).
          * @param {*} [options] Override http request option.
@@ -593,8 +593,8 @@ export const InboundDeliveryApiFactory = function (configuration?: Configuration
          * Allows to download a document associated with the given inbound delivery.
          * @summary Download inbound delivery related documents
          * @param {string} inboundDeliveryNumber The inbound delivery number as defined during the creation of the inbound delivery.
-         * @param {'supplierDeliveryLabel' | 'details'} documentCode The document type to download. The file format is determined by the Accept request header.\\ Note: only a limited amount of document type to file format combinations are available: - supplierDeliveryLabel:\\ the label to put on the inbound delivery for warehouse processing.\\ Accept header: application/pdf - details:\\ a spreadsheet containing details about the inbound delivery.\\ Accept header: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet     
-         * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+         * @param {'supplierDeliveryLabel' | 'details'} documentCode The document type to download. The file format is determined by the Accept request header.  Note: only a limited amount of document type to file format combinations are available: - supplierDeliveryLabel: the label to put on the inbound delivery for warehouse processing. Accept header: application/pdf - details: a spreadsheet containing details about the inbound delivery. Accept header: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+         * @param {string} [shopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -614,9 +614,9 @@ export const InboundDeliveryApiFactory = function (configuration?: Configuration
         /**
          * Add a new inbound delivery referenced by the given deliveryNumber.
          * @summary Add a new inbound delivery.
-         * @param {string} inboundDeliveryNumber The number the inbound delivery should be refered by.\\ This number is user defined, must be unique and has a maximum length (check maxLength field).\\ Please ensure that it does not contain any of the following character sequences: \&#39;/\&#39;, \&#39;%2F\&#39;, \&#39;%2f\&#39;, \&#39;?\&#39;, \&#39;%3F\&#39;, \&#39;%3f\&#39;, \&#39;#\&#39;, \&#39;%23\&#39;, \&#39;&amp;\&#39;, \&#39;%26\&#39;. Using any of these will result in the route not being handled correctly.
+         * @param {string} inboundDeliveryNumber The number the inbound delivery should be referred by. \\ This number is user defined, must be unique and has a maximum length (check maxLength field). \\ Please ensure that it does not contain any of the following character sequences: \&#39;/\&#39;, \&#39;%2F\&#39;, \&#39;%2f\&#39;, \&#39;?\&#39;, \&#39;%3F\&#39;, \&#39;%3f\&#39;, \&#39;#\&#39;, \&#39;%23\&#39;, \&#39;&amp;\&#39;, \&#39;%26\&#39;. \\ Using any of these will result in the route not being handled correctly.
          * @param {NewInboundDelivery} newInboundDelivery 
-         * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+         * @param {string} [shopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -633,10 +633,10 @@ export const InboundDeliveryApiFactory = function (configuration?: Configuration
  */
 export interface InboundDeliveryApiInterface {
     /**
-     * Cancel a inbound delivery referenced by the given inboundDeliveryNumber.\\ An inboundDeliveryNumber from a canceled inbound delivery cannot be used for a new inbound delivery, because they must always be unique.
+     * Cancel a inbound delivery referenced by the given inboundDeliveryNumber. \\ An inboundDeliveryNumber from a canceled inbound delivery cannot be used for a new inbound delivery, because they must always be unique.
      * @summary Cancel a inbound delivery.
-     * @param {string} inboundDeliveryNumber The number the inbound delivery should be refered by. This number is user defined, must be unique and has a maximum length (check maxLength field).
-     * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+     * @param {string} inboundDeliveryNumber The number the inbound delivery should be referred by. \\ This number is user defined, must be unique and has a maximum length (check maxLength field).
+     * @param {string} [shopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof InboundDeliveryApiInterface
@@ -647,7 +647,7 @@ export interface InboundDeliveryApiInterface {
      * Get an inbound delivery by inbound delivery number.
      * @summary Get an inbound delivery by inbound delivery number.
      * @param {string} inboundDeliveryNumber The inbound delivery number as defined during the creation of the inbound delivery.
-     * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+     * @param {string} [shopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof InboundDeliveryApiInterface
@@ -671,10 +671,10 @@ export interface InboundDeliveryApiInterface {
      * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
      * @param {string} [sortBy] Sort the results by one or more comma-separated sort criteria, with the criterion specified first having priority.  Available sort orders: - asc: ascending order - desc: descending order  Available fields for sorting: - expectedDeliveryDate  The default sort order is expectedDeliveryDate:desc.
      * @param {string} [filterStatus] Status of the inbound delivery (optional).  The status for not yet completed is subject to change. you may poll for changes. - open: The inbound delivery has not yet been delivered. - in_progress: The inbound delivery is being processed in our warehouse. - completed: The inbound delivery has been processed in our warehouse. - deleted: The inbound delivery has been deleted.
-     * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+     * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
      * @param {string} [filterExpectedDeliveryDateFrom] The start date (inclusive) in format Y-m-d for which inbound deliveries should be returned (regarding the expected delivery date).
      * @param {string} [filterExpectedDeliveryDateTo] The end date (inclusive) in format Y-m-d for which inbound deliveries should be returned (regarding the expected delivery date).
-     * @param {string} [filterSearch] filter for inbound delivery search.\\ \\ Usage: - Provide one or multiple search terms to filter results. - Multiple search terms are separated by spaces. - The search is not case sensitive. - The search is enabled for the fields inboundDeliveryName and inboundDeliveryNumber (without the numberPrefix of the associated supplier). - Each search term filters the response for inbound deliveries where at least one of the fields contains the search term. - For example, filter[search]&#x3D;\&#39;term1 term2\&#39; will filter the result for products where \&#39;term1\&#39; is found in any field and \&#39;term2\&#39; is also found in any field.\\ If only \&#39;term1\&#39; or \&#39;term2\&#39; is found in the fields, the product is not included in the results.
+     * @param {string} [filterSearch] filter for inbound delivery search.  Usage: - Provide one or multiple search terms to filter results. - Multiple search terms are separated by spaces. - The search is not case sensitive. - The search is enabled for the fields inboundDeliveryName and inboundDeliveryNumber (without the numberPrefix of the associated supplier). - Each search term filters the response for inbound deliveries where at least one of the fields contains the search term. - For example, filter[search]&#x3D;\&#39;term1 term2\&#39; will filter the result for products where \&#39;term1\&#39; is found in any field and \&#39;term2\&#39; is also found in any field. If only \&#39;term1\&#39; or \&#39;term2\&#39; is found in the fields, the product is not included in the results.
      * @param {string} [filterCreateDateFrom] The start date (inclusive) in ISO 8601 format for which inbound deliveries should be returned (regarding the creation date).
      * @param {string} [filterCreateDateTo] The end date (inclusive) in ISO 8601 format for which inbound deliveries should be returned (regarding the creation date).
      * @param {*} [options] Override http request option.
@@ -687,8 +687,8 @@ export interface InboundDeliveryApiInterface {
      * Allows to download a document associated with the given inbound delivery.
      * @summary Download inbound delivery related documents
      * @param {string} inboundDeliveryNumber The inbound delivery number as defined during the creation of the inbound delivery.
-     * @param {'supplierDeliveryLabel' | 'details'} documentCode The document type to download. The file format is determined by the Accept request header.\\ Note: only a limited amount of document type to file format combinations are available: - supplierDeliveryLabel:\\ the label to put on the inbound delivery for warehouse processing.\\ Accept header: application/pdf - details:\\ a spreadsheet containing details about the inbound delivery.\\ Accept header: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet     
-     * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+     * @param {'supplierDeliveryLabel' | 'details'} documentCode The document type to download. The file format is determined by the Accept request header.  Note: only a limited amount of document type to file format combinations are available: - supplierDeliveryLabel: the label to put on the inbound delivery for warehouse processing. Accept header: application/pdf - details: a spreadsheet containing details about the inbound delivery. Accept header: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+     * @param {string} [shopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof InboundDeliveryApiInterface
@@ -708,9 +708,9 @@ export interface InboundDeliveryApiInterface {
     /**
      * Add a new inbound delivery referenced by the given deliveryNumber.
      * @summary Add a new inbound delivery.
-     * @param {string} inboundDeliveryNumber The number the inbound delivery should be refered by.\\ This number is user defined, must be unique and has a maximum length (check maxLength field).\\ Please ensure that it does not contain any of the following character sequences: \&#39;/\&#39;, \&#39;%2F\&#39;, \&#39;%2f\&#39;, \&#39;?\&#39;, \&#39;%3F\&#39;, \&#39;%3f\&#39;, \&#39;#\&#39;, \&#39;%23\&#39;, \&#39;&amp;\&#39;, \&#39;%26\&#39;. Using any of these will result in the route not being handled correctly.
+     * @param {string} inboundDeliveryNumber The number the inbound delivery should be referred by. \\ This number is user defined, must be unique and has a maximum length (check maxLength field). \\ Please ensure that it does not contain any of the following character sequences: \&#39;/\&#39;, \&#39;%2F\&#39;, \&#39;%2f\&#39;, \&#39;?\&#39;, \&#39;%3F\&#39;, \&#39;%3f\&#39;, \&#39;#\&#39;, \&#39;%23\&#39;, \&#39;&amp;\&#39;, \&#39;%26\&#39;. \\ Using any of these will result in the route not being handled correctly.
      * @param {NewInboundDelivery} newInboundDelivery 
-     * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+     * @param {string} [shopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof InboundDeliveryApiInterface
@@ -727,10 +727,10 @@ export interface InboundDeliveryApiInterface {
  */
 export class InboundDeliveryApi extends BaseAPI implements InboundDeliveryApiInterface {
     /**
-     * Cancel a inbound delivery referenced by the given inboundDeliveryNumber.\\ An inboundDeliveryNumber from a canceled inbound delivery cannot be used for a new inbound delivery, because they must always be unique.
+     * Cancel a inbound delivery referenced by the given inboundDeliveryNumber. \\ An inboundDeliveryNumber from a canceled inbound delivery cannot be used for a new inbound delivery, because they must always be unique.
      * @summary Cancel a inbound delivery.
-     * @param {string} inboundDeliveryNumber The number the inbound delivery should be refered by. This number is user defined, must be unique and has a maximum length (check maxLength field).
-     * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+     * @param {string} inboundDeliveryNumber The number the inbound delivery should be referred by. \\ This number is user defined, must be unique and has a maximum length (check maxLength field).
+     * @param {string} [shopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof InboundDeliveryApi
@@ -743,7 +743,7 @@ export class InboundDeliveryApi extends BaseAPI implements InboundDeliveryApiInt
      * Get an inbound delivery by inbound delivery number.
      * @summary Get an inbound delivery by inbound delivery number.
      * @param {string} inboundDeliveryNumber The inbound delivery number as defined during the creation of the inbound delivery.
-     * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+     * @param {string} [shopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof InboundDeliveryApi
@@ -771,10 +771,10 @@ export class InboundDeliveryApi extends BaseAPI implements InboundDeliveryApiInt
      * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
      * @param {string} [sortBy] Sort the results by one or more comma-separated sort criteria, with the criterion specified first having priority.  Available sort orders: - asc: ascending order - desc: descending order  Available fields for sorting: - expectedDeliveryDate  The default sort order is expectedDeliveryDate:desc.
      * @param {string} [filterStatus] Status of the inbound delivery (optional).  The status for not yet completed is subject to change. you may poll for changes. - open: The inbound delivery has not yet been delivered. - in_progress: The inbound delivery is being processed in our warehouse. - completed: The inbound delivery has been processed in our warehouse. - deleted: The inbound delivery has been deleted.
-     * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+     * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
      * @param {string} [filterExpectedDeliveryDateFrom] The start date (inclusive) in format Y-m-d for which inbound deliveries should be returned (regarding the expected delivery date).
      * @param {string} [filterExpectedDeliveryDateTo] The end date (inclusive) in format Y-m-d for which inbound deliveries should be returned (regarding the expected delivery date).
-     * @param {string} [filterSearch] filter for inbound delivery search.\\ \\ Usage: - Provide one or multiple search terms to filter results. - Multiple search terms are separated by spaces. - The search is not case sensitive. - The search is enabled for the fields inboundDeliveryName and inboundDeliveryNumber (without the numberPrefix of the associated supplier). - Each search term filters the response for inbound deliveries where at least one of the fields contains the search term. - For example, filter[search]&#x3D;\&#39;term1 term2\&#39; will filter the result for products where \&#39;term1\&#39; is found in any field and \&#39;term2\&#39; is also found in any field.\\ If only \&#39;term1\&#39; or \&#39;term2\&#39; is found in the fields, the product is not included in the results.
+     * @param {string} [filterSearch] filter for inbound delivery search.  Usage: - Provide one or multiple search terms to filter results. - Multiple search terms are separated by spaces. - The search is not case sensitive. - The search is enabled for the fields inboundDeliveryName and inboundDeliveryNumber (without the numberPrefix of the associated supplier). - Each search term filters the response for inbound deliveries where at least one of the fields contains the search term. - For example, filter[search]&#x3D;\&#39;term1 term2\&#39; will filter the result for products where \&#39;term1\&#39; is found in any field and \&#39;term2\&#39; is also found in any field. If only \&#39;term1\&#39; or \&#39;term2\&#39; is found in the fields, the product is not included in the results.
      * @param {string} [filterCreateDateFrom] The start date (inclusive) in ISO 8601 format for which inbound deliveries should be returned (regarding the creation date).
      * @param {string} [filterCreateDateTo] The end date (inclusive) in ISO 8601 format for which inbound deliveries should be returned (regarding the creation date).
      * @param {*} [options] Override http request option.
@@ -789,8 +789,8 @@ export class InboundDeliveryApi extends BaseAPI implements InboundDeliveryApiInt
      * Allows to download a document associated with the given inbound delivery.
      * @summary Download inbound delivery related documents
      * @param {string} inboundDeliveryNumber The inbound delivery number as defined during the creation of the inbound delivery.
-     * @param {'supplierDeliveryLabel' | 'details'} documentCode The document type to download. The file format is determined by the Accept request header.\\ Note: only a limited amount of document type to file format combinations are available: - supplierDeliveryLabel:\\ the label to put on the inbound delivery for warehouse processing.\\ Accept header: application/pdf - details:\\ a spreadsheet containing details about the inbound delivery.\\ Accept header: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet     
-     * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+     * @param {'supplierDeliveryLabel' | 'details'} documentCode The document type to download. The file format is determined by the Accept request header.  Note: only a limited amount of document type to file format combinations are available: - supplierDeliveryLabel: the label to put on the inbound delivery for warehouse processing. Accept header: application/pdf - details: a spreadsheet containing details about the inbound delivery. Accept header: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+     * @param {string} [shopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof InboundDeliveryApi
@@ -814,9 +814,9 @@ export class InboundDeliveryApi extends BaseAPI implements InboundDeliveryApiInt
     /**
      * Add a new inbound delivery referenced by the given deliveryNumber.
      * @summary Add a new inbound delivery.
-     * @param {string} inboundDeliveryNumber The number the inbound delivery should be refered by.\\ This number is user defined, must be unique and has a maximum length (check maxLength field).\\ Please ensure that it does not contain any of the following character sequences: \&#39;/\&#39;, \&#39;%2F\&#39;, \&#39;%2f\&#39;, \&#39;?\&#39;, \&#39;%3F\&#39;, \&#39;%3f\&#39;, \&#39;#\&#39;, \&#39;%23\&#39;, \&#39;&amp;\&#39;, \&#39;%26\&#39;. Using any of these will result in the route not being handled correctly.
+     * @param {string} inboundDeliveryNumber The number the inbound delivery should be referred by. \\ This number is user defined, must be unique and has a maximum length (check maxLength field). \\ Please ensure that it does not contain any of the following character sequences: \&#39;/\&#39;, \&#39;%2F\&#39;, \&#39;%2f\&#39;, \&#39;?\&#39;, \&#39;%3F\&#39;, \&#39;%3f\&#39;, \&#39;#\&#39;, \&#39;%23\&#39;, \&#39;&amp;\&#39;, \&#39;%26\&#39;. \\ Using any of these will result in the route not being handled correctly.
      * @param {NewInboundDelivery} newInboundDelivery 
-     * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+     * @param {string} [shopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof InboundDeliveryApi

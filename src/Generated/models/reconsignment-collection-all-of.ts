@@ -24,7 +24,7 @@ import { Reconsignment } from './reconsignment';
  */
 export interface ReconsignmentCollectionAllOf {
     /**
-     * Class ReconsignmentResourceCollection
+     * 
      * @type {Array<Reconsignment>}
      * @memberof ReconsignmentCollectionAllOf
      */
