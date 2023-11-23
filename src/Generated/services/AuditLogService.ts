@@ -14,7 +14,8 @@ export class AuditLogService {
      * @param pageSize The maximum size per page is 100. Default is 100.
      * @param paginationMode The paginationMode to use:
      * - default: The total number of items in the collection will not be calculated.
-     * - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
+     * - totalCount: The total number of items in the collection will be calculated.
+     * This can mean loss of performance.
      * @param filterEndpoint A filter for restricting the audit log to a endpoint.
      * @param filterVersion A filter for restricting the audit log to a endpoint version.
      * @param filterIdentifier A filter for querying actions for a identifier.
@@ -42,10 +43,22 @@ export class AuditLogService {
                 'filter[identifier]': filterIdentifier,
             },
             errors: {
-                400: `Bad Request`,
-                401: `Unauthorized`,
-                403: `Forbidden`,
-                500: `Server error`,
+                400: `Bad Request
+                 *
+                 * Error codes:
+                 * - DATA_INVALID: Invalid data was given.`,
+                401: `Unauthorized
+                 *
+                 * Error codes:
+                 * - AUTHORIZATION_MISSING: No valid authentication information was given.`,
+                403: `Forbidden
+                 *
+                 * Error codes:
+                 * - PERMISSIONS_MISSING: No authorization for the called action was found.`,
+                500: `Server error
+                 *
+                 * Error codes:
+                 * - SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.`,
             },
         });
         return result.body;
