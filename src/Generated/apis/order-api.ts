@@ -39,9 +39,9 @@ import { OrderCollection } from '../models';
 export const OrderApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
-         * Cancel the order specified by the given order number (set in param orderNumber).\\ An orderNumber from a canceled order cannot be used for a new order, because they must always be unique.
+         * Cancel the order specified by the given order number (set in param orderNumber). An orderNumber from a canceled order cannot be used for a new order, because they must always be unique.
          * @summary Cancel an order.
-         * @param {string} orderNumber The number the order is refered by.
+         * @param {string} orderNumber The number the order is referred by.
          * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -139,14 +139,14 @@ export const OrderApiAxiosParamCreator = function (configuration?: Configuration
          * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
          * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
          * @param {string} [sortBy] Sort the results by one or more comma-separated sort criteria, with the criterion specified first having priority.  Available sort orders: - asc: ascending order - desc: descending order  Available fields for sorting: - orderDate  The default sort order is orderDate:desc.
-         * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+         * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
          * @param {string} [filterStatus] Filter for status/statuses (optional).
          * @param {string} [filterExternalOrderId] Filter for the external order ID e.g. from third party apps (optional)
          * @param {string} [filterExternalCustomerId] Filter for the external customer ID e.g. from third party apps (optional)
          * @param {string} [filterExternalOrderReference] filter for externalOrderReference
          * @param {string} [filterOrderDateFrom] filter for orderDate format in ISO 8601 with UTC offsets
          * @param {string} [filterOrderDateTo] filter for orderDate format in ISO 8601 with UTC offsets
-         * @param {string} [filterSearch] filter for order search.\\ \\ Usage: - Provide one or multiple search terms to filter results. - Multiple search terms are separated by spaces. - The search is not case sensitive. - The search is enabled for the fields \&#39;externalOrderReference\&#39;, \&#39;orderNumber\&#39; and the tracking code of the orders shipments. - Each search term filters the response for orders where at least one of the fields contains the search term. - For example, filter[search]&#x3D;\&#39;term1 term2\&#39; will filter the result for orders where \&#39;term1\&#39; is found in any field and \&#39;term2\&#39; is also found in any field.\\ If only \&#39;term1\&#39; or \&#39;term2\&#39; is found in the fields, the order is not included in the results.
+         * @param {string} [filterSearch] filter for order search.  Usage: - Provide one or multiple search terms to filter results. - Multiple search terms are separated by spaces. - The search is not case sensitive. - The search is enabled for the fields \&#39;externalOrderReference\&#39;, \&#39;orderNumber\&#39; and the tracking code of the orders shipments. - Each search term filters the response for orders where at least one of the fields contains the search term. - For example, filter[search]&#x3D;\&#39;term1 term2\&#39; will filter the result for orders where \&#39;term1\&#39; is found in any field and \&#39;term2\&#39; is also found in any field. If only \&#39;term1\&#39; or \&#39;term2\&#39; is found in the fields, the order is not included in the results.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -237,7 +237,7 @@ export const OrderApiAxiosParamCreator = function (configuration?: Configuration
         /**
          * Add a new order referenced by the given orderNumber.
          * @summary Add a new order.
-         * @param {string} orderNumber The number the order should be refered by.\\ This number is user defined, must be unique and has a maximum length (check maxLength field).\\ Please ensure that it does not contain any of the following character sequences: \&#39;/\&#39;, \&#39;%2F\&#39;, \&#39;%2f\&#39;, \&#39;?\&#39;, \&#39;%3F\&#39;, \&#39;%3f\&#39;, \&#39;#\&#39;, \&#39;%23\&#39;, \&#39;&amp;\&#39;, \&#39;%26\&#39;. Using any of these will result in the route not being handled correctly.
+         * @param {string} orderNumber The number the order should be referred by. \\ This number is user defined, must be unique and has a maximum length (check maxLength field). \\ Please ensure that it does not contain any of the following character sequences: \&#39;/\&#39;, \&#39;%2F\&#39;, \&#39;%2f\&#39;, \&#39;?\&#39;, \&#39;%3F\&#39;, \&#39;%3f\&#39;,\&#39;#\&#39;, \&#39;%23\&#39;, \&#39;&amp;\&#39;, \&#39;%26\&#39;. \\ Using any of these will result in the route not being handled correctly.
          * @param {NewOrder} newOrder 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -285,7 +285,7 @@ export const OrderApiAxiosParamCreator = function (configuration?: Configuration
         /**
          * Redact the order and all other orders linked to the given order number (set in the param orderNumber) in a GDPR article 17 conform way. \\  Only orders with one of the following statuses are redactable: - delivered - deleted - canceled
          * @summary Redact an order.
-         * @param {string} orderNumber The number the order is refered by.
+         * @param {string} orderNumber The number the order is referred by.
          * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -340,9 +340,9 @@ export const OrderApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = OrderApiAxiosParamCreator(configuration)
     return {
         /**
-         * Cancel the order specified by the given order number (set in param orderNumber).\\ An orderNumber from a canceled order cannot be used for a new order, because they must always be unique.
+         * Cancel the order specified by the given order number (set in param orderNumber). An orderNumber from a canceled order cannot be used for a new order, because they must always be unique.
          * @summary Cancel an order.
-         * @param {string} orderNumber The number the order is refered by.
+         * @param {string} orderNumber The number the order is referred by.
          * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -370,14 +370,14 @@ export const OrderApiFp = function(configuration?: Configuration) {
          * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
          * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
          * @param {string} [sortBy] Sort the results by one or more comma-separated sort criteria, with the criterion specified first having priority.  Available sort orders: - asc: ascending order - desc: descending order  Available fields for sorting: - orderDate  The default sort order is orderDate:desc.
-         * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+         * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
          * @param {string} [filterStatus] Filter for status/statuses (optional).
          * @param {string} [filterExternalOrderId] Filter for the external order ID e.g. from third party apps (optional)
          * @param {string} [filterExternalCustomerId] Filter for the external customer ID e.g. from third party apps (optional)
          * @param {string} [filterExternalOrderReference] filter for externalOrderReference
          * @param {string} [filterOrderDateFrom] filter for orderDate format in ISO 8601 with UTC offsets
          * @param {string} [filterOrderDateTo] filter for orderDate format in ISO 8601 with UTC offsets
-         * @param {string} [filterSearch] filter for order search.\\ \\ Usage: - Provide one or multiple search terms to filter results. - Multiple search terms are separated by spaces. - The search is not case sensitive. - The search is enabled for the fields \&#39;externalOrderReference\&#39;, \&#39;orderNumber\&#39; and the tracking code of the orders shipments. - Each search term filters the response for orders where at least one of the fields contains the search term. - For example, filter[search]&#x3D;\&#39;term1 term2\&#39; will filter the result for orders where \&#39;term1\&#39; is found in any field and \&#39;term2\&#39; is also found in any field.\\ If only \&#39;term1\&#39; or \&#39;term2\&#39; is found in the fields, the order is not included in the results.
+         * @param {string} [filterSearch] filter for order search.  Usage: - Provide one or multiple search terms to filter results. - Multiple search terms are separated by spaces. - The search is not case sensitive. - The search is enabled for the fields \&#39;externalOrderReference\&#39;, \&#39;orderNumber\&#39; and the tracking code of the orders shipments. - Each search term filters the response for orders where at least one of the fields contains the search term. - For example, filter[search]&#x3D;\&#39;term1 term2\&#39; will filter the result for orders where \&#39;term1\&#39; is found in any field and \&#39;term2\&#39; is also found in any field. If only \&#39;term1\&#39; or \&#39;term2\&#39; is found in the fields, the order is not included in the results.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -388,7 +388,7 @@ export const OrderApiFp = function(configuration?: Configuration) {
         /**
          * Add a new order referenced by the given orderNumber.
          * @summary Add a new order.
-         * @param {string} orderNumber The number the order should be refered by.\\ This number is user defined, must be unique and has a maximum length (check maxLength field).\\ Please ensure that it does not contain any of the following character sequences: \&#39;/\&#39;, \&#39;%2F\&#39;, \&#39;%2f\&#39;, \&#39;?\&#39;, \&#39;%3F\&#39;, \&#39;%3f\&#39;, \&#39;#\&#39;, \&#39;%23\&#39;, \&#39;&amp;\&#39;, \&#39;%26\&#39;. Using any of these will result in the route not being handled correctly.
+         * @param {string} orderNumber The number the order should be referred by. \\ This number is user defined, must be unique and has a maximum length (check maxLength field). \\ Please ensure that it does not contain any of the following character sequences: \&#39;/\&#39;, \&#39;%2F\&#39;, \&#39;%2f\&#39;, \&#39;?\&#39;, \&#39;%3F\&#39;, \&#39;%3f\&#39;,\&#39;#\&#39;, \&#39;%23\&#39;, \&#39;&amp;\&#39;, \&#39;%26\&#39;. \\ Using any of these will result in the route not being handled correctly.
          * @param {NewOrder} newOrder 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -400,7 +400,7 @@ export const OrderApiFp = function(configuration?: Configuration) {
         /**
          * Redact the order and all other orders linked to the given order number (set in the param orderNumber) in a GDPR article 17 conform way. \\  Only orders with one of the following statuses are redactable: - delivered - deleted - canceled
          * @summary Redact an order.
-         * @param {string} orderNumber The number the order is refered by.
+         * @param {string} orderNumber The number the order is referred by.
          * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -420,9 +420,9 @@ export const OrderApiFactory = function (configuration?: Configuration, basePath
     const localVarFp = OrderApiFp(configuration)
     return {
         /**
-         * Cancel the order specified by the given order number (set in param orderNumber).\\ An orderNumber from a canceled order cannot be used for a new order, because they must always be unique.
+         * Cancel the order specified by the given order number (set in param orderNumber). An orderNumber from a canceled order cannot be used for a new order, because they must always be unique.
          * @summary Cancel an order.
-         * @param {string} orderNumber The number the order is refered by.
+         * @param {string} orderNumber The number the order is referred by.
          * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -448,14 +448,14 @@ export const OrderApiFactory = function (configuration?: Configuration, basePath
          * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
          * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
          * @param {string} [sortBy] Sort the results by one or more comma-separated sort criteria, with the criterion specified first having priority.  Available sort orders: - asc: ascending order - desc: descending order  Available fields for sorting: - orderDate  The default sort order is orderDate:desc.
-         * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+         * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
          * @param {string} [filterStatus] Filter for status/statuses (optional).
          * @param {string} [filterExternalOrderId] Filter for the external order ID e.g. from third party apps (optional)
          * @param {string} [filterExternalCustomerId] Filter for the external customer ID e.g. from third party apps (optional)
          * @param {string} [filterExternalOrderReference] filter for externalOrderReference
          * @param {string} [filterOrderDateFrom] filter for orderDate format in ISO 8601 with UTC offsets
          * @param {string} [filterOrderDateTo] filter for orderDate format in ISO 8601 with UTC offsets
-         * @param {string} [filterSearch] filter for order search.\\ \\ Usage: - Provide one or multiple search terms to filter results. - Multiple search terms are separated by spaces. - The search is not case sensitive. - The search is enabled for the fields \&#39;externalOrderReference\&#39;, \&#39;orderNumber\&#39; and the tracking code of the orders shipments. - Each search term filters the response for orders where at least one of the fields contains the search term. - For example, filter[search]&#x3D;\&#39;term1 term2\&#39; will filter the result for orders where \&#39;term1\&#39; is found in any field and \&#39;term2\&#39; is also found in any field.\\ If only \&#39;term1\&#39; or \&#39;term2\&#39; is found in the fields, the order is not included in the results.
+         * @param {string} [filterSearch] filter for order search.  Usage: - Provide one or multiple search terms to filter results. - Multiple search terms are separated by spaces. - The search is not case sensitive. - The search is enabled for the fields \&#39;externalOrderReference\&#39;, \&#39;orderNumber\&#39; and the tracking code of the orders shipments. - Each search term filters the response for orders where at least one of the fields contains the search term. - For example, filter[search]&#x3D;\&#39;term1 term2\&#39; will filter the result for orders where \&#39;term1\&#39; is found in any field and \&#39;term2\&#39; is also found in any field. If only \&#39;term1\&#39; or \&#39;term2\&#39; is found in the fields, the order is not included in the results.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -465,7 +465,7 @@ export const OrderApiFactory = function (configuration?: Configuration, basePath
         /**
          * Add a new order referenced by the given orderNumber.
          * @summary Add a new order.
-         * @param {string} orderNumber The number the order should be refered by.\\ This number is user defined, must be unique and has a maximum length (check maxLength field).\\ Please ensure that it does not contain any of the following character sequences: \&#39;/\&#39;, \&#39;%2F\&#39;, \&#39;%2f\&#39;, \&#39;?\&#39;, \&#39;%3F\&#39;, \&#39;%3f\&#39;, \&#39;#\&#39;, \&#39;%23\&#39;, \&#39;&amp;\&#39;, \&#39;%26\&#39;. Using any of these will result in the route not being handled correctly.
+         * @param {string} orderNumber The number the order should be referred by. \\ This number is user defined, must be unique and has a maximum length (check maxLength field). \\ Please ensure that it does not contain any of the following character sequences: \&#39;/\&#39;, \&#39;%2F\&#39;, \&#39;%2f\&#39;, \&#39;?\&#39;, \&#39;%3F\&#39;, \&#39;%3f\&#39;,\&#39;#\&#39;, \&#39;%23\&#39;, \&#39;&amp;\&#39;, \&#39;%26\&#39;. \\ Using any of these will result in the route not being handled correctly.
          * @param {NewOrder} newOrder 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -476,7 +476,7 @@ export const OrderApiFactory = function (configuration?: Configuration, basePath
         /**
          * Redact the order and all other orders linked to the given order number (set in the param orderNumber) in a GDPR article 17 conform way. \\  Only orders with one of the following statuses are redactable: - delivered - deleted - canceled
          * @summary Redact an order.
-         * @param {string} orderNumber The number the order is refered by.
+         * @param {string} orderNumber The number the order is referred by.
          * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -494,9 +494,9 @@ export const OrderApiFactory = function (configuration?: Configuration, basePath
  */
 export interface OrderApiInterface {
     /**
-     * Cancel the order specified by the given order number (set in param orderNumber).\\ An orderNumber from a canceled order cannot be used for a new order, because they must always be unique.
+     * Cancel the order specified by the given order number (set in param orderNumber). An orderNumber from a canceled order cannot be used for a new order, because they must always be unique.
      * @summary Cancel an order.
-     * @param {string} orderNumber The number the order is refered by.
+     * @param {string} orderNumber The number the order is referred by.
      * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -522,14 +522,14 @@ export interface OrderApiInterface {
      * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
      * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
      * @param {string} [sortBy] Sort the results by one or more comma-separated sort criteria, with the criterion specified first having priority.  Available sort orders: - asc: ascending order - desc: descending order  Available fields for sorting: - orderDate  The default sort order is orderDate:desc.
-     * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+     * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
      * @param {string} [filterStatus] Filter for status/statuses (optional).
      * @param {string} [filterExternalOrderId] Filter for the external order ID e.g. from third party apps (optional)
      * @param {string} [filterExternalCustomerId] Filter for the external customer ID e.g. from third party apps (optional)
      * @param {string} [filterExternalOrderReference] filter for externalOrderReference
      * @param {string} [filterOrderDateFrom] filter for orderDate format in ISO 8601 with UTC offsets
      * @param {string} [filterOrderDateTo] filter for orderDate format in ISO 8601 with UTC offsets
-     * @param {string} [filterSearch] filter for order search.\\ \\ Usage: - Provide one or multiple search terms to filter results. - Multiple search terms are separated by spaces. - The search is not case sensitive. - The search is enabled for the fields \&#39;externalOrderReference\&#39;, \&#39;orderNumber\&#39; and the tracking code of the orders shipments. - Each search term filters the response for orders where at least one of the fields contains the search term. - For example, filter[search]&#x3D;\&#39;term1 term2\&#39; will filter the result for orders where \&#39;term1\&#39; is found in any field and \&#39;term2\&#39; is also found in any field.\\ If only \&#39;term1\&#39; or \&#39;term2\&#39; is found in the fields, the order is not included in the results.
+     * @param {string} [filterSearch] filter for order search.  Usage: - Provide one or multiple search terms to filter results. - Multiple search terms are separated by spaces. - The search is not case sensitive. - The search is enabled for the fields \&#39;externalOrderReference\&#39;, \&#39;orderNumber\&#39; and the tracking code of the orders shipments. - Each search term filters the response for orders where at least one of the fields contains the search term. - For example, filter[search]&#x3D;\&#39;term1 term2\&#39; will filter the result for orders where \&#39;term1\&#39; is found in any field and \&#39;term2\&#39; is also found in any field. If only \&#39;term1\&#39; or \&#39;term2\&#39; is found in the fields, the order is not included in the results.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof OrderApiInterface
@@ -539,7 +539,7 @@ export interface OrderApiInterface {
     /**
      * Add a new order referenced by the given orderNumber.
      * @summary Add a new order.
-     * @param {string} orderNumber The number the order should be refered by.\\ This number is user defined, must be unique and has a maximum length (check maxLength field).\\ Please ensure that it does not contain any of the following character sequences: \&#39;/\&#39;, \&#39;%2F\&#39;, \&#39;%2f\&#39;, \&#39;?\&#39;, \&#39;%3F\&#39;, \&#39;%3f\&#39;, \&#39;#\&#39;, \&#39;%23\&#39;, \&#39;&amp;\&#39;, \&#39;%26\&#39;. Using any of these will result in the route not being handled correctly.
+     * @param {string} orderNumber The number the order should be referred by. \\ This number is user defined, must be unique and has a maximum length (check maxLength field). \\ Please ensure that it does not contain any of the following character sequences: \&#39;/\&#39;, \&#39;%2F\&#39;, \&#39;%2f\&#39;, \&#39;?\&#39;, \&#39;%3F\&#39;, \&#39;%3f\&#39;,\&#39;#\&#39;, \&#39;%23\&#39;, \&#39;&amp;\&#39;, \&#39;%26\&#39;. \\ Using any of these will result in the route not being handled correctly.
      * @param {NewOrder} newOrder 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -550,7 +550,7 @@ export interface OrderApiInterface {
     /**
      * Redact the order and all other orders linked to the given order number (set in the param orderNumber) in a GDPR article 17 conform way. \\  Only orders with one of the following statuses are redactable: - delivered - deleted - canceled
      * @summary Redact an order.
-     * @param {string} orderNumber The number the order is refered by.
+     * @param {string} orderNumber The number the order is referred by.
      * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -568,9 +568,9 @@ export interface OrderApiInterface {
  */
 export class OrderApi extends BaseAPI implements OrderApiInterface {
     /**
-     * Cancel the order specified by the given order number (set in param orderNumber).\\ An orderNumber from a canceled order cannot be used for a new order, because they must always be unique.
+     * Cancel the order specified by the given order number (set in param orderNumber). An orderNumber from a canceled order cannot be used for a new order, because they must always be unique.
      * @summary Cancel an order.
-     * @param {string} orderNumber The number the order is refered by.
+     * @param {string} orderNumber The number the order is referred by.
      * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -600,14 +600,14 @@ export class OrderApi extends BaseAPI implements OrderApiInterface {
      * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
      * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
      * @param {string} [sortBy] Sort the results by one or more comma-separated sort criteria, with the criterion specified first having priority.  Available sort orders: - asc: ascending order - desc: descending order  Available fields for sorting: - orderDate  The default sort order is orderDate:desc.
-     * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+     * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
      * @param {string} [filterStatus] Filter for status/statuses (optional).
      * @param {string} [filterExternalOrderId] Filter for the external order ID e.g. from third party apps (optional)
      * @param {string} [filterExternalCustomerId] Filter for the external customer ID e.g. from third party apps (optional)
      * @param {string} [filterExternalOrderReference] filter for externalOrderReference
      * @param {string} [filterOrderDateFrom] filter for orderDate format in ISO 8601 with UTC offsets
      * @param {string} [filterOrderDateTo] filter for orderDate format in ISO 8601 with UTC offsets
-     * @param {string} [filterSearch] filter for order search.\\ \\ Usage: - Provide one or multiple search terms to filter results. - Multiple search terms are separated by spaces. - The search is not case sensitive. - The search is enabled for the fields \&#39;externalOrderReference\&#39;, \&#39;orderNumber\&#39; and the tracking code of the orders shipments. - Each search term filters the response for orders where at least one of the fields contains the search term. - For example, filter[search]&#x3D;\&#39;term1 term2\&#39; will filter the result for orders where \&#39;term1\&#39; is found in any field and \&#39;term2\&#39; is also found in any field.\\ If only \&#39;term1\&#39; or \&#39;term2\&#39; is found in the fields, the order is not included in the results.
+     * @param {string} [filterSearch] filter for order search.  Usage: - Provide one or multiple search terms to filter results. - Multiple search terms are separated by spaces. - The search is not case sensitive. - The search is enabled for the fields \&#39;externalOrderReference\&#39;, \&#39;orderNumber\&#39; and the tracking code of the orders shipments. - Each search term filters the response for orders where at least one of the fields contains the search term. - For example, filter[search]&#x3D;\&#39;term1 term2\&#39; will filter the result for orders where \&#39;term1\&#39; is found in any field and \&#39;term2\&#39; is also found in any field. If only \&#39;term1\&#39; or \&#39;term2\&#39; is found in the fields, the order is not included in the results.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof OrderApi
@@ -619,7 +619,7 @@ export class OrderApi extends BaseAPI implements OrderApiInterface {
     /**
      * Add a new order referenced by the given orderNumber.
      * @summary Add a new order.
-     * @param {string} orderNumber The number the order should be refered by.\\ This number is user defined, must be unique and has a maximum length (check maxLength field).\\ Please ensure that it does not contain any of the following character sequences: \&#39;/\&#39;, \&#39;%2F\&#39;, \&#39;%2f\&#39;, \&#39;?\&#39;, \&#39;%3F\&#39;, \&#39;%3f\&#39;, \&#39;#\&#39;, \&#39;%23\&#39;, \&#39;&amp;\&#39;, \&#39;%26\&#39;. Using any of these will result in the route not being handled correctly.
+     * @param {string} orderNumber The number the order should be referred by. \\ This number is user defined, must be unique and has a maximum length (check maxLength field). \\ Please ensure that it does not contain any of the following character sequences: \&#39;/\&#39;, \&#39;%2F\&#39;, \&#39;%2f\&#39;, \&#39;?\&#39;, \&#39;%3F\&#39;, \&#39;%3f\&#39;,\&#39;#\&#39;, \&#39;%23\&#39;, \&#39;&amp;\&#39;, \&#39;%26\&#39;. \\ Using any of these will result in the route not being handled correctly.
      * @param {NewOrder} newOrder 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -632,7 +632,7 @@ export class OrderApi extends BaseAPI implements OrderApiInterface {
     /**
      * Redact the order and all other orders linked to the given order number (set in the param orderNumber) in a GDPR article 17 conform way. \\  Only orders with one of the following statuses are redactable: - delivered - deleted - canceled
      * @summary Redact an order.
-     * @param {string} orderNumber The number the order is refered by.
+     * @param {string} orderNumber The number the order is referred by.
      * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}

@@ -43,7 +43,7 @@ export const ReportApiAxiosParamCreator = function (configuration?: Configuratio
          * @param {string} filterDateTo The end date (inclusive) in format Y-m-d (timezone CET/CEST) for which orders should be returned.
          * @param {number} [page] The page to read. Default is the first page.
          * @param {number} [pageSize] The maximum size per page is 100. Default is 20.
-         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. \\ This can mean loss of performance.
+         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
          * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -119,7 +119,7 @@ export const ReportApiAxiosParamCreator = function (configuration?: Configuratio
          * @param {number} filterMonth The month for which inventory movements should be returned.
          * @param {number} [page] The page to read. Default is the first page.
          * @param {number} [pageSize] The maximum size per page is 100. Default is 20.
-         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. \\ This can mean loss of performance.
+         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
          * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
          * @param {string} [filterProductNumbers] The productNumber(s) as comma delimited string for which inventory movements should be returned (optional).
          * @param {*} [options] Override http request option.
@@ -206,7 +206,7 @@ export const ReportApiFp = function(configuration?: Configuration) {
          * @param {string} filterDateTo The end date (inclusive) in format Y-m-d (timezone CET/CEST) for which orders should be returned.
          * @param {number} [page] The page to read. Default is the first page.
          * @param {number} [pageSize] The maximum size per page is 100. Default is 20.
-         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. \\ This can mean loss of performance.
+         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
          * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -222,7 +222,7 @@ export const ReportApiFp = function(configuration?: Configuration) {
          * @param {number} filterMonth The month for which inventory movements should be returned.
          * @param {number} [page] The page to read. Default is the first page.
          * @param {number} [pageSize] The maximum size per page is 100. Default is 20.
-         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. \\ This can mean loss of performance.
+         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
          * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
          * @param {string} [filterProductNumbers] The productNumber(s) as comma delimited string for which inventory movements should be returned (optional).
          * @param {*} [options] Override http request option.
@@ -249,7 +249,7 @@ export const ReportApiFactory = function (configuration?: Configuration, basePat
          * @param {string} filterDateTo The end date (inclusive) in format Y-m-d (timezone CET/CEST) for which orders should be returned.
          * @param {number} [page] The page to read. Default is the first page.
          * @param {number} [pageSize] The maximum size per page is 100. Default is 20.
-         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. \\ This can mean loss of performance.
+         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
          * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -264,7 +264,7 @@ export const ReportApiFactory = function (configuration?: Configuration, basePat
          * @param {number} filterMonth The month for which inventory movements should be returned.
          * @param {number} [page] The page to read. Default is the first page.
          * @param {number} [pageSize] The maximum size per page is 100. Default is 20.
-         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. \\ This can mean loss of performance.
+         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
          * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
          * @param {string} [filterProductNumbers] The productNumber(s) as comma delimited string for which inventory movements should be returned (optional).
          * @param {*} [options] Override http request option.
@@ -289,7 +289,7 @@ export interface ReportApiInterface {
      * @param {string} filterDateTo The end date (inclusive) in format Y-m-d (timezone CET/CEST) for which orders should be returned.
      * @param {number} [page] The page to read. Default is the first page.
      * @param {number} [pageSize] The maximum size per page is 100. Default is 20.
-     * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. \\ This can mean loss of performance.
+     * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
      * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -304,7 +304,7 @@ export interface ReportApiInterface {
      * @param {number} filterMonth The month for which inventory movements should be returned.
      * @param {number} [page] The page to read. Default is the first page.
      * @param {number} [pageSize] The maximum size per page is 100. Default is 20.
-     * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. \\ This can mean loss of performance.
+     * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
      * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
      * @param {string} [filterProductNumbers] The productNumber(s) as comma delimited string for which inventory movements should be returned (optional).
      * @param {*} [options] Override http request option.
@@ -329,7 +329,7 @@ export class ReportApi extends BaseAPI implements ReportApiInterface {
      * @param {string} filterDateTo The end date (inclusive) in format Y-m-d (timezone CET/CEST) for which orders should be returned.
      * @param {number} [page] The page to read. Default is the first page.
      * @param {number} [pageSize] The maximum size per page is 100. Default is 20.
-     * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. \\ This can mean loss of performance.
+     * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
      * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -346,7 +346,7 @@ export class ReportApi extends BaseAPI implements ReportApiInterface {
      * @param {number} filterMonth The month for which inventory movements should be returned.
      * @param {number} [page] The page to read. Default is the first page.
      * @param {number} [pageSize] The maximum size per page is 100. Default is 20.
-     * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. \\ This can mean loss of performance.
+     * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
      * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
      * @param {string} [filterProductNumbers] The productNumber(s) as comma delimited string for which inventory movements should be returned (optional).
      * @param {*} [options] Override http request option.

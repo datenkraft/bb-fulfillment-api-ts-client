@@ -45,7 +45,7 @@ export const ShopApiAxiosParamCreator = function (configuration?: Configuration)
          * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
          * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
          * @param {string} [filterMetaShopifyShopDomain] A filter for the Shopify hostname of the shop.
-         * @param {boolean} [filterMetaShopifyDefaultShop] A filter for Shopify default shops.\\ Note: For shops that are part of a Shopify installation that uses multiple shops,  only shops where meta.shopifyShopDefault is true will be considered as default shops.\\ All shops that are used for a single shop Shopify installation will also be considered as default shops.
+         * @param {boolean} [filterMetaShopifyDefaultShop] A filter for Shopify default shops.\\ Note: For shops that are part of a Shopify installation that uses multiple shops, only shops where meta.shopifyShopDefault is true will be considered as default shops.\\ All shops that are used for a single shop Shopify installation will also be considered as default shops.
          * @param {string} [filterMetaShopifyOrderCountryCode] A filter for the Shopify order country code (ISO 3166-1 alpha-2).
          * @param {string} [filterShopCode] A filter for one or more shopCode(s) of the shop(s) (optional).
          * @param {*} [options] Override http request option.
@@ -112,7 +112,7 @@ export const ShopApiAxiosParamCreator = function (configuration?: Configuration)
             };
         },
         /**
-         * Update one or more fields of a shop. Only a limited set of fields can be updated.
+         * Set one or more fields of a shop. Only a limited set of fields can be updated.
          * @summary Update a shop
          * @param {string} shopId Shop Id
          * @param {UpdateShop} updateShop 
@@ -176,7 +176,7 @@ export const ShopApiFp = function(configuration?: Configuration) {
          * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
          * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
          * @param {string} [filterMetaShopifyShopDomain] A filter for the Shopify hostname of the shop.
-         * @param {boolean} [filterMetaShopifyDefaultShop] A filter for Shopify default shops.\\ Note: For shops that are part of a Shopify installation that uses multiple shops,  only shops where meta.shopifyShopDefault is true will be considered as default shops.\\ All shops that are used for a single shop Shopify installation will also be considered as default shops.
+         * @param {boolean} [filterMetaShopifyDefaultShop] A filter for Shopify default shops.\\ Note: For shops that are part of a Shopify installation that uses multiple shops, only shops where meta.shopifyShopDefault is true will be considered as default shops.\\ All shops that are used for a single shop Shopify installation will also be considered as default shops.
          * @param {string} [filterMetaShopifyOrderCountryCode] A filter for the Shopify order country code (ISO 3166-1 alpha-2).
          * @param {string} [filterShopCode] A filter for one or more shopCode(s) of the shop(s) (optional).
          * @param {*} [options] Override http request option.
@@ -187,7 +187,7 @@ export const ShopApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * Update one or more fields of a shop. Only a limited set of fields can be updated.
+         * Set one or more fields of a shop. Only a limited set of fields can be updated.
          * @summary Update a shop
          * @param {string} shopId Shop Id
          * @param {UpdateShop} updateShop 
@@ -215,7 +215,7 @@ export const ShopApiFactory = function (configuration?: Configuration, basePath?
          * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
          * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
          * @param {string} [filterMetaShopifyShopDomain] A filter for the Shopify hostname of the shop.
-         * @param {boolean} [filterMetaShopifyDefaultShop] A filter for Shopify default shops.\\ Note: For shops that are part of a Shopify installation that uses multiple shops,  only shops where meta.shopifyShopDefault is true will be considered as default shops.\\ All shops that are used for a single shop Shopify installation will also be considered as default shops.
+         * @param {boolean} [filterMetaShopifyDefaultShop] A filter for Shopify default shops.\\ Note: For shops that are part of a Shopify installation that uses multiple shops, only shops where meta.shopifyShopDefault is true will be considered as default shops.\\ All shops that are used for a single shop Shopify installation will also be considered as default shops.
          * @param {string} [filterMetaShopifyOrderCountryCode] A filter for the Shopify order country code (ISO 3166-1 alpha-2).
          * @param {string} [filterShopCode] A filter for one or more shopCode(s) of the shop(s) (optional).
          * @param {*} [options] Override http request option.
@@ -225,7 +225,7 @@ export const ShopApiFactory = function (configuration?: Configuration, basePath?
             return localVarFp.getShopCollection(page, pageSize, paginationMode, filterMetaShopifyShopDomain, filterMetaShopifyDefaultShop, filterMetaShopifyOrderCountryCode, filterShopCode, options).then((request) => request(axios, basePath));
         },
         /**
-         * Update one or more fields of a shop. Only a limited set of fields can be updated.
+         * Set one or more fields of a shop. Only a limited set of fields can be updated.
          * @summary Update a shop
          * @param {string} shopId Shop Id
          * @param {UpdateShop} updateShop 
@@ -251,7 +251,7 @@ export interface ShopApiInterface {
      * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
      * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
      * @param {string} [filterMetaShopifyShopDomain] A filter for the Shopify hostname of the shop.
-     * @param {boolean} [filterMetaShopifyDefaultShop] A filter for Shopify default shops.\\ Note: For shops that are part of a Shopify installation that uses multiple shops,  only shops where meta.shopifyShopDefault is true will be considered as default shops.\\ All shops that are used for a single shop Shopify installation will also be considered as default shops.
+     * @param {boolean} [filterMetaShopifyDefaultShop] A filter for Shopify default shops.\\ Note: For shops that are part of a Shopify installation that uses multiple shops, only shops where meta.shopifyShopDefault is true will be considered as default shops.\\ All shops that are used for a single shop Shopify installation will also be considered as default shops.
      * @param {string} [filterMetaShopifyOrderCountryCode] A filter for the Shopify order country code (ISO 3166-1 alpha-2).
      * @param {string} [filterShopCode] A filter for one or more shopCode(s) of the shop(s) (optional).
      * @param {*} [options] Override http request option.
@@ -261,7 +261,7 @@ export interface ShopApiInterface {
     getShopCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterMetaShopifyShopDomain?: string, filterMetaShopifyDefaultShop?: boolean, filterMetaShopifyOrderCountryCode?: string, filterShopCode?: string, options?: AxiosRequestConfig): AxiosPromise<ShopCollection>;
 
     /**
-     * Update one or more fields of a shop. Only a limited set of fields can be updated.
+     * Set one or more fields of a shop. Only a limited set of fields can be updated.
      * @summary Update a shop
      * @param {string} shopId Shop Id
      * @param {UpdateShop} updateShop 
@@ -287,7 +287,7 @@ export class ShopApi extends BaseAPI implements ShopApiInterface {
      * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
      * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
      * @param {string} [filterMetaShopifyShopDomain] A filter for the Shopify hostname of the shop.
-     * @param {boolean} [filterMetaShopifyDefaultShop] A filter for Shopify default shops.\\ Note: For shops that are part of a Shopify installation that uses multiple shops,  only shops where meta.shopifyShopDefault is true will be considered as default shops.\\ All shops that are used for a single shop Shopify installation will also be considered as default shops.
+     * @param {boolean} [filterMetaShopifyDefaultShop] A filter for Shopify default shops.\\ Note: For shops that are part of a Shopify installation that uses multiple shops, only shops where meta.shopifyShopDefault is true will be considered as default shops.\\ All shops that are used for a single shop Shopify installation will also be considered as default shops.
      * @param {string} [filterMetaShopifyOrderCountryCode] A filter for the Shopify order country code (ISO 3166-1 alpha-2).
      * @param {string} [filterShopCode] A filter for one or more shopCode(s) of the shop(s) (optional).
      * @param {*} [options] Override http request option.
@@ -299,7 +299,7 @@ export class ShopApi extends BaseAPI implements ShopApiInterface {
     }
 
     /**
-     * Update one or more fields of a shop. Only a limited set of fields can be updated.
+     * Set one or more fields of a shop. Only a limited set of fields can be updated.
      * @summary Update a shop
      * @param {string} shopId Shop Id
      * @param {UpdateShop} updateShop 

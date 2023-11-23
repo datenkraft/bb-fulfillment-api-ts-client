@@ -40,7 +40,7 @@ export const BrandApiAxiosParamCreator = function (configuration?: Configuration
          * @param {string} filterShopCode The shopCode used internally to distinguish between clients.
          * @param {number} [page] The page to read. Default is the first page.
          * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
-         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. \\ This can mean loss of performance.
+         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -110,7 +110,7 @@ export const BrandApiFp = function(configuration?: Configuration) {
          * @param {string} filterShopCode The shopCode used internally to distinguish between clients.
          * @param {number} [page] The page to read. Default is the first page.
          * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
-         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. \\ This can mean loss of performance.
+         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -134,7 +134,7 @@ export const BrandApiFactory = function (configuration?: Configuration, basePath
          * @param {string} filterShopCode The shopCode used internally to distinguish between clients.
          * @param {number} [page] The page to read. Default is the first page.
          * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
-         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. \\ This can mean loss of performance.
+         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -156,7 +156,7 @@ export interface BrandApiInterface {
      * @param {string} filterShopCode The shopCode used internally to distinguish between clients.
      * @param {number} [page] The page to read. Default is the first page.
      * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
-     * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. \\ This can mean loss of performance.
+     * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof BrandApiInterface
@@ -178,7 +178,7 @@ export class BrandApi extends BaseAPI implements BrandApiInterface {
      * @param {string} filterShopCode The shopCode used internally to distinguish between clients.
      * @param {number} [page] The page to read. Default is the first page.
      * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
-     * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. \\ This can mean loss of performance.
+     * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof BrandApi
