@@ -31,7 +31,8 @@ export type updateShop = {
          */
         defaultCurrency?: updateShop.defaultCurrency | null,
         /**
-         * Flag to mark if it is allowed to set a customer's email in shopify. If false the shop email will be used as default.
+         * Flag to mark if it is allowed to set a customer's email in shopify. If false the shop email will be
+         * used as default.
          */
         shopifyOverwriteCustomerEmailEnabled?: boolean | null,
     } | null;

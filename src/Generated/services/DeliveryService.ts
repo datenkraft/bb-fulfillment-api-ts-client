@@ -18,7 +18,8 @@ export class DeliveryService {
      * @param pageSize The maximum size per page is 100. Default is 100.
      * @param paginationMode The paginationMode to use:
      * - default: The total number of items in the collection will not be calculated.
-     * - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
+     * - totalCount: The total number of items in the collection will be calculated.
+     * This can mean loss of performance.
      * @returns deliveryServiceCollection OK
      * @returns errorResponse Unexpected error
      * @throws ApiError
@@ -37,9 +38,18 @@ export class DeliveryService {
                 'paginationMode': paginationMode,
             },
             errors: {
-                401: `Unauthorized`,
-                403: `Forbidden`,
-                500: `Server error`,
+                401: `Unauthorized
+                 *
+                 * Error codes:
+                 * - AUTHORIZATION_MISSING: No valid authentication information was given.`,
+                403: `Forbidden
+                 *
+                 * Error codes:
+                 * - PERMISSIONS_MISSING: No authorization for the called action was found.`,
+                500: `Server error
+                 *
+                 * Error codes:
+                 * - SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.`,
             },
         });
         return result.body;
@@ -56,7 +66,7 @@ export class DeliveryService {
      * @param pageSize The maximum size per page is 100. Default is 100.
      * @param paginationMode The paginationMode to use:
      * - default: The total number of items in the collection will not be calculated.
-     * - totalCount: The total number of items in the collection will be calculated. \
+     * - totalCount: The total number of items in the collection will be calculated.
      * This can mean loss of performance.
      * @param shopCode The shopCode used internally to distinguish between clients. \
      * _This code is optional, if your identity is assigned to only one shop.
@@ -83,11 +93,26 @@ export class DeliveryService {
                 'shopCode': shopCode,
             },
             errors: {
-                400: `Bad Request`,
-                401: `Unauthorized`,
-                403: `Forbidden`,
-                422: `Unprocessable Entity`,
-                500: `Server Error`,
+                400: `Bad Request
+                 *
+                 * Error codes:
+                 * - DATA_INVALID: Invalid data was given.`,
+                401: `Unauthorized
+                 *
+                 * Error codes:
+                 * - AUTHORIZATION_MISSING: No valid authentication information was given.`,
+                403: `Forbidden
+                 *
+                 * Error codes:
+                 * - PERMISSIONS_MISSING: No authorization for the called action was found.`,
+                422: `Unprocessable Entity
+                 *
+                 * Error codes:
+                 * - SHOP_NOT_FOUND: Shop not found.`,
+                500: `Server error
+                 *
+                 * Error codes:
+                 * - SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.`,
             },
         });
         return result.body;
@@ -115,12 +140,30 @@ export class DeliveryService {
                 'shopCode': shopCode,
             },
             errors: {
-                400: `Bad Request`,
-                401: `Unauthorized`,
-                403: `Forbidden`,
-                404: `Not Found`,
-                422: `Unprocessable Entity`,
-                500: `Server Error`,
+                400: `Bad Request
+                 *
+                 * Error codes:
+                 * - DATA_INVALID: Invalid data was given.`,
+                401: `Unauthorized
+                 *
+                 * Error codes:
+                 * - AUTHORIZATION_MISSING: No valid authentication information was given.`,
+                403: `Forbidden
+                 *
+                 * Error codes:
+                 * - PERMISSIONS_MISSING: No authorization for the called action was found.`,
+                404: `Not Found
+                 *
+                 * Error codes:
+                 * - DATA_NOT_FOUND: The requested data could not be found.`,
+                422: `Unprocessable Entity
+                 *
+                 * Error codes:
+                 * - SHOP_NOT_FOUND: Shop not found.`,
+                500: `Server error
+                 *
+                 * Error codes:
+                 * - SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.`,
             },
         });
         return result.body;
@@ -153,13 +196,34 @@ export class DeliveryService {
                 'shopCode': shopCode,
             },
             errors: {
-                400: `Bad Request`,
-                401: `Unauthorized`,
-                403: `Forbidden`,
-                404: `Not Found`,
-                406: `The requested document could not be generated in the format specified by the accept header`,
-                422: `Unprocessable Entity`,
-                500: `Server Error`,
+                400: `Bad Request
+                 *
+                 * Error codes:
+                 * - DATA_INVALID: Invalid data was given.`,
+                401: `Unauthorized
+                 *
+                 * Error codes:
+                 * - AUTHORIZATION_MISSING: No valid authentication information was given.`,
+                403: `Forbidden
+                 *
+                 * Error codes:
+                 * - PERMISSIONS_MISSING: No authorization for the called action was found.`,
+                404: `Not Found
+                 *
+                 * Error codes:
+                 * - DATA_NOT_FOUND: The requested data could not be found.`,
+                406: `The requested document could not be generated in the format specified by the Accept request header.
+                 *
+                 * Error codes:
+                 * - ACCEPTABLE_RESPONSE_NOT_AVAILABLE: No response can be provided for the requested accept header.`,
+                422: `Unprocessable Entity
+                 *
+                 * Error codes:
+                 * - SHOP_NOT_FOUND: Shop not found.`,
+                500: `Server error
+                 *
+                 * Error codes:
+                 * - SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.`,
             },
         });
         return result.body;
@@ -192,16 +256,34 @@ export class DeliveryService {
             },
             body: requestBody,
             errors: {
-                400: `Bad Request`,
-                401: `Unauthorized`,
-                403: `Forbidden`,
-                404: `Not Found`,
-                409: `Conflict \
-                 * Available message codes:
-                 * - SHIPMENT_WITH_STEVE_EXTERNAL_SHIPMENT_ID_ALREADY_EXISTS: Another shipment with the given
-                 * shipmentId already exists.`,
-                422: `Unprocessable Entity`,
-                500: `Server Error`,
+                400: `Bad Request
+                 *
+                 * Error codes:
+                 * - DATA_INVALID: Invalid data was given.`,
+                401: `Unauthorized
+                 *
+                 * Error codes:
+                 * - AUTHORIZATION_MISSING: No valid authentication information was given.`,
+                403: `Forbidden
+                 *
+                 * Error codes:
+                 * - PERMISSIONS_MISSING: No authorization for the called action was found.`,
+                404: `Not Found
+                 *
+                 * Error codes:
+                 * - DATA_NOT_FOUND: The requested data could not be found.`,
+                409: `Conflict
+                 *
+                 * Error codes:
+                 * - SHIPMENT_WITH_STEVE_EXTERNAL_SHIPMENT_ID_ALREADY_EXISTS: Another shipment with the given shipmentId already exists.`,
+                422: `Unprocessable Entity
+                 *
+                 * Error codes:
+                 * - SHOP_NOT_FOUND: Shop not found.`,
+                500: `Server error
+                 *
+                 * Error codes:
+                 * - SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.`,
             },
         });
         return result.body;

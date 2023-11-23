@@ -14,7 +14,8 @@ export class ProductUnitService {
      * @param pageSize The maximum size per page is 100. Default is 20.
      * @param paginationMode The paginationMode to use:
      * - default: The total number of items in the collection will not be calculated.
-     * - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
+     * - totalCount: The total number of items in the collection will be calculated.
+     * This can mean loss of performance.
      * @param shopCode The shopCode used internally to distinguish between clients.\
      * _This code is optional, if your identity is assigned to only one shop.
      * Otherwise the response would be a 422 HTTP Error._
@@ -38,10 +39,22 @@ export class ProductUnitService {
                 'shopCode': shopCode,
             },
             errors: {
-                401: `Unauthorized`,
-                403: `Forbidden`,
-                422: `Unprocessable Entity`,
-                500: `Server error`,
+                401: `Unauthorized
+                 *
+                 * Error codes:
+                 * - AUTHORIZATION_MISSING: No valid authentication information was given.`,
+                403: `Forbidden
+                 *
+                 * Error codes:
+                 * - PERMISSIONS_MISSING: No authorization for the called action was found.`,
+                422: `Unprocessable Entity
+                 *
+                 * Error codes:
+                 * - SHOP_NOT_FOUND: Shop not found.`,
+                500: `Server error
+                 *
+                 * Error codes:
+                 * - SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.`,
             },
         });
         return result.body;

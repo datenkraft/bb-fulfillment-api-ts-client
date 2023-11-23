@@ -87,7 +87,7 @@ export type { reportInventoryMovement } from './models/reportInventoryMovement';
 export { reportInventoryMovementEntry } from './models/reportInventoryMovementEntry';
 export type { reportInventoryMovementEntryCollection } from './models/reportInventoryMovementEntryCollection';
 export type { shipmentLine } from './models/shipmentLine';
-export { shop } from './models/shop';
+export type { shop } from './models/shop';
 export type { shopCollection } from './models/shopCollection';
 export { stock } from './models/stock';
 export type { stockCollection } from './models/stockCollection';
