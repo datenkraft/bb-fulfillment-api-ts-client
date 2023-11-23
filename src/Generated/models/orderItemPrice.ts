@@ -5,8 +5,8 @@
 export type orderItemPrice = {
     /**
      * The price value rounded to 2 decimals with a dot used as separator. Note: This price value refers to
-     * a single unit and is not an aggregated price value, which may be calculated by multiplying this price value by the
-     * corresponding item count.
+     * single unit and is not an aggregated price value, which may be calculated by multiplying this price value by
+     * the corresponding item count.
      */
     value: number;
     /**

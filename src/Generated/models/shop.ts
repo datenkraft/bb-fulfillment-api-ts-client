@@ -29,18 +29,5 @@ export type shop = {
     /**
      * Meta data of the shop.
      */
-    meta?: {
-        /**
-         * Domain of the Shopify shop.
-         */
-        shopifyShopDomain?: string | null,
-        /**
-         * Flag to mark a shop used for testing.
-         */
-        testShop: boolean | null,
-        /**
-         * Date time to indicate that the test shop will not be reset before this time.
-         */
-        testShopResetNotBefore?: string | null,
-    } | null;
+    meta?: Record<string, any> | null;
 }

@@ -28,12 +28,30 @@ export class OrderService {
                 'shopCode': shopCode,
             },
             errors: {
-                400: `Bad Request`,
-                401: `Unauthorized`,
-                403: `Forbidden`,
-                404: `Not Found`,
-                422: `Unprocessable Entity`,
-                500: `Server error`,
+                400: `Bad Request
+                 *
+                 * Error codes:
+                 * - DATA_INVALID: Invalid data was given.`,
+                401: `Unauthorized
+                 *
+                 * Error codes:
+                 * - AUTHORIZATION_MISSING: No valid authentication information was given.`,
+                403: `Forbidden
+                 *
+                 * Error codes:
+                 * - PERMISSIONS_MISSING: No authorization for the called action was found.`,
+                404: `Not Found
+                 *
+                 * Error codes:
+                 * - DATA_NOT_FOUND: The requested data could not be found.`,
+                422: `Unprocessable Entity
+                 *
+                 * Error codes:
+                 * - SHOP_NOT_FOUND: Shop not found.`,
+                500: `Server error
+                 *
+                 * Error codes:
+                 * - SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.`,
             },
         });
         return result.body;
@@ -42,8 +60,8 @@ export class OrderService {
     /**
      * Add a new order.
      * Add a new order referenced by the given orderNumber.
-     * @param orderNumber The number the order should be refered by. This number is user defined, must be unique and has
-     * a maximum length (check maxLength field).
+     * @param orderNumber The number the order should be referred by. This number is user defined, must be unique and has a maximum
+     * length (check maxLength field).
      * @param requestBody
      * @returns errorResponse Unexpected error
      * @returns order Created
@@ -58,15 +76,27 @@ export class OrderService {
             path: `/order/${orderNumber}`,
             body: requestBody,
             errors: {
-                400: `Bad Request`,
-                401: `Unauthorized`,
-                403: `Forbidden`,
+                400: `Bad Request
+                 *
+                 * Error codes:
+                 * - DATA_INVALID: Invalid data was given.`,
+                401: `Unauthorized
+                 *
+                 * Error codes:
+                 * - AUTHORIZATION_MISSING: No valid authentication information was given.`,
+                403: `Forbidden
+                 *
+                 * Error codes:
+                 * - PERMISSIONS_MISSING: No authorization for the called action was found.`,
                 422: `Unprocessable Entity
                  *
-                 * Available message codes:
-                 * - PRODUCT_NOT_FOUND: A product could not be found.
+                 * Error codes:
+                 * - PRODUCT_NOT_FOUND: Unknown productNumber.
                  * - DUPLICATED_PRODUCT: There are multiple orderItems with the same productNumber.`,
-                500: `Server error`,
+                500: `Server error
+                 *
+                 * Error codes:
+                 * - SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.`,
             },
         });
         return result.body;
@@ -75,7 +105,7 @@ export class OrderService {
     /**
      * Cancel an order.
      * Cancel the order specified by the given order number (set in param orderNumber).
-     * @param orderNumber The number the order is refered by.
+     * @param orderNumber The number the order is referred by.
      * @param shopCode The shopCode used in DISCO (optional).
      * @returns order OK
      * @returns errorResponse Unexpected error
@@ -92,18 +122,36 @@ export class OrderService {
                 'shopCode': shopCode,
             },
             errors: {
-                400: `Bad Request`,
-                401: `Unauthorized`,
-                403: `Forbidden`,
-                404: `Not Found`,
+                400: `Bad Request
+                 *
+                 * Error codes:
+                 * - DATA_INVALID: Invalid data was given.`,
+                401: `Unauthorized
+                 *
+                 * Error codes:
+                 * - AUTHORIZATION_MISSING: No valid authentication information was given.`,
+                403: `Forbidden
+                 *
+                 * Error codes:
+                 * - PERMISSIONS_MISSING: No authorization for the called action was found.`,
+                404: `Not Found
+                 *
+                 * Error codes:
+                 * - DATA_NOT_FOUND: The requested data could not be found.`,
                 409: `Conflict
                  *
-                 * Available message codes:
-                 * - ORDER_NOT_CANCELABLE: The order could not be canceled anymore
-                 * - ORDER_ALREADY_CANCELED: The order is already canceled
-                 * - ORDER_CANCELLATION_ALREADY_EXISTS: An order cancellation request already exists, which needs manual approval`,
-                422: `Unprocessable Entity`,
-                500: `Server error`,
+                 * Error codes:
+                 * - ORDER_NOT_CANCELABLE: The order could not be canceled anymore.
+                 * - ORDER_ALREADY_CANCELED: The order is already canceled.
+                 * - ORDER_CANCELLATION_ALREADY_EXISTS: An order cancellation request already exists, which needs manual approval.`,
+                422: `Unprocessable Entity
+                 *
+                 * Error codes:
+                 * - SHOP_NOT_FOUND: Shop not found.`,
+                500: `Server error
+                 *
+                 * Error codes:
+                 * - SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.`,
             },
         });
         return result.body;
