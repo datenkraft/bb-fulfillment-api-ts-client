@@ -54,7 +54,10 @@ export class DocsService {
             method: 'GET',
             path: `/docs/openapi.${format}`,
             errors: {
-                400: `Invalid format`,
+                400: `Invalid format
+                 *
+                 * Error codes:
+                 * - DATA_INVALID: Invalid data was given.`,
             },
         });
         return result.body;

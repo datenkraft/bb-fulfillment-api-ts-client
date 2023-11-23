@@ -13,7 +13,7 @@ export type collectionPagination = {
     pageSize?: number;
     /**
      * The total number of items in the collection.\
-     * Note: This can be null depending on the used paginationMode.
+     * Note: This can be null depending on the used paginationMode
      */
     totalCount?: number | null;
 }
