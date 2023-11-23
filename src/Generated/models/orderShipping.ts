@@ -7,7 +7,7 @@
  */
 export type orderShipping = {
     /**
-     * The delivery service to recommend for usage.
+     * The delivery service to recommend for usage. \
      * The codes of supported delivery services can be retrieved from the 'GET /delivery-service' endpoint.
      */
     deliveryService: string;

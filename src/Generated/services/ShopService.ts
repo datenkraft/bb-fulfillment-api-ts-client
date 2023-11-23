@@ -14,7 +14,8 @@ export class ShopService {
      * @param pageSize The maximum size per page is 100. Default is 100.
      * @param paginationMode The paginationMode to use:
      * - default: The total number of items in the collection will not be calculated.
-     * - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
+     * - totalCount: The total number of items in the collection will be calculated.
+     * This can mean loss of performance.
      * @param filterMetaShopifyShopDomain A filter for the Shopify hostname of the shop.
      * @returns shopCollection OK
      * @returns errorResponse Unexpected error
@@ -36,9 +37,18 @@ export class ShopService {
                 'filter[meta][shopifyShopDomain]': filterMetaShopifyShopDomain,
             },
             errors: {
-                401: `Unauthorized`,
-                403: `Forbidden`,
-                500: `Server error`,
+                401: `Unauthorized
+                 *
+                 * Error codes:
+                 * - AUTHORIZATION_MISSING: No valid authentication information was given.`,
+                403: `Forbidden
+                 *
+                 * Error codes:
+                 * - PERMISSIONS_MISSING: No authorization for the called action was found.`,
+                500: `Server error
+                 *
+                 * Error codes:
+                 * - SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.`,
             },
         });
         return result.body;
