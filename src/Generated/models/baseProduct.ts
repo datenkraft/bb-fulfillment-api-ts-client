@@ -32,8 +32,8 @@ export type baseProduct = {
      */
     contentsAmount: number | null;
     /**
-     * Unit of the product contents ('stk' if no value is provided).\
-     * Valid units can be queried with a GET /product-unit call
+     * Unit of the product contents.\
+     * All units can be queried with a GET /product-unit call
      */
     contentsUnit: string | null;
     /**

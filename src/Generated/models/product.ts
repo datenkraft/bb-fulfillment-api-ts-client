@@ -60,13 +60,10 @@ export type product = (baseProduct & {
     listPriceEUR?: number | null,
     /**
      * One of the available tax codes.
-     * - std: Standard tax rate (AT 20%)
-     * - spc: 1st tax rate (AT 13%)
-     * - erm: 2nd tax rate (AT 10%)
-     * - erm3: 3rd tax rate (AT 5%)
-     * - nsp: not taxable (0%)\
-     *
-     * Note: This can be null if the product was not created via the API.
+     * - default: Default tax rate (in e.g. Austria 20 %)
+     * - reduced1: 1st reduced tax rate (in e.g. Austria 13 %)
+     * - reduced2: 2nd reduced tax rate (in e.g. Austria 10 %)
+     * - none: not taxable (0%)
      */
     taxCode: product.taxCode | null,
     /**
@@ -117,20 +114,16 @@ export namespace product {
 
     /**
      * One of the available tax codes.
-     * - std: Standard tax rate (AT 20%)
-     * - spc: 1st tax rate (AT 13%)
-     * - erm: 2nd tax rate (AT 10%)
-     * - erm3: 3rd tax rate (AT 5%)
-     * - nsp: not taxable (0%)\
-     *
-     * Note: This can be null if the product was not created via the API.
+     * - default: Default tax rate (in e.g. Austria 20 %)
+     * - reduced1: 1st reduced tax rate (in e.g. Austria 13 %)
+     * - reduced2: 2nd reduced tax rate (in e.g. Austria 10 %)
+     * - none: not taxable (0%)
      */
     export enum taxCode {
-        STD = 'std',
-        SPC = 'spc',
-        ERM = 'erm',
-        ERM3 = 'erm3',
-        NSB = 'nsb',
+        DEFAULT = 'default',
+        REDUCED1 = 'reduced1',
+        REDUCED2 = 'reduced2',
+        NONE = 'none',
     }
 
     /**
