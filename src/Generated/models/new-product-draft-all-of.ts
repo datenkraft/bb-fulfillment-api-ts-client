@@ -26,5 +26,25 @@ export interface NewProductDraftAllOf {
      * @memberof NewProductDraftAllOf
      */
     'productNumber'?: string;
+    /**
+     * Unit of the product contents.\\ Must be one of the available values specified in the enum.
+     * @type {string}
+     * @memberof NewProductDraftAllOf
+     */
+    'contentsUnit'?: NewProductDraftAllOfContentsUnitEnum;
 }
+
+export const NewProductDraftAllOfContentsUnitEnum = {
+    Gram: 'gram',
+    Capsule: 'capsule',
+    Kilogram: 'kilogram',
+    Liter: 'liter',
+    Milligram: 'milligram',
+    Milliliter: 'milliliter',
+    Set: 'set',
+    Piece: 'piece'
+} as const;
+
+export type NewProductDraftAllOfContentsUnitEnum = typeof NewProductDraftAllOfContentsUnitEnum[keyof typeof NewProductDraftAllOfContentsUnitEnum];
+
 

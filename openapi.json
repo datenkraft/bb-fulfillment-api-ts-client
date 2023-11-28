@@ -7179,9 +7179,9 @@
                         "nullable": true
                     },
                     "contentsUnit": {
-                        "description": "Unit of the product contents ('stk' if no value is provided).\\\nValid units can be queried with a GET /product-unit call",
+                        "description": "Unit of the product contents.\\\nAll units can be queried with a GET /product-unit call",
                         "type": "string",
-                        "default": "stk",
+                        "default": "piece",
                         "nullable": true
                     },
                     "contentsWeightGram": {
@@ -7266,11 +7266,6 @@
                         "type": "number",
                         "format": "float",
                         "default": 1
-                    },
-                    "contentsUnit": {
-                        "description": "Unit of the product contents ('stk' if no value is provided).\\\nValid units can be queried with a GET /product-unit call",
-                        "type": "string",
-                        "default": "stk"
                     },
                     "contentsWeightGram": {
                         "description": "Weight of the product contents in gram",
@@ -8142,6 +8137,21 @@
                                 "description": "Product number to be used for the final product\\\nThis number is user defined, must be unique and has a maximum length (check maxLength field).\\\nPlease ensure that it does not contain any of the following character sequences:\n'/', '%2F', '%2f', '?', '%3F', '%3f',\n'#', '%23', '&', '%26'. Using any of these will result in the route not being handled correctly.",
                                 "type": "string",
                                 "maxLength": 248
+                            },
+                            "contentsUnit": {
+                                "description": "Unit of the product contents.\\\nMust be one of the available values specified in the enum.",
+                                "type": "string",
+                                "default": "piece",
+                                "enum": [
+                                    "gram",
+                                    "capsule",
+                                    "kilogram",
+                                    "liter",
+                                    "milligram",
+                                    "milliliter",
+                                    "set",
+                                    "piece"
+                                ]
                             }
                         },
                         "type": "object"
@@ -8590,15 +8600,14 @@
                                 "nullable": true
                             },
                             "taxCode": {
-                                "description": "One of the available tax codes.\n- std: Standard tax rate (AT 20%)\n- spc: 1st tax rate (AT 13%)\n- erm: 2nd tax rate (AT 10%)\n- erm3: 3rd tax rate (AT 5%)\n- nsp: not taxable (0%)\\\n\nNote: This can be null if the product was not created via the API.",
+                                "description": "One of the available tax codes.\n- default: Default tax rate (in e.g. Austria 20 %)\n- reduced1: 1st reduced tax rate (in e.g. Austria 13 %)\n- reduced2: 2nd reduced tax rate (in e.g. Austria 10 %)\n- none: not taxable (0%)",
                                 "type": "string",
-                                "default": "std",
+                                "default": "default",
                                 "enum": [
-                                    "std",
-                                    "spc",
-                                    "erm",
-                                    "erm3",
-                                    "nsb",
+                                    "default",
+                                    "reduced1",
+                                    "reduced2",
+                                    "none",
                                     null
                                 ],
                                 "nullable": true
@@ -8695,6 +8704,10 @@
                                     "accepted",
                                     "declined"
                                 ]
+                            },
+                            "contentsUnit": {
+                                "description": "Unit of the product contents.\\\nAll units can be queried with a GET /product-unit call",
+                                "type": "string"
                             }
                         },
                         "type": "object"

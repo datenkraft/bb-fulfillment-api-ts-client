@@ -39,12 +39,6 @@ export interface BaseProductDraft {
      */
     'contentsAmount'?: number;
     /**
-     * Unit of the product contents (\'stk\' if no value is provided).\\ Valid units can be queried with a GET /product-unit call
-     * @type {string}
-     * @memberof BaseProductDraft
-     */
-    'contentsUnit'?: string;
-    /**
      * Weight of the product contents in gram
      * @type {number}
      * @memberof BaseProductDraft
