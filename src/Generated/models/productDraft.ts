@@ -25,6 +25,11 @@ export type productDraft = (baseProductDraft & {
      * - declined: The product draft is declined by the steve team
      */
     productDraftStatus?: productDraft.productDraftStatus,
+    /**
+     * Unit of the product contents.\
+     * All units can be queried with a GET /product-unit call
+     */
+    contentsUnit?: string,
 });
 
 export namespace productDraft {

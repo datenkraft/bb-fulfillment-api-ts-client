@@ -16,4 +16,29 @@ export type newProductDraft = (baseProductDraft & {
      * '#', '%23', '&', '%26'. Using any of these will result in the route not being handled correctly.
      */
     productNumber?: string,
+    /**
+     * Unit of the product contents.\
+     * Must be one of the available values specified in the enum.
+     */
+    contentsUnit: newProductDraft.contentsUnit,
 });
+
+export namespace newProductDraft {
+
+    /**
+     * Unit of the product contents.\
+     * Must be one of the available values specified in the enum.
+     */
+    export enum contentsUnit {
+        GRAM = 'gram',
+        CAPSULE = 'capsule',
+        KILOGRAM = 'kilogram',
+        LITER = 'liter',
+        MILLIGRAM = 'milligram',
+        MILLILITER = 'milliliter',
+        SET = 'set',
+        PIECE = 'piece',
+    }
+
+
+}

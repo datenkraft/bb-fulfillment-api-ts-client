@@ -19,11 +19,6 @@ export type baseProductDraft = {
      */
     contentsAmount: number;
     /**
-     * Unit of the product contents ('stk' if no value is provided).\
-     * Valid units can be queried with a GET /product-unit call
-     */
-    contentsUnit: string;
-    /**
      * Weight of the product contents in gram
      */
     contentsWeightGram?: number;
