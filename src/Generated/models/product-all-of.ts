@@ -75,7 +75,7 @@ export interface ProductAllOf {
      */
     'listPriceEUR'?: number | null;
     /**
-     * One of the available tax codes. - std: Standard tax rate (AT 20%) - spc: 1st tax rate (AT 13%) - erm: 2nd tax rate (AT 10%) - erm3: 3rd tax rate (AT 5%) - nsp: not taxable (0%)\\  Note: This can be null if the product was not created via the API.
+     * One of the available tax codes. - default: Default tax rate (in e.g. Austria 20 %) - reduced1: 1st reduced tax rate (in e.g. Austria 13 %) - reduced2: 2nd reduced tax rate (in e.g. Austria 10 %) - none: not taxable (0%)
      * @type {string}
      * @memberof ProductAllOf
      */
@@ -114,11 +114,10 @@ export const ProductAllOfProductStatusEnum = {
 
 export type ProductAllOfProductStatusEnum = typeof ProductAllOfProductStatusEnum[keyof typeof ProductAllOfProductStatusEnum];
 export const ProductAllOfTaxCodeEnum = {
-    Std: 'std',
-    Spc: 'spc',
-    Erm: 'erm',
-    Erm3: 'erm3',
-    Nsb: 'nsb',
+    Default: 'default',
+    Reduced1: 'reduced1',
+    Reduced2: 'reduced2',
+    None: 'none',
     Null: 'null'
 } as const;
 

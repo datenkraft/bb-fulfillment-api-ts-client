@@ -44,6 +44,12 @@ export interface ProductDraftAllOf {
      * @memberof ProductDraftAllOf
      */
     'productDraftStatus'?: ProductDraftAllOfProductDraftStatusEnum;
+    /**
+     * Unit of the product contents.\\ All units can be queried with a GET /product-unit call
+     * @type {string}
+     * @memberof ProductDraftAllOf
+     */
+    'contentsUnit'?: string;
 }
 
 export const ProductDraftAllOfSourceEnum = {
