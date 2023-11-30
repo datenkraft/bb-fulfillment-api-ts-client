@@ -185,7 +185,7 @@ export const ProductDraftApiAxiosParamCreator = function (configuration?: Config
          * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
          * @param {string} [filterProductNumber] Filter by a productNumber
          * @param {'pending' | 'accepted' | 'declined'} [filterProductDraftStatus] Filter by a product draft status
-         * @param {string} [filterSearch] Search for parts of a productNumber
+         * @param {string} [filterSearch] Filter for product draft search. \\ Usage: - Provide one or multiple search terms (min. 2 characters) to filter results. - Multiple search terms are separated by spaces. - The search is not case sensitive. - The search is only enabled for the productNumber. - Each search term filters the response for products where the productNumber contains the search term. - For example, filter[search]&#x3D;\&#39;term1 term2\&#39; will filter the result for products where \&#39;term1\&#39; is found in the productNumber and \&#39;term2\&#39; is also found in the productNumber. If only \&#39;term1\&#39; or \&#39;term2\&#39; is found in the productNumber, the product is not included in the results.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -404,7 +404,7 @@ export const ProductDraftApiFp = function(configuration?: Configuration) {
          * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
          * @param {string} [filterProductNumber] Filter by a productNumber
          * @param {'pending' | 'accepted' | 'declined'} [filterProductDraftStatus] Filter by a product draft status
-         * @param {string} [filterSearch] Search for parts of a productNumber
+         * @param {string} [filterSearch] Filter for product draft search. \\ Usage: - Provide one or multiple search terms (min. 2 characters) to filter results. - Multiple search terms are separated by spaces. - The search is not case sensitive. - The search is only enabled for the productNumber. - Each search term filters the response for products where the productNumber contains the search term. - For example, filter[search]&#x3D;\&#39;term1 term2\&#39; will filter the result for products where \&#39;term1\&#39; is found in the productNumber and \&#39;term2\&#39; is also found in the productNumber. If only \&#39;term1\&#39; or \&#39;term2\&#39; is found in the productNumber, the product is not included in the results.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -485,7 +485,7 @@ export const ProductDraftApiFactory = function (configuration?: Configuration, b
          * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
          * @param {string} [filterProductNumber] Filter by a productNumber
          * @param {'pending' | 'accepted' | 'declined'} [filterProductDraftStatus] Filter by a product draft status
-         * @param {string} [filterSearch] Search for parts of a productNumber
+         * @param {string} [filterSearch] Filter for product draft search. \\ Usage: - Provide one or multiple search terms (min. 2 characters) to filter results. - Multiple search terms are separated by spaces. - The search is not case sensitive. - The search is only enabled for the productNumber. - Each search term filters the response for products where the productNumber contains the search term. - For example, filter[search]&#x3D;\&#39;term1 term2\&#39; will filter the result for products where \&#39;term1\&#39; is found in the productNumber and \&#39;term2\&#39; is also found in the productNumber. If only \&#39;term1\&#39; or \&#39;term2\&#39; is found in the productNumber, the product is not included in the results.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -562,7 +562,7 @@ export interface ProductDraftApiInterface {
      * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
      * @param {string} [filterProductNumber] Filter by a productNumber
      * @param {'pending' | 'accepted' | 'declined'} [filterProductDraftStatus] Filter by a product draft status
-     * @param {string} [filterSearch] Search for parts of a productNumber
+     * @param {string} [filterSearch] Filter for product draft search. \\ Usage: - Provide one or multiple search terms (min. 2 characters) to filter results. - Multiple search terms are separated by spaces. - The search is not case sensitive. - The search is only enabled for the productNumber. - Each search term filters the response for products where the productNumber contains the search term. - For example, filter[search]&#x3D;\&#39;term1 term2\&#39; will filter the result for products where \&#39;term1\&#39; is found in the productNumber and \&#39;term2\&#39; is also found in the productNumber. If only \&#39;term1\&#39; or \&#39;term2\&#39; is found in the productNumber, the product is not included in the results.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProductDraftApiInterface
@@ -645,7 +645,7 @@ export class ProductDraftApi extends BaseAPI implements ProductDraftApiInterface
      * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
      * @param {string} [filterProductNumber] Filter by a productNumber
      * @param {'pending' | 'accepted' | 'declined'} [filterProductDraftStatus] Filter by a product draft status
-     * @param {string} [filterSearch] Search for parts of a productNumber
+     * @param {string} [filterSearch] Filter for product draft search. \\ Usage: - Provide one or multiple search terms (min. 2 characters) to filter results. - Multiple search terms are separated by spaces. - The search is not case sensitive. - The search is only enabled for the productNumber. - Each search term filters the response for products where the productNumber contains the search term. - For example, filter[search]&#x3D;\&#39;term1 term2\&#39; will filter the result for products where \&#39;term1\&#39; is found in the productNumber and \&#39;term2\&#39; is also found in the productNumber. If only \&#39;term1\&#39; or \&#39;term2\&#39; is found in the productNumber, the product is not included in the results.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProductDraftApi

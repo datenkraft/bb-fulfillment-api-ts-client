@@ -35,6 +35,7 @@ export * from './delivery-service-collection';
 export * from './delivery-service-collection-all-of';
 export * from './delivery-shipment';
 export * from './delivery-shipment-journal';
+export * from './delivery-shipment-packaging';
 export * from './error-references-inner';
 export * from './error-response';
 export * from './get-auth-permission-collection-response';

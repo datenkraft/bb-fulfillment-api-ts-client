@@ -18,6 +18,9 @@
 import { DeliveryShipmentJournal } from './delivery-shipment-journal';
 // May contain unused imports in some cases
 // @ts-ignore
+import { DeliveryShipmentPackaging } from './delivery-shipment-packaging';
+// May contain unused imports in some cases
+// @ts-ignore
 import { ShipmentLine } from './shipment-line';
 
 /**
@@ -86,6 +89,12 @@ export interface DeliveryShipment {
      * @memberof DeliveryShipment
      */
     'journal'?: Array<DeliveryShipmentJournal>;
+    /**
+     * 
+     * @type {DeliveryShipmentPackaging}
+     * @memberof DeliveryShipment
+     */
+    'packaging'?: DeliveryShipmentPackaging;
 }
 
 export const DeliveryShipmentStatusEnum = {
