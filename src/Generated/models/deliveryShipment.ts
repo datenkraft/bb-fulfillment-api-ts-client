@@ -48,6 +48,23 @@ export type deliveryShipment = {
      * Journal entries regarding the shipment
      */
     journal?: Array<deliveryShipmentJournal>;
+    /**
+     * Packaging dimensions
+     */
+    packaging?: {
+        /**
+         * Height in cm
+         */
+        height?: number,
+        /**
+         * Width in cm
+         */
+        width?: number,
+        /**
+         * Depth in cm
+         */
+        depth?: number,
+    };
 }
 
 export namespace deliveryShipment {

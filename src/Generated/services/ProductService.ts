@@ -23,7 +23,7 @@ export class ProductService {
      * Otherwise the response would be a 422 HTTP Error._
      * @param filterSearch Filter for product search. \
      * Usage:
-     * - Provide one or multiple search terms to filter results.
+     * - Provide one or multiple search terms (min. 2 characters) to filter results.
      * - Multiple search terms are separated by spaces.
      * - The search is not case sensitive.
      * - The search is enabled for the fields productTitle, productNumber and ean.

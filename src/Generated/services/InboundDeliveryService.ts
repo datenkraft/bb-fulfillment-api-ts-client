@@ -129,7 +129,7 @@ export class InboundDeliveryService {
      * @param filterSearch filter for inbound delivery search.
      *
      * Usage:
-     * - Provide one or multiple search terms to filter results.
+     * - Provide one or multiple search terms (min. 2 characters) to filter results.
      * - Multiple search terms are separated by spaces.
      * - The search is not case sensitive.
      * - The search is enabled for the fields inboundDeliveryName and inboundDeliveryNumber (without the
