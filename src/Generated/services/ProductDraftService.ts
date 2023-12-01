@@ -104,7 +104,16 @@ export class ProductDraftService {
      * This can mean loss of performance.
      * @param filterProductNumber Filter by a productNumber
      * @param filterProductDraftStatus Filter by a product draft status
-     * @param filterSearch Search for parts of a productNumber
+     * @param filterSearch Filter for product draft search. \
+     * Usage:
+     * - Provide one or multiple search terms (min. 2 characters) to filter results.
+     * - Multiple search terms are separated by spaces.
+     * - The search is not case sensitive.
+     * - The search is only enabled for the productNumber.
+     * - Each search term filters the response for products where the productNumber contains the search term.
+     * - For example, filter[search]='term1 term2' will filter the result for products where 'term1'
+     * is found in the productNumber and 'term2' is also found in the productNumber.
+     * If only 'term1' or 'term2' is found in the productNumber, the product is not included in the results.
      * @returns productDraftCollection OK
      * @returns errorResponse Unexpected Error
      * @throws ApiError
