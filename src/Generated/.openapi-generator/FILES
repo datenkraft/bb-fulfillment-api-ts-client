@@ -62,6 +62,7 @@ models/delivery-service-collection-all-of.ts
 models/delivery-service-collection.ts
 models/delivery-service.ts
 models/delivery-shipment-journal.ts
+models/delivery-shipment-packaging.ts
 models/delivery-shipment.ts
 models/delivery.ts
 models/error-references-inner.ts
