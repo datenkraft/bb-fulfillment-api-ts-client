@@ -6022,7 +6022,7 @@
                     {
                         "name": "sortBy",
                         "in": "query",
-                        "description": "Sort the results by one or more comma-separated sort criteria, with the criterion specified first having priority.\n\nAvailable sort orders:\n- asc: ascending order\n- desc: descending order\n\nAvailable fields for sorting:\n-productNumber\n-stockStart\n-stockEnd\n-stockAdded\n-stockSubtracted\n-stockSubtractedExternal\n-stockCorrected\n-stockUsedForOwnPurposes\n-stockReturned\n-stockReturnedExternal\n\nThe default sort order is stockEnd:desc.",
+                        "description": "Sort the results by one or more comma-separated sort criteria, with the criterion specified first having\npriority.\n\nAvailable sort orders:\n- asc: ascending order\n- desc: descending order\n\nAvailable fields for sorting:\n- productNumber\n- stockStart\n- stockEnd\n- stockAdded\n- stockSubtracted\n- stockSubtractedExternal\n- stockCorrected\n- stockUsedForOwnPurposes\n- stockReturned\n- stockReturnedExternal\n\nThe default sort order is stockEnd:desc.",
                         "required": false,
                         "schema": {
                             "type": "string"
