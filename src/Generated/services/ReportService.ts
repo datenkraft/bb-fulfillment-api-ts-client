@@ -83,23 +83,24 @@ export class ReportService {
      * - default: The total number of items in the collection will not be calculated.
      * - totalCount: The total number of items in the collection will be calculated.
      * This can mean loss of performance.
-     * @param sortBy Sort the results by one or more comma-separated sort criteria, with the criterion specified first having priority.
+     * @param sortBy Sort the results by one or more comma-separated sort criteria, with the criterion specified first having
+     * priority.
      *
      * Available sort orders:
      * - asc: ascending order
      * - desc: descending order
      *
      * Available fields for sorting:
-     * -productNumber
-     * -stockStart
-     * -stockEnd
-     * -stockAdded
-     * -stockSubtracted
-     * -stockSubtractedExternal
-     * -stockCorrected
-     * -stockUsedForOwnPurposes
-     * -stockReturned
-     * -stockReturnedExternal
+     * - productNumber
+     * - stockStart
+     * - stockEnd
+     * - stockAdded
+     * - stockSubtracted
+     * - stockSubtractedExternal
+     * - stockCorrected
+     * - stockUsedForOwnPurposes
+     * - stockReturned
+     * - stockReturnedExternal
      *
      * The default sort order is stockEnd:desc.
      * @param filterShopCode The shopCode used internally to distinguish between clients. \
