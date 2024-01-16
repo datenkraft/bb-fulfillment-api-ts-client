@@ -10,63 +10,61 @@ import type { variantGroupEnum } from './variantGroupEnum';
  */
 export type baseProduct = {
     /**
-     * Type of the product
+     * Type of the product.
      */
     productType: baseProduct.productType;
     /**
-     * The title of the article variant. \
-     * Must not be set when the articleVariantType is 'standard_autotitle'.
+     * The title of the article variant.
      */
     articleVariantTitle?: string | null;
     /**
-     * The type of the article variant. \
-     * The articleVariantType 'standard_autotitle' is only allowed for the variantGroup 'content'
+     * The type of the article variant.
      */
     articleVariantType: baseProduct.articleVariantType | null;
     /**
-     * Status of the article regarding visibility ('active' if no value is provided)
+     * Status of the article regarding visibility.
      */
     articleStatus: baseProduct.articleStatus | null;
     /**
-     * Amount of the product contents (1 if no value is provided)
+     * Amount of the product contents.
      */
     contentsAmount: number | null;
     /**
-     * Unit of the product contents.\
-     * All units can be queried with a GET /product-unit call
+     * Unit of the product contents. \
+     * Units can be queried with a GET /product-unit call.
      */
     contentsUnit: string | null;
     /**
-     * Weight of the product contents in gram
+     * Weight of the product contents in gram.
      */
     contentsWeightGram?: number | null;
     /**
-     * Total weight of the product in gram
+     * Total weight of the product in gram.
      */
     weightGram?: number | null;
     /**
-     * The variant group of the product
+     * The variant group of the product.
      */
     variantGroup: (variantGroupEnum | string);
     /**
-     * The EAN of the product
+     * The EAN of the product.
      */
     ean?: string | null;
     /**
-     * The suggested retail price for the product in EUR
+     * The suggested retail price for the product in EUR.
      */
     suggestedRetailPriceEUR?: number | null;
     purchasePrices?: Array<productPurchasePrice> | null;
     /**
-     * Product number of the manufacturer
+     * Product number of the manufacturer.
      */
     productNumberManufacturer?: string | null;
     /**
-     * Country code of the manufacturer (ISO 3166-1 alpha-2)
+     * Country code of the manufacturer (ISO 3166-1 alpha-2).
      */
     manufacturerCountryCode: string | null;
     /**
-     * The language code used for the product (ISO 639-1)
+     * The language code used for the product (ISO 639-1).
      */
     languageCode: string | null;
 }
@@ -74,7 +72,7 @@ export type baseProduct = {
 export namespace baseProduct {
 
     /**
-     * Type of the product
+     * Type of the product.
      */
     export enum productType {
         STANDARD = 'standard',
@@ -102,8 +100,7 @@ export namespace baseProduct {
     }
 
     /**
-     * The type of the article variant. \
-     * The articleVariantType 'standard_autotitle' is only allowed for the variantGroup 'content'
+     * The type of the article variant.
      */
     export enum articleVariantType {
         STANDARD = 'standard',
@@ -126,7 +123,7 @@ export namespace baseProduct {
     }
 
     /**
-     * Status of the article regarding visibility ('active' if no value is provided)
+     * Status of the article regarding visibility.
      */
     export enum articleStatus {
         ACTIVE = 'active',
