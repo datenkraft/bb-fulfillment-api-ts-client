@@ -27,49 +27,49 @@ export interface ProductAllOf {
      */
     'productNumber'?: string;
     /**
-     * The shop to which the product belongs
+     * The shop to which the product belongs.
      * @type {string}
      * @memberof ProductAllOf
      */
     'shopCode'?: string;
     /**
-     * Status of the product regarding sales.\\ Available values: - enabled: Product is on sale - enabled_external_only: Product is only available in external stores - deleted: Product is deleted - discontinued: Product is discontinued - expired: Product is expired - incorrect: Product was incorrectly created - internal: Product is available for internal sales only - preparation: Product is in preparation for sale\\  Note: This can be null if the product was not created via the API.
+     * Status of the product regarding sales. \\ Available values: - enabled: Product is on sale - enabled_external_only: Product is only available in external stores - deleted: Product is deleted - discontinued: Product is discontinued - expired: Product is expired - incorrect: Product was incorrectly created - internal: Product is available for internal sales only - preparation: Product is in preparation for sale
      * @type {string}
      * @memberof ProductAllOf
      */
     'productStatus'?: ProductAllOfProductStatusEnum;
     /**
-     * Title of the Product\\ Note: This can be null if the product was not created via the API.
+     * Title of the Product.
      * @type {string}
      * @memberof ProductAllOf
      */
     'productTitle'?: string | null;
     /**
-     * Original title of the Product\\ Note: This can be null if the product was not created via the API.
+     * Original title of the Product.
      * @type {string}
      * @memberof ProductAllOf
      */
     'productTitleOriginal'?: string | null;
     /**
-     * Short description of the article\\ Note: This can be null if the product was not created via the API.
+     * Short description of the article.
      * @type {string}
      * @memberof ProductAllOf
      */
     'articleShortDescription'?: string | null;
     /**
-     * Long description of the article\\ Note: This can be null if the product was not created via the API.
+     * Long description of the article.
      * @type {string}
      * @memberof ProductAllOf
      */
     'articleLongDescription'?: string | null;
     /**
-     * The TARIC Code of the product\\ Note: This can be null if the product was not created via the API.
+     * The TARIC Code of the product.
      * @type {string}
      * @memberof ProductAllOf
      */
     'taricCode'?: string | null;
     /**
-     * The list price of the product in EUR.\\ Note: This can be null if the product was not created via the API.
+     * The list price of the product in EUR.
      * @type {number}
      * @memberof ProductAllOf
      */
@@ -81,13 +81,13 @@ export interface ProductAllOf {
      */
     'taxCode'?: ProductAllOfTaxCodeEnum;
     /**
-     * Number of the manufacturer\\ Note: This can be null if the product was not created via the API.
+     * Number of the manufacturer. \\ Manufacturers can be queried with a GET /manufacturer call. \\ Note: This can be null in some cases (e.g. if the product is a bundle).
      * @type {string}
      * @memberof ProductAllOf
      */
     'manufacturerNumber'?: string | null;
     /**
-     * Number of the supplier.\\ Note: This can be null if the product was not created via the API.
+     * Number of the supplier. \\ Suppliers can be queried with a GET /supplier call. \\ Note: This can be null in some cases (e.g. if the product is a bundle).
      * @type {string}
      * @memberof ProductAllOf
      */
@@ -98,6 +98,12 @@ export interface ProductAllOf {
      * @memberof ProductAllOf
      */
     'source'?: ProductAllOfSourceEnum;
+    /**
+     * Number of the brand. \\ Brands can be queried with a GET /brand call. \\ Note: This can be null in some cases (e.g. if the product is a bundle).
+     * @type {string}
+     * @memberof ProductAllOf
+     */
+    'brandNumber'?: string | null;
 }
 
 export const ProductAllOfProductStatusEnum = {

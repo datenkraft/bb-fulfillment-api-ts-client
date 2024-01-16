@@ -19,7 +19,7 @@ import { VariantGroupEnum } from './variant-group-enum';
 
 /**
  * @type BaseProductVariantGroup
- * The variant group of the product
+ * The variant group of the product.
  * @export
  */
 export type BaseProductVariantGroup = VariantGroupEnum | string;
