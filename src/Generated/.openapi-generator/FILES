@@ -17,6 +17,7 @@ apis/order-api.ts
 apis/product-api.ts
 apis/product-draft-api.ts
 apis/product-unit-api.ts
+apis/reconsignment-announcement-api.ts
 apis/reconsignment-api.ts
 apis/report-api.ts
 apis/shop-api.ts
@@ -46,6 +47,7 @@ models/base-order.ts
 models/base-product-draft.ts
 models/base-product-variant-group.ts
 models/base-product.ts
+models/base-reconsignment-announcement.ts
 models/batch.ts
 models/brand-collection-all-of.ts
 models/brand-collection.ts
@@ -101,6 +103,9 @@ models/new-order.ts
 models/new-product-draft-all-of.ts
 models/new-product-draft.ts
 models/new-product-stock-add.ts
+models/new-reconsignment-announcement-all-of.ts
+models/new-reconsignment-announcement-line.ts
+models/new-reconsignment-announcement.ts
 models/order-all-of.ts
 models/order-collection-all-of.ts
 models/order-collection.ts
@@ -137,6 +142,13 @@ models/product-unit-collection-all-of.ts
 models/product-unit-collection.ts
 models/product-unit.ts
 models/product.ts
+models/reconsignment-announcement-all-of.ts
+models/reconsignment-announcement-line-collection-all-of.ts
+models/reconsignment-announcement-line-collection.ts
+models/reconsignment-announcement-line.ts
+models/reconsignment-announcement-paginated-collection-all-of.ts
+models/reconsignment-announcement-paginated-collection.ts
+models/reconsignment-announcement.ts
 models/reconsignment-collection-all-of.ts
 models/reconsignment-collection.ts
 models/reconsignment-line-collection-all-of.ts

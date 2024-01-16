@@ -15,25 +15,13 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { UpdateShopMeta } from './update-shop-meta';
+import { NewReconsignmentAnnouncementLine } from './new-reconsignment-announcement-line';
 
 /**
- * Fields to update a shop
+ * @type ReconsignmentAnnouncementLine
+ * Data to represent a single piece of content in a reconsignment announcement
  * @export
- * @interface UpdateShop
  */
-export interface UpdateShop {
-    /**
-     * The email used internally.
-     * @type {string}
-     * @memberof UpdateShop
-     */
-    'email'?: string;
-    /**
-     * 
-     * @type {UpdateShopMeta}
-     * @memberof UpdateShop
-     */
-    'meta'?: UpdateShopMeta | null;
-}
+export type ReconsignmentAnnouncementLine = NewReconsignmentAnnouncementLine;
+
 

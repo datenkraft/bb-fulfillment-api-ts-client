@@ -15,25 +15,19 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { UpdateShopMeta } from './update-shop-meta';
+import { BaseReconsignmentAnnouncement } from './base-reconsignment-announcement';
+// May contain unused imports in some cases
+// @ts-ignore
+import { NewReconsignmentAnnouncementAllOf } from './new-reconsignment-announcement-all-of';
+// May contain unused imports in some cases
+// @ts-ignore
+import { NewReconsignmentAnnouncementLine } from './new-reconsignment-announcement-line';
 
 /**
- * Fields to update a shop
+ * @type NewReconsignmentAnnouncement
+ * Data to represent a new reconsignment announcement
  * @export
- * @interface UpdateShop
  */
-export interface UpdateShop {
-    /**
-     * The email used internally.
-     * @type {string}
-     * @memberof UpdateShop
-     */
-    'email'?: string;
-    /**
-     * 
-     * @type {UpdateShopMeta}
-     * @memberof UpdateShop
-     */
-    'meta'?: UpdateShopMeta | null;
-}
+export type NewReconsignmentAnnouncement = BaseReconsignmentAnnouncement & NewReconsignmentAnnouncementAllOf;
+
 

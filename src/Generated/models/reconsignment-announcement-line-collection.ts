@@ -15,25 +15,22 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { UpdateShopMeta } from './update-shop-meta';
+import { Collection } from './collection';
+// May contain unused imports in some cases
+// @ts-ignore
+import { CollectionPagination } from './collection-pagination';
+// May contain unused imports in some cases
+// @ts-ignore
+import { ReconsignmentAnnouncementLine } from './reconsignment-announcement-line';
+// May contain unused imports in some cases
+// @ts-ignore
+import { ReconsignmentAnnouncementLineCollectionAllOf } from './reconsignment-announcement-line-collection-all-of';
 
 /**
- * Fields to update a shop
+ * @type ReconsignmentAnnouncementLineCollection
+ * A collection of reconsignment announcement lines
  * @export
- * @interface UpdateShop
  */
-export interface UpdateShop {
-    /**
-     * The email used internally.
-     * @type {string}
-     * @memberof UpdateShop
-     */
-    'email'?: string;
-    /**
-     * 
-     * @type {UpdateShopMeta}
-     * @memberof UpdateShop
-     */
-    'meta'?: UpdateShopMeta | null;
-}
+export type ReconsignmentAnnouncementLineCollection = Collection & ReconsignmentAnnouncementLineCollectionAllOf;
+
 
