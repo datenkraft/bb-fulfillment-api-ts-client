@@ -3,8 +3,10 @@
 /* eslint-disable */
 import type { errorResponse } from '../models/errorResponse';
 import type { newOrder } from '../models/newOrder';
+import type { newReconsignmentAnnouncement } from '../models/newReconsignmentAnnouncement';
 import type { order } from '../models/order';
 import type { orderCollection } from '../models/orderCollection';
+import type { reconsignmentAnnouncementCollection } from '../models/reconsignmentAnnouncementCollection';
 import { request as __request } from '../core/request';
 
 export class OrderService {
@@ -259,6 +261,68 @@ export class OrderService {
                  *
                  * Error codes:
                  * - SHOP_NOT_FOUND: Shop not found.`,
+                500: `Server error
+                 *
+                 * Error codes:
+                 * - SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.`,
+            },
+        });
+        return result.body;
+    }
+
+    /**
+     * Create reconsignment announcements for an order.
+     * Create reconsignment announcements for an order. \
+     *
+     * Only delivered orders are reconsignable. \
+     * If the order has been redacted, it is also not reconsignable. \
+     * The created reconsignment announcement(s) are returned in the response.
+     * @param orderNumber The number the order is referred by.
+     * @param requestBody
+     * @param shopCode The shopCode used internally to distinguish between clients.\
+     * _This code is optional, if your identity is assigned to only one shop.
+     * Otherwise the response would be a 422 HTTP Error._
+     * @returns reconsignmentAnnouncementCollection OK
+     * @returns errorResponse Unexpected error
+     * @throws ApiError
+     */
+    public static async reconsignOrder(
+        orderNumber: string,
+        requestBody: newReconsignmentAnnouncement,
+        shopCode?: string,
+    ): Promise<reconsignmentAnnouncementCollection | errorResponse> {
+        const result = await __request({
+            method: 'POST',
+            path: `/order/${orderNumber}/reconsign`,
+            query: {
+                'shopCode': shopCode,
+            },
+            body: requestBody,
+            errors: {
+                400: `Bad Request
+                 *
+                 * Error codes:
+                 * - DATA_INVALID: Invalid data was given.`,
+                401: `Unauthorized
+                 *
+                 * Error codes:
+                 * - AUTHORIZATION_MISSING: No valid authentication information was given.`,
+                403: `Forbidden
+                 *
+                 * Error codes:
+                 * - PERMISSIONS_MISSING: No authorization for the called action was found.`,
+                404: `Not Found
+                 *
+                 * Error codes:
+                 * - DATA_NOT_FOUND: The requested data could not be found.`,
+                422: `Unprocessable Entity
+                 *
+                 * Error codes:
+                 * - SHOP_NOT_FOUND: Shop not found.
+                 * - COUNTRY_NOT_ALLOWED_FOR_RECONSIGNMENT:  The country cannot be used for a reconsignment announcement.
+                 * - DELIVERY_SERVICE_NOT_ALLOWED_FOR_RECONSIGNMENT: The determined delivery service cannot be used for a reconsignment announcement.
+                 * - ORDER_NOT_RECONSIGNABLE: The order is not in a reconsignable state.
+                 * - RECONSIGNMENT_ANNOUNCEMENT_LINE_NOT_RECONSIGNABLE: A reconsignment announcement line is not reconsignable.`,
                 500: `Server error
                  *
                  * Error codes:

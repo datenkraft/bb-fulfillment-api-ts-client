@@ -4083,6 +4083,138 @@
                 ]
             }
         },
+        "/order/{orderNumber}/reconsign": {
+            "post": {
+                "tags": [
+                    "order"
+                ],
+                "summary": "Create reconsignment announcements for an order.",
+                "description": "Create reconsignment announcements for an order. \\\n\nOnly delivered orders are reconsignable. \\\nIf the order has been redacted, it is also not reconsignable. \\\nThe created reconsignment announcement(s) are returned in the response.",
+                "operationId": "reconsignOrder",
+                "parameters": [
+                    {
+                        "name": "orderNumber",
+                        "in": "path",
+                        "description": "The number the order is referred by.",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "maxLength": 54
+                        }
+                    },
+                    {
+                        "name": "shopCode",
+                        "in": "query",
+                        "description": "The shopCode used internally to distinguish between clients.\\\n_This code is optional, if your identity is assigned to only one shop.\nOtherwise the response would be a 422 HTTP Error._",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "teststeve"
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/newReconsignmentAnnouncement"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/reconsignmentAnnouncementCollection"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request\n\nError codes:\n- DATA_INVALID: Invalid data was given.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized\n\nError codes:\n- AUTHORIZATION_MISSING: No valid authentication information was given.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden\n\nError codes:\n- PERMISSIONS_MISSING: No authorization for the called action was found.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found\n\nError codes:\n- DATA_NOT_FOUND: The requested data could not be found.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity\n\nError codes:\n- SHOP_NOT_FOUND: Shop not found.\n- COUNTRY_NOT_ALLOWED_FOR_RECONSIGNMENT:  The country cannot be used for a reconsignment announcement.\n- DELIVERY_SERVICE_NOT_ALLOWED_FOR_RECONSIGNMENT: The determined delivery service cannot be used for a reconsignment announcement.\n- ORDER_NOT_RECONSIGNABLE: The order is not in a reconsignable state.\n- RECONSIGNMENT_ANNOUNCEMENT_LINE_NOT_RECONSIGNABLE: A reconsignment announcement line is not reconsignable.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Server error\n\nError codes:\n- SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "oAuthAuthorization": []
+                    },
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
         "/order/{orderNumber}/redact": {
             "post": {
                 "tags": [
@@ -5820,6 +5952,425 @@
                 ]
             }
         },
+        "/reconsignmentAnnouncement": {
+            "get": {
+                "tags": [
+                    "reconsignmentAnnouncement"
+                ],
+                "summary": "Get reconsignment announcements.",
+                "description": "Get reconsignment announcements.",
+                "operationId": "getReconsignmentAnnouncementCollection",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "The page to read. Default is the first page.",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": 1
+                    },
+                    {
+                        "name": "pageSize",
+                        "in": "query",
+                        "description": "The maximum size per page is 100. Default is 100.",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": 20
+                    },
+                    {
+                        "name": "paginationMode",
+                        "in": "query",
+                        "description": "The paginationMode to use:\n- default: The total number of items in the collection will not be calculated.\n- totalCount: The total number of items in the collection will be calculated.\nThis can mean loss of performance.",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "default": "default",
+                            "enum": [
+                                "default",
+                                "totalCount"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "filter[shopCode]",
+                        "in": "query",
+                        "description": "The shopCode used internally to distinguish between clients. \\\n_This code is optional, if your identity is assigned to only one shop.\nOtherwise the response would be a 422 HTTP Error._",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "teststeve"
+                    },
+                    {
+                        "name": "filter[orderNumber]",
+                        "in": "query",
+                        "description": "Filter for a single order number.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "filter[reconsignmentAnnouncementCompleted]",
+                        "in": "query",
+                        "description": "Filter for completed or not completed reconsignment announcements.",
+                        "required": false,
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/reconsignmentAnnouncementPaginatedCollection"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request\n\nError codes:\n- DATA_INVALID: Invalid data was given.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized\n\nError codes:\n- AUTHORIZATION_MISSING: No valid authentication information was given.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden\n\nError codes:\n- PERMISSIONS_MISSING: No authorization for the called action was found.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity\n\nError codes:\n- SHOP_NOT_FOUND: Shop not found.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Server error\n\nError codes:\n- SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "oAuthAuthorization": []
+                    },
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/reconsignmentAnnouncement/{reconsignmentAnnouncementNumber}": {
+            "get": {
+                "tags": [
+                    "reconsignmentAnnouncement"
+                ],
+                "summary": "Get the reconsignment announcement with the given reconsignmentAnnouncementNumber.",
+                "description": "Get the reconsignment announcement with the given reconsignmentAnnouncementNumber.",
+                "operationId": "getReconsignmentAnnouncement",
+                "parameters": [
+                    {
+                        "name": "reconsignmentAnnouncementNumber",
+                        "in": "path",
+                        "description": "Number of the reconsignment announcement",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "shopCode",
+                        "in": "query",
+                        "description": "The shopCode used internally to distinguish between clients. \\\n_This code is optional, if your identity is assigned to only one shop.\nOtherwise the response would be a 422 HTTP Error._",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "teststeve"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/reconsignmentAnnouncement"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request\n\nError codes:\n- DATA_INVALID: Invalid data was given.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized\n\nError codes:\n- AUTHORIZATION_MISSING: No valid authentication information was given.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden\n\nError codes:\n- PERMISSIONS_MISSING: No authorization for the called action was found.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found\n\nError codes:\n- DATA_NOT_FOUND: The requested data could not be found.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity\n\nError codes:\n- SHOP_NOT_FOUND: Shop not found.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Server error\n\nError codes:\n- SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "oAuthAuthorization": []
+                    },
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/reconsignmentAnnouncement/{reconsignmentAnnouncementNumber}/document/{documentCode}": {
+            "get": {
+                "tags": [
+                    "reconsignmentAnnouncement"
+                ],
+                "summary": "Download reconsignmentAnnouncement related documents.",
+                "description": "Allows to download a document associated with the given reconsignmentAnnouncement.",
+                "operationId": "getReconsignmentAnnouncementDocument",
+                "parameters": [
+                    {
+                        "name": "reconsignmentAnnouncementNumber",
+                        "in": "path",
+                        "description": "The number of the reconsignmentAnnouncement.",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "documentCode",
+                        "in": "path",
+                        "description": "The document type to download. The file format is determined by the Accept request header.\\\n**Note:** Only a limited amount of document type to file format combinations are available:\n- shippingLabel: The shipping label for the end customer to ship goods back to the steve warehouse.\\\nAccept header: application/pdf",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "shippingLabel"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "shopCode",
+                        "in": "query",
+                        "description": "The shopCode used internally to distinguish between clients. \\\n_This code is optional, if your identity is assigned to only one shop.\nOtherwise the response would be a 422 HTTP Error._",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "teststeve"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns the document with the file format according to the sent Accept request header.",
+                        "content": {
+                            "application/pdf": {
+                                "schema": {
+                                    "type": "string",
+                                    "format": "binary"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request\n\nError codes:\n- DATA_INVALID: Invalid data was given.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized\n\nError codes:\n- AUTHORIZATION_MISSING: No valid authentication information was given.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden\n\nError codes:\n- PERMISSIONS_MISSING: No authorization for the called action was found.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found\n\nError codes:\n- DATA_NOT_FOUND: The requested data could not be found.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "406": {
+                        "description": "The requested document could not be generated in the format specified by the Accept request header.\n\nError codes:\n- ACCEPTABLE_RESPONSE_NOT_AVAILABLE: No response can be provided for the requested accept header.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity\n\nError codes:\n- SHOP_NOT_FOUND: Shop not found.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Server error\n\nError codes:\n- SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "oAuthAuthorization": []
+                    },
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
         "/report/clearing/orders": {
             "get": {
                 "tags": [
@@ -7334,6 +7885,29 @@
                 },
                 "type": "object"
             },
+            "baseReconsignmentAnnouncement": {
+                "title": "baseReconsignmentAnnouncement",
+                "description": "Base data for a reconsignment announcement",
+                "properties": {
+                    "reconsignmentReason": {
+                        "description": "The reason for reconsignment.",
+                        "type": "string",
+                        "enum": [
+                            "reconsignment_transport_lost",
+                            "reconsignment_transport_damage",
+                            "reconsignment_product_wrong",
+                            "reconsignment_product_outofdate",
+                            "reconsignment_product_missing",
+                            "reconsignment_product_guarantee",
+                            "reconsignment_product_dislike",
+                            "reconsignment_product_defect",
+                            "reconsignment_product_damage",
+                            "reconsignment_other_unknown"
+                        ]
+                    }
+                },
+                "type": "object"
+            },
             "batch": {
                 "title": "batch",
                 "description": "Which batch the product belongs",
@@ -8201,6 +8775,50 @@
                 },
                 "type": "object"
             },
+            "newReconsignmentAnnouncement": {
+                "title": "newReconsignmentAnnouncement",
+                "description": "Data to represent a new reconsignment announcement",
+                "required": [
+                    "reconsignmentReason",
+                    "reconsignmentAnnouncementLines"
+                ],
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/baseReconsignmentAnnouncement"
+                    },
+                    {
+                        "properties": {
+                            "reconsignmentAnnouncementLines": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/newReconsignmentAnnouncementLine"
+                                }
+                            }
+                        },
+                        "type": "object"
+                    }
+                ]
+            },
+            "newReconsignmentAnnouncementLine": {
+                "title": "newReconsignmentAnnouncementLine",
+                "description": "Data to represent a single piece of content in a new reconsignment announcement",
+                "required": [
+                    "productNumber",
+                    "count"
+                ],
+                "properties": {
+                    "productNumber": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "count": {
+                        "description": "Number of items included in the reconsignment announcement.",
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                },
+                "type": "object"
+            },
             "order": {
                 "title": "order",
                 "description": "Data to represent an order.",
@@ -8990,6 +9608,115 @@
                 },
                 "type": "object"
             },
+            "reconsignmentAnnouncement": {
+                "title": "reconsignmentAnnouncement",
+                "description": "Data to represent a reconsignment announcement",
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/baseReconsignmentAnnouncement"
+                    },
+                    {
+                        "properties": {
+                            "reconsignmentAnnouncementNumber": {
+                                "description": "The number the reconsignmentAnnouncement is referred by.",
+                                "type": "string"
+                            },
+                            "reconsignmentAnnouncementDate": {
+                                "description": "The date the reconsignmentAnnouncement was created.",
+                                "type": "string"
+                            },
+                            "reconsignmentCountryCode": {
+                                "description": "The country, from where the reconsignment announcement is shipped (ISO 3166-1 alpha-2).",
+                                "type": "string"
+                            },
+                            "reconsignmentDeliveryServiceCode": {
+                                "description": "The delivery service used for the reconsignmentAnnouncement.",
+                                "type": "string"
+                            },
+                            "reconsignmentTrackingCode": {
+                                "description": "The tracking code for the reconsignment.",
+                                "type": "string"
+                            },
+                            "reconsignmentAnnouncementCompleted": {
+                                "description": "Indicates whether the reconsignment announcement is completed.",
+                                "type": "boolean"
+                            },
+                            "orderNumber": {
+                                "description": "The order number. Note: This can be null if the order was not created via the API.",
+                                "type": "string"
+                            },
+                            "deliveryNumber": {
+                                "description": "The delivery number associated with the reconsignment.",
+                                "type": "string"
+                            },
+                            "reconsignmentAnnouncementLines": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/reconsignmentAnnouncementLine"
+                                }
+                            }
+                        },
+                        "type": "object"
+                    }
+                ]
+            },
+            "reconsignmentAnnouncementCollection": {
+                "title": "reconsignmentAnnouncementCollection",
+                "description": "A collection of reconsignment announcements",
+                "type": "array",
+                "items": {
+                    "$ref": "#/components/schemas/reconsignmentAnnouncement"
+                }
+            },
+            "reconsignmentAnnouncementLine": {
+                "title": "reconsignmentAnnouncementLine",
+                "description": "Data to represent a single piece of content in a reconsignment announcement",
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/newReconsignmentAnnouncementLine"
+                    }
+                ]
+            },
+            "reconsignmentAnnouncementLineCollection": {
+                "title": "reconsignmentAnnouncementLineCollection",
+                "description": "A collection of reconsignment announcement lines",
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/collection"
+                    },
+                    {
+                        "properties": {
+                            "data": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/reconsignmentAnnouncementLine"
+                                }
+                            }
+                        },
+                        "type": "object"
+                    }
+                ]
+            },
+            "reconsignmentAnnouncementPaginatedCollection": {
+                "title": "reconsignmentAnnouncementPaginatedCollection",
+                "description": "A collection of reconsignment announcements",
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/collection"
+                    },
+                    {
+                        "properties": {
+                            "data": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/reconsignmentAnnouncement"
+                                }
+                            }
+                        },
+                        "type": "object"
+                    }
+                ]
+            },
             "reconsignmentCollection": {
                 "title": "reconsignmentCollection",
                 "description": "A collection of reconsignments",
@@ -9332,8 +10059,8 @@
                                 ],
                                 "nullable": true
                             },
-                            "shopifyOverwriteCustomerEmailEnabled": {
-                                "description": "Flag to mark if it is allowed to set a customer's email in shopify. If false the shop email will be\nused as default.",
+                            "overwriteCustomerEmailEnabled": {
+                                "description": "Flag to mark if it is allowed to set a customer's email in a third party app or via the API.\nIf false the shop email will be used as default.",
                                 "type": "boolean",
                                 "nullable": true
                             }
@@ -9478,6 +10205,10 @@
             "updateShop": {
                 "description": "Fields to update a shop",
                 "properties": {
+                    "email": {
+                        "description": "The email used internally.",
+                        "type": "string"
+                    },
                     "meta": {
                         "description": "Meta data of the shop.",
                         "properties": {
@@ -9515,8 +10246,8 @@
                                 ],
                                 "nullable": true
                             },
-                            "shopifyOverwriteCustomerEmailEnabled": {
-                                "description": "Flag to mark if it is allowed to set a customer's email in shopify. If false the shop email will be\nused as default.",
+                            "overwriteCustomerEmailEnabled": {
+                                "description": "Flag to mark if it is allowed to set a customer's email in a third party app or via the API.\nIf false the shop email will be used as default.",
                                 "type": "boolean",
                                 "nullable": true
                             }

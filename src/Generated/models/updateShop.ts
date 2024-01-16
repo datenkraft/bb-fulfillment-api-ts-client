@@ -7,6 +7,10 @@
  */
 export type updateShop = {
     /**
+     * The email used internally.
+     */
+    email?: string;
+    /**
      * Meta data of the shop.
      */
     meta?: {
@@ -31,10 +35,10 @@ export type updateShop = {
          */
         defaultCurrency?: updateShop.defaultCurrency | null,
         /**
-         * Flag to mark if it is allowed to set a customer's email in shopify. If false the shop email will be
-         * used as default.
+         * Flag to mark if it is allowed to set a customer's email in a third party app or via the API.
+         * If false the shop email will be used as default.
          */
-        shopifyOverwriteCustomerEmailEnabled?: boolean | null,
+        overwriteCustomerEmailEnabled?: boolean | null,
     } | null;
 }
 
