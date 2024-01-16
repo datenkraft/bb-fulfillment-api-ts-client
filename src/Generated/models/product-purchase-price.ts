@@ -21,19 +21,19 @@
  */
 export interface ProductPurchasePrice {
     /**
-     * The currency code (ISO 4217)
+     * The currency code (ISO 4217).
      * @type {string}
      * @memberof ProductPurchasePrice
      */
     'currencyCode': string;
     /**
-     * Amount of purchased products
+     * Amount of purchased products.
      * @type {number}
      * @memberof ProductPurchasePrice
      */
     'amount': number;
     /**
-     * The price per product unit
+     * The price per product unit.
      * @type {number}
      * @memberof ProductPurchasePrice
      */

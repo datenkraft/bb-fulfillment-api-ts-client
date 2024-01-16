@@ -27,49 +27,49 @@ import { ProductPurchasePrice } from './product-purchase-price';
  */
 export interface BaseProduct {
     /**
-     * Type of the product
+     * Type of the product.
      * @type {string}
      * @memberof BaseProduct
      */
     'productType'?: BaseProductProductTypeEnum;
     /**
-     * The title of the article variant. \\ Must not be set when the articleVariantType is \'standard_autotitle\'.
+     * The title of the article variant.
      * @type {string}
      * @memberof BaseProduct
      */
     'articleVariantTitle'?: string | null;
     /**
-     * The type of the article variant. \\ The articleVariantType \'standard_autotitle\' is only allowed for the variantGroup \'content\'
+     * The type of the article variant.
      * @type {string}
      * @memberof BaseProduct
      */
     'articleVariantType'?: BaseProductArticleVariantTypeEnum;
     /**
-     * Status of the article regarding visibility (\'active\' if no value is provided)
+     * Status of the article regarding visibility.
      * @type {string}
      * @memberof BaseProduct
      */
     'articleStatus'?: BaseProductArticleStatusEnum;
     /**
-     * Amount of the product contents (1 if no value is provided)
+     * Amount of the product contents.
      * @type {number}
      * @memberof BaseProduct
      */
     'contentsAmount'?: number | null;
     /**
-     * Unit of the product contents.\\ All units can be queried with a GET /product-unit call
+     * Unit of the product contents. \\ Units can be queried with a GET /product-unit call.
      * @type {string}
      * @memberof BaseProduct
      */
     'contentsUnit'?: string | null;
     /**
-     * Weight of the product contents in gram
+     * Weight of the product contents in gram.
      * @type {number}
      * @memberof BaseProduct
      */
     'contentsWeightGram'?: number | null;
     /**
-     * Total weight of the product in gram
+     * Total weight of the product in gram.
      * @type {number}
      * @memberof BaseProduct
      */
@@ -81,13 +81,13 @@ export interface BaseProduct {
      */
     'variantGroup'?: BaseProductVariantGroup;
     /**
-     * The EAN of the product
+     * The EAN of the product.
      * @type {string}
      * @memberof BaseProduct
      */
     'ean'?: string | null;
     /**
-     * The suggested retail price for the product in EUR
+     * The suggested retail price for the product in EUR.
      * @type {number}
      * @memberof BaseProduct
      */
@@ -99,19 +99,19 @@ export interface BaseProduct {
      */
     'purchasePrices'?: Array<ProductPurchasePrice> | null;
     /**
-     * Product number of the manufacturer
+     * Product number of the manufacturer.
      * @type {string}
      * @memberof BaseProduct
      */
     'productNumberManufacturer'?: string | null;
     /**
-     * Country code of the manufacturer (ISO 3166-1 alpha-2)
+     * Country code of the manufacturer (ISO 3166-1 alpha-2).
      * @type {string}
      * @memberof BaseProduct
      */
     'manufacturerCountryCode'?: string | null;
     /**
-     * The language code used for the product (ISO 639-1)
+     * The language code used for the product (ISO 639-1).
      * @type {string}
      * @memberof BaseProduct
      */
