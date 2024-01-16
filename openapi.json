@@ -3059,7 +3059,7 @@
                         }
                     },
                     "422": {
-                        "description": "Unprocessable Entity\n\nError codes:\n- SUPPLIER_NOT_FOUND: Unknown supplierNumber.\n- PRODUCT_NOT_FOUND: Unknown productNumber.\n- DUPLICATED_PRODUCT: There are multiple products with the same productNumber.\n- PRODUCT_COULD_NOT_BE_ADDED_FOR_SUPPLIER: At least one of the the given products could not be added for the supplier.\n- INBOUND_DELIVERY_NOTIFICATION_NOT_SENDABLE: Could not send the delivery notification to the supplier. The inbound delivery has been deleted.\n- INBOUND_DELIVERY_NUMBER_STARTS_WITH_RESERVED_NUMBER_PREFIX: The inboundDeliveryNumber starts with a prefix that is reserved for internal references.",
+                        "description": "Unprocessable Entity\n\nError codes:\n- SUPPLIER_NOT_FOUND: Unknown supplierNumber.\n- PRODUCT_NOT_FOUND: Unknown productNumber.\n- PRODUCT_COULD_NOT_BE_ADDED_FOR_SUPPLIER: At least one of the the given products could not be added for the supplier.\n- INBOUND_DELIVERY_NOTIFICATION_NOT_SENDABLE: Could not send the delivery notification to the supplier. The inbound delivery has been deleted.\n- INBOUND_DELIVERY_NUMBER_STARTS_WITH_RESERVED_NUMBER_PREFIX: The inboundDeliveryNumber starts with a prefix that is reserved for internal references.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -3911,7 +3911,7 @@
                         }
                     },
                     "422": {
-                        "description": "Unprocessable Entity\n\nError codes:\n- PRODUCT_NOT_FOUND: Unknown productNumber.\n- DUPLICATED_PRODUCT: There are multiple orderItems with the same productNumber.\n- ORDER_CUSTOMS_CLEARANCE_REQUIRED_FIELD_MISSING: A field required for customs clearance is missing.\n- ORDER_NUMBER_STARTS_WITH_RESERVED_NUMBER_PREFIX: The orderNumber starts with a prefix that is reserved for internal references.\n- ORDER_INVALID_CURRENCY_CODE: An invalid currencyCode was given for the delivery country.\n- ORDER_ITEM_NOT_ORDERABLE: A specific orderItem can not be ordered.",
+                        "description": "Unprocessable Entity\n\nError codes:\n- PRODUCT_NOT_FOUND: Unknown productNumber.\n- ORDER_CUSTOMS_CLEARANCE_REQUIRED_FIELD_MISSING: A field required for customs clearance is missing.\n- ORDER_NUMBER_STARTS_WITH_RESERVED_NUMBER_PREFIX: The orderNumber starts with a prefix that is reserved for internal references.\n- ORDER_INVALID_CURRENCY_CODE: An invalid currencyCode was given for the delivery country.\n- ORDER_ITEM_NOT_ORDERABLE: A specific orderItem can not be ordered.",
                         "content": {
                             "application/json": {
                                 "schema": {

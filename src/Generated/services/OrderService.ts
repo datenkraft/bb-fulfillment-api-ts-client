@@ -197,7 +197,6 @@ export class OrderService {
                  *
                  * Error codes:
                  * - PRODUCT_NOT_FOUND: Unknown productNumber.
-                 * - DUPLICATED_PRODUCT: There are multiple orderItems with the same productNumber.
                  * - ORDER_CUSTOMS_CLEARANCE_REQUIRED_FIELD_MISSING: A field required for customs clearance is missing.
                  * - ORDER_NUMBER_STARTS_WITH_RESERVED_NUMBER_PREFIX: The orderNumber starts with a prefix that is reserved for internal references.
                  * - ORDER_INVALID_CURRENCY_CODE: An invalid currencyCode was given for the delivery country.
