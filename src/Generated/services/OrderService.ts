@@ -88,11 +88,6 @@ export class OrderService {
                  *
                  * Error codes:
                  * - PERMISSIONS_MISSING: No authorization for the called action was found.`,
-                422: `Unprocessable Entity
-                 *
-                 * Error codes:
-                 * - PRODUCT_NOT_FOUND: Unknown productNumber.
-                 * - DUPLICATED_PRODUCT: There are multiple orderItems with the same productNumber.`,
                 500: `Server error
                  *
                  * Error codes:
