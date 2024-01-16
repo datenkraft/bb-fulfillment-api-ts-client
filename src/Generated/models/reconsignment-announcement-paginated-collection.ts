@@ -13,30 +13,24 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import { Collection } from './collection';
+// May contain unused imports in some cases
+// @ts-ignore
+import { CollectionPagination } from './collection-pagination';
+// May contain unused imports in some cases
+// @ts-ignore
+import { ReconsignmentAnnouncement } from './reconsignment-announcement';
+// May contain unused imports in some cases
+// @ts-ignore
+import { ReconsignmentAnnouncementPaginatedCollectionAllOf } from './reconsignment-announcement-paginated-collection-all-of';
 
 /**
- * 
+ * @type ReconsignmentAnnouncementPaginatedCollection
+ * A collection of reconsignment announcements
  * @export
- * @interface ProductPurchasePrice
  */
-export interface ProductPurchasePrice {
-    /**
-     * The currency code (ISO 4217).
-     * @type {string}
-     * @memberof ProductPurchasePrice
-     */
-    'currencyCode': string;
-    /**
-     * Amount of purchased products.
-     * @type {number}
-     * @memberof ProductPurchasePrice
-     */
-    'amount': number;
-    /**
-     * The price per product unit.
-     * @type {number}
-     * @memberof ProductPurchasePrice
-     */
-    'pricePerUnit': number;
-}
+export type ReconsignmentAnnouncementPaginatedCollection = Collection & ReconsignmentAnnouncementPaginatedCollectionAllOf;
+
 

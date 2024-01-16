@@ -24,6 +24,12 @@ import { UpdateShopMeta } from './update-shop-meta';
  */
 export interface UpdateShop {
     /**
+     * The email used internally.
+     * @type {string}
+     * @memberof UpdateShop
+     */
+    'email'?: string;
+    /**
      * 
      * @type {UpdateShopMeta}
      * @memberof UpdateShop

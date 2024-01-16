@@ -15,28 +15,22 @@
 
 
 /**
- * 
+ * Data to represent a single piece of content in a new reconsignment announcement
  * @export
- * @interface ProductPurchasePrice
+ * @interface NewReconsignmentAnnouncementLine
  */
-export interface ProductPurchasePrice {
+export interface NewReconsignmentAnnouncementLine {
     /**
-     * The currency code (ISO 4217).
+     * 
      * @type {string}
-     * @memberof ProductPurchasePrice
+     * @memberof NewReconsignmentAnnouncementLine
      */
-    'currencyCode': string;
+    'productNumber': string;
     /**
-     * Amount of purchased products.
+     * Number of items included in the reconsignment announcement.
      * @type {number}
-     * @memberof ProductPurchasePrice
+     * @memberof NewReconsignmentAnnouncementLine
      */
-    'amount': number;
-    /**
-     * The price per product unit.
-     * @type {number}
-     * @memberof ProductPurchasePrice
-     */
-    'pricePerUnit': number;
+    'count': number;
 }
 

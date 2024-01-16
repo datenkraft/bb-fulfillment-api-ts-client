@@ -13,30 +13,21 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import { NewReconsignmentAnnouncementLine } from './new-reconsignment-announcement-line';
 
 /**
  * 
  * @export
- * @interface ProductPurchasePrice
+ * @interface NewReconsignmentAnnouncementAllOf
  */
-export interface ProductPurchasePrice {
+export interface NewReconsignmentAnnouncementAllOf {
     /**
-     * The currency code (ISO 4217).
-     * @type {string}
-     * @memberof ProductPurchasePrice
+     * 
+     * @type {Array<NewReconsignmentAnnouncementLine>}
+     * @memberof NewReconsignmentAnnouncementAllOf
      */
-    'currencyCode': string;
-    /**
-     * Amount of purchased products.
-     * @type {number}
-     * @memberof ProductPurchasePrice
-     */
-    'amount': number;
-    /**
-     * The price per product unit.
-     * @type {number}
-     * @memberof ProductPurchasePrice
-     */
-    'pricePerUnit': number;
+    'reconsignmentAnnouncementLines'?: Array<NewReconsignmentAnnouncementLine>;
 }
 

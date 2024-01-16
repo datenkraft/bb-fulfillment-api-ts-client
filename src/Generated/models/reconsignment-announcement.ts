@@ -13,30 +13,21 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import { BaseReconsignmentAnnouncement } from './base-reconsignment-announcement';
+// May contain unused imports in some cases
+// @ts-ignore
+import { ReconsignmentAnnouncementAllOf } from './reconsignment-announcement-all-of';
+// May contain unused imports in some cases
+// @ts-ignore
+import { ReconsignmentAnnouncementLine } from './reconsignment-announcement-line';
 
 /**
- * 
+ * @type ReconsignmentAnnouncement
+ * Data to represent a reconsignment announcement
  * @export
- * @interface ProductPurchasePrice
  */
-export interface ProductPurchasePrice {
-    /**
-     * The currency code (ISO 4217).
-     * @type {string}
-     * @memberof ProductPurchasePrice
-     */
-    'currencyCode': string;
-    /**
-     * Amount of purchased products.
-     * @type {number}
-     * @memberof ProductPurchasePrice
-     */
-    'amount': number;
-    /**
-     * The price per product unit.
-     * @type {number}
-     * @memberof ProductPurchasePrice
-     */
-    'pricePerUnit': number;
-}
+export type ReconsignmentAnnouncement = BaseReconsignmentAnnouncement & ReconsignmentAnnouncementAllOf;
+
 
