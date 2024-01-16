@@ -7107,7 +7107,7 @@
                 "description": "Data to represent a product",
                 "properties": {
                     "productType": {
-                        "description": "Type of the product",
+                        "description": "Type of the product.",
                         "type": "string",
                         "default": "standard",
                         "enum": [
@@ -7136,13 +7136,13 @@
                         ]
                     },
                     "articleVariantTitle": {
-                        "description": "The title of the article variant. \\\nMust not be set when the articleVariantType is 'standard_autotitle'.",
+                        "description": "The title of the article variant.",
                         "type": "string",
                         "maxLength": 255,
                         "nullable": true
                     },
                     "articleVariantType": {
-                        "description": "The type of the article variant. \\\nThe articleVariantType 'standard_autotitle' is only allowed for the variantGroup 'content'",
+                        "description": "The type of the article variant.",
                         "type": "string",
                         "default": "standard_autotitle",
                         "enum": [
@@ -7168,7 +7168,7 @@
                         "nullable": true
                     },
                     "articleStatus": {
-                        "description": "Status of the article regarding visibility ('active' if no value is provided)",
+                        "description": "Status of the article regarding visibility.",
                         "type": "string",
                         "default": "active",
                         "enum": [
@@ -7182,32 +7182,32 @@
                         "nullable": true
                     },
                     "contentsAmount": {
-                        "description": "Amount of the product contents (1 if no value is provided)",
+                        "description": "Amount of the product contents.",
                         "type": "number",
                         "format": "float",
                         "default": 1,
                         "nullable": true
                     },
                     "contentsUnit": {
-                        "description": "Unit of the product contents.\\\nAll units can be queried with a GET /product-unit call",
+                        "description": "Unit of the product contents. \\\nUnits can be queried with a GET /product-unit call.",
                         "type": "string",
                         "default": "piece",
                         "nullable": true
                     },
                     "contentsWeightGram": {
-                        "description": "Weight of the product contents in gram",
+                        "description": "Weight of the product contents in gram.",
                         "type": "integer",
                         "format": "int32",
                         "nullable": true
                     },
                     "weightGram": {
-                        "description": "Total weight of the product in gram",
+                        "description": "Total weight of the product in gram.",
                         "type": "integer",
                         "format": "int32",
                         "nullable": true
                     },
                     "variantGroup": {
-                        "description": "The variant group of the product",
+                        "description": "The variant group of the product.",
                         "default": "content",
                         "oneOf": [
                             {
@@ -7219,13 +7219,13 @@
                         ]
                     },
                     "ean": {
-                        "description": "The EAN of the product",
+                        "description": "The EAN of the product.",
                         "type": "string",
                         "maxLength": 255,
                         "nullable": true
                     },
                     "suggestedRetailPriceEUR": {
-                        "description": "The suggested retail price for the product in EUR",
+                        "description": "The suggested retail price for the product in EUR.",
                         "type": "number",
                         "format": "float",
                         "nullable": true
@@ -7238,19 +7238,19 @@
                         "nullable": true
                     },
                     "productNumberManufacturer": {
-                        "description": "Product number of the manufacturer",
+                        "description": "Product number of the manufacturer.",
                         "type": "string",
                         "maxLength": 255,
                         "nullable": true
                     },
                     "manufacturerCountryCode": {
-                        "description": "Country code of the manufacturer (ISO 3166-1 alpha-2)",
+                        "description": "Country code of the manufacturer (ISO 3166-1 alpha-2).",
                         "type": "string",
                         "default": "AT",
                         "nullable": true
                     },
                     "languageCode": {
-                        "description": "The language code used for the product (ISO 639-1)",
+                        "description": "The language code used for the product (ISO 639-1).",
                         "type": "string",
                         "default": "de",
                         "nullable": true
@@ -8576,11 +8576,11 @@
                                 "type": "string"
                             },
                             "shopCode": {
-                                "description": "The shop to which the product belongs",
+                                "description": "The shop to which the product belongs.",
                                 "type": "string"
                             },
                             "productStatus": {
-                                "description": "Status of the product regarding sales.\\\nAvailable values:\n- enabled: Product is on sale\n- enabled_external_only: Product is only available in external stores\n- deleted: Product is deleted\n- discontinued: Product is discontinued\n- expired: Product is expired\n- incorrect: Product was incorrectly created\n- internal: Product is available for internal sales only\n- preparation: Product is in preparation for sale\\\n\nNote: This can be null if the product was not created via the API.",
+                                "description": "Status of the product regarding sales. \\\nAvailable values:\n- enabled: Product is on sale\n- enabled_external_only: Product is only available in external stores\n- deleted: Product is deleted\n- discontinued: Product is discontinued\n- expired: Product is expired\n- incorrect: Product was incorrectly created\n- internal: Product is available for internal sales only\n- preparation: Product is in preparation for sale",
                                 "type": "string",
                                 "enum": [
                                     "enabled",
@@ -8596,36 +8596,36 @@
                                 "nullable": true
                             },
                             "productTitle": {
-                                "description": "Title of the Product\\\nNote: This can be null if the product was not created via the API.",
+                                "description": "Title of the Product.",
                                 "type": "string",
                                 "maxLength": 255,
                                 "nullable": true
                             },
                             "productTitleOriginal": {
-                                "description": "Original title of the Product\\\nNote: This can be null if the product was not created via the API.",
+                                "description": "Original title of the Product.",
                                 "type": "string",
                                 "maxLength": 255,
                                 "nullable": true
                             },
                             "articleShortDescription": {
-                                "description": "Short description of the article\\\nNote: This can be null if the product was not created via the API.",
+                                "description": "Short description of the article.",
                                 "type": "string",
                                 "maxLength": 255,
                                 "nullable": true
                             },
                             "articleLongDescription": {
-                                "description": "Long description of the article\\\nNote: This can be null if the product was not created via the API.",
+                                "description": "Long description of the article.",
                                 "type": "string",
                                 "maxLength": 255,
                                 "nullable": true
                             },
                             "taricCode": {
-                                "description": "The TARIC Code of the product\\\nNote: This can be null if the product was not created via the API.",
+                                "description": "The TARIC Code of the product.",
                                 "type": "string",
                                 "nullable": true
                             },
                             "listPriceEUR": {
-                                "description": "The list price of the product in EUR.\\\nNote: This can be null if the product was not created via the API.",
+                                "description": "The list price of the product in EUR.",
                                 "type": "number",
                                 "format": "float",
                                 "nullable": true
@@ -8644,12 +8644,12 @@
                                 "nullable": true
                             },
                             "manufacturerNumber": {
-                                "description": "Number of the manufacturer\\\nNote: This can be null if the product was not created via the API.",
+                                "description": "Number of the manufacturer. \\\nManufacturers can be queried with a GET /manufacturer call. \\\nNote: This can be null in some cases (e.g. if the product is a bundle).",
                                 "type": "string",
                                 "nullable": true
                             },
                             "supplierNumber": {
-                                "description": "Number of the supplier.\\\nNote: This can be null if the product was not created via the API.",
+                                "description": "Number of the supplier. \\\nSuppliers can be queried with a GET /supplier call. \\\nNote: This can be null in some cases (e.g. if the product is a bundle).",
                                 "type": "string",
                                 "nullable": true
                             },
@@ -8661,6 +8661,11 @@
                                     "nice",
                                     "bundle"
                                 ]
+                            },
+                            "brandNumber": {
+                                "description": "Number of the brand. \\\nBrands can be queried with a GET /brand call. \\\nNote: This can be null in some cases (e.g. if the product is a bundle).",
+                                "type": "string",
+                                "nullable": true
                             }
                         },
                         "type": "object"
@@ -8872,17 +8877,17 @@
                 ],
                 "properties": {
                     "currencyCode": {
-                        "description": "The currency code (ISO 4217)",
+                        "description": "The currency code (ISO 4217).",
                         "type": "string",
                         "example": "EUR"
                     },
                     "amount": {
-                        "description": "Amount of purchased products",
+                        "description": "Amount of purchased products.",
                         "type": "integer",
                         "format": "int32"
                     },
                     "pricePerUnit": {
-                        "description": "The price per product unit",
+                        "description": "The price per product unit.",
                         "type": "number",
                         "format": "float"
                     }
