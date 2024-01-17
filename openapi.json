@@ -2739,7 +2739,8 @@
                                 "$ref": "#/components/schemas/orderCustomerDeliveryAddress"
                             }
                         ],
-                        "nullable": true
+                        "nullable": true,
+                        "description": "If not given the invoice address is used for delivery."
                     }
                 },
                 "type": "object"
