@@ -5952,7 +5952,7 @@
                 ]
             }
         },
-        "/reconsignmentAnnouncement": {
+        "/reconsignment-announcement": {
             "get": {
                 "tags": [
                     "reconsignmentAnnouncement"
@@ -6106,7 +6106,7 @@
                 ]
             }
         },
-        "/reconsignmentAnnouncement/{reconsignmentAnnouncementNumber}": {
+        "/reconsignment-announcement/{reconsignmentAnnouncementNumber}": {
             "get": {
                 "tags": [
                     "reconsignmentAnnouncement"
@@ -6227,7 +6227,7 @@
                 ]
             }
         },
-        "/reconsignmentAnnouncement/{reconsignmentAnnouncementNumber}/document/{documentCode}": {
+        "/reconsignment-announcement/{reconsignmentAnnouncementNumber}/document/{documentCode}": {
             "get": {
                 "tags": [
                     "reconsignmentAnnouncement"
