@@ -19,6 +19,7 @@ import { OrderCustomerDeliveryAddress } from './order-customer-delivery-address'
 
 /**
  * @type BaseOrderCustomerDeliveryAddress
+ * If not given the invoice address is used for delivery.
  * @export
  */
 export type BaseOrderCustomerDeliveryAddress = OrderCustomerDeliveryAddress;
