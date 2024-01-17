@@ -36,7 +36,7 @@ export class ReconsignmentAnnouncementService {
     ): Promise<reconsignmentAnnouncementPaginatedCollection | errorResponse> {
         const result = await __request({
             method: 'GET',
-            path: `/reconsignmentAnnouncement`,
+            path: `/reconsignment-announcement`,
             query: {
                 'page': page,
                 'pageSize': pageSize,
@@ -88,7 +88,7 @@ export class ReconsignmentAnnouncementService {
     ): Promise<reconsignmentAnnouncement | errorResponse> {
         const result = await __request({
             method: 'GET',
-            path: `/reconsignmentAnnouncement/${reconsignmentAnnouncementNumber}`,
+            path: `/reconsignment-announcement/${reconsignmentAnnouncementNumber}`,
             query: {
                 'shopCode': shopCode,
             },
@@ -144,7 +144,7 @@ export class ReconsignmentAnnouncementService {
     ): Promise<any | errorResponse> {
         const result = await __request({
             method: 'GET',
-            path: `/reconsignmentAnnouncement/${reconsignmentAnnouncementNumber}/document/${documentCode}`,
+            path: `/reconsignment-announcement/${reconsignmentAnnouncementNumber}/document/${documentCode}`,
             query: {
                 'shopCode': shopCode,
             },
