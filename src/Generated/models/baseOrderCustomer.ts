@@ -22,6 +22,9 @@ export type baseOrderCustomer = {
      */
     companyVatNumber?: string | null;
     invoiceAddress: orderCustomerInvoiceAddress;
+    /**
+     * If not given the invoice address is used for delivery.
+     */
     deliveryAddress?: orderCustomerDeliveryAddress | null;
 }
 
