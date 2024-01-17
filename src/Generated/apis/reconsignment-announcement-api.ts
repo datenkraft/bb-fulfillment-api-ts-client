@@ -47,7 +47,7 @@ export const ReconsignmentAnnouncementApiAxiosParamCreator = function (configura
         getReconsignmentAnnouncement: async (reconsignmentAnnouncementNumber: string, shopCode?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'reconsignmentAnnouncementNumber' is not null or undefined
             assertParamExists('getReconsignmentAnnouncement', 'reconsignmentAnnouncementNumber', reconsignmentAnnouncementNumber)
-            const localVarPath = `/reconsignmentAnnouncement/{reconsignmentAnnouncementNumber}`
+            const localVarPath = `/reconsignment-announcement/{reconsignmentAnnouncementNumber}`
                 .replace(`{${"reconsignmentAnnouncementNumber"}}`, encodeURIComponent(String(reconsignmentAnnouncementNumber)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -96,7 +96,7 @@ export const ReconsignmentAnnouncementApiAxiosParamCreator = function (configura
          * @throws {RequiredError}
          */
         getReconsignmentAnnouncementCollection: async (page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterShopCode?: string, filterOrderNumber?: string, filterReconsignmentAnnouncementCompleted?: boolean, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/reconsignmentAnnouncement`;
+            const localVarPath = `/reconsignment-announcement`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -165,7 +165,7 @@ export const ReconsignmentAnnouncementApiAxiosParamCreator = function (configura
             assertParamExists('getReconsignmentAnnouncementDocument', 'reconsignmentAnnouncementNumber', reconsignmentAnnouncementNumber)
             // verify required parameter 'documentCode' is not null or undefined
             assertParamExists('getReconsignmentAnnouncementDocument', 'documentCode', documentCode)
-            const localVarPath = `/reconsignmentAnnouncement/{reconsignmentAnnouncementNumber}/document/{documentCode}`
+            const localVarPath = `/reconsignment-announcement/{reconsignmentAnnouncementNumber}/document/{documentCode}`
                 .replace(`{${"reconsignmentAnnouncementNumber"}}`, encodeURIComponent(String(reconsignmentAnnouncementNumber)))
                 .replace(`{${"documentCode"}}`, encodeURIComponent(String(documentCode)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
