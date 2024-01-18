@@ -77,6 +77,8 @@ export * from './new-reconsignment-announcement-all-of';
 export * from './new-reconsignment-announcement-line';
 export * from './order';
 export * from './order-all-of';
+export * from './order-bulk-import207-response-inner';
+export * from './order-bulk-import207-response-inner-content';
 export * from './order-collection';
 export * from './order-collection-all-of';
 export * from './order-customer';

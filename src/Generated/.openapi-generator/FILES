@@ -107,6 +107,8 @@ models/new-reconsignment-announcement-all-of.ts
 models/new-reconsignment-announcement-line.ts
 models/new-reconsignment-announcement.ts
 models/order-all-of.ts
+models/order-bulk-import207-response-inner-content.ts
+models/order-bulk-import207-response-inner.ts
 models/order-collection-all-of.ts
 models/order-collection.ts
 models/order-customer-address.ts
