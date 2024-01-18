@@ -89,13 +89,14 @@ export const ReconsignmentAnnouncementApiAxiosParamCreator = function (configura
          * @param {number} [page] The page to read. Default is the first page.
          * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
          * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
+         * @param {string} [sortBy] Sort the results by one or more comma-separated sort criteria, with the criterion specified first having priority.  Available sort orders: - asc: ascending order - desc: descending order  Available fields for sorting: - reconsignmentAnnouncementDate  The default sort order is reconsignmentAnnouncementDate:desc.
          * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
          * @param {string} [filterOrderNumber] Filter for a single order number.
          * @param {boolean} [filterReconsignmentAnnouncementCompleted] Filter for completed or not completed reconsignment announcements.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getReconsignmentAnnouncementCollection: async (page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterShopCode?: string, filterOrderNumber?: string, filterReconsignmentAnnouncementCompleted?: boolean, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getReconsignmentAnnouncementCollection: async (page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', sortBy?: string, filterShopCode?: string, filterOrderNumber?: string, filterReconsignmentAnnouncementCompleted?: boolean, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/reconsignment-announcement`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -126,6 +127,10 @@ export const ReconsignmentAnnouncementApiAxiosParamCreator = function (configura
 
             if (paginationMode !== undefined) {
                 localVarQueryParameter['paginationMode'] = paginationMode;
+            }
+
+            if (sortBy !== undefined) {
+                localVarQueryParameter['sortBy'] = sortBy;
             }
 
             if (filterShopCode !== undefined) {
@@ -230,14 +235,15 @@ export const ReconsignmentAnnouncementApiFp = function(configuration?: Configura
          * @param {number} [page] The page to read. Default is the first page.
          * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
          * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
+         * @param {string} [sortBy] Sort the results by one or more comma-separated sort criteria, with the criterion specified first having priority.  Available sort orders: - asc: ascending order - desc: descending order  Available fields for sorting: - reconsignmentAnnouncementDate  The default sort order is reconsignmentAnnouncementDate:desc.
          * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
          * @param {string} [filterOrderNumber] Filter for a single order number.
          * @param {boolean} [filterReconsignmentAnnouncementCompleted] Filter for completed or not completed reconsignment announcements.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getReconsignmentAnnouncementCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterShopCode?: string, filterOrderNumber?: string, filterReconsignmentAnnouncementCompleted?: boolean, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ReconsignmentAnnouncementPaginatedCollection>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getReconsignmentAnnouncementCollection(page, pageSize, paginationMode, filterShopCode, filterOrderNumber, filterReconsignmentAnnouncementCompleted, options);
+        async getReconsignmentAnnouncementCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', sortBy?: string, filterShopCode?: string, filterOrderNumber?: string, filterReconsignmentAnnouncementCompleted?: boolean, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ReconsignmentAnnouncementPaginatedCollection>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getReconsignmentAnnouncementCollection(page, pageSize, paginationMode, sortBy, filterShopCode, filterOrderNumber, filterReconsignmentAnnouncementCompleted, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -280,14 +286,15 @@ export const ReconsignmentAnnouncementApiFactory = function (configuration?: Con
          * @param {number} [page] The page to read. Default is the first page.
          * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
          * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
+         * @param {string} [sortBy] Sort the results by one or more comma-separated sort criteria, with the criterion specified first having priority.  Available sort orders: - asc: ascending order - desc: descending order  Available fields for sorting: - reconsignmentAnnouncementDate  The default sort order is reconsignmentAnnouncementDate:desc.
          * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
          * @param {string} [filterOrderNumber] Filter for a single order number.
          * @param {boolean} [filterReconsignmentAnnouncementCompleted] Filter for completed or not completed reconsignment announcements.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getReconsignmentAnnouncementCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterShopCode?: string, filterOrderNumber?: string, filterReconsignmentAnnouncementCompleted?: boolean, options?: any): AxiosPromise<ReconsignmentAnnouncementPaginatedCollection> {
-            return localVarFp.getReconsignmentAnnouncementCollection(page, pageSize, paginationMode, filterShopCode, filterOrderNumber, filterReconsignmentAnnouncementCompleted, options).then((request) => request(axios, basePath));
+        getReconsignmentAnnouncementCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', sortBy?: string, filterShopCode?: string, filterOrderNumber?: string, filterReconsignmentAnnouncementCompleted?: boolean, options?: any): AxiosPromise<ReconsignmentAnnouncementPaginatedCollection> {
+            return localVarFp.getReconsignmentAnnouncementCollection(page, pageSize, paginationMode, sortBy, filterShopCode, filterOrderNumber, filterReconsignmentAnnouncementCompleted, options).then((request) => request(axios, basePath));
         },
         /**
          * Allows to download a document associated with the given reconsignmentAnnouncement.
@@ -327,6 +334,7 @@ export interface ReconsignmentAnnouncementApiInterface {
      * @param {number} [page] The page to read. Default is the first page.
      * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
      * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
+     * @param {string} [sortBy] Sort the results by one or more comma-separated sort criteria, with the criterion specified first having priority.  Available sort orders: - asc: ascending order - desc: descending order  Available fields for sorting: - reconsignmentAnnouncementDate  The default sort order is reconsignmentAnnouncementDate:desc.
      * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
      * @param {string} [filterOrderNumber] Filter for a single order number.
      * @param {boolean} [filterReconsignmentAnnouncementCompleted] Filter for completed or not completed reconsignment announcements.
@@ -334,7 +342,7 @@ export interface ReconsignmentAnnouncementApiInterface {
      * @throws {RequiredError}
      * @memberof ReconsignmentAnnouncementApiInterface
      */
-    getReconsignmentAnnouncementCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterShopCode?: string, filterOrderNumber?: string, filterReconsignmentAnnouncementCompleted?: boolean, options?: AxiosRequestConfig): AxiosPromise<ReconsignmentAnnouncementPaginatedCollection>;
+    getReconsignmentAnnouncementCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', sortBy?: string, filterShopCode?: string, filterOrderNumber?: string, filterReconsignmentAnnouncementCompleted?: boolean, options?: AxiosRequestConfig): AxiosPromise<ReconsignmentAnnouncementPaginatedCollection>;
 
     /**
      * Allows to download a document associated with the given reconsignmentAnnouncement.
@@ -376,6 +384,7 @@ export class ReconsignmentAnnouncementApi extends BaseAPI implements Reconsignme
      * @param {number} [page] The page to read. Default is the first page.
      * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
      * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
+     * @param {string} [sortBy] Sort the results by one or more comma-separated sort criteria, with the criterion specified first having priority.  Available sort orders: - asc: ascending order - desc: descending order  Available fields for sorting: - reconsignmentAnnouncementDate  The default sort order is reconsignmentAnnouncementDate:desc.
      * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
      * @param {string} [filterOrderNumber] Filter for a single order number.
      * @param {boolean} [filterReconsignmentAnnouncementCompleted] Filter for completed or not completed reconsignment announcements.
@@ -383,8 +392,8 @@ export class ReconsignmentAnnouncementApi extends BaseAPI implements Reconsignme
      * @throws {RequiredError}
      * @memberof ReconsignmentAnnouncementApi
      */
-    public getReconsignmentAnnouncementCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterShopCode?: string, filterOrderNumber?: string, filterReconsignmentAnnouncementCompleted?: boolean, options?: AxiosRequestConfig) {
-        return ReconsignmentAnnouncementApiFp(this.configuration).getReconsignmentAnnouncementCollection(page, pageSize, paginationMode, filterShopCode, filterOrderNumber, filterReconsignmentAnnouncementCompleted, options).then((request) => request(this.axios, this.basePath));
+    public getReconsignmentAnnouncementCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', sortBy?: string, filterShopCode?: string, filterOrderNumber?: string, filterReconsignmentAnnouncementCompleted?: boolean, options?: AxiosRequestConfig) {
+        return ReconsignmentAnnouncementApiFp(this.configuration).getReconsignmentAnnouncementCollection(page, pageSize, paginationMode, sortBy, filterShopCode, filterOrderNumber, filterReconsignmentAnnouncementCompleted, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
