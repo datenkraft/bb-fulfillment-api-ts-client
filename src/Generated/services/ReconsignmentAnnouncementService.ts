@@ -17,6 +17,17 @@ export class ReconsignmentAnnouncementService {
      * - default: The total number of items in the collection will not be calculated.
      * - totalCount: The total number of items in the collection will be calculated.
      * This can mean loss of performance.
+     * @param sortBy Sort the results by one or more comma-separated sort criteria, with the criterion specified first having
+     * priority.
+     *
+     * Available sort orders:
+     * - asc: ascending order
+     * - desc: descending order
+     *
+     * Available fields for sorting:
+     * - reconsignmentAnnouncementDate
+     *
+     * The default sort order is reconsignmentAnnouncementDate:desc.
      * @param filterShopCode The shopCode used internally to distinguish between clients. \
      * _This code is optional, if your identity is assigned to only one shop.
      * Otherwise the response would be a 422 HTTP Error._
@@ -30,6 +41,7 @@ export class ReconsignmentAnnouncementService {
         page?: number,
         pageSize?: number,
         paginationMode: 'default' | 'totalCount' = 'default',
+        sortBy?: string,
         filterShopCode?: string,
         filterOrderNumber?: string,
         filterReconsignmentAnnouncementCompleted?: boolean,
@@ -41,6 +53,7 @@ export class ReconsignmentAnnouncementService {
                 'page': page,
                 'pageSize': pageSize,
                 'paginationMode': paginationMode,
+                'sortBy': sortBy,
                 'filter[shopCode]': filterShopCode,
                 'filter[orderNumber]': filterOrderNumber,
                 'filter[reconsignmentAnnouncementCompleted]': filterReconsignmentAnnouncementCompleted,

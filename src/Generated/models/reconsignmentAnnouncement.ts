@@ -30,6 +30,10 @@ export type reconsignmentAnnouncement = (baseReconsignmentAnnouncement & {
      */
     reconsignmentTrackingCode?: string,
     /**
+     * The tracking link for the reconsignment.
+     */
+    reconsignmentTrackingLink?: string,
+    /**
      * Indicates whether the reconsignment announcement is completed.
      */
     reconsignmentAnnouncementCompleted?: boolean,

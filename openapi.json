@@ -5996,6 +5996,15 @@
                         }
                     },
                     {
+                        "name": "sortBy",
+                        "in": "query",
+                        "description": "Sort the results by one or more comma-separated sort criteria, with the criterion specified first having\npriority.\n\nAvailable sort orders:\n- asc: ascending order\n- desc: descending order\n\nAvailable fields for sorting:\n- reconsignmentAnnouncementDate\n\nThe default sort order is reconsignmentAnnouncementDate:desc.",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "reconsignmentAnnouncementDate:asc"
+                    },
+                    {
                         "name": "filter[shopCode]",
                         "in": "query",
                         "description": "The shopCode used internally to distinguish between clients. \\\n_This code is optional, if your identity is assigned to only one shop.\nOtherwise the response would be a 422 HTTP Error._",
@@ -9635,6 +9644,10 @@
                             },
                             "reconsignmentTrackingCode": {
                                 "description": "The tracking code for the reconsignment.",
+                                "type": "string"
+                            },
+                            "reconsignmentTrackingLink": {
+                                "description": "The tracking link for the reconsignment.",
                                 "type": "string"
                             },
                             "reconsignmentAnnouncementCompleted": {
