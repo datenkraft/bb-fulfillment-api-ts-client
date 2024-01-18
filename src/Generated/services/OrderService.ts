@@ -12,6 +12,89 @@ import { request as __request } from '../core/request';
 export class OrderService {
 
     /**
+     * Import one or more new orders.
+     * Import one or more new orders.
+     * The file type is controlled by the content type attribute of the uploaded file
+     * @param requestBody
+     * @returns errorResponse Unexpected Error
+     * @returns any Multi Status
+     * @throws ApiError
+     */
+    public static async orderBulkImport(
+        requestBody: any,
+    ): Promise<errorResponse | Array<{
+        /**
+         * HTTP Status code of the single request
+         */
+        code: number,
+        /**
+         * Description for the HTTP Status code of the single request
+         */
+        message: string,
+        /**
+         * Reference for the entry tried to post represented by a key-value pair.
+         */
+        reference: Record<string, string>,
+        content: (order | errorResponse),
+    }>> {
+        const result = await __request({
+            method: 'POST',
+            path: `/bulk-import/order`,
+            body: requestBody,
+            errors: {
+                400: `Bad Request
+                 *
+                 * Error codes:
+                 * - DATA_INVALID: Invalid data was given.`,
+                401: `Unauthorized
+                 *
+                 * Error codes:
+                 * - AUTHORIZATION_MISSING: No valid authentication information was given.`,
+                403: `Forbidden
+                 *
+                 * Error codes:
+                 * - PERMISSIONS_MISSING: No authorization for the called action was found.`,
+                500: `Server error
+                 *
+                 * Error codes:
+                 * - SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.`,
+            },
+        });
+        return result.body;
+    }
+
+    /**
+     * Get a spreadsheet template for performing POST queries to the respective endpoint.
+     * Get a spreadsheet template for performing POST queries to the respective endpoint.
+     * The file type is controlled by the accept header.
+     * The fill-in help in the second line can be removed or remain.
+     * @returns any OK
+     * @returns errorResponse Unexpected Error
+     * @throws ApiError
+     */
+    public static async getOrderBulkImportTemplate(): Promise<any | errorResponse> {
+        const result = await __request({
+            method: 'GET',
+            path: `/bulk-import/template/order`,
+            errors: {
+                401: `Unauthorized
+                 *
+                 * Error codes:
+                 * - AUTHORIZATION_MISSING: No valid authentication information was given.`,
+                406: `The requested document could not be generated in the format specified by the Accept request header.
+                 *
+                 * Error codes:
+                 * - ACCEPTABLE_RESPONSE_NOT_AVAILABLE: No response can be provided for the requested accept header.`,
+                500: `Server error
+                 *
+                 * Error codes:
+                 * - SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.`,
+            },
+        });
+        return result.body;
+    }
+
+    /**
      * Get a list of shop oders.
      * Get a list of shop orders.
      * @param page The page to read. Default is the first page.
