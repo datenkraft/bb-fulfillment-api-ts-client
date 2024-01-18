@@ -21,7 +21,7 @@
  */
 export interface ErrorReferencesInner {
     /**
-     * The key of the field causing the error
+     * The reference to the field causing the error
      * @type {string}
      * @memberof ErrorReferencesInner
      */
@@ -32,11 +32,5 @@ export interface ErrorReferencesInner {
      * @memberof ErrorReferencesInner
      */
     'value'?: any;
-    /**
-     * The exact reference to the field causing the error
-     * @type {string}
-     * @memberof ErrorReferencesInner
-     */
-    'fieldReference'?: string | null;
 }
 
