@@ -54,6 +54,12 @@ export interface ReconsignmentAnnouncementAllOf {
      */
     'reconsignmentTrackingCode'?: string;
     /**
+     * The tracking link for the reconsignment.
+     * @type {string}
+     * @memberof ReconsignmentAnnouncementAllOf
+     */
+    'reconsignmentTrackingLink'?: string;
+    /**
      * Indicates whether the reconsignment announcement is completed.
      * @type {boolean}
      * @memberof ReconsignmentAnnouncementAllOf
