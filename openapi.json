@@ -9467,7 +9467,7 @@
                                 "nullable": true
                             },
                             "taxCode": {
-                                "description": "One of the available tax codes.\n- default: Default tax rate (in e.g. Austria 20 %)\n- reduced1: 1st reduced tax rate (in e.g. Austria 13 %)\n- reduced2: 2nd reduced tax rate (in e.g. Austria 10 %)\n- none: not taxable (0%)",
+                                "description": "One of the available tax codes.\n- default: Default tax rate (in e.g. Austria 20 %)\n- reduced1: 1st reduced tax rate (in e.g. Austria 13 %)\n- reduced2: 2nd reduced tax rate (in e.g. Austria 10 %)\n- none: not taxable (0%)\n\nNote: This can be null if the tax code could not be determined.",
                                 "type": "string",
                                 "default": "default",
                                 "enum": [

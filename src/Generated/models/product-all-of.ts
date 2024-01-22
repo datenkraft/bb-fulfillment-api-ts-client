@@ -75,7 +75,7 @@ export interface ProductAllOf {
      */
     'listPriceEUR'?: number | null;
     /**
-     * One of the available tax codes. - default: Default tax rate (in e.g. Austria 20 %) - reduced1: 1st reduced tax rate (in e.g. Austria 13 %) - reduced2: 2nd reduced tax rate (in e.g. Austria 10 %) - none: not taxable (0%)
+     * One of the available tax codes. - default: Default tax rate (in e.g. Austria 20 %) - reduced1: 1st reduced tax rate (in e.g. Austria 13 %) - reduced2: 2nd reduced tax rate (in e.g. Austria 10 %) - none: not taxable (0%)  Note: This can be null if the tax code could not be determined.
      * @type {string}
      * @memberof ProductAllOf
      */
