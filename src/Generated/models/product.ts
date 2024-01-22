@@ -56,6 +56,8 @@ export type product = (baseProduct & {
      * - reduced1: 1st reduced tax rate (in e.g. Austria 13 %)
      * - reduced2: 2nd reduced tax rate (in e.g. Austria 10 %)
      * - none: not taxable (0%)
+     *
+     * Note: This can be null if the tax code could not be determined.
      */
     taxCode: product.taxCode | null,
     /**
@@ -116,6 +118,8 @@ export namespace product {
      * - reduced1: 1st reduced tax rate (in e.g. Austria 13 %)
      * - reduced2: 2nd reduced tax rate (in e.g. Austria 10 %)
      * - none: not taxable (0%)
+     *
+     * Note: This can be null if the tax code could not be determined.
      */
     export enum taxCode {
         DEFAULT = 'default',
