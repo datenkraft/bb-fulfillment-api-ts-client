@@ -95,7 +95,7 @@ export class OrderService {
     }
 
     /**
-     * Get a list of shop oders.
+     * Get a list of shop orders.
      * Get a list of shop orders.
      * @param page The page to read. Default is the first page.
      * @param pageSize The maximum size per page is 100. Default is 100.
@@ -269,7 +269,8 @@ export class OrderService {
                 400: `Bad Request
                  *
                  * Error codes:
-                 * - DATA_INVALID: Invalid data was given.`,
+                 * - DATA_INVALID: Invalid data was given.
+                 * - CUSTOMER_EMAIL_REQUIRED: The customer email address is required for this order because the delivery address seems to be a pick up station of a shipping carrier which requires the email address of the customer.`,
                 401: `Unauthorized
                  *
                  * Error codes:
