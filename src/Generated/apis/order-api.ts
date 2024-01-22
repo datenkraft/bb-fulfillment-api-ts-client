@@ -178,7 +178,7 @@ export const OrderApiAxiosParamCreator = function (configuration?: Configuration
         },
         /**
          * Get a list of shop orders.
-         * @summary Get a list of shop oders.
+         * @summary Get a list of shop orders.
          * @param {number} [page] The page to read. Default is the first page.
          * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
          * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
@@ -521,7 +521,7 @@ export const OrderApiFp = function(configuration?: Configuration) {
         },
         /**
          * Get a list of shop orders.
-         * @summary Get a list of shop oders.
+         * @summary Get a list of shop orders.
          * @param {number} [page] The page to read. Default is the first page.
          * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
          * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
@@ -632,7 +632,7 @@ export const OrderApiFactory = function (configuration?: Configuration, basePath
         },
         /**
          * Get a list of shop orders.
-         * @summary Get a list of shop oders.
+         * @summary Get a list of shop orders.
          * @param {number} [page] The page to read. Default is the first page.
          * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
          * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
@@ -737,7 +737,7 @@ export interface OrderApiInterface {
 
     /**
      * Get a list of shop orders.
-     * @summary Get a list of shop oders.
+     * @summary Get a list of shop orders.
      * @param {number} [page] The page to read. Default is the first page.
      * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
      * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
@@ -848,7 +848,7 @@ export class OrderApi extends BaseAPI implements OrderApiInterface {
 
     /**
      * Get a list of shop orders.
-     * @summary Get a list of shop oders.
+     * @summary Get a list of shop orders.
      * @param {number} [page] The page to read. Default is the first page.
      * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
      * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
