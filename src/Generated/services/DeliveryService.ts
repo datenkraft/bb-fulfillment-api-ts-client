@@ -36,6 +36,10 @@ export class DeliveryService {
                 'paginationMode': paginationMode,
             },
             errors: {
+                400: `Bad Request
+                 *
+                 * Error codes:
+                 * - DATA_INVALID: Invalid data was given.`,
                 401: `Unauthorized
                  *
                  * Error codes:
