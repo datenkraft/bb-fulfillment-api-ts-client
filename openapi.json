@@ -1701,6 +1701,16 @@
                             }
                         }
                     },
+                    "400": {
+                        "description": "Bad Request\n\nError codes:\n- DATA_INVALID: Invalid data was given.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
                     "401": {
                         "description": "Unauthorized\n\nError codes:\n- AUTHORIZATION_MISSING: No valid authentication information was given.",
                         "content": {
@@ -2594,6 +2604,16 @@
                             }
                         }
                     },
+                    "400": {
+                        "description": "Bad Request\n\nError codes:\n- DATA_INVALID: Invalid data was given.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
                     "401": {
                         "description": "Unauthorized\n\nError codes:\n- AUTHORIZATION_MISSING: No valid authentication information was given.",
                         "content": {
@@ -2782,6 +2802,16 @@
                             "application/json": {
                                 "schema": {
                                     "$ref": "#/components/schemas/inboundDeliveryCollection"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request\n\nError codes:\n- DATA_INVALID: Invalid data was given.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
                                 }
                             }
                         }
@@ -3448,6 +3478,16 @@
                             }
                         }
                     },
+                    "400": {
+                        "description": "Bad Request\n\nError codes:\n- DATA_INVALID: Invalid data was given.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
                     "401": {
                         "description": "Unauthorized\n\nError codes:\n- AUTHORIZATION_MISSING: No valid authentication information was given.",
                         "content": {
@@ -3668,6 +3708,16 @@
                                 "schema": {
                                     "type": "string",
                                     "format": "binary"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request\n\nError codes:\n- DATA_INVALID: Invalid data was given.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
                                 }
                             }
                         }
@@ -4724,6 +4774,16 @@
                             }
                         }
                     },
+                    "400": {
+                        "description": "Bad Request\n\nError codes:\n- DATA_INVALID: Invalid data was given.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
                     "401": {
                         "description": "Unauthorized\n\nError codes:\n- AUTHORIZATION_MISSING: No valid authentication information was given.",
                         "content": {
@@ -5357,6 +5417,16 @@
                             "application/json": {
                                 "schema": {
                                     "$ref": "#/components/schemas/productUnitCollection"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request\n\nError codes:\n- DATA_INVALID: Invalid data was given.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
                                 }
                             }
                         }
@@ -7038,6 +7108,16 @@
                             "application/json": {
                                 "schema": {
                                     "$ref": "#/components/schemas/shopCollection"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request\n\nError codes:\n- DATA_INVALID: Invalid data was given.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
                                 }
                             }
                         }
