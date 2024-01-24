@@ -75,6 +75,10 @@ export class InboundDeliveryService {
             method: 'GET',
             path: `/bulk-import/template/inbound-delivery`,
             errors: {
+                400: `Bad Request
+                 *
+                 * Error codes:
+                 * - DATA_INVALID: Invalid data was given.`,
                 401: `Unauthorized
                  *
                  * Error codes:
@@ -177,6 +181,10 @@ export class InboundDeliveryService {
                 'filter[createDateTo]': filterCreateDateTo,
             },
             errors: {
+                400: `Bad Request
+                 *
+                 * Error codes:
+                 * - DATA_INVALID: Invalid data was given.`,
                 401: `Unauthorized
                  *
                  * Error codes:

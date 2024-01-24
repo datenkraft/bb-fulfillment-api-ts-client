@@ -77,6 +77,10 @@ export class OrderService {
             method: 'GET',
             path: `/bulk-import/template/order`,
             errors: {
+                400: `Bad Request
+                 *
+                 * Error codes:
+                 * - DATA_INVALID: Invalid data was given.`,
                 401: `Unauthorized
                  *
                  * Error codes:
