@@ -14,6 +14,15 @@ export type reportInventoryMovementEntry = {
      * The amount of moved stock
      */
     stock?: number;
+    /**
+     * The reference of the movement entry
+     */
+    reference?: {
+        /**
+         * Name of the Company
+         */
+        companyName?: string | null,
+    };
 }
 
 export namespace reportInventoryMovementEntry {
