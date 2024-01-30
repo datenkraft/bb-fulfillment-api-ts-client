@@ -13,6 +13,9 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import { ReportInventoryMovementEntryReference } from './report-inventory-movement-entry-reference';
 
 /**
  * Inventory movement entry
@@ -32,6 +35,12 @@ export interface ReportInventoryMovementEntry {
      * @memberof ReportInventoryMovementEntry
      */
     'stock'?: number;
+    /**
+     * 
+     * @type {ReportInventoryMovementEntryReference}
+     * @memberof ReportInventoryMovementEntry
+     */
+    'reference'?: ReportInventoryMovementEntryReference;
 }
 
 export const ReportInventoryMovementEntryTypeCodeEnum = {

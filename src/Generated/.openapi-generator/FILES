@@ -162,6 +162,7 @@ models/report-clearing-order-collection.ts
 models/report-clearing-order.ts
 models/report-inventory-movement-entry-collection-all-of.ts
 models/report-inventory-movement-entry-collection.ts
+models/report-inventory-movement-entry-reference.ts
 models/report-inventory-movement-entry.ts
 models/report-inventory-movement.ts
 models/shipment-line.ts
