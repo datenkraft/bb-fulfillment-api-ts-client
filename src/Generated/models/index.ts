@@ -133,6 +133,7 @@ export * from './report-inventory-movement';
 export * from './report-inventory-movement-entry';
 export * from './report-inventory-movement-entry-collection';
 export * from './report-inventory-movement-entry-collection-all-of';
+export * from './report-inventory-movement-entry-reference';
 export * from './shipment-line';
 export * from './shop';
 export * from './shop-collection';
