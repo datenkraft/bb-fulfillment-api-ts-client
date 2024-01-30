@@ -8151,10 +8151,11 @@
                         "description": "The TARIC Code of the product",
                         "type": "string"
                     },
-                    "suggestedRetailPriceEUR": {
-                        "description": "The suggested retail price for the product in EUR",
+                    "supplierPurchasePriceEUR": {
+                        "description": "The purchase price for the product in EUR",
                         "type": "number",
-                        "format": "float"
+                        "format": "float",
+                        "nullable": false
                     },
                     "listPriceEUR": {
                         "description": "The net list price of the product in EUR",
@@ -9024,7 +9025,7 @@
                     "contentsWeightGram",
                     "weightGram",
                     "taricCode",
-                    "suggestedRetailPriceEUR",
+                    "supplierPurchasePriceEUR",
                     "taxCode",
                     "supplierNumber",
                     "manufacturerNumber",
@@ -9618,7 +9619,7 @@
                     "contentsWeightGram",
                     "weightGram",
                     "taricCode",
-                    "suggestedRetailPriceEUR",
+                    "supplierPurchasePriceEUR",
                     "taxCode",
                     "supplierNumber",
                     "manufacturerNumber",

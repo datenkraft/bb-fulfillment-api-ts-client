@@ -63,11 +63,11 @@ export interface BaseProductDraft {
      */
     'taricCode'?: string;
     /**
-     * The suggested retail price for the product in EUR
+     * The purchase price for the product in EUR
      * @type {number}
      * @memberof BaseProductDraft
      */
-    'suggestedRetailPriceEUR'?: number;
+    'supplierPurchasePriceEUR'?: number;
     /**
      * The net list price of the product in EUR
      * @type {number}
