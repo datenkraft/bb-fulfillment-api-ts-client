@@ -6574,7 +6574,7 @@
                         }
                     },
                     "400": {
-                        "description": "Bad Request\n\nError codes:\n- DATA_INVALID: Invalid data was given.",
+                        "description": "Bad Request\n\nError codes:\n- DATA_INVALID: Invalid data was given.\n- RECONSIGNMENT_ANNOUNCEMENT_ALREADY_COMPLETED: The document can not be downloaded anymore, because the reconsignment announcement has already been completed.",
                         "content": {
                             "application/json": {
                                 "schema": {
