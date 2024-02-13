@@ -42,6 +42,24 @@ export interface OrderItem {
      */
     'count': number;
     /**
+     * Number of canceled items
+     * @type {number}
+     * @memberof OrderItem
+     */
+    'canceledCount'?: number;
+    /**
+     * Number of delivered items
+     * @type {number}
+     * @memberof OrderItem
+     */
+    'deliveredCount'?: number;
+    /**
+     * Number of returned items
+     * @type {number}
+     * @memberof OrderItem
+     */
+    'returnedCount'?: number;
+    /**
      * Product number of the customer
      * @type {string}
      * @memberof OrderItem
