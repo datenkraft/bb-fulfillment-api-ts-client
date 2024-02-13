@@ -37,6 +37,7 @@ export type order = (baseOrder & {
      * - locked: The order is locked. The order can not be processed without manual intervention.
      * - examination: The order has been manually locked. The order can not be processed without manual
      * intervention.
+     * - redacted: The order has been redacted for GDPR reasons.
      */
     status?: order.status,
     /**
@@ -81,6 +82,7 @@ export namespace order {
      * - locked: The order is locked. The order can not be processed without manual intervention.
      * - examination: The order has been manually locked. The order can not be processed without manual
      * intervention.
+     * - redacted: The order has been redacted for GDPR reasons.
      */
     export enum status {
         NEW = 'new',
@@ -90,6 +92,7 @@ export namespace order {
         CANCELED = 'canceled',
         LOCKED = 'locked',
         EXAMINATION = 'examination',
+        REDACTED = 'redacted',
     }
 
     /**

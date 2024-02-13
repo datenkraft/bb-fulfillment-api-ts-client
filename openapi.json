@@ -4439,7 +4439,7 @@
                         }
                     },
                     "422": {
-                        "description": "Unprocessable Entity\n\nError codes:\n- SHOP_NOT_FOUND: Shop not found.\n- COUNTRY_NOT_ALLOWED_FOR_RECONSIGNMENT:  The country cannot be used for a reconsignment announcement.\n- DELIVERY_SERVICE_NOT_ALLOWED_FOR_RECONSIGNMENT: The determined delivery service cannot be used for a reconsignment announcement.\n- ORDER_NOT_RECONSIGNABLE: The order is not in a reconsignable state.\n- RECONSIGNMENT_ANNOUNCEMENT_LINE_NOT_RECONSIGNABLE: A reconsignment announcement line is not reconsignable.",
+                        "description": "Unprocessable Entity\n\nError codes:\n- SHOP_NOT_FOUND: Shop not found.\n- COUNTRY_NOT_ALLOWED_FOR_RECONSIGNMENT:  The country cannot be used for a reconsignment announcement.\n- DELIVERY_SERVICE_NOT_ALLOWED_FOR_RECONSIGNMENT: The determined delivery service cannot be used for a reconsignment announcement.\n- ORDER_NOT_RECONSIGNABLE: The order is not in a reconsignable state.\n- RECONSIGNMENT_ANNOUNCEMENT_LINE_NOT_RECONSIGNABLE: A reconsignment announcement line is not reconsignable.\n- ORDER_NOT_RECONSIGNABLE_DUE_TO_GDPR_REDACTION: The order is not reconsignable due to GDPR redaction.\n- ORDER_NOT_RECONSIGNABLE_DUE_TO_DELIVERY_STATUS: The order is not reconsignable because it is not delivered.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -9144,7 +9144,7 @@
                                 "$ref": "#/components/schemas/orderCustomer"
                             },
                             "status": {
-                                "description": "The current status of the order.\n- new: The order was created but not every required information was given.\nThe order can not be processed without manual intervention.\n- processing: The order is being processed. For split deliveries, some of the shipments might have\nalready been transferred to the delivery agent.\n- delivered: The orders shipments have all been transferred to the delivery agent (Note that the\nupdate to this status might be delayed and not yet reflect the status of the linked deliveries).\n- deleted: The order has been marked as deleted.\n- canceled: The order has been canceled.\n- locked: The order is locked. The order can not be processed without manual intervention.\n- examination: The order has been manually locked. The order can not be processed without manual\nintervention.",
+                                "description": "The current status of the order.\n- new: The order was created but not every required information was given.\nThe order can not be processed without manual intervention.\n- processing: The order is being processed. For split deliveries, some of the shipments might have\nalready been transferred to the delivery agent.\n- delivered: The orders shipments have all been transferred to the delivery agent (Note that the\nupdate to this status might be delayed and not yet reflect the status of the linked deliveries).\n- deleted: The order has been marked as deleted.\n- canceled: The order has been canceled.\n- locked: The order is locked. The order can not be processed without manual intervention.\n- examination: The order has been manually locked. The order can not be processed without manual\nintervention.\n- redacted: The order has been redacted for GDPR reasons.",
                                 "type": "string",
                                 "enum": [
                                     "new",
@@ -9153,7 +9153,8 @@
                                     "deleted",
                                     "canceled",
                                     "locked",
-                                    "examination"
+                                    "examination",
+                                    "redacted"
                                 ]
                             },
                             "orderDate": {
