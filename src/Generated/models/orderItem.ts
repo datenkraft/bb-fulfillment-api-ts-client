@@ -18,6 +18,18 @@ export type orderItem = {
      */
     count: number;
     /**
+     * Number of canceled items
+     */
+    canceledCount?: number;
+    /**
+     * Number of delivered items
+     */
+    deliveredCount?: number;
+    /**
+     * Number of returned items
+     */
+    returnedCount?: number;
+    /**
      * Product number of the customer
      */
     externalProductNumber?: string | null;

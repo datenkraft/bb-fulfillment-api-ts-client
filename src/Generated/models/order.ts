@@ -19,9 +19,6 @@ export type order = (baseOrder & {
      * manually by niceshops (see 'source').
      */
     orderNumber?: any,
-    /**
-     * Note: canceled orderItems are NOT included.
-     */
     orderItems?: Array<orderItem>,
     customer?: orderCustomer,
     /**
