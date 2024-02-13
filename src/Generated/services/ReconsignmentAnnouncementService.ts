@@ -33,6 +33,22 @@ export class ReconsignmentAnnouncementService {
      * Otherwise the response would be a 422 HTTP Error._
      * @param filterOrderNumber Filter for a single order number.
      * @param filterReconsignmentAnnouncementCompleted Filter for completed or not completed reconsignment announcements.
+     * @param filterReconsignmentAnnouncementDateFrom Filter for reconsignmentAnnouncementDate (from)
+     * @param filterReconsignmentAnnouncementDateTo Filter for reconsignmentAnnouncementDate (to)
+     * @param filterSearch Filter for reconsignment announcement search.
+     *
+     * Usage:
+     * - Provide one or multiple search terms (min. 2 characters) to filter results.
+     * - Multiple search terms are separated by spaces.
+     * - The search is not case sensitive.
+     * - The search is enabled for the fields reconsignmentAnnouncementNumber, orderNumber,
+     * externalOrderReference and reconsignmentTrackingCode.
+     * - Each search term filters the response for reconsignment announcements where at least one of the fields
+     * contains the search term.
+     * - For example, filter[search]='term1 term2' will filter the result for reconsignment announcements where
+     * 'term1' is found in any field and 'term2' is also found in any field.\
+     * If only 'term1' or 'term2' is found in the fields, the reconsignment announcement is not included in the
+     * results.
      * @returns reconsignmentAnnouncementPaginatedCollection OK
      * @returns errorResponse Unexpected Error
      * @throws ApiError
@@ -45,6 +61,9 @@ export class ReconsignmentAnnouncementService {
         filterShopCode?: string,
         filterOrderNumber?: string,
         filterReconsignmentAnnouncementCompleted?: boolean,
+        filterReconsignmentAnnouncementDateFrom?: string,
+        filterReconsignmentAnnouncementDateTo?: string,
+        filterSearch?: string,
     ): Promise<reconsignmentAnnouncementPaginatedCollection | errorResponse> {
         const result = await __request({
             method: 'GET',
@@ -57,6 +76,9 @@ export class ReconsignmentAnnouncementService {
                 'filter[shopCode]': filterShopCode,
                 'filter[orderNumber]': filterOrderNumber,
                 'filter[reconsignmentAnnouncementCompleted]': filterReconsignmentAnnouncementCompleted,
+                'filter[reconsignmentAnnouncementDateFrom]': filterReconsignmentAnnouncementDateFrom,
+                'filter[reconsignmentAnnouncementDateTo]': filterReconsignmentAnnouncementDateTo,
+                'filter[search]': filterSearch,
             },
             errors: {
                 400: `Bad Request

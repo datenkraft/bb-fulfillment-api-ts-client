@@ -2769,7 +2769,7 @@
                     {
                         "name": "filter[search]",
                         "in": "query",
-                        "description": "filter for inbound delivery search.\n\nUsage:\n- Provide one or multiple search terms (min. 2 characters) to filter results.\n- Multiple search terms are separated by spaces.\n- The search is not case sensitive.\n- The search is enabled for the fields inboundDeliveryName and inboundDeliveryNumber (without the\nnumberPrefix of the associated supplier).\n- Each search term filters the response for inbound deliveries where at least one of the fields contains\nthe search term.\n- For example, filter[search]='term1 term2' will filter the result for products where 'term1' is found\nin any field and 'term2' is also found in any field.\nIf only 'term1' or 'term2' is found in the fields, the product is not included in the results.",
+                        "description": "filter for inbound delivery search.\n\nUsage:\n- Provide one or multiple search terms (min. 2 characters) to filter results.\n- Multiple search terms are separated by spaces.\n- The search is not case sensitive.\n- The search is enabled for the fields inboundDeliveryName and inboundDeliveryNumber.\n- Each search term filters the response for inbound deliveries where at least one of the fields contains\nthe search term.\n- For example, filter[search]='term1 term2' will filter the result for products where 'term1' is found\nin any field and 'term2' is also found in any field.\nIf only 'term1' or 'term2' is found in the fields, the product is not included in the results.",
                         "schema": {
                             "type": "string"
                         }
@@ -6315,6 +6315,34 @@
                         "schema": {
                             "type": "boolean"
                         }
+                    },
+                    {
+                        "name": "filter[reconsignmentAnnouncementDateFrom]",
+                        "in": "query",
+                        "description": "Filter for reconsignmentAnnouncementDate (from)",
+                        "schema": {
+                            "type": "string",
+                            "format": "date"
+                        },
+                        "example": "2024-02-08"
+                    },
+                    {
+                        "name": "filter[reconsignmentAnnouncementDateTo]",
+                        "in": "query",
+                        "description": "Filter for reconsignmentAnnouncementDate (to)",
+                        "schema": {
+                            "type": "string",
+                            "format": "date"
+                        },
+                        "example": "2024-02-08"
+                    },
+                    {
+                        "name": "filter[search]",
+                        "in": "query",
+                        "description": "Filter for reconsignment announcement search.\n\nUsage:\n- Provide one or multiple search terms (min. 2 characters) to filter results.\n- Multiple search terms are separated by spaces.\n- The search is not case sensitive.\n- The search is enabled for the fields reconsignmentAnnouncementNumber, orderNumber,\nexternalOrderReference and reconsignmentTrackingCode.\n- Each search term filters the response for reconsignment announcements where at least one of the fields\ncontains the search term.\n- For example, filter[search]='term1 term2' will filter the result for reconsignment announcements where\n'term1' is found in any field and 'term2' is also found in any field.\\\nIf only 'term1' or 'term2' is found in the fields, the reconsignment announcement is not included in the\nresults.",
+                        "schema": {
+                            "type": "string"
+                        }
                     }
                 ],
                 "responses": {
@@ -9134,7 +9162,7 @@
                                 "description": "The order number.\\\nNote: If this number is prefixed with 'NICE', it means that the order was created\nmanually by niceshops (see 'source')."
                             },
                             "orderItems": {
-                                "description": "Note: canceled orderItems are NOT included.",
+                                "description": "",
                                 "type": "array",
                                 "items": {
                                     "$ref": "#/components/schemas/orderItem"
@@ -9365,6 +9393,21 @@
                     },
                     "count": {
                         "description": "Positive number of items to order",
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "canceledCount": {
+                        "description": "Number of canceled items",
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "deliveredCount": {
+                        "description": "Number of delivered items",
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "returnedCount": {
+                        "description": "Number of returned items",
                         "type": "integer",
                         "format": "int32"
                     },
@@ -9946,8 +9989,13 @@
                                 "type": "boolean"
                             },
                             "orderNumber": {
-                                "description": "The order number. Note: This can be null if the order was not created via the API.",
+                                "description": "The order number.",
                                 "type": "string"
+                            },
+                            "externalOrderReference": {
+                                "description": "External reference for the order.",
+                                "type": "string",
+                                "nullable": true
                             },
                             "deliveryNumber": {
                                 "description": "The delivery number associated with the reconsignment.",

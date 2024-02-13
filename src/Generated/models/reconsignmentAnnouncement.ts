@@ -38,9 +38,13 @@ export type reconsignmentAnnouncement = (baseReconsignmentAnnouncement & {
      */
     reconsignmentAnnouncementCompleted?: boolean,
     /**
-     * The order number. Note: This can be null if the order was not created via the API.
+     * The order number.
      */
     orderNumber?: string,
+    /**
+     * External reference for the order.
+     */
+    externalOrderReference?: string | null,
     /**
      * The delivery number associated with the reconsignment.
      */

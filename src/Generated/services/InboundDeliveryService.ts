@@ -136,8 +136,7 @@ export class InboundDeliveryService {
      * - Provide one or multiple search terms (min. 2 characters) to filter results.
      * - Multiple search terms are separated by spaces.
      * - The search is not case sensitive.
-     * - The search is enabled for the fields inboundDeliveryName and inboundDeliveryNumber (without the
-     * numberPrefix of the associated supplier).
+     * - The search is enabled for the fields inboundDeliveryName and inboundDeliveryNumber.
      * - Each search term filters the response for inbound deliveries where at least one of the fields contains
      * the search term.
      * - For example, filter[search]='term1 term2' will filter the result for products where 'term1' is found
