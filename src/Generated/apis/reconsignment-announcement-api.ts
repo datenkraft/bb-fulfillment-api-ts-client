@@ -93,10 +93,13 @@ export const ReconsignmentAnnouncementApiAxiosParamCreator = function (configura
          * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
          * @param {string} [filterOrderNumber] Filter for a single order number.
          * @param {boolean} [filterReconsignmentAnnouncementCompleted] Filter for completed or not completed reconsignment announcements.
+         * @param {string} [filterReconsignmentAnnouncementDateFrom] Filter for reconsignmentAnnouncementDate (from)
+         * @param {string} [filterReconsignmentAnnouncementDateTo] Filter for reconsignmentAnnouncementDate (to)
+         * @param {string} [filterSearch] Filter for reconsignment announcement search.  Usage: - Provide one or multiple search terms (min. 2 characters) to filter results. - Multiple search terms are separated by spaces. - The search is not case sensitive. - The search is enabled for the fields reconsignmentAnnouncementNumber, orderNumber, externalOrderReference and reconsignmentTrackingCode. - Each search term filters the response for reconsignment announcements where at least one of the fields contains the search term. - For example, filter[search]&#x3D;\&#39;term1 term2\&#39; will filter the result for reconsignment announcements where \&#39;term1\&#39; is found in any field and \&#39;term2\&#39; is also found in any field.\\ If only \&#39;term1\&#39; or \&#39;term2\&#39; is found in the fields, the reconsignment announcement is not included in the results.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getReconsignmentAnnouncementCollection: async (page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', sortBy?: string, filterShopCode?: string, filterOrderNumber?: string, filterReconsignmentAnnouncementCompleted?: boolean, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getReconsignmentAnnouncementCollection: async (page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', sortBy?: string, filterShopCode?: string, filterOrderNumber?: string, filterReconsignmentAnnouncementCompleted?: boolean, filterReconsignmentAnnouncementDateFrom?: string, filterReconsignmentAnnouncementDateTo?: string, filterSearch?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/reconsignment-announcement`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -143,6 +146,22 @@ export const ReconsignmentAnnouncementApiAxiosParamCreator = function (configura
 
             if (filterReconsignmentAnnouncementCompleted !== undefined) {
                 localVarQueryParameter['filter[reconsignmentAnnouncementCompleted]'] = filterReconsignmentAnnouncementCompleted;
+            }
+
+            if (filterReconsignmentAnnouncementDateFrom !== undefined) {
+                localVarQueryParameter['filter[reconsignmentAnnouncementDateFrom]'] = (filterReconsignmentAnnouncementDateFrom as any instanceof Date) ?
+                    (filterReconsignmentAnnouncementDateFrom as any).toISOString().substr(0,10) :
+                    filterReconsignmentAnnouncementDateFrom;
+            }
+
+            if (filterReconsignmentAnnouncementDateTo !== undefined) {
+                localVarQueryParameter['filter[reconsignmentAnnouncementDateTo]'] = (filterReconsignmentAnnouncementDateTo as any instanceof Date) ?
+                    (filterReconsignmentAnnouncementDateTo as any).toISOString().substr(0,10) :
+                    filterReconsignmentAnnouncementDateTo;
+            }
+
+            if (filterSearch !== undefined) {
+                localVarQueryParameter['filter[search]'] = filterSearch;
             }
 
 
@@ -239,11 +258,14 @@ export const ReconsignmentAnnouncementApiFp = function(configuration?: Configura
          * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
          * @param {string} [filterOrderNumber] Filter for a single order number.
          * @param {boolean} [filterReconsignmentAnnouncementCompleted] Filter for completed or not completed reconsignment announcements.
+         * @param {string} [filterReconsignmentAnnouncementDateFrom] Filter for reconsignmentAnnouncementDate (from)
+         * @param {string} [filterReconsignmentAnnouncementDateTo] Filter for reconsignmentAnnouncementDate (to)
+         * @param {string} [filterSearch] Filter for reconsignment announcement search.  Usage: - Provide one or multiple search terms (min. 2 characters) to filter results. - Multiple search terms are separated by spaces. - The search is not case sensitive. - The search is enabled for the fields reconsignmentAnnouncementNumber, orderNumber, externalOrderReference and reconsignmentTrackingCode. - Each search term filters the response for reconsignment announcements where at least one of the fields contains the search term. - For example, filter[search]&#x3D;\&#39;term1 term2\&#39; will filter the result for reconsignment announcements where \&#39;term1\&#39; is found in any field and \&#39;term2\&#39; is also found in any field.\\ If only \&#39;term1\&#39; or \&#39;term2\&#39; is found in the fields, the reconsignment announcement is not included in the results.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getReconsignmentAnnouncementCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', sortBy?: string, filterShopCode?: string, filterOrderNumber?: string, filterReconsignmentAnnouncementCompleted?: boolean, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ReconsignmentAnnouncementPaginatedCollection>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getReconsignmentAnnouncementCollection(page, pageSize, paginationMode, sortBy, filterShopCode, filterOrderNumber, filterReconsignmentAnnouncementCompleted, options);
+        async getReconsignmentAnnouncementCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', sortBy?: string, filterShopCode?: string, filterOrderNumber?: string, filterReconsignmentAnnouncementCompleted?: boolean, filterReconsignmentAnnouncementDateFrom?: string, filterReconsignmentAnnouncementDateTo?: string, filterSearch?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ReconsignmentAnnouncementPaginatedCollection>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getReconsignmentAnnouncementCollection(page, pageSize, paginationMode, sortBy, filterShopCode, filterOrderNumber, filterReconsignmentAnnouncementCompleted, filterReconsignmentAnnouncementDateFrom, filterReconsignmentAnnouncementDateTo, filterSearch, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -290,11 +312,14 @@ export const ReconsignmentAnnouncementApiFactory = function (configuration?: Con
          * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
          * @param {string} [filterOrderNumber] Filter for a single order number.
          * @param {boolean} [filterReconsignmentAnnouncementCompleted] Filter for completed or not completed reconsignment announcements.
+         * @param {string} [filterReconsignmentAnnouncementDateFrom] Filter for reconsignmentAnnouncementDate (from)
+         * @param {string} [filterReconsignmentAnnouncementDateTo] Filter for reconsignmentAnnouncementDate (to)
+         * @param {string} [filterSearch] Filter for reconsignment announcement search.  Usage: - Provide one or multiple search terms (min. 2 characters) to filter results. - Multiple search terms are separated by spaces. - The search is not case sensitive. - The search is enabled for the fields reconsignmentAnnouncementNumber, orderNumber, externalOrderReference and reconsignmentTrackingCode. - Each search term filters the response for reconsignment announcements where at least one of the fields contains the search term. - For example, filter[search]&#x3D;\&#39;term1 term2\&#39; will filter the result for reconsignment announcements where \&#39;term1\&#39; is found in any field and \&#39;term2\&#39; is also found in any field.\\ If only \&#39;term1\&#39; or \&#39;term2\&#39; is found in the fields, the reconsignment announcement is not included in the results.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getReconsignmentAnnouncementCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', sortBy?: string, filterShopCode?: string, filterOrderNumber?: string, filterReconsignmentAnnouncementCompleted?: boolean, options?: any): AxiosPromise<ReconsignmentAnnouncementPaginatedCollection> {
-            return localVarFp.getReconsignmentAnnouncementCollection(page, pageSize, paginationMode, sortBy, filterShopCode, filterOrderNumber, filterReconsignmentAnnouncementCompleted, options).then((request) => request(axios, basePath));
+        getReconsignmentAnnouncementCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', sortBy?: string, filterShopCode?: string, filterOrderNumber?: string, filterReconsignmentAnnouncementCompleted?: boolean, filterReconsignmentAnnouncementDateFrom?: string, filterReconsignmentAnnouncementDateTo?: string, filterSearch?: string, options?: any): AxiosPromise<ReconsignmentAnnouncementPaginatedCollection> {
+            return localVarFp.getReconsignmentAnnouncementCollection(page, pageSize, paginationMode, sortBy, filterShopCode, filterOrderNumber, filterReconsignmentAnnouncementCompleted, filterReconsignmentAnnouncementDateFrom, filterReconsignmentAnnouncementDateTo, filterSearch, options).then((request) => request(axios, basePath));
         },
         /**
          * Allows to download a document associated with the given reconsignmentAnnouncement.
@@ -338,11 +363,14 @@ export interface ReconsignmentAnnouncementApiInterface {
      * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
      * @param {string} [filterOrderNumber] Filter for a single order number.
      * @param {boolean} [filterReconsignmentAnnouncementCompleted] Filter for completed or not completed reconsignment announcements.
+     * @param {string} [filterReconsignmentAnnouncementDateFrom] Filter for reconsignmentAnnouncementDate (from)
+     * @param {string} [filterReconsignmentAnnouncementDateTo] Filter for reconsignmentAnnouncementDate (to)
+     * @param {string} [filterSearch] Filter for reconsignment announcement search.  Usage: - Provide one or multiple search terms (min. 2 characters) to filter results. - Multiple search terms are separated by spaces. - The search is not case sensitive. - The search is enabled for the fields reconsignmentAnnouncementNumber, orderNumber, externalOrderReference and reconsignmentTrackingCode. - Each search term filters the response for reconsignment announcements where at least one of the fields contains the search term. - For example, filter[search]&#x3D;\&#39;term1 term2\&#39; will filter the result for reconsignment announcements where \&#39;term1\&#39; is found in any field and \&#39;term2\&#39; is also found in any field.\\ If only \&#39;term1\&#39; or \&#39;term2\&#39; is found in the fields, the reconsignment announcement is not included in the results.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ReconsignmentAnnouncementApiInterface
      */
-    getReconsignmentAnnouncementCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', sortBy?: string, filterShopCode?: string, filterOrderNumber?: string, filterReconsignmentAnnouncementCompleted?: boolean, options?: AxiosRequestConfig): AxiosPromise<ReconsignmentAnnouncementPaginatedCollection>;
+    getReconsignmentAnnouncementCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', sortBy?: string, filterShopCode?: string, filterOrderNumber?: string, filterReconsignmentAnnouncementCompleted?: boolean, filterReconsignmentAnnouncementDateFrom?: string, filterReconsignmentAnnouncementDateTo?: string, filterSearch?: string, options?: AxiosRequestConfig): AxiosPromise<ReconsignmentAnnouncementPaginatedCollection>;
 
     /**
      * Allows to download a document associated with the given reconsignmentAnnouncement.
@@ -388,12 +416,15 @@ export class ReconsignmentAnnouncementApi extends BaseAPI implements Reconsignme
      * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
      * @param {string} [filterOrderNumber] Filter for a single order number.
      * @param {boolean} [filterReconsignmentAnnouncementCompleted] Filter for completed or not completed reconsignment announcements.
+     * @param {string} [filterReconsignmentAnnouncementDateFrom] Filter for reconsignmentAnnouncementDate (from)
+     * @param {string} [filterReconsignmentAnnouncementDateTo] Filter for reconsignmentAnnouncementDate (to)
+     * @param {string} [filterSearch] Filter for reconsignment announcement search.  Usage: - Provide one or multiple search terms (min. 2 characters) to filter results. - Multiple search terms are separated by spaces. - The search is not case sensitive. - The search is enabled for the fields reconsignmentAnnouncementNumber, orderNumber, externalOrderReference and reconsignmentTrackingCode. - Each search term filters the response for reconsignment announcements where at least one of the fields contains the search term. - For example, filter[search]&#x3D;\&#39;term1 term2\&#39; will filter the result for reconsignment announcements where \&#39;term1\&#39; is found in any field and \&#39;term2\&#39; is also found in any field.\\ If only \&#39;term1\&#39; or \&#39;term2\&#39; is found in the fields, the reconsignment announcement is not included in the results.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ReconsignmentAnnouncementApi
      */
-    public getReconsignmentAnnouncementCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', sortBy?: string, filterShopCode?: string, filterOrderNumber?: string, filterReconsignmentAnnouncementCompleted?: boolean, options?: AxiosRequestConfig) {
-        return ReconsignmentAnnouncementApiFp(this.configuration).getReconsignmentAnnouncementCollection(page, pageSize, paginationMode, sortBy, filterShopCode, filterOrderNumber, filterReconsignmentAnnouncementCompleted, options).then((request) => request(this.axios, this.basePath));
+    public getReconsignmentAnnouncementCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', sortBy?: string, filterShopCode?: string, filterOrderNumber?: string, filterReconsignmentAnnouncementCompleted?: boolean, filterReconsignmentAnnouncementDateFrom?: string, filterReconsignmentAnnouncementDateTo?: string, filterSearch?: string, options?: AxiosRequestConfig) {
+        return ReconsignmentAnnouncementApiFp(this.configuration).getReconsignmentAnnouncementCollection(page, pageSize, paginationMode, sortBy, filterShopCode, filterOrderNumber, filterReconsignmentAnnouncementCompleted, filterReconsignmentAnnouncementDateFrom, filterReconsignmentAnnouncementDateTo, filterSearch, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

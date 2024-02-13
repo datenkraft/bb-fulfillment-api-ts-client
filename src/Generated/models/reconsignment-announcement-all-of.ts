@@ -66,11 +66,17 @@ export interface ReconsignmentAnnouncementAllOf {
      */
     'reconsignmentAnnouncementCompleted'?: boolean;
     /**
-     * The order number. Note: This can be null if the order was not created via the API.
+     * The order number.
      * @type {string}
      * @memberof ReconsignmentAnnouncementAllOf
      */
     'orderNumber'?: string;
+    /**
+     * External reference for the order.
+     * @type {string}
+     * @memberof ReconsignmentAnnouncementAllOf
+     */
+    'externalOrderReference'?: string | null;
     /**
      * The delivery number associated with the reconsignment.
      * @type {string}

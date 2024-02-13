@@ -42,7 +42,7 @@ export interface OrderAllOf {
      */
     'orderNumber'?: any;
     /**
-     * Note: canceled orderItems are NOT included.
+     * 
      * @type {Array<OrderItem>}
      * @memberof OrderAllOf
      */
