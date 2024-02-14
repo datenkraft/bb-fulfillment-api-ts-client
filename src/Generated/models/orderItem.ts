@@ -4,6 +4,10 @@
 
 import type { orderItemPrice } from './orderItemPrice';
 
+/**
+ * Multiple orderItems with the same productNumber are allowed, but note that they will be merged
+ * together if all orderItem data is the same.
+ */
 export type orderItem = {
     /**
      * Valid product number

@@ -19,6 +19,10 @@ export type order = (baseOrder & {
      * manually by niceshops (see 'source').
      */
     orderNumber?: any,
+    /**
+     * Multiple orderItems with the same productNumber are allowed, but note that they will be merged
+     * together if all orderItem data is the same.
+     */
     orderItems?: Array<orderItem>,
     customer?: orderCustomer,
     /**
