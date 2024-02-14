@@ -8980,7 +8980,6 @@
             },
             "newOrderItem": {
                 "title": "newOrderItem",
-                "description": "Note: Only one Order Item may be sent per product.\\\nThis means that if a product appears in the shopping cart more than once, it must be aggregated to a single\nOrderItem with a correspondingly increased count.",
                 "allOf": [
                     {
                         "$ref": "#/components/schemas/orderItem"
@@ -9162,7 +9161,7 @@
                                 "description": "The order number.\\\nNote: If this number is prefixed with 'NICE', it means that the order was created\nmanually by niceshops (see 'source')."
                             },
                             "orderItems": {
-                                "description": "",
+                                "description": "Multiple orderItems with the same productNumber are allowed, but note that they will be merged\ntogether if all orderItem data is the same.",
                                 "type": "array",
                                 "items": {
                                     "$ref": "#/components/schemas/orderItem"
@@ -9376,6 +9375,7 @@
             },
             "orderItem": {
                 "title": "orderItem",
+                "description": "Multiple orderItems with the same productNumber are allowed, but note that they will be merged\ntogether if all orderItem data is the same.",
                 "required": [
                     "productNumber",
                     "count"
