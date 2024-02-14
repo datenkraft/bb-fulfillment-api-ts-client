@@ -42,7 +42,7 @@ export interface OrderAllOf {
      */
     'orderNumber'?: any;
     /**
-     * 
+     * Multiple orderItems with the same productNumber are allowed, but note that they will be merged together if all orderItem data is the same.
      * @type {Array<OrderItem>}
      * @memberof OrderAllOf
      */
