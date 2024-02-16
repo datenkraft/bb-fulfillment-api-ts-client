@@ -283,6 +283,10 @@ export class OrderService {
                  *
                  * Error codes:
                  * - PERMISSIONS_MISSING: No authorization for the called action was found.`,
+                409: `Conflict
+                 *
+                 * Error codes:
+                 * - ORDER_ALREADY_EXISTS: There already exists an order with the given orderNumber.`,
                 422: `Unprocessable Entity
                  *
                  * Error codes:
