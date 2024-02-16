@@ -301,6 +301,10 @@ export class InboundDeliveryService {
                  *
                  * Error codes:
                  * - PERMISSIONS_MISSING: No authorization for the called action was found.`,
+                409: `Conflict
+                 *
+                 * Error codes:
+                 * - INBOUND_DELIVERY_ALREADY_EXISTS: There already exists an inbound delivery with the given inboundDeliveryNumber.`,
                 422: `Unprocessable Entity
                  *
                  * Error codes:
