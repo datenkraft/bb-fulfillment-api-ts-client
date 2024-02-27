@@ -38,7 +38,8 @@ export const BaseReconsignmentAnnouncementReconsignmentReasonEnum = {
     ProductDislike: 'reconsignment_product_dislike',
     ProductDefect: 'reconsignment_product_defect',
     ProductDamage: 'reconsignment_product_damage',
-    OtherUnknown: 'reconsignment_other_unknown'
+    OtherUnknown: 'reconsignment_other_unknown',
+    UnknownDefaultOpenApi: '11184809'
 } as const;
 
 export type BaseReconsignmentAnnouncementReconsignmentReasonEnum = typeof BaseReconsignmentAnnouncementReconsignmentReasonEnum[keyof typeof BaseReconsignmentAnnouncementReconsignmentReasonEnum];

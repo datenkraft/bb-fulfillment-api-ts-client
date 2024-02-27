@@ -42,7 +42,8 @@ export const NewProductDraftAllOfContentsUnitEnum = {
     Milligram: 'milligram',
     Milliliter: 'milliliter',
     Set: 'set',
-    Piece: 'piece'
+    Piece: 'piece',
+    UnknownDefaultOpenApi: '11184809'
 } as const;
 
 export type NewProductDraftAllOfContentsUnitEnum = typeof NewProductDraftAllOfContentsUnitEnum[keyof typeof NewProductDraftAllOfContentsUnitEnum];

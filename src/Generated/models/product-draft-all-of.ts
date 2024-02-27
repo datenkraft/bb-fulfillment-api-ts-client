@@ -53,14 +53,16 @@ export interface ProductDraftAllOf {
 }
 
 export const ProductDraftAllOfSourceEnum = {
-    Api: 'api'
+    Api: 'api',
+    UnknownDefaultOpenApi: '11184809'
 } as const;
 
 export type ProductDraftAllOfSourceEnum = typeof ProductDraftAllOfSourceEnum[keyof typeof ProductDraftAllOfSourceEnum];
 export const ProductDraftAllOfProductDraftStatusEnum = {
     Pending: 'pending',
     Accepted: 'accepted',
-    Declined: 'declined'
+    Declined: 'declined',
+    UnknownDefaultOpenApi: '11184809'
 } as const;
 
 export type ProductDraftAllOfProductDraftStatusEnum = typeof ProductDraftAllOfProductDraftStatusEnum[keyof typeof ProductDraftAllOfProductDraftStatusEnum];

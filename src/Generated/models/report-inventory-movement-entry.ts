@@ -48,7 +48,8 @@ export const ReportInventoryMovementEntryTypeCodeEnum = {
     Subtracted: 'subtracted',
     Corrected: 'corrected',
     ForOwnPurpose: 'forOwnPurpose',
-    Returned: 'returned'
+    Returned: 'returned',
+    UnknownDefaultOpenApi: '11184809'
 } as const;
 
 export type ReportInventoryMovementEntryTypeCodeEnum = typeof ReportInventoryMovementEntryTypeCodeEnum[keyof typeof ReportInventoryMovementEntryTypeCodeEnum];

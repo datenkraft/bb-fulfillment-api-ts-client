@@ -140,7 +140,8 @@ export const BaseProductProductTypeEnum = {
     Bundle: 'bundle',
     PrintGreetingcard: 'print_greetingcard',
     Personalized: 'personalized',
-    OtherServices: 'other_services'
+    OtherServices: 'other_services',
+    UnknownDefaultOpenApi: '11184809'
 } as const;
 
 export type BaseProductProductTypeEnum = typeof BaseProductProductTypeEnum[keyof typeof BaseProductProductTypeEnum];
@@ -162,7 +163,8 @@ export const BaseProductArticleVariantTypeEnum = {
     ServicePrincipal: 'service_principal',
     VoucherDigital: 'voucher_digital',
     VoucherPrint: 'voucher_print',
-    Null: 'null'
+    Null: 'null',
+    UnknownDefaultOpenApi: '11184809'
 } as const;
 
 export type BaseProductArticleVariantTypeEnum = typeof BaseProductArticleVariantTypeEnum[keyof typeof BaseProductArticleVariantTypeEnum];
@@ -172,7 +174,8 @@ export const BaseProductArticleStatusEnum = {
     PreparationInactive: 'preparation_inactive',
     InactiveButVisible: 'inactive_but_visible',
     Inactive: 'inactive',
-    Null: 'null'
+    Null: 'null',
+    UnknownDefaultOpenApi: '11184809'
 } as const;
 
 export type BaseProductArticleStatusEnum = typeof BaseProductArticleStatusEnum[keyof typeof BaseProductArticleStatusEnum];

@@ -111,14 +111,16 @@ export const OrderAllOfStatusEnum = {
     Canceled: 'canceled',
     Locked: 'locked',
     Examination: 'examination',
-    Redacted: 'redacted'
+    Redacted: 'redacted',
+    UnknownDefaultOpenApi: '11184809'
 } as const;
 
 export type OrderAllOfStatusEnum = typeof OrderAllOfStatusEnum[keyof typeof OrderAllOfStatusEnum];
 export const OrderAllOfSourceEnum = {
     Shopify: 'shopify',
     Nice: 'nice',
-    Api: 'api'
+    Api: 'api',
+    UnknownDefaultOpenApi: '11184809'
 } as const;
 
 export type OrderAllOfSourceEnum = typeof OrderAllOfSourceEnum[keyof typeof OrderAllOfSourceEnum];

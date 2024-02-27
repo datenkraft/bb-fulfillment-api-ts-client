@@ -37,7 +37,8 @@ export interface DeliveryShipmentJournal {
 export const DeliveryShipmentJournalTypeCodeEnum = {
     Created: 'fulfillment_created',
     LeftWarehouse: 'fulfillment_left-warehouse',
-    Delivered: 'fulfillment_delivered'
+    Delivered: 'fulfillment_delivered',
+    UnknownDefaultOpenApi: '11184809'
 } as const;
 
 export type DeliveryShipmentJournalTypeCodeEnum = typeof DeliveryShipmentJournalTypeCodeEnum[keyof typeof DeliveryShipmentJournalTypeCodeEnum];
