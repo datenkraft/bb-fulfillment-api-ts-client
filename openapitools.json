@@ -14,7 +14,8 @@
           "withNodeImports": true,
           "modelPackage": "models",
           "apiPackage": "apis",
-          "withSeparateModelsAndApi": true
+          "withSeparateModelsAndApi": true,
+          "enumUnknownDefaultCase": true
         }
       }
     }
