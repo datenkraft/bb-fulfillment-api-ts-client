@@ -29,7 +29,8 @@ export interface OrderPayment {
 }
 
 export const OrderPaymentTypeEnum = {
-    Invoice: 'invoice'
+    Invoice: 'invoice',
+    UnknownDefaultOpenApi: '11184809'
 } as const;
 
 export type OrderPaymentTypeEnum = typeof OrderPaymentTypeEnum[keyof typeof OrderPaymentTypeEnum];

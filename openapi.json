@@ -1429,6 +1429,16 @@
                             }
                         }
                     },
+                    "400": {
+                        "description": "Bad Request\n\nError codes:\n- DATA_INVALID: Invalid data was given.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
                     "401": {
                         "description": "Unauthorized\n\nError codes:\n- AUTHORIZATION_MISSING: No valid authentication information was given.",
                         "content": {
@@ -3199,7 +3209,7 @@
                         "type": "string"
                     },
                     "provinceCode": {
-                        "description": "Province code (ISO 3166-2)",
+                        "description": "Mandatory if province codes for country exist\n(ISO 3166-2) - https://www.iso.org/iso-3166-country-codes.html \\\nNote: For addresses in Italy (IT), the province code is optional and will be detected automatically if not\nprovided.",
                         "type": "string",
                         "nullable": true
                     },

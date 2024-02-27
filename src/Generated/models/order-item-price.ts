@@ -48,7 +48,8 @@ export interface OrderItemPrice {
 
 export const OrderItemPriceTypeEnum = {
     Net: 'net',
-    Gross: 'gross'
+    Gross: 'gross',
+    UnknownDefaultOpenApi: '11184809'
 } as const;
 
 export type OrderItemPriceTypeEnum = typeof OrderItemPriceTypeEnum[keyof typeof OrderItemPriceTypeEnum];
