@@ -97,7 +97,8 @@ export interface BaseOrderCustomer {
 export const BaseOrderCustomerGenderEnum = {
     Male: 'male',
     Female: 'female',
-    Unknown: 'unknown'
+    Unknown: 'unknown',
+    UnknownDefaultOpenApi: '11184809'
 } as const;
 
 export type BaseOrderCustomerGenderEnum = typeof BaseOrderCustomerGenderEnum[keyof typeof BaseOrderCustomerGenderEnum];

@@ -92,7 +92,8 @@ export const OrderAllOfStatusEnum = {
     Deleted: 'deleted',
     Canceled: 'canceled',
     Locked: 'locked',
-    Examination: 'examination'
+    Examination: 'examination',
+    UnknownDefaultOpenApi: '11184809'
 } as const;
 
 export type OrderAllOfStatusEnum = typeof OrderAllOfStatusEnum[keyof typeof OrderAllOfStatusEnum];
