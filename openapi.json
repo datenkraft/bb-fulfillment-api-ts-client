@@ -4459,7 +4459,7 @@
                         }
                     },
                     "422": {
-                        "description": "Unprocessable Entity\n\nError codes:\n- SHOP_NOT_FOUND: Shop not found.\n- COUNTRY_NOT_ALLOWED_FOR_RECONSIGNMENT:  The country cannot be used for a reconsignment announcement.\n- DELIVERY_SERVICE_NOT_ALLOWED_FOR_RECONSIGNMENT: The determined delivery service cannot be used for a reconsignment announcement.\n- ORDER_NOT_RECONSIGNABLE: The order is not in a reconsignable state.\n- RECONSIGNMENT_ANNOUNCEMENT_LINE_NOT_RECONSIGNABLE: A reconsignment announcement line is not reconsignable.\n- ORDER_NOT_RECONSIGNABLE_DUE_TO_GDPR_REDACTION: The order is not reconsignable due to GDPR redaction.\n- ORDER_NOT_RECONSIGNABLE_DUE_TO_DELIVERY_STATUS: The order is not reconsignable because it is not delivered.",
+                        "description": "Unprocessable Entity\n\nError codes:\n- SHOP_NOT_FOUND: Shop not found.\n- COUNTRY_NOT_ALLOWED_FOR_RECONSIGNMENT:  The country cannot be used for a reconsignment announcement.\n- DELIVERY_SERVICE_NOT_ALLOWED_FOR_RECONSIGNMENT: The determined delivery service cannot be used for a reconsignment announcement.\n- RECONSIGNMENT_ANNOUNCEMENT_LINE_NOT_RECONSIGNABLE: A reconsignment announcement line is not reconsignable.\n- ORDER_NOT_RECONSIGNABLE_DUE_TO_GDPR_REDACTION: The order is not reconsignable due to GDPR redaction.\n- ORDER_NOT_RECONSIGNABLE_DUE_TO_DELIVERY_STATUS: The order is not reconsignable because it is not delivered.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -9322,7 +9322,7 @@
                         "maxLength": 255
                     },
                     "provinceCode": {
-                        "description": "Mandatory if province codes for country (GET /country) exist\n(ISO 3166-2) - https://www.iso.org/iso-3166-country-codes.html",
+                        "description": "Mandatory if province codes for country (GET /country) exist\n(ISO 3166-2) - https://www.iso.org/iso-3166-country-codes.html \\\nNote: For addresses in Italy (IT), the province code is optional and will be detected automatically if not\nprovided.",
                         "type": "string",
                         "nullable": true
                     },
