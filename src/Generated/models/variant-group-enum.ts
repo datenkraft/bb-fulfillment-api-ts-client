@@ -25,7 +25,8 @@ export const VariantGroupEnum = {
     Size: 'size',
     Content: 'content',
     Einzelvariante: 'einzelvariante',
-    StandardTitle: 'standard_title'
+    StandardTitle: 'standard_title',
+    UnknownDefaultOpenApi: '11184809'
 } as const;
 
 export type VariantGroupEnum = typeof VariantGroupEnum[keyof typeof VariantGroupEnum];

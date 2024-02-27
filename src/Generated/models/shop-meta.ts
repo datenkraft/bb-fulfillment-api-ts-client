@@ -94,7 +94,8 @@ export const ShopMetaDefaultCurrencyEnum = {
     Gbp: 'GBP',
     Sek: 'SEK',
     Pln: 'PLN',
-    Null: 'null'
+    Null: 'null',
+    UnknownDefaultOpenApi: '11184809'
 } as const;
 
 export type ShopMetaDefaultCurrencyEnum = typeof ShopMetaDefaultCurrencyEnum[keyof typeof ShopMetaDefaultCurrencyEnum];

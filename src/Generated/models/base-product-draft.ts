@@ -105,7 +105,8 @@ export const BaseProductDraftTaxCodeEnum = {
     Reduced1: 'reduced1',
     Reduced2: 'reduced2',
     None: 'none',
-    Null: 'null'
+    Null: 'null',
+    UnknownDefaultOpenApi: '11184809'
 } as const;
 
 export type BaseProductDraftTaxCodeEnum = typeof BaseProductDraftTaxCodeEnum[keyof typeof BaseProductDraftTaxCodeEnum];

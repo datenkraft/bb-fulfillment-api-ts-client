@@ -61,7 +61,8 @@ export interface Stock {
 export const StockOverbookingPossibilityStatusEnum = {
     Possible: 'possible',
     NotPossible: 'not_possible',
-    OnlyInboundDeliveries: 'only_inbound_deliveries'
+    OnlyInboundDeliveries: 'only_inbound_deliveries',
+    UnknownDefaultOpenApi: '11184809'
 } as const;
 
 export type StockOverbookingPossibilityStatusEnum = typeof StockOverbookingPossibilityStatusEnum[keyof typeof StockOverbookingPossibilityStatusEnum];

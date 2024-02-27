@@ -81,7 +81,8 @@ export const ProductJournalReasonEnum = {
     NiceshopsOrder: 'niceshops_order',
     Inbound: 'inbound',
     Fulfillment: 'fulfillment',
-    Return: 'return'
+    Return: 'return',
+    UnknownDefaultOpenApi: '11184809'
 } as const;
 
 export type ProductJournalReasonEnum = typeof ProductJournalReasonEnum[keyof typeof ProductJournalReasonEnum];

@@ -93,7 +93,8 @@ export const ReconsignmentReconsignmentReasonEnum = {
     TransportInvalidaddress: 'reconsignment_transport_invalidaddress',
     TransportLost: 'reconsignment_transport_lost',
     TransportNopickup: 'reconsignment_transport_nopickup',
-    TransportRejected: 'reconsignment_transport_rejected'
+    TransportRejected: 'reconsignment_transport_rejected',
+    UnknownDefaultOpenApi: '11184809'
 } as const;
 
 export type ReconsignmentReconsignmentReasonEnum = typeof ReconsignmentReconsignmentReasonEnum[keyof typeof ReconsignmentReconsignmentReasonEnum];

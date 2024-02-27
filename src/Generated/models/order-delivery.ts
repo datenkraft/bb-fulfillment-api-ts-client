@@ -35,7 +35,8 @@ export interface OrderDelivery {
 }
 
 export const OrderDeliveryStatusEnum = {
-    Delivered: 'delivered'
+    Delivered: 'delivered',
+    UnknownDefaultOpenApi: '11184809'
 } as const;
 
 export type OrderDeliveryStatusEnum = typeof OrderDeliveryStatusEnum[keyof typeof OrderDeliveryStatusEnum];

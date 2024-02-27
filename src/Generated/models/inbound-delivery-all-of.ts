@@ -89,7 +89,8 @@ export const InboundDeliveryAllOfStatusEnum = {
     Open: 'open',
     InProgress: 'in_progress',
     Completed: 'completed',
-    Deleted: 'deleted'
+    Deleted: 'deleted',
+    UnknownDefaultOpenApi: '11184809'
 } as const;
 
 export type InboundDeliveryAllOfStatusEnum = typeof InboundDeliveryAllOfStatusEnum[keyof typeof InboundDeliveryAllOfStatusEnum];

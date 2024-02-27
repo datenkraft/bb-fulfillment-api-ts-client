@@ -33,7 +33,8 @@ export const NewOrderOptionsAllOfAutoProcessStateEnum = {
     PartiallyDelivered: 'order_partially_delivered',
     CompletedMultipleDeliveries: 'order_completed_multiple_deliveries',
     Canceled: 'order_canceled',
-    Locked: 'order_locked'
+    Locked: 'order_locked',
+    UnknownDefaultOpenApi: '11184809'
 } as const;
 
 export type NewOrderOptionsAllOfAutoProcessStateEnum = typeof NewOrderOptionsAllOfAutoProcessStateEnum[keyof typeof NewOrderOptionsAllOfAutoProcessStateEnum];

@@ -115,7 +115,8 @@ export const ProductAllOfProductStatusEnum = {
     Expired: 'expired',
     Incorrect: 'incorrect',
     Internal: 'internal',
-    Preparation: 'preparation'
+    Preparation: 'preparation',
+    UnknownDefaultOpenApi: '11184809'
 } as const;
 
 export type ProductAllOfProductStatusEnum = typeof ProductAllOfProductStatusEnum[keyof typeof ProductAllOfProductStatusEnum];
@@ -124,14 +125,16 @@ export const ProductAllOfTaxCodeEnum = {
     Reduced1: 'reduced1',
     Reduced2: 'reduced2',
     None: 'none',
-    Null: 'null'
+    Null: 'null',
+    UnknownDefaultOpenApi: '11184809'
 } as const;
 
 export type ProductAllOfTaxCodeEnum = typeof ProductAllOfTaxCodeEnum[keyof typeof ProductAllOfTaxCodeEnum];
 export const ProductAllOfSourceEnum = {
     Self: 'self',
     Nice: 'nice',
-    Bundle: 'bundle'
+    Bundle: 'bundle',
+    UnknownDefaultOpenApi: '11184809'
 } as const;
 
 export type ProductAllOfSourceEnum = typeof ProductAllOfSourceEnum[keyof typeof ProductAllOfSourceEnum];
