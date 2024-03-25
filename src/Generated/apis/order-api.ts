@@ -191,10 +191,11 @@ export const OrderApiAxiosParamCreator = function (configuration?: Configuration
          * @param {string} [filterOrderDateFrom] filter for orderDate format in ISO 8601 with UTC offsets
          * @param {string} [filterOrderDateTo] filter for orderDate format in ISO 8601 with UTC offsets
          * @param {string} [filterSearch] filter for order search.  Usage: - Provide one or multiple search terms (min. 2 characters) to filter results. - Multiple search terms are separated by spaces. - The search is not case sensitive. - The search is enabled for the fields \&#39;externalOrderReference\&#39;, \&#39;orderNumber\&#39; and the tracking code of the orders shipments. - Each search term filters the response for orders where at least one of the fields contains the search term. - For example, filter[search]&#x3D;\&#39;term1 term2\&#39; will filter the result for orders where \&#39;term1\&#39; is found in any field and \&#39;term2\&#39; is also found in any field. If only \&#39;term1\&#39; or \&#39;term2\&#39; is found in the fields, the order is not included in the results.
+         * @param {'allOrderItems' | 'notAllOrderItems'} [filterDeliverabilityStatus] filter for deliverabilityStatus  By default, all orders are returned. Use \&#39;allOrderItems\&#39; to return all deliverable orders (\&#39;availableCount\&#39; of all \&#39;orderItems\&#39; is greater or equal than the ordered \&#39;count\&#39;) Use \&#39;notAllOrderItems\&#39; to specifically return not deliverable orders (\&#39;availableCount\&#39; of at least one \&#39;orderItem\&#39; is smaller than the ordered \&#39;count\&#39;
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getOrderCollection: async (page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', sortBy?: string, filterShopCode?: string, filterStatus?: string, filterExternalOrderId?: string, filterExternalCustomerId?: string, filterExternalOrderReference?: string, filterOrderDateFrom?: string, filterOrderDateTo?: string, filterSearch?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getOrderCollection: async (page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', sortBy?: string, filterShopCode?: string, filterStatus?: string, filterExternalOrderId?: string, filterExternalCustomerId?: string, filterExternalOrderReference?: string, filterOrderDateFrom?: string, filterOrderDateTo?: string, filterSearch?: string, filterDeliverabilityStatus?: 'allOrderItems' | 'notAllOrderItems', options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/order`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -265,6 +266,10 @@ export const OrderApiAxiosParamCreator = function (configuration?: Configuration
 
             if (filterSearch !== undefined) {
                 localVarQueryParameter['filter[search]'] = filterSearch;
+            }
+
+            if (filterDeliverabilityStatus !== undefined) {
+                localVarQueryParameter['filter[deliverabilityStatus]'] = filterDeliverabilityStatus;
             }
 
 
@@ -534,11 +539,12 @@ export const OrderApiFp = function(configuration?: Configuration) {
          * @param {string} [filterOrderDateFrom] filter for orderDate format in ISO 8601 with UTC offsets
          * @param {string} [filterOrderDateTo] filter for orderDate format in ISO 8601 with UTC offsets
          * @param {string} [filterSearch] filter for order search.  Usage: - Provide one or multiple search terms (min. 2 characters) to filter results. - Multiple search terms are separated by spaces. - The search is not case sensitive. - The search is enabled for the fields \&#39;externalOrderReference\&#39;, \&#39;orderNumber\&#39; and the tracking code of the orders shipments. - Each search term filters the response for orders where at least one of the fields contains the search term. - For example, filter[search]&#x3D;\&#39;term1 term2\&#39; will filter the result for orders where \&#39;term1\&#39; is found in any field and \&#39;term2\&#39; is also found in any field. If only \&#39;term1\&#39; or \&#39;term2\&#39; is found in the fields, the order is not included in the results.
+         * @param {'allOrderItems' | 'notAllOrderItems'} [filterDeliverabilityStatus] filter for deliverabilityStatus  By default, all orders are returned. Use \&#39;allOrderItems\&#39; to return all deliverable orders (\&#39;availableCount\&#39; of all \&#39;orderItems\&#39; is greater or equal than the ordered \&#39;count\&#39;) Use \&#39;notAllOrderItems\&#39; to specifically return not deliverable orders (\&#39;availableCount\&#39; of at least one \&#39;orderItem\&#39; is smaller than the ordered \&#39;count\&#39;
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getOrderCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', sortBy?: string, filterShopCode?: string, filterStatus?: string, filterExternalOrderId?: string, filterExternalCustomerId?: string, filterExternalOrderReference?: string, filterOrderDateFrom?: string, filterOrderDateTo?: string, filterSearch?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OrderCollection>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getOrderCollection(page, pageSize, paginationMode, sortBy, filterShopCode, filterStatus, filterExternalOrderId, filterExternalCustomerId, filterExternalOrderReference, filterOrderDateFrom, filterOrderDateTo, filterSearch, options);
+        async getOrderCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', sortBy?: string, filterShopCode?: string, filterStatus?: string, filterExternalOrderId?: string, filterExternalCustomerId?: string, filterExternalOrderReference?: string, filterOrderDateFrom?: string, filterOrderDateTo?: string, filterSearch?: string, filterDeliverabilityStatus?: 'allOrderItems' | 'notAllOrderItems', options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OrderCollection>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getOrderCollection(page, pageSize, paginationMode, sortBy, filterShopCode, filterStatus, filterExternalOrderId, filterExternalCustomerId, filterExternalOrderReference, filterOrderDateFrom, filterOrderDateTo, filterSearch, filterDeliverabilityStatus, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -645,11 +651,12 @@ export const OrderApiFactory = function (configuration?: Configuration, basePath
          * @param {string} [filterOrderDateFrom] filter for orderDate format in ISO 8601 with UTC offsets
          * @param {string} [filterOrderDateTo] filter for orderDate format in ISO 8601 with UTC offsets
          * @param {string} [filterSearch] filter for order search.  Usage: - Provide one or multiple search terms (min. 2 characters) to filter results. - Multiple search terms are separated by spaces. - The search is not case sensitive. - The search is enabled for the fields \&#39;externalOrderReference\&#39;, \&#39;orderNumber\&#39; and the tracking code of the orders shipments. - Each search term filters the response for orders where at least one of the fields contains the search term. - For example, filter[search]&#x3D;\&#39;term1 term2\&#39; will filter the result for orders where \&#39;term1\&#39; is found in any field and \&#39;term2\&#39; is also found in any field. If only \&#39;term1\&#39; or \&#39;term2\&#39; is found in the fields, the order is not included in the results.
+         * @param {'allOrderItems' | 'notAllOrderItems'} [filterDeliverabilityStatus] filter for deliverabilityStatus  By default, all orders are returned. Use \&#39;allOrderItems\&#39; to return all deliverable orders (\&#39;availableCount\&#39; of all \&#39;orderItems\&#39; is greater or equal than the ordered \&#39;count\&#39;) Use \&#39;notAllOrderItems\&#39; to specifically return not deliverable orders (\&#39;availableCount\&#39; of at least one \&#39;orderItem\&#39; is smaller than the ordered \&#39;count\&#39;
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getOrderCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', sortBy?: string, filterShopCode?: string, filterStatus?: string, filterExternalOrderId?: string, filterExternalCustomerId?: string, filterExternalOrderReference?: string, filterOrderDateFrom?: string, filterOrderDateTo?: string, filterSearch?: string, options?: any): AxiosPromise<OrderCollection> {
-            return localVarFp.getOrderCollection(page, pageSize, paginationMode, sortBy, filterShopCode, filterStatus, filterExternalOrderId, filterExternalCustomerId, filterExternalOrderReference, filterOrderDateFrom, filterOrderDateTo, filterSearch, options).then((request) => request(axios, basePath));
+        getOrderCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', sortBy?: string, filterShopCode?: string, filterStatus?: string, filterExternalOrderId?: string, filterExternalCustomerId?: string, filterExternalOrderReference?: string, filterOrderDateFrom?: string, filterOrderDateTo?: string, filterSearch?: string, filterDeliverabilityStatus?: 'allOrderItems' | 'notAllOrderItems', options?: any): AxiosPromise<OrderCollection> {
+            return localVarFp.getOrderCollection(page, pageSize, paginationMode, sortBy, filterShopCode, filterStatus, filterExternalOrderId, filterExternalCustomerId, filterExternalOrderReference, filterOrderDateFrom, filterOrderDateTo, filterSearch, filterDeliverabilityStatus, options).then((request) => request(axios, basePath));
         },
         /**
          * Import one or more new orders.         The file type is controlled by the content type attribute of the uploaded file
@@ -750,11 +757,12 @@ export interface OrderApiInterface {
      * @param {string} [filterOrderDateFrom] filter for orderDate format in ISO 8601 with UTC offsets
      * @param {string} [filterOrderDateTo] filter for orderDate format in ISO 8601 with UTC offsets
      * @param {string} [filterSearch] filter for order search.  Usage: - Provide one or multiple search terms (min. 2 characters) to filter results. - Multiple search terms are separated by spaces. - The search is not case sensitive. - The search is enabled for the fields \&#39;externalOrderReference\&#39;, \&#39;orderNumber\&#39; and the tracking code of the orders shipments. - Each search term filters the response for orders where at least one of the fields contains the search term. - For example, filter[search]&#x3D;\&#39;term1 term2\&#39; will filter the result for orders where \&#39;term1\&#39; is found in any field and \&#39;term2\&#39; is also found in any field. If only \&#39;term1\&#39; or \&#39;term2\&#39; is found in the fields, the order is not included in the results.
+     * @param {'allOrderItems' | 'notAllOrderItems'} [filterDeliverabilityStatus] filter for deliverabilityStatus  By default, all orders are returned. Use \&#39;allOrderItems\&#39; to return all deliverable orders (\&#39;availableCount\&#39; of all \&#39;orderItems\&#39; is greater or equal than the ordered \&#39;count\&#39;) Use \&#39;notAllOrderItems\&#39; to specifically return not deliverable orders (\&#39;availableCount\&#39; of at least one \&#39;orderItem\&#39; is smaller than the ordered \&#39;count\&#39;
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    getOrderCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', sortBy?: string, filterShopCode?: string, filterStatus?: string, filterExternalOrderId?: string, filterExternalCustomerId?: string, filterExternalOrderReference?: string, filterOrderDateFrom?: string, filterOrderDateTo?: string, filterSearch?: string, options?: AxiosRequestConfig): AxiosPromise<OrderCollection>;
+    getOrderCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', sortBy?: string, filterShopCode?: string, filterStatus?: string, filterExternalOrderId?: string, filterExternalCustomerId?: string, filterExternalOrderReference?: string, filterOrderDateFrom?: string, filterOrderDateTo?: string, filterSearch?: string, filterDeliverabilityStatus?: 'allOrderItems' | 'notAllOrderItems', options?: AxiosRequestConfig): AxiosPromise<OrderCollection>;
 
     /**
      * Import one or more new orders.         The file type is controlled by the content type attribute of the uploaded file
@@ -861,12 +869,13 @@ export class OrderApi extends BaseAPI implements OrderApiInterface {
      * @param {string} [filterOrderDateFrom] filter for orderDate format in ISO 8601 with UTC offsets
      * @param {string} [filterOrderDateTo] filter for orderDate format in ISO 8601 with UTC offsets
      * @param {string} [filterSearch] filter for order search.  Usage: - Provide one or multiple search terms (min. 2 characters) to filter results. - Multiple search terms are separated by spaces. - The search is not case sensitive. - The search is enabled for the fields \&#39;externalOrderReference\&#39;, \&#39;orderNumber\&#39; and the tracking code of the orders shipments. - Each search term filters the response for orders where at least one of the fields contains the search term. - For example, filter[search]&#x3D;\&#39;term1 term2\&#39; will filter the result for orders where \&#39;term1\&#39; is found in any field and \&#39;term2\&#39; is also found in any field. If only \&#39;term1\&#39; or \&#39;term2\&#39; is found in the fields, the order is not included in the results.
+     * @param {'allOrderItems' | 'notAllOrderItems'} [filterDeliverabilityStatus] filter for deliverabilityStatus  By default, all orders are returned. Use \&#39;allOrderItems\&#39; to return all deliverable orders (\&#39;availableCount\&#39; of all \&#39;orderItems\&#39; is greater or equal than the ordered \&#39;count\&#39;) Use \&#39;notAllOrderItems\&#39; to specifically return not deliverable orders (\&#39;availableCount\&#39; of at least one \&#39;orderItem\&#39; is smaller than the ordered \&#39;count\&#39;
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof OrderApi
      */
-    public getOrderCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', sortBy?: string, filterShopCode?: string, filterStatus?: string, filterExternalOrderId?: string, filterExternalCustomerId?: string, filterExternalOrderReference?: string, filterOrderDateFrom?: string, filterOrderDateTo?: string, filterSearch?: string, options?: AxiosRequestConfig) {
-        return OrderApiFp(this.configuration).getOrderCollection(page, pageSize, paginationMode, sortBy, filterShopCode, filterStatus, filterExternalOrderId, filterExternalCustomerId, filterExternalOrderReference, filterOrderDateFrom, filterOrderDateTo, filterSearch, options).then((request) => request(this.axios, this.basePath));
+    public getOrderCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', sortBy?: string, filterShopCode?: string, filterStatus?: string, filterExternalOrderId?: string, filterExternalCustomerId?: string, filterExternalOrderReference?: string, filterOrderDateFrom?: string, filterOrderDateTo?: string, filterSearch?: string, filterDeliverabilityStatus?: 'allOrderItems' | 'notAllOrderItems', options?: AxiosRequestConfig) {
+        return OrderApiFp(this.configuration).getOrderCollection(page, pageSize, paginationMode, sortBy, filterShopCode, filterStatus, filterExternalOrderId, filterExternalCustomerId, filterExternalOrderReference, filterOrderDateFrom, filterOrderDateTo, filterSearch, filterDeliverabilityStatus, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

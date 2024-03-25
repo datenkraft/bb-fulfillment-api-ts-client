@@ -3919,6 +3919,18 @@
                         "schema": {
                             "type": "string"
                         }
+                    },
+                    {
+                        "name": "filter[deliverabilityStatus]",
+                        "in": "query",
+                        "description": "filter for deliverabilityStatus\n\nBy default, all orders are returned.\nUse 'allOrderItems' to return all deliverable orders ('availableCount' of all 'orderItems' is greater or equal than the ordered 'count')\nUse 'notAllOrderItems' to specifically return not deliverable orders ('availableCount' of at least one 'orderItem' is smaller than the ordered 'count'",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "allOrderItems",
+                                "notAllOrderItems"
+                            ]
+                        }
                     }
                 ],
                 "responses": {
@@ -8000,6 +8012,33 @@
                 },
                 "type": "object"
             },
+            "baseOrderItem": {
+                "title": "baseOrderItem",
+                "properties": {
+                    "productNumber": {
+                        "description": "Valid product number",
+                        "type": "string"
+                    },
+                    "title": {
+                        "description": "Item Title (optional)",
+                        "type": "string",
+                        "maxLength": 255,
+                        "nullable": true
+                    },
+                    "count": {
+                        "description": "Positive number of items to order",
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "externalProductNumber": {
+                        "description": "Product number of the customer",
+                        "type": "string",
+                        "maxLength": 255,
+                        "nullable": true
+                    }
+                },
+                "type": "object"
+            },
             "baseOrderOptions": {
                 "title": "baseOrderOptions",
                 "description": "Additional optional options for the order.",
@@ -9001,9 +9040,13 @@
             },
             "newOrderItem": {
                 "title": "newOrderItem",
+                "required": [
+                    "productNumber",
+                    "count"
+                ],
                 "allOf": [
                     {
-                        "$ref": "#/components/schemas/orderItem"
+                        "$ref": "#/components/schemas/baseOrderItem"
                     },
                     {
                         "properties": {
@@ -9397,57 +9440,44 @@
             "orderItem": {
                 "title": "orderItem",
                 "description": "Multiple orderItems with the same productNumber are allowed, but note that they will be merged\ntogether if all orderItem data is the same.",
-                "required": [
-                    "productNumber",
-                    "count"
-                ],
-                "properties": {
-                    "productNumber": {
-                        "description": "Valid product number",
-                        "type": "string"
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/baseOrderItem"
                     },
-                    "title": {
-                        "description": "Item Title (optional)",
-                        "type": "string",
-                        "maxLength": 255,
-                        "nullable": true
-                    },
-                    "count": {
-                        "description": "Positive number of items to order",
-                        "type": "integer",
-                        "format": "int32"
-                    },
-                    "canceledCount": {
-                        "description": "Number of canceled items",
-                        "type": "integer",
-                        "format": "int32"
-                    },
-                    "deliveredCount": {
-                        "description": "Number of delivered items",
-                        "type": "integer",
-                        "format": "int32"
-                    },
-                    "returnedCount": {
-                        "description": "Number of returned items",
-                        "type": "integer",
-                        "format": "int32"
-                    },
-                    "externalProductNumber": {
-                        "description": "Product number of the customer",
-                        "type": "string",
-                        "maxLength": 255,
-                        "nullable": true
-                    },
-                    "price": {
-                        "$ref": "#/components/schemas/orderItemPrice"
-                    },
-                    "options": {
-                        "description": "Additional options (optional, TBD)",
-                        "type": "object",
-                        "nullable": true
+                    {
+                        "properties": {
+                            "canceledCount": {
+                                "description": "Number of canceled items",
+                                "type": "integer",
+                                "format": "int32"
+                            },
+                            "availableCount": {
+                                "description": "Number of available items",
+                                "type": "integer",
+                                "format": "int32"
+                            },
+                            "deliveredCount": {
+                                "description": "Number of delivered items",
+                                "type": "integer",
+                                "format": "int32"
+                            },
+                            "returnedCount": {
+                                "description": "Number of returned items",
+                                "type": "integer",
+                                "format": "int32"
+                            },
+                            "price": {
+                                "$ref": "#/components/schemas/orderItemPrice"
+                            },
+                            "options": {
+                                "description": "Additional options (optional, TBD)",
+                                "type": "object",
+                                "nullable": true
+                            }
+                        },
+                        "type": "object"
                     }
-                },
-                "type": "object"
+                ]
             },
             "orderItemPrice": {
                 "title": "orderItemPrice",
