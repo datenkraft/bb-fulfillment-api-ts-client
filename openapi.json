@@ -5688,7 +5688,7 @@
                         "required": true,
                         "schema": {
                             "type": "string",
-                            "maxLength": 248
+                            "maxLength": 57
                         }
                     },
                     {
@@ -5800,7 +5800,7 @@
                         "required": true,
                         "schema": {
                             "type": "string",
-                            "maxLength": 248
+                            "maxLength": 57
                         }
                     },
                     {
@@ -9088,7 +9088,7 @@
                             "productNumber": {
                                 "description": "Product number to be used for the final product\\\nThis number is user defined, must be unique and has a maximum length (check maxLength field).\\\nPlease ensure that it does not contain any of the following character sequences:\n'/', '%2F', '%2f', '?', '%3F', '%3f',\n'#', '%23', '&', '%26'. Using any of these will result in the route not being handled correctly.",
                                 "type": "string",
-                                "maxLength": 248
+                                "maxLength": 57
                             },
                             "contentsUnit": {
                                 "description": "Unit of the product contents.\\\nMust be one of the available values specified in the enum.",
@@ -9838,12 +9838,12 @@
                         "nullable": true
                     },
                     "inboundDeliveryNumber": {
-                        "description": "Inbound delivery number. Is provided if Journal entry reason is 'inbound'.",
+                        "description": "Inbound delivery number. Is provided if Journal entry reason is 'inbound' and an inboundDeliveryNumber is\nset.",
                         "type": "string",
                         "nullable": true
                     },
                     "orderNumber": {
-                        "description": "Order number. Is provided if Journal entry reason is 'fulfillment' or 'return'.",
+                        "description": "Order number. Is provided if Journal entry reason is 'fulfillment' or 'return' and an orderNumber is set.",
                         "type": "string",
                         "nullable": true
                     }

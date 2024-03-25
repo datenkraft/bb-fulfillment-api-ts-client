@@ -27,13 +27,13 @@ export interface ProductJournalReference {
      */
     'companyName'?: string | null;
     /**
-     * Inbound delivery number. Is provided if Journal entry reason is \'inbound\'.
+     * Inbound delivery number. Is provided if Journal entry reason is \'inbound\' and an inboundDeliveryNumber is set.
      * @type {string}
      * @memberof ProductJournalReference
      */
     'inboundDeliveryNumber'?: string | null;
     /**
-     * Order number. Is provided if Journal entry reason is \'fulfillment\' or \'return\'.
+     * Order number. Is provided if Journal entry reason is \'fulfillment\' or \'return\' and an orderNumber is set.
      * @type {string}
      * @memberof ProductJournalReference
      */
