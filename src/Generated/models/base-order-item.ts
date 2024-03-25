@@ -13,21 +13,36 @@
  */
 
 
-// May contain unused imports in some cases
-// @ts-ignore
-import { BaseOrderItem } from './base-order-item';
-// May contain unused imports in some cases
-// @ts-ignore
-import { OrderItemAllOf } from './order-item-all-of';
-// May contain unused imports in some cases
-// @ts-ignore
-import { OrderItemPrice } from './order-item-price';
 
 /**
- * @type OrderItem
- * Multiple orderItems with the same productNumber are allowed, but note that they will be merged together if all orderItem data is the same.
+ * 
  * @export
+ * @interface BaseOrderItem
  */
-export type OrderItem = BaseOrderItem & OrderItemAllOf;
-
+export interface BaseOrderItem {
+    /**
+     * Valid product number
+     * @type {string}
+     * @memberof BaseOrderItem
+     */
+    'productNumber'?: string;
+    /**
+     * Item Title (optional)
+     * @type {string}
+     * @memberof BaseOrderItem
+     */
+    'title'?: string | null;
+    /**
+     * Positive number of items to order
+     * @type {number}
+     * @memberof BaseOrderItem
+     */
+    'count'?: number;
+    /**
+     * Product number of the customer
+     * @type {string}
+     * @memberof BaseOrderItem
+     */
+    'externalProductNumber'?: string | null;
+}
 
