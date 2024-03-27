@@ -3059,7 +3059,7 @@
                         }
                     },
                     "400": {
-                        "description": "Bad Request\n\nError codes:\n- DATA_INVALID: Invalid data was given.",
+                        "description": "Bad Request\n\nError codes:\n- DATA_INVALID: Invalid data was given.\n- INBOUND_DELIVERY_NUMBER_HAS_SPACES_AT_START_OR_END: The inboundDeliveryNumber has spaces at the start or end.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -4167,7 +4167,7 @@
                         }
                     },
                     "400": {
-                        "description": "Bad Request\n\nError codes:\n- DATA_INVALID: Invalid data was given.\n- CUSTOMER_EMAIL_REQUIRED: The customer email address is required for this order because the delivery address seems to be a pick up station of a shipping carrier which requires the email address of the customer.",
+                        "description": "Bad Request\n\nError codes:\n- DATA_INVALID: Invalid data was given.\n- CUSTOMER_EMAIL_REQUIRED: The customer email address is required for this order because the delivery address seems to be a pick up station of a shipping carrier which requires the email address of the customer.\n- ORDER_NUMBER_HAS_SPACES_AT_START_OR_END: The orderNumber has spaces at the start or end.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -5075,7 +5075,7 @@
                         }
                     },
                     "400": {
-                        "description": "Bad Request\n\nError codes:\n- PRODUCT_UNIT_NOT_FOUND: Unknown product unit in field contentsUnit.\n- TARIC_CODE_NOT_FOUND: Unknown taricCode.\n- MANUFACTURER_NOT_FOUND: Unknown manufacturerNumber.\n- BRAND_NOT_FOUND: Unknown brandNumber.",
+                        "description": "Bad Request\n\nError codes:\n- PRODUCT_UNIT_NOT_FOUND: Unknown product unit in field contentsUnit.\n- TARIC_CODE_NOT_FOUND: Unknown taricCode.\n- MANUFACTURER_NOT_FOUND: Unknown manufacturerNumber.\n- BRAND_NOT_FOUND: Unknown brandNumber.\n- PRODUCT_NUMBER_HAS_SPACES_AT_START_OR_END: The productNumber has spaces at the start or end.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -8475,7 +8475,7 @@
                         "nullable": true
                     },
                     "status": {
-                        "description": "Status of the delivery.\n- delivered: The delivery has been transferred to the delivery agent.",
+                        "description": "Status of the delivery.\n- delivered: The delivery is packed and ready to be picked up by the delivery service.",
                         "type": "string",
                         "enum": [
                             "delivered"
@@ -8555,7 +8555,7 @@
                         "type": "string"
                     },
                     "status": {
-                        "description": "Status of the delivery.\n- delivered: The delivery has been transferred to the delivery agent.",
+                        "description": "Status of the delivery.\n- delivered: The delivery is packed and ready to be picked up by the delivery service.",
                         "type": "string",
                         "enum": [
                             "delivered"
@@ -9409,7 +9409,7 @@
                         "type": "string"
                     },
                     "status": {
-                        "description": "Status of the delivery.\n- delivered: The delivery has been transferred to the delivery agent.",
+                        "description": "Status of the delivery.\n- delivered: The delivery is packed and ready to be picked up by the delivery service.",
                         "type": "string",
                         "enum": [
                             "delivered"

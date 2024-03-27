@@ -27,7 +27,7 @@ export interface OrderDelivery {
      */
     'number'?: string;
     /**
-     * Status of the delivery. - delivered: The delivery has been transferred to the delivery agent.
+     * Status of the delivery. - delivered: The delivery is packed and ready to be picked up by the delivery service.
      * @type {string}
      * @memberof OrderDelivery
      */
