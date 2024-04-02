@@ -7159,6 +7159,15 @@
                                 "value": "teststeve,niceshops"
                             }
                         }
+                    },
+                    {
+                        "name": "filter[projectId]",
+                        "in": "query",
+                        "description": "A filter for the projectId of a shop (optional).",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
                     }
                 ],
                 "responses": {
