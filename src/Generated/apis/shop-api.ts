@@ -48,10 +48,11 @@ export const ShopApiAxiosParamCreator = function (configuration?: Configuration)
          * @param {boolean} [filterMetaShopifyDefaultShop] A filter for Shopify default shops.\\ Note: For shops that are part of a Shopify installation that uses multiple shops, only shops where meta.shopifyShopDefault is true will be considered as default shops.\\ All shops that are used for a single shop Shopify installation will also be considered as default shops.
          * @param {string} [filterMetaShopifyOrderCountryCode] A filter for the Shopify order country code (ISO 3166-1 alpha-2).
          * @param {string} [filterShopCode] A filter for one or more shopCode(s) of the shop(s) (optional).
+         * @param {string} [filterProjectId] A filter for the projectId of a shop (optional).
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getShopCollection: async (page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterMetaShopifyShopDomain?: string, filterMetaShopifyDefaultShop?: boolean, filterMetaShopifyOrderCountryCode?: string, filterShopCode?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getShopCollection: async (page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterMetaShopifyShopDomain?: string, filterMetaShopifyDefaultShop?: boolean, filterMetaShopifyOrderCountryCode?: string, filterShopCode?: string, filterProjectId?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/shop`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -98,6 +99,10 @@ export const ShopApiAxiosParamCreator = function (configuration?: Configuration)
 
             if (filterShopCode !== undefined) {
                 localVarQueryParameter['filter[shopCode]'] = filterShopCode;
+            }
+
+            if (filterProjectId !== undefined) {
+                localVarQueryParameter['filter[projectId]'] = filterProjectId;
             }
 
 
@@ -179,11 +184,12 @@ export const ShopApiFp = function(configuration?: Configuration) {
          * @param {boolean} [filterMetaShopifyDefaultShop] A filter for Shopify default shops.\\ Note: For shops that are part of a Shopify installation that uses multiple shops, only shops where meta.shopifyShopDefault is true will be considered as default shops.\\ All shops that are used for a single shop Shopify installation will also be considered as default shops.
          * @param {string} [filterMetaShopifyOrderCountryCode] A filter for the Shopify order country code (ISO 3166-1 alpha-2).
          * @param {string} [filterShopCode] A filter for one or more shopCode(s) of the shop(s) (optional).
+         * @param {string} [filterProjectId] A filter for the projectId of a shop (optional).
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getShopCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterMetaShopifyShopDomain?: string, filterMetaShopifyDefaultShop?: boolean, filterMetaShopifyOrderCountryCode?: string, filterShopCode?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ShopCollection>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getShopCollection(page, pageSize, paginationMode, filterMetaShopifyShopDomain, filterMetaShopifyDefaultShop, filterMetaShopifyOrderCountryCode, filterShopCode, options);
+        async getShopCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterMetaShopifyShopDomain?: string, filterMetaShopifyDefaultShop?: boolean, filterMetaShopifyOrderCountryCode?: string, filterShopCode?: string, filterProjectId?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ShopCollection>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getShopCollection(page, pageSize, paginationMode, filterMetaShopifyShopDomain, filterMetaShopifyDefaultShop, filterMetaShopifyOrderCountryCode, filterShopCode, filterProjectId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -218,11 +224,12 @@ export const ShopApiFactory = function (configuration?: Configuration, basePath?
          * @param {boolean} [filterMetaShopifyDefaultShop] A filter for Shopify default shops.\\ Note: For shops that are part of a Shopify installation that uses multiple shops, only shops where meta.shopifyShopDefault is true will be considered as default shops.\\ All shops that are used for a single shop Shopify installation will also be considered as default shops.
          * @param {string} [filterMetaShopifyOrderCountryCode] A filter for the Shopify order country code (ISO 3166-1 alpha-2).
          * @param {string} [filterShopCode] A filter for one or more shopCode(s) of the shop(s) (optional).
+         * @param {string} [filterProjectId] A filter for the projectId of a shop (optional).
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getShopCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterMetaShopifyShopDomain?: string, filterMetaShopifyDefaultShop?: boolean, filterMetaShopifyOrderCountryCode?: string, filterShopCode?: string, options?: any): AxiosPromise<ShopCollection> {
-            return localVarFp.getShopCollection(page, pageSize, paginationMode, filterMetaShopifyShopDomain, filterMetaShopifyDefaultShop, filterMetaShopifyOrderCountryCode, filterShopCode, options).then((request) => request(axios, basePath));
+        getShopCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterMetaShopifyShopDomain?: string, filterMetaShopifyDefaultShop?: boolean, filterMetaShopifyOrderCountryCode?: string, filterShopCode?: string, filterProjectId?: string, options?: any): AxiosPromise<ShopCollection> {
+            return localVarFp.getShopCollection(page, pageSize, paginationMode, filterMetaShopifyShopDomain, filterMetaShopifyDefaultShop, filterMetaShopifyOrderCountryCode, filterShopCode, filterProjectId, options).then((request) => request(axios, basePath));
         },
         /**
          * Set one or more fields of a shop. Only a limited set of fields can be updated.
@@ -254,11 +261,12 @@ export interface ShopApiInterface {
      * @param {boolean} [filterMetaShopifyDefaultShop] A filter for Shopify default shops.\\ Note: For shops that are part of a Shopify installation that uses multiple shops, only shops where meta.shopifyShopDefault is true will be considered as default shops.\\ All shops that are used for a single shop Shopify installation will also be considered as default shops.
      * @param {string} [filterMetaShopifyOrderCountryCode] A filter for the Shopify order country code (ISO 3166-1 alpha-2).
      * @param {string} [filterShopCode] A filter for one or more shopCode(s) of the shop(s) (optional).
+     * @param {string} [filterProjectId] A filter for the projectId of a shop (optional).
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ShopApiInterface
      */
-    getShopCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterMetaShopifyShopDomain?: string, filterMetaShopifyDefaultShop?: boolean, filterMetaShopifyOrderCountryCode?: string, filterShopCode?: string, options?: AxiosRequestConfig): AxiosPromise<ShopCollection>;
+    getShopCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterMetaShopifyShopDomain?: string, filterMetaShopifyDefaultShop?: boolean, filterMetaShopifyOrderCountryCode?: string, filterShopCode?: string, filterProjectId?: string, options?: AxiosRequestConfig): AxiosPromise<ShopCollection>;
 
     /**
      * Set one or more fields of a shop. Only a limited set of fields can be updated.
@@ -290,12 +298,13 @@ export class ShopApi extends BaseAPI implements ShopApiInterface {
      * @param {boolean} [filterMetaShopifyDefaultShop] A filter for Shopify default shops.\\ Note: For shops that are part of a Shopify installation that uses multiple shops, only shops where meta.shopifyShopDefault is true will be considered as default shops.\\ All shops that are used for a single shop Shopify installation will also be considered as default shops.
      * @param {string} [filterMetaShopifyOrderCountryCode] A filter for the Shopify order country code (ISO 3166-1 alpha-2).
      * @param {string} [filterShopCode] A filter for one or more shopCode(s) of the shop(s) (optional).
+     * @param {string} [filterProjectId] A filter for the projectId of a shop (optional).
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ShopApi
      */
-    public getShopCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterMetaShopifyShopDomain?: string, filterMetaShopifyDefaultShop?: boolean, filterMetaShopifyOrderCountryCode?: string, filterShopCode?: string, options?: AxiosRequestConfig) {
-        return ShopApiFp(this.configuration).getShopCollection(page, pageSize, paginationMode, filterMetaShopifyShopDomain, filterMetaShopifyDefaultShop, filterMetaShopifyOrderCountryCode, filterShopCode, options).then((request) => request(this.axios, this.basePath));
+    public getShopCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterMetaShopifyShopDomain?: string, filterMetaShopifyDefaultShop?: boolean, filterMetaShopifyOrderCountryCode?: string, filterShopCode?: string, filterProjectId?: string, options?: AxiosRequestConfig) {
+        return ShopApiFp(this.configuration).getShopCollection(page, pageSize, paginationMode, filterMetaShopifyShopDomain, filterMetaShopifyDefaultShop, filterMetaShopifyOrderCountryCode, filterShopCode, filterProjectId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
