@@ -51,7 +51,7 @@ export interface Stock {
      */
     'incoming'?: number;
     /**
-     * Status regarding the possibility of overbookinge - possible: Overbooking is possiblee - not_possible: Overbooking is not possible - only_inbound_deliveries: Overbooking is only possible for the amount in ongoing inbound deliveries
+     * Status regarding the possibility of overbooking - possible: Overbooking is possible - not_possible: Overbooking is not possible - only_inbound_deliveries: Overbooking is only possible for the amount in ongoing inbound deliveries
      * @type {string}
      * @memberof Stock
      */

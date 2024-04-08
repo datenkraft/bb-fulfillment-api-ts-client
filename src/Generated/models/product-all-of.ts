@@ -104,6 +104,36 @@ export interface ProductAllOf {
      * @memberof ProductAllOf
      */
     'brandNumber'?: string | null;
+    /**
+     * Amount stocked in the warehouse - the reserved amount for ongoing orders is NOT subtracted
+     * @type {number}
+     * @memberof ProductAllOf
+     */
+    'stocked'?: number;
+    /**
+     * Amount reserved for ongoing orders
+     * @type {number}
+     * @memberof ProductAllOf
+     */
+    'reserved'?: number;
+    /**
+     * Amount available for orders - the reserved amount for ongoing orders is subtracted - if the overbookingPossibilityStatus is \'only_inbound_deliveries\', the incoming amount is added
+     * @type {number}
+     * @memberof ProductAllOf
+     */
+    'available'?: number;
+    /**
+     * Amount of ongoing inbound deliveries
+     * @type {number}
+     * @memberof ProductAllOf
+     */
+    'incoming'?: number;
+    /**
+     * Status regarding the possibility of overbooking - possible: Overbooking is possible - not_possible: Overbooking is not possible - only_inbound_deliveries: Overbooking is only possible for the amount in ongoing inbound deliveries
+     * @type {string}
+     * @memberof ProductAllOf
+     */
+    'overbookingPossibilityStatus'?: ProductAllOfOverbookingPossibilityStatusEnum;
 }
 
 export const ProductAllOfProductStatusEnum = {
@@ -138,5 +168,13 @@ export const ProductAllOfSourceEnum = {
 } as const;
 
 export type ProductAllOfSourceEnum = typeof ProductAllOfSourceEnum[keyof typeof ProductAllOfSourceEnum];
+export const ProductAllOfOverbookingPossibilityStatusEnum = {
+    Possible: 'possible',
+    NotPossible: 'not_possible',
+    OnlyInboundDeliveries: 'only_inbound_deliveries',
+    UnknownDefaultOpenApi: '11184809'
+} as const;
+
+export type ProductAllOfOverbookingPossibilityStatusEnum = typeof ProductAllOfOverbookingPossibilityStatusEnum[keyof typeof ProductAllOfOverbookingPossibilityStatusEnum];
 
 
