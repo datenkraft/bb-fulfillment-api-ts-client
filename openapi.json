@@ -6975,6 +6975,15 @@
                         "example": "stockStart:desc,productNumber:asc"
                     },
                     {
+                        "name": "filter[search]",
+                        "in": "query",
+                        "description": "Filter for inventory movement search. \\\nUsage:\n- Provide one or multiple search terms (min. 2 characters) to filter results.\n- Multiple search terms are separated by spaces.\n- The search is not case sensitive.\n- The search is enabled for the fields productTitle and productNumber.\n- Each search term filters the response for products where at least one of the\nfields contains the search term.\n- For example, filter[search]='term1 term2' will filter the result for products where 'term1'\nis found in any field and 'term2' is also found in any field.\nIf only 'term1' or 'term2' is found in the fields, the product is not included in the results.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
                         "name": "filter[shopCode]",
                         "in": "query",
                         "description": "The shopCode used internally to distinguish between clients. \\\n_This code is optional, if your identity is assigned to only one shop.\nOtherwise the response would be a 422 HTTP Error._",
@@ -10417,6 +10426,16 @@
                     }
                 ]
             },
+            "reservedFor": {
+                "description": "Reserved stock of a product for a specific source",
+                "properties": {
+                    "shopify": {
+                        "description": "Reserved stock of a product for shopify",
+                        "type": "integer"
+                    }
+                },
+                "type": "object"
+            },
             "shipmentLine": {
                 "title": "shipmentLine",
                 "description": "One piece of content in a shipment",
@@ -10612,6 +10631,9 @@
                             "not_possible",
                             "only_inbound_deliveries"
                         ]
+                    },
+                    "reservedFor": {
+                        "$ref": "#/components/schemas/reservedFor"
                     }
                 },
                 "type": "object"

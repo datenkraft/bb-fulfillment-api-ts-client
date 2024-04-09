@@ -121,12 +121,13 @@ export const ReportApiAxiosParamCreator = function (configuration?: Configuratio
          * @param {number} [pageSize] The maximum size per page is 100. Default is 20.
          * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
          * @param {string} [sortBy] Sort the results by one or more comma-separated sort criteria, with the criterion specified first having priority.  Available sort orders: - asc: ascending order - desc: descending order  Available fields for sorting: - productNumber - stockStart - stockEnd - stockAdded - stockSubtracted - stockSubtractedExternal - stockCorrected - stockUsedForOwnPurposes - stockReturned - stockReturnedExternal  The default sort order is stockEnd:desc.
+         * @param {string} [filterSearch] Filter for inventory movement search. \\ Usage: - Provide one or multiple search terms (min. 2 characters) to filter results. - Multiple search terms are separated by spaces. - The search is not case sensitive. - The search is enabled for the fields productTitle and productNumber. - Each search term filters the response for products where at least one of the fields contains the search term. - For example, filter[search]&#x3D;\&#39;term1 term2\&#39; will filter the result for products where \&#39;term1\&#39; is found in any field and \&#39;term2\&#39; is also found in any field. If only \&#39;term1\&#39; or \&#39;term2\&#39; is found in the fields, the product is not included in the results.
          * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
          * @param {string} [filterProductNumbers] The productNumber(s) as comma delimited string for which inventory movements should be returned (optional).
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getReportInventoryMovementCollection: async (filterYear: number, filterMonth: number, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', sortBy?: string, filterShopCode?: string, filterProductNumbers?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getReportInventoryMovementCollection: async (filterYear: number, filterMonth: number, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', sortBy?: string, filterSearch?: string, filterShopCode?: string, filterProductNumbers?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'filterYear' is not null or undefined
             assertParamExists('getReportInventoryMovementCollection', 'filterYear', filterYear)
             // verify required parameter 'filterMonth' is not null or undefined
@@ -165,6 +166,10 @@ export const ReportApiAxiosParamCreator = function (configuration?: Configuratio
 
             if (sortBy !== undefined) {
                 localVarQueryParameter['sortBy'] = sortBy;
+            }
+
+            if (filterSearch !== undefined) {
+                localVarQueryParameter['filter[search]'] = filterSearch;
             }
 
             if (filterShopCode !== undefined) {
@@ -229,13 +234,14 @@ export const ReportApiFp = function(configuration?: Configuration) {
          * @param {number} [pageSize] The maximum size per page is 100. Default is 20.
          * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
          * @param {string} [sortBy] Sort the results by one or more comma-separated sort criteria, with the criterion specified first having priority.  Available sort orders: - asc: ascending order - desc: descending order  Available fields for sorting: - productNumber - stockStart - stockEnd - stockAdded - stockSubtracted - stockSubtractedExternal - stockCorrected - stockUsedForOwnPurposes - stockReturned - stockReturnedExternal  The default sort order is stockEnd:desc.
+         * @param {string} [filterSearch] Filter for inventory movement search. \\ Usage: - Provide one or multiple search terms (min. 2 characters) to filter results. - Multiple search terms are separated by spaces. - The search is not case sensitive. - The search is enabled for the fields productTitle and productNumber. - Each search term filters the response for products where at least one of the fields contains the search term. - For example, filter[search]&#x3D;\&#39;term1 term2\&#39; will filter the result for products where \&#39;term1\&#39; is found in any field and \&#39;term2\&#39; is also found in any field. If only \&#39;term1\&#39; or \&#39;term2\&#39; is found in the fields, the product is not included in the results.
          * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
          * @param {string} [filterProductNumbers] The productNumber(s) as comma delimited string for which inventory movements should be returned (optional).
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getReportInventoryMovementCollection(filterYear: number, filterMonth: number, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', sortBy?: string, filterShopCode?: string, filterProductNumbers?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ReportInventoryMovementEntryCollection>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getReportInventoryMovementCollection(filterYear, filterMonth, page, pageSize, paginationMode, sortBy, filterShopCode, filterProductNumbers, options);
+        async getReportInventoryMovementCollection(filterYear: number, filterMonth: number, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', sortBy?: string, filterSearch?: string, filterShopCode?: string, filterProductNumbers?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ReportInventoryMovementEntryCollection>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getReportInventoryMovementCollection(filterYear, filterMonth, page, pageSize, paginationMode, sortBy, filterSearch, filterShopCode, filterProductNumbers, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -272,13 +278,14 @@ export const ReportApiFactory = function (configuration?: Configuration, basePat
          * @param {number} [pageSize] The maximum size per page is 100. Default is 20.
          * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
          * @param {string} [sortBy] Sort the results by one or more comma-separated sort criteria, with the criterion specified first having priority.  Available sort orders: - asc: ascending order - desc: descending order  Available fields for sorting: - productNumber - stockStart - stockEnd - stockAdded - stockSubtracted - stockSubtractedExternal - stockCorrected - stockUsedForOwnPurposes - stockReturned - stockReturnedExternal  The default sort order is stockEnd:desc.
+         * @param {string} [filterSearch] Filter for inventory movement search. \\ Usage: - Provide one or multiple search terms (min. 2 characters) to filter results. - Multiple search terms are separated by spaces. - The search is not case sensitive. - The search is enabled for the fields productTitle and productNumber. - Each search term filters the response for products where at least one of the fields contains the search term. - For example, filter[search]&#x3D;\&#39;term1 term2\&#39; will filter the result for products where \&#39;term1\&#39; is found in any field and \&#39;term2\&#39; is also found in any field. If only \&#39;term1\&#39; or \&#39;term2\&#39; is found in the fields, the product is not included in the results.
          * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
          * @param {string} [filterProductNumbers] The productNumber(s) as comma delimited string for which inventory movements should be returned (optional).
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getReportInventoryMovementCollection(filterYear: number, filterMonth: number, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', sortBy?: string, filterShopCode?: string, filterProductNumbers?: string, options?: any): AxiosPromise<ReportInventoryMovementEntryCollection> {
-            return localVarFp.getReportInventoryMovementCollection(filterYear, filterMonth, page, pageSize, paginationMode, sortBy, filterShopCode, filterProductNumbers, options).then((request) => request(axios, basePath));
+        getReportInventoryMovementCollection(filterYear: number, filterMonth: number, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', sortBy?: string, filterSearch?: string, filterShopCode?: string, filterProductNumbers?: string, options?: any): AxiosPromise<ReportInventoryMovementEntryCollection> {
+            return localVarFp.getReportInventoryMovementCollection(filterYear, filterMonth, page, pageSize, paginationMode, sortBy, filterSearch, filterShopCode, filterProductNumbers, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -313,13 +320,14 @@ export interface ReportApiInterface {
      * @param {number} [pageSize] The maximum size per page is 100. Default is 20.
      * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
      * @param {string} [sortBy] Sort the results by one or more comma-separated sort criteria, with the criterion specified first having priority.  Available sort orders: - asc: ascending order - desc: descending order  Available fields for sorting: - productNumber - stockStart - stockEnd - stockAdded - stockSubtracted - stockSubtractedExternal - stockCorrected - stockUsedForOwnPurposes - stockReturned - stockReturnedExternal  The default sort order is stockEnd:desc.
+     * @param {string} [filterSearch] Filter for inventory movement search. \\ Usage: - Provide one or multiple search terms (min. 2 characters) to filter results. - Multiple search terms are separated by spaces. - The search is not case sensitive. - The search is enabled for the fields productTitle and productNumber. - Each search term filters the response for products where at least one of the fields contains the search term. - For example, filter[search]&#x3D;\&#39;term1 term2\&#39; will filter the result for products where \&#39;term1\&#39; is found in any field and \&#39;term2\&#39; is also found in any field. If only \&#39;term1\&#39; or \&#39;term2\&#39; is found in the fields, the product is not included in the results.
      * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
      * @param {string} [filterProductNumbers] The productNumber(s) as comma delimited string for which inventory movements should be returned (optional).
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ReportApiInterface
      */
-    getReportInventoryMovementCollection(filterYear: number, filterMonth: number, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', sortBy?: string, filterShopCode?: string, filterProductNumbers?: string, options?: AxiosRequestConfig): AxiosPromise<ReportInventoryMovementEntryCollection>;
+    getReportInventoryMovementCollection(filterYear: number, filterMonth: number, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', sortBy?: string, filterSearch?: string, filterShopCode?: string, filterProductNumbers?: string, options?: AxiosRequestConfig): AxiosPromise<ReportInventoryMovementEntryCollection>;
 
 }
 
@@ -356,13 +364,14 @@ export class ReportApi extends BaseAPI implements ReportApiInterface {
      * @param {number} [pageSize] The maximum size per page is 100. Default is 20.
      * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
      * @param {string} [sortBy] Sort the results by one or more comma-separated sort criteria, with the criterion specified first having priority.  Available sort orders: - asc: ascending order - desc: descending order  Available fields for sorting: - productNumber - stockStart - stockEnd - stockAdded - stockSubtracted - stockSubtractedExternal - stockCorrected - stockUsedForOwnPurposes - stockReturned - stockReturnedExternal  The default sort order is stockEnd:desc.
+     * @param {string} [filterSearch] Filter for inventory movement search. \\ Usage: - Provide one or multiple search terms (min. 2 characters) to filter results. - Multiple search terms are separated by spaces. - The search is not case sensitive. - The search is enabled for the fields productTitle and productNumber. - Each search term filters the response for products where at least one of the fields contains the search term. - For example, filter[search]&#x3D;\&#39;term1 term2\&#39; will filter the result for products where \&#39;term1\&#39; is found in any field and \&#39;term2\&#39; is also found in any field. If only \&#39;term1\&#39; or \&#39;term2\&#39; is found in the fields, the product is not included in the results.
      * @param {string} [filterShopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
      * @param {string} [filterProductNumbers] The productNumber(s) as comma delimited string for which inventory movements should be returned (optional).
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ReportApi
      */
-    public getReportInventoryMovementCollection(filterYear: number, filterMonth: number, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', sortBy?: string, filterShopCode?: string, filterProductNumbers?: string, options?: AxiosRequestConfig) {
-        return ReportApiFp(this.configuration).getReportInventoryMovementCollection(filterYear, filterMonth, page, pageSize, paginationMode, sortBy, filterShopCode, filterProductNumbers, options).then((request) => request(this.axios, this.basePath));
+    public getReportInventoryMovementCollection(filterYear: number, filterMonth: number, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', sortBy?: string, filterSearch?: string, filterShopCode?: string, filterProductNumbers?: string, options?: AxiosRequestConfig) {
+        return ReportApiFp(this.configuration).getReportInventoryMovementCollection(filterYear, filterMonth, page, pageSize, paginationMode, sortBy, filterSearch, filterShopCode, filterProductNumbers, options).then((request) => request(this.axios, this.basePath));
     }
 }
