@@ -13,6 +13,9 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import { ReservedFor } from './reserved-for';
 
 /**
  * Stock of a product
@@ -56,6 +59,12 @@ export interface Stock {
      * @memberof Stock
      */
     'overbookingPossibilityStatus'?: StockOverbookingPossibilityStatusEnum;
+    /**
+     * 
+     * @type {ReservedFor}
+     * @memberof Stock
+     */
+    'reservedFor'?: ReservedFor;
 }
 
 export const StockOverbookingPossibilityStatusEnum = {

@@ -167,6 +167,7 @@ models/report-inventory-movement-entry-collection.ts
 models/report-inventory-movement-entry-reference.ts
 models/report-inventory-movement-entry.ts
 models/report-inventory-movement.ts
+models/reserved-for.ts
 models/shipment-line.ts
 models/shop-collection-all-of.ts
 models/shop-collection.ts
