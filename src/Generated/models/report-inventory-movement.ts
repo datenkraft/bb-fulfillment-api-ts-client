@@ -30,6 +30,12 @@ export interface ReportInventoryMovement {
      */
     'productNumber'?: string;
     /**
+     * Title of the product
+     * @type {string}
+     * @memberof ReportInventoryMovement
+     */
+    'productTitle'?: string | null;
+    /**
      * Stock at the start of the period
      * @type {number}
      * @memberof ReportInventoryMovement

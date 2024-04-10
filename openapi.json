@@ -10328,6 +10328,11 @@
                         "description": "Number of the product",
                         "type": "string"
                     },
+                    "productTitle": {
+                        "description": "Title of the product",
+                        "type": "string",
+                        "nullable": true
+                    },
                     "stockStart": {
                         "description": "Stock at the start of the period",
                         "type": "integer"
