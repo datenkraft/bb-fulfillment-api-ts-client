@@ -8704,7 +8704,8 @@
                         "enum": [
                             "fulfillment_created",
                             "fulfillment_left-warehouse",
-                            "fulfillment_delivered"
+                            "fulfillment_delivered",
+                            "fulfillment_packed"
                         ]
                     }
                 },

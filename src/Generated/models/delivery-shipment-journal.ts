@@ -38,6 +38,7 @@ export const DeliveryShipmentJournalTypeCodeEnum = {
     Created: 'fulfillment_created',
     LeftWarehouse: 'fulfillment_left-warehouse',
     Delivered: 'fulfillment_delivered',
+    Packed: 'fulfillment_packed',
     UnknownDefaultOpenApi: '11184809'
 } as const;
 
