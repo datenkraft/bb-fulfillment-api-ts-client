@@ -129,6 +129,12 @@ export interface ProductAllOf {
      */
     'incoming'?: number;
     /**
+     * Amount processed in the receiving area but not yet shelved
+     * @type {number}
+     * @memberof ProductAllOf
+     */
+    'locked'?: number;
+    /**
      * Status regarding the possibility of overbooking - possible: Overbooking is possible - not_possible: Overbooking is not possible - only_inbound_deliveries: Overbooking is only possible for the amount in ongoing inbound deliveries
      * @type {string}
      * @memberof ProductAllOf
