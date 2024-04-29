@@ -25,6 +25,9 @@ import { ProductAllOf } from './product-all-of';
 // May contain unused imports in some cases
 // @ts-ignore
 import { ProductPurchasePrice } from './product-purchase-price';
+// May contain unused imports in some cases
+// @ts-ignore
+import { ReservedFor } from './reserved-for';
 
 /**
  * @type Product

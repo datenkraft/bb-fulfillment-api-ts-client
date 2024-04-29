@@ -9767,6 +9767,9 @@
                                     "not_possible",
                                     "only_inbound_deliveries"
                                 ]
+                            },
+                            "reservedFor": {
+                                "$ref": "#/components/schemas/reservedFor"
                             }
                         },
                         "type": "object"

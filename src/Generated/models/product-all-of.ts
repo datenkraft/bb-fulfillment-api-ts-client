@@ -13,6 +13,9 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import { ReservedFor } from './reserved-for';
 
 /**
  * 
@@ -140,6 +143,12 @@ export interface ProductAllOf {
      * @memberof ProductAllOf
      */
     'overbookingPossibilityStatus'?: ProductAllOfOverbookingPossibilityStatusEnum;
+    /**
+     * 
+     * @type {ReservedFor}
+     * @memberof ProductAllOf
+     */
+    'reservedFor'?: ReservedFor;
 }
 
 export const ProductAllOfProductStatusEnum = {
