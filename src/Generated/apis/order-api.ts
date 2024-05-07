@@ -381,6 +381,53 @@ export const OrderApiAxiosParamCreator = function (configuration?: Configuration
             };
         },
         /**
+         * Cancel all open order items of the order specified by the given order number (set in param orderNumber).
+         * @summary Cancel open order items.
+         * @param {string} orderNumber The number the order is referred by.
+         * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        postOrderCancelOpenOrderItems: async (orderNumber: string, shopCode?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'orderNumber' is not null or undefined
+            assertParamExists('postOrderCancelOpenOrderItems', 'orderNumber', orderNumber)
+            const localVarPath = `/order/{orderNumber}/cancel-open-order-items`
+                .replace(`{${"orderNumber"}}`, encodeURIComponent(String(orderNumber)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication oAuthAuthorization required
+            // oauth required
+            await setOAuthToObject(localVarHeaderParameter, "oAuthAuthorization", [], configuration)
+
+            // authentication bearerAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (shopCode !== undefined) {
+                localVarQueryParameter['shopCode'] = shopCode;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Create reconsignment announcements for an order. \\  Only delivered orders are reconsignable. \\ If the order has been redacted, it is also not reconsignable. \\ The created reconsignment announcement(s) are returned in the response.
          * @summary Create reconsignment announcements for an order.
          * @param {string} orderNumber The number the order is referred by.
@@ -571,6 +618,18 @@ export const OrderApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
+         * Cancel all open order items of the order specified by the given order number (set in param orderNumber).
+         * @summary Cancel open order items.
+         * @param {string} orderNumber The number the order is referred by.
+         * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async postOrderCancelOpenOrderItems(orderNumber: string, shopCode?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Order>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.postOrderCancelOpenOrderItems(orderNumber, shopCode, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
          * Create reconsignment announcements for an order. \\  Only delivered orders are reconsignable. \\ If the order has been redacted, it is also not reconsignable. \\ The created reconsignment announcement(s) are returned in the response.
          * @summary Create reconsignment announcements for an order.
          * @param {string} orderNumber The number the order is referred by.
@@ -680,6 +739,17 @@ export const OrderApiFactory = function (configuration?: Configuration, basePath
             return localVarFp.postOrder(orderNumber, newOrder, options).then((request) => request(axios, basePath));
         },
         /**
+         * Cancel all open order items of the order specified by the given order number (set in param orderNumber).
+         * @summary Cancel open order items.
+         * @param {string} orderNumber The number the order is referred by.
+         * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        postOrderCancelOpenOrderItems(orderNumber: string, shopCode?: string, options?: any): AxiosPromise<Order> {
+            return localVarFp.postOrderCancelOpenOrderItems(orderNumber, shopCode, options).then((request) => request(axios, basePath));
+        },
+        /**
          * Create reconsignment announcements for an order. \\  Only delivered orders are reconsignable. \\ If the order has been redacted, it is also not reconsignable. \\ The created reconsignment announcement(s) are returned in the response.
          * @summary Create reconsignment announcements for an order.
          * @param {string} orderNumber The number the order is referred by.
@@ -784,6 +854,17 @@ export interface OrderApiInterface {
      * @memberof OrderApiInterface
      */
     postOrder(orderNumber: string, newOrder: NewOrder, options?: AxiosRequestConfig): AxiosPromise<Order>;
+
+    /**
+     * Cancel all open order items of the order specified by the given order number (set in param orderNumber).
+     * @summary Cancel open order items.
+     * @param {string} orderNumber The number the order is referred by.
+     * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof OrderApiInterface
+     */
+    postOrderCancelOpenOrderItems(orderNumber: string, shopCode?: string, options?: AxiosRequestConfig): AxiosPromise<Order>;
 
     /**
      * Create reconsignment announcements for an order. \\  Only delivered orders are reconsignable. \\ If the order has been redacted, it is also not reconsignable. \\ The created reconsignment announcement(s) are returned in the response.
@@ -901,6 +982,19 @@ export class OrderApi extends BaseAPI implements OrderApiInterface {
      */
     public postOrder(orderNumber: string, newOrder: NewOrder, options?: AxiosRequestConfig) {
         return OrderApiFp(this.configuration).postOrder(orderNumber, newOrder, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Cancel all open order items of the order specified by the given order number (set in param orderNumber).
+     * @summary Cancel open order items.
+     * @param {string} orderNumber The number the order is referred by.
+     * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof OrderApi
+     */
+    public postOrderCancelOpenOrderItems(orderNumber: string, shopCode?: string, options?: AxiosRequestConfig) {
+        return OrderApiFp(this.configuration).postOrderCancelOpenOrderItems(orderNumber, shopCode, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

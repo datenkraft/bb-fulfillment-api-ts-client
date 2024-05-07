@@ -101,6 +101,12 @@ export interface OrderAllOf {
      * @memberof OrderAllOf
      */
     'cancelable'?: boolean;
+    /**
+     * Indicates whether orderItems that are not delivered yet can be canceled or not
+     * @type {boolean}
+     * @memberof OrderAllOf
+     */
+    'orderItemsCancelable'?: boolean;
 }
 
 export const OrderAllOfStatusEnum = {
