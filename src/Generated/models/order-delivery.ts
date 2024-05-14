@@ -32,6 +32,12 @@ export interface OrderDelivery {
      * @memberof OrderDelivery
      */
     'status'?: OrderDeliveryStatusEnum;
+    /**
+     * Indicates whether the delivery was delivered partially or not
+     * @type {boolean}
+     * @memberof OrderDelivery
+     */
+    'deliveredPartially'?: boolean;
 }
 
 export const OrderDeliveryStatusEnum = {
