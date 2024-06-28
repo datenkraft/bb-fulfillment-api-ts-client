@@ -186,10 +186,13 @@ export const ProductDraftApiAxiosParamCreator = function (configuration?: Config
          * @param {string} [filterProductNumber] Filter by a productNumber
          * @param {'pending' | 'accepted' | 'declined'} [filterProductDraftStatus] Filter by a product draft status
          * @param {string} [filterSearch] Filter for product draft search. \\ Usage: - Provide one or multiple search terms (min. 2 characters) to filter results. - Multiple search terms are separated by spaces. - The search is not case sensitive. - The search is only enabled for the productNumber. - Each search term filters the response for products where the productNumber contains the search term. - For example, filter[search]&#x3D;\&#39;term1 term2\&#39; will filter the result for products where \&#39;term1\&#39; is found in the productNumber and \&#39;term2\&#39; is also found in the productNumber. If only \&#39;term1\&#39; or \&#39;term2\&#39; is found in the productNumber, the product is not included in the results.
+         * @param {string} [filterProductDraftDateFrom] Filter for productDraftDate Format Y-m-d
+         * @param {string} [filterProductDraftDateTo] Filter for productDraftDate Format Y-m-d
+         * @param {string} [sortBy] Sort the results by one or more comma-separated sort criteria, with the criterion specified first having priority.  Available sort orders: - asc: ascending order - desc: descending order  Available fields for sorting: - productDraftDate  The default sort order is productDraftDate:desc.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getProductDraftCollection: async (filterShopCode: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterProductNumber?: string, filterProductDraftStatus?: 'pending' | 'accepted' | 'declined', filterSearch?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getProductDraftCollection: async (filterShopCode: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterProductNumber?: string, filterProductDraftStatus?: 'pending' | 'accepted' | 'declined', filterSearch?: string, filterProductDraftDateFrom?: string, filterProductDraftDateTo?: string, sortBy?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'filterShopCode' is not null or undefined
             assertParamExists('getProductDraftCollection', 'filterShopCode', filterShopCode)
             const localVarPath = `/product-draft`;
@@ -238,6 +241,22 @@ export const ProductDraftApiAxiosParamCreator = function (configuration?: Config
 
             if (filterSearch !== undefined) {
                 localVarQueryParameter['filter[search]'] = filterSearch;
+            }
+
+            if (filterProductDraftDateFrom !== undefined) {
+                localVarQueryParameter['filter[productDraftDateFrom]'] = (filterProductDraftDateFrom as any instanceof Date) ?
+                    (filterProductDraftDateFrom as any).toISOString().substr(0,10) :
+                    filterProductDraftDateFrom;
+            }
+
+            if (filterProductDraftDateTo !== undefined) {
+                localVarQueryParameter['filter[productDraftDateTo]'] = (filterProductDraftDateTo as any instanceof Date) ?
+                    (filterProductDraftDateTo as any).toISOString().substr(0,10) :
+                    filterProductDraftDateTo;
+            }
+
+            if (sortBy !== undefined) {
+                localVarQueryParameter['sortBy'] = sortBy;
             }
 
 
@@ -405,11 +424,14 @@ export const ProductDraftApiFp = function(configuration?: Configuration) {
          * @param {string} [filterProductNumber] Filter by a productNumber
          * @param {'pending' | 'accepted' | 'declined'} [filterProductDraftStatus] Filter by a product draft status
          * @param {string} [filterSearch] Filter for product draft search. \\ Usage: - Provide one or multiple search terms (min. 2 characters) to filter results. - Multiple search terms are separated by spaces. - The search is not case sensitive. - The search is only enabled for the productNumber. - Each search term filters the response for products where the productNumber contains the search term. - For example, filter[search]&#x3D;\&#39;term1 term2\&#39; will filter the result for products where \&#39;term1\&#39; is found in the productNumber and \&#39;term2\&#39; is also found in the productNumber. If only \&#39;term1\&#39; or \&#39;term2\&#39; is found in the productNumber, the product is not included in the results.
+         * @param {string} [filterProductDraftDateFrom] Filter for productDraftDate Format Y-m-d
+         * @param {string} [filterProductDraftDateTo] Filter for productDraftDate Format Y-m-d
+         * @param {string} [sortBy] Sort the results by one or more comma-separated sort criteria, with the criterion specified first having priority.  Available sort orders: - asc: ascending order - desc: descending order  Available fields for sorting: - productDraftDate  The default sort order is productDraftDate:desc.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getProductDraftCollection(filterShopCode: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterProductNumber?: string, filterProductDraftStatus?: 'pending' | 'accepted' | 'declined', filterSearch?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ProductDraftCollection>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getProductDraftCollection(filterShopCode, page, pageSize, paginationMode, filterProductNumber, filterProductDraftStatus, filterSearch, options);
+        async getProductDraftCollection(filterShopCode: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterProductNumber?: string, filterProductDraftStatus?: 'pending' | 'accepted' | 'declined', filterSearch?: string, filterProductDraftDateFrom?: string, filterProductDraftDateTo?: string, sortBy?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ProductDraftCollection>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getProductDraftCollection(filterShopCode, page, pageSize, paginationMode, filterProductNumber, filterProductDraftStatus, filterSearch, filterProductDraftDateFrom, filterProductDraftDateTo, sortBy, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -486,11 +508,14 @@ export const ProductDraftApiFactory = function (configuration?: Configuration, b
          * @param {string} [filterProductNumber] Filter by a productNumber
          * @param {'pending' | 'accepted' | 'declined'} [filterProductDraftStatus] Filter by a product draft status
          * @param {string} [filterSearch] Filter for product draft search. \\ Usage: - Provide one or multiple search terms (min. 2 characters) to filter results. - Multiple search terms are separated by spaces. - The search is not case sensitive. - The search is only enabled for the productNumber. - Each search term filters the response for products where the productNumber contains the search term. - For example, filter[search]&#x3D;\&#39;term1 term2\&#39; will filter the result for products where \&#39;term1\&#39; is found in the productNumber and \&#39;term2\&#39; is also found in the productNumber. If only \&#39;term1\&#39; or \&#39;term2\&#39; is found in the productNumber, the product is not included in the results.
+         * @param {string} [filterProductDraftDateFrom] Filter for productDraftDate Format Y-m-d
+         * @param {string} [filterProductDraftDateTo] Filter for productDraftDate Format Y-m-d
+         * @param {string} [sortBy] Sort the results by one or more comma-separated sort criteria, with the criterion specified first having priority.  Available sort orders: - asc: ascending order - desc: descending order  Available fields for sorting: - productDraftDate  The default sort order is productDraftDate:desc.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getProductDraftCollection(filterShopCode: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterProductNumber?: string, filterProductDraftStatus?: 'pending' | 'accepted' | 'declined', filterSearch?: string, options?: any): AxiosPromise<ProductDraftCollection> {
-            return localVarFp.getProductDraftCollection(filterShopCode, page, pageSize, paginationMode, filterProductNumber, filterProductDraftStatus, filterSearch, options).then((request) => request(axios, basePath));
+        getProductDraftCollection(filterShopCode: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterProductNumber?: string, filterProductDraftStatus?: 'pending' | 'accepted' | 'declined', filterSearch?: string, filterProductDraftDateFrom?: string, filterProductDraftDateTo?: string, sortBy?: string, options?: any): AxiosPromise<ProductDraftCollection> {
+            return localVarFp.getProductDraftCollection(filterShopCode, page, pageSize, paginationMode, filterProductNumber, filterProductDraftStatus, filterSearch, filterProductDraftDateFrom, filterProductDraftDateTo, sortBy, options).then((request) => request(axios, basePath));
         },
         /**
          * Create a new product draft to initiate the creation new products.Product drafts will be put into a queue for manual approval.
@@ -563,11 +588,14 @@ export interface ProductDraftApiInterface {
      * @param {string} [filterProductNumber] Filter by a productNumber
      * @param {'pending' | 'accepted' | 'declined'} [filterProductDraftStatus] Filter by a product draft status
      * @param {string} [filterSearch] Filter for product draft search. \\ Usage: - Provide one or multiple search terms (min. 2 characters) to filter results. - Multiple search terms are separated by spaces. - The search is not case sensitive. - The search is only enabled for the productNumber. - Each search term filters the response for products where the productNumber contains the search term. - For example, filter[search]&#x3D;\&#39;term1 term2\&#39; will filter the result for products where \&#39;term1\&#39; is found in the productNumber and \&#39;term2\&#39; is also found in the productNumber. If only \&#39;term1\&#39; or \&#39;term2\&#39; is found in the productNumber, the product is not included in the results.
+     * @param {string} [filterProductDraftDateFrom] Filter for productDraftDate Format Y-m-d
+     * @param {string} [filterProductDraftDateTo] Filter for productDraftDate Format Y-m-d
+     * @param {string} [sortBy] Sort the results by one or more comma-separated sort criteria, with the criterion specified first having priority.  Available sort orders: - asc: ascending order - desc: descending order  Available fields for sorting: - productDraftDate  The default sort order is productDraftDate:desc.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProductDraftApiInterface
      */
-    getProductDraftCollection(filterShopCode: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterProductNumber?: string, filterProductDraftStatus?: 'pending' | 'accepted' | 'declined', filterSearch?: string, options?: AxiosRequestConfig): AxiosPromise<ProductDraftCollection>;
+    getProductDraftCollection(filterShopCode: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterProductNumber?: string, filterProductDraftStatus?: 'pending' | 'accepted' | 'declined', filterSearch?: string, filterProductDraftDateFrom?: string, filterProductDraftDateTo?: string, sortBy?: string, options?: AxiosRequestConfig): AxiosPromise<ProductDraftCollection>;
 
     /**
      * Create a new product draft to initiate the creation new products.Product drafts will be put into a queue for manual approval.
@@ -646,12 +674,15 @@ export class ProductDraftApi extends BaseAPI implements ProductDraftApiInterface
      * @param {string} [filterProductNumber] Filter by a productNumber
      * @param {'pending' | 'accepted' | 'declined'} [filterProductDraftStatus] Filter by a product draft status
      * @param {string} [filterSearch] Filter for product draft search. \\ Usage: - Provide one or multiple search terms (min. 2 characters) to filter results. - Multiple search terms are separated by spaces. - The search is not case sensitive. - The search is only enabled for the productNumber. - Each search term filters the response for products where the productNumber contains the search term. - For example, filter[search]&#x3D;\&#39;term1 term2\&#39; will filter the result for products where \&#39;term1\&#39; is found in the productNumber and \&#39;term2\&#39; is also found in the productNumber. If only \&#39;term1\&#39; or \&#39;term2\&#39; is found in the productNumber, the product is not included in the results.
+     * @param {string} [filterProductDraftDateFrom] Filter for productDraftDate Format Y-m-d
+     * @param {string} [filterProductDraftDateTo] Filter for productDraftDate Format Y-m-d
+     * @param {string} [sortBy] Sort the results by one or more comma-separated sort criteria, with the criterion specified first having priority.  Available sort orders: - asc: ascending order - desc: descending order  Available fields for sorting: - productDraftDate  The default sort order is productDraftDate:desc.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProductDraftApi
      */
-    public getProductDraftCollection(filterShopCode: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterProductNumber?: string, filterProductDraftStatus?: 'pending' | 'accepted' | 'declined', filterSearch?: string, options?: AxiosRequestConfig) {
-        return ProductDraftApiFp(this.configuration).getProductDraftCollection(filterShopCode, page, pageSize, paginationMode, filterProductNumber, filterProductDraftStatus, filterSearch, options).then((request) => request(this.axios, this.basePath));
+    public getProductDraftCollection(filterShopCode: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterProductNumber?: string, filterProductDraftStatus?: 'pending' | 'accepted' | 'declined', filterSearch?: string, filterProductDraftDateFrom?: string, filterProductDraftDateTo?: string, sortBy?: string, options?: AxiosRequestConfig) {
+        return ProductDraftApiFp(this.configuration).getProductDraftCollection(filterShopCode, page, pageSize, paginationMode, filterProductNumber, filterProductDraftStatus, filterSearch, filterProductDraftDateFrom, filterProductDraftDateTo, sortBy, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
