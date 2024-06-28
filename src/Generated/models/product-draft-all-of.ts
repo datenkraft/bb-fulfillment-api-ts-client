@@ -45,6 +45,12 @@ export interface ProductDraftAllOf {
      */
     'productDraftStatus'?: ProductDraftAllOfProductDraftStatusEnum;
     /**
+     * The create date for the product draft. Format in ISO 8601
+     * @type {string}
+     * @memberof ProductDraftAllOf
+     */
+    'productDraftDate'?: string;
+    /**
      * Unit of the product contents.\\ All units can be queried with a GET /product-unit call
      * @type {string}
      * @memberof ProductDraftAllOf
