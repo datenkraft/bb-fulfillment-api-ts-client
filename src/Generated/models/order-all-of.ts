@@ -60,6 +60,12 @@ export interface OrderAllOf {
      */
     'status'?: OrderAllOfStatusEnum;
     /**
+     * Describes why the order is locked
+     * @type {string}
+     * @memberof OrderAllOf
+     */
+    'lockReason'?: string | null;
+    /**
      * The create date for the order. Format in ISO 8601
      * @type {string}
      * @memberof OrderAllOf
