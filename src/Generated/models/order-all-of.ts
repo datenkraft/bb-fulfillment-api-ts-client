@@ -113,6 +113,12 @@ export interface OrderAllOf {
      * @memberof OrderAllOf
      */
     'orderItemsCancelable'?: boolean;
+    /**
+     * Indicates whether a partial delivery is pending or not. Note: If true, it means that a partial delivery has been requested but not yet processed. If false, it means that no partial delivery is currently pending.
+     * @type {boolean}
+     * @memberof OrderAllOf
+     */
+    'partialDeliveryPending'?: boolean;
 }
 
 export const OrderAllOfStatusEnum = {
