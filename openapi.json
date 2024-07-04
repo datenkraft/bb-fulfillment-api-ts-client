@@ -9647,6 +9647,10 @@
                             "orderItemsCancelable": {
                                 "description": "Indicates whether orderItems that are not delivered yet can be canceled or not",
                                 "type": "boolean"
+                            },
+                            "partialDeliveryPending": {
+                                "description": "Indicates whether a partial delivery is pending or not.\nNote: If true, it means that a partial delivery has been requested but not yet processed.\nIf false, it means that no partial delivery is currently pending.",
+                                "type": "boolean"
                             }
                         },
                         "type": "object"
