@@ -11182,7 +11182,8 @@
                     },
                     "productNumberBundle": {
                         "description": "Product number of the bundle which the product of the shipment line is part of.",
-                        "type": "string"
+                        "type": "string",
+                        "nullable": true
                     },
                     "count": {
                         "description": "Number of items contained in the delivery",
