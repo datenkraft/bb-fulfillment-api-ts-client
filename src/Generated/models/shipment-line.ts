@@ -34,7 +34,7 @@ export interface ShipmentLine {
      * @type {string}
      * @memberof ShipmentLine
      */
-    'productNumberBundle'?: string;
+    'productNumberBundle'?: string | null;
     /**
      * Number of items contained in the delivery
      * @type {number}
