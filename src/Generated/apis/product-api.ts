@@ -32,6 +32,8 @@ import { Product } from '../models';
 import { ProductCollection } from '../models';
 // @ts-ignore
 import { ProductJournalCollection } from '../models';
+// @ts-ignore
+import { ProductStockReferenceCollection } from '../models';
 /**
  * ProductApi - axios parameter creator
  * @export
@@ -97,10 +99,11 @@ export const ProductApiAxiosParamCreator = function (configuration?: Configurati
          * @param {'self' | 'nice' | 'bundle'} [filterSource] Filter for product source.
          * @param {string} [filterProductNumber] Filter for product number(s).
          * @param {'_availableOrInStock' | '_notAvailableAndOutOfStock'} [filterProductAvailabilityStatus] Filter for productAvailabilityStatus \\ By default, all products are returned. \\ Use \&#39;_availableOrInStock\&#39; to only return products that are available or in stock. \\ Use \&#39;_notAvailableAndOutOfStock\&#39; to only return products that are not available and out of stock.
+         * @param {'standard' | 'sample' | 'sellable_sample' | 'tester' | 'packing_material' | 'booking_seminar' | 'booking_appointment' | 'promo_material' | 'raw_material' | 'working_material' | 'service_principal' | 'service_ancillary' | 'inquiry_testdrive' | 'inquiry_raffle' | 'chilled_product' | 'limited_edition' | 'voucher_print' | 'voucher_digital' | 'bundle' | 'print_greetingcard' | 'personalized' | 'other_services'} [filterProductType] Filter for product type.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getProductCollection: async (page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', sortBy?: string, filterShopCode?: string, filterSearch?: string, filterSource?: 'self' | 'nice' | 'bundle', filterProductNumber?: string, filterProductAvailabilityStatus?: '_availableOrInStock' | '_notAvailableAndOutOfStock', options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getProductCollection: async (page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', sortBy?: string, filterShopCode?: string, filterSearch?: string, filterSource?: 'self' | 'nice' | 'bundle', filterProductNumber?: string, filterProductAvailabilityStatus?: '_availableOrInStock' | '_notAvailableAndOutOfStock', filterProductType?: 'standard' | 'sample' | 'sellable_sample' | 'tester' | 'packing_material' | 'booking_seminar' | 'booking_appointment' | 'promo_material' | 'raw_material' | 'working_material' | 'service_principal' | 'service_ancillary' | 'inquiry_testdrive' | 'inquiry_raffle' | 'chilled_product' | 'limited_edition' | 'voucher_print' | 'voucher_digital' | 'bundle' | 'print_greetingcard' | 'personalized' | 'other_services', options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/product`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -155,6 +158,10 @@ export const ProductApiAxiosParamCreator = function (configuration?: Configurati
 
             if (filterProductAvailabilityStatus !== undefined) {
                 localVarQueryParameter['filter[productAvailabilityStatus]'] = filterProductAvailabilityStatus;
+            }
+
+            if (filterProductType !== undefined) {
+                localVarQueryParameter['filter[productType]'] = filterProductType;
             }
 
 
@@ -249,6 +256,73 @@ export const ProductApiAxiosParamCreator = function (configuration?: Configurati
                 options: localVarRequestOptions,
             };
         },
+        /**
+         * Get a list of product stock references.
+         * @summary Get a list of product stock references.
+         * @param {string} productNumber The product number as defined during the creation of the product.
+         * @param {number} [page] The page to read. Default is the first page.
+         * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
+         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
+         * @param {string} [shopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+         * @param {'reserved' | 'incoming'} [filterTypeCode] Filter for a specific stock reference type.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getProductStockReferenceCollection: async (productNumber: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', shopCode?: string, filterTypeCode?: 'reserved' | 'incoming', options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'productNumber' is not null or undefined
+            assertParamExists('getProductStockReferenceCollection', 'productNumber', productNumber)
+            const localVarPath = `/product/{productNumber}/stock-reference`
+                .replace(`{${"productNumber"}}`, encodeURIComponent(String(productNumber)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication oAuthAuthorization required
+            // oauth required
+            await setOAuthToObject(localVarHeaderParameter, "oAuthAuthorization", [], configuration)
+
+            // authentication bearerAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
+            }
+
+            if (pageSize !== undefined) {
+                localVarQueryParameter['pageSize'] = pageSize;
+            }
+
+            if (paginationMode !== undefined) {
+                localVarQueryParameter['paginationMode'] = paginationMode;
+            }
+
+            if (shopCode !== undefined) {
+                localVarQueryParameter['shopCode'] = shopCode;
+            }
+
+            if (filterTypeCode !== undefined) {
+                localVarQueryParameter['filter[typeCode]'] = filterTypeCode;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
     }
 };
 
@@ -283,11 +357,12 @@ export const ProductApiFp = function(configuration?: Configuration) {
          * @param {'self' | 'nice' | 'bundle'} [filterSource] Filter for product source.
          * @param {string} [filterProductNumber] Filter for product number(s).
          * @param {'_availableOrInStock' | '_notAvailableAndOutOfStock'} [filterProductAvailabilityStatus] Filter for productAvailabilityStatus \\ By default, all products are returned. \\ Use \&#39;_availableOrInStock\&#39; to only return products that are available or in stock. \\ Use \&#39;_notAvailableAndOutOfStock\&#39; to only return products that are not available and out of stock.
+         * @param {'standard' | 'sample' | 'sellable_sample' | 'tester' | 'packing_material' | 'booking_seminar' | 'booking_appointment' | 'promo_material' | 'raw_material' | 'working_material' | 'service_principal' | 'service_ancillary' | 'inquiry_testdrive' | 'inquiry_raffle' | 'chilled_product' | 'limited_edition' | 'voucher_print' | 'voucher_digital' | 'bundle' | 'print_greetingcard' | 'personalized' | 'other_services'} [filterProductType] Filter for product type.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getProductCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', sortBy?: string, filterShopCode?: string, filterSearch?: string, filterSource?: 'self' | 'nice' | 'bundle', filterProductNumber?: string, filterProductAvailabilityStatus?: '_availableOrInStock' | '_notAvailableAndOutOfStock', options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ProductCollection>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getProductCollection(page, pageSize, paginationMode, sortBy, filterShopCode, filterSearch, filterSource, filterProductNumber, filterProductAvailabilityStatus, options);
+        async getProductCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', sortBy?: string, filterShopCode?: string, filterSearch?: string, filterSource?: 'self' | 'nice' | 'bundle', filterProductNumber?: string, filterProductAvailabilityStatus?: '_availableOrInStock' | '_notAvailableAndOutOfStock', filterProductType?: 'standard' | 'sample' | 'sellable_sample' | 'tester' | 'packing_material' | 'booking_seminar' | 'booking_appointment' | 'promo_material' | 'raw_material' | 'working_material' | 'service_principal' | 'service_ancillary' | 'inquiry_testdrive' | 'inquiry_raffle' | 'chilled_product' | 'limited_edition' | 'voucher_print' | 'voucher_digital' | 'bundle' | 'print_greetingcard' | 'personalized' | 'other_services', options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ProductCollection>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getProductCollection(page, pageSize, paginationMode, sortBy, filterShopCode, filterSearch, filterSource, filterProductNumber, filterProductAvailabilityStatus, filterProductType, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -306,6 +381,22 @@ export const ProductApiFp = function(configuration?: Configuration) {
          */
         async getProductJournalCollection(productNumber: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', shopCode?: string, filterDateFrom?: string, filterDateTo?: string, filterReason?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ProductJournalCollection>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getProductJournalCollection(productNumber, page, pageSize, paginationMode, shopCode, filterDateFrom, filterDateTo, filterReason, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Get a list of product stock references.
+         * @summary Get a list of product stock references.
+         * @param {string} productNumber The product number as defined during the creation of the product.
+         * @param {number} [page] The page to read. Default is the first page.
+         * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
+         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
+         * @param {string} [shopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+         * @param {'reserved' | 'incoming'} [filterTypeCode] Filter for a specific stock reference type.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getProductStockReferenceCollection(productNumber: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', shopCode?: string, filterTypeCode?: 'reserved' | 'incoming', options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ProductStockReferenceCollection>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getProductStockReferenceCollection(productNumber, page, pageSize, paginationMode, shopCode, filterTypeCode, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -341,11 +432,12 @@ export const ProductApiFactory = function (configuration?: Configuration, basePa
          * @param {'self' | 'nice' | 'bundle'} [filterSource] Filter for product source.
          * @param {string} [filterProductNumber] Filter for product number(s).
          * @param {'_availableOrInStock' | '_notAvailableAndOutOfStock'} [filterProductAvailabilityStatus] Filter for productAvailabilityStatus \\ By default, all products are returned. \\ Use \&#39;_availableOrInStock\&#39; to only return products that are available or in stock. \\ Use \&#39;_notAvailableAndOutOfStock\&#39; to only return products that are not available and out of stock.
+         * @param {'standard' | 'sample' | 'sellable_sample' | 'tester' | 'packing_material' | 'booking_seminar' | 'booking_appointment' | 'promo_material' | 'raw_material' | 'working_material' | 'service_principal' | 'service_ancillary' | 'inquiry_testdrive' | 'inquiry_raffle' | 'chilled_product' | 'limited_edition' | 'voucher_print' | 'voucher_digital' | 'bundle' | 'print_greetingcard' | 'personalized' | 'other_services'} [filterProductType] Filter for product type.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getProductCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', sortBy?: string, filterShopCode?: string, filterSearch?: string, filterSource?: 'self' | 'nice' | 'bundle', filterProductNumber?: string, filterProductAvailabilityStatus?: '_availableOrInStock' | '_notAvailableAndOutOfStock', options?: any): AxiosPromise<ProductCollection> {
-            return localVarFp.getProductCollection(page, pageSize, paginationMode, sortBy, filterShopCode, filterSearch, filterSource, filterProductNumber, filterProductAvailabilityStatus, options).then((request) => request(axios, basePath));
+        getProductCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', sortBy?: string, filterShopCode?: string, filterSearch?: string, filterSource?: 'self' | 'nice' | 'bundle', filterProductNumber?: string, filterProductAvailabilityStatus?: '_availableOrInStock' | '_notAvailableAndOutOfStock', filterProductType?: 'standard' | 'sample' | 'sellable_sample' | 'tester' | 'packing_material' | 'booking_seminar' | 'booking_appointment' | 'promo_material' | 'raw_material' | 'working_material' | 'service_principal' | 'service_ancillary' | 'inquiry_testdrive' | 'inquiry_raffle' | 'chilled_product' | 'limited_edition' | 'voucher_print' | 'voucher_digital' | 'bundle' | 'print_greetingcard' | 'personalized' | 'other_services', options?: any): AxiosPromise<ProductCollection> {
+            return localVarFp.getProductCollection(page, pageSize, paginationMode, sortBy, filterShopCode, filterSearch, filterSource, filterProductNumber, filterProductAvailabilityStatus, filterProductType, options).then((request) => request(axios, basePath));
         },
         /**
          * Read a journal collection for a specific product showing the history of stock changes. _Only products with the source \'self\' can be queried._
@@ -363,6 +455,21 @@ export const ProductApiFactory = function (configuration?: Configuration, basePa
          */
         getProductJournalCollection(productNumber: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', shopCode?: string, filterDateFrom?: string, filterDateTo?: string, filterReason?: string, options?: any): AxiosPromise<ProductJournalCollection> {
             return localVarFp.getProductJournalCollection(productNumber, page, pageSize, paginationMode, shopCode, filterDateFrom, filterDateTo, filterReason, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Get a list of product stock references.
+         * @summary Get a list of product stock references.
+         * @param {string} productNumber The product number as defined during the creation of the product.
+         * @param {number} [page] The page to read. Default is the first page.
+         * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
+         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
+         * @param {string} [shopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+         * @param {'reserved' | 'incoming'} [filterTypeCode] Filter for a specific stock reference type.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getProductStockReferenceCollection(productNumber: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', shopCode?: string, filterTypeCode?: 'reserved' | 'incoming', options?: any): AxiosPromise<ProductStockReferenceCollection> {
+            return localVarFp.getProductStockReferenceCollection(productNumber, page, pageSize, paginationMode, shopCode, filterTypeCode, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -396,11 +503,12 @@ export interface ProductApiInterface {
      * @param {'self' | 'nice' | 'bundle'} [filterSource] Filter for product source.
      * @param {string} [filterProductNumber] Filter for product number(s).
      * @param {'_availableOrInStock' | '_notAvailableAndOutOfStock'} [filterProductAvailabilityStatus] Filter for productAvailabilityStatus \\ By default, all products are returned. \\ Use \&#39;_availableOrInStock\&#39; to only return products that are available or in stock. \\ Use \&#39;_notAvailableAndOutOfStock\&#39; to only return products that are not available and out of stock.
+     * @param {'standard' | 'sample' | 'sellable_sample' | 'tester' | 'packing_material' | 'booking_seminar' | 'booking_appointment' | 'promo_material' | 'raw_material' | 'working_material' | 'service_principal' | 'service_ancillary' | 'inquiry_testdrive' | 'inquiry_raffle' | 'chilled_product' | 'limited_edition' | 'voucher_print' | 'voucher_digital' | 'bundle' | 'print_greetingcard' | 'personalized' | 'other_services'} [filterProductType] Filter for product type.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProductApiInterface
      */
-    getProductCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', sortBy?: string, filterShopCode?: string, filterSearch?: string, filterSource?: 'self' | 'nice' | 'bundle', filterProductNumber?: string, filterProductAvailabilityStatus?: '_availableOrInStock' | '_notAvailableAndOutOfStock', options?: AxiosRequestConfig): AxiosPromise<ProductCollection>;
+    getProductCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', sortBy?: string, filterShopCode?: string, filterSearch?: string, filterSource?: 'self' | 'nice' | 'bundle', filterProductNumber?: string, filterProductAvailabilityStatus?: '_availableOrInStock' | '_notAvailableAndOutOfStock', filterProductType?: 'standard' | 'sample' | 'sellable_sample' | 'tester' | 'packing_material' | 'booking_seminar' | 'booking_appointment' | 'promo_material' | 'raw_material' | 'working_material' | 'service_principal' | 'service_ancillary' | 'inquiry_testdrive' | 'inquiry_raffle' | 'chilled_product' | 'limited_edition' | 'voucher_print' | 'voucher_digital' | 'bundle' | 'print_greetingcard' | 'personalized' | 'other_services', options?: AxiosRequestConfig): AxiosPromise<ProductCollection>;
 
     /**
      * Read a journal collection for a specific product showing the history of stock changes. _Only products with the source \'self\' can be queried._
@@ -418,6 +526,21 @@ export interface ProductApiInterface {
      * @memberof ProductApiInterface
      */
     getProductJournalCollection(productNumber: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', shopCode?: string, filterDateFrom?: string, filterDateTo?: string, filterReason?: string, options?: AxiosRequestConfig): AxiosPromise<ProductJournalCollection>;
+
+    /**
+     * Get a list of product stock references.
+     * @summary Get a list of product stock references.
+     * @param {string} productNumber The product number as defined during the creation of the product.
+     * @param {number} [page] The page to read. Default is the first page.
+     * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
+     * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
+     * @param {string} [shopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+     * @param {'reserved' | 'incoming'} [filterTypeCode] Filter for a specific stock reference type.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ProductApiInterface
+     */
+    getProductStockReferenceCollection(productNumber: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', shopCode?: string, filterTypeCode?: 'reserved' | 'incoming', options?: AxiosRequestConfig): AxiosPromise<ProductStockReferenceCollection>;
 
 }
 
@@ -453,12 +576,13 @@ export class ProductApi extends BaseAPI implements ProductApiInterface {
      * @param {'self' | 'nice' | 'bundle'} [filterSource] Filter for product source.
      * @param {string} [filterProductNumber] Filter for product number(s).
      * @param {'_availableOrInStock' | '_notAvailableAndOutOfStock'} [filterProductAvailabilityStatus] Filter for productAvailabilityStatus \\ By default, all products are returned. \\ Use \&#39;_availableOrInStock\&#39; to only return products that are available or in stock. \\ Use \&#39;_notAvailableAndOutOfStock\&#39; to only return products that are not available and out of stock.
+     * @param {'standard' | 'sample' | 'sellable_sample' | 'tester' | 'packing_material' | 'booking_seminar' | 'booking_appointment' | 'promo_material' | 'raw_material' | 'working_material' | 'service_principal' | 'service_ancillary' | 'inquiry_testdrive' | 'inquiry_raffle' | 'chilled_product' | 'limited_edition' | 'voucher_print' | 'voucher_digital' | 'bundle' | 'print_greetingcard' | 'personalized' | 'other_services'} [filterProductType] Filter for product type.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProductApi
      */
-    public getProductCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', sortBy?: string, filterShopCode?: string, filterSearch?: string, filterSource?: 'self' | 'nice' | 'bundle', filterProductNumber?: string, filterProductAvailabilityStatus?: '_availableOrInStock' | '_notAvailableAndOutOfStock', options?: AxiosRequestConfig) {
-        return ProductApiFp(this.configuration).getProductCollection(page, pageSize, paginationMode, sortBy, filterShopCode, filterSearch, filterSource, filterProductNumber, filterProductAvailabilityStatus, options).then((request) => request(this.axios, this.basePath));
+    public getProductCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', sortBy?: string, filterShopCode?: string, filterSearch?: string, filterSource?: 'self' | 'nice' | 'bundle', filterProductNumber?: string, filterProductAvailabilityStatus?: '_availableOrInStock' | '_notAvailableAndOutOfStock', filterProductType?: 'standard' | 'sample' | 'sellable_sample' | 'tester' | 'packing_material' | 'booking_seminar' | 'booking_appointment' | 'promo_material' | 'raw_material' | 'working_material' | 'service_principal' | 'service_ancillary' | 'inquiry_testdrive' | 'inquiry_raffle' | 'chilled_product' | 'limited_edition' | 'voucher_print' | 'voucher_digital' | 'bundle' | 'print_greetingcard' | 'personalized' | 'other_services', options?: AxiosRequestConfig) {
+        return ProductApiFp(this.configuration).getProductCollection(page, pageSize, paginationMode, sortBy, filterShopCode, filterSearch, filterSource, filterProductNumber, filterProductAvailabilityStatus, filterProductType, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -478,5 +602,22 @@ export class ProductApi extends BaseAPI implements ProductApiInterface {
      */
     public getProductJournalCollection(productNumber: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', shopCode?: string, filterDateFrom?: string, filterDateTo?: string, filterReason?: string, options?: AxiosRequestConfig) {
         return ProductApiFp(this.configuration).getProductJournalCollection(productNumber, page, pageSize, paginationMode, shopCode, filterDateFrom, filterDateTo, filterReason, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Get a list of product stock references.
+     * @summary Get a list of product stock references.
+     * @param {string} productNumber The product number as defined during the creation of the product.
+     * @param {number} [page] The page to read. Default is the first page.
+     * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
+     * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use: - default: The total number of items in the collection will not be calculated. - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
+     * @param {string} [shopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+     * @param {'reserved' | 'incoming'} [filterTypeCode] Filter for a specific stock reference type.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ProductApi
+     */
+    public getProductStockReferenceCollection(productNumber: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', shopCode?: string, filterTypeCode?: 'reserved' | 'incoming', options?: AxiosRequestConfig) {
+        return ProductApiFp(this.configuration).getProductStockReferenceCollection(productNumber, page, pageSize, paginationMode, shopCode, filterTypeCode, options).then((request) => request(this.axios, this.basePath));
     }
 }

@@ -129,6 +129,7 @@ models/order-price.ts
 models/order-shipping.ts
 models/order.ts
 models/product-all-of.ts
+models/product-bundled-product.ts
 models/product-collection-all-of.ts
 models/product-collection.ts
 models/product-draft-all-of.ts
@@ -142,6 +143,10 @@ models/product-journal-collection.ts
 models/product-journal-reference.ts
 models/product-journal.ts
 models/product-purchase-price.ts
+models/product-stock-reference-collection-all-of.ts
+models/product-stock-reference-collection.ts
+models/product-stock-reference-reference.ts
+models/product-stock-reference.ts
 models/product-unit-collection-all-of.ts
 models/product-unit-collection.ts
 models/product-unit.ts

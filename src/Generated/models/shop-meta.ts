@@ -88,6 +88,12 @@ export interface ShopMeta {
      * @memberof ShopMeta
      */
     'overwriteCustomerEmailEnabled'?: boolean | null;
+    /**
+     * Text to be added to the beginning of the orderNotes of every order created for the shop.
+     * @type {string}
+     * @memberof ShopMeta
+     */
+    'orderNotesPrecedingText'?: string | null;
 }
 
 export const ShopMetaDefaultCurrencyEnum = {

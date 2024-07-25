@@ -18,6 +18,9 @@
 import { BaseProductVariantGroup } from './base-product-variant-group';
 // May contain unused imports in some cases
 // @ts-ignore
+import { ProductBundledProduct } from './product-bundled-product';
+// May contain unused imports in some cases
+// @ts-ignore
 import { ProductPurchasePrice } from './product-purchase-price';
 
 /**
@@ -98,6 +101,12 @@ export interface BaseProduct {
      * @memberof BaseProduct
      */
     'purchasePrices'?: Array<ProductPurchasePrice> | null;
+    /**
+     * 
+     * @type {Array<ProductBundledProduct>}
+     * @memberof BaseProduct
+     */
+    'bundledProducts'?: Array<ProductBundledProduct> | null;
     /**
      * Product number of the manufacturer.
      * @type {string}

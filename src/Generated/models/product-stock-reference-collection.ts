@@ -15,28 +15,22 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { BaseProduct } from './base-product';
+import { Collection } from './collection';
 // May contain unused imports in some cases
 // @ts-ignore
-import { BaseProductVariantGroup } from './base-product-variant-group';
+import { CollectionPagination } from './collection-pagination';
 // May contain unused imports in some cases
 // @ts-ignore
-import { ProductAllOf } from './product-all-of';
+import { ProductStockReference } from './product-stock-reference';
 // May contain unused imports in some cases
 // @ts-ignore
-import { ProductBundledProduct } from './product-bundled-product';
-// May contain unused imports in some cases
-// @ts-ignore
-import { ProductPurchasePrice } from './product-purchase-price';
-// May contain unused imports in some cases
-// @ts-ignore
-import { ReservedFor } from './reserved-for';
+import { ProductStockReferenceCollectionAllOf } from './product-stock-reference-collection-all-of';
 
 /**
- * @type Product
- * Data to represent a product
+ * @type ProductStockReferenceCollection
+ * A collection of product stock references
  * @export
  */
-export type Product = BaseProduct & ProductAllOf;
+export type ProductStockReferenceCollection = Collection & ProductStockReferenceCollectionAllOf;
 
 
