@@ -13,36 +13,21 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import { BaseOrderItem } from './base-order-item';
+// May contain unused imports in some cases
+// @ts-ignore
+import { BundledOrderItemAllOf } from './bundled-order-item-all-of';
+// May contain unused imports in some cases
+// @ts-ignore
+import { BundledOrderItemPrice } from './bundled-order-item-price';
 
 /**
- * 
+ * @type BundledOrderItem
+ * Products included in this bundle. Null for all products not of productType \'bundle\'.
  * @export
- * @interface BaseOrderItem
  */
-export interface BaseOrderItem {
-    /**
-     * Valid product number
-     * @type {string}
-     * @memberof BaseOrderItem
-     */
-    'productNumber'?: string;
-    /**
-     * Item Title (optional)
-     * @type {string}
-     * @memberof BaseOrderItem
-     */
-    'title'?: string | null;
-    /**
-     * Positive number of items. Always null for bundles
-     * @type {number}
-     * @memberof BaseOrderItem
-     */
-    'count'?: number;
-    /**
-     * Product number of the customer. Not available for order items of type bundle\'. Will be dismissed if given.
-     * @type {string}
-     * @memberof BaseOrderItem
-     */
-    'externalProductNumber'?: string | null;
-}
+export type BundledOrderItem = BaseOrderItem & BundledOrderItemAllOf;
+
 

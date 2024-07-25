@@ -15,6 +15,9 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
+import { BundledOrderItem } from './bundled-order-item';
+// May contain unused imports in some cases
+// @ts-ignore
 import { OrderItemPrice } from './order-item-price';
 
 /**
@@ -24,25 +27,25 @@ import { OrderItemPrice } from './order-item-price';
  */
 export interface OrderItemAllOf {
     /**
-     * Number of canceled items
+     * Number of canceled items, null for bundles.
      * @type {number}
      * @memberof OrderItemAllOf
      */
     'canceledCount'?: number;
     /**
-     * Number of available items
+     * Number of available items, null for bundles.
      * @type {number}
      * @memberof OrderItemAllOf
      */
     'availableCount'?: number;
     /**
-     * Number of delivered items
+     * Number of delivered items, null for bundles.
      * @type {number}
      * @memberof OrderItemAllOf
      */
     'deliveredCount'?: number;
     /**
-     * Number of returned items
+     * Number of returned items, null for bundles.
      * @type {number}
      * @memberof OrderItemAllOf
      */
@@ -52,12 +55,18 @@ export interface OrderItemAllOf {
      * @type {OrderItemPrice}
      * @memberof OrderItemAllOf
      */
-    'price'?: OrderItemPrice | null;
+    'price'?: OrderItemPrice;
     /**
-     * Additional options (optional, TBD)
+     * Additional options
      * @type {object}
      * @memberof OrderItemAllOf
      */
     'options'?: object | null;
+    /**
+     * 
+     * @type {Array<BundledOrderItem>}
+     * @memberof OrderItemAllOf
+     */
+    'bundledProducts'?: Array<BundledOrderItem>;
 }
 

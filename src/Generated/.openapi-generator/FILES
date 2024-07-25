@@ -53,6 +53,9 @@ models/batch.ts
 models/brand-collection-all-of.ts
 models/brand-collection.ts
 models/brand.ts
+models/bundled-order-item-all-of.ts
+models/bundled-order-item-price.ts
+models/bundled-order-item.ts
 models/collection-pagination.ts
 models/collection.ts
 models/country-collection-all-of.ts
@@ -100,6 +103,7 @@ models/new-order-item-price.ts
 models/new-order-item.ts
 models/new-order-options-all-of.ts
 models/new-order-options.ts
+models/new-order-price.ts
 models/new-order.ts
 models/new-product-draft-all-of.ts
 models/new-product-draft.ts
@@ -121,7 +125,6 @@ models/order-delivery-costs-all-of.ts
 models/order-delivery-costs.ts
 models/order-delivery.ts
 models/order-item-all-of.ts
-models/order-item-price-all-of.ts
 models/order-item-price.ts
 models/order-item.ts
 models/order-payment.ts

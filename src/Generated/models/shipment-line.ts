@@ -30,6 +30,12 @@ export interface ShipmentLine {
      */
     'productNumber'?: string;
     /**
+     * Product number of the bundle which the product of the shipment line is part of.
+     * @type {string}
+     * @memberof ShipmentLine
+     */
+    'productNumberBundle'?: string;
+    /**
      * Number of items contained in the delivery
      * @type {number}
      * @memberof ShipmentLine

@@ -17,41 +17,41 @@
 /**
  * The selling price of the item.
  * @export
- * @interface OrderItemPrice
+ * @interface BundledOrderItemPrice
  */
-export interface OrderItemPrice {
+export interface BundledOrderItemPrice {
     /**
-     * The price value rounded to 2 decimals with a dot used as separator. Note: - For Bundles: For products of productType \'bundle\' this price value refers to and an aggregated price value for all ordered bundles. - Other Products: This price value refers to a single unit and is not an aggregated price value, which may be calculated by multiplying this price value by the corresponding item count.
+     * The price value rounded to 2 decimals with a dot used as separator.
      * @type {number}
-     * @memberof OrderItemPrice
+     * @memberof BundledOrderItemPrice
      */
     'value'?: number;
     /**
      * The price type
      * @type {string}
-     * @memberof OrderItemPrice
+     * @memberof BundledOrderItemPrice
      */
-    'type'?: OrderItemPriceTypeEnum;
+    'type'?: BundledOrderItemPriceTypeEnum;
     /**
-     * The VAT in percent. Null for bundles, bundled products may have divergent VATs. VAT percentages.
+     * The VAT in percent.
      * @type {number}
-     * @memberof OrderItemPrice
+     * @memberof BundledOrderItemPrice
      */
-    'vat'?: number | null;
+    'vat'?: number;
     /**
      * The currency code (ISO 4217)
      * @type {string}
-     * @memberof OrderItemPrice
+     * @memberof BundledOrderItemPrice
      */
     'currencyCode'?: string;
 }
 
-export const OrderItemPriceTypeEnum = {
+export const BundledOrderItemPriceTypeEnum = {
     Net: 'net',
     Gross: 'gross',
     UnknownDefaultOpenApi: '11184809'
 } as const;
 
-export type OrderItemPriceTypeEnum = typeof OrderItemPriceTypeEnum[keyof typeof OrderItemPriceTypeEnum];
+export type BundledOrderItemPriceTypeEnum = typeof BundledOrderItemPriceTypeEnum[keyof typeof BundledOrderItemPriceTypeEnum];
 
 
