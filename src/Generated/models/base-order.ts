@@ -66,7 +66,7 @@ export interface BaseOrder {
      */
     'externalOrderReference'?: string | null;
     /**
-     * Notes for the steve team regarding the fulfillment.
+     * Notes for the steve team regarding the fulfillment. \\ If `meta.orderNotesPrecedingText` is set in the `shop` resource, it will be prepended to the notes.
      * @type {string}
      * @memberof BaseOrder
      */

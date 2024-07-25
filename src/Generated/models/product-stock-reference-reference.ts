@@ -13,30 +13,30 @@
  */
 
 
-// May contain unused imports in some cases
-// @ts-ignore
-import { BaseProduct } from './base-product';
-// May contain unused imports in some cases
-// @ts-ignore
-import { BaseProductVariantGroup } from './base-product-variant-group';
-// May contain unused imports in some cases
-// @ts-ignore
-import { ProductAllOf } from './product-all-of';
-// May contain unused imports in some cases
-// @ts-ignore
-import { ProductBundledProduct } from './product-bundled-product';
-// May contain unused imports in some cases
-// @ts-ignore
-import { ProductPurchasePrice } from './product-purchase-price';
-// May contain unused imports in some cases
-// @ts-ignore
-import { ReservedFor } from './reserved-for';
 
 /**
- * @type Product
- * Data to represent a product
+ * 
  * @export
+ * @interface ProductStockReferenceReference
  */
-export type Product = BaseProduct & ProductAllOf;
-
+export interface ProductStockReferenceReference {
+    /**
+     * Company name. Is provided for \"reserved\" stock references with orders from other shops.
+     * @type {string}
+     * @memberof ProductStockReferenceReference
+     */
+    'companyName'?: string | null;
+    /**
+     * Inbound delivery number. Is provided for \"incoming\" stock references.
+     * @type {string}
+     * @memberof ProductStockReferenceReference
+     */
+    'inboundDeliveryNumber'?: string | null;
+    /**
+     * Order number. Is provided for \"reserved\" stock references with an order.
+     * @type {string}
+     * @memberof ProductStockReferenceReference
+     */
+    'orderNumber'?: string | null;
+}
 

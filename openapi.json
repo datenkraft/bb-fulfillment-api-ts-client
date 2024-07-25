@@ -5924,6 +5924,40 @@
                                 "_notAvailableAndOutOfStock"
                             ]
                         }
+                    },
+                    {
+                        "name": "filter[productType]",
+                        "in": "query",
+                        "description": "Filter for product type.",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "standard",
+                                "sample",
+                                "sellable_sample",
+                                "tester",
+                                "packing_material",
+                                "booking_seminar",
+                                "booking_appointment",
+                                "promo_material",
+                                "raw_material",
+                                "working_material",
+                                "service_principal",
+                                "service_ancillary",
+                                "inquiry_testdrive",
+                                "inquiry_raffle",
+                                "chilled_product",
+                                "limited_edition",
+                                "voucher_print",
+                                "voucher_digital",
+                                "bundle",
+                                "print_greetingcard",
+                                "personalized",
+                                "other_services"
+                            ]
+                        },
+                        "example": "standard"
                     }
                 ],
                 "responses": {
@@ -6240,6 +6274,165 @@
                             "application/json": {
                                 "schema": {
                                     "$ref": "#/components/schemas/productJournalCollection"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request\n\nError codes:\n- DATA_INVALID: Invalid data was given.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized\n\nError codes:\n- AUTHORIZATION_MISSING: No valid authentication information was given.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden\n\nError codes:\n- PERMISSIONS_MISSING: No authorization for the called action was found.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity\n\nError codes:\n- SHOP_NOT_FOUND: Shop not found.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Server error\n\nError codes:\n- SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "oAuthAuthorization": []
+                    },
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/product/{productNumber}/stock-reference": {
+            "get": {
+                "tags": [
+                    "product"
+                ],
+                "summary": "Get a list of product stock references.",
+                "description": "Get a list of product stock references.",
+                "operationId": "getProductStockReferenceCollection",
+                "parameters": [
+                    {
+                        "name": "productNumber",
+                        "in": "path",
+                        "description": "The product number as defined during the creation of the product.",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "maxLength": 250
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "The page to read. Default is the first page.",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": 1
+                    },
+                    {
+                        "name": "pageSize",
+                        "in": "query",
+                        "description": "The maximum size per page is 100. Default is 100.",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": 20
+                    },
+                    {
+                        "name": "paginationMode",
+                        "in": "query",
+                        "description": "The paginationMode to use:\n- default: The total number of items in the collection will not be calculated.\n- totalCount: The total number of items in the collection will be calculated.\nThis can mean loss of performance.",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "default": "default",
+                            "enum": [
+                                "default",
+                                "totalCount"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "shopCode",
+                        "in": "query",
+                        "description": "The shopCode used internally to distinguish between clients. \\\n_This code is optional, if your identity is assigned to only one shop.\nOtherwise the response would be a 422 HTTP Error._",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "teststeve"
+                    },
+                    {
+                        "name": "filter[typeCode]",
+                        "in": "query",
+                        "description": "Filter for a specific stock reference type.",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "reserved",
+                                "incoming"
+                            ]
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/productStockReferenceCollection"
                                 }
                             }
                         }
@@ -8257,9 +8450,9 @@
                         "nullable": true
                     },
                     "orderNotes": {
-                        "description": "Notes for the steve team regarding the fulfillment.",
+                        "description": "Notes for the steve team regarding the fulfillment. \\\nIf `meta.orderNotesPrecedingText` is set in the `shop` resource, it will be prepended to the notes.",
                         "type": "string",
-                        "maxLength": 500,
+                        "maxLength": 250,
                         "nullable": true
                     },
                     "amazonOrderId": {
@@ -8528,6 +8721,13 @@
                         "type": "array",
                         "items": {
                             "$ref": "#/components/schemas/productPurchasePrice"
+                        },
+                        "nullable": true
+                    },
+                    "bundledProducts": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/productBundledProduct"
                         },
                         "nullable": true
                     },
@@ -10086,6 +10286,20 @@
                     }
                 ]
             },
+            "productBundledProduct": {
+                "title": "productBundledProduct",
+                "properties": {
+                    "productNumber": {
+                        "type": "string"
+                    },
+                    "count": {
+                        "description": "Number of items included in the bundle.",
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                },
+                "type": "object"
+            },
             "productCollection": {
                 "title": "productCollection",
                 "description": "A collection of products",
@@ -10310,6 +10524,73 @@
                         "description": "The price per product unit.",
                         "type": "number",
                         "format": "float"
+                    }
+                },
+                "type": "object"
+            },
+            "productStockReference": {
+                "title": "productStockReference",
+                "description": "Data to represent a product stock reference",
+                "properties": {
+                    "productNumber": {
+                        "type": "string"
+                    },
+                    "typeCode": {
+                        "description": "Type code of the product stock reference.",
+                        "type": "string",
+                        "enum": [
+                            "reserved",
+                            "incoming"
+                        ]
+                    },
+                    "count": {
+                        "description": "The amount of the stock associated with the reference.",
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "reference": {
+                        "$ref": "#/components/schemas/productStockReferenceReference"
+                    }
+                },
+                "type": "object"
+            },
+            "productStockReferenceCollection": {
+                "title": "productStockReferenceCollection",
+                "description": "A collection of product stock references",
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/collection"
+                    },
+                    {
+                        "properties": {
+                            "data": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/productStockReference"
+                                }
+                            }
+                        },
+                        "type": "object"
+                    }
+                ]
+            },
+            "productStockReferenceReference": {
+                "title": "productStockReferenceReference",
+                "properties": {
+                    "companyName": {
+                        "description": "Company name. Is provided for \"reserved\" stock references with orders from other shops.",
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "inboundDeliveryNumber": {
+                        "description": "Inbound delivery number. Is provided for \"incoming\" stock references.",
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "orderNumber": {
+                        "description": "Order number. Is provided for \"reserved\" stock references with an order.",
+                        "type": "string",
+                        "nullable": true
                     }
                 },
                 "type": "object"
@@ -10900,6 +11181,11 @@
                                 "description": "Flag to mark if it is allowed to set a customer's email in a third party app or via the API.\nIf false the shop email will be used as default.",
                                 "type": "boolean",
                                 "nullable": true
+                            },
+                            "orderNotesPrecedingText": {
+                                "description": "Text to be added to the beginning of the orderNotes of every order created for the shop.",
+                                "type": "string",
+                                "nullable": true
                             }
                         },
                         "type": "object",
@@ -11093,6 +11379,12 @@
                             "overwriteCustomerEmailEnabled": {
                                 "description": "Flag to mark if it is allowed to set a customer's email in a third party app or via the API.\nIf false the shop email will be used as default.",
                                 "type": "boolean",
+                                "nullable": true
+                            },
+                            "orderNotesPrecedingText": {
+                                "description": "Text to be added to the beginning of the orderNotes of every order created for the shop.",
+                                "type": "string",
+                                "maxLength": 247,
                                 "nullable": true
                             }
                         },
