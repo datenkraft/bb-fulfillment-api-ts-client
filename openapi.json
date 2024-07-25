@@ -8571,12 +8571,12 @@
                         "nullable": true
                     },
                     "count": {
-                        "description": "Positive number of items to order",
+                        "description": "Positive number of items. Always null for bundles",
                         "type": "integer",
                         "format": "int32"
                     },
                     "externalProductNumber": {
-                        "description": "Product number of the customer",
+                        "description": "Product number of the customer. Not available for order items of type bundle'. Will be dismissed if given.",
                         "type": "string",
                         "maxLength": 255,
                         "nullable": true
@@ -8908,6 +8908,76 @@
                         "type": "object"
                     }
                 ]
+            },
+            "bundledOrderItem": {
+                "title": "bundledOrderItem",
+                "description": "Products included in this bundle. Null for all products not of productType 'bundle'.",
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/baseOrderItem"
+                    },
+                    {
+                        "properties": {
+                            "price": {
+                                "$ref": "#/components/schemas/bundledOrderItemPrice"
+                            },
+                            "canceledCount": {
+                                "description": "Number of canceled items",
+                                "type": "integer",
+                                "format": "int32"
+                            },
+                            "availableCount": {
+                                "description": "Number of available items",
+                                "type": "integer",
+                                "format": "int32"
+                            },
+                            "deliveredCount": {
+                                "description": "Number of delivered items",
+                                "type": "integer",
+                                "format": "int32"
+                            },
+                            "returnedCount": {
+                                "description": "Number of returned items",
+                                "type": "integer",
+                                "format": "int32"
+                            }
+                        },
+                        "type": "object"
+                    }
+                ]
+            },
+            "bundledOrderItemPrice": {
+                "title": "bundledOrderItemPrice",
+                "description": "The selling price of the item.",
+                "properties": {
+                    "value": {
+                        "description": "The price value rounded to 2 decimals with a dot used as separator.",
+                        "type": "number",
+                        "format": "float",
+                        "example": 10.99
+                    },
+                    "type": {
+                        "description": "The price type",
+                        "type": "string",
+                        "enum": [
+                            "net",
+                            "gross"
+                        ],
+                        "example": "gross"
+                    },
+                    "vat": {
+                        "description": "The VAT in percent.",
+                        "type": "number",
+                        "format": "float",
+                        "example": 20
+                    },
+                    "currencyCode": {
+                        "description": "The currency code (ISO 4217)",
+                        "type": "string",
+                        "example": "EUR"
+                    }
+                },
+                "type": "object"
             },
             "collection": {
                 "title": "collection",
@@ -9617,7 +9687,7 @@
                 "nullable": true,
                 "allOf": [
                     {
-                        "$ref": "#/components/schemas/orderPrice"
+                        "$ref": "#/components/schemas/newOrderPrice"
                     },
                     {
                         "properties": {
@@ -9658,6 +9728,44 @@
                         "type": "object"
                     }
                 ]
+            },
+            "newOrderPrice": {
+                "title": "newOrderPrice",
+                "required": [
+                    "value",
+                    "type",
+                    "vat",
+                    "currencyCode"
+                ],
+                "properties": {
+                    "value": {
+                        "description": "The price value rounded to 2 decimals with a dot used as separator. Note: This price value refers to\na single unit and is not an aggregated price value, which may be calculated by multiplying this price\nvalue by the corresponding item count.",
+                        "type": "number",
+                        "format": "float",
+                        "example": 10.99
+                    },
+                    "type": {
+                        "description": "The price type",
+                        "type": "string",
+                        "enum": [
+                            "net",
+                            "gross"
+                        ],
+                        "example": "gross"
+                    },
+                    "vat": {
+                        "description": "The VAT in percent (might be validated for country)",
+                        "type": "number",
+                        "format": "float",
+                        "example": 20
+                    },
+                    "currencyCode": {
+                        "description": "The currency code (ISO 4217)",
+                        "type": "string",
+                        "example": "EUR"
+                    }
+                },
+                "type": "object"
             },
             "newProductDraft": {
                 "title": "newProductDraft",
@@ -10017,22 +10125,22 @@
                     {
                         "properties": {
                             "canceledCount": {
-                                "description": "Number of canceled items",
+                                "description": "Number of canceled items, null for bundles.",
                                 "type": "integer",
                                 "format": "int32"
                             },
                             "availableCount": {
-                                "description": "Number of available items",
+                                "description": "Number of available items, null for bundles.",
                                 "type": "integer",
                                 "format": "int32"
                             },
                             "deliveredCount": {
-                                "description": "Number of delivered items",
+                                "description": "Number of delivered items, null for bundles.",
                                 "type": "integer",
                                 "format": "int32"
                             },
                             "returnedCount": {
-                                "description": "Number of returned items",
+                                "description": "Number of returned items, null for bundles.",
                                 "type": "integer",
                                 "format": "int32"
                             },
@@ -10040,9 +10148,15 @@
                                 "$ref": "#/components/schemas/orderItemPrice"
                             },
                             "options": {
-                                "description": "Additional options (optional, TBD)",
+                                "description": "Additional options",
                                 "type": "object",
                                 "nullable": true
+                            },
+                            "bundledProducts": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/bundledOrderItem"
+                                }
                             }
                         },
                         "type": "object"
@@ -10051,25 +10165,37 @@
             },
             "orderItemPrice": {
                 "title": "orderItemPrice",
-                "description": "The selling price of the item.\\\nNote: This field is required if the delivery address of the order requires customs clearance.",
-                "nullable": true,
-                "allOf": [
-                    {
-                        "$ref": "#/components/schemas/orderPrice"
+                "description": "The selling price of the item.",
+                "properties": {
+                    "value": {
+                        "description": "The price value rounded to 2 decimals with a dot used as separator.\nNote:\n- For Bundles: For products of productType 'bundle' this price value refers to and an aggregated price value\nfor all ordered bundles.\n- Other Products: This price value refers to a single unit and is not an aggregated price value,\nwhich may be calculated by multiplying this price value by the corresponding item count.",
+                        "type": "number",
+                        "format": "float",
+                        "example": 10.99
                     },
-                    {
-                        "properties": {
-                            "vat": {
-                                "description": "The VAT in percent. Can be null in case of bundle products with mixedVAT percentages. (might be validated for country)",
-                                "type": "number",
-                                "format": "float",
-                                "example": 20,
-                                "nullable": true
-                            }
-                        },
-                        "type": "object"
+                    "type": {
+                        "description": "The price type",
+                        "type": "string",
+                        "enum": [
+                            "net",
+                            "gross"
+                        ],
+                        "example": "gross"
+                    },
+                    "vat": {
+                        "description": "The VAT in percent. Null for bundles, bundled products may have divergent VATs. VAT percentages.",
+                        "type": "number",
+                        "format": "float",
+                        "example": 20,
+                        "nullable": true
+                    },
+                    "currencyCode": {
+                        "description": "The currency code (ISO 4217)",
+                        "type": "string",
+                        "example": "EUR"
                     }
-                ]
+                },
+                "type": "object"
             },
             "orderPayment": {
                 "title": "orderPayment",
@@ -10098,7 +10224,7 @@
                 ],
                 "properties": {
                     "value": {
-                        "description": "The price value rounded to 2 decimals with a dot used as separator. Note: This price value refers to\na single unit and is not an aggregated price value, which may be calculated by multiplying this price\nvalue by the corresponding item count.",
+                        "description": "The price value rounded to 2 decimals with a dot used as separator.\nNote:\n- For Bundles: For products of productType 'bundle' this price value refers to and an aggregated price value\nfor all ordered bundles.\n- Other Products: This price value refers to a single unit and is not an aggregated price value,\nwhich may be calculated by multiplying this price value by the corresponding item count.",
                         "type": "number",
                         "format": "float",
                         "example": 10.99
@@ -11052,6 +11178,10 @@
                 "properties": {
                     "productNumber": {
                         "description": "Product number",
+                        "type": "string"
+                    },
+                    "productNumberBundle": {
+                        "description": "Product number of the bundle which the product of the shipment line is part of.",
                         "type": "string"
                     },
                     "count": {

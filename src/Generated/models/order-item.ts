@@ -18,6 +18,9 @@
 import { BaseOrderItem } from './base-order-item';
 // May contain unused imports in some cases
 // @ts-ignore
+import { BundledOrderItem } from './bundled-order-item';
+// May contain unused imports in some cases
+// @ts-ignore
 import { OrderItemAllOf } from './order-item-all-of';
 // May contain unused imports in some cases
 // @ts-ignore

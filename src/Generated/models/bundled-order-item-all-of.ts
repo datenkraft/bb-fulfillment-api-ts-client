@@ -13,45 +13,45 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import { BundledOrderItemPrice } from './bundled-order-item-price';
 
 /**
  * 
  * @export
- * @interface OrderPrice
+ * @interface BundledOrderItemAllOf
  */
-export interface OrderPrice {
+export interface BundledOrderItemAllOf {
     /**
-     * The price value rounded to 2 decimals with a dot used as separator. Note: - For Bundles: For products of productType \'bundle\' this price value refers to and an aggregated price value for all ordered bundles. - Other Products: This price value refers to a single unit and is not an aggregated price value, which may be calculated by multiplying this price value by the corresponding item count.
+     * 
+     * @type {BundledOrderItemPrice}
+     * @memberof BundledOrderItemAllOf
+     */
+    'price'?: BundledOrderItemPrice;
+    /**
+     * Number of canceled items
      * @type {number}
-     * @memberof OrderPrice
+     * @memberof BundledOrderItemAllOf
      */
-    'value': number;
+    'canceledCount'?: number;
     /**
-     * The price type
-     * @type {string}
-     * @memberof OrderPrice
-     */
-    'type': OrderPriceTypeEnum;
-    /**
-     * The VAT in percent (might be validated for country)
+     * Number of available items
      * @type {number}
-     * @memberof OrderPrice
+     * @memberof BundledOrderItemAllOf
      */
-    'vat': number;
+    'availableCount'?: number;
     /**
-     * The currency code (ISO 4217)
-     * @type {string}
-     * @memberof OrderPrice
+     * Number of delivered items
+     * @type {number}
+     * @memberof BundledOrderItemAllOf
      */
-    'currencyCode': string;
+    'deliveredCount'?: number;
+    /**
+     * Number of returned items
+     * @type {number}
+     * @memberof BundledOrderItemAllOf
+     */
+    'returnedCount'?: number;
 }
-
-export const OrderPriceTypeEnum = {
-    Net: 'net',
-    Gross: 'gross',
-    UnknownDefaultOpenApi: '11184809'
-} as const;
-
-export type OrderPriceTypeEnum = typeof OrderPriceTypeEnum[keyof typeof OrderPriceTypeEnum];
-
 

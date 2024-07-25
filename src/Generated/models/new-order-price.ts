@@ -17,14 +17,41 @@
 /**
  * 
  * @export
- * @interface OrderItemPriceAllOf
+ * @interface NewOrderPrice
  */
-export interface OrderItemPriceAllOf {
+export interface NewOrderPrice {
     /**
-     * The VAT in percent. Can be null in case of bundle products with mixedVAT percentages. (might be validated for country)
+     * The price value rounded to 2 decimals with a dot used as separator. Note: This price value refers to a single unit and is not an aggregated price value, which may be calculated by multiplying this price value by the corresponding item count.
      * @type {number}
-     * @memberof OrderItemPriceAllOf
+     * @memberof NewOrderPrice
      */
-    'vat'?: number | null;
+    'value': number;
+    /**
+     * The price type
+     * @type {string}
+     * @memberof NewOrderPrice
+     */
+    'type': NewOrderPriceTypeEnum;
+    /**
+     * The VAT in percent (might be validated for country)
+     * @type {number}
+     * @memberof NewOrderPrice
+     */
+    'vat': number;
+    /**
+     * The currency code (ISO 4217)
+     * @type {string}
+     * @memberof NewOrderPrice
+     */
+    'currencyCode': string;
 }
+
+export const NewOrderPriceTypeEnum = {
+    Net: 'net',
+    Gross: 'gross',
+    UnknownDefaultOpenApi: '11184809'
+} as const;
+
+export type NewOrderPriceTypeEnum = typeof NewOrderPriceTypeEnum[keyof typeof NewOrderPriceTypeEnum];
+
 
