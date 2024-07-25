@@ -1,7 +1,7 @@
 {
   "name": "@datenkraft/bb-fulfillment-api-ts-client",
   "homepage": "https://bitbucket.org/datenkraft/bb-fulfillment-api-ts-client#readme",
-  "version": "2.6.85",
+  "version": "2.6.86",
   "description": "The fulfillment API TS Client enables you to work with the fulfillment API",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
