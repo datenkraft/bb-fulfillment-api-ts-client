@@ -98,6 +98,7 @@ models/new-order-all-of.ts
 models/new-order-customer-all-of.ts
 models/new-order-customer.ts
 models/new-order-item-all-of.ts
+models/new-order-item-all-of1.ts
 models/new-order-item-price-all-of.ts
 models/new-order-item-price.ts
 models/new-order-item.ts

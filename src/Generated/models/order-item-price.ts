@@ -33,7 +33,7 @@ export interface OrderItemPrice {
      */
     'type'?: OrderItemPriceTypeEnum;
     /**
-     * The VAT in percent. Null for bundles, bundled products may have divergent VATs. VAT percentages.
+     * The VAT in percent. Null for bundles, bundled products may have divergent VAT percentages.
      * @type {number}
      * @memberof OrderItemPrice
      */

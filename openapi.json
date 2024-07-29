@@ -8573,7 +8573,8 @@
                     "count": {
                         "description": "Positive number of items. Always null for bundles",
                         "type": "integer",
-                        "format": "int32"
+                        "format": "int32",
+                        "nullable": true
                     },
                     "externalProductNumber": {
                         "description": "Product number of the customer. Not available for order items of type bundle'. Will be dismissed if given.",
@@ -9678,6 +9679,18 @@
                             }
                         },
                         "type": "object"
+                    },
+                    {
+                        "properties": {
+                            "count": {
+                                "description": "Positive number of items.",
+                                "type": "number",
+                                "format": "integer",
+                                "example": 2,
+                                "nullable": false
+                            }
+                        },
+                        "type": "object"
                     }
                 ]
             },
@@ -10127,22 +10140,26 @@
                             "canceledCount": {
                                 "description": "Number of canceled items, null for bundles.",
                                 "type": "integer",
-                                "format": "int32"
+                                "format": "int32",
+                                "nullable": true
                             },
                             "availableCount": {
                                 "description": "Number of available items, null for bundles.",
                                 "type": "integer",
-                                "format": "int32"
+                                "format": "int32",
+                                "nullable": true
                             },
                             "deliveredCount": {
                                 "description": "Number of delivered items, null for bundles.",
                                 "type": "integer",
-                                "format": "int32"
+                                "format": "int32",
+                                "nullable": true
                             },
                             "returnedCount": {
                                 "description": "Number of returned items, null for bundles.",
                                 "type": "integer",
-                                "format": "int32"
+                                "format": "int32",
+                                "nullable": true
                             },
                             "price": {
                                 "$ref": "#/components/schemas/orderItemPrice"
@@ -10156,7 +10173,8 @@
                                 "type": "array",
                                 "items": {
                                     "$ref": "#/components/schemas/bundledOrderItem"
-                                }
+                                },
+                                "nullable": true
                             }
                         },
                         "type": "object"
@@ -10183,7 +10201,7 @@
                         "example": "gross"
                     },
                     "vat": {
-                        "description": "The VAT in percent. Null for bundles, bundled products may have divergent VATs. VAT percentages.",
+                        "description": "The VAT in percent. Null for bundles, bundled products may have divergent VAT percentages.",
                         "type": "number",
                         "format": "float",
                         "example": 20,

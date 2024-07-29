@@ -37,7 +37,7 @@ export interface BaseOrderItem {
      * @type {number}
      * @memberof BaseOrderItem
      */
-    'count'?: number;
+    'count'?: number | null;
     /**
      * Product number of the customer. Not available for order items of type bundle\'. Will be dismissed if given.
      * @type {string}
