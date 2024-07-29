@@ -31,25 +31,25 @@ export interface OrderItemAllOf {
      * @type {number}
      * @memberof OrderItemAllOf
      */
-    'canceledCount'?: number;
+    'canceledCount'?: number | null;
     /**
      * Number of available items, null for bundles.
      * @type {number}
      * @memberof OrderItemAllOf
      */
-    'availableCount'?: number;
+    'availableCount'?: number | null;
     /**
      * Number of delivered items, null for bundles.
      * @type {number}
      * @memberof OrderItemAllOf
      */
-    'deliveredCount'?: number;
+    'deliveredCount'?: number | null;
     /**
      * Number of returned items, null for bundles.
      * @type {number}
      * @memberof OrderItemAllOf
      */
-    'returnedCount'?: number;
+    'returnedCount'?: number | null;
     /**
      * 
      * @type {OrderItemPrice}
@@ -67,6 +67,6 @@ export interface OrderItemAllOf {
      * @type {Array<BundledOrderItem>}
      * @memberof OrderItemAllOf
      */
-    'bundledProducts'?: Array<BundledOrderItem>;
+    'bundledProducts'?: Array<BundledOrderItem> | null;
 }
 

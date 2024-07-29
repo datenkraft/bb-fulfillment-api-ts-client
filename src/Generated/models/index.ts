@@ -69,6 +69,7 @@ export * from './new-order-customer';
 export * from './new-order-customer-all-of';
 export * from './new-order-item';
 export * from './new-order-item-all-of';
+export * from './new-order-item-all-of1';
 export * from './new-order-item-price';
 export * from './new-order-item-price-all-of';
 export * from './new-order-options';

@@ -13,23 +13,18 @@
  */
 
 
-// May contain unused imports in some cases
-// @ts-ignore
-import { BaseOrderItem } from './base-order-item';
-// May contain unused imports in some cases
-// @ts-ignore
-import { NewOrderItemAllOf } from './new-order-item-all-of';
-// May contain unused imports in some cases
-// @ts-ignore
-import { NewOrderItemAllOf1 } from './new-order-item-all-of1';
-// May contain unused imports in some cases
-// @ts-ignore
-import { NewOrderItemPrice } from './new-order-item-price';
 
 /**
- * @type NewOrderItem
+ * 
  * @export
+ * @interface NewOrderItemAllOf1
  */
-export type NewOrderItem = BaseOrderItem & NewOrderItemAllOf & NewOrderItemAllOf1;
-
+export interface NewOrderItemAllOf1 {
+    /**
+     * Positive number of items.
+     * @type {number}
+     * @memberof NewOrderItemAllOf1
+     */
+    'count'?: number;
+}
 
