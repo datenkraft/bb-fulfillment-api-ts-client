@@ -33,11 +33,11 @@ export interface OrderItemAllOf {
      */
     'canceledCount'?: number | null;
     /**
-     * Number of available items, null for bundles.
+     * Number of available items
      * @type {number}
      * @memberof OrderItemAllOf
      */
-    'availableCount'?: number | null;
+    'availableCount'?: number;
     /**
      * Number of delivered items, null for bundles.
      * @type {number}
