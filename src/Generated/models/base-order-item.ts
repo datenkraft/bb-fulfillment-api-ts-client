@@ -33,11 +33,11 @@ export interface BaseOrderItem {
      */
     'title'?: string | null;
     /**
-     * Positive number of items. Always null for bundles
+     * Positive number of items
      * @type {number}
      * @memberof BaseOrderItem
      */
-    'count'?: number | null;
+    'count'?: number;
     /**
      * Product number of the customer. Not available for order items of type bundle\'. Will be dismissed if given.
      * @type {string}
