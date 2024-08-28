@@ -27,11 +27,11 @@ export interface OrderCustomerAddress {
      */
     'street': string;
     /**
-     * Note: Must not contain more than 5 letters
+     * Must not contain more than 5 letters.\\ The field is optional for addresses in certain countries (check with the `GET /country` endpoint), where the street number should be provided in the `street` field.
      * @type {string}
      * @memberof OrderCustomerAddress
      */
-    'streetNumber': string;
+    'streetNumber'?: string | null;
     /**
      * 
      * @type {string}
