@@ -4207,7 +4207,7 @@
                         }
                     },
                     "422": {
-                        "description": "Unprocessable Entity\n\nError codes:\n- PRODUCT_NOT_FOUND: Unknown productNumber.\n- ORDER_CUSTOMS_CLEARANCE_REQUIRED_FIELD_MISSING: A field required for customs clearance is missing.\n- ORDER_NUMBER_STARTS_WITH_RESERVED_NUMBER_PREFIX: The orderNumber starts with a prefix that is reserved for internal references.\n- ORDER_INVALID_CURRENCY_CODE: An invalid currencyCode was given for the delivery country.\n- ORDER_ITEM_NOT_ORDERABLE: A specific orderItem can not be ordered.\n- ORDER_OUTDATED_VAT_FOR_COUNTRY: A given vat value is outdated for the given country.",
+                        "description": "Unprocessable Entity\n\nError codes:\n- PRODUCT_NOT_FOUND: Unknown productNumber.\n- ORDER_CUSTOMS_CLEARANCE_REQUIRED_FIELD_MISSING: A field required for customs clearance is missing.\n- ORDER_NUMBER_STARTS_WITH_RESERVED_NUMBER_PREFIX: The orderNumber starts with a prefix that is reserved for internal references.\n- ORDER_INVALID_CURRENCY_CODE: An invalid currencyCode was given for the delivery country.\n- ORDER_ITEM_NOT_ORDERABLE: A specific orderItem can not be ordered.\n- ORDER_OUTDATED_VAT_FOR_COUNTRY: A given vat value is outdated for the given country.\n- ORDER_STREET_NUMBER_REQUIRED_FOR_COUNTRY_MISSING_IN_DELIVERY_ADDRESS: The street number is required for the given country in the delivery address.\n- ORDER_STREET_NUMBER_REQUIRED_FOR_COUNTRY_MISSING_IN_INVOICE_ADDRESS: The street number is required for the given country in the invoice address.\n- ORDER_PHONE_REQUIRED_FOR_COUNTRY_MISSING: The phone number is required for the given country.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -9027,7 +9027,11 @@
                         "type": "string"
                     },
                     "phoneRequired": {
-                        "description": "Specifies whether or not a phone number is required when using a shipping address in the country",
+                        "description": "Specifies whether or not a phone number is required when using a shipping address in this country",
+                        "type": "boolean"
+                    },
+                    "streetNumberRequired": {
+                        "description": "Specifies whether or not a street number is required for addresses in this country",
                         "type": "boolean"
                     },
                     "customsClearanceRequired": {
@@ -10024,7 +10028,6 @@
                 "title": "orderCustomerAddress",
                 "required": [
                     "street",
-                    "streetNumber",
                     "zipCode",
                     "city",
                     "countryCode"
@@ -10035,9 +10038,10 @@
                         "maxLength": 35
                     },
                     "streetNumber": {
-                        "description": "Note: Must not contain more than 5 letters",
+                        "description": "Must not contain more than 5 letters.\\\nThe field is optional for addresses in certain countries (check with the `GET /country` endpoint), where the\nstreet number should be provided in the `street` field.",
                         "type": "string",
-                        "maxLength": 15
+                        "maxLength": 15,
+                        "nullable": true
                     },
                     "zipCode": {
                         "type": "string"
