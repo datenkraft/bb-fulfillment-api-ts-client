@@ -94,6 +94,7 @@ export const ReconsignmentReconsignmentReasonEnum = {
     TransportLost: 'reconsignment_transport_lost',
     TransportNopickup: 'reconsignment_transport_nopickup',
     TransportRejected: 'reconsignment_transport_rejected',
+    TransportDelayed: 'reconsignment_transport_delayed',
     UnknownDefaultOpenApi: '11184809'
 } as const;
 
