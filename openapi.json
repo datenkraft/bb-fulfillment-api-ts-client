@@ -10806,7 +10806,8 @@
                             "reconsignment_transport_invalidaddress",
                             "reconsignment_transport_lost",
                             "reconsignment_transport_nopickup",
-                            "reconsignment_transport_rejected"
+                            "reconsignment_transport_rejected",
+                            "reconsignment_transport_delayed"
                         ]
                     },
                     "orderNumber": {
