@@ -13,21 +13,24 @@
  */
 
 
-// May contain unused imports in some cases
-// @ts-ignore
-import { ReconsignmentLine } from './reconsignment-line';
 
 /**
- * 
+ * Data to represent a single piece of content in a new reconsignment announcement
  * @export
- * @interface ReconsignmentLineCollectionAllOf
+ * @interface ReconsignmentAnnouncementLineBundledProduct
  */
-export interface ReconsignmentLineCollectionAllOf {
+export interface ReconsignmentAnnouncementLineBundledProduct {
     /**
      * 
-     * @type {Array<ReconsignmentLine>}
-     * @memberof ReconsignmentLineCollectionAllOf
+     * @type {string}
+     * @memberof ReconsignmentAnnouncementLineBundledProduct
      */
-    'data'?: Array<ReconsignmentLine>;
+    'productNumber': string;
+    /**
+     * Number of items included in the reconsignment announcement.
+     * @type {number}
+     * @memberof ReconsignmentAnnouncementLineBundledProduct
+     */
+    'count': number;
 }
 

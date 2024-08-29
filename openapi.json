@@ -6529,7 +6529,7 @@
                     {
                         "name": "pageSize",
                         "in": "query",
-                        "description": "The maximum size per page is 100. Default is 20.",
+                        "description": "The maximum size per page is 100. Default is 100.",
                         "schema": {
                             "type": "integer"
                         },
@@ -10910,32 +10910,50 @@
             },
             "reconsignmentAnnouncementLine": {
                 "title": "reconsignmentAnnouncementLine",
-                "description": "Data to represent a single piece of content in a reconsignment announcement",
-                "allOf": [
-                    {
-                        "$ref": "#/components/schemas/newReconsignmentAnnouncementLine"
-                    }
-                ]
-            },
-            "reconsignmentAnnouncementLineCollection": {
-                "title": "reconsignmentAnnouncementLineCollection",
-                "description": "A collection of reconsignment announcement lines",
-                "allOf": [
-                    {
-                        "$ref": "#/components/schemas/collection"
+                "description": "Data to represent a single piece or a bundle of content in a reconsignment announcement",
+                "required": [
+                    "productNumber"
+                ],
+                "properties": {
+                    "productNumber": {
+                        "description": "",
+                        "type": "string"
                     },
-                    {
-                        "properties": {
-                            "data": {
-                                "type": "array",
-                                "items": {
-                                    "$ref": "#/components/schemas/reconsignmentAnnouncementLine"
-                                }
-                            }
+                    "count": {
+                        "description": "Number of items included in the reconsignment announcement. Null for bundles",
+                        "type": "integer",
+                        "format": "int32",
+                        "nullable": true
+                    },
+                    "bundledProducts": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/reconsignmentAnnouncementLineBundledProduct"
                         },
-                        "type": "object"
+                        "nullable": true
                     }
-                ]
+                },
+                "type": "object"
+            },
+            "reconsignmentAnnouncementLineBundledProduct": {
+                "title": "reconsignmentAnnouncementLineBundledProduct",
+                "description": "Data to represent a single piece of content in a new reconsignment announcement",
+                "required": [
+                    "productNumber",
+                    "count"
+                ],
+                "properties": {
+                    "productNumber": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "count": {
+                        "description": "Number of items included in the reconsignment announcement.",
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                },
+                "type": "object"
             },
             "reconsignmentAnnouncementPaginatedCollection": {
                 "title": "reconsignmentAnnouncementPaginatedCollection",
@@ -10979,6 +10997,52 @@
             },
             "reconsignmentLine": {
                 "title": "reconsignmentLine",
+                "description": "One piece of content or a bundle in a reconsignment.",
+                "properties": {
+                    "productNumber": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "putBackToStockCount": {
+                        "description": "Number of items which have been put back to stock. Null for bundles",
+                        "type": "integer",
+                        "format": "int32",
+                        "nullable": true
+                    },
+                    "count": {
+                        "description": "Number of items included in the reconsignment. Null for bundles",
+                        "type": "integer",
+                        "format": "int32",
+                        "nullable": true
+                    },
+                    "unit": {
+                        "description": "Product unit.  Null for bundles",
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "productWeight": {
+                        "description": "Weight of a single product.  Null for bundles",
+                        "type": "number",
+                        "format": "float",
+                        "nullable": true
+                    },
+                    "productWeightUnit": {
+                        "description": "Product weight unit.  Null for bundles",
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "bundledProducts": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/reconsignmentLineBundledProduct"
+                        },
+                        "nullable": true
+                    }
+                },
+                "type": "object"
+            },
+            "reconsignmentLineBundledProduct": {
+                "title": "reconsignmentLineBundledProduct",
                 "description": "One piece of content in a reconsignment.",
                 "properties": {
                     "productNumber": {
@@ -11010,26 +11074,6 @@
                     }
                 },
                 "type": "object"
-            },
-            "reconsignmentLineCollection": {
-                "title": "reconsignmentLineCollection",
-                "description": "A collection of reconsignment lines",
-                "allOf": [
-                    {
-                        "$ref": "#/components/schemas/collection"
-                    },
-                    {
-                        "properties": {
-                            "data": {
-                                "type": "array",
-                                "items": {
-                                    "$ref": "#/components/schemas/reconsignmentLine"
-                                }
-                            }
-                        },
-                        "type": "object"
-                    }
-                ]
             },
             "reportClearingOrder": {
                 "description": "An order for clearing",
