@@ -13,9 +13,12 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import { ReconsignmentLineBundledProduct } from './reconsignment-line-bundled-product';
 
 /**
- * One piece of content in a reconsignment.
+ * One piece of content or a bundle in a reconsignment.
  * @export
  * @interface ReconsignmentLine
  */
@@ -27,34 +30,40 @@ export interface ReconsignmentLine {
      */
     'productNumber'?: string;
     /**
-     * Number of items which have been put back to stock.
+     * Number of items which have been put back to stock. Null for bundles
      * @type {number}
      * @memberof ReconsignmentLine
      */
-    'putBackToStockCount'?: number;
+    'putBackToStockCount'?: number | null;
     /**
-     * Number of items included in the reconsignment.
+     * Number of items included in the reconsignment. Null for bundles
      * @type {number}
      * @memberof ReconsignmentLine
      */
-    'count'?: number;
+    'count'?: number | null;
     /**
-     * Product unit
+     * Product unit.  Null for bundles
      * @type {string}
      * @memberof ReconsignmentLine
      */
-    'unit'?: string;
+    'unit'?: string | null;
     /**
-     * Weight of a single product
+     * Weight of a single product.  Null for bundles
      * @type {number}
      * @memberof ReconsignmentLine
      */
-    'productWeight'?: number;
+    'productWeight'?: number | null;
     /**
-     * Product weight unit
+     * Product weight unit.  Null for bundles
      * @type {string}
      * @memberof ReconsignmentLine
      */
-    'productWeightUnit'?: string;
+    'productWeightUnit'?: string | null;
+    /**
+     * 
+     * @type {Array<ReconsignmentLineBundledProduct>}
+     * @memberof ReconsignmentLine
+     */
+    'bundledProducts'?: Array<ReconsignmentLineBundledProduct> | null;
 }
 

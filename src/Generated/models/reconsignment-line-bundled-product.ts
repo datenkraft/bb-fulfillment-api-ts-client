@@ -13,33 +13,48 @@
  */
 
 
-// May contain unused imports in some cases
-// @ts-ignore
-import { ReconsignmentAnnouncementLineBundledProduct } from './reconsignment-announcement-line-bundled-product';
 
 /**
- * Data to represent a single piece or a bundle of content in a reconsignment announcement
+ * One piece of content in a reconsignment.
  * @export
- * @interface ReconsignmentAnnouncementLine
+ * @interface ReconsignmentLineBundledProduct
  */
-export interface ReconsignmentAnnouncementLine {
+export interface ReconsignmentLineBundledProduct {
     /**
      * 
      * @type {string}
-     * @memberof ReconsignmentAnnouncementLine
+     * @memberof ReconsignmentLineBundledProduct
      */
-    'productNumber': string;
+    'productNumber'?: string;
     /**
-     * Number of items included in the reconsignment announcement. Null for bundles
+     * Number of items which have been put back to stock.
      * @type {number}
-     * @memberof ReconsignmentAnnouncementLine
+     * @memberof ReconsignmentLineBundledProduct
      */
-    'count'?: number | null;
+    'putBackToStockCount'?: number;
     /**
-     * 
-     * @type {Array<ReconsignmentAnnouncementLineBundledProduct>}
-     * @memberof ReconsignmentAnnouncementLine
+     * Number of items included in the reconsignment.
+     * @type {number}
+     * @memberof ReconsignmentLineBundledProduct
      */
-    'bundledProducts'?: Array<ReconsignmentAnnouncementLineBundledProduct> | null;
+    'count'?: number;
+    /**
+     * Product unit
+     * @type {string}
+     * @memberof ReconsignmentLineBundledProduct
+     */
+    'unit'?: string;
+    /**
+     * Weight of a single product
+     * @type {number}
+     * @memberof ReconsignmentLineBundledProduct
+     */
+    'productWeight'?: number;
+    /**
+     * Product weight unit
+     * @type {string}
+     * @memberof ReconsignmentLineBundledProduct
+     */
+    'productWeightUnit'?: string;
 }
 
