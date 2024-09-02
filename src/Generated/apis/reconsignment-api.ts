@@ -92,12 +92,14 @@ export const ReconsignmentApiAxiosParamCreator = function (configuration?: Confi
          * @param {string} [sortBy] Sort the results by one or more comma-separated sort criteria, with the criterion specified first having priority.  Available sort orders: - asc: ascending order - desc: descending order  Available fields for sorting: - reconsignmentDate  The default sort order is reconsignmentDate:desc.
          * @param {string} [filterShopCode] The shop to which the reconsignments belongs to.
          * @param {string} [filterOrderNumber] The order number which the reconsignments belong to.
+         * @param {boolean} [filterReconsignmentWasPreAnnounced] Filter for reconsignments that were pre-announced (true) or not (false).
+         * @param {string} [filterSearch] Filter for reconsignment search.  Usage: - Provide one or multiple search terms (min. 2 characters) to filter results. - Multiple search terms are separated by spaces. - The search is not case sensitive. - The search is enabled for the fields \&#39;reconsignmentNumber\&#39; and \&#39;orderNumber\&#39;. - Each search term filters the response for reconsignment announcements where at least one of the fields contains the search term. - For example, filter[search]&#x3D;\&#39;term1 term2\&#39; will filter the result for reconsignment announcements where \&#39;term1\&#39; is found in any field and \&#39;term2\&#39; is also found in any field.\\ If only \&#39;term1\&#39; or \&#39;term2\&#39; is found in the fields, the reconsignment announcement is not included in the results.
          * @param {string} [filterReconsignmentDateFrom] filter for reconsignmentDate format in ISO 8601 with UTC offsets
          * @param {string} [filterReconsignmentDateTo] filter for reconsignmentDate format in ISO 8601 with UTC offsets
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getReconsignmentCollection: async (page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', sortBy?: string, filterShopCode?: string, filterOrderNumber?: string, filterReconsignmentDateFrom?: string, filterReconsignmentDateTo?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getReconsignmentCollection: async (page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', sortBy?: string, filterShopCode?: string, filterOrderNumber?: string, filterReconsignmentWasPreAnnounced?: boolean, filterSearch?: string, filterReconsignmentDateFrom?: string, filterReconsignmentDateTo?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/reconsignment`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -140,6 +142,14 @@ export const ReconsignmentApiAxiosParamCreator = function (configuration?: Confi
 
             if (filterOrderNumber !== undefined) {
                 localVarQueryParameter['filter[orderNumber]'] = filterOrderNumber;
+            }
+
+            if (filterReconsignmentWasPreAnnounced !== undefined) {
+                localVarQueryParameter['filter[reconsignmentWasPreAnnounced]'] = filterReconsignmentWasPreAnnounced;
+            }
+
+            if (filterSearch !== undefined) {
+                localVarQueryParameter['filter[search]'] = filterSearch;
             }
 
             if (filterReconsignmentDateFrom !== undefined) {
@@ -196,13 +206,15 @@ export const ReconsignmentApiFp = function(configuration?: Configuration) {
          * @param {string} [sortBy] Sort the results by one or more comma-separated sort criteria, with the criterion specified first having priority.  Available sort orders: - asc: ascending order - desc: descending order  Available fields for sorting: - reconsignmentDate  The default sort order is reconsignmentDate:desc.
          * @param {string} [filterShopCode] The shop to which the reconsignments belongs to.
          * @param {string} [filterOrderNumber] The order number which the reconsignments belong to.
+         * @param {boolean} [filterReconsignmentWasPreAnnounced] Filter for reconsignments that were pre-announced (true) or not (false).
+         * @param {string} [filterSearch] Filter for reconsignment search.  Usage: - Provide one or multiple search terms (min. 2 characters) to filter results. - Multiple search terms are separated by spaces. - The search is not case sensitive. - The search is enabled for the fields \&#39;reconsignmentNumber\&#39; and \&#39;orderNumber\&#39;. - Each search term filters the response for reconsignment announcements where at least one of the fields contains the search term. - For example, filter[search]&#x3D;\&#39;term1 term2\&#39; will filter the result for reconsignment announcements where \&#39;term1\&#39; is found in any field and \&#39;term2\&#39; is also found in any field.\\ If only \&#39;term1\&#39; or \&#39;term2\&#39; is found in the fields, the reconsignment announcement is not included in the results.
          * @param {string} [filterReconsignmentDateFrom] filter for reconsignmentDate format in ISO 8601 with UTC offsets
          * @param {string} [filterReconsignmentDateTo] filter for reconsignmentDate format in ISO 8601 with UTC offsets
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getReconsignmentCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', sortBy?: string, filterShopCode?: string, filterOrderNumber?: string, filterReconsignmentDateFrom?: string, filterReconsignmentDateTo?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ReconsignmentCollection>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getReconsignmentCollection(page, pageSize, paginationMode, sortBy, filterShopCode, filterOrderNumber, filterReconsignmentDateFrom, filterReconsignmentDateTo, options);
+        async getReconsignmentCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', sortBy?: string, filterShopCode?: string, filterOrderNumber?: string, filterReconsignmentWasPreAnnounced?: boolean, filterSearch?: string, filterReconsignmentDateFrom?: string, filterReconsignmentDateTo?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ReconsignmentCollection>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getReconsignmentCollection(page, pageSize, paginationMode, sortBy, filterShopCode, filterOrderNumber, filterReconsignmentWasPreAnnounced, filterSearch, filterReconsignmentDateFrom, filterReconsignmentDateTo, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -235,13 +247,15 @@ export const ReconsignmentApiFactory = function (configuration?: Configuration, 
          * @param {string} [sortBy] Sort the results by one or more comma-separated sort criteria, with the criterion specified first having priority.  Available sort orders: - asc: ascending order - desc: descending order  Available fields for sorting: - reconsignmentDate  The default sort order is reconsignmentDate:desc.
          * @param {string} [filterShopCode] The shop to which the reconsignments belongs to.
          * @param {string} [filterOrderNumber] The order number which the reconsignments belong to.
+         * @param {boolean} [filterReconsignmentWasPreAnnounced] Filter for reconsignments that were pre-announced (true) or not (false).
+         * @param {string} [filterSearch] Filter for reconsignment search.  Usage: - Provide one or multiple search terms (min. 2 characters) to filter results. - Multiple search terms are separated by spaces. - The search is not case sensitive. - The search is enabled for the fields \&#39;reconsignmentNumber\&#39; and \&#39;orderNumber\&#39;. - Each search term filters the response for reconsignment announcements where at least one of the fields contains the search term. - For example, filter[search]&#x3D;\&#39;term1 term2\&#39; will filter the result for reconsignment announcements where \&#39;term1\&#39; is found in any field and \&#39;term2\&#39; is also found in any field.\\ If only \&#39;term1\&#39; or \&#39;term2\&#39; is found in the fields, the reconsignment announcement is not included in the results.
          * @param {string} [filterReconsignmentDateFrom] filter for reconsignmentDate format in ISO 8601 with UTC offsets
          * @param {string} [filterReconsignmentDateTo] filter for reconsignmentDate format in ISO 8601 with UTC offsets
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getReconsignmentCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', sortBy?: string, filterShopCode?: string, filterOrderNumber?: string, filterReconsignmentDateFrom?: string, filterReconsignmentDateTo?: string, options?: any): AxiosPromise<ReconsignmentCollection> {
-            return localVarFp.getReconsignmentCollection(page, pageSize, paginationMode, sortBy, filterShopCode, filterOrderNumber, filterReconsignmentDateFrom, filterReconsignmentDateTo, options).then((request) => request(axios, basePath));
+        getReconsignmentCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', sortBy?: string, filterShopCode?: string, filterOrderNumber?: string, filterReconsignmentWasPreAnnounced?: boolean, filterSearch?: string, filterReconsignmentDateFrom?: string, filterReconsignmentDateTo?: string, options?: any): AxiosPromise<ReconsignmentCollection> {
+            return localVarFp.getReconsignmentCollection(page, pageSize, paginationMode, sortBy, filterShopCode, filterOrderNumber, filterReconsignmentWasPreAnnounced, filterSearch, filterReconsignmentDateFrom, filterReconsignmentDateTo, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -272,13 +286,15 @@ export interface ReconsignmentApiInterface {
      * @param {string} [sortBy] Sort the results by one or more comma-separated sort criteria, with the criterion specified first having priority.  Available sort orders: - asc: ascending order - desc: descending order  Available fields for sorting: - reconsignmentDate  The default sort order is reconsignmentDate:desc.
      * @param {string} [filterShopCode] The shop to which the reconsignments belongs to.
      * @param {string} [filterOrderNumber] The order number which the reconsignments belong to.
+     * @param {boolean} [filterReconsignmentWasPreAnnounced] Filter for reconsignments that were pre-announced (true) or not (false).
+     * @param {string} [filterSearch] Filter for reconsignment search.  Usage: - Provide one or multiple search terms (min. 2 characters) to filter results. - Multiple search terms are separated by spaces. - The search is not case sensitive. - The search is enabled for the fields \&#39;reconsignmentNumber\&#39; and \&#39;orderNumber\&#39;. - Each search term filters the response for reconsignment announcements where at least one of the fields contains the search term. - For example, filter[search]&#x3D;\&#39;term1 term2\&#39; will filter the result for reconsignment announcements where \&#39;term1\&#39; is found in any field and \&#39;term2\&#39; is also found in any field.\\ If only \&#39;term1\&#39; or \&#39;term2\&#39; is found in the fields, the reconsignment announcement is not included in the results.
      * @param {string} [filterReconsignmentDateFrom] filter for reconsignmentDate format in ISO 8601 with UTC offsets
      * @param {string} [filterReconsignmentDateTo] filter for reconsignmentDate format in ISO 8601 with UTC offsets
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ReconsignmentApiInterface
      */
-    getReconsignmentCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', sortBy?: string, filterShopCode?: string, filterOrderNumber?: string, filterReconsignmentDateFrom?: string, filterReconsignmentDateTo?: string, options?: AxiosRequestConfig): AxiosPromise<ReconsignmentCollection>;
+    getReconsignmentCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', sortBy?: string, filterShopCode?: string, filterOrderNumber?: string, filterReconsignmentWasPreAnnounced?: boolean, filterSearch?: string, filterReconsignmentDateFrom?: string, filterReconsignmentDateTo?: string, options?: AxiosRequestConfig): AxiosPromise<ReconsignmentCollection>;
 
 }
 
@@ -311,13 +327,15 @@ export class ReconsignmentApi extends BaseAPI implements ReconsignmentApiInterfa
      * @param {string} [sortBy] Sort the results by one or more comma-separated sort criteria, with the criterion specified first having priority.  Available sort orders: - asc: ascending order - desc: descending order  Available fields for sorting: - reconsignmentDate  The default sort order is reconsignmentDate:desc.
      * @param {string} [filterShopCode] The shop to which the reconsignments belongs to.
      * @param {string} [filterOrderNumber] The order number which the reconsignments belong to.
+     * @param {boolean} [filterReconsignmentWasPreAnnounced] Filter for reconsignments that were pre-announced (true) or not (false).
+     * @param {string} [filterSearch] Filter for reconsignment search.  Usage: - Provide one or multiple search terms (min. 2 characters) to filter results. - Multiple search terms are separated by spaces. - The search is not case sensitive. - The search is enabled for the fields \&#39;reconsignmentNumber\&#39; and \&#39;orderNumber\&#39;. - Each search term filters the response for reconsignment announcements where at least one of the fields contains the search term. - For example, filter[search]&#x3D;\&#39;term1 term2\&#39; will filter the result for reconsignment announcements where \&#39;term1\&#39; is found in any field and \&#39;term2\&#39; is also found in any field.\\ If only \&#39;term1\&#39; or \&#39;term2\&#39; is found in the fields, the reconsignment announcement is not included in the results.
      * @param {string} [filterReconsignmentDateFrom] filter for reconsignmentDate format in ISO 8601 with UTC offsets
      * @param {string} [filterReconsignmentDateTo] filter for reconsignmentDate format in ISO 8601 with UTC offsets
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ReconsignmentApi
      */
-    public getReconsignmentCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', sortBy?: string, filterShopCode?: string, filterOrderNumber?: string, filterReconsignmentDateFrom?: string, filterReconsignmentDateTo?: string, options?: AxiosRequestConfig) {
-        return ReconsignmentApiFp(this.configuration).getReconsignmentCollection(page, pageSize, paginationMode, sortBy, filterShopCode, filterOrderNumber, filterReconsignmentDateFrom, filterReconsignmentDateTo, options).then((request) => request(this.axios, this.basePath));
+    public getReconsignmentCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', sortBy?: string, filterShopCode?: string, filterOrderNumber?: string, filterReconsignmentWasPreAnnounced?: boolean, filterSearch?: string, filterReconsignmentDateFrom?: string, filterReconsignmentDateTo?: string, options?: AxiosRequestConfig) {
+        return ReconsignmentApiFp(this.configuration).getReconsignmentCollection(page, pageSize, paginationMode, sortBy, filterShopCode, filterOrderNumber, filterReconsignmentWasPreAnnounced, filterSearch, filterReconsignmentDateFrom, filterReconsignmentDateTo, options).then((request) => request(this.axios, this.basePath));
     }
 }
