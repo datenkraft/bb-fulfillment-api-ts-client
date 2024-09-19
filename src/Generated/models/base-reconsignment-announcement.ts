@@ -26,6 +26,12 @@ export interface BaseReconsignmentAnnouncement {
      * @memberof BaseReconsignmentAnnouncement
      */
     'reconsignmentReason'?: BaseReconsignmentAnnouncementReconsignmentReasonEnum;
+    /**
+     * Additional options for a reconsignment announcement (optional).
+     * @type {any}
+     * @memberof BaseReconsignmentAnnouncement
+     */
+    'options'?: any | null;
 }
 
 export const BaseReconsignmentAnnouncementReconsignmentReasonEnum = {

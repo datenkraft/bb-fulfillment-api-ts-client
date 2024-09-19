@@ -2284,16 +2284,6 @@
                             }
                         }
                     },
-                    "409": {
-                        "description": "Conflict\n\nError codes:\n- SHIPMENT_WITH_STEVE_EXTERNAL_SHIPMENT_ID_ALREADY_EXISTS: Another shipment with the given shipmentId already exists.",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/errorResponse"
-                                }
-                            }
-                        }
-                    },
                     "422": {
                         "description": "Unprocessable Entity\n\nError codes:\n- SHOP_NOT_FOUND: Shop not found.",
                         "content": {
@@ -8867,9 +8857,18 @@
                             "reconsignment_product_damage",
                             "reconsignment_other_unknown"
                         ]
+                    },
+                    "options": {
+                        "$ref": "#/components/schemas/baseReconsignmentAnnouncementOptions"
                     }
                 },
                 "type": "object"
+            },
+            "baseReconsignmentAnnouncementOptions": {
+                "title": "baseReconsignmentAnnouncementOptions",
+                "description": "Additional options for a reconsignment announcement (optional).",
+                "properties": {},
+                "nullable": true
             },
             "batch": {
                 "title": "batch",
@@ -9879,6 +9878,9 @@
                                 "items": {
                                     "$ref": "#/components/schemas/newReconsignmentAnnouncementLine"
                                 }
+                            },
+                            "options": {
+                                "$ref": "#/components/schemas/newReconsignmentAnnouncementOptions"
                             }
                         },
                         "type": "object"
@@ -9904,6 +9906,29 @@
                     }
                 },
                 "type": "object"
+            },
+            "newReconsignmentAnnouncementOptions": {
+                "title": "newReconsignmentAnnouncementOptions",
+                "description": "Additional options for a new reconsignment announcement (optional).",
+                "nullable": true,
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/baseReconsignmentAnnouncementOptions"
+                    },
+                    {
+                        "properties": {
+                            "autoProcessState": {
+                                "description": "By setting this option, the reconsignment will be processed into a completed state.\nThis option is NOT available in the production systems.\nThe autoprocessing of the state happens after the reconsignment announcement has been successfully created.\nIn case of any errors during the autoprocessing of the state, error messages are shown but the\nreconsignment announcements will still have been created and will not be rolled back.\nAvailable states:\n- reconsignment_completed: The reconsignment is completed.",
+                                "type": "string",
+                                "enum": [
+                                    "reconsignment_completed"
+                                ],
+                                "nullable": true
+                            }
+                        },
+                        "type": "object"
+                    }
+                ]
             },
             "order": {
                 "title": "order",
