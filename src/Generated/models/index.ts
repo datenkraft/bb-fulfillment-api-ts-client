@@ -81,6 +81,8 @@ export * from './new-product-stock-add';
 export * from './new-reconsignment-announcement';
 export * from './new-reconsignment-announcement-all-of';
 export * from './new-reconsignment-announcement-line';
+export * from './new-reconsignment-announcement-options';
+export * from './new-reconsignment-announcement-options-all-of';
 export * from './order';
 export * from './order-all-of';
 export * from './order-bulk-import207-response-inner';

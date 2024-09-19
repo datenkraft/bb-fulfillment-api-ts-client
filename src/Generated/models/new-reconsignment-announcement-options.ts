@@ -15,28 +15,13 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { NewReconsignmentAnnouncementLine } from './new-reconsignment-announcement-line';
-// May contain unused imports in some cases
-// @ts-ignore
-import { NewReconsignmentAnnouncementOptions } from './new-reconsignment-announcement-options';
+import { NewReconsignmentAnnouncementOptionsAllOf } from './new-reconsignment-announcement-options-all-of';
 
 /**
- * 
+ * @type NewReconsignmentAnnouncementOptions
+ * Additional options for a new reconsignment announcement (optional).
  * @export
- * @interface NewReconsignmentAnnouncementAllOf
  */
-export interface NewReconsignmentAnnouncementAllOf {
-    /**
-     * 
-     * @type {Array<NewReconsignmentAnnouncementLine>}
-     * @memberof NewReconsignmentAnnouncementAllOf
-     */
-    'reconsignmentAnnouncementLines'?: Array<NewReconsignmentAnnouncementLine>;
-    /**
-     * 
-     * @type {NewReconsignmentAnnouncementOptions}
-     * @memberof NewReconsignmentAnnouncementAllOf
-     */
-    'options'?: NewReconsignmentAnnouncementOptions | null;
-}
+export type NewReconsignmentAnnouncementOptions = NewReconsignmentAnnouncementOptionsAllOf;
+
 

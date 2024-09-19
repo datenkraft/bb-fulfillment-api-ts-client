@@ -22,6 +22,9 @@ import { NewReconsignmentAnnouncementAllOf } from './new-reconsignment-announcem
 // May contain unused imports in some cases
 // @ts-ignore
 import { NewReconsignmentAnnouncementLine } from './new-reconsignment-announcement-line';
+// May contain unused imports in some cases
+// @ts-ignore
+import { NewReconsignmentAnnouncementOptions } from './new-reconsignment-announcement-options';
 
 /**
  * @type NewReconsignmentAnnouncement
