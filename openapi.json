@@ -1767,8 +1767,8 @@
                 "tags": [
                     "delivery"
                 ],
-                "summary": "Get deliveries filtered by a single or multiple order numbers.",
-                "description": "Get deliveries filtered by a single or multiple order numbers.",
+                "summary": "Get a collection of deliveries.",
+                "description": "Get a collection of deliveries.",
                 "operationId": "getDeliveryCollection",
                 "parameters": [
                     {
@@ -1819,7 +1819,7 @@
                         "name": "filter[orderNumber]",
                         "in": "query",
                         "description": "A filter for a single order number or multiple order numbers separated by a comma.\n- The filter can contain a maximum of 100 order numbers.\n- The order numbers in the filter must be unique.\n- A single order number can have a maximum length of 59 characters.",
-                        "required": true,
+                        "required": false,
                         "schema": {
                             "type": "string"
                         },
@@ -1833,6 +1833,16 @@
                                 "value": "100123123,100123124"
                             }
                         }
+                    },
+                    {
+                        "name": "filter[allShipmentsHaveExternalShipmentIds]",
+                        "in": "query",
+                        "description": "A filter to only return deliveries where all shipments have an external shipment ID or not.",
+                        "required": false,
+                        "schema": {
+                            "type": "boolean"
+                        },
+                        "example": true
                     }
                 ],
                 "responses": {
