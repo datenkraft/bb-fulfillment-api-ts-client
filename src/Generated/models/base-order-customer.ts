@@ -57,7 +57,7 @@ export interface BaseOrderCustomer {
      */
     'email'?: string | null;
     /**
-     * The customer\'s phone number, preferably in the DIN 5008 format, like: +43 2236 123456-7890
+     * The customer\\\'s phone number. Note that only the DIN 5008 format is supported.\\ Parenthesis for example are not valid.
      * @type {string}
      * @memberof BaseOrderCustomer
      */
