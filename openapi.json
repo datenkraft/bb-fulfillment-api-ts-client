@@ -8529,9 +8529,10 @@
                         "nullable": true
                     },
                     "phone": {
-                        "description": "The customer's phone number, preferably in the DIN 5008 format, like: +43 2236 123456-7890",
+                        "description": "The customer\\'s phone number. Note that only the DIN 5008 format is supported.\\\nParenthesis for example are not valid.",
                         "type": "string",
                         "maxLength": 150,
+                        "example": "+43 2236 123456-7890",
                         "nullable": true
                     },
                     "firstname": {
