@@ -42,12 +42,6 @@ export interface Country {
      */
     'phoneRequired'?: boolean;
     /**
-     * Specifies whether or not a street number is required for addresses in this country
-     * @type {boolean}
-     * @memberof Country
-     */
-    'streetNumberRequired'?: boolean;
-    /**
      * Specifies whether or not customs clearance is necessary
      * @type {boolean}
      * @memberof Country
