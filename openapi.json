@@ -3913,6 +3913,25 @@
                         "example": "2020-04-24T12:27:00+02:00"
                     },
                     {
+                        "name": "filter[orderNumber]",
+                        "in": "query",
+                        "description": "Filter for order number(s).",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "examples": {
+                            "single order number": {
+                                "summary": "single order number",
+                                "value": "test-1"
+                            },
+                            "multiple order numbers": {
+                                "summary": "multiple order numbers",
+                                "value": "test-1,test-2,test-3"
+                            }
+                        }
+                    },
+                    {
                         "name": "filter[search]",
                         "in": "query",
                         "description": "filter for order search.\n\nUsage:\n- Provide one or multiple search terms (min. 2 characters) to filter results.\n- Multiple search terms are separated by spaces.\n- The search is not case sensitive.\n- The search is enabled for the fields 'externalOrderReference', 'orderNumber' and the tracking code of\nthe orders shipments.\n- Each search term filters the response for orders where at least one of the fields contains the search\nterm.\n- For example, filter[search]='term1 term2' will filter the result for orders where 'term1' is found in\nany field and 'term2' is also found in any field.\nIf only 'term1' or 'term2' is found in the fields, the order is not included in the results.",
