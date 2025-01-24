@@ -4226,7 +4226,7 @@
                         }
                     },
                     "422": {
-                        "description": "Unprocessable Entity\n\nError codes:\n- PRODUCT_NOT_FOUND: Unknown productNumber.\n- ORDER_CUSTOMS_CLEARANCE_REQUIRED_FIELD_MISSING: A field required for customs clearance is missing.\n- ORDER_NUMBER_STARTS_WITH_RESERVED_NUMBER_PREFIX: The orderNumber starts with a prefix that is reserved for internal references.\n- ORDER_INVALID_CURRENCY_CODE: An invalid currencyCode was given for the delivery country.\n- ORDER_ITEM_NOT_ORDERABLE: A specific orderItem can not be ordered.\n- ORDER_OUTDATED_VAT_FOR_COUNTRY: A given vat value is outdated for the given country.\n- ORDER_PHONE_REQUIRED_FOR_COUNTRY_MISSING: The phone number is required for the given country.",
+                        "description": "Unprocessable Entity\n\nError codes:\n- PRODUCT_NOT_FOUND: Unknown productNumber.\n- ORDER_CUSTOMS_CLEARANCE_REQUIRED_FIELD_MISSING: A field required for customs clearance is missing.\n- ORDER_NUMBER_STARTS_WITH_RESERVED_NUMBER_PREFIX: The orderNumber starts with a prefix that is reserved for internal references.\n- ORDER_INVALID_CURRENCY_CODE: An invalid currencyCode was given for the delivery country.\n- ORDER_ITEM_NOT_ORDERABLE: A specific orderItem can not be ordered.\n- ORDER_OUTDATED_VAT_FOR_COUNTRY: A given vat value is outdated for the given country.\n- ORDER_PHONE_REQUIRED_FOR_COUNTRY_MISSING: The phone number is required for the given country.\n- ORDER_INVOICE_ADDRESS_PROVINCE_CODE_NOT_DETECTED: The province code of the invoice address could not be detected.\n- ORDER_DELIVERY_ADDRESS_PROVINCE_CODE_NOT_DETECTED: The province code of the delivery address could not be detected.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -6077,7 +6077,7 @@
                         "required": true,
                         "schema": {
                             "type": "string",
-                            "maxLength": 57
+                            "maxLength": 248
                         }
                     },
                     {
@@ -6199,7 +6199,7 @@
                         "required": true,
                         "schema": {
                             "type": "string",
-                            "maxLength": 57
+                            "maxLength": 248
                         }
                     },
                     {
@@ -6384,7 +6384,7 @@
                         "required": true,
                         "schema": {
                             "type": "string",
-                            "maxLength": 250
+                            "maxLength": 248
                         }
                     },
                     {
@@ -8864,6 +8864,30 @@
                     "brandNumber": {
                         "description": "Number of the brand.\\\nValid brands can be queried with a GET /brand call",
                         "type": "string"
+                    },
+                    "dimensions": {
+                        "description": "Dimensions of the product",
+                        "properties": {
+                            "width": {
+                                "description": "Width of the product",
+                                "type": "number",
+                                "format": "float",
+                                "nullable": true
+                            },
+                            "height": {
+                                "description": "Height of the product",
+                                "type": "number",
+                                "format": "float",
+                                "nullable": true
+                            },
+                            "depth": {
+                                "description": "Depth of the product",
+                                "type": "number",
+                                "format": "float",
+                                "nullable": true
+                            }
+                        },
+                        "type": "object"
                     }
                 },
                 "type": "object"
@@ -9852,7 +9876,7 @@
                             "productNumber": {
                                 "description": "Product number to be used for the final product\\\nThis number is user defined, must be unique and has a maximum length (check maxLength field).\\\nPlease ensure that it does not contain any of the following character sequences:\n'/', '%2F', '%2f', '?', '%3F', '%3f',\n'#', '%23', '&', '%26'. Using any of these will result in the route not being handled correctly.",
                                 "type": "string",
-                                "maxLength": 57
+                                "maxLength": 248
                             },
                             "contentsUnit": {
                                 "description": "Unit of the product contents.\\\nMust be one of the available values specified in the enum.",
