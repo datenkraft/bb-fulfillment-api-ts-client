@@ -13,23 +13,30 @@
  */
 
 
-// May contain unused imports in some cases
-// @ts-ignore
-import { BaseProductDraftDimensions } from './base-product-draft-dimensions';
-// May contain unused imports in some cases
-// @ts-ignore
-import { ErrorResponse } from './error-response';
-// May contain unused imports in some cases
-// @ts-ignore
-import { ModelError } from './model-error';
-// May contain unused imports in some cases
-// @ts-ignore
-import { ProductDraft } from './product-draft';
 
 /**
- * @type ProductDraftBulkImport207ResponseInnerContent
+ * Dimensions of the product
  * @export
+ * @interface BaseProductDraftDimensions
  */
-export type ProductDraftBulkImport207ResponseInnerContent = ErrorResponse | ProductDraft;
-
+export interface BaseProductDraftDimensions {
+    /**
+     * Width of the product
+     * @type {number}
+     * @memberof BaseProductDraftDimensions
+     */
+    'width'?: number | null;
+    /**
+     * Height of the product
+     * @type {number}
+     * @memberof BaseProductDraftDimensions
+     */
+    'height'?: number | null;
+    /**
+     * Depth of the product
+     * @type {number}
+     * @memberof BaseProductDraftDimensions
+     */
+    'depth'?: number | null;
+}
 

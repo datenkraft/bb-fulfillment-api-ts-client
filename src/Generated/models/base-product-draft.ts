@@ -13,6 +13,9 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import { BaseProductDraftDimensions } from './base-product-draft-dimensions';
 
 /**
  * Data to represent a product draft
@@ -98,6 +101,12 @@ export interface BaseProductDraft {
      * @memberof BaseProductDraft
      */
     'brandNumber'?: string;
+    /**
+     * 
+     * @type {BaseProductDraftDimensions}
+     * @memberof BaseProductDraft
+     */
+    'dimensions'?: BaseProductDraftDimensions;
 }
 
 export const BaseProductDraftTaxCodeEnum = {
