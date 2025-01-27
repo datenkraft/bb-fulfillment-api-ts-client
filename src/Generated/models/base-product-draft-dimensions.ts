@@ -21,19 +21,19 @@
  */
 export interface BaseProductDraftDimensions {
     /**
-     * Width of the product
+     * Width of the product in cm
      * @type {number}
      * @memberof BaseProductDraftDimensions
      */
     'width'?: number | null;
     /**
-     * Height of the product
+     * Height of the product in cm
      * @type {number}
      * @memberof BaseProductDraftDimensions
      */
     'height'?: number | null;
     /**
-     * Depth of the product
+     * Depth of the product in cm
      * @type {number}
      * @memberof BaseProductDraftDimensions
      */
