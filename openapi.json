@@ -8869,19 +8869,19 @@
                         "description": "Dimensions of the product",
                         "properties": {
                             "width": {
-                                "description": "Width of the product",
+                                "description": "Width of the product in cm",
                                 "type": "number",
                                 "format": "float",
                                 "nullable": true
                             },
                             "height": {
-                                "description": "Height of the product",
+                                "description": "Height of the product in cm",
                                 "type": "number",
                                 "format": "float",
                                 "nullable": true
                             },
                             "depth": {
-                                "description": "Depth of the product",
+                                "description": "Depth of the product in cm",
                                 "type": "number",
                                 "format": "float",
                                 "nullable": true
