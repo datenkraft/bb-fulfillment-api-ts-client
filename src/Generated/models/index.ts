@@ -115,6 +115,8 @@ export * from './product-draft-bulk-import207-response-inner';
 export * from './product-draft-bulk-import207-response-inner-content';
 export * from './product-draft-collection';
 export * from './product-draft-collection-all-of';
+export * from './product-image';
+export * from './product-image-detail';
 export * from './product-journal';
 export * from './product-journal-collection';
 export * from './product-journal-collection-all-of';

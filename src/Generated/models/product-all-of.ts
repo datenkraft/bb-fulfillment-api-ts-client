@@ -15,6 +15,9 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
+import { ProductImage } from './product-image';
+// May contain unused imports in some cases
+// @ts-ignore
 import { ReservedFor } from './reserved-for';
 
 /**
@@ -53,6 +56,12 @@ export interface ProductAllOf {
      * @memberof ProductAllOf
      */
     'productTitleOriginal'?: string | null;
+    /**
+     * 
+     * @type {ProductImage}
+     * @memberof ProductAllOf
+     */
+    'image'?: ProductImage;
     /**
      * Short description of the article.
      * @type {string}

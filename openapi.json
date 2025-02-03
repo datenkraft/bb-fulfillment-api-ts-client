@@ -5977,6 +5977,16 @@
                             ]
                         },
                         "example": "standard"
+                    },
+                    {
+                        "name": "filter[hasProductImage]",
+                        "in": "query",
+                        "description": "A filter to only return products where a product image is present.",
+                        "required": false,
+                        "schema": {
+                            "type": "boolean"
+                        },
+                        "example": true
                     }
                 ],
                 "responses": {
@@ -10430,6 +10440,9 @@
                                 "maxLength": 255,
                                 "nullable": true
                             },
+                            "image": {
+                                "$ref": "#/components/schemas/productImage"
+                            },
                             "articleShortDescription": {
                                 "description": "Short description of the article.",
                                 "type": "string",
@@ -10645,6 +10658,41 @@
                         "type": "object"
                     }
                 ]
+            },
+            "productImage": {
+                "title": "productImage",
+                "properties": {
+                    "detail": {
+                        "$ref": "#/components/schemas/productImageDetail"
+                    },
+                    "thumbnail": {
+                        "$ref": "#/components/schemas/productImageDetail"
+                    }
+                },
+                "type": "object"
+            },
+            "productImageDetail": {
+                "title": "productImageDetail",
+                "properties": {
+                    "url": {
+                        "description": "The url of the image.",
+                        "type": "string",
+                        "example": "https://dk.nice-cdn.com/upload/image/product/large/default/2142_2f8dcsdf.150x150.jpg"
+                    },
+                    "width": {
+                        "description": "Width of the image.",
+                        "type": "integer",
+                        "format": "int32",
+                        "example": 150
+                    },
+                    "height": {
+                        "description": "Height of the image",
+                        "type": "integer",
+                        "format": "int32",
+                        "example": 150
+                    }
+                },
+                "type": "object"
             },
             "productJournal": {
                 "title": "productJournal",
