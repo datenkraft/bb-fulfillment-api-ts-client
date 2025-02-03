@@ -13,33 +13,30 @@
  */
 
 
-// May contain unused imports in some cases
-// @ts-ignore
-import { BaseProduct } from './base-product';
-// May contain unused imports in some cases
-// @ts-ignore
-import { BaseProductVariantGroup } from './base-product-variant-group';
-// May contain unused imports in some cases
-// @ts-ignore
-import { ProductAllOf } from './product-all-of';
-// May contain unused imports in some cases
-// @ts-ignore
-import { ProductBundledProduct } from './product-bundled-product';
-// May contain unused imports in some cases
-// @ts-ignore
-import { ProductImage } from './product-image';
-// May contain unused imports in some cases
-// @ts-ignore
-import { ProductPurchasePrice } from './product-purchase-price';
-// May contain unused imports in some cases
-// @ts-ignore
-import { ReservedFor } from './reserved-for';
 
 /**
- * @type Product
- * Data to represent a product
+ * 
  * @export
+ * @interface ProductImageDetail
  */
-export type Product = BaseProduct & ProductAllOf;
-
+export interface ProductImageDetail {
+    /**
+     * The url of the image.
+     * @type {string}
+     * @memberof ProductImageDetail
+     */
+    'url'?: string;
+    /**
+     * Width of the image.
+     * @type {number}
+     * @memberof ProductImageDetail
+     */
+    'width'?: number;
+    /**
+     * Height of the image
+     * @type {number}
+     * @memberof ProductImageDetail
+     */
+    'height'?: number;
+}
 
