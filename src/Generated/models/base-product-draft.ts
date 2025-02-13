@@ -58,7 +58,7 @@ export interface BaseProductDraft {
      * @type {string}
      * @memberof BaseProductDraft
      */
-    'ean'?: string | null;
+    'ean'?: string;
     /**
      * The TARIC Code of the product
      * @type {string}

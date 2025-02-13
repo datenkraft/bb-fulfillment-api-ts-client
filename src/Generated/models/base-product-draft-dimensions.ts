@@ -25,18 +25,18 @@ export interface BaseProductDraftDimensions {
      * @type {number}
      * @memberof BaseProductDraftDimensions
      */
-    'width'?: number | null;
+    'width': number;
     /**
      * Height of the product in cm
      * @type {number}
      * @memberof BaseProductDraftDimensions
      */
-    'height'?: number | null;
+    'height': number;
     /**
      * Depth of the product in cm
      * @type {number}
      * @memberof BaseProductDraftDimensions
      */
-    'depth'?: number | null;
+    'depth': number;
 }
 

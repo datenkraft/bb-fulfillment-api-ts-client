@@ -8833,8 +8833,7 @@
                     "ean": {
                         "description": "The EAN of the product",
                         "type": "string",
-                        "maxLength": 255,
-                        "nullable": true
+                        "maxLength": 255
                     },
                     "taricCode": {
                         "description": "The TARIC Code of the product",
@@ -8877,24 +8876,26 @@
                     },
                     "dimensions": {
                         "description": "Dimensions of the product",
+                        "required": [
+                            "width",
+                            "height",
+                            "depth"
+                        ],
                         "properties": {
                             "width": {
                                 "description": "Width of the product in cm",
                                 "type": "number",
-                                "format": "float",
-                                "nullable": true
+                                "format": "float"
                             },
                             "height": {
                                 "description": "Height of the product in cm",
                                 "type": "number",
-                                "format": "float",
-                                "nullable": true
+                                "format": "float"
                             },
                             "depth": {
                                 "description": "Depth of the product in cm",
                                 "type": "number",
-                                "format": "float",
-                                "nullable": true
+                                "format": "float"
                             }
                         },
                         "type": "object"
@@ -9875,7 +9876,9 @@
                     "taxCode",
                     "supplierNumber",
                     "manufacturerNumber",
-                    "brandNumber"
+                    "brandNumber",
+                    "dimensions",
+                    "ean"
                 ],
                 "allOf": [
                     {
