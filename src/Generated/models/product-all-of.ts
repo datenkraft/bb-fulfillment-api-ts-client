@@ -158,6 +158,12 @@ export interface ProductAllOf {
      * @memberof ProductAllOf
      */
     'reservedFor'?: ReservedFor;
+    /**
+     * Options for the product - no_external_sales: Product is not available for external sales - no_airmail_shipping: Product is not available for airmail shipping - serial_number_required: Serial number is required for the product - shipped_in_original_packaging: Product is shipped in original packaging - extra_shipping_only: Extra shipping is required for the product - dangerous_goods: Product is classified as dangerous goods - trace_code_required: Trace code is required for the product - refrigerated_product: Product is refrigerated - heat_sensitive: Product is heat sensitive - spedition_shipping_only: Product is only available for spedition shipping - batch_required: Batch is required for the product
+     * @type {string}
+     * @memberof ProductAllOf
+     */
+    'productOptions'?: ProductAllOfProductOptionsEnum;
 }
 
 export const ProductAllOfProductStatusEnum = {
@@ -200,5 +206,21 @@ export const ProductAllOfOverbookingPossibilityStatusEnum = {
 } as const;
 
 export type ProductAllOfOverbookingPossibilityStatusEnum = typeof ProductAllOfOverbookingPossibilityStatusEnum[keyof typeof ProductAllOfOverbookingPossibilityStatusEnum];
+export const ProductAllOfProductOptionsEnum = {
+    NoExternalSales: 'no_external_sales',
+    NoAirmailShipping: 'no_airmail_shipping',
+    SerialNumberRequired: 'serial_number_required',
+    ShippedInOriginalPackaging: 'shipped_in_original_packaging',
+    ExtraShippingOnly: 'extra_shipping_only',
+    DangerousGoods: 'dangerous_goods',
+    TraceCodeRequired: 'trace_code_required',
+    RefrigeratedProduct: 'refrigerated_product',
+    HeatSensitive: 'heat_sensitive',
+    SpeditionShippingOnly: 'spedition_shipping_only',
+    BatchRequired: 'batch_required',
+    UnknownDefaultOpenApi: '11184809'
+} as const;
+
+export type ProductAllOfProductOptionsEnum = typeof ProductAllOfProductOptionsEnum[keyof typeof ProductAllOfProductOptionsEnum];
 
 

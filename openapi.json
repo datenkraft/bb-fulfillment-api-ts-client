@@ -10537,6 +10537,23 @@
                             },
                             "reservedFor": {
                                 "$ref": "#/components/schemas/reservedFor"
+                            },
+                            "productOptions": {
+                                "description": "Options for the product\n- no_external_sales: Product is not available for external sales\n- no_airmail_shipping: Product is not available for airmail shipping\n- serial_number_required: Serial number is required for the product\n- shipped_in_original_packaging: Product is shipped in original packaging\n- extra_shipping_only: Extra shipping is required for the product\n- dangerous_goods: Product is classified as dangerous goods\n- trace_code_required: Trace code is required for the product\n- refrigerated_product: Product is refrigerated\n- heat_sensitive: Product is heat sensitive\n- spedition_shipping_only: Product is only available for spedition shipping\n- batch_required: Batch is required for the product",
+                                "type": "string",
+                                "enum": [
+                                    "no_external_sales",
+                                    "no_airmail_shipping",
+                                    "serial_number_required",
+                                    "shipped_in_original_packaging",
+                                    "extra_shipping_only",
+                                    "dangerous_goods",
+                                    "trace_code_required",
+                                    "refrigerated_product",
+                                    "heat_sensitive",
+                                    "spedition_shipping_only",
+                                    "batch_required"
+                                ]
                             }
                         },
                         "type": "object"
