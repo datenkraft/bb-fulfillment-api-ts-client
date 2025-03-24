@@ -72,11 +72,23 @@ export interface BaseOrder {
      */
     'orderNotes'?: string | null;
     /**
-     * The amazon order id.
+     * The Amazon seller order id used when the order is coming from the Amazon marketplace.
      * @type {string}
      * @memberof BaseOrder
      */
-    'amazonOrderId'?: string | null;
+    'amazonSellerOrderId'?: string | null;
+    /**
+     * The Amazon vendor order id when sending orders to an Amazon warehouse for sales by Amazon.
+     * @type {string}
+     * @memberof BaseOrder
+     */
+    'amazonVendorOrderId'?: string | null;
+    /**
+     * The Amazon seller shipment id when sending a delivery to an Amazon warehouse for fulfillment by Amazon.
+     * @type {string}
+     * @memberof BaseOrder
+     */
+    'amazonFbaShipmentId'?: string | null;
     /**
      * 
      * @type {Array<OrderDeliveryCosts>}
