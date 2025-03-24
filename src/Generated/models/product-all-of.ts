@@ -160,10 +160,10 @@ export interface ProductAllOf {
     'reservedFor'?: ReservedFor;
     /**
      * Options for the product - no_external_sales: Product is not available for external sales - no_airmail_shipping: Product is not available for airmail shipping - serial_number_required: Serial number is required for the product - shipped_in_original_packaging: Product is shipped in original packaging - extra_shipping_only: Extra shipping is required for the product - dangerous_goods: Product is classified as dangerous goods - trace_code_required: Trace code is required for the product - refrigerated_product: Product is refrigerated - heat_sensitive: Product is heat sensitive - spedition_shipping_only: Product is only available for spedition shipping - batch_required: Batch is required for the product
-     * @type {string}
+     * @type {Array<string>}
      * @memberof ProductAllOf
      */
-    'productOptions'?: ProductAllOfProductOptionsEnum;
+    'productOptions'?: Array<ProductAllOfProductOptionsEnum>;
 }
 
 export const ProductAllOfProductStatusEnum = {
