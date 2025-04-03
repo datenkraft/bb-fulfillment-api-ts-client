@@ -17,25 +17,25 @@
 /**
  * Dimensions of the product
  * @export
- * @interface BaseProductDraftDimensions
+ * @interface BaseProductDimensions
  */
-export interface BaseProductDraftDimensions {
+export interface BaseProductDimensions {
     /**
      * Width of the product in cm
      * @type {number}
-     * @memberof BaseProductDraftDimensions
+     * @memberof BaseProductDimensions
      */
     'width': number;
     /**
      * Height of the product in cm
      * @type {number}
-     * @memberof BaseProductDraftDimensions
+     * @memberof BaseProductDimensions
      */
     'height': number;
     /**
      * Depth of the product in cm
      * @type {number}
-     * @memberof BaseProductDraftDimensions
+     * @memberof BaseProductDimensions
      */
     'depth': number;
 }

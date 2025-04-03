@@ -8809,6 +8809,32 @@
                         "type": "string",
                         "default": "de",
                         "nullable": true
+                    },
+                    "dimensions": {
+                        "description": "Dimensions of the product",
+                        "required": [
+                            "width",
+                            "height",
+                            "depth"
+                        ],
+                        "properties": {
+                            "width": {
+                                "description": "Width of the product in cm",
+                                "type": "number",
+                                "format": "float"
+                            },
+                            "height": {
+                                "description": "Height of the product in cm",
+                                "type": "number",
+                                "format": "float"
+                            },
+                            "depth": {
+                                "description": "Depth of the product in cm",
+                                "type": "number",
+                                "format": "float"
+                            }
+                        },
+                        "type": "object"
                     }
                 },
                 "type": "object"

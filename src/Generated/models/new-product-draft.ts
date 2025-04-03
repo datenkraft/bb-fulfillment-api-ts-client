@@ -15,10 +15,10 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { BaseProductDraft } from './base-product-draft';
+import { BaseProductDimensions } from './base-product-dimensions';
 // May contain unused imports in some cases
 // @ts-ignore
-import { BaseProductDraftDimensions } from './base-product-draft-dimensions';
+import { BaseProductDraft } from './base-product-draft';
 // May contain unused imports in some cases
 // @ts-ignore
 import { NewProductDraftAllOf } from './new-product-draft-all-of';

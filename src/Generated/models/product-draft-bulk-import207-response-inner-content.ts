@@ -15,7 +15,7 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { BaseProductDraftDimensions } from './base-product-draft-dimensions';
+import { BaseProductDimensions } from './base-product-dimensions';
 // May contain unused imports in some cases
 // @ts-ignore
 import { ErrorResponse } from './error-response';
