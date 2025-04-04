@@ -133,7 +133,7 @@ export interface BaseProduct {
      * @type {BaseProductDimensions}
      * @memberof BaseProduct
      */
-    'dimensions'?: BaseProductDimensions;
+    'dimensions'?: BaseProductDimensions | null;
 }
 
 export const BaseProductProductTypeEnum = {
