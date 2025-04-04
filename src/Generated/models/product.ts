@@ -18,6 +18,9 @@
 import { BaseProduct } from './base-product';
 // May contain unused imports in some cases
 // @ts-ignore
+import { BaseProductDimensions } from './base-product-dimensions';
+// May contain unused imports in some cases
+// @ts-ignore
 import { BaseProductVariantGroup } from './base-product-variant-group';
 // May contain unused imports in some cases
 // @ts-ignore
