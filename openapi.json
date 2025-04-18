@@ -8885,7 +8885,7 @@
                         "nullable": false
                     },
                     "listPriceEUR": {
-                        "description": "The net list price of the product in EUR",
+                        "description": "The gross list price of the product in EUR",
                         "type": "number",
                         "format": "float"
                     },
@@ -10507,6 +10507,15 @@
                                 "type": "number",
                                 "format": "float",
                                 "nullable": true
+                            },
+                            "priceType": {
+                                "description": "Gross or net.",
+                                "type": "string",
+                                "default": "gross",
+                                "enum": [
+                                    "net",
+                                    "gross"
+                                ]
                             },
                             "taxCode": {
                                 "description": "One of the available tax codes.\n- default: Default tax rate (in e.g. Austria 20 %)\n- reduced1: 1st reduced tax rate (in e.g. Austria 13 %)\n- reduced2: 2nd reduced tax rate (in e.g. Austria 10 %)\n- none: not taxable (0%)\n\nNote: This can be null if the tax code could not be determined.",

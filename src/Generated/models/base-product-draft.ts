@@ -72,7 +72,7 @@ export interface BaseProductDraft {
      */
     'supplierPurchasePriceEUR'?: number;
     /**
-     * The net list price of the product in EUR
+     * The gross list price of the product in EUR
      * @type {number}
      * @memberof BaseProductDraft
      */
