@@ -42,19 +42,19 @@ export interface Stock {
      */
     'reserved'?: number;
     /**
-     * Amount available for orders - the reserved amount for ongoing orders is subtracted - if the overbookingPossibilityStatus is \'only_inbound_deliveries\', the incoming amount is added
+     * Amount available for orders - the reserved amount for ongoing orders is subtracted - includes the incoming amount if the overbookingPossibilityStatus is \'only_inbound_deliveries\'
      * @type {number}
      * @memberof Stock
      */
     'available'?: number;
     /**
-     * Amount of ongoing inbound deliveries
+     * Amount in ongoing inbound deliveries and processed in the receiving area but not yet stocked
      * @type {number}
      * @memberof Stock
      */
     'incoming'?: number;
     /**
-     * Amount processed in the receiving area but not yet shelved
+     * Amount processed in the receiving area but not yet stocked
      * @type {number}
      * @memberof Stock
      */
