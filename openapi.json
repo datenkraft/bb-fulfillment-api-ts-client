@@ -10563,15 +10563,15 @@
                                 "type": "integer"
                             },
                             "available": {
-                                "description": "Amount available for orders\n- the reserved amount for ongoing orders is subtracted\n- if the overbookingPossibilityStatus is 'only_inbound_deliveries', the incoming amount is added",
+                                "description": "Amount available for orders\n- the reserved amount for ongoing orders is subtracted\n- includes the incoming amount if the overbookingPossibilityStatus is 'only_inbound_deliveries'",
                                 "type": "integer"
                             },
                             "incoming": {
-                                "description": "Amount of ongoing inbound deliveries",
+                                "description": "Amount in ongoing inbound deliveries and processed in the receiving area but not yet stocked",
                                 "type": "integer"
                             },
                             "locked": {
-                                "description": "Amount processed in the receiving area but not yet shelved",
+                                "description": "Amount processed in the receiving area but not yet stocked",
                                 "type": "integer"
                             },
                             "overbookingPossibilityStatus": {
@@ -11641,15 +11641,15 @@
                         "type": "integer"
                     },
                     "available": {
-                        "description": "Amount available for orders\n- the reserved amount for ongoing orders is subtracted\n- if the overbookingPossibilityStatus is 'only_inbound_deliveries', the incoming amount is added",
+                        "description": "Amount available for orders\n- the reserved amount for ongoing orders is subtracted\n- includes the incoming amount if the overbookingPossibilityStatus is 'only_inbound_deliveries'",
                         "type": "integer"
                     },
                     "incoming": {
-                        "description": "Amount of ongoing inbound deliveries",
+                        "description": "Amount in ongoing inbound deliveries and processed in the receiving area but not yet stocked",
                         "type": "integer"
                     },
                     "locked": {
-                        "description": "Amount processed in the receiving area but not yet shelved",
+                        "description": "Amount processed in the receiving area but not yet stocked",
                         "type": "integer"
                     },
                     "overbookingPossibilityStatus": {
