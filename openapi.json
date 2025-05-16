@@ -7701,30 +7701,6 @@
                         }
                     },
                     {
-                        "name": "filter[meta][shopifyDefaultShop]",
-                        "in": "query",
-                        "description": "A filter for Shopify default shops.\\\nNote: For shops that are part of a Shopify installation that uses multiple shops,\nonly shops where meta.shopifyShopDefault is true will be considered as default shops.\\\nAll shops that are used for a single shop Shopify installation will also be considered as default shops.",
-                        "required": false,
-                        "schema": {
-                            "type": "boolean"
-                        }
-                    },
-                    {
-                        "name": "filter[meta][shopifyOrderCountryCode]",
-                        "in": "query",
-                        "description": "A filter for the Shopify order country code (ISO 3166-1 alpha-2).",
-                        "required": false,
-                        "schema": {
-                            "type": "string"
-                        },
-                        "examples": {
-                            "AT": {
-                                "summary": "Austria",
-                                "value": "AT"
-                            }
-                        }
-                    },
-                    {
                         "name": "filter[shopCode]",
                         "in": "query",
                         "description": "A filter for one or more shopCode(s) of the shop(s) (optional).",
@@ -11551,23 +11527,6 @@
                                 "description": "Flag to mark if a test suffix should be added to internal references.",
                                 "type": "boolean",
                                 "default": false,
-                                "nullable": true
-                            },
-                            "shopifyMultiShop": {
-                                "description": "Flag to mark the shop as part of a Shopify installation that uses multiple shops.",
-                                "type": "boolean",
-                                "default": false,
-                                "nullable": true
-                            },
-                            "shopifyDefaultShop": {
-                                "description": "Flag to mark the shop as the default shop for a Shopify installation that uses multiple shops.\\\nThe default shop is used for e.g. fetching stock levels.",
-                                "type": "boolean",
-                                "default": true,
-                                "nullable": true
-                            },
-                            "shopifyOrderCountryCode": {
-                                "description": "The order country code (ISO 3166-1 alpha-2) to identify which shop to use in a Shopify installation\nthat uses multiple shops.\\\nIf a Shopify order matches this country code, it will be assigned to this shop.",
-                                "type": "string",
                                 "nullable": true
                             },
                             "invoiceEnabled": {
