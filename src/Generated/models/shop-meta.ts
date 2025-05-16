@@ -53,24 +53,6 @@ export interface ShopMeta {
      */
     'addTestSuffixToInternalReference'?: boolean | null;
     /**
-     * Flag to mark the shop as part of a Shopify installation that uses multiple shops.
-     * @type {boolean}
-     * @memberof ShopMeta
-     */
-    'shopifyMultiShop'?: boolean | null;
-    /**
-     * Flag to mark the shop as the default shop for a Shopify installation that uses multiple shops.\\ The default shop is used for e.g. fetching stock levels.
-     * @type {boolean}
-     * @memberof ShopMeta
-     */
-    'shopifyDefaultShop'?: boolean | null;
-    /**
-     * The order country code (ISO 3166-1 alpha-2) to identify which shop to use in a Shopify installation that uses multiple shops.\\ If a Shopify order matches this country code, it will be assigned to this shop.
-     * @type {string}
-     * @memberof ShopMeta
-     */
-    'shopifyOrderCountryCode'?: string | null;
-    /**
      * Flag to indicate whether firstname, lastname, and invoiceAddress fields are available for order customers or not.
      * @type {boolean}
      * @memberof ShopMeta
