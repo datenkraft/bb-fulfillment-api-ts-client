@@ -47,10 +47,11 @@ export const ShopApiAxiosParamCreator = function (configuration?: Configuration)
          * @param {string} [filterMetaShopifyShopDomain] A filter for the Shopify hostname of the shop.
          * @param {string} [filterShopCode] A filter for one or more shopCode(s) of the shop(s) (optional).
          * @param {string} [filterProjectId] A filter for the projectId of a shop (optional).
+         * @param {boolean} [filterIsActive] A filter to only return shops that are active or not.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getShopCollection: async (page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterMetaShopifyShopDomain?: string, filterShopCode?: string, filterProjectId?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getShopCollection: async (page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterMetaShopifyShopDomain?: string, filterShopCode?: string, filterProjectId?: string, filterIsActive?: boolean, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/shop`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -93,6 +94,10 @@ export const ShopApiAxiosParamCreator = function (configuration?: Configuration)
 
             if (filterProjectId !== undefined) {
                 localVarQueryParameter['filter[projectId]'] = filterProjectId;
+            }
+
+            if (filterIsActive !== undefined) {
+                localVarQueryParameter['filter[isActive]'] = filterIsActive;
             }
 
 
@@ -173,11 +178,12 @@ export const ShopApiFp = function(configuration?: Configuration) {
          * @param {string} [filterMetaShopifyShopDomain] A filter for the Shopify hostname of the shop.
          * @param {string} [filterShopCode] A filter for one or more shopCode(s) of the shop(s) (optional).
          * @param {string} [filterProjectId] A filter for the projectId of a shop (optional).
+         * @param {boolean} [filterIsActive] A filter to only return shops that are active or not.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getShopCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterMetaShopifyShopDomain?: string, filterShopCode?: string, filterProjectId?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ShopCollection>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getShopCollection(page, pageSize, paginationMode, filterMetaShopifyShopDomain, filterShopCode, filterProjectId, options);
+        async getShopCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterMetaShopifyShopDomain?: string, filterShopCode?: string, filterProjectId?: string, filterIsActive?: boolean, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ShopCollection>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getShopCollection(page, pageSize, paginationMode, filterMetaShopifyShopDomain, filterShopCode, filterProjectId, filterIsActive, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -211,11 +217,12 @@ export const ShopApiFactory = function (configuration?: Configuration, basePath?
          * @param {string} [filterMetaShopifyShopDomain] A filter for the Shopify hostname of the shop.
          * @param {string} [filterShopCode] A filter for one or more shopCode(s) of the shop(s) (optional).
          * @param {string} [filterProjectId] A filter for the projectId of a shop (optional).
+         * @param {boolean} [filterIsActive] A filter to only return shops that are active or not.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getShopCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterMetaShopifyShopDomain?: string, filterShopCode?: string, filterProjectId?: string, options?: any): AxiosPromise<ShopCollection> {
-            return localVarFp.getShopCollection(page, pageSize, paginationMode, filterMetaShopifyShopDomain, filterShopCode, filterProjectId, options).then((request) => request(axios, basePath));
+        getShopCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterMetaShopifyShopDomain?: string, filterShopCode?: string, filterProjectId?: string, filterIsActive?: boolean, options?: any): AxiosPromise<ShopCollection> {
+            return localVarFp.getShopCollection(page, pageSize, paginationMode, filterMetaShopifyShopDomain, filterShopCode, filterProjectId, filterIsActive, options).then((request) => request(axios, basePath));
         },
         /**
          * Set one or more fields of a shop. Only a limited set of fields can be updated.
@@ -246,11 +253,12 @@ export interface ShopApiInterface {
      * @param {string} [filterMetaShopifyShopDomain] A filter for the Shopify hostname of the shop.
      * @param {string} [filterShopCode] A filter for one or more shopCode(s) of the shop(s) (optional).
      * @param {string} [filterProjectId] A filter for the projectId of a shop (optional).
+     * @param {boolean} [filterIsActive] A filter to only return shops that are active or not.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ShopApiInterface
      */
-    getShopCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterMetaShopifyShopDomain?: string, filterShopCode?: string, filterProjectId?: string, options?: AxiosRequestConfig): AxiosPromise<ShopCollection>;
+    getShopCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterMetaShopifyShopDomain?: string, filterShopCode?: string, filterProjectId?: string, filterIsActive?: boolean, options?: AxiosRequestConfig): AxiosPromise<ShopCollection>;
 
     /**
      * Set one or more fields of a shop. Only a limited set of fields can be updated.
@@ -281,12 +289,13 @@ export class ShopApi extends BaseAPI implements ShopApiInterface {
      * @param {string} [filterMetaShopifyShopDomain] A filter for the Shopify hostname of the shop.
      * @param {string} [filterShopCode] A filter for one or more shopCode(s) of the shop(s) (optional).
      * @param {string} [filterProjectId] A filter for the projectId of a shop (optional).
+     * @param {boolean} [filterIsActive] A filter to only return shops that are active or not.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ShopApi
      */
-    public getShopCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterMetaShopifyShopDomain?: string, filterShopCode?: string, filterProjectId?: string, options?: AxiosRequestConfig) {
-        return ShopApiFp(this.configuration).getShopCollection(page, pageSize, paginationMode, filterMetaShopifyShopDomain, filterShopCode, filterProjectId, options).then((request) => request(this.axios, this.basePath));
+    public getShopCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', filterMetaShopifyShopDomain?: string, filterShopCode?: string, filterProjectId?: string, filterIsActive?: boolean, options?: AxiosRequestConfig) {
+        return ShopApiFp(this.configuration).getShopCollection(page, pageSize, paginationMode, filterMetaShopifyShopDomain, filterShopCode, filterProjectId, filterIsActive, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

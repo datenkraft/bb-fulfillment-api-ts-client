@@ -30,6 +30,12 @@ export interface UpdateShop {
      */
     'email'?: string;
     /**
+     * Is the shop active?
+     * @type {boolean}
+     * @memberof UpdateShop
+     */
+    'active'?: boolean;
+    /**
      * 
      * @type {UpdateShopMeta}
      * @memberof UpdateShop
