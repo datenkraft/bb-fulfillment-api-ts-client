@@ -54,6 +54,12 @@ export interface Shop {
      */
     'projectId'?: string;
     /**
+     * Is the shop active?
+     * @type {boolean}
+     * @memberof Shop
+     */
+    'active'?: boolean;
+    /**
      * 
      * @type {ShopMeta}
      * @memberof Shop
