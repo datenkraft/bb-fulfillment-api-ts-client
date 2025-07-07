@@ -17,54 +17,54 @@
 /**
  * Meta data of the shop.
  * @export
- * @interface UpdateShopMeta
+ * @interface UpdateShopAllOfMeta
  */
-export interface UpdateShopMeta {
+export interface UpdateShopAllOfMeta {
     /**
      * Domain of the Shopify shop.
      * @type {string}
-     * @memberof UpdateShopMeta
+     * @memberof UpdateShopAllOfMeta
      */
     'shopifyShopDomain'?: string | null;
     /**
      * Date time to indicate that the test shop will not be reset before this time.
      * @type {string}
-     * @memberof UpdateShopMeta
+     * @memberof UpdateShopAllOfMeta
      */
     'testShopResetNotBefore'?: string | null;
     /**
      * Flag to mark a shop in sandbox mode.
      * @type {boolean}
-     * @memberof UpdateShopMeta
+     * @memberof UpdateShopAllOfMeta
      */
     'sandboxMode'?: boolean | null;
     /**
      * Flag to mark if a test suffix should be added to internal references.
      * @type {boolean}
-     * @memberof UpdateShopMeta
+     * @memberof UpdateShopAllOfMeta
      */
     'addTestSuffixToInternalReference'?: boolean | null;
     /**
      * Overwrite currency of shopify orders.
      * @type {string}
-     * @memberof UpdateShopMeta
+     * @memberof UpdateShopAllOfMeta
      */
-    'defaultCurrency'?: UpdateShopMetaDefaultCurrencyEnum;
+    'defaultCurrency'?: UpdateShopAllOfMetaDefaultCurrencyEnum;
     /**
      * Flag to mark if it is allowed to set a customer\'s email in a third party app or via the API. If false the shop email will be used as default.
      * @type {boolean}
-     * @memberof UpdateShopMeta
+     * @memberof UpdateShopAllOfMeta
      */
     'overwriteCustomerEmailEnabled'?: boolean | null;
     /**
      * Text to be added to the beginning of the orderNotes of every order created for the shop.
      * @type {string}
-     * @memberof UpdateShopMeta
+     * @memberof UpdateShopAllOfMeta
      */
     'orderNotesPrecedingText'?: string | null;
 }
 
-export const UpdateShopMetaDefaultCurrencyEnum = {
+export const UpdateShopAllOfMetaDefaultCurrencyEnum = {
     Gbp: 'GBP',
     Sek: 'SEK',
     Pln: 'PLN',
@@ -72,6 +72,6 @@ export const UpdateShopMetaDefaultCurrencyEnum = {
     UnknownDefaultOpenApi: '11184809'
 } as const;
 
-export type UpdateShopMetaDefaultCurrencyEnum = typeof UpdateShopMetaDefaultCurrencyEnum[keyof typeof UpdateShopMetaDefaultCurrencyEnum];
+export type UpdateShopAllOfMetaDefaultCurrencyEnum = typeof UpdateShopAllOfMetaDefaultCurrencyEnum[keyof typeof UpdateShopAllOfMetaDefaultCurrencyEnum];
 
 

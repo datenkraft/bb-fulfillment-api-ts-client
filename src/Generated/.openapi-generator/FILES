@@ -51,6 +51,7 @@ models/base-product-draft.ts
 models/base-product-variant-group.ts
 models/base-product.ts
 models/base-reconsignment-announcement.ts
+models/base-shop.ts
 models/batch.ts
 models/brand-collection-all-of.ts
 models/brand-collection.ts
@@ -136,6 +137,9 @@ models/order-payment.ts
 models/order-price.ts
 models/order-shipping.ts
 models/order.ts
+models/post-shop-all-of-meta.ts
+models/post-shop-all-of.ts
+models/post-shop.ts
 models/product-all-of.ts
 models/product-bundled-product.ts
 models/product-collection-all-of.ts
@@ -182,9 +186,9 @@ models/report-inventory-movement-entry.ts
 models/report-inventory-movement.ts
 models/reserved-for.ts
 models/shipment-line.ts
+models/shop-all-of.ts
 models/shop-collection-all-of.ts
 models/shop-collection.ts
-models/shop-meta.ts
 models/shop.ts
 models/stock-collection-all-of.ts
 models/stock-collection.ts
@@ -193,6 +197,7 @@ models/supplier-collection-all-of.ts
 models/supplier-collection.ts
 models/supplier.ts
 models/update-delivery-shipment.ts
-models/update-shop-meta.ts
+models/update-shop-all-of-meta.ts
+models/update-shop-all-of.ts
 models/update-shop.ts
 models/variant-group-enum.ts

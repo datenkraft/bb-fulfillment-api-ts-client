@@ -15,31 +15,19 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { UpdateShopMeta } from './update-shop-meta';
+import { BaseShop } from './base-shop';
+// May contain unused imports in some cases
+// @ts-ignore
+import { UpdateShopAllOf } from './update-shop-all-of';
+// May contain unused imports in some cases
+// @ts-ignore
+import { UpdateShopAllOfMeta } from './update-shop-all-of-meta';
 
 /**
+ * @type UpdateShop
  * Fields to update a shop
  * @export
- * @interface UpdateShop
  */
-export interface UpdateShop {
-    /**
-     * The email used internally.
-     * @type {string}
-     * @memberof UpdateShop
-     */
-    'email'?: string;
-    /**
-     * Is the shop active?
-     * @type {boolean}
-     * @memberof UpdateShop
-     */
-    'active'?: boolean;
-    /**
-     * 
-     * @type {UpdateShopMeta}
-     * @memberof UpdateShop
-     */
-    'meta'?: UpdateShopMeta | null;
-}
+export type UpdateShop = BaseShop & UpdateShopAllOf;
+
 

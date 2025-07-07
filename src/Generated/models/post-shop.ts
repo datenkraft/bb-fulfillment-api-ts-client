@@ -18,13 +18,15 @@
 import { BaseShop } from './base-shop';
 // May contain unused imports in some cases
 // @ts-ignore
-import { ShopAllOf } from './shop-all-of';
+import { PostShopAllOf } from './post-shop-all-of';
+// May contain unused imports in some cases
+// @ts-ignore
+import { PostShopAllOfMeta } from './post-shop-all-of-meta';
 
 /**
- * @type Shop
- * Data to represent a shop
+ * @type PostShop
  * @export
  */
-export type Shop = BaseShop & ShopAllOf;
+export type PostShop = BaseShop & PostShopAllOf;
 
 
