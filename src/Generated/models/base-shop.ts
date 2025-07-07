@@ -13,18 +13,24 @@
  */
 
 
-// May contain unused imports in some cases
-// @ts-ignore
-import { BaseShop } from './base-shop';
-// May contain unused imports in some cases
-// @ts-ignore
-import { ShopAllOf } from './shop-all-of';
 
 /**
- * @type Shop
  * Data to represent a shop
  * @export
+ * @interface BaseShop
  */
-export type Shop = BaseShop & ShopAllOf;
-
+export interface BaseShop {
+    /**
+     * The email used internally.
+     * @type {string}
+     * @memberof BaseShop
+     */
+    'email'?: string;
+    /**
+     * Is the shop active?
+     * @type {boolean}
+     * @memberof BaseShop
+     */
+    'active'?: boolean;
+}
 

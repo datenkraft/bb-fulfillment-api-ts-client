@@ -15,16 +15,37 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { BaseShop } from './base-shop';
-// May contain unused imports in some cases
-// @ts-ignore
-import { ShopAllOf } from './shop-all-of';
+import { PostShopAllOfMeta } from './post-shop-all-of-meta';
 
 /**
- * @type Shop
- * Data to represent a shop
+ * 
  * @export
+ * @interface PostShopAllOf
  */
-export type Shop = BaseShop & ShopAllOf;
-
+export interface PostShopAllOf {
+    /**
+     * The shopCode used internally to distinguish between clients
+     * @type {string}
+     * @memberof PostShopAllOf
+     */
+    'shopCode': string;
+    /**
+     * The prefix to the references internally to distinguish between clients.
+     * @type {string}
+     * @memberof PostShopAllOf
+     */
+    'internalReferencePrefix': string;
+    /**
+     * The id of the project to which the shop belongs.
+     * @type {string}
+     * @memberof PostShopAllOf
+     */
+    'projectId': string;
+    /**
+     * 
+     * @type {PostShopAllOfMeta}
+     * @memberof PostShopAllOf
+     */
+    'meta'?: PostShopAllOfMeta | null;
+}
 

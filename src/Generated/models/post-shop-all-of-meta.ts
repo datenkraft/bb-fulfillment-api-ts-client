@@ -17,68 +17,66 @@
 /**
  * Meta data of the shop.
  * @export
- * @interface ShopMeta
+ * @interface PostShopAllOfMeta
  */
-export interface ShopMeta {
-    [key: string]: any;
-
+export interface PostShopAllOfMeta {
     /**
      * Domain of the Shopify shop.
      * @type {string}
-     * @memberof ShopMeta
+     * @memberof PostShopAllOfMeta
      */
     'shopifyShopDomain'?: string | null;
     /**
      * Flag to mark a shop used for testing.
      * @type {boolean}
-     * @memberof ShopMeta
+     * @memberof PostShopAllOfMeta
      */
     'testShop'?: boolean | null;
     /**
      * Date time to indicate that the test shop will not be reset before this time.
      * @type {string}
-     * @memberof ShopMeta
+     * @memberof PostShopAllOfMeta
      */
     'testShopResetNotBefore'?: string | null;
     /**
      * Flag to mark a shop in sandbox mode.
      * @type {boolean}
-     * @memberof ShopMeta
+     * @memberof PostShopAllOfMeta
      */
     'sandboxMode'?: boolean | null;
     /**
      * Flag to mark if a test suffix should be added to internal references.
      * @type {boolean}
-     * @memberof ShopMeta
+     * @memberof PostShopAllOfMeta
      */
     'addTestSuffixToInternalReference'?: boolean | null;
     /**
      * Flag to indicate whether firstname, lastname, and invoiceAddress fields are available for order customers or not.
      * @type {boolean}
-     * @memberof ShopMeta
+     * @memberof PostShopAllOfMeta
      */
     'invoiceEnabled'?: boolean | null;
     /**
      * Overwrite currency of shopify orders.
      * @type {string}
-     * @memberof ShopMeta
+     * @memberof PostShopAllOfMeta
      */
-    'defaultCurrency'?: ShopMetaDefaultCurrencyEnum;
+    'defaultCurrency'?: PostShopAllOfMetaDefaultCurrencyEnum;
     /**
      * Flag to mark if it is allowed to set a customer\'s email in a third party app or via the API. If false the shop email will be used as default.
      * @type {boolean}
-     * @memberof ShopMeta
+     * @memberof PostShopAllOfMeta
      */
     'overwriteCustomerEmailEnabled'?: boolean | null;
     /**
      * Text to be added to the beginning of the orderNotes of every order created for the shop.
      * @type {string}
-     * @memberof ShopMeta
+     * @memberof PostShopAllOfMeta
      */
     'orderNotesPrecedingText'?: string | null;
 }
 
-export const ShopMetaDefaultCurrencyEnum = {
+export const PostShopAllOfMetaDefaultCurrencyEnum = {
     Gbp: 'GBP',
     Sek: 'SEK',
     Pln: 'PLN',
@@ -86,6 +84,6 @@ export const ShopMetaDefaultCurrencyEnum = {
     UnknownDefaultOpenApi: '11184809'
 } as const;
 
-export type ShopMetaDefaultCurrencyEnum = typeof ShopMetaDefaultCurrencyEnum[keyof typeof ShopMetaDefaultCurrencyEnum];
+export type PostShopAllOfMetaDefaultCurrencyEnum = typeof PostShopAllOfMetaDefaultCurrencyEnum[keyof typeof PostShopAllOfMetaDefaultCurrencyEnum];
 
 

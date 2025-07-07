@@ -15,16 +15,19 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { BaseShop } from './base-shop';
-// May contain unused imports in some cases
-// @ts-ignore
-import { ShopAllOf } from './shop-all-of';
+import { UpdateShopAllOfMeta } from './update-shop-all-of-meta';
 
 /**
- * @type Shop
- * Data to represent a shop
+ * 
  * @export
+ * @interface UpdateShopAllOf
  */
-export type Shop = BaseShop & ShopAllOf;
-
+export interface UpdateShopAllOf {
+    /**
+     * 
+     * @type {UpdateShopAllOfMeta}
+     * @memberof UpdateShopAllOf
+     */
+    'meta'?: UpdateShopAllOfMeta | null;
+}
 

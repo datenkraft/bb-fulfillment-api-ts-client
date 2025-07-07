@@ -7809,6 +7809,125 @@
                         "bearerAuth": []
                     }
                 ]
+            },
+            "post": {
+                "tags": [
+                    "shop"
+                ],
+                "summary": "Add a new shop.",
+                "description": "Post a new shop.",
+                "operationId": "postShop",
+                "parameters": [
+                    {
+                        "name": "shopId",
+                        "in": "path",
+                        "description": "Shop Id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/postShop"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/shop"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request\n\nError codes:\n- DATA_INVALID: Invalid data was given.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized\n\nError codes:\n- AUTHORIZATION_MISSING: No valid authentication information was given.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden\n\nError codes:\n- PERMISSIONS_MISSING: No authorization for the called action was found.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "409": {
+                        "description": "Conflict\n\nError codes:\n- DATA_ALREADY_EXISTS: A data conflict was detected.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity\n\nError codes:\n- DATA_NOT_PROCESSABLE: The given data is not processable.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Server error\n\nError codes:\n- SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "oAuthAuthorization": []
+                    },
+                    {
+                        "bearerAuth": []
+                    }
+                ]
             }
         },
         "/shop/{shopId}": {
@@ -8959,6 +9078,20 @@
                 "description": "Additional options for a reconsignment announcement (optional).",
                 "properties": {},
                 "nullable": true
+            },
+            "baseShop": {
+                "description": "Data to represent a shop",
+                "properties": {
+                    "email": {
+                        "description": "The email used internally.",
+                        "type": "string"
+                    },
+                    "active": {
+                        "description": "Is the shop active?",
+                        "type": "boolean"
+                    }
+                },
+                "type": "object"
             },
             "batch": {
                 "title": "batch",
@@ -10419,6 +10552,100 @@
                 },
                 "type": "object"
             },
+            "postShop": {
+                "allOf": [
+                    {
+                        "required": [
+                            "shopCode",
+                            "internalReferencePrefix",
+                            "projectId",
+                            "email",
+                            "active"
+                        ],
+                        "properties": {
+                            "shopCode": {
+                                "description": "The shopCode used internally to distinguish between clients",
+                                "type": "string"
+                            },
+                            "internalReferencePrefix": {
+                                "description": "The prefix to the references internally to distinguish between clients.",
+                                "type": "string"
+                            },
+                            "projectId": {
+                                "description": "The id of the project to which the shop belongs.",
+                                "type": "string"
+                            },
+                            "meta": {
+                                "description": "Meta data of the shop.",
+                                "properties": {
+                                    "shopifyShopDomain": {
+                                        "description": "Domain of the Shopify shop.",
+                                        "type": "string",
+                                        "nullable": true
+                                    },
+                                    "testShop": {
+                                        "description": "Flag to mark a shop used for testing.",
+                                        "type": "boolean",
+                                        "default": false,
+                                        "nullable": true
+                                    },
+                                    "testShopResetNotBefore": {
+                                        "description": "Date time to indicate that the test shop will not be reset before this time.",
+                                        "type": "string",
+                                        "format": "date-time",
+                                        "nullable": true
+                                    },
+                                    "sandboxMode": {
+                                        "description": "Flag to mark a shop in sandbox mode.",
+                                        "type": "boolean",
+                                        "default": false,
+                                        "nullable": true
+                                    },
+                                    "addTestSuffixToInternalReference": {
+                                        "description": "Flag to mark if a test suffix should be added to internal references.",
+                                        "type": "boolean",
+                                        "default": false,
+                                        "nullable": true
+                                    },
+                                    "invoiceEnabled": {
+                                        "description": "Flag to indicate whether firstname, lastname, and invoiceAddress fields are available for order\ncustomers or not.",
+                                        "type": "boolean",
+                                        "default": false,
+                                        "nullable": true
+                                    },
+                                    "defaultCurrency": {
+                                        "description": "Overwrite currency of shopify orders.",
+                                        "type": "string",
+                                        "enum": [
+                                            "GBP",
+                                            "SEK",
+                                            "PLN",
+                                            null
+                                        ],
+                                        "nullable": true
+                                    },
+                                    "overwriteCustomerEmailEnabled": {
+                                        "description": "Flag to mark if it is allowed to set a customer's email in a third party app or via the API.\nIf false the shop email will be used as default.",
+                                        "type": "boolean",
+                                        "nullable": true
+                                    },
+                                    "orderNotesPrecedingText": {
+                                        "description": "Text to be added to the beginning of the orderNotes of every order created for the shop.",
+                                        "type": "string",
+                                        "nullable": true
+                                    }
+                                },
+                                "type": "object",
+                                "nullable": true
+                            }
+                        },
+                        "type": "object"
+                    },
+                    {
+                        "$ref": "#/components/schemas/baseShop"
+                    }
+                ]
+            },
             "product": {
                 "title": "product",
                 "description": "Data to represent a product",
@@ -11486,97 +11713,96 @@
             },
             "shop": {
                 "description": "Data to represent a shop",
-                "properties": {
-                    "id": {
-                        "description": "Id",
-                        "type": "string"
-                    },
-                    "shopCode": {
-                        "description": "The shopCode used internally to distinguish between clients",
-                        "type": "string"
-                    },
-                    "internalReferencePrefix": {
-                        "description": "The prefix to the references internally to distinguish between clients.",
-                        "type": "string"
-                    },
-                    "email": {
-                        "description": "The email used internally.",
-                        "type": "string"
-                    },
-                    "projectId": {
-                        "description": "The id of the project to which the shop belongs.",
-                        "type": "string"
-                    },
-                    "active": {
-                        "description": "Is the shop active?",
-                        "type": "boolean"
-                    },
-                    "meta": {
-                        "description": "Meta data of the shop.",
+                "allOf": [
+                    {
                         "properties": {
-                            "shopifyShopDomain": {
-                                "description": "Domain of the Shopify shop.",
-                                "type": "string",
-                                "nullable": true
+                            "id": {
+                                "description": "Id",
+                                "type": "string"
                             },
-                            "testShop": {
-                                "description": "Flag to mark a shop used for testing.",
-                                "type": "boolean",
-                                "default": false,
-                                "nullable": true
+                            "shopCode": {
+                                "description": "The shopCode used internally to distinguish between clients",
+                                "type": "string"
                             },
-                            "testShopResetNotBefore": {
-                                "description": "Date time to indicate that the test shop will not be reset before this time.",
-                                "type": "string",
-                                "format": "date-time",
-                                "nullable": true
+                            "internalReferencePrefix": {
+                                "description": "The prefix to the references internally to distinguish between clients.",
+                                "type": "string"
                             },
-                            "sandboxMode": {
-                                "description": "Flag to mark a shop in sandbox mode.",
-                                "type": "boolean",
-                                "default": false,
-                                "nullable": true
+                            "projectId": {
+                                "description": "The id of the project to which the shop belongs.",
+                                "type": "string"
                             },
-                            "addTestSuffixToInternalReference": {
-                                "description": "Flag to mark if a test suffix should be added to internal references.",
-                                "type": "boolean",
-                                "default": false,
-                                "nullable": true
-                            },
-                            "invoiceEnabled": {
-                                "description": "Flag to indicate whether firstname, lastname, and invoiceAddress fields are available for order\ncustomers or not.",
-                                "type": "boolean",
-                                "default": false,
-                                "nullable": true
-                            },
-                            "defaultCurrency": {
-                                "description": "Overwrite currency of shopify orders.",
-                                "type": "string",
-                                "enum": [
-                                    "GBP",
-                                    "SEK",
-                                    "PLN",
-                                    null
-                                ],
-                                "nullable": true
-                            },
-                            "overwriteCustomerEmailEnabled": {
-                                "description": "Flag to mark if it is allowed to set a customer's email in a third party app or via the API.\nIf false the shop email will be used as default.",
-                                "type": "boolean",
-                                "nullable": true
-                            },
-                            "orderNotesPrecedingText": {
-                                "description": "Text to be added to the beginning of the orderNotes of every order created for the shop.",
-                                "type": "string",
-                                "nullable": true
+                            "meta": {
+                                "description": "Meta data of the shop.",
+                                "properties": {
+                                    "shopifyShopDomain": {
+                                        "description": "Domain of the Shopify shop.",
+                                        "type": "string",
+                                        "nullable": true
+                                    },
+                                    "testShop": {
+                                        "description": "Flag to mark a shop used for testing.",
+                                        "type": "boolean",
+                                        "default": false,
+                                        "nullable": true
+                                    },
+                                    "testShopResetNotBefore": {
+                                        "description": "Date time to indicate that the test shop will not be reset before this time.",
+                                        "type": "string",
+                                        "format": "date-time",
+                                        "nullable": true
+                                    },
+                                    "sandboxMode": {
+                                        "description": "Flag to mark a shop in sandbox mode.",
+                                        "type": "boolean",
+                                        "default": false,
+                                        "nullable": true
+                                    },
+                                    "addTestSuffixToInternalReference": {
+                                        "description": "Flag to mark if a test suffix should be added to internal references.",
+                                        "type": "boolean",
+                                        "default": false,
+                                        "nullable": true
+                                    },
+                                    "invoiceEnabled": {
+                                        "description": "Flag to indicate whether firstname, lastname, and invoiceAddress fields are available for order\ncustomers or not.",
+                                        "type": "boolean",
+                                        "default": false,
+                                        "nullable": true
+                                    },
+                                    "defaultCurrency": {
+                                        "description": "Overwrite currency of shopify orders.",
+                                        "type": "string",
+                                        "enum": [
+                                            "GBP",
+                                            "SEK",
+                                            "PLN",
+                                            null
+                                        ],
+                                        "nullable": true
+                                    },
+                                    "overwriteCustomerEmailEnabled": {
+                                        "description": "Flag to mark if it is allowed to set a customer's email in a third party app or via the API.\nIf false the shop email will be used as default.",
+                                        "type": "boolean",
+                                        "nullable": true
+                                    },
+                                    "orderNotesPrecedingText": {
+                                        "description": "Text to be added to the beginning of the orderNotes of every order created for the shop.",
+                                        "type": "string",
+                                        "nullable": true
+                                    }
+                                },
+                                "type": "object",
+                                "nullable": true,
+                                "additionalProperties": {}
                             }
                         },
-                        "type": "object",
-                        "nullable": true,
-                        "additionalProperties": {}
+                        "type": "object"
+                    },
+                    {
+                        "$ref": "#/components/schemas/baseShop"
                     }
-                },
-                "type": "object"
+                ]
             },
             "shopCollection": {
                 "title": "shopCollection",
@@ -11717,69 +11943,68 @@
             },
             "updateShop": {
                 "description": "Fields to update a shop",
-                "properties": {
-                    "email": {
-                        "description": "The email used internally.",
-                        "type": "string"
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/baseShop"
                     },
-                    "active": {
-                        "description": "Is the shop active?",
-                        "type": "boolean"
-                    },
-                    "meta": {
-                        "description": "Meta data of the shop.",
+                    {
                         "properties": {
-                            "shopifyShopDomain": {
-                                "description": "Domain of the Shopify shop.",
-                                "type": "string",
-                                "nullable": true
-                            },
-                            "testShopResetNotBefore": {
-                                "description": "Date time to indicate that the test shop will not be reset before this time.",
-                                "type": "string",
-                                "format": "date-time",
-                                "nullable": true
-                            },
-                            "sandboxMode": {
-                                "description": "Flag to mark a shop in sandbox mode.",
-                                "type": "boolean",
-                                "default": false,
-                                "nullable": true
-                            },
-                            "addTestSuffixToInternalReference": {
-                                "description": "Flag to mark if a test suffix should be added to internal references.",
-                                "type": "boolean",
-                                "default": false,
-                                "nullable": true
-                            },
-                            "defaultCurrency": {
-                                "description": "Overwrite currency of shopify orders.",
-                                "type": "string",
-                                "enum": [
-                                    "GBP",
-                                    "SEK",
-                                    "PLN",
-                                    null
-                                ],
-                                "nullable": true
-                            },
-                            "overwriteCustomerEmailEnabled": {
-                                "description": "Flag to mark if it is allowed to set a customer's email in a third party app or via the API.\nIf false the shop email will be used as default.",
-                                "type": "boolean",
-                                "nullable": true
-                            },
-                            "orderNotesPrecedingText": {
-                                "description": "Text to be added to the beginning of the orderNotes of every order created for the shop.",
-                                "type": "string",
-                                "maxLength": 147,
+                            "meta": {
+                                "description": "Meta data of the shop.",
+                                "properties": {
+                                    "shopifyShopDomain": {
+                                        "description": "Domain of the Shopify shop.",
+                                        "type": "string",
+                                        "nullable": true
+                                    },
+                                    "testShopResetNotBefore": {
+                                        "description": "Date time to indicate that the test shop will not be reset before this time.",
+                                        "type": "string",
+                                        "format": "date-time",
+                                        "nullable": true
+                                    },
+                                    "sandboxMode": {
+                                        "description": "Flag to mark a shop in sandbox mode.",
+                                        "type": "boolean",
+                                        "default": false,
+                                        "nullable": true
+                                    },
+                                    "addTestSuffixToInternalReference": {
+                                        "description": "Flag to mark if a test suffix should be added to internal references.",
+                                        "type": "boolean",
+                                        "default": false,
+                                        "nullable": true
+                                    },
+                                    "defaultCurrency": {
+                                        "description": "Overwrite currency of shopify orders.",
+                                        "type": "string",
+                                        "enum": [
+                                            "GBP",
+                                            "SEK",
+                                            "PLN",
+                                            null
+                                        ],
+                                        "nullable": true
+                                    },
+                                    "overwriteCustomerEmailEnabled": {
+                                        "description": "Flag to mark if it is allowed to set a customer's email in a third party app or via the API.\nIf false the shop email will be used as default.",
+                                        "type": "boolean",
+                                        "nullable": true
+                                    },
+                                    "orderNotesPrecedingText": {
+                                        "description": "Text to be added to the beginning of the orderNotes of every order created for the shop.",
+                                        "type": "string",
+                                        "maxLength": 147,
+                                        "nullable": true
+                                    }
+                                },
+                                "type": "object",
                                 "nullable": true
                             }
                         },
-                        "type": "object",
-                        "nullable": true
+                        "type": "object"
                     }
-                },
-                "type": "object"
+                ]
             },
             "variantGroupEnum": {
                 "title": "variantGroupEnum",
