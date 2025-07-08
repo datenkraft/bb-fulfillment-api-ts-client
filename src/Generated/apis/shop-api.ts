@@ -164,18 +164,14 @@ export const ShopApiAxiosParamCreator = function (configuration?: Configuration)
         /**
          * Post a new shop.
          * @summary Add a new shop.
-         * @param {string} shopId Shop Id
          * @param {PostShop} postShop 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        postShop: async (shopId: string, postShop: PostShop, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'shopId' is not null or undefined
-            assertParamExists('postShop', 'shopId', shopId)
+        postShop: async (postShop: PostShop, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'postShop' is not null or undefined
             assertParamExists('postShop', 'postShop', postShop)
-            const localVarPath = `/shop`
-                .replace(`{${"shopId"}}`, encodeURIComponent(String(shopId)));
+            const localVarPath = `/shop`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -251,13 +247,12 @@ export const ShopApiFp = function(configuration?: Configuration) {
         /**
          * Post a new shop.
          * @summary Add a new shop.
-         * @param {string} shopId Shop Id
          * @param {PostShop} postShop 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async postShop(shopId: string, postShop: PostShop, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Shop>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.postShop(shopId, postShop, options);
+        async postShop(postShop: PostShop, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Shop>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.postShop(postShop, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -300,13 +295,12 @@ export const ShopApiFactory = function (configuration?: Configuration, basePath?
         /**
          * Post a new shop.
          * @summary Add a new shop.
-         * @param {string} shopId Shop Id
          * @param {PostShop} postShop 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        postShop(shopId: string, postShop: PostShop, options?: any): AxiosPromise<Shop> {
-            return localVarFp.postShop(shopId, postShop, options).then((request) => request(axios, basePath));
+        postShop(postShop: PostShop, options?: any): AxiosPromise<Shop> {
+            return localVarFp.postShop(postShop, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -347,13 +341,12 @@ export interface ShopApiInterface {
     /**
      * Post a new shop.
      * @summary Add a new shop.
-     * @param {string} shopId Shop Id
      * @param {PostShop} postShop 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ShopApiInterface
      */
-    postShop(shopId: string, postShop: PostShop, options?: AxiosRequestConfig): AxiosPromise<Shop>;
+    postShop(postShop: PostShop, options?: AxiosRequestConfig): AxiosPromise<Shop>;
 
 }
 
@@ -398,13 +391,12 @@ export class ShopApi extends BaseAPI implements ShopApiInterface {
     /**
      * Post a new shop.
      * @summary Add a new shop.
-     * @param {string} shopId Shop Id
      * @param {PostShop} postShop 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ShopApi
      */
-    public postShop(shopId: string, postShop: PostShop, options?: AxiosRequestConfig) {
-        return ShopApiFp(this.configuration).postShop(shopId, postShop, options).then((request) => request(this.axios, this.basePath));
+    public postShop(postShop: PostShop, options?: AxiosRequestConfig) {
+        return ShopApiFp(this.configuration).postShop(postShop, options).then((request) => request(this.axios, this.basePath));
     }
 }

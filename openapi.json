@@ -7817,17 +7817,6 @@
                 "summary": "Add a new shop.",
                 "description": "Post a new shop.",
                 "operationId": "postShop",
-                "parameters": [
-                    {
-                        "name": "shopId",
-                        "in": "path",
-                        "description": "Shop Id",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
                 "requestBody": {
                     "required": true,
                     "content": {
