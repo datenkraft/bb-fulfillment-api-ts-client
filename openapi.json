@@ -11946,6 +11946,12 @@
                                         "type": "string",
                                         "nullable": true
                                     },
+                                    "testShop": {
+                                        "description": "Flag to mark a shop used for testing.",
+                                        "type": "boolean",
+                                        "default": false,
+                                        "nullable": true
+                                    },
                                     "testShopResetNotBefore": {
                                         "description": "Date time to indicate that the test shop will not be reset before this time.",
                                         "type": "string",
@@ -11960,6 +11966,12 @@
                                     },
                                     "addTestSuffixToInternalReference": {
                                         "description": "Flag to mark if a test suffix should be added to internal references.",
+                                        "type": "boolean",
+                                        "default": false,
+                                        "nullable": true
+                                    },
+                                    "invoiceEnabled": {
+                                        "description": "Flag to indicate whether firstname, lastname, and invoiceAddress fields are available for order\ncustomers or not.",
                                         "type": "boolean",
                                         "default": false,
                                         "nullable": true
