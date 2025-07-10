@@ -27,6 +27,12 @@ export interface UpdateShopAllOfMeta {
      */
     'shopifyShopDomain'?: string | null;
     /**
+     * Flag to mark a shop used for testing.
+     * @type {boolean}
+     * @memberof UpdateShopAllOfMeta
+     */
+    'testShop'?: boolean | null;
+    /**
      * Date time to indicate that the test shop will not be reset before this time.
      * @type {string}
      * @memberof UpdateShopAllOfMeta
@@ -44,6 +50,12 @@ export interface UpdateShopAllOfMeta {
      * @memberof UpdateShopAllOfMeta
      */
     'addTestSuffixToInternalReference'?: boolean | null;
+    /**
+     * Flag to indicate whether firstname, lastname, and invoiceAddress fields are available for order customers or not.
+     * @type {boolean}
+     * @memberof UpdateShopAllOfMeta
+     */
+    'invoiceEnabled'?: boolean | null;
     /**
      * Overwrite currency of shopify orders.
      * @type {string}
