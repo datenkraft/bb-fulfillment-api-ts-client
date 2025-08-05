@@ -9,6 +9,7 @@ apis/auth-role-identity-api.ts
 apis/brand-api.ts
 apis/country-api.ts
 apis/delivery-api.ts
+apis/delivery-expense-api.ts
 apis/delivery-service-api.ts
 apis/docs-api.ts
 apis/inbound-delivery-api.ts
@@ -67,6 +68,10 @@ models/country-provinces.ts
 models/country.ts
 models/delivery-collection-all-of.ts
 models/delivery-collection.ts
+models/delivery-expense-collection-all-of.ts
+models/delivery-expense-collection.ts
+models/delivery-expense-price.ts
+models/delivery-expense.ts
 models/delivery-service-collection-all-of.ts
 models/delivery-service-collection.ts
 models/delivery-service.ts
