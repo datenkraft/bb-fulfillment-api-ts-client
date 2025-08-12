@@ -1646,6 +1646,202 @@
                 ]
             }
         },
+        "/delivery-expense": {
+            "get": {
+                "tags": [
+                    "delivery-expense"
+                ],
+                "summary": "Get a list of delivery expenses.",
+                "description": "Get a list of delivery expenses.",
+                "operationId": "getDeliveryExpenseCollection",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "The page to read. Default is the first page.",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": 1
+                    },
+                    {
+                        "name": "pageSize",
+                        "in": "query",
+                        "description": "The maximum size per page is 100. Default is 100.",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": 20
+                    },
+                    {
+                        "name": "paginationMode",
+                        "in": "query",
+                        "description": "The paginationMode to use:\n- default: The total number of items in the collection will not be calculated.\n- totalCount: The total number of items in the collection will be calculated.\nThis can mean loss of performance.",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "default": "default",
+                            "enum": [
+                                "default",
+                                "totalCount"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "shopCode",
+                        "in": "query",
+                        "description": "This code is optional, if your identity is assigned to only one shop.\nOtherwise the response would be a 422 HTTP Error.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "teststeve"
+                    },
+                    {
+                        "name": "countryCode",
+                        "in": "query",
+                        "description": "Country code of the manufacturer (ISO 3166-1 alpha-2).",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "AT"
+                    },
+                    {
+                        "name": "zipCode",
+                        "in": "query",
+                        "description": "zip code",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "8020"
+                    },
+                    {
+                        "name": "weight",
+                        "in": "query",
+                        "description": "weight in gram",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": "300"
+                    },
+                    {
+                        "name": "length",
+                        "in": "query",
+                        "description": "length in mm",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": "600"
+                    },
+                    {
+                        "name": "width",
+                        "in": "query",
+                        "description": "width in mm",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": "300"
+                    },
+                    {
+                        "name": "height",
+                        "in": "query",
+                        "description": "height in mm",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": "250"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/deliveryExpenseCollection"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request\n\nError codes:\n- DATA_INVALID: Invalid data was given.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized\n\nError codes:\n- AUTHORIZATION_MISSING: No valid authentication information was given.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden\n\nError codes:\n- PERMISSIONS_MISSING: No authorization for the called action was found.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity\n\nError codes:\n- SHOP_NOT_FOUND: Shop not found.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Server error\n\nError codes:\n- SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "oAuthAuthorization": []
+                    },
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
         "/delivery-service": {
             "get": {
                 "tags": [
@@ -9362,6 +9558,79 @@
                         "type": "object"
                     }
                 ]
+            },
+            "deliveryExpense": {
+                "title": "deliveryExpense",
+                "properties": {
+                    "deliveryServiceCode": {
+                        "description": "Code of the delivery service.",
+                        "type": "string"
+                    },
+                    "countryCode": {
+                        "description": "the country code of your destination.",
+                        "type": "string"
+                    },
+                    "price": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/deliveryExpensePrice"
+                        }
+                    },
+                    "weight": {
+                        "description": "The weight in gram.",
+                        "type": "integer"
+                    },
+                    "height": {
+                        "description": "The height in mm.",
+                        "type": "integer"
+                    },
+                    "length": {
+                        "description": "The length in mm.",
+                        "type": "integer"
+                    },
+                    "width": {
+                        "description": "The width in mm.",
+                        "type": "integer"
+                    }
+                },
+                "type": "object"
+            },
+            "deliveryExpenseCollection": {
+                "title": "deliveryExpenseCollection",
+                "description": "A collection of delivery expenses",
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/collection"
+                    },
+                    {
+                        "properties": {
+                            "data": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/deliveryExpense"
+                                }
+                            }
+                        },
+                        "type": "object"
+                    }
+                ]
+            },
+            "deliveryExpensePrice": {
+                "title": "deliveryExpensePrice",
+                "description": "The net price of the delivery expense.",
+                "properties": {
+                    "value": {
+                        "description": "The net price.",
+                        "type": "number",
+                        "format": "float",
+                        "example": 3.95
+                    },
+                    "currency": {
+                        "type": "string",
+                        "example": "EUR"
+                    }
+                },
+                "type": "object"
             },
             "deliveryService": {
                 "title": "deliveryService",
