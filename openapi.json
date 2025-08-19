@@ -11085,7 +11085,8 @@
                                     "inactive",
                                     "inactive_but_visible",
                                     "preparation_inactive",
-                                    "temporary_inactive"
+                                    "temporary_inactive",
+                                    null
                                 ],
                                 "nullable": true
                             }
