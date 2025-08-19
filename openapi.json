@@ -6283,7 +6283,7 @@
                         "required": true,
                         "schema": {
                             "type": "string",
-                            "maxLength": 248
+                            "maxLength": 53
                         }
                     },
                     {
@@ -6405,7 +6405,7 @@
                         "required": true,
                         "schema": {
                             "type": "string",
-                            "maxLength": 248
+                            "maxLength": 53
                         }
                     },
                     {
@@ -10305,7 +10305,7 @@
                             "productNumber": {
                                 "description": "Product number to be used for the final product\\\nThis number is user defined, must be unique and has a maximum length (check maxLength field).\\\nPlease ensure that it does not contain any of the following character sequences:\n'/', '%2F', '%2f', '?', '%3F', '%3f',\n'#', '%23', '&', '%26'. Using any of these will result in the route not being handled correctly.",
                                 "type": "string",
-                                "maxLength": 248
+                                "maxLength": 53
                             },
                             "contentsUnit": {
                                 "description": "Unit of the product contents.\\\nMust be one of the available values specified in the enum.",
@@ -11076,6 +11076,18 @@
                                         "batch_required"
                                     ]
                                 }
+                            },
+                            "articleItemStatus": {
+                                "description": "Status of the article item regarding visibility.",
+                                "type": "string",
+                                "enum": [
+                                    "active",
+                                    "inactive",
+                                    "inactive_but_visible",
+                                    "preparation_inactive",
+                                    "temporary_inactive"
+                                ],
+                                "nullable": true
                             }
                         },
                         "type": "object"
@@ -12307,5 +12319,99 @@
                 "scheme": "bearer"
             }
         }
-    }
+    },
+    "tags": [
+        {
+            "name": "auth-permission-role",
+            "description": "auth-permission-role"
+        },
+        {
+            "name": "auth-role",
+            "description": "auth-role"
+        },
+        {
+            "name": "auth-permission",
+            "description": "auth-permission"
+        },
+        {
+            "name": "docs",
+            "description": "docs"
+        },
+        {
+            "name": "auth-role-identity",
+            "description": "auth-role-identity"
+        },
+        {
+            "name": "audit-log",
+            "description": "audit-log"
+        },
+        {
+            "name": "delivery-service",
+            "description": "delivery-service"
+        },
+        {
+            "name": "product",
+            "description": "product"
+        },
+        {
+            "name": "report",
+            "description": "report"
+        },
+        {
+            "name": "order",
+            "description": "order"
+        },
+        {
+            "name": "delivery",
+            "description": "delivery"
+        },
+        {
+            "name": "stock",
+            "description": "stock"
+        },
+        {
+            "name": "manufacturer",
+            "description": "manufacturer"
+        },
+        {
+            "name": "inbound-delivery",
+            "description": "inbound-delivery"
+        },
+        {
+            "name": "reconsignmentAnnouncement",
+            "description": "reconsignmentAnnouncement"
+        },
+        {
+            "name": "product-draft",
+            "description": "product-draft"
+        },
+        {
+            "name": "product-unit",
+            "description": "product-unit"
+        },
+        {
+            "name": "brand",
+            "description": "brand"
+        },
+        {
+            "name": "supplier",
+            "description": "supplier"
+        },
+        {
+            "name": "shop",
+            "description": "shop"
+        },
+        {
+            "name": "reconsignment",
+            "description": "reconsignment"
+        },
+        {
+            "name": "delivery-expense",
+            "description": "delivery-expense"
+        },
+        {
+            "name": "country",
+            "description": "country"
+        }
+    ]
 }

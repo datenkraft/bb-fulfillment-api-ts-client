@@ -170,6 +170,12 @@ export interface ProductAllOf {
      * @memberof ProductAllOf
      */
     'productOptions'?: Array<ProductAllOfProductOptionsEnum>;
+    /**
+     * Status of the article item regarding visibility.
+     * @type {string}
+     * @memberof ProductAllOf
+     */
+    'articleItemStatus'?: ProductAllOfArticleItemStatusEnum;
 }
 
 export const ProductAllOfProductStatusEnum = {
@@ -235,5 +241,15 @@ export const ProductAllOfProductOptionsEnum = {
 } as const;
 
 export type ProductAllOfProductOptionsEnum = typeof ProductAllOfProductOptionsEnum[keyof typeof ProductAllOfProductOptionsEnum];
+export const ProductAllOfArticleItemStatusEnum = {
+    Active: 'active',
+    Inactive: 'inactive',
+    InactiveButVisible: 'inactive_but_visible',
+    PreparationInactive: 'preparation_inactive',
+    TemporaryInactive: 'temporary_inactive',
+    UnknownDefaultOpenApi: '11184809'
+} as const;
+
+export type ProductAllOfArticleItemStatusEnum = typeof ProductAllOfArticleItemStatusEnum[keyof typeof ProductAllOfArticleItemStatusEnum];
 
 
