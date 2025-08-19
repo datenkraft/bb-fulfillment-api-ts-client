@@ -247,6 +247,7 @@ export const ProductAllOfArticleItemStatusEnum = {
     InactiveButVisible: 'inactive_but_visible',
     PreparationInactive: 'preparation_inactive',
     TemporaryInactive: 'temporary_inactive',
+    Null: 'null',
     UnknownDefaultOpenApi: '11184809'
 } as const;
 
