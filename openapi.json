@@ -6111,7 +6111,7 @@
                     {
                         "name": "filter[productNumber]",
                         "in": "query",
-                        "description": "Filter for product number(s).",
+                        "description": "Filter for product number(s) (comma-separated, max. 100).",
                         "required": false,
                         "schema": {
                             "type": "string"
@@ -12323,6 +12323,14 @@
     },
     "tags": [
         {
+            "name": "audit-log",
+            "description": "audit-log"
+        },
+        {
+            "name": "auth-permission",
+            "description": "auth-permission"
+        },
+        {
             "name": "auth-permission-role",
             "description": "auth-permission-role"
         },
@@ -12331,56 +12339,40 @@
             "description": "auth-role"
         },
         {
-            "name": "auth-permission",
-            "description": "auth-permission"
+            "name": "auth-role-identity",
+            "description": "auth-role-identity"
         },
         {
             "name": "docs",
             "description": "docs"
         },
         {
-            "name": "auth-role-identity",
-            "description": "auth-role-identity"
-        },
-        {
-            "name": "audit-log",
-            "description": "audit-log"
-        },
-        {
-            "name": "delivery-service",
-            "description": "delivery-service"
-        },
-        {
-            "name": "product",
-            "description": "product"
-        },
-        {
-            "name": "report",
-            "description": "report"
-        },
-        {
-            "name": "order",
-            "description": "order"
+            "name": "brand",
+            "description": "brand"
         },
         {
             "name": "delivery",
             "description": "delivery"
         },
         {
-            "name": "stock",
-            "description": "stock"
-        },
-        {
-            "name": "manufacturer",
-            "description": "manufacturer"
+            "name": "delivery-service",
+            "description": "delivery-service"
         },
         {
             "name": "inbound-delivery",
             "description": "inbound-delivery"
         },
         {
-            "name": "reconsignmentAnnouncement",
-            "description": "reconsignmentAnnouncement"
+            "name": "manufacturer",
+            "description": "manufacturer"
+        },
+        {
+            "name": "order",
+            "description": "order"
+        },
+        {
+            "name": "product",
+            "description": "product"
         },
         {
             "name": "product-draft",
@@ -12391,28 +12383,36 @@
             "description": "product-unit"
         },
         {
-            "name": "brand",
-            "description": "brand"
+            "name": "reconsignmentAnnouncement",
+            "description": "reconsignmentAnnouncement"
+        },
+        {
+            "name": "report",
+            "description": "report"
+        },
+        {
+            "name": "stock",
+            "description": "stock"
         },
         {
             "name": "supplier",
             "description": "supplier"
         },
         {
-            "name": "shop",
-            "description": "shop"
-        },
-        {
-            "name": "reconsignment",
-            "description": "reconsignment"
+            "name": "country",
+            "description": "country"
         },
         {
             "name": "delivery-expense",
             "description": "delivery-expense"
         },
         {
-            "name": "country",
-            "description": "country"
+            "name": "reconsignment",
+            "description": "reconsignment"
+        },
+        {
+            "name": "shop",
+            "description": "shop"
         }
     ]
 }
