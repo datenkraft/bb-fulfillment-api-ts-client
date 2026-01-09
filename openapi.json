@@ -11491,6 +11491,8 @@
                         "enum": [
                             "reconsignment_other_default",
                             "reconsignment_other_unknown",
+                            "reconsignment_other_unpack",
+                            "reconsignment_other_no_reason",
                             "reconsignment_product_damage",
                             "reconsignment_product_defect",
                             "reconsignment_product_dislike",
@@ -12323,68 +12325,48 @@
     },
     "tags": [
         {
-            "name": "audit-log",
-            "description": "audit-log"
+            "name": "product",
+            "description": "product"
         },
         {
-            "name": "auth-permission",
-            "description": "auth-permission"
+            "name": "reconsignmentAnnouncement",
+            "description": "reconsignmentAnnouncement"
         },
         {
-            "name": "auth-permission-role",
-            "description": "auth-permission-role"
+            "name": "shop",
+            "description": "shop"
         },
         {
-            "name": "auth-role",
-            "description": "auth-role"
+            "name": "reconsignment",
+            "description": "reconsignment"
         },
         {
-            "name": "auth-role-identity",
-            "description": "auth-role-identity"
+            "name": "delivery-expense",
+            "description": "delivery-expense"
         },
         {
-            "name": "docs",
-            "description": "docs"
-        },
-        {
-            "name": "brand",
-            "description": "brand"
-        },
-        {
-            "name": "delivery",
-            "description": "delivery"
-        },
-        {
-            "name": "delivery-service",
-            "description": "delivery-service"
-        },
-        {
-            "name": "inbound-delivery",
-            "description": "inbound-delivery"
-        },
-        {
-            "name": "manufacturer",
-            "description": "manufacturer"
+            "name": "country",
+            "description": "country"
         },
         {
             "name": "order",
             "description": "order"
         },
         {
-            "name": "product",
-            "description": "product"
+            "name": "product-unit",
+            "description": "product-unit"
         },
         {
             "name": "product-draft",
             "description": "product-draft"
         },
         {
-            "name": "product-unit",
-            "description": "product-unit"
+            "name": "brand",
+            "description": "brand"
         },
         {
-            "name": "reconsignmentAnnouncement",
-            "description": "reconsignmentAnnouncement"
+            "name": "inbound-delivery",
+            "description": "inbound-delivery"
         },
         {
             "name": "report",
@@ -12395,24 +12377,44 @@
             "description": "stock"
         },
         {
+            "name": "delivery-service",
+            "description": "delivery-service"
+        },
+        {
+            "name": "delivery",
+            "description": "delivery"
+        },
+        {
+            "name": "manufacturer",
+            "description": "manufacturer"
+        },
+        {
             "name": "supplier",
             "description": "supplier"
         },
         {
-            "name": "country",
-            "description": "country"
+            "name": "auth-role",
+            "description": "auth-role"
         },
         {
-            "name": "delivery-expense",
-            "description": "delivery-expense"
+            "name": "auth-permission-role",
+            "description": "auth-permission-role"
         },
         {
-            "name": "reconsignment",
-            "description": "reconsignment"
+            "name": "auth-role-identity",
+            "description": "auth-role-identity"
         },
         {
-            "name": "shop",
-            "description": "shop"
+            "name": "audit-log",
+            "description": "audit-log"
+        },
+        {
+            "name": "auth-permission",
+            "description": "auth-permission"
+        },
+        {
+            "name": "docs",
+            "description": "docs"
         }
     ]
 }
