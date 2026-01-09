@@ -82,6 +82,8 @@ export interface Reconsignment {
 export const ReconsignmentReconsignmentReasonEnum = {
     OtherDefault: 'reconsignment_other_default',
     OtherUnknown: 'reconsignment_other_unknown',
+    OtherUnpack: 'reconsignment_other_unpack',
+    OtherNoReason: 'reconsignment_other_no_reason',
     ProductDamage: 'reconsignment_product_damage',
     ProductDefect: 'reconsignment_product_defect',
     ProductDislike: 'reconsignment_product_dislike',
