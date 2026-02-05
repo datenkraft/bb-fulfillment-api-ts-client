@@ -54,7 +54,7 @@ export interface BaseOrder {
      */
     'externalOrderId'?: string | null;
     /**
-     * Notes to be printed on the delivery slip.
+     * Notes to be printed on the delivery slip. If not provided, the shop meta.deliverySlipNotes value will be used as a fallback.
      * @type {string}
      * @memberof BaseOrder
      */

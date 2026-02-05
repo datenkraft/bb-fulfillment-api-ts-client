@@ -74,6 +74,12 @@ export interface PostShopAllOfMeta {
      * @memberof PostShopAllOfMeta
      */
     'orderNotesPrecedingText'?: string | null;
+    /**
+     * Default notes to be printed on the delivery slip when an order is created without deliverySlipNotes.
+     * @type {string}
+     * @memberof PostShopAllOfMeta
+     */
+    'deliverySlipNotes'?: string | null;
 }
 
 export const PostShopAllOfMetaDefaultCurrencyEnum = {
