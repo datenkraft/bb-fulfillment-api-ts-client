@@ -24,6 +24,7 @@ export * from './apis/country-api';
 export * from './apis/delivery-api';
 export * from './apis/delivery-expense-api';
 export * from './apis/delivery-service-api';
+export * from './apis/disco-shop-api';
 export * from './apis/docs-api';
 export * from './apis/inbound-delivery-api';
 export * from './apis/manufacturer-api';
