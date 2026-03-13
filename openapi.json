@@ -2531,6 +2531,133 @@
                 ]
             }
         },
+        "/disco-shop": {
+            "get": {
+                "tags": [
+                    "disco-shop"
+                ],
+                "summary": "Get a list of shops from the DISCO.",
+                "description": "Get a list of shops from the DISCO.",
+                "operationId": "getDiscoShopCollection",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "The page to read. Default is the first page.",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": 1
+                    },
+                    {
+                        "name": "pageSize",
+                        "in": "query",
+                        "description": "The maximum size per page is 100. Default is 100.",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": 20
+                    },
+                    {
+                        "name": "paginationMode",
+                        "in": "query",
+                        "description": "The paginationMode to use:\n- default: The total number of items in the collection will not be calculated.\n- totalCount: The total number of items in the collection will be calculated.\nThis can mean loss of performance.",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "default": "default",
+                            "enum": [
+                                "default",
+                                "totalCount"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "filter[onlyNotAssigned]",
+                        "in": "query",
+                        "description": "If true, only disco shops that are not linked to a Shop are returned.",
+                        "required": false,
+                        "schema": {
+                            "type": "boolean",
+                            "default": false
+                        },
+                        "example": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/discoShopCollection"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request\n\nError codes:\n- DATA_INVALID: Invalid data was given.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized\n\nError codes:\n- AUTHORIZATION_MISSING: No valid authentication information was given.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden\n\nError codes:\n- PERMISSIONS_MISSING: No authorization for the called action was found.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Server error\n\nError codes:\n- SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "oAuthAuthorization": []
+                    },
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
         "/docs": {
             "get": {
                 "tags": [
@@ -6590,7 +6717,7 @@
                         "required": true,
                         "schema": {
                             "type": "string",
-                            "maxLength": 248
+                            "maxLength": 53
                         }
                     },
                     {
@@ -9773,6 +9900,45 @@
                 },
                 "type": "object"
             },
+            "discoShop": {
+                "title": "discoShop",
+                "description": "Data to represent a disco shop",
+                "required": [
+                    "shopCode",
+                    "name"
+                ],
+                "properties": {
+                    "shopCode": {
+                        "description": "The disco shop code",
+                        "type": "string"
+                    },
+                    "name": {
+                        "description": "The disco shop name",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "discoShopCollection": {
+                "title": "discoShopCollection",
+                "description": "A collection of disco shops",
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/collection"
+                    },
+                    {
+                        "properties": {
+                            "data": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/discoShop"
+                                }
+                            }
+                        },
+                        "type": "object"
+                    }
+                ]
+            },
             "error": {
                 "required": [
                     "code",
@@ -12343,68 +12509,28 @@
     },
     "tags": [
         {
-            "name": "order",
-            "description": "order"
-        },
-        {
-            "name": "shop",
-            "description": "shop"
-        },
-        {
-            "name": "product",
-            "description": "product"
-        },
-        {
-            "name": "reconsignment",
-            "description": "reconsignment"
-        },
-        {
-            "name": "reconsignmentAnnouncement",
-            "description": "reconsignmentAnnouncement"
-        },
-        {
-            "name": "delivery-expense",
-            "description": "delivery-expense"
-        },
-        {
-            "name": "country",
-            "description": "country"
-        },
-        {
-            "name": "auth-role-identity",
-            "description": "auth-role-identity"
-        },
-        {
-            "name": "auth-permission-role",
-            "description": "auth-permission-role"
-        },
-        {
             "name": "audit-log",
             "description": "audit-log"
-        },
-        {
-            "name": "auth-role",
-            "description": "auth-role"
-        },
-        {
-            "name": "docs",
-            "description": "docs"
         },
         {
             "name": "auth-permission",
             "description": "auth-permission"
         },
         {
-            "name": "stock",
-            "description": "stock"
+            "name": "auth-permission-role",
+            "description": "auth-permission-role"
         },
         {
-            "name": "manufacturer",
-            "description": "manufacturer"
+            "name": "auth-role",
+            "description": "auth-role"
         },
         {
-            "name": "report",
-            "description": "report"
+            "name": "auth-role-identity",
+            "description": "auth-role-identity"
+        },
+        {
+            "name": "docs",
+            "description": "docs"
         },
         {
             "name": "brand",
@@ -12415,24 +12541,68 @@
             "description": "delivery"
         },
         {
+            "name": "delivery-service",
+            "description": "delivery-service"
+        },
+        {
             "name": "inbound-delivery",
             "description": "inbound-delivery"
         },
         {
-            "name": "delivery-service",
-            "description": "delivery-service"
+            "name": "order",
+            "description": "order"
+        },
+        {
+            "name": "product",
+            "description": "product"
+        },
+        {
+            "name": "product-draft",
+            "description": "product-draft"
         },
         {
             "name": "product-unit",
             "description": "product-unit"
         },
         {
-            "name": "supplier",
-            "description": "supplier"
+            "name": "reconsignmentAnnouncement",
+            "description": "reconsignmentAnnouncement"
         },
         {
-            "name": "product-draft",
-            "description": "product-draft"
+            "name": "report",
+            "description": "report"
+        },
+        {
+            "name": "country",
+            "description": "country"
+        },
+        {
+            "name": "delivery-expense",
+            "description": "delivery-expense"
+        },
+        {
+            "name": "disco-shop",
+            "description": "disco-shop"
+        },
+        {
+            "name": "manufacturer",
+            "description": "manufacturer"
+        },
+        {
+            "name": "reconsignment",
+            "description": "reconsignment"
+        },
+        {
+            "name": "shop",
+            "description": "shop"
+        },
+        {
+            "name": "stock",
+            "description": "stock"
+        },
+        {
+            "name": "supplier",
+            "description": "supplier"
         }
     ]
 }

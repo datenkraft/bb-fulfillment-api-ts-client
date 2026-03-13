@@ -11,6 +11,7 @@ apis/country-api.ts
 apis/delivery-api.ts
 apis/delivery-expense-api.ts
 apis/delivery-service-api.ts
+apis/disco-shop-api.ts
 apis/docs-api.ts
 apis/inbound-delivery-api.ts
 apis/manufacturer-api.ts
@@ -79,6 +80,9 @@ models/delivery-shipment-journal.ts
 models/delivery-shipment-packaging.ts
 models/delivery-shipment.ts
 models/delivery.ts
+models/disco-shop-collection-all-of.ts
+models/disco-shop-collection.ts
+models/disco-shop.ts
 models/error-references-inner.ts
 models/error-response.ts
 models/get-auth-permission-collection-response-all-of.ts
