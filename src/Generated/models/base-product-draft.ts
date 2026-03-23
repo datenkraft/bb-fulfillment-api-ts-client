@@ -113,6 +113,7 @@ export const BaseProductDraftTaxCodeEnum = {
     Default: 'default',
     Reduced1: 'reduced1',
     Reduced2: 'reduced2',
+    Reduced3: 'reduced3',
     None: 'none',
     Null: 'null',
     UnknownDefaultOpenApi: '11184809'

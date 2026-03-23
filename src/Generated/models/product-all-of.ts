@@ -93,7 +93,7 @@ export interface ProductAllOf {
      */
     'priceType'?: ProductAllOfPriceTypeEnum;
     /**
-     * One of the available tax codes. - default: Default tax rate (in e.g. Austria 20 %) - reduced1: 1st reduced tax rate (in e.g. Austria 13 %) - reduced2: 2nd reduced tax rate (in e.g. Austria 10 %) - none: not taxable (0%)  Note: This can be null if the tax code could not be determined.
+     * One of the available tax codes. - default: Default tax rate (in e.g. Austria 20 %) - reduced1: 1st reduced tax rate (in e.g. Austria 13 %) - reduced2: 2nd reduced tax rate (in e.g. Austria 10 %) - reduced3: 3rd reduced tax rate (in e.g. Austria 5 %) - none: not taxable (0%)  Note: This can be null if the tax code could not be determined.
      * @type {string}
      * @memberof ProductAllOf
      */
@@ -203,6 +203,7 @@ export const ProductAllOfTaxCodeEnum = {
     Default: 'default',
     Reduced1: 'reduced1',
     Reduced2: 'reduced2',
+    Reduced3: 'reduced3',
     None: 'none',
     Null: 'null',
     UnknownDefaultOpenApi: '11184809'
