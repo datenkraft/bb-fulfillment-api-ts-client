@@ -113,6 +113,8 @@ export * from './order-item-price';
 export * from './order-payment';
 export * from './order-price';
 export * from './order-shipping';
+export * from './patch-inbound-delivery';
+export * from './patch-inbound-delivery-product';
 export * from './post-shop';
 export * from './post-shop-all-of';
 export * from './post-shop-all-of-meta';

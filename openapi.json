@@ -3460,6 +3460,146 @@
                         "bearerAuth": []
                     }
                 ]
+            },
+            "patch": {
+                "tags": [
+                    "inbound-delivery"
+                ],
+                "summary": "Patch an inbound delivery.",
+                "description": "Patch the inbound delivery specified by the given inbound delivery number. \\\nOnly inbound deliveries where booking-in has not yet started can be edited. \\\nAll fields in the request body are optional. Only provided fields will be updated.\n\nProduct changes:\n- To update a product's announced count: include the product with the new announcedCount.\n- To remove a product: include the product with announcedCount set to 0.\n- To add a new product: include a product that is not yet part of the delivery with a positive announcedCount.\n- Products not listed in the products array remain unchanged.",
+                "operationId": "patchInboundDelivery",
+                "parameters": [
+                    {
+                        "name": "inboundDeliveryNumber",
+                        "in": "path",
+                        "description": "The inbound delivery number as defined during the creation of the inbound delivery.",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "maxLength": 250
+                        }
+                    },
+                    {
+                        "name": "shopCode",
+                        "in": "query",
+                        "description": "The shopCode used internally to distinguish between clients. \\\n_This code is optional, if your identity is assigned to only one shop.\nOtherwise the response would be a 422 HTTP Error._",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "teststeve"
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/patchInboundDelivery"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/inboundDelivery"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request\n\nError codes:\n- DATA_INVALID: Invalid data was given.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized\n\nError codes:\n- AUTHORIZATION_MISSING: No valid authentication information was given.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden\n\nError codes:\n- PERMISSIONS_MISSING: No authorization for the called action was found.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found\n\nError codes:\n- DATA_NOT_FOUND: The requested data could not be found.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "409": {
+                        "description": "Conflict\n\nError codes:\n- AMBIGUOUS_INBOUND_DELIVERY: Multiple inbound deliveries were found.\n- INBOUND_DELIVERY_NOT_EDITABLE: The inbound delivery is in a state that does not allow editing.\n- INBOUND_DELIVERY_BOOKING_IN_STARTED: Booking-in has already started for this inbound delivery.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity\n\nError codes:\n- PRODUCT_NOT_FOUND: Unknown productNumber.\n- DUPLICATED_PRODUCT: There are multiple products with the same productNumber.\n- PRODUCT_COULD_NOT_BE_ADDED_FOR_SUPPLIER: At least one of the the given products could not be added for the supplier.\n- SHOP_NOT_FOUND: Shop not found.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Server error\n\nError codes:\n- SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "oAuthAuthorization": []
+                    },
+                    {
+                        "bearerAuth": []
+                    }
+                ]
             }
         },
         "/inbound-delivery/{inboundDeliveryNumber}/cancel": {
@@ -10977,6 +11117,56 @@
                 },
                 "type": "object"
             },
+            "patchInboundDelivery": {
+                "title": "patchInboundDelivery",
+                "description": "Data to update an existing inbound delivery. All fields are optional. Only provided fields will be updated.\n\nProduct changes:\n- To update a product's announced count: include the product with the new announcedCount.\n- To remove a product: include the product with announcedCount set to 0.\n- To add a new product: include a product that is not yet part of the delivery with a positive announcedCount.\n- Products not listed in the products array remain unchanged.",
+                "properties": {
+                    "expectedDeliveryDate": {
+                        "description": "Updated expected date of arrival in the warehouse (timezone CET/CEST)",
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "inboundDeliveryName": {
+                        "description": "Updated name of the inbound delivery. Must not be empty or consist only of whitespace characters.",
+                        "type": "string",
+                        "maxLength": 255
+                    },
+                    "inboundDeliveryNote": {
+                        "description": "Updated note for the inbound delivery.",
+                        "type": "string",
+                        "maxLength": 65535,
+                        "nullable": true
+                    },
+                    "products": {
+                        "description": "Products to update, add, or remove. Only listed products are affected; unlisted products remain unchanged.\n- To update a product's announced count: include the product with the new announcedCount.\n- To remove a product: include the product with announcedCount set to 0.\n- To add a new product: include the product with a positive announcedCount.",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/patchInboundDeliveryProduct"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "patchInboundDeliveryProduct": {
+                "title": "patchInboundDeliveryProduct",
+                "required": [
+                    "productNumber",
+                    "announcedCount"
+                ],
+                "properties": {
+                    "productNumber": {
+                        "description": "Number of the product",
+                        "type": "string"
+                    },
+                    "announcedCount": {
+                        "description": "Number of the announced products. Set to 0 to remove the product from the delivery.",
+                        "type": "integer",
+                        "format": "int32",
+                        "minimum": 0
+                    }
+                },
+                "type": "object"
+            },
             "postShop": {
                 "allOf": [
                     {
@@ -12531,24 +12721,40 @@
             "description": "auth-role-identity"
         },
         {
-            "name": "docs",
-            "description": "docs"
-        },
-        {
             "name": "brand",
             "description": "brand"
+        },
+        {
+            "name": "country",
+            "description": "country"
         },
         {
             "name": "delivery",
             "description": "delivery"
         },
         {
+            "name": "delivery-expense",
+            "description": "delivery-expense"
+        },
+        {
             "name": "delivery-service",
             "description": "delivery-service"
         },
         {
+            "name": "disco-shop",
+            "description": "disco-shop"
+        },
+        {
+            "name": "docs",
+            "description": "docs"
+        },
+        {
             "name": "inbound-delivery",
             "description": "inbound-delivery"
+        },
+        {
+            "name": "manufacturer",
+            "description": "manufacturer"
         },
         {
             "name": "order",
@@ -12567,32 +12773,16 @@
             "description": "product-unit"
         },
         {
+            "name": "reconsignment",
+            "description": "reconsignment"
+        },
+        {
             "name": "reconsignmentAnnouncement",
             "description": "reconsignmentAnnouncement"
         },
         {
             "name": "report",
             "description": "report"
-        },
-        {
-            "name": "country",
-            "description": "country"
-        },
-        {
-            "name": "delivery-expense",
-            "description": "delivery-expense"
-        },
-        {
-            "name": "disco-shop",
-            "description": "disco-shop"
-        },
-        {
-            "name": "manufacturer",
-            "description": "manufacturer"
-        },
-        {
-            "name": "reconsignment",
-            "description": "reconsignment"
         },
         {
             "name": "shop",

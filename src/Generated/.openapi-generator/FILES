@@ -146,6 +146,8 @@ models/order-payment.ts
 models/order-price.ts
 models/order-shipping.ts
 models/order.ts
+models/patch-inbound-delivery-product.ts
+models/patch-inbound-delivery.ts
 models/post-shop-all-of-meta.ts
 models/post-shop-all-of.ts
 models/post-shop.ts
