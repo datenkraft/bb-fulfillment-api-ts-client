@@ -34,6 +34,8 @@ import { InboundDeliveryBulkImport207ResponseInner } from '../models';
 import { InboundDeliveryCollection } from '../models';
 // @ts-ignore
 import { NewInboundDelivery } from '../models';
+// @ts-ignore
+import { PatchInboundDelivery } from '../models';
 /**
  * InboundDeliveryApi - axios parameter creator
  * @export
@@ -374,6 +376,59 @@ export const InboundDeliveryApiAxiosParamCreator = function (configuration?: Con
             };
         },
         /**
+         * Patch the inbound delivery specified by the given inbound delivery number. \\ Only inbound deliveries where booking-in has not yet started can be edited. \\ All fields in the request body are optional. Only provided fields will be updated.  Product changes: - To update a product\'s announced count: include the product with the new announcedCount. - To remove a product: include the product with announcedCount set to 0. - To add a new product: include a product that is not yet part of the delivery with a positive announcedCount. - Products not listed in the products array remain unchanged.
+         * @summary Patch an inbound delivery.
+         * @param {string} inboundDeliveryNumber The inbound delivery number as defined during the creation of the inbound delivery.
+         * @param {PatchInboundDelivery} patchInboundDelivery 
+         * @param {string} [shopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        patchInboundDelivery: async (inboundDeliveryNumber: string, patchInboundDelivery: PatchInboundDelivery, shopCode?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'inboundDeliveryNumber' is not null or undefined
+            assertParamExists('patchInboundDelivery', 'inboundDeliveryNumber', inboundDeliveryNumber)
+            // verify required parameter 'patchInboundDelivery' is not null or undefined
+            assertParamExists('patchInboundDelivery', 'patchInboundDelivery', patchInboundDelivery)
+            const localVarPath = `/inbound-delivery/{inboundDeliveryNumber}`
+                .replace(`{${"inboundDeliveryNumber"}}`, encodeURIComponent(String(inboundDeliveryNumber)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication oAuthAuthorization required
+            // oauth required
+            await setOAuthToObject(localVarHeaderParameter, "oAuthAuthorization", [], configuration)
+
+            // authentication bearerAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (shopCode !== undefined) {
+                localVarQueryParameter['shopCode'] = shopCode;
+            }
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(patchInboundDelivery, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Add a new inbound delivery referenced by the given deliveryNumber.
          * @summary Add a new inbound delivery.
          * @param {string} inboundDeliveryNumber The number the inbound delivery should be referred by. \\ This number is user defined, must be unique and has a maximum length (check maxLength field). \\ Please ensure that it does not contain any of the following character sequences: \&#39;/\&#39;, \&#39;%2F\&#39;, \&#39;%2f\&#39;, \&#39;?\&#39;, \&#39;%3F\&#39;, \&#39;%3f\&#39;, \&#39;#\&#39;, \&#39;%23\&#39;, \&#39;&amp;\&#39;, \&#39;%26\&#39;. \\ Using any of these will result in the route not being handled correctly.
@@ -516,6 +571,19 @@ export const InboundDeliveryApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
+         * Patch the inbound delivery specified by the given inbound delivery number. \\ Only inbound deliveries where booking-in has not yet started can be edited. \\ All fields in the request body are optional. Only provided fields will be updated.  Product changes: - To update a product\'s announced count: include the product with the new announcedCount. - To remove a product: include the product with announcedCount set to 0. - To add a new product: include a product that is not yet part of the delivery with a positive announcedCount. - Products not listed in the products array remain unchanged.
+         * @summary Patch an inbound delivery.
+         * @param {string} inboundDeliveryNumber The inbound delivery number as defined during the creation of the inbound delivery.
+         * @param {PatchInboundDelivery} patchInboundDelivery 
+         * @param {string} [shopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async patchInboundDelivery(inboundDeliveryNumber: string, patchInboundDelivery: PatchInboundDelivery, shopCode?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InboundDelivery>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.patchInboundDelivery(inboundDeliveryNumber, patchInboundDelivery, shopCode, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
          * Add a new inbound delivery referenced by the given deliveryNumber.
          * @summary Add a new inbound delivery.
          * @param {string} inboundDeliveryNumber The number the inbound delivery should be referred by. \\ This number is user defined, must be unique and has a maximum length (check maxLength field). \\ Please ensure that it does not contain any of the following character sequences: \&#39;/\&#39;, \&#39;%2F\&#39;, \&#39;%2f\&#39;, \&#39;?\&#39;, \&#39;%3F\&#39;, \&#39;%3f\&#39;, \&#39;#\&#39;, \&#39;%23\&#39;, \&#39;&amp;\&#39;, \&#39;%26\&#39;. \\ Using any of these will result in the route not being handled correctly.
@@ -612,6 +680,18 @@ export const InboundDeliveryApiFactory = function (configuration?: Configuration
             return localVarFp.inboundDeliveryBulkImport(file, options).then((request) => request(axios, basePath));
         },
         /**
+         * Patch the inbound delivery specified by the given inbound delivery number. \\ Only inbound deliveries where booking-in has not yet started can be edited. \\ All fields in the request body are optional. Only provided fields will be updated.  Product changes: - To update a product\'s announced count: include the product with the new announcedCount. - To remove a product: include the product with announcedCount set to 0. - To add a new product: include a product that is not yet part of the delivery with a positive announcedCount. - Products not listed in the products array remain unchanged.
+         * @summary Patch an inbound delivery.
+         * @param {string} inboundDeliveryNumber The inbound delivery number as defined during the creation of the inbound delivery.
+         * @param {PatchInboundDelivery} patchInboundDelivery 
+         * @param {string} [shopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        patchInboundDelivery(inboundDeliveryNumber: string, patchInboundDelivery: PatchInboundDelivery, shopCode?: string, options?: any): AxiosPromise<InboundDelivery> {
+            return localVarFp.patchInboundDelivery(inboundDeliveryNumber, patchInboundDelivery, shopCode, options).then((request) => request(axios, basePath));
+        },
+        /**
          * Add a new inbound delivery referenced by the given deliveryNumber.
          * @summary Add a new inbound delivery.
          * @param {string} inboundDeliveryNumber The number the inbound delivery should be referred by. \\ This number is user defined, must be unique and has a maximum length (check maxLength field). \\ Please ensure that it does not contain any of the following character sequences: \&#39;/\&#39;, \&#39;%2F\&#39;, \&#39;%2f\&#39;, \&#39;?\&#39;, \&#39;%3F\&#39;, \&#39;%3f\&#39;, \&#39;#\&#39;, \&#39;%23\&#39;, \&#39;&amp;\&#39;, \&#39;%26\&#39;. \\ Using any of these will result in the route not being handled correctly.
@@ -704,6 +784,18 @@ export interface InboundDeliveryApiInterface {
      * @memberof InboundDeliveryApiInterface
      */
     inboundDeliveryBulkImport(file: File, options?: AxiosRequestConfig): AxiosPromise<Array<InboundDeliveryBulkImport207ResponseInner>>;
+
+    /**
+     * Patch the inbound delivery specified by the given inbound delivery number. \\ Only inbound deliveries where booking-in has not yet started can be edited. \\ All fields in the request body are optional. Only provided fields will be updated.  Product changes: - To update a product\'s announced count: include the product with the new announcedCount. - To remove a product: include the product with announcedCount set to 0. - To add a new product: include a product that is not yet part of the delivery with a positive announcedCount. - Products not listed in the products array remain unchanged.
+     * @summary Patch an inbound delivery.
+     * @param {string} inboundDeliveryNumber The inbound delivery number as defined during the creation of the inbound delivery.
+     * @param {PatchInboundDelivery} patchInboundDelivery 
+     * @param {string} [shopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof InboundDeliveryApiInterface
+     */
+    patchInboundDelivery(inboundDeliveryNumber: string, patchInboundDelivery: PatchInboundDelivery, shopCode?: string, options?: AxiosRequestConfig): AxiosPromise<InboundDelivery>;
 
     /**
      * Add a new inbound delivery referenced by the given deliveryNumber.
@@ -809,6 +901,20 @@ export class InboundDeliveryApi extends BaseAPI implements InboundDeliveryApiInt
      */
     public inboundDeliveryBulkImport(file: File, options?: AxiosRequestConfig) {
         return InboundDeliveryApiFp(this.configuration).inboundDeliveryBulkImport(file, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Patch the inbound delivery specified by the given inbound delivery number. \\ Only inbound deliveries where booking-in has not yet started can be edited. \\ All fields in the request body are optional. Only provided fields will be updated.  Product changes: - To update a product\'s announced count: include the product with the new announcedCount. - To remove a product: include the product with announcedCount set to 0. - To add a new product: include a product that is not yet part of the delivery with a positive announcedCount. - Products not listed in the products array remain unchanged.
+     * @summary Patch an inbound delivery.
+     * @param {string} inboundDeliveryNumber The inbound delivery number as defined during the creation of the inbound delivery.
+     * @param {PatchInboundDelivery} patchInboundDelivery 
+     * @param {string} [shopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof InboundDeliveryApi
+     */
+    public patchInboundDelivery(inboundDeliveryNumber: string, patchInboundDelivery: PatchInboundDelivery, shopCode?: string, options?: AxiosRequestConfig) {
+        return InboundDeliveryApiFp(this.configuration).patchInboundDelivery(inboundDeliveryNumber, patchInboundDelivery, shopCode, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
