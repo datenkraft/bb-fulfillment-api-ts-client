@@ -90,7 +90,7 @@ export interface BaseOrder {
      */
     'amazonFbaShipmentId'?: string | null;
     /**
-     * 
+     * The delivery costs of the order, which will be charged to the customer.\\ Note: This field is required if the delivery address country requires customs clearance (see `customsClearanceRequired` on the `country` resource).
      * @type {Array<OrderDeliveryCosts>}
      * @memberof BaseOrder
      */

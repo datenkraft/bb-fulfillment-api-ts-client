@@ -9078,6 +9078,7 @@
                         "nullable": true
                     },
                     "deliveryCosts": {
+                        "description": "The delivery costs of the order, which will be charged to the customer.\\\nNote: This field is required if the delivery address country requires customs clearance\n(see `customsClearanceRequired` on the `country` resource).",
                         "type": "array",
                         "items": {
                             "$ref": "#/components/schemas/orderDeliveryCosts"
@@ -9736,7 +9737,7 @@
                         "nullable": true
                     },
                     "currencyCode": {
-                        "description": "The currency code which should be used for orders to the country (ISO 4217)",
+                        "description": "The currency code which must be used for orders to the country (ISO 4217)",
                         "type": "string",
                         "example": "EUR"
                     }
