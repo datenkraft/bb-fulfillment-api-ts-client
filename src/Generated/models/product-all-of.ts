@@ -176,6 +176,12 @@ export interface ProductAllOf {
      * @memberof ProductAllOf
      */
     'articleItemStatus'?: ProductAllOfArticleItemStatusEnum;
+    /**
+     * Minimum available stock level. \\ `null` means no value is configured. `0` is a valid value and is distinct from `null`: - `null`: not configured (cleared) - `0`: configured at zero units - positive integer: configured at the given level
+     * @type {number}
+     * @memberof ProductAllOf
+     */
+    'minAvailableStock'?: number | null;
 }
 
 export const ProductAllOfProductStatusEnum = {

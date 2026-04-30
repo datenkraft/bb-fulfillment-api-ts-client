@@ -27,6 +27,8 @@ import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } fr
 // @ts-ignore
 import { ErrorResponse } from '../models';
 // @ts-ignore
+import { PatchProduct } from '../models';
+// @ts-ignore
 import { Product } from '../models';
 // @ts-ignore
 import { ProductCollection } from '../models';
@@ -328,6 +330,59 @@ export const ProductApiAxiosParamCreator = function (configuration?: Configurati
                 options: localVarRequestOptions,
             };
         },
+        /**
+         * Patch a product. \\ All fields in the request body are optional. Only provided fields will be updated.
+         * @summary Patch a product.
+         * @param {string} productNumber The product number as defined during the creation of the product.
+         * @param {PatchProduct} patchProduct 
+         * @param {string} [shopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        patchProduct: async (productNumber: string, patchProduct: PatchProduct, shopCode?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'productNumber' is not null or undefined
+            assertParamExists('patchProduct', 'productNumber', productNumber)
+            // verify required parameter 'patchProduct' is not null or undefined
+            assertParamExists('patchProduct', 'patchProduct', patchProduct)
+            const localVarPath = `/product/{productNumber}`
+                .replace(`{${"productNumber"}}`, encodeURIComponent(String(productNumber)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication oAuthAuthorization required
+            // oauth required
+            await setOAuthToObject(localVarHeaderParameter, "oAuthAuthorization", [], configuration)
+
+            // authentication bearerAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (shopCode !== undefined) {
+                localVarQueryParameter['shopCode'] = shopCode;
+            }
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(patchProduct, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
     }
 };
 
@@ -405,6 +460,19 @@ export const ProductApiFp = function(configuration?: Configuration) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getProductStockReferenceCollection(productNumber, page, pageSize, paginationMode, shopCode, filterTypeCode, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
+        /**
+         * Patch a product. \\ All fields in the request body are optional. Only provided fields will be updated.
+         * @summary Patch a product.
+         * @param {string} productNumber The product number as defined during the creation of the product.
+         * @param {PatchProduct} patchProduct 
+         * @param {string} [shopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async patchProduct(productNumber: string, patchProduct: PatchProduct, shopCode?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Product>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.patchProduct(productNumber, patchProduct, shopCode, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
     }
 };
 
@@ -478,6 +546,18 @@ export const ProductApiFactory = function (configuration?: Configuration, basePa
         getProductStockReferenceCollection(productNumber: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', shopCode?: string, filterTypeCode?: 'reserved' | 'incoming', options?: any): AxiosPromise<ProductStockReferenceCollection> {
             return localVarFp.getProductStockReferenceCollection(productNumber, page, pageSize, paginationMode, shopCode, filterTypeCode, options).then((request) => request(axios, basePath));
         },
+        /**
+         * Patch a product. \\ All fields in the request body are optional. Only provided fields will be updated.
+         * @summary Patch a product.
+         * @param {string} productNumber The product number as defined during the creation of the product.
+         * @param {PatchProduct} patchProduct 
+         * @param {string} [shopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        patchProduct(productNumber: string, patchProduct: PatchProduct, shopCode?: string, options?: any): AxiosPromise<Product> {
+            return localVarFp.patchProduct(productNumber, patchProduct, shopCode, options).then((request) => request(axios, basePath));
+        },
     };
 };
 
@@ -549,6 +629,18 @@ export interface ProductApiInterface {
      * @memberof ProductApiInterface
      */
     getProductStockReferenceCollection(productNumber: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', shopCode?: string, filterTypeCode?: 'reserved' | 'incoming', options?: AxiosRequestConfig): AxiosPromise<ProductStockReferenceCollection>;
+
+    /**
+     * Patch a product. \\ All fields in the request body are optional. Only provided fields will be updated.
+     * @summary Patch a product.
+     * @param {string} productNumber The product number as defined during the creation of the product.
+     * @param {PatchProduct} patchProduct 
+     * @param {string} [shopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ProductApiInterface
+     */
+    patchProduct(productNumber: string, patchProduct: PatchProduct, shopCode?: string, options?: AxiosRequestConfig): AxiosPromise<Product>;
 
 }
 
@@ -628,5 +720,19 @@ export class ProductApi extends BaseAPI implements ProductApiInterface {
      */
     public getProductStockReferenceCollection(productNumber: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', shopCode?: string, filterTypeCode?: 'reserved' | 'incoming', options?: AxiosRequestConfig) {
         return ProductApiFp(this.configuration).getProductStockReferenceCollection(productNumber, page, pageSize, paginationMode, shopCode, filterTypeCode, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Patch a product. \\ All fields in the request body are optional. Only provided fields will be updated.
+     * @summary Patch a product.
+     * @param {string} productNumber The product number as defined during the creation of the product.
+     * @param {PatchProduct} patchProduct 
+     * @param {string} [shopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ProductApi
+     */
+    public patchProduct(productNumber: string, patchProduct: PatchProduct, shopCode?: string, options?: AxiosRequestConfig) {
+        return ProductApiFp(this.configuration).patchProduct(productNumber, patchProduct, shopCode, options).then((request) => request(this.axios, this.basePath));
     }
 }

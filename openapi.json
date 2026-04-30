@@ -4689,7 +4689,7 @@
                         }
                     },
                     "422": {
-                        "description": "Unprocessable Entity\n\nError codes:\n- PRODUCT_NOT_FOUND: Unknown productNumber.\n- ORDER_CUSTOMS_CLEARANCE_REQUIRED_FIELD_MISSING: A field required for customs clearance is missing.\n- ORDER_NUMBER_STARTS_WITH_RESERVED_NUMBER_PREFIX: The orderNumber starts with a prefix that is reserved for internal references.\n- ORDER_INVALID_CURRENCY_CODE: An invalid currencyCode was given for the delivery country.\n- ORDER_ITEM_NOT_ORDERABLE: A specific orderItem can not be ordered.\n- ORDER_OUTDATED_VAT_FOR_COUNTRY: A given vat value is outdated for the given country.\n- ORDER_PHONE_REQUIRED_FOR_COUNTRY_MISSING: The phone number is required for the given country.\n- ORDER_INVOICE_ADDRESS_PROVINCE_CODE_NOT_DETECTED: The province code of the invoice address could not be detected.\n- ORDER_DELIVERY_ADDRESS_PROVINCE_CODE_NOT_DETECTED: The province code of the delivery address could not be detected.\n- SHOP_NOT_ACTIVE: The shop is not active. Please contact the steve team.",
+                        "description": "Unprocessable Entity\n\nError codes:\n- PRODUCT_NOT_FOUND: Unknown productNumber.\n- ORDER_CUSTOMS_CLEARANCE_REQUIRED_FIELD_MISSING: A field required for customs clearance is missing.\n- ORDER_NUMBER_STARTS_WITH_RESERVED_NUMBER_PREFIX: The orderNumber starts with a prefix that is reserved for internal references.\n- ORDER_INVALID_CURRENCY_CODE: An invalid currencyCode was given for the delivery country.\n- ORDER_ITEM_NOT_ORDERABLE: A specific orderItem can not be ordered.\n- ORDER_OUTDATED_VAT_FOR_COUNTRY: A given vat value is outdated for the given country.\n- ORDER_UNKNOWN_VAT_FOR_COUNTRY: A given vat value does not match any known tax rate for the delivery country.\n- ORDER_PHONE_REQUIRED_FOR_COUNTRY_MISSING: The phone number is required for the given country.\n- ORDER_INVOICE_ADDRESS_PROVINCE_CODE_NOT_DETECTED: The province code of the invoice address could not be detected.\n- ORDER_DELIVERY_ADDRESS_PROVINCE_CODE_NOT_DETECTED: The province code of the delivery address could not be detected.\n- SHOP_NOT_ACTIVE: The shop is not active. Please contact the steve team.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -6564,6 +6564,136 @@
                         "example": "teststeve"
                     }
                 ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/product"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request\n\nError codes:\n- DATA_INVALID: Invalid data was given.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized\n\nError codes:\n- AUTHORIZATION_MISSING: No valid authentication information was given.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden\n\nError codes:\n- PERMISSIONS_MISSING: No authorization for the called action was found.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found\n\nError codes:\n- DATA_NOT_FOUND: The requested data could not be found.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity\n\nError codes:\n- SHOP_NOT_FOUND: Shop not found.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Server error\n\nError codes:\n- SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "oAuthAuthorization": []
+                    },
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "patch": {
+                "tags": [
+                    "product"
+                ],
+                "summary": "Patch a product.",
+                "description": "Patch a product. \\\nAll fields in the request body are optional. Only provided fields will be updated.",
+                "operationId": "patchProduct",
+                "parameters": [
+                    {
+                        "name": "productNumber",
+                        "in": "path",
+                        "description": "The product number as defined during the creation of the product.",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "maxLength": 53
+                        }
+                    },
+                    {
+                        "name": "shopCode",
+                        "in": "query",
+                        "description": "The shopCode used internally to distinguish between clients. \\\n_This code is optional, if your identity is assigned to only one shop.\nOtherwise the response would be a 422 HTTP Error._",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "teststeve"
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/patchProduct"
+                            }
+                        }
+                    }
+                },
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -11168,6 +11298,20 @@
                 },
                 "type": "object"
             },
+            "patchProduct": {
+                "title": "patchProduct",
+                "description": "Data to update a product. All fields are optional. Only provided fields will be updated.",
+                "properties": {
+                    "minAvailableStock": {
+                        "description": "Minimum available stock level. \\\nSet to `null` to clear, or to a non-negative integer to set the level. \\\n`0` is a valid value and is distinct from `null`.",
+                        "type": "integer",
+                        "format": "int32",
+                        "minimum": 0,
+                        "nullable": true
+                    }
+                },
+                "type": "object"
+            },
             "postShop": {
                 "allOf": [
                     {
@@ -11453,6 +11597,13 @@
                                     "temporary_inactive",
                                     null
                                 ],
+                                "nullable": true
+                            },
+                            "minAvailableStock": {
+                                "description": "Minimum available stock level. \\\n`null` means no value is configured. `0` is a valid value and is distinct from `null`:\n- `null`: not configured (cleared)\n- `0`: configured at zero units\n- positive integer: configured at the given level",
+                                "type": "integer",
+                                "format": "int32",
+                                "minimum": 0,
                                 "nullable": true
                             }
                         },
