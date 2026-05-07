@@ -21,7 +21,7 @@
  */
 export interface PatchProduct {
     /**
-     * Minimum available stock level. \\ Set to `null` to clear, or to a non-negative integer to set the level. \\ `0` is a valid value and is distinct from `null`.
+     * Minimum available stock level. \\ Set to \"null\" to clear, or to a non-negative integer to set the level. \\ \"0\" is a valid value and is distinct from \"null\".
      * @type {number}
      * @memberof PatchProduct
      */

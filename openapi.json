@@ -11322,7 +11322,7 @@
                 "description": "Data to update a product. All fields are optional. Only provided fields will be updated.",
                 "properties": {
                     "minAvailableStock": {
-                        "description": "Minimum available stock level. \\\nSet to `null` to clear, or to a non-negative integer to set the level. \\\n`0` is a valid value and is distinct from `null`.",
+                        "description": "Minimum available stock level. \\\nSet to \"null\" to clear, or to a non-negative integer to set the level. \\\n\"0\" is a valid value and is distinct from \"null\".",
                         "type": "integer",
                         "format": "int32",
                         "minimum": 0,
@@ -11627,7 +11627,7 @@
                                 "nullable": true
                             },
                             "minAvailableStock": {
-                                "description": "Minimum available stock level. \\\n`null` means no value is configured. `0` is a valid value and is distinct from `null`:\n- `null`: not configured (cleared)\n- `0`: configured at zero units\n- positive integer: configured at the given level",
+                                "description": "Minimum available stock level. \\\n\"null\" means no value is configured. \"0\" is a valid value and is distinct from \"null\":\n- \"null\": not configured (cleared)\n- \"0\": configured at zero units\n- positive integer: configured at the given level",
                                 "type": "integer",
                                 "format": "int32",
                                 "minimum": 0,
