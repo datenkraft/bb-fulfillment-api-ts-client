@@ -85,6 +85,7 @@ models/disco-shop-collection.ts
 models/disco-shop.ts
 models/error-references-inner.ts
 models/error-response.ts
+models/external-listing.ts
 models/get-auth-permission-collection-response-all-of.ts
 models/get-auth-permission-collection-response.ts
 models/inbound-delivery-all-of.ts

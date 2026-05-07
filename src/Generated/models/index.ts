@@ -53,6 +53,7 @@ export * from './disco-shop-collection';
 export * from './disco-shop-collection-all-of';
 export * from './error-references-inner';
 export * from './error-response';
+export * from './external-listing';
 export * from './get-auth-permission-collection-response';
 export * from './get-auth-permission-collection-response-all-of';
 export * from './inbound-delivery';

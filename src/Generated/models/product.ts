@@ -24,6 +24,9 @@ import { BaseProductDimensions } from './base-product-dimensions';
 import { BaseProductVariantGroup } from './base-product-variant-group';
 // May contain unused imports in some cases
 // @ts-ignore
+import { ExternalListing } from './external-listing';
+// May contain unused imports in some cases
+// @ts-ignore
 import { ProductAllOf } from './product-all-of';
 // May contain unused imports in some cases
 // @ts-ignore
