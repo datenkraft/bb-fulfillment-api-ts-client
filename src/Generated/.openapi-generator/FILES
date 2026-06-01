@@ -46,6 +46,7 @@ models/auth-role-resource.ts
 models/base-order-customer-invoice-address.ts
 models/base-order-customer.ts
 models/base-order-item.ts
+models/base-order-options.ts
 models/base-order.ts
 models/base-product-dimensions.ts
 models/base-product-draft-dimensions.ts

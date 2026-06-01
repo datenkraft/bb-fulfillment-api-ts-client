@@ -13,18 +13,18 @@
  */
 
 
-// May contain unused imports in some cases
-// @ts-ignore
-import { BaseOrderOptions } from './base-order-options';
-// May contain unused imports in some cases
-// @ts-ignore
-import { NewOrderOptionsAllOf } from './new-order-options-all-of';
 
 /**
- * @type NewOrderOptions
- * Additional optional options for a new order.
+ * Additional optional options for the order.
  * @export
+ * @interface BaseOrderOptions
  */
-export type NewOrderOptions = BaseOrderOptions & NewOrderOptionsAllOf;
-
+export interface BaseOrderOptions {
+    /**
+     * Whether a delivery slip (Lieferschein) is printed and included with the shipment of this order. If not provided, the shop `meta.printOrderDocument` value is used; if that is also unset, the default of `true` applies. Always `true` for deliveries into customs-required countries.
+     * @type {boolean}
+     * @memberof BaseOrderOptions
+     */
+    'printOrderDocument'?: boolean | null;
+}
 
