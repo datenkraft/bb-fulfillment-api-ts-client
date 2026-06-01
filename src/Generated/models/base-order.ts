@@ -18,6 +18,9 @@
 import { BaseOrderCustomer } from './base-order-customer';
 // May contain unused imports in some cases
 // @ts-ignore
+import { BaseOrderOptions } from './base-order-options';
+// May contain unused imports in some cases
+// @ts-ignore
 import { NewOrderItem } from './new-order-item';
 // May contain unused imports in some cases
 // @ts-ignore
@@ -96,10 +99,10 @@ export interface BaseOrder {
      */
     'deliveryCosts'?: Array<OrderDeliveryCosts> | null;
     /**
-     * Additional optional options for the order.
-     * @type {any}
+     * 
+     * @type {BaseOrderOptions}
      * @memberof BaseOrder
      */
-    'options'?: any | null;
+    'options'?: BaseOrderOptions | null;
 }
 

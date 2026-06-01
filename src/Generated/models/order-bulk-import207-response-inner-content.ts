@@ -15,6 +15,9 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
+import { BaseOrderOptions } from './base-order-options';
+// May contain unused imports in some cases
+// @ts-ignore
 import { ErrorResponse } from './error-response';
 // May contain unused imports in some cases
 // @ts-ignore

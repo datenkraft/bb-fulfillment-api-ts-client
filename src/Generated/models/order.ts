@@ -18,6 +18,9 @@
 import { BaseOrder } from './base-order';
 // May contain unused imports in some cases
 // @ts-ignore
+import { BaseOrderOptions } from './base-order-options';
+// May contain unused imports in some cases
+// @ts-ignore
 import { OrderAllOf } from './order-all-of';
 // May contain unused imports in some cases
 // @ts-ignore

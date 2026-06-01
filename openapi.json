@@ -9168,44 +9168,44 @@
                     "externalOrderId": {
                         "description": "A not unique reference for the order which can be used for identifying a specific order or for\nmapping to a third party app.",
                         "type": "string",
-                        "maxLength": 255,
-                        "nullable": true
+                        "nullable": true,
+                        "maxLength": 255
                     },
                     "deliverySlipNotes": {
                         "description": "Notes to be printed on the delivery slip. If not provided, the shop meta.deliverySlipNotes value will be\nused as a fallback.",
                         "type": "string",
-                        "maxLength": 1024,
-                        "nullable": true
+                        "nullable": true,
+                        "maxLength": 1024
                     },
                     "externalOrderReference": {
                         "description": "External reference for the order",
                         "type": "string",
-                        "maxLength": 255,
-                        "nullable": true
+                        "nullable": true,
+                        "maxLength": 255
                     },
                     "orderNotes": {
                         "description": "Notes for the steve team regarding the fulfillment. \\\nIf `meta.orderNotesPrecedingText` is set in the `shop` resource, it will be prepended to the notes.",
                         "type": "string",
-                        "maxLength": 350,
-                        "nullable": true
+                        "nullable": true,
+                        "maxLength": 350
                     },
                     "amazonSellerOrderId": {
                         "description": "The Amazon seller order id used when the order is coming from the Amazon marketplace.",
                         "type": "string",
-                        "maxLength": 500,
-                        "nullable": true
+                        "nullable": true,
+                        "maxLength": 500
                     },
                     "amazonVendorOrderId": {
                         "description": "The Amazon vendor order id when sending orders to an Amazon warehouse for sales by Amazon.",
                         "type": "string",
-                        "maxLength": 500,
-                        "nullable": true
+                        "nullable": true,
+                        "maxLength": 500
                     },
                     "amazonFbaShipmentId": {
                         "description": "The Amazon seller shipment id when sending a delivery to an Amazon warehouse for fulfillment by Amazon.",
                         "type": "string",
-                        "maxLength": 500,
-                        "nullable": true
+                        "nullable": true,
+                        "maxLength": 500
                     },
                     "deliveryCosts": {
                         "description": "The delivery costs of the order, which will be charged to the customer.\\\nNote: This field is required if the delivery address country requires customs clearance\n(see `customsClearanceRequired` on the `country` resource).",
@@ -9245,8 +9245,8 @@
                     "externalCustomerId": {
                         "description": "The external id of the order customer",
                         "type": "string",
-                        "maxLength": 255,
-                        "nullable": true
+                        "nullable": true,
+                        "maxLength": 255
                     },
                     "deliveryAddress": {
                         "$ref": "#/components/schemas/orderCustomerDeliveryAddress"
@@ -9254,39 +9254,39 @@
                     "email": {
                         "description": "The customer's email",
                         "type": "string",
-                        "maxLength": 255,
-                        "nullable": true
+                        "nullable": true,
+                        "maxLength": 255
                     },
                     "phone": {
                         "description": "The customer\\'s phone number. Note that only the DIN 5008 format is supported.\\\nParenthesis for example are not valid.",
                         "type": "string",
-                        "maxLength": 150,
                         "example": "+43 2236 123456-7890",
-                        "nullable": true
+                        "nullable": true,
+                        "maxLength": 150
                     },
                     "firstname": {
                         "description": "The customer's first name.\\\nNote: This field is required for invoicing and whether it is available or not depends on the used shopCode.\\\nUse the GET /shop endpoint to check if the meta.invoiceEnabled of the shop is set to true.",
                         "type": "string",
-                        "maxLength": 40,
-                        "nullable": true
+                        "nullable": true,
+                        "maxLength": 40
                     },
                     "lastname": {
                         "description": "The customer's last name.\\\nNote: This field is required for invoicing and whether it is available or not depends on the used shopCode.\\\nUse the GET /shop endpoint to check if the meta.invoiceEnabled of the shop is set to true.",
                         "type": "string",
-                        "maxLength": 40,
-                        "nullable": true
+                        "nullable": true,
+                        "maxLength": 40
                     },
                     "title": {
                         "description": "The customer's title.\\\nNote: This field is required for invoicing and whether it is available or not depends on the used shopCode.\\\nUse the GET /shop endpoint to check if the meta.invoiceEnabled of the shop is set to true.",
                         "type": "string",
-                        "maxLength": 100,
-                        "nullable": true
+                        "nullable": true,
+                        "maxLength": 100
                     },
                     "company": {
                         "description": "The customer's company name.\\\nNote: This field is required for invoicing and whether it is available or not depends on the used shopCode.\\\nUse the GET /shop endpoint to check if the meta.invoiceEnabled of the shop is set to true.",
                         "type": "string",
-                        "maxLength": 150,
-                        "nullable": true
+                        "nullable": true,
+                        "maxLength": 150
                     },
                     "companyVatNumber": {
                         "description": "The customer's company vat number (might be validated).\\\nNote: This field is required for invoicing and whether it is available or not depends on the used shopCode.\\\nUse the GET /shop endpoint to check if the meta.invoiceEnabled of the shop is set to true.",
@@ -9315,8 +9315,8 @@
                     "title": {
                         "description": "Item Title (optional)",
                         "type": "string",
-                        "maxLength": 255,
-                        "nullable": true
+                        "nullable": true,
+                        "maxLength": 255
                     },
                     "count": {
                         "description": "Positive number of items",
@@ -9327,8 +9327,8 @@
                     "externalProductNumber": {
                         "description": "Product number of the customer. Not available for order items of type bundle'. Will be dismissed if given.",
                         "type": "string",
-                        "maxLength": 255,
-                        "nullable": true
+                        "nullable": true,
+                        "maxLength": 255
                     }
                 },
                 "type": "object"
@@ -9336,6 +9336,15 @@
             "baseOrderOptions": {
                 "title": "baseOrderOptions",
                 "description": "Additional optional options for the order.",
+                "properties": {
+                    "printOrderDocument": {
+                        "description": "Whether a delivery slip (Lieferschein) is printed and included with the shipment of this order.\nIf not provided, the shop `meta.printOrderDocument` value is used; if that is also unset, the default of\n`true` applies. Always `true` for deliveries into customs-required countries.",
+                        "type": "boolean",
+                        "nullable": true,
+                        "default": true
+                    }
+                },
+                "type": "object",
                 "nullable": true
             },
             "baseProduct": {
@@ -9374,12 +9383,13 @@
                     "articleVariantTitle": {
                         "description": "The title of the article variant.",
                         "type": "string",
-                        "maxLength": 255,
-                        "nullable": true
+                        "nullable": true,
+                        "maxLength": 255
                     },
                     "articleVariantType": {
                         "description": "The type of the article variant.",
                         "type": "string",
+                        "nullable": true,
                         "default": "standard_autotitle",
                         "enum": [
                             "standard",
@@ -9400,12 +9410,12 @@
                             "voucher_digital",
                             "voucher_print",
                             null
-                        ],
-                        "nullable": true
+                        ]
                     },
                     "articleStatus": {
                         "description": "Status of the article regarding visibility.",
                         "type": "string",
+                        "nullable": true,
                         "default": "active",
                         "enum": [
                             "active",
@@ -9414,21 +9424,20 @@
                             "inactive_but_visible",
                             "inactive",
                             null
-                        ],
-                        "nullable": true
+                        ]
                     },
                     "contentsAmount": {
                         "description": "Amount of the product contents.",
                         "type": "number",
                         "format": "float",
-                        "default": 1,
-                        "nullable": true
+                        "nullable": true,
+                        "default": 1
                     },
                     "contentsUnit": {
                         "description": "Unit of the product contents. \\\nUnits can be queried with a GET /product-unit call.",
                         "type": "string",
-                        "default": "piece",
-                        "nullable": true
+                        "nullable": true,
+                        "default": "piece"
                     },
                     "contentsWeightGram": {
                         "description": "Weight of the product contents in gram.",
@@ -9444,7 +9453,6 @@
                     },
                     "variantGroup": {
                         "description": "The variant group of the product.",
-                        "default": "content",
                         "oneOf": [
                             {
                                 "$ref": "#/components/schemas/variantGroupEnum"
@@ -9452,13 +9460,14 @@
                             {
                                 "type": "string"
                             }
-                        ]
+                        ],
+                        "default": "content"
                     },
                     "ean": {
                         "description": "The EAN of the product.",
                         "type": "string",
-                        "maxLength": 255,
-                        "nullable": true
+                        "nullable": true,
+                        "maxLength": 255
                     },
                     "suggestedRetailPriceEUR": {
                         "description": "The suggested retail price for the product in EUR.",
@@ -9483,20 +9492,20 @@
                     "productNumberManufacturer": {
                         "description": "Product number of the manufacturer.",
                         "type": "string",
-                        "maxLength": 255,
-                        "nullable": true
+                        "nullable": true,
+                        "maxLength": 255
                     },
                     "manufacturerCountryCode": {
                         "description": "Country code of the manufacturer (ISO 3166-1 alpha-2).",
                         "type": "string",
-                        "default": "AT",
-                        "nullable": true
+                        "nullable": true,
+                        "default": "AT"
                     },
                     "languageCode": {
                         "description": "The language code used for the product (ISO 639-1).",
                         "type": "string",
-                        "default": "de",
-                        "nullable": true
+                        "nullable": true,
+                        "default": "de"
                     },
                     "dimensions": {
                         "description": "Dimensions of the product",
@@ -9784,11 +9793,11 @@
                     "type": {
                         "description": "The price type",
                         "type": "string",
+                        "example": "gross",
                         "enum": [
                             "net",
                             "gross"
-                        ],
-                        "example": "gross"
+                        ]
                     },
                     "vat": {
                         "description": "The VAT in percent.",
@@ -10112,8 +10121,8 @@
                     "externalShipmentId": {
                         "description": "External id of the shipment",
                         "type": "string",
-                        "maxLength": 255,
-                        "nullable": true
+                        "nullable": true,
+                        "maxLength": 255
                     },
                     "journal": {
                         "description": "Journal entries regarding the shipment",
@@ -10262,11 +10271,11 @@
                     "type": {
                         "description": "Type of the external listing.",
                         "type": "string",
+                        "example": "fulfillment",
                         "enum": [
                             "fulfillment",
                             "niceshops"
-                        ],
-                        "example": "fulfillment"
+                        ]
                     },
                     "value": {
                         "description": "Value of the external listing.",
@@ -10311,8 +10320,8 @@
                             "inboundDeliveryNumber": {
                                 "description": "The inbound delivery number.\\\nNote: If this number is prefixed with 'NICE', it means that the inbound delivery was\ncreated was created manually by niceshops.",
                                 "type": "string",
-                                "maxLength": 248,
-                                "nullable": false
+                                "nullable": false,
+                                "maxLength": 248
                             },
                             "inboundDeliveryNote": {
                                 "description": "Notes from the steve warehouse team",
@@ -10505,8 +10514,8 @@
                     "inboundDeliveryName": {
                         "description": "Optional free-text reference for inbound delivery.",
                         "type": "string",
-                        "maxLength": 255,
-                        "nullable": true
+                        "nullable": true,
+                        "maxLength": 255
                     },
                     "supplierNumber": {
                         "description": "Number of the supplier.\\\nAvailable suppliers can be retrieved from the 'GET /supplier' endpoint.",
@@ -10594,14 +10603,14 @@
                             "firstname": {
                                 "description": "The customer's first name.\\\nNote: This field is required for invoicing and whether it is available or not depends on the used shopCode.\\\nUse the GET /shop endpoint to check if the meta.invoiceEnabled of the shop is set to true.\\\nBecause of internal requirements, this field may be set with a fallback, if it is not provided.\\\nIf a lastname is provided, this field is required.",
                                 "type": "string",
-                                "maxLength": 40,
-                                "nullable": true
+                                "nullable": true,
+                                "maxLength": 40
                             },
                             "lastname": {
                                 "description": "The customer's last name.\\\nNote: This field is required for invoicing and whether it is available or not depends on the used shopCode.\\\nUse the GET /shop endpoint to check if the meta.invoiceEnabled of the shop is set to true.\\\nBecause of internal requirements, this field may be set with a fallback, if it is not provided.\\\nIf a lastname is provided, this field is required.",
                                 "type": "string",
-                                "maxLength": 40,
-                                "nullable": true
+                                "nullable": true,
+                                "maxLength": 40
                             },
                             "invoiceAddress": {
                                 "description": "The customer's invoice address.\\\nNote: This field is required for invoicing and whether it is available or not depends on the used shopCode.\\\nUse the GET /shop endpoint to check if the meta.invoiceEnabled of the shop is set to true.\\\nBecause of internal requirements, fields of this array may be set with a fallback, if it is not provided.",
@@ -10715,11 +10724,11 @@
                     "type": {
                         "description": "The price type",
                         "type": "string",
+                        "example": "gross",
                         "enum": [
                             "net",
                             "gross"
-                        ],
-                        "example": "gross"
+                        ]
                     },
                     "vat": {
                         "description": "The VAT in percent (might be validated for country)",
@@ -10856,10 +10865,10 @@
                             "autoProcessState": {
                                 "description": "By setting this option, the reconsignment will be processed into a completed state.\nThis option is NOT available in the production systems.\nThe autoprocessing of the state happens after the reconsignment announcement has been successfully created.\nIn case of any errors during the autoprocessing of the state, error messages are shown but the\nreconsignment announcements will still have been created and will not be rolled back.\nAvailable states:\n- reconsignment_completed: The reconsignment is completed.",
                                 "type": "string",
+                                "nullable": true,
                                 "enum": [
                                     "reconsignment_completed"
-                                ],
-                                "nullable": true
+                                ]
                             }
                         },
                         "type": "object"
@@ -11019,16 +11028,16 @@
                     "streetNumber": {
                         "description": "Must not contain more than 5 letters.\\\nProviding the street number separately is optional.",
                         "type": "string",
-                        "maxLength": 15,
-                        "nullable": true
+                        "nullable": true,
+                        "maxLength": 15
                     },
                     "zipCode": {
                         "type": "string"
                     },
                     "district": {
                         "type": "string",
-                        "maxLength": 35,
-                        "nullable": true
+                        "nullable": true,
+                        "maxLength": 35
                     },
                     "city": {
                         "type": "string",
@@ -11063,8 +11072,8 @@
                             },
                             "nameLine2": {
                                 "type": "string",
-                                "maxLength": 150,
-                                "nullable": true
+                                "nullable": true,
+                                "maxLength": 150
                             }
                         },
                         "type": "object"
@@ -11103,8 +11112,8 @@
                         "properties": {
                             "title": {
                                 "type": "string",
-                                "maxLength": 255,
-                                "nullable": true
+                                "nullable": true,
+                                "maxLength": 255
                             }
                         },
                         "type": "object"
@@ -11177,11 +11186,11 @@
                     "type": {
                         "description": "The price type",
                         "type": "string",
+                        "example": "gross",
                         "enum": [
                             "net",
                             "gross"
-                        ],
-                        "example": "gross"
+                        ]
                     },
                     "vat": {
                         "description": "The VAT in percent. Null for bundles, bundled products may have divergent VAT percentages.",
@@ -11233,11 +11242,11 @@
                     "type": {
                         "description": "The price type",
                         "type": "string",
+                        "example": "gross",
                         "enum": [
                             "net",
                             "gross"
-                        ],
-                        "example": "gross"
+                        ]
                     },
                     "vat": {
                         "description": "The VAT in percent (might be validated for country)",
@@ -11284,8 +11293,8 @@
                     "inboundDeliveryNote": {
                         "description": "Updated note for the inbound delivery.",
                         "type": "string",
-                        "maxLength": 65535,
-                        "nullable": true
+                        "nullable": true,
+                        "maxLength": 65535
                     },
                     "products": {
                         "description": "Products to update, add, or remove. Only listed products are affected; unlisted products remain unchanged.\n- To update a product's announced count: include the product with the new announcedCount.\n- To remove a product: include the product with announcedCount set to 0.\n- To add a new product: include the product with a positive announcedCount.",
@@ -11325,8 +11334,8 @@
                         "description": "Minimum available stock level. \\\nSet to \"null\" to clear, or to a non-negative integer to set the level. \\\n\"0\" is a valid value and is distinct from \"null\".",
                         "type": "integer",
                         "format": "int32",
-                        "minimum": 0,
-                        "nullable": true
+                        "nullable": true,
+                        "minimum": 0
                     }
                 },
                 "type": "object"
@@ -11365,8 +11374,8 @@
                                     "testShop": {
                                         "description": "Flag to mark a shop used for testing.",
                                         "type": "boolean",
-                                        "default": false,
-                                        "nullable": true
+                                        "nullable": true,
+                                        "default": false
                                     },
                                     "testShopResetNotBefore": {
                                         "description": "Date time to indicate that the test shop will not be reset before this time.",
@@ -11377,31 +11386,31 @@
                                     "sandboxMode": {
                                         "description": "Flag to mark a shop in sandbox mode.",
                                         "type": "boolean",
-                                        "default": false,
-                                        "nullable": true
+                                        "nullable": true,
+                                        "default": false
                                     },
                                     "addTestSuffixToInternalReference": {
                                         "description": "Flag to mark if a test suffix should be added to internal references.",
                                         "type": "boolean",
-                                        "default": false,
-                                        "nullable": true
+                                        "nullable": true,
+                                        "default": false
                                     },
                                     "invoiceEnabled": {
                                         "description": "Flag to indicate whether firstname, lastname, and invoiceAddress fields are available for order\ncustomers or not.",
                                         "type": "boolean",
-                                        "default": false,
-                                        "nullable": true
+                                        "nullable": true,
+                                        "default": false
                                     },
                                     "defaultCurrency": {
                                         "description": "Overwrite currency of shopify orders.",
                                         "type": "string",
+                                        "nullable": true,
                                         "enum": [
                                             "GBP",
                                             "SEK",
                                             "PLN",
                                             null
-                                        ],
-                                        "nullable": true
+                                        ]
                                     },
                                     "overwriteCustomerEmailEnabled": {
                                         "description": "Flag to mark if it is allowed to set a customer's email in a third party app or via the API.\nIf false the shop email will be used as default.",
@@ -11416,8 +11425,14 @@
                                     "deliverySlipNotes": {
                                         "description": "Default notes to be printed on the delivery slip when an order is created without\ndeliverySlipNotes.",
                                         "type": "string",
-                                        "maxLength": 1024,
-                                        "nullable": true
+                                        "nullable": true,
+                                        "maxLength": 1024
+                                    },
+                                    "printOrderDocument": {
+                                        "description": "Default for `options.printOrderDocument` of orders of this shop, controlling whether a\ndelivery slip (Lieferschein) is printed and included with the shipment. When unset, the\ndefault of `true` applies. Always `true` for orders into customs-required\ncountries.",
+                                        "type": "boolean",
+                                        "nullable": true,
+                                        "default": true
                                     }
                                 },
                                 "type": "object",
@@ -11455,6 +11470,7 @@
                             "productStatus": {
                                 "description": "Status of the product regarding sales. \\\nAvailable values:\n- enabled: Product is on sale\n- enabled_external_only: Product is only available in external stores\n- deleted: Product is deleted\n- discontinued: Product is discontinued\n- expired: Product is expired\n- incorrect: Product was incorrectly created\n- internal: Product is available for internal sales only\n- preparation: Product is in preparation for sale",
                                 "type": "string",
+                                "nullable": true,
                                 "enum": [
                                     "enabled",
                                     "enabled_external_only",
@@ -11465,20 +11481,19 @@
                                     "incorrect",
                                     "internal",
                                     "preparation"
-                                ],
-                                "nullable": true
+                                ]
                             },
                             "productTitle": {
                                 "description": "Title of the Product.",
                                 "type": "string",
-                                "maxLength": 255,
-                                "nullable": true
+                                "nullable": true,
+                                "maxLength": 255
                             },
                             "productTitleOriginal": {
                                 "description": "Original title of the Product.",
                                 "type": "string",
-                                "maxLength": 255,
-                                "nullable": true
+                                "nullable": true,
+                                "maxLength": 255
                             },
                             "image": {
                                 "$ref": "#/components/schemas/productImage"
@@ -11486,14 +11501,14 @@
                             "articleShortDescription": {
                                 "description": "Short description of the article.",
                                 "type": "string",
-                                "maxLength": 255,
-                                "nullable": true
+                                "nullable": true,
+                                "maxLength": 255
                             },
                             "articleLongDescription": {
                                 "description": "Long description of the article.",
                                 "type": "string",
-                                "maxLength": 255,
-                                "nullable": true
+                                "nullable": true,
+                                "maxLength": 255
                             },
                             "taricCode": {
                                 "description": "The TARIC Code of the product.",
@@ -11518,6 +11533,7 @@
                             "taxCode": {
                                 "description": "One of the available tax codes.\n- default: Default tax rate (in e.g. Austria 20 %)\n- reduced1: 1st reduced tax rate (in e.g. Austria 13 %)\n- reduced2: 2nd reduced tax rate (in e.g. Austria 10 %)\n- reduced3: 3rd reduced tax rate (in e.g. Austria 5 %)\n- none: not taxable (0%)\n\nNote: This can be null if the tax code could not be determined.",
                                 "type": "string",
+                                "nullable": true,
                                 "default": "default",
                                 "enum": [
                                     "default",
@@ -11526,8 +11542,7 @@
                                     "reduced3",
                                     "none",
                                     null
-                                ],
-                                "nullable": true
+                                ]
                             },
                             "manufacturerNumber": {
                                 "description": "Number of the manufacturer. \\\nManufacturers can be queried with a GET /manufacturer call. \\\nNote: This can be null in some cases (e.g. if the product is a bundle).",
@@ -11616,6 +11631,7 @@
                             "articleItemStatus": {
                                 "description": "Status of the article item regarding visibility.",
                                 "type": "string",
+                                "nullable": true,
                                 "enum": [
                                     "active",
                                     "inactive",
@@ -11623,15 +11639,14 @@
                                     "preparation_inactive",
                                     "temporary_inactive",
                                     null
-                                ],
-                                "nullable": true
+                                ]
                             },
                             "minAvailableStock": {
                                 "description": "Minimum available stock level. \\\n\"null\" means no value is configured. \"0\" is a valid value and is distinct from \"null\":\n- \"null\": not configured (cleared)\n- \"0\": configured at zero units\n- positive integer: configured at the given level",
                                 "type": "integer",
                                 "format": "int32",
-                                "minimum": 0,
-                                "nullable": true
+                                "nullable": true,
+                                "minimum": 0
                             }
                         },
                         "type": "object"
@@ -12559,8 +12574,8 @@
                                     "testShop": {
                                         "description": "Flag to mark a shop used for testing.",
                                         "type": "boolean",
-                                        "default": false,
-                                        "nullable": true
+                                        "nullable": true,
+                                        "default": false
                                     },
                                     "testShopResetNotBefore": {
                                         "description": "Date time to indicate that the test shop will not be reset before this time.",
@@ -12571,31 +12586,31 @@
                                     "sandboxMode": {
                                         "description": "Flag to mark a shop in sandbox mode.",
                                         "type": "boolean",
-                                        "default": false,
-                                        "nullable": true
+                                        "nullable": true,
+                                        "default": false
                                     },
                                     "addTestSuffixToInternalReference": {
                                         "description": "Flag to mark if a test suffix should be added to internal references.",
                                         "type": "boolean",
-                                        "default": false,
-                                        "nullable": true
+                                        "nullable": true,
+                                        "default": false
                                     },
                                     "invoiceEnabled": {
                                         "description": "Flag to indicate whether firstname, lastname, and invoiceAddress fields are available for order\ncustomers or not.",
                                         "type": "boolean",
-                                        "default": false,
-                                        "nullable": true
+                                        "nullable": true,
+                                        "default": false
                                     },
                                     "defaultCurrency": {
                                         "description": "Overwrite currency of shopify orders.",
                                         "type": "string",
+                                        "nullable": true,
                                         "enum": [
                                             "GBP",
                                             "SEK",
                                             "PLN",
                                             null
-                                        ],
-                                        "nullable": true
+                                        ]
                                     },
                                     "overwriteCustomerEmailEnabled": {
                                         "description": "Flag to mark if it is allowed to set a customer's email in a third party app or via the API.\nIf false the shop email will be used as default.",
@@ -12610,8 +12625,14 @@
                                     "deliverySlipNotes": {
                                         "description": "Default notes to be printed on the delivery slip when an order is created without\ndeliverySlipNotes.",
                                         "type": "string",
-                                        "maxLength": 1024,
-                                        "nullable": true
+                                        "nullable": true,
+                                        "maxLength": 1024
+                                    },
+                                    "printOrderDocument": {
+                                        "description": "Default for `options.printOrderDocument` of orders of this shop, controlling whether a\ndelivery slip (Lieferschein) is printed and included with the shipment. When unset, the\ndefault of `true` applies. Always `true` for orders into customs-required\ncountries.",
+                                        "type": "boolean",
+                                        "nullable": true,
+                                        "default": true
                                     }
                                 },
                                 "type": "object",
@@ -12757,8 +12778,8 @@
                     "externalShipmentId": {
                         "description": "External id of the shipment",
                         "type": "string",
-                        "maxLength": 255,
-                        "nullable": true
+                        "nullable": true,
+                        "maxLength": 255
                     }
                 },
                 "type": "object"
@@ -12782,8 +12803,8 @@
                                     "testShop": {
                                         "description": "Flag to mark a shop used for testing.",
                                         "type": "boolean",
-                                        "default": false,
-                                        "nullable": true
+                                        "nullable": true,
+                                        "default": false
                                     },
                                     "testShopResetNotBefore": {
                                         "description": "Date time to indicate that the test shop will not be reset before this time.",
@@ -12794,31 +12815,31 @@
                                     "sandboxMode": {
                                         "description": "Flag to mark a shop in sandbox mode.",
                                         "type": "boolean",
-                                        "default": false,
-                                        "nullable": true
+                                        "nullable": true,
+                                        "default": false
                                     },
                                     "addTestSuffixToInternalReference": {
                                         "description": "Flag to mark if a test suffix should be added to internal references.",
                                         "type": "boolean",
-                                        "default": false,
-                                        "nullable": true
+                                        "nullable": true,
+                                        "default": false
                                     },
                                     "invoiceEnabled": {
                                         "description": "Flag to indicate whether firstname, lastname, and invoiceAddress fields are available for order\ncustomers or not.",
                                         "type": "boolean",
-                                        "default": false,
-                                        "nullable": true
+                                        "nullable": true,
+                                        "default": false
                                     },
                                     "defaultCurrency": {
                                         "description": "Overwrite currency of shopify orders.",
                                         "type": "string",
+                                        "nullable": true,
                                         "enum": [
                                             "GBP",
                                             "SEK",
                                             "PLN",
                                             null
-                                        ],
-                                        "nullable": true
+                                        ]
                                     },
                                     "overwriteCustomerEmailEnabled": {
                                         "description": "Flag to mark if it is allowed to set a customer's email in a third party app or via the API.\nIf false the shop email will be used as default.",
@@ -12828,14 +12849,20 @@
                                     "orderNotesPrecedingText": {
                                         "description": "Text to be added to the beginning of the orderNotes of every order created for the shop.",
                                         "type": "string",
-                                        "maxLength": 147,
-                                        "nullable": true
+                                        "nullable": true,
+                                        "maxLength": 147
                                     },
                                     "deliverySlipNotes": {
                                         "description": "Default notes to be printed on the delivery slip when an order is created without\ndeliverySlipNotes.",
                                         "type": "string",
-                                        "maxLength": 1024,
-                                        "nullable": true
+                                        "nullable": true,
+                                        "maxLength": 1024
+                                    },
+                                    "printOrderDocument": {
+                                        "description": "Default for `options.printOrderDocument` of orders of this shop, controlling whether a\ndelivery slip (Lieferschein) is printed and included with the shipment. When unset, the\ndefault of `true` applies. Always `true` for orders into customs-required\ncountries.",
+                                        "type": "boolean",
+                                        "nullable": true,
+                                        "default": true
                                     }
                                 },
                                 "type": "object",
