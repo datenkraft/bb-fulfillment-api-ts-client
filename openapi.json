@@ -9636,6 +9636,13 @@
                             }
                         },
                         "type": "object"
+                    },
+                    "minAvailableStock": {
+                        "description": "Minimum available stock level. \\\n\"null\" means no value is configured. \"0\" is a valid value and is distinct from \"null\":\n- \"null\": not configured (cleared)\n- \"0\": configured at zero units\n- positive integer: configured at the given level",
+                        "type": "integer",
+                        "format": "int32",
+                        "nullable": true,
+                        "minimum": 0
                     }
                 },
                 "type": "object"
