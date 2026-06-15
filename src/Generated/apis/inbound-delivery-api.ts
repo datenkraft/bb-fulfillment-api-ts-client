@@ -29,8 +29,6 @@ import { ErrorResponse } from '../models';
 // @ts-ignore
 import { InboundDelivery } from '../models';
 // @ts-ignore
-import { InboundDeliveryBulkImport207ResponseInner } from '../models';
-// @ts-ignore
 import { InboundDeliveryCollection } from '../models';
 // @ts-ignore
 import { NewInboundDelivery } from '../models';
@@ -124,44 +122,6 @@ export const InboundDeliveryApiAxiosParamCreator = function (configuration?: Con
             if (shopCode !== undefined) {
                 localVarQueryParameter['shopCode'] = shopCode;
             }
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * Get a spreadsheet template for performing POST queries to the respective endpoint.         The file type is controlled by the accept header.         The fill-in help in the second line can be removed or remain.
-         * @summary Get a spreadsheet template for performing POST queries to the respective endpoint.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getInboundDeliveryBulkImportTemplate: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/bulk-import/template/inbound-delivery`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication oAuthAuthorization required
-            // oauth required
-            await setOAuthToObject(localVarHeaderParameter, "oAuthAuthorization", [], configuration)
-
-            // authentication bearerAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
 
     
@@ -327,55 +287,6 @@ export const InboundDeliveryApiAxiosParamCreator = function (configuration?: Con
             };
         },
         /**
-         * Import one or more new inbound deliveries.         The file type is controlled by the content type attribute of the uploaded file
-         * @summary Import one or more new inbound deliveries.
-         * @param {File} file File to upload
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        inboundDeliveryBulkImport: async (file: File, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'file' is not null or undefined
-            assertParamExists('inboundDeliveryBulkImport', 'file', file)
-            const localVarPath = `/bulk-import/inbound-delivery`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-            const localVarFormParams = new ((configuration && configuration.formDataCtor) || FormData)();
-
-            // authentication oAuthAuthorization required
-            // oauth required
-            await setOAuthToObject(localVarHeaderParameter, "oAuthAuthorization", [], configuration)
-
-            // authentication bearerAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-            if (file !== undefined) { 
-                localVarFormParams.append('file', file as any);
-            }
-    
-    
-            localVarHeaderParameter['Content-Type'] = 'multipart/form-data';
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = localVarFormParams;
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
          * Patch the inbound delivery specified by the given inbound delivery number. \\ Only inbound deliveries where booking-in has not yet started can be edited. \\ All fields in the request body are optional. Only provided fields will be updated.  Product changes: - To update a product\'s announced count: include the product with the new announcedCount. - To remove a product: include the product with announcedCount set to 0. - To add a new product: include a product that is not yet part of the delivery with a positive announcedCount. - Products not listed in the products array remain unchanged.
          * @summary Patch an inbound delivery.
          * @param {string} inboundDeliveryNumber The inbound delivery number as defined during the creation of the inbound delivery.
@@ -516,16 +427,6 @@ export const InboundDeliveryApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * Get a spreadsheet template for performing POST queries to the respective endpoint.         The file type is controlled by the accept header.         The fill-in help in the second line can be removed or remain.
-         * @summary Get a spreadsheet template for performing POST queries to the respective endpoint.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async getInboundDeliveryBulkImportTemplate(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<string>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getInboundDeliveryBulkImportTemplate(options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
          * Get a list of inbound deliveries.
          * @summary Get a list of inbound deliveries.
          * @param {number} [page] The page to read. Default is the first page.
@@ -557,17 +458,6 @@ export const InboundDeliveryApiFp = function(configuration?: Configuration) {
          */
         async getInboundDeliveryDocument(inboundDeliveryNumber: string, documentCode: 'supplierDeliveryLabel' | 'details', shopCode?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<File>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getInboundDeliveryDocument(inboundDeliveryNumber, documentCode, shopCode, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * Import one or more new inbound deliveries.         The file type is controlled by the content type attribute of the uploaded file
-         * @summary Import one or more new inbound deliveries.
-         * @param {File} file File to upload
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async inboundDeliveryBulkImport(file: File, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<InboundDeliveryBulkImport207ResponseInner>>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.inboundDeliveryBulkImport(file, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -629,15 +519,6 @@ export const InboundDeliveryApiFactory = function (configuration?: Configuration
             return localVarFp.getInboundDelivery(inboundDeliveryNumber, shopCode, options).then((request) => request(axios, basePath));
         },
         /**
-         * Get a spreadsheet template for performing POST queries to the respective endpoint.         The file type is controlled by the accept header.         The fill-in help in the second line can be removed or remain.
-         * @summary Get a spreadsheet template for performing POST queries to the respective endpoint.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getInboundDeliveryBulkImportTemplate(options?: any): AxiosPromise<string> {
-            return localVarFp.getInboundDeliveryBulkImportTemplate(options).then((request) => request(axios, basePath));
-        },
-        /**
          * Get a list of inbound deliveries.
          * @summary Get a list of inbound deliveries.
          * @param {number} [page] The page to read. Default is the first page.
@@ -668,16 +549,6 @@ export const InboundDeliveryApiFactory = function (configuration?: Configuration
          */
         getInboundDeliveryDocument(inboundDeliveryNumber: string, documentCode: 'supplierDeliveryLabel' | 'details', shopCode?: string, options?: any): AxiosPromise<File> {
             return localVarFp.getInboundDeliveryDocument(inboundDeliveryNumber, documentCode, shopCode, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * Import one or more new inbound deliveries.         The file type is controlled by the content type attribute of the uploaded file
-         * @summary Import one or more new inbound deliveries.
-         * @param {File} file File to upload
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        inboundDeliveryBulkImport(file: File, options?: any): AxiosPromise<Array<InboundDeliveryBulkImport207ResponseInner>> {
-            return localVarFp.inboundDeliveryBulkImport(file, options).then((request) => request(axios, basePath));
         },
         /**
          * Patch the inbound delivery specified by the given inbound delivery number. \\ Only inbound deliveries where booking-in has not yet started can be edited. \\ All fields in the request body are optional. Only provided fields will be updated.  Product changes: - To update a product\'s announced count: include the product with the new announcedCount. - To remove a product: include the product with announcedCount set to 0. - To add a new product: include a product that is not yet part of the delivery with a positive announcedCount. - Products not listed in the products array remain unchanged.
@@ -735,15 +606,6 @@ export interface InboundDeliveryApiInterface {
     getInboundDelivery(inboundDeliveryNumber: string, shopCode?: string, options?: AxiosRequestConfig): AxiosPromise<InboundDelivery>;
 
     /**
-     * Get a spreadsheet template for performing POST queries to the respective endpoint.         The file type is controlled by the accept header.         The fill-in help in the second line can be removed or remain.
-     * @summary Get a spreadsheet template for performing POST queries to the respective endpoint.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof InboundDeliveryApiInterface
-     */
-    getInboundDeliveryBulkImportTemplate(options?: AxiosRequestConfig): AxiosPromise<string>;
-
-    /**
      * Get a list of inbound deliveries.
      * @summary Get a list of inbound deliveries.
      * @param {number} [page] The page to read. Default is the first page.
@@ -774,16 +636,6 @@ export interface InboundDeliveryApiInterface {
      * @memberof InboundDeliveryApiInterface
      */
     getInboundDeliveryDocument(inboundDeliveryNumber: string, documentCode: 'supplierDeliveryLabel' | 'details', shopCode?: string, options?: AxiosRequestConfig): AxiosPromise<File>;
-
-    /**
-     * Import one or more new inbound deliveries.         The file type is controlled by the content type attribute of the uploaded file
-     * @summary Import one or more new inbound deliveries.
-     * @param {File} file File to upload
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof InboundDeliveryApiInterface
-     */
-    inboundDeliveryBulkImport(file: File, options?: AxiosRequestConfig): AxiosPromise<Array<InboundDeliveryBulkImport207ResponseInner>>;
 
     /**
      * Patch the inbound delivery specified by the given inbound delivery number. \\ Only inbound deliveries where booking-in has not yet started can be edited. \\ All fields in the request body are optional. Only provided fields will be updated.  Product changes: - To update a product\'s announced count: include the product with the new announcedCount. - To remove a product: include the product with announcedCount set to 0. - To add a new product: include a product that is not yet part of the delivery with a positive announcedCount. - Products not listed in the products array remain unchanged.
@@ -845,17 +697,6 @@ export class InboundDeliveryApi extends BaseAPI implements InboundDeliveryApiInt
     }
 
     /**
-     * Get a spreadsheet template for performing POST queries to the respective endpoint.         The file type is controlled by the accept header.         The fill-in help in the second line can be removed or remain.
-     * @summary Get a spreadsheet template for performing POST queries to the respective endpoint.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof InboundDeliveryApi
-     */
-    public getInboundDeliveryBulkImportTemplate(options?: AxiosRequestConfig) {
-        return InboundDeliveryApiFp(this.configuration).getInboundDeliveryBulkImportTemplate(options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
      * Get a list of inbound deliveries.
      * @summary Get a list of inbound deliveries.
      * @param {number} [page] The page to read. Default is the first page.
@@ -889,18 +730,6 @@ export class InboundDeliveryApi extends BaseAPI implements InboundDeliveryApiInt
      */
     public getInboundDeliveryDocument(inboundDeliveryNumber: string, documentCode: 'supplierDeliveryLabel' | 'details', shopCode?: string, options?: AxiosRequestConfig) {
         return InboundDeliveryApiFp(this.configuration).getInboundDeliveryDocument(inboundDeliveryNumber, documentCode, shopCode, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * Import one or more new inbound deliveries.         The file type is controlled by the content type attribute of the uploaded file
-     * @summary Import one or more new inbound deliveries.
-     * @param {File} file File to upload
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof InboundDeliveryApi
-     */
-    public inboundDeliveryBulkImport(file: File, options?: AxiosRequestConfig) {
-        return InboundDeliveryApiFp(this.configuration).inboundDeliveryBulkImport(file, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

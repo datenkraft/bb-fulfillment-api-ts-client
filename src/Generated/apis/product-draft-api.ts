@@ -31,8 +31,6 @@ import { NewProductDraft } from '../models';
 // @ts-ignore
 import { ProductDraft } from '../models';
 // @ts-ignore
-import { ProductDraftBulkImport207ResponseInner } from '../models';
-// @ts-ignore
 import { ProductDraftCollection } from '../models';
 /**
  * ProductDraftApi - axios parameter creator
@@ -126,44 +124,6 @@ export const ProductDraftApiAxiosParamCreator = function (configuration?: Config
             if (shopCode !== undefined) {
                 localVarQueryParameter['shopCode'] = shopCode;
             }
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * Get a spreadsheet template for performing POST queries to the respective endpoint.         The file type is controlled by the accept header.         The fill-in help in the second line can be removed or remain.
-         * @summary Get a spreadsheet template for performing POST queries to the respective endpoint.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getProductDraftBulkImportTemplate: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/bulk-import/template/product-draft`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication oAuthAuthorization required
-            // oauth required
-            await setOAuthToObject(localVarHeaderParameter, "oAuthAuthorization", [], configuration)
-
-            // authentication bearerAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
 
     
@@ -321,55 +281,6 @@ export const ProductDraftApiAxiosParamCreator = function (configuration?: Config
                 options: localVarRequestOptions,
             };
         },
-        /**
-         * Import one or more new product draft(s).         The file type is controlled by the content type attribute of the uploaded file
-         * @summary Import one or more new product drafts.
-         * @param {File} file File to upload
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        productDraftBulkImport: async (file: File, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'file' is not null or undefined
-            assertParamExists('productDraftBulkImport', 'file', file)
-            const localVarPath = `/bulk-import/product-draft`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-            const localVarFormParams = new ((configuration && configuration.formDataCtor) || FormData)();
-
-            // authentication oAuthAuthorization required
-            // oauth required
-            await setOAuthToObject(localVarHeaderParameter, "oAuthAuthorization", [], configuration)
-
-            // authentication bearerAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-            if (file !== undefined) { 
-                localVarFormParams.append('file', file as any);
-            }
-    
-    
-            localVarHeaderParameter['Content-Type'] = 'multipart/form-data';
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = localVarFormParams;
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
     }
 };
 
@@ -405,16 +316,6 @@ export const ProductDraftApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * Get a spreadsheet template for performing POST queries to the respective endpoint.         The file type is controlled by the accept header.         The fill-in help in the second line can be removed or remain.
-         * @summary Get a spreadsheet template for performing POST queries to the respective endpoint.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async getProductDraftBulkImportTemplate(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<string>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getProductDraftBulkImportTemplate(options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
          * Read a product draft collection. These are read in multiple pages with a defined page size.
          * @summary Read a product draft collection.
          * @param {string} filterShopCode The shopCode used internally to distinguish between clients.
@@ -444,17 +345,6 @@ export const ProductDraftApiFp = function(configuration?: Configuration) {
          */
         async postProductDraft(shopCode: string, newProductDraft: NewProductDraft, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ProductDraft>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.postProductDraft(shopCode, newProductDraft, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * Import one or more new product draft(s).         The file type is controlled by the content type attribute of the uploaded file
-         * @summary Import one or more new product drafts.
-         * @param {File} file File to upload
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async productDraftBulkImport(file: File, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<ProductDraftBulkImport207ResponseInner>>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.productDraftBulkImport(file, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -490,15 +380,6 @@ export const ProductDraftApiFactory = function (configuration?: Configuration, b
             return localVarFp.getProductDraft(productDraftId, shopCode, options).then((request) => request(axios, basePath));
         },
         /**
-         * Get a spreadsheet template for performing POST queries to the respective endpoint.         The file type is controlled by the accept header.         The fill-in help in the second line can be removed or remain.
-         * @summary Get a spreadsheet template for performing POST queries to the respective endpoint.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getProductDraftBulkImportTemplate(options?: any): AxiosPromise<string> {
-            return localVarFp.getProductDraftBulkImportTemplate(options).then((request) => request(axios, basePath));
-        },
-        /**
          * Read a product draft collection. These are read in multiple pages with a defined page size.
          * @summary Read a product draft collection.
          * @param {string} filterShopCode The shopCode used internally to distinguish between clients.
@@ -527,16 +408,6 @@ export const ProductDraftApiFactory = function (configuration?: Configuration, b
          */
         postProductDraft(shopCode: string, newProductDraft: NewProductDraft, options?: any): AxiosPromise<ProductDraft> {
             return localVarFp.postProductDraft(shopCode, newProductDraft, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * Import one or more new product draft(s).         The file type is controlled by the content type attribute of the uploaded file
-         * @summary Import one or more new product drafts.
-         * @param {File} file File to upload
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        productDraftBulkImport(file: File, options?: any): AxiosPromise<Array<ProductDraftBulkImport207ResponseInner>> {
-            return localVarFp.productDraftBulkImport(file, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -570,15 +441,6 @@ export interface ProductDraftApiInterface {
     getProductDraft(productDraftId: string, shopCode: string, options?: AxiosRequestConfig): AxiosPromise<ProductDraft>;
 
     /**
-     * Get a spreadsheet template for performing POST queries to the respective endpoint.         The file type is controlled by the accept header.         The fill-in help in the second line can be removed or remain.
-     * @summary Get a spreadsheet template for performing POST queries to the respective endpoint.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProductDraftApiInterface
-     */
-    getProductDraftBulkImportTemplate(options?: AxiosRequestConfig): AxiosPromise<string>;
-
-    /**
      * Read a product draft collection. These are read in multiple pages with a defined page size.
      * @summary Read a product draft collection.
      * @param {string} filterShopCode The shopCode used internally to distinguish between clients.
@@ -607,16 +469,6 @@ export interface ProductDraftApiInterface {
      * @memberof ProductDraftApiInterface
      */
     postProductDraft(shopCode: string, newProductDraft: NewProductDraft, options?: AxiosRequestConfig): AxiosPromise<ProductDraft>;
-
-    /**
-     * Import one or more new product draft(s).         The file type is controlled by the content type attribute of the uploaded file
-     * @summary Import one or more new product drafts.
-     * @param {File} file File to upload
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProductDraftApiInterface
-     */
-    productDraftBulkImport(file: File, options?: AxiosRequestConfig): AxiosPromise<Array<ProductDraftBulkImport207ResponseInner>>;
 
 }
 
@@ -654,17 +506,6 @@ export class ProductDraftApi extends BaseAPI implements ProductDraftApiInterface
     }
 
     /**
-     * Get a spreadsheet template for performing POST queries to the respective endpoint.         The file type is controlled by the accept header.         The fill-in help in the second line can be removed or remain.
-     * @summary Get a spreadsheet template for performing POST queries to the respective endpoint.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProductDraftApi
-     */
-    public getProductDraftBulkImportTemplate(options?: AxiosRequestConfig) {
-        return ProductDraftApiFp(this.configuration).getProductDraftBulkImportTemplate(options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
      * Read a product draft collection. These are read in multiple pages with a defined page size.
      * @summary Read a product draft collection.
      * @param {string} filterShopCode The shopCode used internally to distinguish between clients.
@@ -696,17 +537,5 @@ export class ProductDraftApi extends BaseAPI implements ProductDraftApiInterface
      */
     public postProductDraft(shopCode: string, newProductDraft: NewProductDraft, options?: AxiosRequestConfig) {
         return ProductDraftApiFp(this.configuration).postProductDraft(shopCode, newProductDraft, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * Import one or more new product draft(s).         The file type is controlled by the content type attribute of the uploaded file
-     * @summary Import one or more new product drafts.
-     * @param {File} file File to upload
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProductDraftApi
-     */
-    public productDraftBulkImport(file: File, options?: AxiosRequestConfig) {
-        return ProductDraftApiFp(this.configuration).productDraftBulkImport(file, options).then((request) => request(this.axios, this.basePath));
     }
 }
