@@ -33,8 +33,6 @@ import { NewReconsignmentAnnouncement } from '../models';
 // @ts-ignore
 import { Order } from '../models';
 // @ts-ignore
-import { OrderBulkImport207ResponseInner } from '../models';
-// @ts-ignore
 import { OrderCollection } from '../models';
 // @ts-ignore
 import { ReconsignmentAnnouncement } from '../models';
@@ -126,44 +124,6 @@ export const OrderApiAxiosParamCreator = function (configuration?: Configuration
             if (shopCode !== undefined) {
                 localVarQueryParameter['shopCode'] = shopCode;
             }
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * Get a spreadsheet template for performing POST queries to the respective endpoint.         The file type is controlled by the accept header.         The fill-in help in the second line can be removed or remain.
-         * @summary Get a spreadsheet template for performing POST queries to the respective endpoint.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getOrderBulkImportTemplate: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/bulk-import/template/order`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication oAuthAuthorization required
-            // oauth required
-            await setOAuthToObject(localVarHeaderParameter, "oAuthAuthorization", [], configuration)
-
-            // authentication bearerAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
 
     
@@ -282,55 +242,6 @@ export const OrderApiAxiosParamCreator = function (configuration?: Configuration
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * Import one or more new orders.         The file type is controlled by the content type attribute of the uploaded file
-         * @summary Import one or more new orders.
-         * @param {File} file File to upload
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        orderBulkImport: async (file: File, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'file' is not null or undefined
-            assertParamExists('orderBulkImport', 'file', file)
-            const localVarPath = `/bulk-import/order`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-            const localVarFormParams = new ((configuration && configuration.formDataCtor) || FormData)();
-
-            // authentication oAuthAuthorization required
-            // oauth required
-            await setOAuthToObject(localVarHeaderParameter, "oAuthAuthorization", [], configuration)
-
-            // authentication bearerAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-            if (file !== undefined) { 
-                localVarFormParams.append('file', file as any);
-            }
-    
-    
-            localVarHeaderParameter['Content-Type'] = 'multipart/form-data';
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = localVarFormParams;
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -614,16 +525,6 @@ export const OrderApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * Get a spreadsheet template for performing POST queries to the respective endpoint.         The file type is controlled by the accept header.         The fill-in help in the second line can be removed or remain.
-         * @summary Get a spreadsheet template for performing POST queries to the respective endpoint.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async getOrderBulkImportTemplate(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<string>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getOrderBulkImportTemplate(options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
          * Get a list of shop orders.
          * @summary Get a list of shop orders.
          * @param {number} [page] The page to read. Default is the first page.
@@ -645,17 +546,6 @@ export const OrderApiFp = function(configuration?: Configuration) {
          */
         async getOrderCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', sortBy?: string, filterShopCode?: string, filterStatus?: string, filterExternalOrderId?: string, filterExternalCustomerId?: string, filterExternalOrderReference?: string, filterOrderDateFrom?: string, filterOrderDateTo?: string, filterOrderNumber?: string, filterSearch?: string, filterDeliverabilityStatus?: 'allOrderItems' | 'notAllOrderItems', options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OrderCollection>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getOrderCollection(page, pageSize, paginationMode, sortBy, filterShopCode, filterStatus, filterExternalOrderId, filterExternalCustomerId, filterExternalOrderReference, filterOrderDateFrom, filterOrderDateTo, filterOrderNumber, filterSearch, filterDeliverabilityStatus, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
-        },
-        /**
-         * Import one or more new orders.         The file type is controlled by the content type attribute of the uploaded file
-         * @summary Import one or more new orders.
-         * @param {File} file File to upload
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async orderBulkImport(file: File, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<OrderBulkImport207ResponseInner>>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.orderBulkImport(file, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -752,15 +642,6 @@ export const OrderApiFactory = function (configuration?: Configuration, basePath
             return localVarFp.getOrder(orderNumber, shopCode, options).then((request) => request(axios, basePath));
         },
         /**
-         * Get a spreadsheet template for performing POST queries to the respective endpoint.         The file type is controlled by the accept header.         The fill-in help in the second line can be removed or remain.
-         * @summary Get a spreadsheet template for performing POST queries to the respective endpoint.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getOrderBulkImportTemplate(options?: any): AxiosPromise<string> {
-            return localVarFp.getOrderBulkImportTemplate(options).then((request) => request(axios, basePath));
-        },
-        /**
          * Get a list of shop orders.
          * @summary Get a list of shop orders.
          * @param {number} [page] The page to read. Default is the first page.
@@ -782,16 +663,6 @@ export const OrderApiFactory = function (configuration?: Configuration, basePath
          */
         getOrderCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', sortBy?: string, filterShopCode?: string, filterStatus?: string, filterExternalOrderId?: string, filterExternalCustomerId?: string, filterExternalOrderReference?: string, filterOrderDateFrom?: string, filterOrderDateTo?: string, filterOrderNumber?: string, filterSearch?: string, filterDeliverabilityStatus?: 'allOrderItems' | 'notAllOrderItems', options?: any): AxiosPromise<OrderCollection> {
             return localVarFp.getOrderCollection(page, pageSize, paginationMode, sortBy, filterShopCode, filterStatus, filterExternalOrderId, filterExternalCustomerId, filterExternalOrderReference, filterOrderDateFrom, filterOrderDateTo, filterOrderNumber, filterSearch, filterDeliverabilityStatus, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * Import one or more new orders.         The file type is controlled by the content type attribute of the uploaded file
-         * @summary Import one or more new orders.
-         * @param {File} file File to upload
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        orderBulkImport(file: File, options?: any): AxiosPromise<Array<OrderBulkImport207ResponseInner>> {
-            return localVarFp.orderBulkImport(file, options).then((request) => request(axios, basePath));
         },
         /**
          * Add a new order referenced by the given orderNumber.
@@ -881,15 +752,6 @@ export interface OrderApiInterface {
     getOrder(orderNumber: string, shopCode?: string, options?: AxiosRequestConfig): AxiosPromise<Order>;
 
     /**
-     * Get a spreadsheet template for performing POST queries to the respective endpoint.         The file type is controlled by the accept header.         The fill-in help in the second line can be removed or remain.
-     * @summary Get a spreadsheet template for performing POST queries to the respective endpoint.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof OrderApiInterface
-     */
-    getOrderBulkImportTemplate(options?: AxiosRequestConfig): AxiosPromise<string>;
-
-    /**
      * Get a list of shop orders.
      * @summary Get a list of shop orders.
      * @param {number} [page] The page to read. Default is the first page.
@@ -911,16 +773,6 @@ export interface OrderApiInterface {
      * @memberof OrderApiInterface
      */
     getOrderCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', sortBy?: string, filterShopCode?: string, filterStatus?: string, filterExternalOrderId?: string, filterExternalCustomerId?: string, filterExternalOrderReference?: string, filterOrderDateFrom?: string, filterOrderDateTo?: string, filterOrderNumber?: string, filterSearch?: string, filterDeliverabilityStatus?: 'allOrderItems' | 'notAllOrderItems', options?: AxiosRequestConfig): AxiosPromise<OrderCollection>;
-
-    /**
-     * Import one or more new orders.         The file type is controlled by the content type attribute of the uploaded file
-     * @summary Import one or more new orders.
-     * @param {File} file File to upload
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof OrderApiInterface
-     */
-    orderBulkImport(file: File, options?: AxiosRequestConfig): AxiosPromise<Array<OrderBulkImport207ResponseInner>>;
 
     /**
      * Add a new order referenced by the given orderNumber.
@@ -1014,17 +866,6 @@ export class OrderApi extends BaseAPI implements OrderApiInterface {
     }
 
     /**
-     * Get a spreadsheet template for performing POST queries to the respective endpoint.         The file type is controlled by the accept header.         The fill-in help in the second line can be removed or remain.
-     * @summary Get a spreadsheet template for performing POST queries to the respective endpoint.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof OrderApi
-     */
-    public getOrderBulkImportTemplate(options?: AxiosRequestConfig) {
-        return OrderApiFp(this.configuration).getOrderBulkImportTemplate(options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
      * Get a list of shop orders.
      * @summary Get a list of shop orders.
      * @param {number} [page] The page to read. Default is the first page.
@@ -1047,18 +888,6 @@ export class OrderApi extends BaseAPI implements OrderApiInterface {
      */
     public getOrderCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', sortBy?: string, filterShopCode?: string, filterStatus?: string, filterExternalOrderId?: string, filterExternalCustomerId?: string, filterExternalOrderReference?: string, filterOrderDateFrom?: string, filterOrderDateTo?: string, filterOrderNumber?: string, filterSearch?: string, filterDeliverabilityStatus?: 'allOrderItems' | 'notAllOrderItems', options?: AxiosRequestConfig) {
         return OrderApiFp(this.configuration).getOrderCollection(page, pageSize, paginationMode, sortBy, filterShopCode, filterStatus, filterExternalOrderId, filterExternalCustomerId, filterExternalOrderReference, filterOrderDateFrom, filterOrderDateTo, filterOrderNumber, filterSearch, filterDeliverabilityStatus, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * Import one or more new orders.         The file type is controlled by the content type attribute of the uploaded file
-     * @summary Import one or more new orders.
-     * @param {File} file File to upload
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof OrderApi
-     */
-    public orderBulkImport(file: File, options?: AxiosRequestConfig) {
-        return OrderApiFp(this.configuration).orderBulkImport(file, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

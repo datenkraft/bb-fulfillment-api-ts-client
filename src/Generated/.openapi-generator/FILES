@@ -90,8 +90,6 @@ models/external-listing.ts
 models/get-auth-permission-collection-response-all-of.ts
 models/get-auth-permission-collection-response.ts
 models/inbound-delivery-all-of.ts
-models/inbound-delivery-bulk-import207-response-inner-content.ts
-models/inbound-delivery-bulk-import207-response-inner.ts
 models/inbound-delivery-collection-all-of.ts
 models/inbound-delivery-collection.ts
 models/inbound-delivery-product-all-of.ts
@@ -129,8 +127,6 @@ models/new-reconsignment-announcement-options-all-of.ts
 models/new-reconsignment-announcement-options.ts
 models/new-reconsignment-announcement.ts
 models/order-all-of.ts
-models/order-bulk-import207-response-inner-content.ts
-models/order-bulk-import207-response-inner.ts
 models/order-collection-all-of.ts
 models/order-collection.ts
 models/order-customer-address.ts
@@ -159,8 +155,6 @@ models/product-bundled-product.ts
 models/product-collection-all-of.ts
 models/product-collection.ts
 models/product-draft-all-of.ts
-models/product-draft-bulk-import207-response-inner-content.ts
-models/product-draft-bulk-import207-response-inner.ts
 models/product-draft-collection-all-of.ts
 models/product-draft-collection.ts
 models/product-draft.ts
