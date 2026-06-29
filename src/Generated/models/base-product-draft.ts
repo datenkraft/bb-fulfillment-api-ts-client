@@ -78,11 +78,12 @@ export interface BaseProductDraft {
      */
     'listPriceEUR'?: number;
     /**
-     * One of the available tax codes. - default: Default tax rate (in e.g. Austria 20 %) - reduced1: 1st reduced tax rate (in e.g. Austria 13 %) - reduced2: 2nd reduced tax rate (in e.g. Austria 10 %) - none: not taxable (0%)
+     * Deprecated and obsolete. Any value submitted on input is ignored and this field is always returned as `null`.
      * @type {string}
      * @memberof BaseProductDraft
+     * @deprecated
      */
-    'taxCode'?: BaseProductDraftTaxCodeEnum;
+    'taxCode'?: string | null;
     /**
      * Number of the supplier.\\ Valid suppliers can be queried with a GET /supplier call
      * @type {string}
@@ -114,17 +115,4 @@ export interface BaseProductDraft {
      */
     'minAvailableStock'?: number | null;
 }
-
-export const BaseProductDraftTaxCodeEnum = {
-    Default: 'default',
-    Reduced1: 'reduced1',
-    Reduced2: 'reduced2',
-    Reduced3: 'reduced3',
-    None: 'none',
-    Null: 'null',
-    UnknownDefaultOpenApi: '11184809'
-} as const;
-
-export type BaseProductDraftTaxCodeEnum = typeof BaseProductDraftTaxCodeEnum[keyof typeof BaseProductDraftTaxCodeEnum];
-
 
