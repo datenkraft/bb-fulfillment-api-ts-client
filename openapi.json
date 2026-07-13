@@ -6210,7 +6210,7 @@
                     {
                         "name": "filter[reason]",
                         "in": "query",
-                        "description": "Filter journal entries for one or more reasons\n- expired: Taking an expired product off the books\n- damaged: Taking a damaged product off the books\n- own_withdrawl: Product taken for own use\n- correction: Manual correction\n- niceshops_order: Product sold via a shop from niceshops\n- inbound: Restocking the product\n- fulfillment: steve fulfilled an order\n- return: A customer sent the product back to our warehouse",
+                        "description": "Filter journal entries for one or more reasons\n- expired: Taking an expired product off the books\n- damaged: Taking a damaged product off the books\n- own_withdrawal: Product taken for own use\n- correction: Manual correction\n- niceshops_order: Product sold via a shop from niceshops\n- inbound: Restocking the product\n- fulfillment: steve fulfilled an order\n- return: A customer sent the product back to our warehouse",
                         "required": false,
                         "schema": {
                             "type": "string"
