@@ -9016,10 +9016,6 @@
                     "email": {
                         "description": "The email used internally.",
                         "type": "string"
-                    },
-                    "active": {
-                        "description": "Is the shop active?",
-                        "type": "boolean"
                     }
                 },
                 "type": "object"
@@ -10684,8 +10680,7 @@
                             "shopCode",
                             "internalReferencePrefix",
                             "projectId",
-                            "email",
-                            "active"
+                            "email"
                         ],
                         "properties": {
                             "shopCode": {
@@ -11898,6 +11893,10 @@
                             "projectId": {
                                 "description": "The id of the project to which the shop belongs.",
                                 "type": "string"
+                            },
+                            "active": {
+                                "description": "Is the shop active? Read-only, controlled by the DISCO.",
+                                "type": "boolean"
                             },
                             "meta": {
                                 "description": "Meta data of the shop.",
