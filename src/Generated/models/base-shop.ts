@@ -26,11 +26,5 @@ export interface BaseShop {
      * @memberof BaseShop
      */
     'email'?: string;
-    /**
-     * Is the shop active?
-     * @type {boolean}
-     * @memberof BaseShop
-     */
-    'active'?: boolean;
 }
 

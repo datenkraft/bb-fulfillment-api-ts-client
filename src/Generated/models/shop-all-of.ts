@@ -45,6 +45,12 @@ export interface ShopAllOf {
      */
     'projectId'?: string;
     /**
+     * Is the shop active? Read-only, controlled by the DISCO.
+     * @type {boolean}
+     * @memberof ShopAllOf
+     */
+    'active'?: boolean;
+    /**
      * Meta data of the shop.
      * @type {{ [key: string]: any; }}
      * @memberof ShopAllOf
