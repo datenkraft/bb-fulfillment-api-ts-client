@@ -331,6 +331,88 @@ export const ProductApiAxiosParamCreator = function (configuration?: Configurati
             };
         },
         /**
+         * Read a journal collection showing the history of stock changes across all products of a shop. Delivers the same data as GET /product/{productNumber}/journal, without being bound to a single product. _Using the date filters is recommended for shops with many products._
+         * @summary Read a journal collection showing the history of stock changes across all products of a shop.
+         * @param {number} [page] The page to read. Default is the first page.
+         * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
+         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use:\\ - default: The total number of items in the collection will not be calculated.\\ - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
+         * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+         * @param {string} [filterDateFrom] The start date (inclusive) in format Y-m-d (timezone CET/CEST) for which product journal entries should be returned.
+         * @param {string} [filterDateTo] The end date (inclusive) in format Y-m-d (timezone CET/CEST) for which product journal entries should be returned.
+         * @param {string} [filterReason] Filter journal entries for one or more reasons - expired: Taking an expired product off the books - damaged: Taking a damaged product off the books - own_withdrawal: Product taken for own use - correction: Manual correction - niceshops_order: Product sold via a shop from niceshops - inbound: Restocking the product - fulfillment: steve fulfilled an order - return: A customer sent the product back to our warehouse
+         * @param {string} [filterProductNumber] Filter for product number(s) (optional).
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getShopProductJournalCollection: async (page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', shopCode?: string, filterDateFrom?: string, filterDateTo?: string, filterReason?: string, filterProductNumber?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/product-journal`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication oAuthAuthorization required
+            // oauth required
+            await setOAuthToObject(localVarHeaderParameter, "oAuthAuthorization", [], configuration)
+
+            // authentication bearerAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
+            }
+
+            if (pageSize !== undefined) {
+                localVarQueryParameter['pageSize'] = pageSize;
+            }
+
+            if (paginationMode !== undefined) {
+                localVarQueryParameter['paginationMode'] = paginationMode;
+            }
+
+            if (shopCode !== undefined) {
+                localVarQueryParameter['shopCode'] = shopCode;
+            }
+
+            if (filterDateFrom !== undefined) {
+                localVarQueryParameter['filter[dateFrom]'] = (filterDateFrom as any instanceof Date) ?
+                    (filterDateFrom as any).toISOString().substr(0,10) :
+                    filterDateFrom;
+            }
+
+            if (filterDateTo !== undefined) {
+                localVarQueryParameter['filter[dateTo]'] = (filterDateTo as any instanceof Date) ?
+                    (filterDateTo as any).toISOString().substr(0,10) :
+                    filterDateTo;
+            }
+
+            if (filterReason !== undefined) {
+                localVarQueryParameter['filter[reason]'] = filterReason;
+            }
+
+            if (filterProductNumber !== undefined) {
+                localVarQueryParameter['filter[productNumber]'] = filterProductNumber;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Patch a product. \\ All fields in the request body are optional. Only provided fields will be updated.
          * @summary Patch a product.
          * @param {string} productNumber The product number as defined during the creation of the product.
@@ -461,6 +543,24 @@ export const ProductApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
+         * Read a journal collection showing the history of stock changes across all products of a shop. Delivers the same data as GET /product/{productNumber}/journal, without being bound to a single product. _Using the date filters is recommended for shops with many products._
+         * @summary Read a journal collection showing the history of stock changes across all products of a shop.
+         * @param {number} [page] The page to read. Default is the first page.
+         * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
+         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use:\\ - default: The total number of items in the collection will not be calculated.\\ - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
+         * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+         * @param {string} [filterDateFrom] The start date (inclusive) in format Y-m-d (timezone CET/CEST) for which product journal entries should be returned.
+         * @param {string} [filterDateTo] The end date (inclusive) in format Y-m-d (timezone CET/CEST) for which product journal entries should be returned.
+         * @param {string} [filterReason] Filter journal entries for one or more reasons - expired: Taking an expired product off the books - damaged: Taking a damaged product off the books - own_withdrawal: Product taken for own use - correction: Manual correction - niceshops_order: Product sold via a shop from niceshops - inbound: Restocking the product - fulfillment: steve fulfilled an order - return: A customer sent the product back to our warehouse
+         * @param {string} [filterProductNumber] Filter for product number(s) (optional).
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getShopProductJournalCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', shopCode?: string, filterDateFrom?: string, filterDateTo?: string, filterReason?: string, filterProductNumber?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ProductJournalCollection>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getShopProductJournalCollection(page, pageSize, paginationMode, shopCode, filterDateFrom, filterDateTo, filterReason, filterProductNumber, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
          * Patch a product. \\ All fields in the request body are optional. Only provided fields will be updated.
          * @summary Patch a product.
          * @param {string} productNumber The product number as defined during the creation of the product.
@@ -547,6 +647,23 @@ export const ProductApiFactory = function (configuration?: Configuration, basePa
             return localVarFp.getProductStockReferenceCollection(productNumber, page, pageSize, paginationMode, shopCode, filterTypeCode, options).then((request) => request(axios, basePath));
         },
         /**
+         * Read a journal collection showing the history of stock changes across all products of a shop. Delivers the same data as GET /product/{productNumber}/journal, without being bound to a single product. _Using the date filters is recommended for shops with many products._
+         * @summary Read a journal collection showing the history of stock changes across all products of a shop.
+         * @param {number} [page] The page to read. Default is the first page.
+         * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
+         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use:\\ - default: The total number of items in the collection will not be calculated.\\ - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
+         * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+         * @param {string} [filterDateFrom] The start date (inclusive) in format Y-m-d (timezone CET/CEST) for which product journal entries should be returned.
+         * @param {string} [filterDateTo] The end date (inclusive) in format Y-m-d (timezone CET/CEST) for which product journal entries should be returned.
+         * @param {string} [filterReason] Filter journal entries for one or more reasons - expired: Taking an expired product off the books - damaged: Taking a damaged product off the books - own_withdrawal: Product taken for own use - correction: Manual correction - niceshops_order: Product sold via a shop from niceshops - inbound: Restocking the product - fulfillment: steve fulfilled an order - return: A customer sent the product back to our warehouse
+         * @param {string} [filterProductNumber] Filter for product number(s) (optional).
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getShopProductJournalCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', shopCode?: string, filterDateFrom?: string, filterDateTo?: string, filterReason?: string, filterProductNumber?: string, options?: any): AxiosPromise<ProductJournalCollection> {
+            return localVarFp.getShopProductJournalCollection(page, pageSize, paginationMode, shopCode, filterDateFrom, filterDateTo, filterReason, filterProductNumber, options).then((request) => request(axios, basePath));
+        },
+        /**
          * Patch a product. \\ All fields in the request body are optional. Only provided fields will be updated.
          * @summary Patch a product.
          * @param {string} productNumber The product number as defined during the creation of the product.
@@ -629,6 +746,23 @@ export interface ProductApiInterface {
      * @memberof ProductApiInterface
      */
     getProductStockReferenceCollection(productNumber: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', shopCode?: string, filterTypeCode?: 'reserved' | 'incoming', options?: AxiosRequestConfig): AxiosPromise<ProductStockReferenceCollection>;
+
+    /**
+     * Read a journal collection showing the history of stock changes across all products of a shop. Delivers the same data as GET /product/{productNumber}/journal, without being bound to a single product. _Using the date filters is recommended for shops with many products._
+     * @summary Read a journal collection showing the history of stock changes across all products of a shop.
+     * @param {number} [page] The page to read. Default is the first page.
+     * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
+     * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use:\\ - default: The total number of items in the collection will not be calculated.\\ - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
+     * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+     * @param {string} [filterDateFrom] The start date (inclusive) in format Y-m-d (timezone CET/CEST) for which product journal entries should be returned.
+     * @param {string} [filterDateTo] The end date (inclusive) in format Y-m-d (timezone CET/CEST) for which product journal entries should be returned.
+     * @param {string} [filterReason] Filter journal entries for one or more reasons - expired: Taking an expired product off the books - damaged: Taking a damaged product off the books - own_withdrawal: Product taken for own use - correction: Manual correction - niceshops_order: Product sold via a shop from niceshops - inbound: Restocking the product - fulfillment: steve fulfilled an order - return: A customer sent the product back to our warehouse
+     * @param {string} [filterProductNumber] Filter for product number(s) (optional).
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ProductApiInterface
+     */
+    getShopProductJournalCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', shopCode?: string, filterDateFrom?: string, filterDateTo?: string, filterReason?: string, filterProductNumber?: string, options?: AxiosRequestConfig): AxiosPromise<ProductJournalCollection>;
 
     /**
      * Patch a product. \\ All fields in the request body are optional. Only provided fields will be updated.
@@ -720,6 +854,25 @@ export class ProductApi extends BaseAPI implements ProductApiInterface {
      */
     public getProductStockReferenceCollection(productNumber: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', shopCode?: string, filterTypeCode?: 'reserved' | 'incoming', options?: AxiosRequestConfig) {
         return ProductApiFp(this.configuration).getProductStockReferenceCollection(productNumber, page, pageSize, paginationMode, shopCode, filterTypeCode, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Read a journal collection showing the history of stock changes across all products of a shop. Delivers the same data as GET /product/{productNumber}/journal, without being bound to a single product. _Using the date filters is recommended for shops with many products._
+     * @summary Read a journal collection showing the history of stock changes across all products of a shop.
+     * @param {number} [page] The page to read. Default is the first page.
+     * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
+     * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use:\\ - default: The total number of items in the collection will not be calculated.\\ - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
+     * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+     * @param {string} [filterDateFrom] The start date (inclusive) in format Y-m-d (timezone CET/CEST) for which product journal entries should be returned.
+     * @param {string} [filterDateTo] The end date (inclusive) in format Y-m-d (timezone CET/CEST) for which product journal entries should be returned.
+     * @param {string} [filterReason] Filter journal entries for one or more reasons - expired: Taking an expired product off the books - damaged: Taking a damaged product off the books - own_withdrawal: Product taken for own use - correction: Manual correction - niceshops_order: Product sold via a shop from niceshops - inbound: Restocking the product - fulfillment: steve fulfilled an order - return: A customer sent the product back to our warehouse
+     * @param {string} [filterProductNumber] Filter for product number(s) (optional).
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ProductApi
+     */
+    public getShopProductJournalCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', shopCode?: string, filterDateFrom?: string, filterDateTo?: string, filterReason?: string, filterProductNumber?: string, options?: AxiosRequestConfig) {
+        return ProductApiFp(this.configuration).getShopProductJournalCollection(page, pageSize, paginationMode, shopCode, filterDateFrom, filterDateTo, filterReason, filterProductNumber, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
