@@ -15,37 +15,22 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { DeliveryShipmentPackagingMaterial } from './delivery-shipment-packaging-material';
+import { Collection } from './collection';
+// May contain unused imports in some cases
+// @ts-ignore
+import { CollectionPagination } from './collection-pagination';
+// May contain unused imports in some cases
+// @ts-ignore
+import { Packaging } from './packaging';
+// May contain unused imports in some cases
+// @ts-ignore
+import { PackagingCollectionAllOf } from './packaging-collection-all-of';
 
 /**
- * Packaging dimensions and materials
+ * @type PackagingCollection
+ * A collection of packaging materials
  * @export
- * @interface DeliveryShipmentPackaging
  */
-export interface DeliveryShipmentPackaging {
-    /**
-     * Height in cm
-     * @type {number}
-     * @memberof DeliveryShipmentPackaging
-     */
-    'height'?: number;
-    /**
-     * Width in cm
-     * @type {number}
-     * @memberof DeliveryShipmentPackaging
-     */
-    'width'?: number;
-    /**
-     * Depth in cm
-     * @type {number}
-     * @memberof DeliveryShipmentPackaging
-     */
-    'depth'?: number;
-    /**
-     * All packaging materials used for the shipment
-     * @type {Array<DeliveryShipmentPackagingMaterial>}
-     * @memberof DeliveryShipmentPackaging
-     */
-    'materials'?: Array<DeliveryShipmentPackagingMaterial>;
-}
+export type PackagingCollection = Collection & PackagingCollectionAllOf;
+
 

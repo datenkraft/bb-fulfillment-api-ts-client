@@ -29,6 +29,7 @@ export * from './apis/docs-api';
 export * from './apis/inbound-delivery-api';
 export * from './apis/manufacturer-api';
 export * from './apis/order-api';
+export * from './apis/packaging-api';
 export * from './apis/product-api';
 export * from './apis/product-draft-api';
 export * from './apis/product-unit-api';

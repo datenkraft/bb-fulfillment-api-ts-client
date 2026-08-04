@@ -4931,6 +4931,152 @@
                 ]
             }
         },
+        "/packaging": {
+            "get": {
+                "tags": [
+                    "packaging"
+                ],
+                "summary": "Get all available packaging materials for a shop code.",
+                "description": "Get all packaging materials available for a shop code.\nPackaging materials assigned to another company are omitted.",
+                "operationId": "getPackagingCollection",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "The page to read. Default is the first page.",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": 1
+                    },
+                    {
+                        "name": "pageSize",
+                        "in": "query",
+                        "description": "The maximum size per page is 100. Default is 100.",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": 20
+                    },
+                    {
+                        "name": "paginationMode",
+                        "in": "query",
+                        "description": "The paginationMode to use:\n- default: The total number of items in the collection will not be calculated.\n- totalCount: The total number of items in the collection will be calculated.\nThis can mean loss of performance.",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "default": "default",
+                            "enum": [
+                                "default",
+                                "totalCount"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "filter[shopCode]",
+                        "in": "query",
+                        "description": "The shopCode used internally to distinguish between clients. \\\n_This code is optional, if your identity is assigned to only one shop.\nOtherwise the response would be a 422 HTTP Error._",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "teststeve"
+                    },
+                    {
+                        "name": "filter[packagingCode]",
+                        "in": "query",
+                        "description": "Filter for an exact packagingCode.",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "PK_2"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/packagingCollection"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request\n\nError codes:\n- DATA_INVALID: Invalid data was given.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized\n\nError codes:\n- AUTHORIZATION_MISSING: No valid authentication information was given.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden\n\nError codes:\n- PERMISSIONS_MISSING: No authorization for the called action was found.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity\n\nError codes:\n- SHOP_NOT_FOUND: Shop not found.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Server error\n\nError codes:\n- SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "oAuthAuthorization": []
+                    },
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
         "/product-draft": {
             "get": {
                 "tags": [
@@ -9660,7 +9806,7 @@
                         }
                     },
                     "packaging": {
-                        "description": "Packaging dimensions",
+                        "description": "Packaging dimensions and materials",
                         "properties": {
                             "height": {
                                 "description": "Height in cm",
@@ -9676,6 +9822,13 @@
                                 "description": "Depth in cm",
                                 "type": "number",
                                 "format": "float"
+                            },
+                            "materials": {
+                                "description": "All packaging materials used for the shipment",
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/deliveryShipmentPackagingMaterial"
+                                }
                             }
                         },
                         "type": "object"
@@ -9705,6 +9858,30 @@
                             "fulfillment_delivered",
                             "fulfillment_packed"
                         ]
+                    }
+                },
+                "type": "object"
+            },
+            "deliveryShipmentPackagingMaterial": {
+                "title": "deliveryShipmentPackagingMaterial",
+                "description": "A packaging material used for a shipment",
+                "properties": {
+                    "code": {
+                        "description": "Packaging code of the used packaging material.\\\nDetails of the packaging materials can be retrieved from the 'GET /packaging' endpoint.",
+                        "type": "string"
+                    },
+                    "type": {
+                        "description": "How the packaging material was used.\n- default: The outer packaging of the shipment.\n- nested: Additional packaging inside the shipment (e.g. ice packs).\n- stuffing: Stuffing material inside the shipment.",
+                        "type": "string",
+                        "enum": [
+                            "default",
+                            "nested",
+                            "stuffing"
+                        ]
+                    },
+                    "count": {
+                        "description": "How many units of the packaging material were used",
+                        "type": "integer"
                     }
                 },
                 "type": "object"
@@ -10802,6 +10979,80 @@
                     }
                 },
                 "type": "object"
+            },
+            "packaging": {
+                "title": "packaging",
+                "description": "A packaging material",
+                "required": [
+                    "packagingCode",
+                    "active"
+                ],
+                "properties": {
+                    "packagingCode": {
+                        "description": "Unique code of the packaging material",
+                        "type": "string"
+                    },
+                    "name": {
+                        "description": "Packaging name",
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "type": {
+                        "description": "Packaging type / material code (e.g. packaging_definition_type_package for cartons)",
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "height": {
+                        "description": "Packaging height in cm",
+                        "type": "number",
+                        "format": "float",
+                        "nullable": true
+                    },
+                    "width": {
+                        "description": "Packaging width in cm",
+                        "type": "number",
+                        "format": "float",
+                        "nullable": true
+                    },
+                    "depth": {
+                        "description": "Packaging depth in cm",
+                        "type": "number",
+                        "format": "float",
+                        "nullable": true
+                    },
+                    "weight": {
+                        "description": "Packaging weight in kg",
+                        "type": "number",
+                        "format": "float",
+                        "nullable": true
+                    },
+                    "active": {
+                        "description": "Indicates whether the packaging material is active or not",
+                        "type": "boolean"
+                    }
+                },
+                "type": "object"
+            },
+            "packagingCollection": {
+                "title": "Packaging collection",
+                "description": "A collection of packaging materials",
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/collection"
+                    },
+                    {
+                        "properties": {
+                            "data": {
+                                "description": "Data of the collection",
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/packaging"
+                                }
+                            }
+                        },
+                        "type": "object"
+                    }
+                ]
             },
             "patchInboundDelivery": {
                 "title": "patchInboundDelivery",
@@ -12494,6 +12745,10 @@
         {
             "name": "order",
             "description": "order"
+        },
+        {
+            "name": "packaging",
+            "description": "packaging"
         },
         {
             "name": "product",
