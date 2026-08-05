@@ -13,39 +13,60 @@
  */
 
 
-// May contain unused imports in some cases
-// @ts-ignore
-import { DeliveryShipmentPackagingMaterial } from './delivery-shipment-packaging-material';
 
 /**
- * Packaging dimensions and materials
+ * A packaging material
  * @export
- * @interface DeliveryShipmentPackaging
+ * @interface Packaging
  */
-export interface DeliveryShipmentPackaging {
+export interface Packaging {
     /**
-     * Height in cm
+     * Unique code of the packaging material
+     * @type {string}
+     * @memberof Packaging
+     */
+    'packagingCode': string;
+    /**
+     * Packaging name
+     * @type {string}
+     * @memberof Packaging
+     */
+    'name'?: string | null;
+    /**
+     * Packaging type / material code (e.g. packaging_definition_type_package for cartons)
+     * @type {string}
+     * @memberof Packaging
+     */
+    'type'?: string | null;
+    /**
+     * Packaging height in cm
      * @type {number}
-     * @memberof DeliveryShipmentPackaging
+     * @memberof Packaging
      */
-    'height'?: number;
+    'height'?: number | null;
     /**
-     * Width in cm
+     * Packaging width in cm
      * @type {number}
-     * @memberof DeliveryShipmentPackaging
+     * @memberof Packaging
      */
-    'width'?: number;
+    'width'?: number | null;
     /**
-     * Depth in cm
+     * Packaging depth in cm
      * @type {number}
-     * @memberof DeliveryShipmentPackaging
+     * @memberof Packaging
      */
-    'depth'?: number;
+    'depth'?: number | null;
     /**
-     * All packaging materials used for the shipment
-     * @type {Array<DeliveryShipmentPackagingMaterial>}
-     * @memberof DeliveryShipmentPackaging
+     * Packaging weight in kg
+     * @type {number}
+     * @memberof Packaging
      */
-    'materials'?: Array<DeliveryShipmentPackagingMaterial>;
+    'weight'?: number | null;
+    /**
+     * Indicates whether the packaging material is active or not
+     * @type {boolean}
+     * @memberof Packaging
+     */
+    'active': boolean;
 }
 

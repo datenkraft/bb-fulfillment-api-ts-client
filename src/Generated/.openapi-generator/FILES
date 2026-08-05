@@ -16,6 +16,7 @@ apis/docs-api.ts
 apis/inbound-delivery-api.ts
 apis/manufacturer-api.ts
 apis/order-api.ts
+apis/packaging-api.ts
 apis/product-api.ts
 apis/product-draft-api.ts
 apis/product-unit-api.ts
@@ -78,6 +79,7 @@ models/delivery-service-collection-all-of.ts
 models/delivery-service-collection.ts
 models/delivery-service.ts
 models/delivery-shipment-journal.ts
+models/delivery-shipment-packaging-material.ts
 models/delivery-shipment-packaging.ts
 models/delivery-shipment.ts
 models/delivery.ts
@@ -144,6 +146,9 @@ models/order-payment.ts
 models/order-price.ts
 models/order-shipping.ts
 models/order.ts
+models/packaging-collection-all-of.ts
+models/packaging-collection.ts
+models/packaging.ts
 models/patch-inbound-delivery-product.ts
 models/patch-inbound-delivery.ts
 models/patch-product.ts
