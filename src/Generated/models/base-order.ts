@@ -75,6 +75,12 @@ export interface BaseOrder {
      */
     'orderNotes'?: string | null;
     /**
+     * The desired shipping date of the order. The order will not be shipped before this date.\\ Must not be in the past.\\ If not set, the order is shipped as soon as possible.\\ Stock is reserved immediately regardless of this date.\\ Can be updated via PATCH /order/{orderNumber} as long as the order is open.\\ Note: while the desired shipping date is in the future, the order is reported with status \'locked\'.
+     * @type {string}
+     * @memberof BaseOrder
+     */
+    'desiredShippingDate'?: string | null;
+    /**
      * The Amazon seller order id used when the order is coming from the Amazon marketplace.
      * @type {string}
      * @memberof BaseOrder

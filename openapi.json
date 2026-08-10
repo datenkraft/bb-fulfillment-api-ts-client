@@ -4241,7 +4241,147 @@
                         }
                     },
                     "422": {
-                        "description": "Unprocessable Entity\n\nError codes:\n- PRODUCT_NOT_FOUND: Unknown productNumber.\n- ORDER_CUSTOMS_CLEARANCE_REQUIRED_FIELD_MISSING: A field required for customs clearance is missing.\n- ORDER_NUMBER_STARTS_WITH_RESERVED_NUMBER_PREFIX: The orderNumber starts with a prefix that is reserved for internal references.\n- ORDER_INVALID_CURRENCY_CODE: An invalid currencyCode was given for the delivery country.\n- ORDER_ITEM_NOT_ORDERABLE: A specific orderItem can not be ordered.\n- ORDER_OUTDATED_VAT_FOR_COUNTRY: A given vat value is outdated for the given country.\n- ORDER_UNKNOWN_VAT_FOR_COUNTRY: A given vat value does not match any known tax rate for the delivery country.\n- ORDER_PHONE_REQUIRED_FOR_COUNTRY_MISSING: The phone number is required for the given country.\n- ORDER_INVOICE_ADDRESS_PROVINCE_CODE_NOT_DETECTED: The province code of the invoice address could not be detected.\n- ORDER_DELIVERY_ADDRESS_PROVINCE_CODE_NOT_DETECTED: The province code of the delivery address could not be detected.\n- SHOP_NOT_ACTIVE: The shop is not active. Please contact the steve team.",
+                        "description": "Unprocessable Entity\n\nError codes:\n- PRODUCT_NOT_FOUND: Unknown productNumber.\n- ORDER_CUSTOMS_CLEARANCE_REQUIRED_FIELD_MISSING: A field required for customs clearance is missing.\n- ORDER_NUMBER_STARTS_WITH_RESERVED_NUMBER_PREFIX: The orderNumber starts with a prefix that is reserved for internal references.\n- ORDER_INVALID_CURRENCY_CODE: An invalid currencyCode was given for the delivery country.\n- ORDER_ITEM_NOT_ORDERABLE: A specific orderItem can not be ordered.\n- ORDER_OUTDATED_VAT_FOR_COUNTRY: A given vat value is outdated for the given country.\n- ORDER_UNKNOWN_VAT_FOR_COUNTRY: A given vat value does not match any known tax rate for the delivery country.\n- ORDER_PHONE_REQUIRED_FOR_COUNTRY_MISSING: The phone number is required for the given country.\n- ORDER_INVOICE_ADDRESS_PROVINCE_CODE_NOT_DETECTED: The province code of the invoice address could not be detected.\n- ORDER_DELIVERY_ADDRESS_PROVINCE_CODE_NOT_DETECTED: The province code of the delivery address could not be detected.\n- ORDER_DESIRED_SHIPPING_DATE_IN_PAST: The given desiredShippingDate is in the past.\n- SHOP_NOT_ACTIVE: The shop is not active. Please contact the steve team.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Server error\n\nError codes:\n- SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "oAuthAuthorization": []
+                    },
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "patch": {
+                "tags": [
+                    "order"
+                ],
+                "summary": "Patch an order.",
+                "description": "Patch the order specified by the given orderNumber. \\\nOrders can be updated as long as they are open. \\\nAll fields in the request body are optional. Only provided fields will be updated.",
+                "operationId": "patchOrder",
+                "parameters": [
+                    {
+                        "name": "orderNumber",
+                        "in": "path",
+                        "description": "The order number as defined during the creation of the order.",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "maxLength": 54
+                        }
+                    },
+                    {
+                        "name": "shopCode",
+                        "in": "query",
+                        "description": "The shopCode used internally to distinguish between clients. \\\n_This code is optional, if your identity is assigned to only one shop.\nOtherwise the response would be a 422 HTTP Error._",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "teststeve"
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/patchOrder"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/order"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request\n\nError codes:\n- DATA_INVALID: Invalid data was given.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized\n\nError codes:\n- AUTHORIZATION_MISSING: No valid authentication information was given.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden\n\nError codes:\n- PERMISSIONS_MISSING: No authorization for the called action was found.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found\n\nError codes:\n- DATA_NOT_FOUND: The requested data could not be found.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "409": {
+                        "description": "Conflict\n\nError codes:\n- ORDER_NOT_EDITABLE: The order is not editable.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity\n\nError codes:\n- ORDER_DESIRED_SHIPPING_DATE_IN_PAST: The given desiredShippingDate is in the past.\n- SHOP_NOT_FOUND: Shop not found.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -8867,6 +9007,13 @@
                         "nullable": true,
                         "maxLength": 350
                     },
+                    "desiredShippingDate": {
+                        "description": "The desired shipping date of the order. The order will not be shipped before this date.\\\nMust not be in the past.\\\nIf not set, the order is shipped as soon as possible.\\\nStock is reserved immediately regardless of this date.\\\nCan be updated via PATCH /order/{orderNumber} as long as the order is open.\\\nNote: while the desired shipping date is in the future, the order is reported with status 'locked'.",
+                        "type": "string",
+                        "format": "date",
+                        "example": "2026-09-01",
+                        "nullable": true
+                    },
                     "amazonSellerOrderId": {
                         "description": "The Amazon seller order id used when the order is coming from the Amazon marketplace.",
                         "type": "string",
@@ -11100,6 +11247,20 @@
                         "type": "integer",
                         "format": "int32",
                         "minimum": 0
+                    }
+                },
+                "type": "object"
+            },
+            "patchOrder": {
+                "title": "patchOrder",
+                "description": "Data to update an existing order.",
+                "properties": {
+                    "desiredShippingDate": {
+                        "description": "The desired shipping date of the order. The order will not be shipped before this date.\\\nMust not be in the past.\\\nSet to null to remove the desired shipping date, so the order is shipped as soon as possible.\\\nNote: while the desired shipping date is in the future, the order is reported with status 'locked'.",
+                        "type": "string",
+                        "format": "date",
+                        "example": "2026-09-01",
+                        "nullable": true
                     }
                 },
                 "type": "object"

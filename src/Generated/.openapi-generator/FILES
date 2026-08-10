@@ -151,6 +151,7 @@ models/packaging-collection.ts
 models/packaging.ts
 models/patch-inbound-delivery-product.ts
 models/patch-inbound-delivery.ts
+models/patch-order.ts
 models/patch-product.ts
 models/post-shop-all-of-meta.ts
 models/post-shop-all-of.ts

@@ -117,6 +117,7 @@ export * from './packaging-collection';
 export * from './packaging-collection-all-of';
 export * from './patch-inbound-delivery';
 export * from './patch-inbound-delivery-product';
+export * from './patch-order';
 export * from './patch-product';
 export * from './post-shop';
 export * from './post-shop-all-of';

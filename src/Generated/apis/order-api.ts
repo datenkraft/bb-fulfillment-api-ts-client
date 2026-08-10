@@ -35,6 +35,8 @@ import { Order } from '../models';
 // @ts-ignore
 import { OrderCollection } from '../models';
 // @ts-ignore
+import { PatchOrder } from '../models';
+// @ts-ignore
 import { ReconsignmentAnnouncement } from '../models';
 /**
  * OrderApi - axios parameter creator
@@ -242,6 +244,59 @@ export const OrderApiAxiosParamCreator = function (configuration?: Configuration
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Patch the order specified by the given orderNumber. \\ Orders can be updated as long as they are open. \\ All fields in the request body are optional. Only provided fields will be updated.
+         * @summary Patch an order.
+         * @param {string} orderNumber The order number as defined during the creation of the order.
+         * @param {PatchOrder} patchOrder 
+         * @param {string} [shopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        patchOrder: async (orderNumber: string, patchOrder: PatchOrder, shopCode?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'orderNumber' is not null or undefined
+            assertParamExists('patchOrder', 'orderNumber', orderNumber)
+            // verify required parameter 'patchOrder' is not null or undefined
+            assertParamExists('patchOrder', 'patchOrder', patchOrder)
+            const localVarPath = `/order/{orderNumber}`
+                .replace(`{${"orderNumber"}}`, encodeURIComponent(String(orderNumber)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication oAuthAuthorization required
+            // oauth required
+            await setOAuthToObject(localVarHeaderParameter, "oAuthAuthorization", [], configuration)
+
+            // authentication bearerAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (shopCode !== undefined) {
+                localVarQueryParameter['shopCode'] = shopCode;
+            }
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(patchOrder, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -549,6 +604,19 @@ export const OrderApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
+         * Patch the order specified by the given orderNumber. \\ Orders can be updated as long as they are open. \\ All fields in the request body are optional. Only provided fields will be updated.
+         * @summary Patch an order.
+         * @param {string} orderNumber The order number as defined during the creation of the order.
+         * @param {PatchOrder} patchOrder 
+         * @param {string} [shopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async patchOrder(orderNumber: string, patchOrder: PatchOrder, shopCode?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Order>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.patchOrder(orderNumber, patchOrder, shopCode, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
          * Add a new order referenced by the given orderNumber.
          * @summary Add a new order.
          * @param {string} orderNumber The number the order should be referred by. \\ This number is user defined, must be unique and has a maximum length (check maxLength field). \\ Please ensure that it does not contain any of the following character sequences: \&#39;/\&#39;, \&#39;%2F\&#39;, \&#39;%2f\&#39;, \&#39;?\&#39;, \&#39;%3F\&#39;, \&#39;%3f\&#39;,\&#39;#\&#39;, \&#39;%23\&#39;, \&#39;&amp;\&#39;, \&#39;%26\&#39;. \\ Using any of these will result in the route not being handled correctly.
@@ -665,6 +733,18 @@ export const OrderApiFactory = function (configuration?: Configuration, basePath
             return localVarFp.getOrderCollection(page, pageSize, paginationMode, sortBy, filterShopCode, filterStatus, filterExternalOrderId, filterExternalCustomerId, filterExternalOrderReference, filterOrderDateFrom, filterOrderDateTo, filterOrderNumber, filterSearch, filterDeliverabilityStatus, options).then((request) => request(axios, basePath));
         },
         /**
+         * Patch the order specified by the given orderNumber. \\ Orders can be updated as long as they are open. \\ All fields in the request body are optional. Only provided fields will be updated.
+         * @summary Patch an order.
+         * @param {string} orderNumber The order number as defined during the creation of the order.
+         * @param {PatchOrder} patchOrder 
+         * @param {string} [shopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        patchOrder(orderNumber: string, patchOrder: PatchOrder, shopCode?: string, options?: any): AxiosPromise<Order> {
+            return localVarFp.patchOrder(orderNumber, patchOrder, shopCode, options).then((request) => request(axios, basePath));
+        },
+        /**
          * Add a new order referenced by the given orderNumber.
          * @summary Add a new order.
          * @param {string} orderNumber The number the order should be referred by. \\ This number is user defined, must be unique and has a maximum length (check maxLength field). \\ Please ensure that it does not contain any of the following character sequences: \&#39;/\&#39;, \&#39;%2F\&#39;, \&#39;%2f\&#39;, \&#39;?\&#39;, \&#39;%3F\&#39;, \&#39;%3f\&#39;,\&#39;#\&#39;, \&#39;%23\&#39;, \&#39;&amp;\&#39;, \&#39;%26\&#39;. \\ Using any of these will result in the route not being handled correctly.
@@ -773,6 +853,18 @@ export interface OrderApiInterface {
      * @memberof OrderApiInterface
      */
     getOrderCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', sortBy?: string, filterShopCode?: string, filterStatus?: string, filterExternalOrderId?: string, filterExternalCustomerId?: string, filterExternalOrderReference?: string, filterOrderDateFrom?: string, filterOrderDateTo?: string, filterOrderNumber?: string, filterSearch?: string, filterDeliverabilityStatus?: 'allOrderItems' | 'notAllOrderItems', options?: AxiosRequestConfig): AxiosPromise<OrderCollection>;
+
+    /**
+     * Patch the order specified by the given orderNumber. \\ Orders can be updated as long as they are open. \\ All fields in the request body are optional. Only provided fields will be updated.
+     * @summary Patch an order.
+     * @param {string} orderNumber The order number as defined during the creation of the order.
+     * @param {PatchOrder} patchOrder 
+     * @param {string} [shopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof OrderApiInterface
+     */
+    patchOrder(orderNumber: string, patchOrder: PatchOrder, shopCode?: string, options?: AxiosRequestConfig): AxiosPromise<Order>;
 
     /**
      * Add a new order referenced by the given orderNumber.
@@ -888,6 +980,20 @@ export class OrderApi extends BaseAPI implements OrderApiInterface {
      */
     public getOrderCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', sortBy?: string, filterShopCode?: string, filterStatus?: string, filterExternalOrderId?: string, filterExternalCustomerId?: string, filterExternalOrderReference?: string, filterOrderDateFrom?: string, filterOrderDateTo?: string, filterOrderNumber?: string, filterSearch?: string, filterDeliverabilityStatus?: 'allOrderItems' | 'notAllOrderItems', options?: AxiosRequestConfig) {
         return OrderApiFp(this.configuration).getOrderCollection(page, pageSize, paginationMode, sortBy, filterShopCode, filterStatus, filterExternalOrderId, filterExternalCustomerId, filterExternalOrderReference, filterOrderDateFrom, filterOrderDateTo, filterOrderNumber, filterSearch, filterDeliverabilityStatus, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Patch the order specified by the given orderNumber. \\ Orders can be updated as long as they are open. \\ All fields in the request body are optional. Only provided fields will be updated.
+     * @summary Patch an order.
+     * @param {string} orderNumber The order number as defined during the creation of the order.
+     * @param {PatchOrder} patchOrder 
+     * @param {string} [shopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof OrderApi
+     */
+    public patchOrder(orderNumber: string, patchOrder: PatchOrder, shopCode?: string, options?: AxiosRequestConfig) {
+        return OrderApiFp(this.configuration).patchOrder(orderNumber, patchOrder, shopCode, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
