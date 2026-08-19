@@ -10892,7 +10892,7 @@
                     },
                     "city": {
                         "type": "string",
-                        "maxLength": 255
+                        "maxLength": 30
                     },
                     "provinceCode": {
                         "description": "Mandatory if province codes for country (GET /country) exist\n(ISO 3166-2) - https://www.iso.org/iso-3166-country-codes.html \\\nNote: For addresses in Italy (IT), the province code is optional and will be detected automatically if not\nprovided.",
@@ -11351,7 +11351,7 @@
                                         ]
                                     },
                                     "overwriteCustomerEmailEnabled": {
-                                        "description": "Flag to mark if it is allowed to set a customer's email in a third party app or via the API.\nIf false the shop email will be used as default.",
+                                        "description": "Flag to mark if it is allowed to set a customer's email in a third party app (e.g. Shopify).'",
                                         "type": "boolean",
                                         "nullable": true
                                     },
@@ -12554,7 +12554,7 @@
                                         ]
                                     },
                                     "overwriteCustomerEmailEnabled": {
-                                        "description": "Flag to mark if it is allowed to set a customer's email in a third party app or via the API.\nIf false the shop email will be used as default.",
+                                        "description": "Flag to mark if it is allowed to set a customer's email in a third party app (e.g. Shopify).'",
                                         "type": "boolean",
                                         "nullable": true
                                     },
@@ -12783,7 +12783,7 @@
                                         ]
                                     },
                                     "overwriteCustomerEmailEnabled": {
-                                        "description": "Flag to mark if it is allowed to set a customer's email in a third party app or via the API.\nIf false the shop email will be used as default.",
+                                        "description": "Flag to mark if it is allowed to set a customer's email in a third party app (e.g. Shopify).'",
                                         "type": "boolean",
                                         "nullable": true
                                     },
