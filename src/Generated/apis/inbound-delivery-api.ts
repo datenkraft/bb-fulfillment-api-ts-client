@@ -31,7 +31,11 @@ import { InboundDelivery } from '../models';
 // @ts-ignore
 import { InboundDeliveryCollection } from '../models';
 // @ts-ignore
+import { InboundDeliveryTrackingUrl } from '../models';
+// @ts-ignore
 import { NewInboundDelivery } from '../models';
+// @ts-ignore
+import { NewInboundDeliveryTrackingUrl } from '../models';
 // @ts-ignore
 import { PatchInboundDelivery } from '../models';
 /**
@@ -61,6 +65,57 @@ export const InboundDeliveryApiAxiosParamCreator = function (configuration?: Con
             }
 
             const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication oAuthAuthorization required
+            // oauth required
+            await setOAuthToObject(localVarHeaderParameter, "oAuthAuthorization", [], configuration)
+
+            // authentication bearerAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (shopCode !== undefined) {
+                localVarQueryParameter['shopCode'] = shopCode;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Delete the tracking url specified by the given trackingUrlId from the inbound delivery \\ specified by the given inbound delivery number. \\ Tracking urls can be deleted as long as the inbound delivery is not completed.
+         * @summary Delete a tracking url of an inbound delivery.
+         * @param {string} inboundDeliveryNumber The inbound delivery number as defined during the creation of the inbound delivery.
+         * @param {number} trackingUrlId The id of the tracking url as returned by the inbound delivery resource.
+         * @param {string} [shopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteInboundDeliveryTrackingUrl: async (inboundDeliveryNumber: string, trackingUrlId: number, shopCode?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'inboundDeliveryNumber' is not null or undefined
+            assertParamExists('deleteInboundDeliveryTrackingUrl', 'inboundDeliveryNumber', inboundDeliveryNumber)
+            // verify required parameter 'trackingUrlId' is not null or undefined
+            assertParamExists('deleteInboundDeliveryTrackingUrl', 'trackingUrlId', trackingUrlId)
+            const localVarPath = `/inbound-delivery/{inboundDeliveryNumber}/tracking-url/{trackingUrlId}`
+                .replace(`{${"inboundDeliveryNumber"}}`, encodeURIComponent(String(inboundDeliveryNumber)))
+                .replace(`{${"trackingUrlId"}}`, encodeURIComponent(String(trackingUrlId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
@@ -392,6 +447,59 @@ export const InboundDeliveryApiAxiosParamCreator = function (configuration?: Con
                 options: localVarRequestOptions,
             };
         },
+        /**
+         * Add a tracking url to the inbound delivery specified by the given inbound delivery number. \\ An inbound delivery can have any number of tracking urls. \\ Tracking urls can be added as long as the inbound delivery is not completed.  The tracking urls of an inbound delivery are returned in the `trackingUrls` field of the inbound delivery resource (`GET /inbound-delivery` and `GET /inbound-delivery/{inboundDeliveryNumber}`).
+         * @summary Add a tracking url to an inbound delivery.
+         * @param {string} inboundDeliveryNumber The inbound delivery number as defined during the creation of the inbound delivery.
+         * @param {NewInboundDeliveryTrackingUrl} newInboundDeliveryTrackingUrl 
+         * @param {string} [shopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        postInboundDeliveryTrackingUrl: async (inboundDeliveryNumber: string, newInboundDeliveryTrackingUrl: NewInboundDeliveryTrackingUrl, shopCode?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'inboundDeliveryNumber' is not null or undefined
+            assertParamExists('postInboundDeliveryTrackingUrl', 'inboundDeliveryNumber', inboundDeliveryNumber)
+            // verify required parameter 'newInboundDeliveryTrackingUrl' is not null or undefined
+            assertParamExists('postInboundDeliveryTrackingUrl', 'newInboundDeliveryTrackingUrl', newInboundDeliveryTrackingUrl)
+            const localVarPath = `/inbound-delivery/{inboundDeliveryNumber}/tracking-url`
+                .replace(`{${"inboundDeliveryNumber"}}`, encodeURIComponent(String(inboundDeliveryNumber)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication oAuthAuthorization required
+            // oauth required
+            await setOAuthToObject(localVarHeaderParameter, "oAuthAuthorization", [], configuration)
+
+            // authentication bearerAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (shopCode !== undefined) {
+                localVarQueryParameter['shopCode'] = shopCode;
+            }
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(newInboundDeliveryTrackingUrl, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
     }
 };
 
@@ -412,6 +520,19 @@ export const InboundDeliveryApiFp = function(configuration?: Configuration) {
          */
         async cancelInboundDelivery(inboundDeliveryNumber: string, shopCode?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InboundDelivery>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.cancelInboundDelivery(inboundDeliveryNumber, shopCode, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Delete the tracking url specified by the given trackingUrlId from the inbound delivery \\ specified by the given inbound delivery number. \\ Tracking urls can be deleted as long as the inbound delivery is not completed.
+         * @summary Delete a tracking url of an inbound delivery.
+         * @param {string} inboundDeliveryNumber The inbound delivery number as defined during the creation of the inbound delivery.
+         * @param {number} trackingUrlId The id of the tracking url as returned by the inbound delivery resource.
+         * @param {string} [shopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async deleteInboundDeliveryTrackingUrl(inboundDeliveryNumber: string, trackingUrlId: number, shopCode?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.deleteInboundDeliveryTrackingUrl(inboundDeliveryNumber, trackingUrlId, shopCode, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -486,6 +607,19 @@ export const InboundDeliveryApiFp = function(configuration?: Configuration) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.postInboundDelivery(inboundDeliveryNumber, newInboundDelivery, shopCode, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
+        /**
+         * Add a tracking url to the inbound delivery specified by the given inbound delivery number. \\ An inbound delivery can have any number of tracking urls. \\ Tracking urls can be added as long as the inbound delivery is not completed.  The tracking urls of an inbound delivery are returned in the `trackingUrls` field of the inbound delivery resource (`GET /inbound-delivery` and `GET /inbound-delivery/{inboundDeliveryNumber}`).
+         * @summary Add a tracking url to an inbound delivery.
+         * @param {string} inboundDeliveryNumber The inbound delivery number as defined during the creation of the inbound delivery.
+         * @param {NewInboundDeliveryTrackingUrl} newInboundDeliveryTrackingUrl 
+         * @param {string} [shopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async postInboundDeliveryTrackingUrl(inboundDeliveryNumber: string, newInboundDeliveryTrackingUrl: NewInboundDeliveryTrackingUrl, shopCode?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InboundDeliveryTrackingUrl>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.postInboundDeliveryTrackingUrl(inboundDeliveryNumber, newInboundDeliveryTrackingUrl, shopCode, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
     }
 };
 
@@ -506,6 +640,18 @@ export const InboundDeliveryApiFactory = function (configuration?: Configuration
          */
         cancelInboundDelivery(inboundDeliveryNumber: string, shopCode?: string, options?: any): AxiosPromise<InboundDelivery> {
             return localVarFp.cancelInboundDelivery(inboundDeliveryNumber, shopCode, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Delete the tracking url specified by the given trackingUrlId from the inbound delivery \\ specified by the given inbound delivery number. \\ Tracking urls can be deleted as long as the inbound delivery is not completed.
+         * @summary Delete a tracking url of an inbound delivery.
+         * @param {string} inboundDeliveryNumber The inbound delivery number as defined during the creation of the inbound delivery.
+         * @param {number} trackingUrlId The id of the tracking url as returned by the inbound delivery resource.
+         * @param {string} [shopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteInboundDeliveryTrackingUrl(inboundDeliveryNumber: string, trackingUrlId: number, shopCode?: string, options?: any): AxiosPromise<void> {
+            return localVarFp.deleteInboundDeliveryTrackingUrl(inboundDeliveryNumber, trackingUrlId, shopCode, options).then((request) => request(axios, basePath));
         },
         /**
          * Get an inbound delivery by inbound delivery number.
@@ -574,6 +720,18 @@ export const InboundDeliveryApiFactory = function (configuration?: Configuration
         postInboundDelivery(inboundDeliveryNumber: string, newInboundDelivery: NewInboundDelivery, shopCode?: string, options?: any): AxiosPromise<InboundDelivery> {
             return localVarFp.postInboundDelivery(inboundDeliveryNumber, newInboundDelivery, shopCode, options).then((request) => request(axios, basePath));
         },
+        /**
+         * Add a tracking url to the inbound delivery specified by the given inbound delivery number. \\ An inbound delivery can have any number of tracking urls. \\ Tracking urls can be added as long as the inbound delivery is not completed.  The tracking urls of an inbound delivery are returned in the `trackingUrls` field of the inbound delivery resource (`GET /inbound-delivery` and `GET /inbound-delivery/{inboundDeliveryNumber}`).
+         * @summary Add a tracking url to an inbound delivery.
+         * @param {string} inboundDeliveryNumber The inbound delivery number as defined during the creation of the inbound delivery.
+         * @param {NewInboundDeliveryTrackingUrl} newInboundDeliveryTrackingUrl 
+         * @param {string} [shopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        postInboundDeliveryTrackingUrl(inboundDeliveryNumber: string, newInboundDeliveryTrackingUrl: NewInboundDeliveryTrackingUrl, shopCode?: string, options?: any): AxiosPromise<InboundDeliveryTrackingUrl> {
+            return localVarFp.postInboundDeliveryTrackingUrl(inboundDeliveryNumber, newInboundDeliveryTrackingUrl, shopCode, options).then((request) => request(axios, basePath));
+        },
     };
 };
 
@@ -593,6 +751,18 @@ export interface InboundDeliveryApiInterface {
      * @memberof InboundDeliveryApiInterface
      */
     cancelInboundDelivery(inboundDeliveryNumber: string, shopCode?: string, options?: AxiosRequestConfig): AxiosPromise<InboundDelivery>;
+
+    /**
+     * Delete the tracking url specified by the given trackingUrlId from the inbound delivery \\ specified by the given inbound delivery number. \\ Tracking urls can be deleted as long as the inbound delivery is not completed.
+     * @summary Delete a tracking url of an inbound delivery.
+     * @param {string} inboundDeliveryNumber The inbound delivery number as defined during the creation of the inbound delivery.
+     * @param {number} trackingUrlId The id of the tracking url as returned by the inbound delivery resource.
+     * @param {string} [shopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof InboundDeliveryApiInterface
+     */
+    deleteInboundDeliveryTrackingUrl(inboundDeliveryNumber: string, trackingUrlId: number, shopCode?: string, options?: AxiosRequestConfig): AxiosPromise<void>;
 
     /**
      * Get an inbound delivery by inbound delivery number.
@@ -661,6 +831,18 @@ export interface InboundDeliveryApiInterface {
      */
     postInboundDelivery(inboundDeliveryNumber: string, newInboundDelivery: NewInboundDelivery, shopCode?: string, options?: AxiosRequestConfig): AxiosPromise<InboundDelivery>;
 
+    /**
+     * Add a tracking url to the inbound delivery specified by the given inbound delivery number. \\ An inbound delivery can have any number of tracking urls. \\ Tracking urls can be added as long as the inbound delivery is not completed.  The tracking urls of an inbound delivery are returned in the `trackingUrls` field of the inbound delivery resource (`GET /inbound-delivery` and `GET /inbound-delivery/{inboundDeliveryNumber}`).
+     * @summary Add a tracking url to an inbound delivery.
+     * @param {string} inboundDeliveryNumber The inbound delivery number as defined during the creation of the inbound delivery.
+     * @param {NewInboundDeliveryTrackingUrl} newInboundDeliveryTrackingUrl 
+     * @param {string} [shopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof InboundDeliveryApiInterface
+     */
+    postInboundDeliveryTrackingUrl(inboundDeliveryNumber: string, newInboundDeliveryTrackingUrl: NewInboundDeliveryTrackingUrl, shopCode?: string, options?: AxiosRequestConfig): AxiosPromise<InboundDeliveryTrackingUrl>;
+
 }
 
 /**
@@ -681,6 +863,20 @@ export class InboundDeliveryApi extends BaseAPI implements InboundDeliveryApiInt
      */
     public cancelInboundDelivery(inboundDeliveryNumber: string, shopCode?: string, options?: AxiosRequestConfig) {
         return InboundDeliveryApiFp(this.configuration).cancelInboundDelivery(inboundDeliveryNumber, shopCode, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Delete the tracking url specified by the given trackingUrlId from the inbound delivery \\ specified by the given inbound delivery number. \\ Tracking urls can be deleted as long as the inbound delivery is not completed.
+     * @summary Delete a tracking url of an inbound delivery.
+     * @param {string} inboundDeliveryNumber The inbound delivery number as defined during the creation of the inbound delivery.
+     * @param {number} trackingUrlId The id of the tracking url as returned by the inbound delivery resource.
+     * @param {string} [shopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof InboundDeliveryApi
+     */
+    public deleteInboundDeliveryTrackingUrl(inboundDeliveryNumber: string, trackingUrlId: number, shopCode?: string, options?: AxiosRequestConfig) {
+        return InboundDeliveryApiFp(this.configuration).deleteInboundDeliveryTrackingUrl(inboundDeliveryNumber, trackingUrlId, shopCode, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -758,5 +954,19 @@ export class InboundDeliveryApi extends BaseAPI implements InboundDeliveryApiInt
      */
     public postInboundDelivery(inboundDeliveryNumber: string, newInboundDelivery: NewInboundDelivery, shopCode?: string, options?: AxiosRequestConfig) {
         return InboundDeliveryApiFp(this.configuration).postInboundDelivery(inboundDeliveryNumber, newInboundDelivery, shopCode, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Add a tracking url to the inbound delivery specified by the given inbound delivery number. \\ An inbound delivery can have any number of tracking urls. \\ Tracking urls can be added as long as the inbound delivery is not completed.  The tracking urls of an inbound delivery are returned in the `trackingUrls` field of the inbound delivery resource (`GET /inbound-delivery` and `GET /inbound-delivery/{inboundDeliveryNumber}`).
+     * @summary Add a tracking url to an inbound delivery.
+     * @param {string} inboundDeliveryNumber The inbound delivery number as defined during the creation of the inbound delivery.
+     * @param {NewInboundDeliveryTrackingUrl} newInboundDeliveryTrackingUrl 
+     * @param {string} [shopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof InboundDeliveryApi
+     */
+    public postInboundDeliveryTrackingUrl(inboundDeliveryNumber: string, newInboundDeliveryTrackingUrl: NewInboundDeliveryTrackingUrl, shopCode?: string, options?: AxiosRequestConfig) {
+        return InboundDeliveryApiFp(this.configuration).postInboundDeliveryTrackingUrl(inboundDeliveryNumber, newInboundDeliveryTrackingUrl, shopCode, options).then((request) => request(this.axios, this.basePath));
     }
 }

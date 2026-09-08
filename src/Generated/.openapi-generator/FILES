@@ -96,6 +96,8 @@ models/inbound-delivery-collection-all-of.ts
 models/inbound-delivery-collection.ts
 models/inbound-delivery-product-all-of.ts
 models/inbound-delivery-product.ts
+models/inbound-delivery-tracking-url-all-of.ts
+models/inbound-delivery-tracking-url.ts
 models/inbound-delivery.ts
 models/index.ts
 models/information-response.ts
@@ -107,6 +109,7 @@ models/manufacturer.ts
 models/model-error.ts
 models/new-auth-role-resource.ts
 models/new-inbound-delivery-product.ts
+models/new-inbound-delivery-tracking-url.ts
 models/new-inbound-delivery.ts
 models/new-order-all-of.ts
 models/new-order-customer-all-of.ts

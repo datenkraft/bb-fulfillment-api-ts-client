@@ -15,22 +15,16 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { InboundDeliveryAllOf } from './inbound-delivery-all-of';
+import { InboundDeliveryTrackingUrlAllOf } from './inbound-delivery-tracking-url-all-of';
 // May contain unused imports in some cases
 // @ts-ignore
-import { InboundDeliveryProduct } from './inbound-delivery-product';
-// May contain unused imports in some cases
-// @ts-ignore
-import { InboundDeliveryTrackingUrl } from './inbound-delivery-tracking-url';
-// May contain unused imports in some cases
-// @ts-ignore
-import { NewInboundDelivery } from './new-inbound-delivery';
+import { NewInboundDeliveryTrackingUrl } from './new-inbound-delivery-tracking-url';
 
 /**
- * @type InboundDelivery
- * Data to represent an inbound delivery
+ * @type InboundDeliveryTrackingUrl
+ * A tracking url of an inbound delivery
  * @export
  */
-export type InboundDelivery = InboundDeliveryAllOf & NewInboundDelivery;
+export type InboundDeliveryTrackingUrl = InboundDeliveryTrackingUrlAllOf & NewInboundDeliveryTrackingUrl;
 
 

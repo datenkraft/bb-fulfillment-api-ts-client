@@ -3662,6 +3662,283 @@
                 ]
             }
         },
+        "/inbound-delivery/{inboundDeliveryNumber}/tracking-url": {
+            "post": {
+                "tags": [
+                    "inbound-delivery"
+                ],
+                "summary": "Add a tracking url to an inbound delivery.",
+                "description": "Add a tracking url to the inbound delivery specified by the given inbound delivery number. \\\nAn inbound delivery can have any number of tracking urls. \\\nTracking urls can be added as long as the inbound delivery is not completed.\n\nThe tracking urls of an inbound delivery are returned in the `trackingUrls` field of the\ninbound delivery resource (`GET /inbound-delivery` and `GET /inbound-delivery/{inboundDeliveryNumber}`).",
+                "operationId": "postInboundDeliveryTrackingUrl",
+                "parameters": [
+                    {
+                        "name": "inboundDeliveryNumber",
+                        "in": "path",
+                        "description": "The inbound delivery number as defined during the creation of the inbound delivery.",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "maxLength": 248
+                        }
+                    },
+                    {
+                        "name": "shopCode",
+                        "in": "query",
+                        "description": "The shopCode used internally to distinguish between clients. \\\n_This code is optional, if your identity is assigned to only one shop.\nOtherwise the response would be a 422 HTTP Error._",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "teststeve"
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/newInboundDeliveryTrackingUrl"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/inboundDeliveryTrackingUrl"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request\n\nError codes:\n- DATA_INVALID: Invalid data was given.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized\n\nError codes:\n- AUTHORIZATION_MISSING: No valid authentication information was given.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden\n\nError codes:\n- PERMISSIONS_MISSING: No authorization for the called action was found.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found\n\nError codes:\n- DATA_NOT_FOUND: The requested data could not be found.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "409": {
+                        "description": "Conflict\n\nError codes:\n- AMBIGUOUS_INBOUND_DELIVERY: Multiple inbound deliveries were found.\n- INBOUND_DELIVERY_NOT_EDITABLE: The inbound delivery is in a state that does not allow editing.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity\n\nError codes:\n- SHOP_NOT_FOUND: Shop not found.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Server error\n\nError codes:\n- SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "oAuthAuthorization": []
+                    },
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/inbound-delivery/{inboundDeliveryNumber}/tracking-url/{trackingUrlId}": {
+            "delete": {
+                "tags": [
+                    "inbound-delivery"
+                ],
+                "summary": "Delete a tracking url of an inbound delivery.",
+                "description": "Delete the tracking url specified by the given trackingUrlId from the inbound delivery \\\nspecified by the given inbound delivery number. \\\nTracking urls can be deleted as long as the inbound delivery is not completed.",
+                "operationId": "deleteInboundDeliveryTrackingUrl",
+                "parameters": [
+                    {
+                        "name": "inboundDeliveryNumber",
+                        "in": "path",
+                        "description": "The inbound delivery number as defined during the creation of the inbound delivery.",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "maxLength": 248
+                        }
+                    },
+                    {
+                        "name": "trackingUrlId",
+                        "in": "path",
+                        "description": "The id of the tracking url as returned by the inbound delivery resource.",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    },
+                    {
+                        "name": "shopCode",
+                        "in": "query",
+                        "description": "The shopCode used internally to distinguish between clients. \\\n_This code is optional, if your identity is assigned to only one shop.\nOtherwise the response would be a 422 HTTP Error._",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "teststeve"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "400": {
+                        "description": "Bad Request\n\nError codes:\n- DATA_INVALID: Invalid data was given.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized\n\nError codes:\n- AUTHORIZATION_MISSING: No valid authentication information was given.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden\n\nError codes:\n- PERMISSIONS_MISSING: No authorization for the called action was found.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found\n\nError codes:\n- DATA_NOT_FOUND: The requested data could not be found.\n- INBOUND_DELIVERY_TRACKING_URL_NOT_FOUND: The tracking url could not be found for the inbound delivery.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "409": {
+                        "description": "Conflict\n\nError codes:\n- AMBIGUOUS_INBOUND_DELIVERY: Multiple inbound deliveries were found.\n- INBOUND_DELIVERY_NOT_EDITABLE: The inbound delivery is in a state that does not allow editing.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity\n\nError codes:\n- SHOP_NOT_FOUND: Shop not found.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Server error\n\nError codes:\n- SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "oAuthAuthorization": []
+                    },
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
         "/manufacturer": {
             "get": {
                 "tags": [
@@ -10340,6 +10617,14 @@
                                 "description": "Creation date of the inbound delivery. Format in ISO 8601 (timezone CET/CEST)",
                                 "type": "string",
                                 "format": "date-time"
+                            },
+                            "trackingUrls": {
+                                "description": "The tracking urls of the inbound delivery, managed via the tracking-url endpoints.\\\nIf the inbound delivery has no tracking urls, null is returned.",
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/inboundDeliveryTrackingUrl"
+                                },
+                                "nullable": true
                             }
                         },
                         "type": "object"
@@ -10384,6 +10669,25 @@
                             },
                             "deliveredCount": {
                                 "description": "Number of actual delivered products in the inbound delivery",
+                                "type": "integer",
+                                "format": "int32"
+                            }
+                        },
+                        "type": "object"
+                    }
+                ]
+            },
+            "inboundDeliveryTrackingUrl": {
+                "title": "inboundDeliveryTrackingUrl",
+                "description": "A tracking url of an inbound delivery",
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/newInboundDeliveryTrackingUrl"
+                    },
+                    {
+                        "properties": {
+                            "trackingUrlId": {
+                                "description": "The API internal id of the tracking url",
                                 "type": "integer",
                                 "format": "int32"
                             }
@@ -10516,6 +10820,21 @@
                         "type": "integer",
                         "format": "int32",
                         "minimum": 1
+                    }
+                },
+                "type": "object"
+            },
+            "newInboundDeliveryTrackingUrl": {
+                "title": "newInboundDeliveryTrackingUrl",
+                "description": "Data to add a tracking url to an inbound delivery",
+                "required": [
+                    "trackingUrl"
+                ],
+                "properties": {
+                    "trackingUrl": {
+                        "description": "Link to the tracking site of the carrier.\\\nMust be an absolute http or https url.",
+                        "type": "string",
+                        "maxLength": 2048
                     }
                 },
                 "type": "object"
