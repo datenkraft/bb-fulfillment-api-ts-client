@@ -13,24 +13,18 @@
  */
 
 
-// May contain unused imports in some cases
-// @ts-ignore
-import { InboundDeliveryAllOf } from './inbound-delivery-all-of';
-// May contain unused imports in some cases
-// @ts-ignore
-import { InboundDeliveryProduct } from './inbound-delivery-product';
-// May contain unused imports in some cases
-// @ts-ignore
-import { InboundDeliveryTrackingUrl } from './inbound-delivery-tracking-url';
-// May contain unused imports in some cases
-// @ts-ignore
-import { NewInboundDelivery } from './new-inbound-delivery';
 
 /**
- * @type InboundDelivery
- * Data to represent an inbound delivery
+ * Data to add a tracking url to an inbound delivery
  * @export
+ * @interface NewInboundDeliveryTrackingUrl
  */
-export type InboundDelivery = InboundDeliveryAllOf & NewInboundDelivery;
-
+export interface NewInboundDeliveryTrackingUrl {
+    /**
+     * Link to the tracking site of the carrier.\\ Must be an absolute http or https url.
+     * @type {string}
+     * @memberof NewInboundDeliveryTrackingUrl
+     */
+    'trackingUrl': string;
+}
 

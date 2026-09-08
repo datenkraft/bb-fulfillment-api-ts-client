@@ -16,6 +16,9 @@
 // May contain unused imports in some cases
 // @ts-ignore
 import { InboundDeliveryProduct } from './inbound-delivery-product';
+// May contain unused imports in some cases
+// @ts-ignore
+import { InboundDeliveryTrackingUrl } from './inbound-delivery-tracking-url';
 
 /**
  * 
@@ -83,6 +86,12 @@ export interface InboundDeliveryAllOf {
      * @memberof InboundDeliveryAllOf
      */
     'createDate'?: string;
+    /**
+     * The tracking urls of the inbound delivery, managed via the tracking-url endpoints.\\ If the inbound delivery has no tracking urls, null is returned.
+     * @type {Array<InboundDeliveryTrackingUrl>}
+     * @memberof InboundDeliveryAllOf
+     */
+    'trackingUrls'?: Array<InboundDeliveryTrackingUrl> | null;
 }
 
 export const InboundDeliveryAllOfStatusEnum = {
