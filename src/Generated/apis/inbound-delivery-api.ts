@@ -92,7 +92,7 @@ export const InboundDeliveryApiAxiosParamCreator = function (configuration?: Con
             };
         },
         /**
-         * Delete the tracking url specified by the given trackingUrlId from the inbound delivery \\ specified by the given inbound delivery number. \\ Tracking urls can be deleted as long as the inbound delivery is not completed.
+         * Delete the tracking url specified by the given trackingUrlId from the inbound delivery \\ specified by the given inbound delivery number. \\ Tracking urls can be deleted while the inbound delivery is in status `open` or `in_progress`. \\ Once it is `completed` or `deleted`, the request is answered with 409 `INBOUND_DELIVERY_NOT_EDITABLE`; existing tracking urls stay readable in any status.
          * @summary Delete a tracking url of an inbound delivery.
          * @param {string} inboundDeliveryNumber The inbound delivery number as defined during the creation of the inbound delivery.
          * @param {number} trackingUrlId The id of the tracking url as returned by the inbound delivery resource.
@@ -448,7 +448,7 @@ export const InboundDeliveryApiAxiosParamCreator = function (configuration?: Con
             };
         },
         /**
-         * Add a tracking url to the inbound delivery specified by the given inbound delivery number. \\ An inbound delivery can have any number of tracking urls. \\ Tracking urls can be added as long as the inbound delivery is not completed.  The tracking urls of an inbound delivery are returned in the `trackingUrls` field of the inbound delivery resource (`GET /inbound-delivery` and `GET /inbound-delivery/{inboundDeliveryNumber}`).
+         * Add a tracking url to the inbound delivery specified by the given inbound delivery number. \\ An inbound delivery can have any number of tracking urls. \\ Tracking urls can be added while the inbound delivery is in status `open` or `in_progress`. \\ Once it is `completed` or `deleted`, the request is answered with 409 `INBOUND_DELIVERY_NOT_EDITABLE`.  The tracking urls of an inbound delivery are returned in the `trackingUrls` field of the inbound delivery resource (`GET /inbound-delivery` and `GET /inbound-delivery/{inboundDeliveryNumber}`). They stay readable in any status.
          * @summary Add a tracking url to an inbound delivery.
          * @param {string} inboundDeliveryNumber The inbound delivery number as defined during the creation of the inbound delivery.
          * @param {NewInboundDeliveryTrackingUrl} newInboundDeliveryTrackingUrl 
@@ -523,7 +523,7 @@ export const InboundDeliveryApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * Delete the tracking url specified by the given trackingUrlId from the inbound delivery \\ specified by the given inbound delivery number. \\ Tracking urls can be deleted as long as the inbound delivery is not completed.
+         * Delete the tracking url specified by the given trackingUrlId from the inbound delivery \\ specified by the given inbound delivery number. \\ Tracking urls can be deleted while the inbound delivery is in status `open` or `in_progress`. \\ Once it is `completed` or `deleted`, the request is answered with 409 `INBOUND_DELIVERY_NOT_EDITABLE`; existing tracking urls stay readable in any status.
          * @summary Delete a tracking url of an inbound delivery.
          * @param {string} inboundDeliveryNumber The inbound delivery number as defined during the creation of the inbound delivery.
          * @param {number} trackingUrlId The id of the tracking url as returned by the inbound delivery resource.
@@ -608,7 +608,7 @@ export const InboundDeliveryApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * Add a tracking url to the inbound delivery specified by the given inbound delivery number. \\ An inbound delivery can have any number of tracking urls. \\ Tracking urls can be added as long as the inbound delivery is not completed.  The tracking urls of an inbound delivery are returned in the `trackingUrls` field of the inbound delivery resource (`GET /inbound-delivery` and `GET /inbound-delivery/{inboundDeliveryNumber}`).
+         * Add a tracking url to the inbound delivery specified by the given inbound delivery number. \\ An inbound delivery can have any number of tracking urls. \\ Tracking urls can be added while the inbound delivery is in status `open` or `in_progress`. \\ Once it is `completed` or `deleted`, the request is answered with 409 `INBOUND_DELIVERY_NOT_EDITABLE`.  The tracking urls of an inbound delivery are returned in the `trackingUrls` field of the inbound delivery resource (`GET /inbound-delivery` and `GET /inbound-delivery/{inboundDeliveryNumber}`). They stay readable in any status.
          * @summary Add a tracking url to an inbound delivery.
          * @param {string} inboundDeliveryNumber The inbound delivery number as defined during the creation of the inbound delivery.
          * @param {NewInboundDeliveryTrackingUrl} newInboundDeliveryTrackingUrl 
@@ -642,7 +642,7 @@ export const InboundDeliveryApiFactory = function (configuration?: Configuration
             return localVarFp.cancelInboundDelivery(inboundDeliveryNumber, shopCode, options).then((request) => request(axios, basePath));
         },
         /**
-         * Delete the tracking url specified by the given trackingUrlId from the inbound delivery \\ specified by the given inbound delivery number. \\ Tracking urls can be deleted as long as the inbound delivery is not completed.
+         * Delete the tracking url specified by the given trackingUrlId from the inbound delivery \\ specified by the given inbound delivery number. \\ Tracking urls can be deleted while the inbound delivery is in status `open` or `in_progress`. \\ Once it is `completed` or `deleted`, the request is answered with 409 `INBOUND_DELIVERY_NOT_EDITABLE`; existing tracking urls stay readable in any status.
          * @summary Delete a tracking url of an inbound delivery.
          * @param {string} inboundDeliveryNumber The inbound delivery number as defined during the creation of the inbound delivery.
          * @param {number} trackingUrlId The id of the tracking url as returned by the inbound delivery resource.
@@ -721,7 +721,7 @@ export const InboundDeliveryApiFactory = function (configuration?: Configuration
             return localVarFp.postInboundDelivery(inboundDeliveryNumber, newInboundDelivery, shopCode, options).then((request) => request(axios, basePath));
         },
         /**
-         * Add a tracking url to the inbound delivery specified by the given inbound delivery number. \\ An inbound delivery can have any number of tracking urls. \\ Tracking urls can be added as long as the inbound delivery is not completed.  The tracking urls of an inbound delivery are returned in the `trackingUrls` field of the inbound delivery resource (`GET /inbound-delivery` and `GET /inbound-delivery/{inboundDeliveryNumber}`).
+         * Add a tracking url to the inbound delivery specified by the given inbound delivery number. \\ An inbound delivery can have any number of tracking urls. \\ Tracking urls can be added while the inbound delivery is in status `open` or `in_progress`. \\ Once it is `completed` or `deleted`, the request is answered with 409 `INBOUND_DELIVERY_NOT_EDITABLE`.  The tracking urls of an inbound delivery are returned in the `trackingUrls` field of the inbound delivery resource (`GET /inbound-delivery` and `GET /inbound-delivery/{inboundDeliveryNumber}`). They stay readable in any status.
          * @summary Add a tracking url to an inbound delivery.
          * @param {string} inboundDeliveryNumber The inbound delivery number as defined during the creation of the inbound delivery.
          * @param {NewInboundDeliveryTrackingUrl} newInboundDeliveryTrackingUrl 
@@ -753,7 +753,7 @@ export interface InboundDeliveryApiInterface {
     cancelInboundDelivery(inboundDeliveryNumber: string, shopCode?: string, options?: AxiosRequestConfig): AxiosPromise<InboundDelivery>;
 
     /**
-     * Delete the tracking url specified by the given trackingUrlId from the inbound delivery \\ specified by the given inbound delivery number. \\ Tracking urls can be deleted as long as the inbound delivery is not completed.
+     * Delete the tracking url specified by the given trackingUrlId from the inbound delivery \\ specified by the given inbound delivery number. \\ Tracking urls can be deleted while the inbound delivery is in status `open` or `in_progress`. \\ Once it is `completed` or `deleted`, the request is answered with 409 `INBOUND_DELIVERY_NOT_EDITABLE`; existing tracking urls stay readable in any status.
      * @summary Delete a tracking url of an inbound delivery.
      * @param {string} inboundDeliveryNumber The inbound delivery number as defined during the creation of the inbound delivery.
      * @param {number} trackingUrlId The id of the tracking url as returned by the inbound delivery resource.
@@ -832,7 +832,7 @@ export interface InboundDeliveryApiInterface {
     postInboundDelivery(inboundDeliveryNumber: string, newInboundDelivery: NewInboundDelivery, shopCode?: string, options?: AxiosRequestConfig): AxiosPromise<InboundDelivery>;
 
     /**
-     * Add a tracking url to the inbound delivery specified by the given inbound delivery number. \\ An inbound delivery can have any number of tracking urls. \\ Tracking urls can be added as long as the inbound delivery is not completed.  The tracking urls of an inbound delivery are returned in the `trackingUrls` field of the inbound delivery resource (`GET /inbound-delivery` and `GET /inbound-delivery/{inboundDeliveryNumber}`).
+     * Add a tracking url to the inbound delivery specified by the given inbound delivery number. \\ An inbound delivery can have any number of tracking urls. \\ Tracking urls can be added while the inbound delivery is in status `open` or `in_progress`. \\ Once it is `completed` or `deleted`, the request is answered with 409 `INBOUND_DELIVERY_NOT_EDITABLE`.  The tracking urls of an inbound delivery are returned in the `trackingUrls` field of the inbound delivery resource (`GET /inbound-delivery` and `GET /inbound-delivery/{inboundDeliveryNumber}`). They stay readable in any status.
      * @summary Add a tracking url to an inbound delivery.
      * @param {string} inboundDeliveryNumber The inbound delivery number as defined during the creation of the inbound delivery.
      * @param {NewInboundDeliveryTrackingUrl} newInboundDeliveryTrackingUrl 
@@ -866,7 +866,7 @@ export class InboundDeliveryApi extends BaseAPI implements InboundDeliveryApiInt
     }
 
     /**
-     * Delete the tracking url specified by the given trackingUrlId from the inbound delivery \\ specified by the given inbound delivery number. \\ Tracking urls can be deleted as long as the inbound delivery is not completed.
+     * Delete the tracking url specified by the given trackingUrlId from the inbound delivery \\ specified by the given inbound delivery number. \\ Tracking urls can be deleted while the inbound delivery is in status `open` or `in_progress`. \\ Once it is `completed` or `deleted`, the request is answered with 409 `INBOUND_DELIVERY_NOT_EDITABLE`; existing tracking urls stay readable in any status.
      * @summary Delete a tracking url of an inbound delivery.
      * @param {string} inboundDeliveryNumber The inbound delivery number as defined during the creation of the inbound delivery.
      * @param {number} trackingUrlId The id of the tracking url as returned by the inbound delivery resource.
@@ -957,7 +957,7 @@ export class InboundDeliveryApi extends BaseAPI implements InboundDeliveryApiInt
     }
 
     /**
-     * Add a tracking url to the inbound delivery specified by the given inbound delivery number. \\ An inbound delivery can have any number of tracking urls. \\ Tracking urls can be added as long as the inbound delivery is not completed.  The tracking urls of an inbound delivery are returned in the `trackingUrls` field of the inbound delivery resource (`GET /inbound-delivery` and `GET /inbound-delivery/{inboundDeliveryNumber}`).
+     * Add a tracking url to the inbound delivery specified by the given inbound delivery number. \\ An inbound delivery can have any number of tracking urls. \\ Tracking urls can be added while the inbound delivery is in status `open` or `in_progress`. \\ Once it is `completed` or `deleted`, the request is answered with 409 `INBOUND_DELIVERY_NOT_EDITABLE`.  The tracking urls of an inbound delivery are returned in the `trackingUrls` field of the inbound delivery resource (`GET /inbound-delivery` and `GET /inbound-delivery/{inboundDeliveryNumber}`). They stay readable in any status.
      * @summary Add a tracking url to an inbound delivery.
      * @param {string} inboundDeliveryNumber The inbound delivery number as defined during the creation of the inbound delivery.
      * @param {NewInboundDeliveryTrackingUrl} newInboundDeliveryTrackingUrl 
