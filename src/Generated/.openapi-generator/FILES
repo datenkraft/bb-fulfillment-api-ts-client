@@ -131,6 +131,7 @@ models/new-reconsignment-announcement-line.ts
 models/new-reconsignment-announcement-options-all-of.ts
 models/new-reconsignment-announcement-options.ts
 models/new-reconsignment-announcement.ts
+models/new-stock-check.ts
 models/order-all-of.ts
 models/order-collection-all-of.ts
 models/order-collection.ts
@@ -207,6 +208,7 @@ models/shop-all-of.ts
 models/shop-collection-all-of.ts
 models/shop-collection.ts
 models/shop.ts
+models/stock-check.ts
 models/stock-collection-all-of.ts
 models/stock-collection.ts
 models/stock.ts

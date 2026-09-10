@@ -3668,7 +3668,7 @@
                     "inbound-delivery"
                 ],
                 "summary": "Add a tracking url to an inbound delivery.",
-                "description": "Add a tracking url to the inbound delivery specified by the given inbound delivery number. \\\nAn inbound delivery can have any number of tracking urls. \\\nTracking urls can be added as long as the inbound delivery is not completed.\n\nThe tracking urls of an inbound delivery are returned in the `trackingUrls` field of the\ninbound delivery resource (`GET /inbound-delivery` and `GET /inbound-delivery/{inboundDeliveryNumber}`).",
+                "description": "Add a tracking url to the inbound delivery specified by the given inbound delivery number. \\\nAn inbound delivery can have any number of tracking urls. \\\nTracking urls can be added while the inbound delivery is in status `open` or `in_progress`. \\\nOnce it is `completed` or `deleted`, the request is answered with\n409 `INBOUND_DELIVERY_NOT_EDITABLE`.\n\nThe tracking urls of an inbound delivery are returned in the `trackingUrls` field of the\ninbound delivery resource (`GET /inbound-delivery` and `GET /inbound-delivery/{inboundDeliveryNumber}`).\nThey stay readable in any status.",
                 "operationId": "postInboundDeliveryTrackingUrl",
                 "parameters": [
                     {
@@ -3810,7 +3810,7 @@
                     "inbound-delivery"
                 ],
                 "summary": "Delete a tracking url of an inbound delivery.",
-                "description": "Delete the tracking url specified by the given trackingUrlId from the inbound delivery \\\nspecified by the given inbound delivery number. \\\nTracking urls can be deleted as long as the inbound delivery is not completed.",
+                "description": "Delete the tracking url specified by the given trackingUrlId from the inbound delivery \\\nspecified by the given inbound delivery number. \\\nTracking urls can be deleted while the inbound delivery is in status `open` or `in_progress`. \\\nOnce it is `completed` or `deleted`, the request is answered with\n409 `INBOUND_DELIVERY_NOT_EDITABLE`; existing tracking urls stay readable in any status.",
                 "operationId": "deleteInboundDeliveryTrackingUrl",
                 "parameters": [
                     {
@@ -7139,6 +7139,148 @@
                     },
                     "422": {
                         "description": "Unprocessable Entity\n\nError codes:\n- SHOP_NOT_FOUND: Shop not found.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Server error\n\nError codes:\n- SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "oAuthAuthorization": []
+                    },
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/product/{productNumber}/stock-check": {
+            "post": {
+                "tags": [
+                    "product"
+                ],
+                "summary": "Request a warehouse stock check (inventory or control list) for a product.",
+                "description": "Request a warehouse stock check for the product specified by the given product number. \\\nDepending on `type`, an inventory list (`inventory`) or a control list (`expiration_date`, `ean`)\nis created for the warehouse staff. \\\nOnce the list is completed, the result is sent to the steve service team, which forwards it to you. \\\nOnly one open stock check per product and type is allowed at a time.",
+                "operationId": "postProductStockCheck",
+                "parameters": [
+                    {
+                        "name": "productNumber",
+                        "in": "path",
+                        "description": "The product number as defined during the creation of the product.",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "maxLength": 53
+                        }
+                    },
+                    {
+                        "name": "shopCode",
+                        "in": "query",
+                        "description": "The shopCode used internally to distinguish between clients. \\\n_This code is optional, if your identity is assigned to only one shop.\nOtherwise the response would be a 422 HTTP Error._",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "teststeve"
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/newStockCheck"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/stockCheck"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request\n\nError codes:\n- DATA_INVALID: Invalid data was given.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized\n\nError codes:\n- AUTHORIZATION_MISSING: No valid authentication information was given.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden\n\nError codes:\n- PERMISSIONS_MISSING: No authorization for the called action was found.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found\n\nError codes:\n- DATA_NOT_FOUND: The requested data could not be found.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "409": {
+                        "description": "Conflict\n\nError codes:\n- STOCK_CHECK_ALREADY_OPEN: A stock check of the same type is already open for the product.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity\n\nError codes:\n- SHOP_NOT_FOUND: Shop not found.\n- SHOP_MISSING: Unable to identify Shop.\n- SHOP_NOT_ACTIVE: The shop is not active.\n- STOCK_CHECK_NO_STOCK: The product has no stock in the warehouse, so a control list can not be created.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -11157,6 +11299,25 @@
                     }
                 ]
             },
+            "newStockCheck": {
+                "title": "newStockCheck",
+                "description": "Data to request a warehouse stock check for a product",
+                "required": [
+                    "type"
+                ],
+                "properties": {
+                    "type": {
+                        "description": "Kind of stock check to be performed in the warehouse:\n- `inventory`: count the stock of the product (inventory list)\n- `expiration_date`: check the expiration dates of the stock (control list)\n- `ean`: check the EAN codes of the stock (control list)",
+                        "type": "string",
+                        "enum": [
+                            "inventory",
+                            "expiration_date",
+                            "ean"
+                        ]
+                    }
+                },
+                "type": "object"
+            },
             "order": {
                 "title": "order",
                 "description": "Data to represent an order.",
@@ -13077,6 +13238,49 @@
                     },
                     "reservedFor": {
                         "$ref": "#/components/schemas/reservedFor"
+                    }
+                },
+                "type": "object"
+            },
+            "stockCheck": {
+                "title": "stockCheck",
+                "description": "A warehouse stock check (inventory or control list) requested for a product",
+                "required": [
+                    "stockCheckNumber",
+                    "productNumber",
+                    "shopCode",
+                    "type",
+                    "status"
+                ],
+                "properties": {
+                    "stockCheckNumber": {
+                        "description": "Number of the warehouse list created for the stock check",
+                        "type": "string",
+                        "example": "K-260-211-001"
+                    },
+                    "productNumber": {
+                        "description": "The product number the stock check was requested for",
+                        "type": "string"
+                    },
+                    "shopCode": {
+                        "description": "The shop the product belongs to",
+                        "type": "string"
+                    },
+                    "type": {
+                        "description": "Kind of stock check performed in the warehouse:\n- `inventory`: count the stock of the product (inventory list)\n- `expiration_date`: check the expiration dates of the stock (control list)\n- `ean`: check the EAN codes of the stock (control list)",
+                        "type": "string",
+                        "enum": [
+                            "inventory",
+                            "expiration_date",
+                            "ean"
+                        ]
+                    },
+                    "status": {
+                        "description": "Status of the stock check. A newly requested stock check is always `open`.",
+                        "type": "string",
+                        "enum": [
+                            "open"
+                        ]
                     }
                 },
                 "type": "object"

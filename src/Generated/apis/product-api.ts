@@ -27,6 +27,8 @@ import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } fr
 // @ts-ignore
 import { ErrorResponse } from '../models';
 // @ts-ignore
+import { NewStockCheck } from '../models';
+// @ts-ignore
 import { PatchProduct } from '../models';
 // @ts-ignore
 import { Product } from '../models';
@@ -36,6 +38,8 @@ import { ProductCollection } from '../models';
 import { ProductJournalCollection } from '../models';
 // @ts-ignore
 import { ProductStockReferenceCollection } from '../models';
+// @ts-ignore
+import { StockCheck } from '../models';
 /**
  * ProductApi - axios parameter creator
  * @export
@@ -465,6 +469,59 @@ export const ProductApiAxiosParamCreator = function (configuration?: Configurati
                 options: localVarRequestOptions,
             };
         },
+        /**
+         * Request a warehouse stock check for the product specified by the given product number. \\ Depending on `type`, an inventory list (`inventory`) or a control list (`expiration_date`, `ean`) is created for the warehouse staff. \\ Once the list is completed, the result is sent to the steve service team, which forwards it to you. \\ Only one open stock check per product and type is allowed at a time.
+         * @summary Request a warehouse stock check (inventory or control list) for a product.
+         * @param {string} productNumber The product number as defined during the creation of the product.
+         * @param {NewStockCheck} newStockCheck 
+         * @param {string} [shopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        postProductStockCheck: async (productNumber: string, newStockCheck: NewStockCheck, shopCode?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'productNumber' is not null or undefined
+            assertParamExists('postProductStockCheck', 'productNumber', productNumber)
+            // verify required parameter 'newStockCheck' is not null or undefined
+            assertParamExists('postProductStockCheck', 'newStockCheck', newStockCheck)
+            const localVarPath = `/product/{productNumber}/stock-check`
+                .replace(`{${"productNumber"}}`, encodeURIComponent(String(productNumber)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication oAuthAuthorization required
+            // oauth required
+            await setOAuthToObject(localVarHeaderParameter, "oAuthAuthorization", [], configuration)
+
+            // authentication bearerAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (shopCode !== undefined) {
+                localVarQueryParameter['shopCode'] = shopCode;
+            }
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(newStockCheck, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
     }
 };
 
@@ -573,6 +630,19 @@ export const ProductApiFp = function(configuration?: Configuration) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.patchProduct(productNumber, patchProduct, shopCode, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
+        /**
+         * Request a warehouse stock check for the product specified by the given product number. \\ Depending on `type`, an inventory list (`inventory`) or a control list (`expiration_date`, `ean`) is created for the warehouse staff. \\ Once the list is completed, the result is sent to the steve service team, which forwards it to you. \\ Only one open stock check per product and type is allowed at a time.
+         * @summary Request a warehouse stock check (inventory or control list) for a product.
+         * @param {string} productNumber The product number as defined during the creation of the product.
+         * @param {NewStockCheck} newStockCheck 
+         * @param {string} [shopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async postProductStockCheck(productNumber: string, newStockCheck: NewStockCheck, shopCode?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<StockCheck>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.postProductStockCheck(productNumber, newStockCheck, shopCode, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
     }
 };
 
@@ -675,6 +745,18 @@ export const ProductApiFactory = function (configuration?: Configuration, basePa
         patchProduct(productNumber: string, patchProduct: PatchProduct, shopCode?: string, options?: any): AxiosPromise<Product> {
             return localVarFp.patchProduct(productNumber, patchProduct, shopCode, options).then((request) => request(axios, basePath));
         },
+        /**
+         * Request a warehouse stock check for the product specified by the given product number. \\ Depending on `type`, an inventory list (`inventory`) or a control list (`expiration_date`, `ean`) is created for the warehouse staff. \\ Once the list is completed, the result is sent to the steve service team, which forwards it to you. \\ Only one open stock check per product and type is allowed at a time.
+         * @summary Request a warehouse stock check (inventory or control list) for a product.
+         * @param {string} productNumber The product number as defined during the creation of the product.
+         * @param {NewStockCheck} newStockCheck 
+         * @param {string} [shopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        postProductStockCheck(productNumber: string, newStockCheck: NewStockCheck, shopCode?: string, options?: any): AxiosPromise<StockCheck> {
+            return localVarFp.postProductStockCheck(productNumber, newStockCheck, shopCode, options).then((request) => request(axios, basePath));
+        },
     };
 };
 
@@ -775,6 +857,18 @@ export interface ProductApiInterface {
      * @memberof ProductApiInterface
      */
     patchProduct(productNumber: string, patchProduct: PatchProduct, shopCode?: string, options?: AxiosRequestConfig): AxiosPromise<Product>;
+
+    /**
+     * Request a warehouse stock check for the product specified by the given product number. \\ Depending on `type`, an inventory list (`inventory`) or a control list (`expiration_date`, `ean`) is created for the warehouse staff. \\ Once the list is completed, the result is sent to the steve service team, which forwards it to you. \\ Only one open stock check per product and type is allowed at a time.
+     * @summary Request a warehouse stock check (inventory or control list) for a product.
+     * @param {string} productNumber The product number as defined during the creation of the product.
+     * @param {NewStockCheck} newStockCheck 
+     * @param {string} [shopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ProductApiInterface
+     */
+    postProductStockCheck(productNumber: string, newStockCheck: NewStockCheck, shopCode?: string, options?: AxiosRequestConfig): AxiosPromise<StockCheck>;
 
 }
 
@@ -887,5 +981,19 @@ export class ProductApi extends BaseAPI implements ProductApiInterface {
      */
     public patchProduct(productNumber: string, patchProduct: PatchProduct, shopCode?: string, options?: AxiosRequestConfig) {
         return ProductApiFp(this.configuration).patchProduct(productNumber, patchProduct, shopCode, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Request a warehouse stock check for the product specified by the given product number. \\ Depending on `type`, an inventory list (`inventory`) or a control list (`expiration_date`, `ean`) is created for the warehouse staff. \\ Once the list is completed, the result is sent to the steve service team, which forwards it to you. \\ Only one open stock check per product and type is allowed at a time.
+     * @summary Request a warehouse stock check (inventory or control list) for a product.
+     * @param {string} productNumber The product number as defined during the creation of the product.
+     * @param {NewStockCheck} newStockCheck 
+     * @param {string} [shopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ProductApi
+     */
+    public postProductStockCheck(productNumber: string, newStockCheck: NewStockCheck, shopCode?: string, options?: AxiosRequestConfig) {
+        return ProductApiFp(this.configuration).postProductStockCheck(productNumber, newStockCheck, shopCode, options).then((request) => request(this.axios, this.basePath));
     }
 }
