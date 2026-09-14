@@ -196,7 +196,7 @@ export const ProductApiAxiosParamCreator = function (configuration?: Configurati
          * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
          * @param {string} [filterDateFrom] The start date (inclusive) in format Y-m-d (timezone CET/CEST) for which product journal entries should be returned.
          * @param {string} [filterDateTo] The end date (inclusive) in format Y-m-d (timezone CET/CEST) for which product journal entries should be returned.
-         * @param {string} [filterReason] Filter journal entries for one or more reasons - expired: Taking an expired product off the books - damaged: Taking a damaged product off the books - own_withdrawal: Product taken for own use - correction: Manual correction - niceshops_order: Product sold via a shop from niceshops - inbound: Restocking the product - fulfillment: steve fulfilled an order - return: A customer sent the product back to our warehouse
+         * @param {string} [filterReason] Filter journal entries for one or more reasons - expired: Taking an expired product off the books - damaged: Taking a damaged product off the books - own_withdrawal: Product taken for own use - correction: Manual correction - inventory: Correction resulting from a completed inventory (stocktaking) - niceshops_order: Product sold via a shop from niceshops - inbound: Restocking the product - fulfillment: steve fulfilled an order - return: A customer sent the product back to our warehouse
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -343,7 +343,7 @@ export const ProductApiAxiosParamCreator = function (configuration?: Configurati
          * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
          * @param {string} [filterDateFrom] The start date (inclusive) in format Y-m-d (timezone CET/CEST) for which product journal entries should be returned.
          * @param {string} [filterDateTo] The end date (inclusive) in format Y-m-d (timezone CET/CEST) for which product journal entries should be returned.
-         * @param {string} [filterReason] Filter journal entries for one or more reasons - expired: Taking an expired product off the books - damaged: Taking a damaged product off the books - own_withdrawal: Product taken for own use - correction: Manual correction - niceshops_order: Product sold via a shop from niceshops - inbound: Restocking the product - fulfillment: steve fulfilled an order - return: A customer sent the product back to our warehouse
+         * @param {string} [filterReason] Filter journal entries for one or more reasons - expired: Taking an expired product off the books - damaged: Taking a damaged product off the books - own_withdrawal: Product taken for own use - correction: Manual correction - inventory: Correction resulting from a completed inventory (stocktaking) - niceshops_order: Product sold via a shop from niceshops - inbound: Restocking the product - fulfillment: steve fulfilled an order - return: A customer sent the product back to our warehouse
          * @param {string} [filterProductNumber] Filter for product number(s) (optional).
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -470,7 +470,7 @@ export const ProductApiAxiosParamCreator = function (configuration?: Configurati
             };
         },
         /**
-         * Request a warehouse stock check for the product specified by the given product number. \\ Depending on `type`, an inventory list (`inventory`) or a control list (`expiration_date`, `ean`) is created for the warehouse staff. \\ Once the list is completed, the result is sent to the steve service team, which forwards it to you. \\ Only one open stock check per product and type is allowed at a time.
+         * Request a warehouse stock check for the product specified by the given product number. \\ Depending on `type`, an inventory list (`inventory`) or a control list (`expiration_date`, `ean`) is created for the warehouse staff. \\ Once the list is completed, the result is sent to the steve service team, which forwards it to you. \\ Only one open stock check per product and type is allowed at a time. \\ Stock checks can only be requested for products owned by the given shop (product `source` = `self`)
          * @summary Request a warehouse stock check (inventory or control list) for a product.
          * @param {string} productNumber The product number as defined during the creation of the product.
          * @param {NewStockCheck} newStockCheck 
@@ -575,7 +575,7 @@ export const ProductApiFp = function(configuration?: Configuration) {
          * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
          * @param {string} [filterDateFrom] The start date (inclusive) in format Y-m-d (timezone CET/CEST) for which product journal entries should be returned.
          * @param {string} [filterDateTo] The end date (inclusive) in format Y-m-d (timezone CET/CEST) for which product journal entries should be returned.
-         * @param {string} [filterReason] Filter journal entries for one or more reasons - expired: Taking an expired product off the books - damaged: Taking a damaged product off the books - own_withdrawal: Product taken for own use - correction: Manual correction - niceshops_order: Product sold via a shop from niceshops - inbound: Restocking the product - fulfillment: steve fulfilled an order - return: A customer sent the product back to our warehouse
+         * @param {string} [filterReason] Filter journal entries for one or more reasons - expired: Taking an expired product off the books - damaged: Taking a damaged product off the books - own_withdrawal: Product taken for own use - correction: Manual correction - inventory: Correction resulting from a completed inventory (stocktaking) - niceshops_order: Product sold via a shop from niceshops - inbound: Restocking the product - fulfillment: steve fulfilled an order - return: A customer sent the product back to our warehouse
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -608,7 +608,7 @@ export const ProductApiFp = function(configuration?: Configuration) {
          * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
          * @param {string} [filterDateFrom] The start date (inclusive) in format Y-m-d (timezone CET/CEST) for which product journal entries should be returned.
          * @param {string} [filterDateTo] The end date (inclusive) in format Y-m-d (timezone CET/CEST) for which product journal entries should be returned.
-         * @param {string} [filterReason] Filter journal entries for one or more reasons - expired: Taking an expired product off the books - damaged: Taking a damaged product off the books - own_withdrawal: Product taken for own use - correction: Manual correction - niceshops_order: Product sold via a shop from niceshops - inbound: Restocking the product - fulfillment: steve fulfilled an order - return: A customer sent the product back to our warehouse
+         * @param {string} [filterReason] Filter journal entries for one or more reasons - expired: Taking an expired product off the books - damaged: Taking a damaged product off the books - own_withdrawal: Product taken for own use - correction: Manual correction - inventory: Correction resulting from a completed inventory (stocktaking) - niceshops_order: Product sold via a shop from niceshops - inbound: Restocking the product - fulfillment: steve fulfilled an order - return: A customer sent the product back to our warehouse
          * @param {string} [filterProductNumber] Filter for product number(s) (optional).
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -631,7 +631,7 @@ export const ProductApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * Request a warehouse stock check for the product specified by the given product number. \\ Depending on `type`, an inventory list (`inventory`) or a control list (`expiration_date`, `ean`) is created for the warehouse staff. \\ Once the list is completed, the result is sent to the steve service team, which forwards it to you. \\ Only one open stock check per product and type is allowed at a time.
+         * Request a warehouse stock check for the product specified by the given product number. \\ Depending on `type`, an inventory list (`inventory`) or a control list (`expiration_date`, `ean`) is created for the warehouse staff. \\ Once the list is completed, the result is sent to the steve service team, which forwards it to you. \\ Only one open stock check per product and type is allowed at a time. \\ Stock checks can only be requested for products owned by the given shop (product `source` = `self`)
          * @summary Request a warehouse stock check (inventory or control list) for a product.
          * @param {string} productNumber The product number as defined during the creation of the product.
          * @param {NewStockCheck} newStockCheck 
@@ -694,7 +694,7 @@ export const ProductApiFactory = function (configuration?: Configuration, basePa
          * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
          * @param {string} [filterDateFrom] The start date (inclusive) in format Y-m-d (timezone CET/CEST) for which product journal entries should be returned.
          * @param {string} [filterDateTo] The end date (inclusive) in format Y-m-d (timezone CET/CEST) for which product journal entries should be returned.
-         * @param {string} [filterReason] Filter journal entries for one or more reasons - expired: Taking an expired product off the books - damaged: Taking a damaged product off the books - own_withdrawal: Product taken for own use - correction: Manual correction - niceshops_order: Product sold via a shop from niceshops - inbound: Restocking the product - fulfillment: steve fulfilled an order - return: A customer sent the product back to our warehouse
+         * @param {string} [filterReason] Filter journal entries for one or more reasons - expired: Taking an expired product off the books - damaged: Taking a damaged product off the books - own_withdrawal: Product taken for own use - correction: Manual correction - inventory: Correction resulting from a completed inventory (stocktaking) - niceshops_order: Product sold via a shop from niceshops - inbound: Restocking the product - fulfillment: steve fulfilled an order - return: A customer sent the product back to our warehouse
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -725,7 +725,7 @@ export const ProductApiFactory = function (configuration?: Configuration, basePa
          * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
          * @param {string} [filterDateFrom] The start date (inclusive) in format Y-m-d (timezone CET/CEST) for which product journal entries should be returned.
          * @param {string} [filterDateTo] The end date (inclusive) in format Y-m-d (timezone CET/CEST) for which product journal entries should be returned.
-         * @param {string} [filterReason] Filter journal entries for one or more reasons - expired: Taking an expired product off the books - damaged: Taking a damaged product off the books - own_withdrawal: Product taken for own use - correction: Manual correction - niceshops_order: Product sold via a shop from niceshops - inbound: Restocking the product - fulfillment: steve fulfilled an order - return: A customer sent the product back to our warehouse
+         * @param {string} [filterReason] Filter journal entries for one or more reasons - expired: Taking an expired product off the books - damaged: Taking a damaged product off the books - own_withdrawal: Product taken for own use - correction: Manual correction - inventory: Correction resulting from a completed inventory (stocktaking) - niceshops_order: Product sold via a shop from niceshops - inbound: Restocking the product - fulfillment: steve fulfilled an order - return: A customer sent the product back to our warehouse
          * @param {string} [filterProductNumber] Filter for product number(s) (optional).
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -746,7 +746,7 @@ export const ProductApiFactory = function (configuration?: Configuration, basePa
             return localVarFp.patchProduct(productNumber, patchProduct, shopCode, options).then((request) => request(axios, basePath));
         },
         /**
-         * Request a warehouse stock check for the product specified by the given product number. \\ Depending on `type`, an inventory list (`inventory`) or a control list (`expiration_date`, `ean`) is created for the warehouse staff. \\ Once the list is completed, the result is sent to the steve service team, which forwards it to you. \\ Only one open stock check per product and type is allowed at a time.
+         * Request a warehouse stock check for the product specified by the given product number. \\ Depending on `type`, an inventory list (`inventory`) or a control list (`expiration_date`, `ean`) is created for the warehouse staff. \\ Once the list is completed, the result is sent to the steve service team, which forwards it to you. \\ Only one open stock check per product and type is allowed at a time. \\ Stock checks can only be requested for products owned by the given shop (product `source` = `self`)
          * @summary Request a warehouse stock check (inventory or control list) for a product.
          * @param {string} productNumber The product number as defined during the creation of the product.
          * @param {NewStockCheck} newStockCheck 
@@ -807,7 +807,7 @@ export interface ProductApiInterface {
      * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
      * @param {string} [filterDateFrom] The start date (inclusive) in format Y-m-d (timezone CET/CEST) for which product journal entries should be returned.
      * @param {string} [filterDateTo] The end date (inclusive) in format Y-m-d (timezone CET/CEST) for which product journal entries should be returned.
-     * @param {string} [filterReason] Filter journal entries for one or more reasons - expired: Taking an expired product off the books - damaged: Taking a damaged product off the books - own_withdrawal: Product taken for own use - correction: Manual correction - niceshops_order: Product sold via a shop from niceshops - inbound: Restocking the product - fulfillment: steve fulfilled an order - return: A customer sent the product back to our warehouse
+     * @param {string} [filterReason] Filter journal entries for one or more reasons - expired: Taking an expired product off the books - damaged: Taking a damaged product off the books - own_withdrawal: Product taken for own use - correction: Manual correction - inventory: Correction resulting from a completed inventory (stocktaking) - niceshops_order: Product sold via a shop from niceshops - inbound: Restocking the product - fulfillment: steve fulfilled an order - return: A customer sent the product back to our warehouse
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProductApiInterface
@@ -838,7 +838,7 @@ export interface ProductApiInterface {
      * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
      * @param {string} [filterDateFrom] The start date (inclusive) in format Y-m-d (timezone CET/CEST) for which product journal entries should be returned.
      * @param {string} [filterDateTo] The end date (inclusive) in format Y-m-d (timezone CET/CEST) for which product journal entries should be returned.
-     * @param {string} [filterReason] Filter journal entries for one or more reasons - expired: Taking an expired product off the books - damaged: Taking a damaged product off the books - own_withdrawal: Product taken for own use - correction: Manual correction - niceshops_order: Product sold via a shop from niceshops - inbound: Restocking the product - fulfillment: steve fulfilled an order - return: A customer sent the product back to our warehouse
+     * @param {string} [filterReason] Filter journal entries for one or more reasons - expired: Taking an expired product off the books - damaged: Taking a damaged product off the books - own_withdrawal: Product taken for own use - correction: Manual correction - inventory: Correction resulting from a completed inventory (stocktaking) - niceshops_order: Product sold via a shop from niceshops - inbound: Restocking the product - fulfillment: steve fulfilled an order - return: A customer sent the product back to our warehouse
      * @param {string} [filterProductNumber] Filter for product number(s) (optional).
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -859,7 +859,7 @@ export interface ProductApiInterface {
     patchProduct(productNumber: string, patchProduct: PatchProduct, shopCode?: string, options?: AxiosRequestConfig): AxiosPromise<Product>;
 
     /**
-     * Request a warehouse stock check for the product specified by the given product number. \\ Depending on `type`, an inventory list (`inventory`) or a control list (`expiration_date`, `ean`) is created for the warehouse staff. \\ Once the list is completed, the result is sent to the steve service team, which forwards it to you. \\ Only one open stock check per product and type is allowed at a time.
+     * Request a warehouse stock check for the product specified by the given product number. \\ Depending on `type`, an inventory list (`inventory`) or a control list (`expiration_date`, `ean`) is created for the warehouse staff. \\ Once the list is completed, the result is sent to the steve service team, which forwards it to you. \\ Only one open stock check per product and type is allowed at a time. \\ Stock checks can only be requested for products owned by the given shop (product `source` = `self`)
      * @summary Request a warehouse stock check (inventory or control list) for a product.
      * @param {string} productNumber The product number as defined during the creation of the product.
      * @param {NewStockCheck} newStockCheck 
@@ -924,7 +924,7 @@ export class ProductApi extends BaseAPI implements ProductApiInterface {
      * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
      * @param {string} [filterDateFrom] The start date (inclusive) in format Y-m-d (timezone CET/CEST) for which product journal entries should be returned.
      * @param {string} [filterDateTo] The end date (inclusive) in format Y-m-d (timezone CET/CEST) for which product journal entries should be returned.
-     * @param {string} [filterReason] Filter journal entries for one or more reasons - expired: Taking an expired product off the books - damaged: Taking a damaged product off the books - own_withdrawal: Product taken for own use - correction: Manual correction - niceshops_order: Product sold via a shop from niceshops - inbound: Restocking the product - fulfillment: steve fulfilled an order - return: A customer sent the product back to our warehouse
+     * @param {string} [filterReason] Filter journal entries for one or more reasons - expired: Taking an expired product off the books - damaged: Taking a damaged product off the books - own_withdrawal: Product taken for own use - correction: Manual correction - inventory: Correction resulting from a completed inventory (stocktaking) - niceshops_order: Product sold via a shop from niceshops - inbound: Restocking the product - fulfillment: steve fulfilled an order - return: A customer sent the product back to our warehouse
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProductApi
@@ -959,7 +959,7 @@ export class ProductApi extends BaseAPI implements ProductApiInterface {
      * @param {string} [shopCode] The shopCode used internally to distinguish between clients.\\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
      * @param {string} [filterDateFrom] The start date (inclusive) in format Y-m-d (timezone CET/CEST) for which product journal entries should be returned.
      * @param {string} [filterDateTo] The end date (inclusive) in format Y-m-d (timezone CET/CEST) for which product journal entries should be returned.
-     * @param {string} [filterReason] Filter journal entries for one or more reasons - expired: Taking an expired product off the books - damaged: Taking a damaged product off the books - own_withdrawal: Product taken for own use - correction: Manual correction - niceshops_order: Product sold via a shop from niceshops - inbound: Restocking the product - fulfillment: steve fulfilled an order - return: A customer sent the product back to our warehouse
+     * @param {string} [filterReason] Filter journal entries for one or more reasons - expired: Taking an expired product off the books - damaged: Taking a damaged product off the books - own_withdrawal: Product taken for own use - correction: Manual correction - inventory: Correction resulting from a completed inventory (stocktaking) - niceshops_order: Product sold via a shop from niceshops - inbound: Restocking the product - fulfillment: steve fulfilled an order - return: A customer sent the product back to our warehouse
      * @param {string} [filterProductNumber] Filter for product number(s) (optional).
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -984,7 +984,7 @@ export class ProductApi extends BaseAPI implements ProductApiInterface {
     }
 
     /**
-     * Request a warehouse stock check for the product specified by the given product number. \\ Depending on `type`, an inventory list (`inventory`) or a control list (`expiration_date`, `ean`) is created for the warehouse staff. \\ Once the list is completed, the result is sent to the steve service team, which forwards it to you. \\ Only one open stock check per product and type is allowed at a time.
+     * Request a warehouse stock check for the product specified by the given product number. \\ Depending on `type`, an inventory list (`inventory`) or a control list (`expiration_date`, `ean`) is created for the warehouse staff. \\ Once the list is completed, the result is sent to the steve service team, which forwards it to you. \\ Only one open stock check per product and type is allowed at a time. \\ Stock checks can only be requested for products owned by the given shop (product `source` = `self`)
      * @summary Request a warehouse stock check (inventory or control list) for a product.
      * @param {string} productNumber The product number as defined during the creation of the product.
      * @param {NewStockCheck} newStockCheck 

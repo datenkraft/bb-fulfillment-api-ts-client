@@ -78,6 +78,7 @@ export const ProductJournalReasonEnum = {
     Damaged: 'damaged',
     OwnWithdrawal: 'own_withdrawal',
     Correction: 'correction',
+    Inventory: 'inventory',
     NiceshopsOrder: 'niceshops_order',
     Inbound: 'inbound',
     Fulfillment: 'fulfillment',
