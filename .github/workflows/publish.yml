@@ -1,0 +1,57 @@
+name: Publish to npmjs.com
+
+on:
+  push:
+    tags:
+      - 'v[0-9]+.[0-9]+.[0-9]+'
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Existing tag to publish, e.g. v2.6.140'
+        required: true
+        type: string
+
+env:
+  RELEASE_TAG: ${{ inputs.tag || github.ref_name }}
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: ${{ env.RELEASE_TAG }}
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+
+      - name: Set package version from tag
+        run: npm version "${RELEASE_TAG#v}" --no-git-tag-version --allow-same-version
+
+      - name: Check whether this version is already published
+        id: check
+        run: |
+          packageName=$(node -p "require('./package.json').name")
+          packageVersion=$(node -p "require('./package.json').version")
+          publishedVersion=$(npm view "${packageName}@${packageVersion}" version 2>/dev/null || true)
+          if [ -n "${publishedVersion}" ]; then
+            echo "${packageName}@${packageVersion} is already published -> skipping."
+            echo "skip=true" >> "${GITHUB_OUTPUT}"
+          fi
+
+      - name: Install dependencies
+        if: steps.check.outputs.skip != 'true'
+        run: npm ci
+
+      - name: Build
+        if: steps.check.outputs.skip != 'true'
+        run: npm run build
+
+      - name: Publish to npmjs.com
+        if: steps.check.outputs.skip != 'true'
+        run: npm publish --access public

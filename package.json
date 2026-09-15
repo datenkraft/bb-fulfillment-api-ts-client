@@ -1,6 +1,6 @@
 {
   "name": "@datenkraft/bb-fulfillment-api-ts-client",
-  "homepage": "https://bitbucket.org/datenkraft/bb-fulfillment-api-ts-client#readme",
+  "homepage": "https://github.com/datenkraft/bb-fulfillment-api-ts-client#readme",
   "version": "1.6.1",
   "description": "The fulfillment API TS Client enables you to work with the fulfillment API",
   "main": "dist/index.js",
@@ -29,7 +29,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@bitbucket.org/datenkraft/bb-fulfillment-api-ts-client.git"
+    "url": "git+https://github.com/datenkraft/bb-fulfillment-api-ts-client.git"
   },
   "devDependencies": {
     "@openapitools/openapi-generator-cli": "^2.5.2",
