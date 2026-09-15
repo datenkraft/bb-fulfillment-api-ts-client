@@ -19,8 +19,8 @@ publish-client:
   script:
     - git checkout ${CI_COMMIT_BRANCH}
     - git status
-    - '## Check requirements'
-    - if [ -z "${NPM_TOKEN}" ]; then echo 'Could not find NPM_TOKEN needed for publishing -> aborting.'; exit 1; fi
+    - '## Initialise the dotenv report consumed by verify-npmjs-publish (overwritten once a version is tagged)'
+    - echo "PUBLISHED_VERSION=none" > publish.env
     - '## Check for changes'
     - |
       # find last annotated tag matching the current branch
@@ -94,7 +94,49 @@ publish-client:
     - npm version from-git -m "Bumped package version to %s" --allow-same-version
     - git push -o ci.skip ${GITLAB_REPOSITORY_URL}
     - git push ${GITLAB_REPOSITORY_URL} tags/${nextTag}
-    - '## Authenticate with npm registry'
-    - echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" >> .npmrc
-    - '## Publish npm package'
-    - npm publish --access public
+    - '## Publishing to npmjs.com is done by GitHub Actions (.github/workflows/publish.yml) once mirror-to-github has pushed the tag'
+    - |
+      echo "PUBLISHED_VERSION=${nextTag#v}" > publish.env
+      echo "Tagged ${nextTag}. The package is published to npmjs.com by https://github.com/datenkraft/${CI_PROJECT_NAME}/actions after mirroring."
+  artifacts:
+    reports:
+      dotenv: publish.env
+
+mirror-to-github:
+  extends:
+    - .mirror-to-github
+  needs:
+    - job: publish-client
+      artifacts: false
+
+verify-npmjs-publish:
+  stage: publish
+  extends:
+    - .use-service-image
+  needs:
+    - job: publish-client
+      artifacts: true
+    - job: mirror-to-github
+      artifacts: false
+  timeout: 20m
+  script:
+    - |
+      if [ "${PUBLISHED_VERSION:-none}" = "none" ]; then
+        echo "No version was tagged in this pipeline -> nothing to verify."
+        exit 0
+      fi
+    - packageName=$(node -p "require('./package.json').name")
+    - '## Wait until GitHub Actions (publish.yml) has published the version to npmjs.com'
+    - |
+      for attempt in $(seq 1 60); do
+        publishedVersion=$(npm view "${packageName}@${PUBLISHED_VERSION}" version 2>/dev/null || true)
+        if [ -n "${publishedVersion}" ]; then
+          echo "${packageName}@${PUBLISHED_VERSION} is available on npmjs.com."
+          exit 0
+        fi
+        echo "Attempt ${attempt}/60: ${packageName}@${PUBLISHED_VERSION} is not yet available on npmjs.com -> retrying in 15s."
+        sleep 15
+      done
+      echo "${packageName}@${PUBLISHED_VERSION} did not show up on npmjs.com within 15 minutes."
+      echo "Check the workflow run at https://github.com/datenkraft/${CI_PROJECT_NAME}/actions"
+      exit 1
