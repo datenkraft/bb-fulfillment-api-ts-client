@@ -21,7 +21,7 @@
  */
 export interface StockCheck {
     /**
-     * Number of the warehouse list created for the stock check
+     * Number of the warehouse list created for the stock check. Only unique per `type`.
      * @type {string}
      * @memberof StockCheck
      */
@@ -45,11 +45,23 @@ export interface StockCheck {
      */
     'type': StockCheckTypeEnum;
     /**
-     * Status of the stock check. A newly requested stock check is always `open`.
+     * Status of the stock check: - `open`: not yet processed by the warehouse (a newly requested stock check is always `open`) - `finished`: processed by the warehouse - `nullified`: cancelled without processing
      * @type {string}
      * @memberof StockCheck
      */
     'status': StockCheckStatusEnum;
+    /**
+     * The date (Y-m-d) the stock check was requested.
+     * @type {string}
+     * @memberof StockCheck
+     */
+    'createdDate': string;
+    /**
+     * The date and time the stock check was finished or nullified. Format in ISO 8601. Null while the stock check is open.
+     * @type {string}
+     * @memberof StockCheck
+     */
+    'completedAt': string | null;
 }
 
 export const StockCheckTypeEnum = {
@@ -62,6 +74,8 @@ export const StockCheckTypeEnum = {
 export type StockCheckTypeEnum = typeof StockCheckTypeEnum[keyof typeof StockCheckTypeEnum];
 export const StockCheckStatusEnum = {
     Open: 'open',
+    Finished: 'finished',
+    Nullified: 'nullified',
     UnknownDefaultOpenApi: '11184809'
 } as const;
 
