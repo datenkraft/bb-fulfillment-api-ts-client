@@ -40,6 +40,8 @@ import { ProductJournalCollection } from '../models';
 import { ProductStockReferenceCollection } from '../models';
 // @ts-ignore
 import { StockCheck } from '../models';
+// @ts-ignore
+import { StockCheckCollection } from '../models';
 /**
  * ProductApi - axios parameter creator
  * @export
@@ -254,6 +256,78 @@ export const ProductApiAxiosParamCreator = function (configuration?: Configurati
 
             if (filterReason !== undefined) {
                 localVarQueryParameter['filter[reason]'] = filterReason;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Read the warehouse stock checks requested via `POST /product/{productNumber}/stock-check` for the product specified by the given product number, newest first. \\ Open as well as finished and nullified stock checks are returned; use the filters to narrow the result. \\ Stock checks can only be read for products owned by the given shop (product `source` = `self`); products of other shops are not found.
+         * @summary Read the warehouse stock checks (inventory and control lists) requested for a product.
+         * @param {string} productNumber The product number as defined during the creation of the product.
+         * @param {number} [page] The page to read. Default is the first page.
+         * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
+         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use:\\ - default: The total number of items in the collection will not be calculated.\\ - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
+         * @param {string} [shopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+         * @param {string} [filterStatus] Only return stock checks with one or more of the given statuses (comma separated): - &#x60;open&#x60;: not yet processed by the warehouse - &#x60;finished&#x60;: processed by the warehouse - &#x60;nullified&#x60;: cancelled without processing
+         * @param {string} [filterType] Only return stock checks of one or more of the given types (comma separated): - &#x60;inventory&#x60;: count the stock of the product (inventory list) - &#x60;expiration_date&#x60;: check the expiration dates of the stock (control list) - &#x60;ean&#x60;: check the EAN codes of the stock (control list)
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getProductStockCheckCollection: async (productNumber: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', shopCode?: string, filterStatus?: string, filterType?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'productNumber' is not null or undefined
+            assertParamExists('getProductStockCheckCollection', 'productNumber', productNumber)
+            const localVarPath = `/product/{productNumber}/stock-check`
+                .replace(`{${"productNumber"}}`, encodeURIComponent(String(productNumber)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication oAuthAuthorization required
+            // oauth required
+            await setOAuthToObject(localVarHeaderParameter, "oAuthAuthorization", [], configuration)
+
+            // authentication bearerAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
+            }
+
+            if (pageSize !== undefined) {
+                localVarQueryParameter['pageSize'] = pageSize;
+            }
+
+            if (paginationMode !== undefined) {
+                localVarQueryParameter['paginationMode'] = paginationMode;
+            }
+
+            if (shopCode !== undefined) {
+                localVarQueryParameter['shopCode'] = shopCode;
+            }
+
+            if (filterStatus !== undefined) {
+                localVarQueryParameter['filter[status]'] = filterStatus;
+            }
+
+            if (filterType !== undefined) {
+                localVarQueryParameter['filter[type]'] = filterType;
             }
 
 
@@ -584,6 +658,23 @@ export const ProductApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
+         * Read the warehouse stock checks requested via `POST /product/{productNumber}/stock-check` for the product specified by the given product number, newest first. \\ Open as well as finished and nullified stock checks are returned; use the filters to narrow the result. \\ Stock checks can only be read for products owned by the given shop (product `source` = `self`); products of other shops are not found.
+         * @summary Read the warehouse stock checks (inventory and control lists) requested for a product.
+         * @param {string} productNumber The product number as defined during the creation of the product.
+         * @param {number} [page] The page to read. Default is the first page.
+         * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
+         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use:\\ - default: The total number of items in the collection will not be calculated.\\ - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
+         * @param {string} [shopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+         * @param {string} [filterStatus] Only return stock checks with one or more of the given statuses (comma separated): - &#x60;open&#x60;: not yet processed by the warehouse - &#x60;finished&#x60;: processed by the warehouse - &#x60;nullified&#x60;: cancelled without processing
+         * @param {string} [filterType] Only return stock checks of one or more of the given types (comma separated): - &#x60;inventory&#x60;: count the stock of the product (inventory list) - &#x60;expiration_date&#x60;: check the expiration dates of the stock (control list) - &#x60;ean&#x60;: check the EAN codes of the stock (control list)
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getProductStockCheckCollection(productNumber: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', shopCode?: string, filterStatus?: string, filterType?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<StockCheckCollection>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getProductStockCheckCollection(productNumber, page, pageSize, paginationMode, shopCode, filterStatus, filterType, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
          * Get a list of product stock references.
          * @summary Get a list of product stock references.
          * @param {string} productNumber The product number as defined during the creation of the product.
@@ -702,6 +793,22 @@ export const ProductApiFactory = function (configuration?: Configuration, basePa
             return localVarFp.getProductJournalCollection(productNumber, page, pageSize, paginationMode, shopCode, filterDateFrom, filterDateTo, filterReason, options).then((request) => request(axios, basePath));
         },
         /**
+         * Read the warehouse stock checks requested via `POST /product/{productNumber}/stock-check` for the product specified by the given product number, newest first. \\ Open as well as finished and nullified stock checks are returned; use the filters to narrow the result. \\ Stock checks can only be read for products owned by the given shop (product `source` = `self`); products of other shops are not found.
+         * @summary Read the warehouse stock checks (inventory and control lists) requested for a product.
+         * @param {string} productNumber The product number as defined during the creation of the product.
+         * @param {number} [page] The page to read. Default is the first page.
+         * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
+         * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use:\\ - default: The total number of items in the collection will not be calculated.\\ - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
+         * @param {string} [shopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+         * @param {string} [filterStatus] Only return stock checks with one or more of the given statuses (comma separated): - &#x60;open&#x60;: not yet processed by the warehouse - &#x60;finished&#x60;: processed by the warehouse - &#x60;nullified&#x60;: cancelled without processing
+         * @param {string} [filterType] Only return stock checks of one or more of the given types (comma separated): - &#x60;inventory&#x60;: count the stock of the product (inventory list) - &#x60;expiration_date&#x60;: check the expiration dates of the stock (control list) - &#x60;ean&#x60;: check the EAN codes of the stock (control list)
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getProductStockCheckCollection(productNumber: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', shopCode?: string, filterStatus?: string, filterType?: string, options?: any): AxiosPromise<StockCheckCollection> {
+            return localVarFp.getProductStockCheckCollection(productNumber, page, pageSize, paginationMode, shopCode, filterStatus, filterType, options).then((request) => request(axios, basePath));
+        },
+        /**
          * Get a list of product stock references.
          * @summary Get a list of product stock references.
          * @param {string} productNumber The product number as defined during the creation of the product.
@@ -813,6 +920,22 @@ export interface ProductApiInterface {
      * @memberof ProductApiInterface
      */
     getProductJournalCollection(productNumber: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', shopCode?: string, filterDateFrom?: string, filterDateTo?: string, filterReason?: string, options?: AxiosRequestConfig): AxiosPromise<ProductJournalCollection>;
+
+    /**
+     * Read the warehouse stock checks requested via `POST /product/{productNumber}/stock-check` for the product specified by the given product number, newest first. \\ Open as well as finished and nullified stock checks are returned; use the filters to narrow the result. \\ Stock checks can only be read for products owned by the given shop (product `source` = `self`); products of other shops are not found.
+     * @summary Read the warehouse stock checks (inventory and control lists) requested for a product.
+     * @param {string} productNumber The product number as defined during the creation of the product.
+     * @param {number} [page] The page to read. Default is the first page.
+     * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
+     * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use:\\ - default: The total number of items in the collection will not be calculated.\\ - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
+     * @param {string} [shopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+     * @param {string} [filterStatus] Only return stock checks with one or more of the given statuses (comma separated): - &#x60;open&#x60;: not yet processed by the warehouse - &#x60;finished&#x60;: processed by the warehouse - &#x60;nullified&#x60;: cancelled without processing
+     * @param {string} [filterType] Only return stock checks of one or more of the given types (comma separated): - &#x60;inventory&#x60;: count the stock of the product (inventory list) - &#x60;expiration_date&#x60;: check the expiration dates of the stock (control list) - &#x60;ean&#x60;: check the EAN codes of the stock (control list)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ProductApiInterface
+     */
+    getProductStockCheckCollection(productNumber: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', shopCode?: string, filterStatus?: string, filterType?: string, options?: AxiosRequestConfig): AxiosPromise<StockCheckCollection>;
 
     /**
      * Get a list of product stock references.
@@ -931,6 +1054,24 @@ export class ProductApi extends BaseAPI implements ProductApiInterface {
      */
     public getProductJournalCollection(productNumber: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', shopCode?: string, filterDateFrom?: string, filterDateTo?: string, filterReason?: string, options?: AxiosRequestConfig) {
         return ProductApiFp(this.configuration).getProductJournalCollection(productNumber, page, pageSize, paginationMode, shopCode, filterDateFrom, filterDateTo, filterReason, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Read the warehouse stock checks requested via `POST /product/{productNumber}/stock-check` for the product specified by the given product number, newest first. \\ Open as well as finished and nullified stock checks are returned; use the filters to narrow the result. \\ Stock checks can only be read for products owned by the given shop (product `source` = `self`); products of other shops are not found.
+     * @summary Read the warehouse stock checks (inventory and control lists) requested for a product.
+     * @param {string} productNumber The product number as defined during the creation of the product.
+     * @param {number} [page] The page to read. Default is the first page.
+     * @param {number} [pageSize] The maximum size per page is 100. Default is 100.
+     * @param {'default' | 'totalCount'} [paginationMode] The paginationMode to use:\\ - default: The total number of items in the collection will not be calculated.\\ - totalCount: The total number of items in the collection will be calculated. This can mean loss of performance.
+     * @param {string} [shopCode] The shopCode used internally to distinguish between clients. \\ _This code is optional, if your identity is assigned to only one shop. Otherwise the response would be a 422 HTTP Error._
+     * @param {string} [filterStatus] Only return stock checks with one or more of the given statuses (comma separated): - &#x60;open&#x60;: not yet processed by the warehouse - &#x60;finished&#x60;: processed by the warehouse - &#x60;nullified&#x60;: cancelled without processing
+     * @param {string} [filterType] Only return stock checks of one or more of the given types (comma separated): - &#x60;inventory&#x60;: count the stock of the product (inventory list) - &#x60;expiration_date&#x60;: check the expiration dates of the stock (control list) - &#x60;ean&#x60;: check the EAN codes of the stock (control list)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ProductApi
+     */
+    public getProductStockCheckCollection(productNumber: string, page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', shopCode?: string, filterStatus?: string, filterType?: string, options?: AxiosRequestConfig) {
+        return ProductApiFp(this.configuration).getProductStockCheckCollection(productNumber, page, pageSize, paginationMode, shopCode, filterStatus, filterType, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

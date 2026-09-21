@@ -7179,6 +7179,198 @@
             }
         },
         "/product/{productNumber}/stock-check": {
+            "get": {
+                "tags": [
+                    "product"
+                ],
+                "summary": "Read the warehouse stock checks (inventory and control lists) requested for a product.",
+                "description": "Read the warehouse stock checks requested via `POST /product/{productNumber}/stock-check` for the product\nspecified by the given product number, newest first. \\\nOpen as well as finished and nullified stock checks are returned; use the filters to narrow the result. \\\nStock checks can only be read for products owned by the given shop (product `source` = `self`);\nproducts of other shops are not found.",
+                "operationId": "getProductStockCheckCollection",
+                "parameters": [
+                    {
+                        "name": "productNumber",
+                        "in": "path",
+                        "description": "The product number as defined during the creation of the product.",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "maxLength": 53
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "The page to read. Default is the first page.",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": 1
+                    },
+                    {
+                        "name": "pageSize",
+                        "in": "query",
+                        "description": "The maximum size per page is 100. Default is 100.",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": 20
+                    },
+                    {
+                        "name": "paginationMode",
+                        "in": "query",
+                        "description": "The paginationMode to use:\\\n- default: The total number of items in the collection will not be calculated.\\\n- totalCount: The total number of items in the collection will be calculated.\nThis can mean loss of performance.",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "default": "default",
+                            "enum": [
+                                "default",
+                                "totalCount"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "shopCode",
+                        "in": "query",
+                        "description": "The shopCode used internally to distinguish between clients. \\\n_This code is optional, if your identity is assigned to only one shop.\nOtherwise the response would be a 422 HTTP Error._",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "teststeve"
+                    },
+                    {
+                        "name": "filter[status]",
+                        "in": "query",
+                        "description": "Only return stock checks with one or more of the given statuses (comma separated):\n- `open`: not yet processed by the warehouse\n- `finished`: processed by the warehouse\n- `nullified`: cancelled without processing",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "examples": {
+                            "single status": {
+                                "summary": "Stock check status",
+                                "value": "open"
+                            },
+                            "multiple statuses": {
+                                "summary": "Multiple stock check statuses",
+                                "value": "open,finished"
+                            }
+                        }
+                    },
+                    {
+                        "name": "filter[type]",
+                        "in": "query",
+                        "description": "Only return stock checks of one or more of the given types (comma separated):\n- `inventory`: count the stock of the product (inventory list)\n- `expiration_date`: check the expiration dates of the stock (control list)\n- `ean`: check the EAN codes of the stock (control list)",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "examples": {
+                            "single type": {
+                                "summary": "Stock check type",
+                                "value": "inventory"
+                            },
+                            "multiple types": {
+                                "summary": "Multiple stock check types",
+                                "value": "expiration_date,ean"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/stockCheckCollection"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request\n\nError codes:\n- DATA_INVALID: Invalid data was given.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized\n\nError codes:\n- AUTHORIZATION_MISSING: No valid authentication information was given.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden\n\nError codes:\n- PERMISSIONS_MISSING: No authorization for the called action was found.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found\n\nError codes:\n- DATA_NOT_FOUND: The requested data could not be found.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity\n\nError codes:\n- SHOP_NOT_FOUND: Shop not found.\n- SHOP_MISSING: Unable to identify Shop.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Server error\n\nError codes:\n- SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "oAuthAuthorization": []
+                    },
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
             "post": {
                 "tags": [
                     "product"
@@ -13251,11 +13443,13 @@
                     "productNumber",
                     "shopCode",
                     "type",
-                    "status"
+                    "status",
+                    "createdDate",
+                    "completedAt"
                 ],
                 "properties": {
                     "stockCheckNumber": {
-                        "description": "Number of the warehouse list created for the stock check",
+                        "description": "Number of the warehouse list created for the stock check. Only unique per `type`.",
                         "type": "string",
                         "example": "K-260-211-001"
                     },
@@ -13277,14 +13471,49 @@
                         ]
                     },
                     "status": {
-                        "description": "Status of the stock check. A newly requested stock check is always `open`.",
+                        "description": "Status of the stock check:\n- `open`: not yet processed by the warehouse (a newly requested stock check is always `open`)\n- `finished`: processed by the warehouse\n- `nullified`: cancelled without processing",
                         "type": "string",
                         "enum": [
-                            "open"
+                            "open",
+                            "finished",
+                            "nullified"
                         ]
+                    },
+                    "createdDate": {
+                        "description": "The date (Y-m-d) the stock check was requested.",
+                        "type": "string",
+                        "format": "date",
+                        "example": "2026-09-17"
+                    },
+                    "completedAt": {
+                        "description": "The date and time the stock check was finished or nullified. Format in ISO 8601. Null while the stock check is open.",
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2026-09-18T09:12:00+02:00",
+                        "nullable": true
                     }
                 },
                 "type": "object"
+            },
+            "stockCheckCollection": {
+                "title": "stockCheckCollection",
+                "description": "A collection of warehouse stock checks of a product",
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/collection"
+                    },
+                    {
+                        "properties": {
+                            "data": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/stockCheck"
+                                }
+                            }
+                        },
+                        "type": "object"
+                    }
+                ]
             },
             "stockCollection": {
                 "title": "stockCollection",

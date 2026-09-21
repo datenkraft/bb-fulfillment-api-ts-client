@@ -208,6 +208,8 @@ models/shop-all-of.ts
 models/shop-collection-all-of.ts
 models/shop-collection.ts
 models/shop.ts
+models/stock-check-collection-all-of.ts
+models/stock-check-collection.ts
 models/stock-check.ts
 models/stock-collection-all-of.ts
 models/stock-collection.ts

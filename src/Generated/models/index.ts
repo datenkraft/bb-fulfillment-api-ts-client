@@ -176,6 +176,8 @@ export * from './shop-collection';
 export * from './shop-collection-all-of';
 export * from './stock';
 export * from './stock-check';
+export * from './stock-check-collection';
+export * from './stock-check-collection-all-of';
 export * from './stock-collection';
 export * from './stock-collection-all-of';
 export * from './supplier';
