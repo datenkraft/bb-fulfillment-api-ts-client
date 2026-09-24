@@ -114,6 +114,12 @@ export interface OrderAllOf {
      */
     'orderItemsCancelable'?: boolean;
     /**
+     * Indicates whether the order can currently be updated via PATCH /order/{orderNumber}. It is false as soon as the order is delivered, deleted, canceled or redacted, and as soon as the order is being processed in the warehouse.
+     * @type {boolean}
+     * @memberof OrderAllOf
+     */
+    'editable'?: boolean;
+    /**
      * Indicates whether a partial delivery is pending or not. Note: If true, it means that a partial delivery has been requested but not yet processed. If false, it means that no partial delivery is currently pending.
      * @type {boolean}
      * @memberof OrderAllOf
