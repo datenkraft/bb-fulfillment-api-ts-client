@@ -251,7 +251,7 @@ export const OrderApiAxiosParamCreator = function (configuration?: Configuration
             };
         },
         /**
-         * Patch the order specified by the given orderNumber. \\ Orders can be updated as long as they are open. \\ All fields in the request body are optional. Only provided fields will be updated.
+         * Patch the order specified by the given orderNumber. \\ Orders can be updated as long as they are open. \\ Once the warehouse has started processing the order, it can no longer be updated. \\ All fields in the request body are optional. Only provided fields will be updated.
          * @summary Patch an order.
          * @param {string} orderNumber The order number as defined during the creation of the order.
          * @param {PatchOrder} patchOrder 
@@ -651,7 +651,7 @@ export const OrderApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * Patch the order specified by the given orderNumber. \\ Orders can be updated as long as they are open. \\ All fields in the request body are optional. Only provided fields will be updated.
+         * Patch the order specified by the given orderNumber. \\ Orders can be updated as long as they are open. \\ Once the warehouse has started processing the order, it can no longer be updated. \\ All fields in the request body are optional. Only provided fields will be updated.
          * @summary Patch an order.
          * @param {string} orderNumber The order number as defined during the creation of the order.
          * @param {PatchOrder} patchOrder 
@@ -792,7 +792,7 @@ export const OrderApiFactory = function (configuration?: Configuration, basePath
             return localVarFp.getOrderCollection(page, pageSize, paginationMode, sortBy, filterShopCode, filterStatus, filterExternalOrderId, filterExternalCustomerId, filterExternalOrderReference, filterOrderDateFrom, filterOrderDateTo, filterOrderNumber, filterSearch, filterDeliverabilityStatus, options).then((request) => request(axios, basePath));
         },
         /**
-         * Patch the order specified by the given orderNumber. \\ Orders can be updated as long as they are open. \\ All fields in the request body are optional. Only provided fields will be updated.
+         * Patch the order specified by the given orderNumber. \\ Orders can be updated as long as they are open. \\ Once the warehouse has started processing the order, it can no longer be updated. \\ All fields in the request body are optional. Only provided fields will be updated.
          * @summary Patch an order.
          * @param {string} orderNumber The order number as defined during the creation of the order.
          * @param {PatchOrder} patchOrder 
@@ -925,7 +925,7 @@ export interface OrderApiInterface {
     getOrderCollection(page?: number, pageSize?: number, paginationMode?: 'default' | 'totalCount', sortBy?: string, filterShopCode?: string, filterStatus?: string, filterExternalOrderId?: string, filterExternalCustomerId?: string, filterExternalOrderReference?: string, filterOrderDateFrom?: string, filterOrderDateTo?: string, filterOrderNumber?: string, filterSearch?: string, filterDeliverabilityStatus?: 'allOrderItems' | 'notAllOrderItems', options?: AxiosRequestConfig): AxiosPromise<OrderCollection>;
 
     /**
-     * Patch the order specified by the given orderNumber. \\ Orders can be updated as long as they are open. \\ All fields in the request body are optional. Only provided fields will be updated.
+     * Patch the order specified by the given orderNumber. \\ Orders can be updated as long as they are open. \\ Once the warehouse has started processing the order, it can no longer be updated. \\ All fields in the request body are optional. Only provided fields will be updated.
      * @summary Patch an order.
      * @param {string} orderNumber The order number as defined during the creation of the order.
      * @param {PatchOrder} patchOrder 
@@ -1064,7 +1064,7 @@ export class OrderApi extends BaseAPI implements OrderApiInterface {
     }
 
     /**
-     * Patch the order specified by the given orderNumber. \\ Orders can be updated as long as they are open. \\ All fields in the request body are optional. Only provided fields will be updated.
+     * Patch the order specified by the given orderNumber. \\ Orders can be updated as long as they are open. \\ Once the warehouse has started processing the order, it can no longer be updated. \\ All fields in the request body are optional. Only provided fields will be updated.
      * @summary Patch an order.
      * @param {string} orderNumber The order number as defined during the creation of the order.
      * @param {PatchOrder} patchOrder 

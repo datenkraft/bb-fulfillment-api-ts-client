@@ -4562,7 +4562,7 @@
                     "order"
                 ],
                 "summary": "Patch an order.",
-                "description": "Patch the order specified by the given orderNumber. \\\nOrders can be updated as long as they are open. \\\nAll fields in the request body are optional. Only provided fields will be updated.",
+                "description": "Patch the order specified by the given orderNumber. \\\nOrders can be updated as long as they are open. \\\nOnce the warehouse has started processing the order, it can no longer be updated. \\\nAll fields in the request body are optional. Only provided fields will be updated.",
                 "operationId": "patchOrder",
                 "parameters": [
                     {
@@ -4648,7 +4648,7 @@
                         }
                     },
                     "409": {
-                        "description": "Conflict\n\nError codes:\n- ORDER_NOT_EDITABLE: The order is not editable.",
+                        "description": "Conflict\n\nError codes:\n- ORDER_NOT_EDITABLE: The order is not editable.\n- ORDER_NOT_EDITABLE_WAREHOUSE_PROCESSING: The order is not editable because the warehouse has already started processing it.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -11594,6 +11594,10 @@
                             },
                             "orderItemsCancelable": {
                                 "description": "Indicates whether orderItems that are not delivered yet can be canceled or not",
+                                "type": "boolean"
+                            },
+                            "editable": {
+                                "description": "Indicates whether the order can currently be updated via PATCH /order/{orderNumber}.\nIt is false as soon as the order is delivered, deleted, canceled or redacted,\nand as soon as the order is being processed in the warehouse.",
                                 "type": "boolean"
                             },
                             "partialDeliveryPending": {
