@@ -6623,7 +6623,7 @@
                     {
                         "name": "filter[reason]",
                         "in": "query",
-                        "description": "Filter journal entries for one or more reasons\n- expired: Taking an expired product off the books\n- damaged: Taking a damaged product off the books\n- own_withdrawal: Product taken for own use\n- correction: Manual correction\n- inventory: Correction resulting from a completed inventory (stocktaking)\n- niceshops_order: Product sold via a shop from niceshops\n- inbound: Restocking the product\n- fulfillment: steve fulfilled an order\n- return: A customer sent the product back to our warehouse",
+                        "description": "Filter journal entries for one or more reasons\n- expired: Taking an expired product off the books\n- damaged: Taking a damaged product off the books\n- own_withdrawal: Product taken for own use\n- correction: Manual correction\n- inventory: Correction resulting from a completed inventory (stocktaking)\n- inventory-stock_correction: Inventory, stock correction (e.g. not found, wrongly booked in)\n- inventory-quality_expiry: Inventory, quality or expiry date issue\n- inventory-transfer_billing: Inventory, transfer or billing (e.g. partner billing, bundle, B-grade)\n- inventory-shipping_return: Inventory, shipping or return\n- inventory-other: Inventory, other reason\n- niceshops_order: Product sold via a shop from niceshops\n- inbound: Restocking the product\n- fulfillment: steve fulfilled an order\n- return: A customer sent the product back to our warehouse",
                         "required": false,
                         "schema": {
                             "type": "string"
@@ -7079,7 +7079,7 @@
                     {
                         "name": "filter[reason]",
                         "in": "query",
-                        "description": "Filter journal entries for one or more reasons\n- expired: Taking an expired product off the books\n- damaged: Taking a damaged product off the books\n- own_withdrawal: Product taken for own use\n- correction: Manual correction\n- inventory: Correction resulting from a completed inventory (stocktaking)\n- niceshops_order: Product sold via a shop from niceshops\n- inbound: Restocking the product\n- fulfillment: steve fulfilled an order\n- return: A customer sent the product back to our warehouse",
+                        "description": "Filter journal entries for one or more reasons\n- expired: Taking an expired product off the books\n- damaged: Taking a damaged product off the books\n- own_withdrawal: Product taken for own use\n- correction: Manual correction\n- inventory: Correction resulting from a completed inventory (stocktaking)\n- inventory-stock_correction: Inventory, stock correction (e.g. not found, wrongly booked in)\n- inventory-quality_expiry: Inventory, quality or expiry date issue\n- inventory-transfer_billing: Inventory, transfer or billing (e.g. partner billing, bundle, B-grade)\n- inventory-shipping_return: Inventory, shipping or return\n- inventory-other: Inventory, other reason\n- niceshops_order: Product sold via a shop from niceshops\n- inbound: Restocking the product\n- fulfillment: steve fulfilled an order\n- return: A customer sent the product back to our warehouse",
                         "required": false,
                         "schema": {
                             "type": "string"
@@ -12559,6 +12559,11 @@
                             "own_withdrawal",
                             "correction",
                             "inventory",
+                            "inventory-stock_correction",
+                            "inventory-quality_expiry",
+                            "inventory-transfer_billing",
+                            "inventory-shipping_return",
+                            "inventory-other",
                             "niceshops_order",
                             "inbound",
                             "fulfillment",
