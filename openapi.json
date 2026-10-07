@@ -2,7 +2,7 @@
     "openapi": "3.0.0",
     "info": {
         "title": "Fulfillment API",
-        "description": "\n- alpha: Currently developed API version. Subject to major changes.\n- beta: A semi-stable early access version. New features can be added. Breaking changes are possible.\n- stable: The API is recommended for use in production.\n\n[Changelog](https:\/\/fulfillment-api.steve.niceshops.com\/v2\/docs\/changelog.html)\n\nAll data is transferred in UTF-8 encoding.\\\nThe API uses stateless HTTP. No cookies have to be kept.\\\nAuthentication via OAuth2 client credentials flow.\n\n[Privacy Policy](https:\/\/www.niceshops.com\/en\/dienstleistungen\/data-privacy-policy)\n\n[Fulfillment API PHP client @Packagist](https:\/\/packagist.org\/packages\/datenkraft\/bb-fulfillment-api-php-client)",
+        "description": "\n- alpha: Currently developed API version. Subject to major changes.\n- beta: A semi-stable early access version. New features can be added. Breaking changes are possible.\n- stable: The API is recommended for use in production.\n\n[Changelog](https:\/\/fulfillment-api.steve.niceshops.com\/v2\/docs\/changelog.html)\n\nAll data is transferred in UTF-8 encoding.\\\nThe API uses stateless HTTP. No cookies have to be kept.\\\nAuthentication via OAuth2 client credentials flow.\n\n### Retrying on HTTP 503\n\nThis API depends on a warehouse system. If that system is temporarily unavailable or overloaded,\nthe API responds with HTTP `503 Service Unavailable`, the error code `SERVICE_NOT_AVAILABLE` and\na `Retry-After` header (seconds). Wait at least the given time before retrying,\nincrease the delay with each further attempt (exponential backoff). Do not retry in a tight loop.\n\n[Privacy Policy](https:\/\/www.niceshops.com\/en\/dienstleistungen\/data-privacy-policy)\n\n[Fulfillment API PHP client @Packagist](https:\/\/packagist.org\/packages\/datenkraft\/bb-fulfillment-api-php-client)",
         "version": "v2.beta"
     },
     "servers": [
@@ -1489,6 +1489,16 @@
                             }
                         }
                     },
+                    "503": {
+                        "description": "Service Unavailable\n\nError codes:\n- SERVICE_NOT_AVAILABLE: The service is not available. Please try again later.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
                     "default": {
                         "description": "Unexpected Error",
                         "content": {
@@ -1617,6 +1627,16 @@
                     },
                     "500": {
                         "description": "Server error\n\nError codes:\n- SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "503": {
+                        "description": "Service Unavailable\n\nError codes:\n- SERVICE_NOT_AVAILABLE: The service is not available. Please try again later.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -1813,6 +1833,16 @@
                     },
                     "500": {
                         "description": "Server error\n\nError codes:\n- SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "503": {
+                        "description": "Service Unavailable\n\nError codes:\n- SERVICE_NOT_AVAILABLE: The service is not available. Please try again later.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -2102,6 +2132,16 @@
                             }
                         }
                     },
+                    "503": {
+                        "description": "Service Unavailable\n\nError codes:\n- SERVICE_NOT_AVAILABLE: The service is not available. Please try again later.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
                     "default": {
                         "description": "Unexpected Error",
                         "content": {
@@ -2215,6 +2255,16 @@
                     },
                     "500": {
                         "description": "Server error\n\nError codes:\n- SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "503": {
+                        "description": "Service Unavailable\n\nError codes:\n- SERVICE_NOT_AVAILABLE: The service is not available. Please try again later.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -2368,6 +2418,16 @@
                             }
                         }
                     },
+                    "503": {
+                        "description": "Service Unavailable\n\nError codes:\n- SERVICE_NOT_AVAILABLE: The service is not available. Please try again later.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
                     "default": {
                         "description": "Unexpected Error",
                         "content": {
@@ -2510,6 +2570,16 @@
                             }
                         }
                     },
+                    "503": {
+                        "description": "Service Unavailable\n\nError codes:\n- SERVICE_NOT_AVAILABLE: The service is not available. Please try again later.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
                     "default": {
                         "description": "Unexpected Error",
                         "content": {
@@ -2629,6 +2699,16 @@
                     },
                     "500": {
                         "description": "Server error\n\nError codes:\n- SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "503": {
+                        "description": "Service Unavailable\n\nError codes:\n- SERVICE_NOT_AVAILABLE: The service is not available. Please try again later.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -2955,6 +3035,16 @@
                             }
                         }
                     },
+                    "503": {
+                        "description": "Service Unavailable\n\nError codes:\n- SERVICE_NOT_AVAILABLE: The service is not available. Please try again later.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
                     "default": {
                         "description": "Unexpected error",
                         "content": {
@@ -3087,6 +3177,16 @@
                             }
                         }
                     },
+                    "503": {
+                        "description": "Service Unavailable\n\nError codes:\n- SERVICE_NOT_AVAILABLE: The service is not available. Please try again later.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
                     "default": {
                         "description": "Unexpected error",
                         "content": {
@@ -3209,6 +3309,16 @@
                     },
                     "500": {
                         "description": "Server error\n\nError codes:\n- SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "503": {
+                        "description": "Service Unavailable\n\nError codes:\n- SERVICE_NOT_AVAILABLE: The service is not available. Please try again later.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -3357,6 +3467,16 @@
                             }
                         }
                     },
+                    "503": {
+                        "description": "Service Unavailable\n\nError codes:\n- SERVICE_NOT_AVAILABLE: The service is not available. Please try again later.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
                     "default": {
                         "description": "Unexpected error",
                         "content": {
@@ -3481,6 +3601,16 @@
                     },
                     "500": {
                         "description": "Server error\n\nError codes:\n- SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "503": {
+                        "description": "Service Unavailable\n\nError codes:\n- SERVICE_NOT_AVAILABLE: The service is not available. Please try again later.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -3641,6 +3771,16 @@
                             }
                         }
                     },
+                    "503": {
+                        "description": "Service Unavailable\n\nError codes:\n- SERVICE_NOT_AVAILABLE: The service is not available. Please try again later.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
                     "default": {
                         "description": "Unexpected error",
                         "content": {
@@ -3775,6 +3915,16 @@
                     },
                     "500": {
                         "description": "Server error\n\nError codes:\n- SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "503": {
+                        "description": "Service Unavailable\n\nError codes:\n- SERVICE_NOT_AVAILABLE: The service is not available. Please try again later.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -3918,6 +4068,16 @@
                             }
                         }
                     },
+                    "503": {
+                        "description": "Service Unavailable\n\nError codes:\n- SERVICE_NOT_AVAILABLE: The service is not available. Please try again later.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
                     "default": {
                         "description": "Unexpected error",
                         "content": {
@@ -4046,6 +4206,16 @@
                     },
                     "500": {
                         "description": "Server error\n\nError codes:\n- SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "503": {
+                        "description": "Service Unavailable\n\nError codes:\n- SERVICE_NOT_AVAILABLE: The service is not available. Please try again later.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -4295,6 +4465,16 @@
                             }
                         }
                     },
+                    "503": {
+                        "description": "Service Unavailable\n\nError codes:\n- SERVICE_NOT_AVAILABLE: The service is not available. Please try again later.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
                     "default": {
                         "description": "Unexpected error",
                         "content": {
@@ -4417,6 +4597,16 @@
                             }
                         }
                     },
+                    "503": {
+                        "description": "Service Unavailable\n\nError codes:\n- SERVICE_NOT_AVAILABLE: The service is not available. Please try again later.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
                     "default": {
                         "description": "Unexpected error",
                         "content": {
@@ -4529,6 +4719,16 @@
                     },
                     "500": {
                         "description": "Server error\n\nError codes:\n- SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "503": {
+                        "description": "Service Unavailable\n\nError codes:\n- SERVICE_NOT_AVAILABLE: The service is not available. Please try again later.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -4677,6 +4877,16 @@
                             }
                         }
                     },
+                    "503": {
+                        "description": "Service Unavailable\n\nError codes:\n- SERVICE_NOT_AVAILABLE: The service is not available. Please try again later.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
                     "default": {
                         "description": "Unexpected error",
                         "content": {
@@ -4809,6 +5019,16 @@
                             }
                         }
                     },
+                    "503": {
+                        "description": "Service Unavailable\n\nError codes:\n- SERVICE_NOT_AVAILABLE: The service is not available. Please try again later.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
                     "default": {
                         "description": "Unexpected error",
                         "content": {
@@ -4931,6 +5151,16 @@
                             }
                         }
                     },
+                    "503": {
+                        "description": "Service Unavailable\n\nError codes:\n- SERVICE_NOT_AVAILABLE: The service is not available. Please try again later.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
                     "default": {
                         "description": "Unexpected error",
                         "content": {
@@ -5035,6 +5265,16 @@
                     },
                     "500": {
                         "description": "Server error\n\nError codes:\n- SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "503": {
+                        "description": "Service Unavailable\n\nError codes:\n- SERVICE_NOT_AVAILABLE: The service is not available. Please try again later.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -5175,6 +5415,16 @@
                             }
                         }
                     },
+                    "503": {
+                        "description": "Service Unavailable\n\nError codes:\n- SERVICE_NOT_AVAILABLE: The service is not available. Please try again later.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
                     "default": {
                         "description": "Unexpected error",
                         "content": {
@@ -5307,6 +5557,16 @@
                             }
                         }
                     },
+                    "503": {
+                        "description": "Service Unavailable\n\nError codes:\n- SERVICE_NOT_AVAILABLE: The service is not available. Please try again later.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
                     "default": {
                         "description": "Unexpected error",
                         "content": {
@@ -5431,6 +5691,16 @@
                     },
                     "500": {
                         "description": "Server error\n\nError codes:\n- SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "503": {
+                        "description": "Service Unavailable\n\nError codes:\n- SERVICE_NOT_AVAILABLE: The service is not available. Please try again later.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -5577,6 +5847,16 @@
                     },
                     "500": {
                         "description": "Server error\n\nError codes:\n- SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "503": {
+                        "description": "Service Unavailable\n\nError codes:\n- SERVICE_NOT_AVAILABLE: The service is not available. Please try again later.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -5782,6 +6062,16 @@
                             }
                         }
                     },
+                    "503": {
+                        "description": "Service Unavailable\n\nError codes:\n- SERVICE_NOT_AVAILABLE: The service is not available. Please try again later.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
                     "default": {
                         "description": "Unexpected Error",
                         "content": {
@@ -5894,6 +6184,16 @@
                     },
                     "500": {
                         "description": "Server error\n\nError codes:\n- SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "503": {
+                        "description": "Service Unavailable\n\nError codes:\n- SERVICE_NOT_AVAILABLE: The service is not available. Please try again later.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -6023,6 +6323,16 @@
                             }
                         }
                     },
+                    "503": {
+                        "description": "Service Unavailable\n\nError codes:\n- SERVICE_NOT_AVAILABLE: The service is not available. Please try again later.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
                     "default": {
                         "description": "Unexpected Error",
                         "content": {
@@ -6137,6 +6447,16 @@
                     },
                     "500": {
                         "description": "Server error\n\nError codes:\n- SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "503": {
+                        "description": "Service Unavailable\n\nError codes:\n- SERVICE_NOT_AVAILABLE: The service is not available. Please try again later.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -6273,6 +6593,16 @@
                     },
                     "500": {
                         "description": "Server error\n\nError codes:\n- SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "503": {
+                        "description": "Service Unavailable\n\nError codes:\n- SERVICE_NOT_AVAILABLE: The service is not available. Please try again later.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -6526,6 +6856,16 @@
                             }
                         }
                     },
+                    "503": {
+                        "description": "Service Unavailable\n\nError codes:\n- SERVICE_NOT_AVAILABLE: The service is not available. Please try again later.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
                     "default": {
                         "description": "Unexpected Error",
                         "content": {
@@ -6720,6 +7060,16 @@
                             }
                         }
                     },
+                    "503": {
+                        "description": "Service Unavailable\n\nError codes:\n- SERVICE_NOT_AVAILABLE: The service is not available. Please try again later.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
                     "default": {
                         "description": "Unexpected Error",
                         "content": {
@@ -6834,6 +7184,16 @@
                     },
                     "500": {
                         "description": "Server error\n\nError codes:\n- SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "503": {
+                        "description": "Service Unavailable\n\nError codes:\n- SERVICE_NOT_AVAILABLE: The service is not available. Please try again later.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -6964,6 +7324,16 @@
                     },
                     "500": {
                         "description": "Server error\n\nError codes:\n- SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "503": {
+                        "description": "Service Unavailable\n\nError codes:\n- SERVICE_NOT_AVAILABLE: The service is not available. Please try again later.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -7149,6 +7519,16 @@
                     },
                     "500": {
                         "description": "Server error\n\nError codes:\n- SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "503": {
+                        "description": "Service Unavailable\n\nError codes:\n- SERVICE_NOT_AVAILABLE: The service is not available. Please try again later.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -7351,6 +7731,16 @@
                             }
                         }
                     },
+                    "503": {
+                        "description": "Service Unavailable\n\nError codes:\n- SERVICE_NOT_AVAILABLE: The service is not available. Please try again later.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
                     "default": {
                         "description": "Unexpected Error",
                         "content": {
@@ -7483,6 +7873,16 @@
                     },
                     "500": {
                         "description": "Server error\n\nError codes:\n- SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "503": {
+                        "description": "Service Unavailable\n\nError codes:\n- SERVICE_NOT_AVAILABLE: The service is not available. Please try again later.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -7642,6 +8042,16 @@
                     },
                     "500": {
                         "description": "Server error\n\nError codes:\n- SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "503": {
+                        "description": "Service Unavailable\n\nError codes:\n- SERVICE_NOT_AVAILABLE: The service is not available. Please try again later.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -7838,6 +8248,16 @@
                             }
                         }
                     },
+                    "503": {
+                        "description": "Service Unavailable\n\nError codes:\n- SERVICE_NOT_AVAILABLE: The service is not available. Please try again later.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
                     "default": {
                         "description": "Unexpected error",
                         "content": {
@@ -7947,6 +8367,16 @@
                     },
                     "500": {
                         "description": "Server error\n\nError codes:\n- SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "503": {
+                        "description": "Service Unavailable\n\nError codes:\n- SERVICE_NOT_AVAILABLE: The service is not available. Please try again later.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -8146,6 +8576,16 @@
                             }
                         }
                     },
+                    "503": {
+                        "description": "Service Unavailable\n\nError codes:\n- SERVICE_NOT_AVAILABLE: The service is not available. Please try again later.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
                     "default": {
                         "description": "Unexpected Error",
                         "content": {
@@ -8259,6 +8699,16 @@
                     },
                     "500": {
                         "description": "Server error\n\nError codes:\n- SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "503": {
+                        "description": "Service Unavailable\n\nError codes:\n- SERVICE_NOT_AVAILABLE: The service is not available. Please try again later.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -8403,6 +8853,16 @@
                     },
                     "500": {
                         "description": "Server error\n\nError codes:\n- SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "503": {
+                        "description": "Service Unavailable\n\nError codes:\n- SERVICE_NOT_AVAILABLE: The service is not available. Please try again later.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -8559,6 +9019,16 @@
                     },
                     "500": {
                         "description": "Server error\n\nError codes:\n- SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "503": {
+                        "description": "Service Unavailable\n\nError codes:\n- SERVICE_NOT_AVAILABLE: The service is not available. Please try again later.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -8761,6 +9231,16 @@
                             }
                         }
                     },
+                    "503": {
+                        "description": "Service Unavailable\n\nError codes:\n- SERVICE_NOT_AVAILABLE: The service is not available. Please try again later.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
                     "default": {
                         "description": "Unexpected Error",
                         "content": {
@@ -8924,6 +9404,16 @@
                             }
                         }
                     },
+                    "503": {
+                        "description": "Service Unavailable\n\nError codes:\n- SERVICE_NOT_AVAILABLE: The service is not available. Please try again later.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
                     "default": {
                         "description": "Unexpected error",
                         "content": {
@@ -9024,6 +9514,16 @@
                     },
                     "500": {
                         "description": "Server error\n\nError codes:\n- SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "503": {
+                        "description": "Service Unavailable\n\nError codes:\n- SERVICE_NOT_AVAILABLE: The service is not available. Please try again later.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -9135,6 +9635,16 @@
                     },
                     "500": {
                         "description": "Server error\n\nError codes:\n- SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "503": {
+                        "description": "Service Unavailable\n\nError codes:\n- SERVICE_NOT_AVAILABLE: The service is not available. Please try again later.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -9320,6 +9830,16 @@
                             }
                         }
                     },
+                    "503": {
+                        "description": "Service Unavailable\n\nError codes:\n- SERVICE_NOT_AVAILABLE: The service is not available. Please try again later.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
                     "default": {
                         "description": "Unexpected error",
                         "content": {
@@ -9448,6 +9968,16 @@
                     },
                     "500": {
                         "description": "Server error\n\nError codes:\n- SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "503": {
+                        "description": "Service Unavailable\n\nError codes:\n- SERVICE_NOT_AVAILABLE: The service is not available. Please try again later.",
                         "content": {
                             "application/json": {
                                 "schema": {
