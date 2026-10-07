@@ -2,7 +2,7 @@
     "openapi": "3.0.0",
     "info": {
         "title": "Fulfillment API",
-        "description": "\n- alpha: Currently developed API version. Subject to major changes.\n- beta: A semi-stable early access version. New features can be added. Breaking changes are possible.\n- stable: The API is recommended for use in production.\n\n[Changelog](https:\/\/fulfillment-api.steve.niceshops.com\/v1\/docs\/changelog.html)\n\nAll data is transferred in UTF-8 encoding.\\\nThe API uses stateless HTTP. No cookies have to be kept.\\\nAuthentication via OAuth2 client credentials flow.\n\n[Privacy Policy](https:\/\/www.niceshops.com\/en\/dienstleistungen\/data-privacy-policy)\n\n[Fulfillment API PHP client @Packagist](https:\/\/packagist.org\/packages\/datenkraft\/bb-fulfillment-api-php-client)",
+        "description": "\n- alpha: Currently developed API version. Subject to major changes.\n- beta: A semi-stable early access version. New features can be added. Breaking changes are possible.\n- stable: The API is recommended for use in production.\n\n[Changelog](https:\/\/fulfillment-api.steve.niceshops.com\/v1\/docs\/changelog.html)\n\nAll data is transferred in UTF-8 encoding.\\\nThe API uses stateless HTTP. No cookies have to be kept.\\\nAuthentication via OAuth2 client credentials flow.\n\n### Retrying on HTTP 503\n\nThis API depends on a warehouse system. If that system is temporarily unavailable or overloaded,\nthe API responds with HTTP `503 Service Unavailable`, the error code `SERVICE_NOT_AVAILABLE` and\na `Retry-After` header (seconds). Wait at least the given time before retrying,\nincrease the delay with each further attempt (exponential backoff). Do not retry in a tight loop.\n\n[Privacy Policy](https:\/\/www.niceshops.com\/en\/dienstleistungen\/data-privacy-policy)\n\n[Fulfillment API PHP client @Packagist](https:\/\/packagist.org\/packages\/datenkraft\/bb-fulfillment-api-php-client)",
         "version": "v1.stable"
     },
     "servers": [
@@ -1604,6 +1604,16 @@
                             }
                         }
                     },
+                    "503": {
+                        "description": "Service Unavailable\n\nError codes:\n- SERVICE_NOT_AVAILABLE: The service is not available. Please try again later.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
                     "default": {
                         "description": "Unexpected error",
                         "content": {
@@ -1706,6 +1716,16 @@
                     },
                     "500": {
                         "description": "Server error\n\nError codes:\n- SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "503": {
+                        "description": "Service Unavailable\n\nError codes:\n- SERVICE_NOT_AVAILABLE: The service is not available. Please try again later.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -1941,6 +1961,16 @@
                             }
                         }
                     },
+                    "503": {
+                        "description": "Service Unavailable\n\nError codes:\n- SERVICE_NOT_AVAILABLE: The service is not available. Please try again later.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
                     "default": {
                         "description": "Unexpected error",
                         "content": {
@@ -2033,6 +2063,16 @@
                     },
                     "500": {
                         "description": "Server error\n\nError codes:\n- SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "503": {
+                        "description": "Service Unavailable\n\nError codes:\n- SERVICE_NOT_AVAILABLE: The service is not available. Please try again later.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -2164,6 +2204,16 @@
                     },
                     "500": {
                         "description": "Server error\n\nError codes:\n- SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "503": {
+                        "description": "Service Unavailable\n\nError codes:\n- SERVICE_NOT_AVAILABLE: The service is not available. Please try again later.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -2423,6 +2473,16 @@
                     },
                     "500": {
                         "description": "Server error\n\nError codes:\n- SERVER_ERROR_OCCURRED: An internal server error occurred. Please try again later.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "503": {
+                        "description": "Service Unavailable\n\nError codes:\n- SERVICE_NOT_AVAILABLE: The service is not available. Please try again later.",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -3317,11 +3377,11 @@
                     "type": {
                         "description": "The price type",
                         "type": "string",
+                        "example": "gross",
                         "enum": [
                             "net",
                             "gross"
-                        ],
-                        "example": "gross"
+                        ]
                     },
                     "vat": {
                         "description": "The VAT in percent. Can be null in case of bundle products with mixed VAT percentages.",
@@ -3431,8 +3491,8 @@
                             "testShop": {
                                 "description": "Flag to mark a shop used for testing.",
                                 "type": "boolean",
-                                "default": false,
-                                "nullable": true
+                                "nullable": true,
+                                "default": false
                             },
                             "testShopResetNotBefore": {
                                 "description": "Date time to indicate that the test shop will not be reset before this time.",
@@ -3521,5 +3581,51 @@
                 "scheme": "bearer"
             }
         }
-    }
+    },
+    "tags": [
+        {
+            "name": "audit-log",
+            "description": "audit-log"
+        },
+        {
+            "name": "auth-permission",
+            "description": "auth-permission"
+        },
+        {
+            "name": "auth-permission-role",
+            "description": "auth-permission-role"
+        },
+        {
+            "name": "auth-role",
+            "description": "auth-role"
+        },
+        {
+            "name": "auth-role-identity",
+            "description": "auth-role-identity"
+        },
+        {
+            "name": "delivery",
+            "description": "delivery"
+        },
+        {
+            "name": "delivery-service",
+            "description": "delivery-service"
+        },
+        {
+            "name": "docs",
+            "description": "docs"
+        },
+        {
+            "name": "order",
+            "description": "order"
+        },
+        {
+            "name": "shop",
+            "description": "shop"
+        },
+        {
+            "name": "stock",
+            "description": "stock"
+        }
+    ]
 }
