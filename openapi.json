@@ -12685,10 +12685,10 @@
                                         "maxLength": 1024
                                     },
                                     "printOrderDocument": {
-                                        "description": "Default for `options.printOrderDocument` of orders of this shop, controlling whether a\ndelivery slip (Lieferschein) is printed and included with the shipment. When unset, the\ndefault of `true` applies. Always `true` for orders into customs-required\ncountries.",
+                                        "description": "Default for `options.printOrderDocument` of orders of this shop, controlling whether a\ndelivery slip (Lieferschein) is printed and included with the shipment. When omitted or `null`,\n`false` is stored for the new shop. Always `true` for orders into customs-required\ncountries.",
                                         "type": "boolean",
                                         "nullable": true,
-                                        "default": true
+                                        "default": false
                                     }
                                 },
                                 "type": "object",

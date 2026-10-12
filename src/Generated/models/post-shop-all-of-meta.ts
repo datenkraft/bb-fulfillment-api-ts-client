@@ -81,7 +81,7 @@ export interface PostShopAllOfMeta {
      */
     'deliverySlipNotes'?: string | null;
     /**
-     * Default for `options.printOrderDocument` of orders of this shop, controlling whether a delivery slip (Lieferschein) is printed and included with the shipment. When unset, the default of `true` applies. Always `true` for orders into customs-required countries.
+     * Default for `options.printOrderDocument` of orders of this shop, controlling whether a delivery slip (Lieferschein) is printed and included with the shipment. When omitted or `null`, `false` is stored for the new shop. Always `true` for orders into customs-required countries.
      * @type {boolean}
      * @memberof PostShopAllOfMeta
      */
