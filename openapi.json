@@ -10747,8 +10747,7 @@
             "baseReconsignmentAnnouncementOptions": {
                 "title": "baseReconsignmentAnnouncementOptions",
                 "description": "Additional options for a reconsignment announcement (optional).",
-                "properties": {},
-                "nullable": true
+                "properties": {}
             },
             "baseShop": {
                 "description": "Data to represent a shop",
