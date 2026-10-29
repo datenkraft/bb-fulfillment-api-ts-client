@@ -91,7 +91,7 @@ export interface BaseOrderCustomer {
      * @type {BaseOrderCustomerDeliveryAddress}
      * @memberof BaseOrderCustomer
      */
-    'deliveryAddress'?: BaseOrderCustomerDeliveryAddress | null;
+    'deliveryAddress'?: BaseOrderCustomerDeliveryAddress;
 }
 
 export const BaseOrderCustomerGenderEnum = {

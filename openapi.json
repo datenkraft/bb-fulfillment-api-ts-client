@@ -2807,9 +2807,15 @@
                         "oneOf": [
                             {
                                 "$ref": "#/components/schemas/orderCustomerDeliveryAddress"
+                            },
+                            {
+                                "type": "object",
+                                "nullable": true,
+                                "enum": [
+                                    null
+                                ]
                             }
                         ],
-                        "nullable": true,
                         "description": "If not given the invoice address is used for delivery."
                     }
                 },
