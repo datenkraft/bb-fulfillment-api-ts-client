@@ -46,7 +46,7 @@ publish-client:
       
         # check if the last commit has [publish] in the commit message
         set +e
-        git log -1 --format=%s | grep -qF '[publish]'
+        git log -1 --format=%s | grep -F '[publish]' > /dev/null
         lastExitCode=$?
         set -e
         if [ $lastExitCode -ne 0 ]; then
@@ -57,7 +57,7 @@ publish-client:
       else
         # check if $lastTag points to HEAD, to prevent publishing the same version again
         set +e
-        git tag --points-at HEAD | grep -qF $lastTag
+        git tag --points-at HEAD | grep -F $lastTag > /dev/null
         lastExitCode=$?
         set -e
         if [ $lastExitCode -eq 0 ]; then
@@ -68,7 +68,7 @@ publish-client:
       
         # check if any commits starting with the last tag have [publish] in their commit message  
         set +e
-        git log tags/${lastTag}.. --format=%s | grep -qF '[publish]'
+        git log tags/${lastTag}.. --format=%s | grep -F '[publish]' > /dev/null
         lastExitCode=$?
         set -e
         if [ $lastExitCode -ne 0 ]; then
