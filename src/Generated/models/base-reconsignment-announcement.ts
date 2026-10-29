@@ -31,7 +31,7 @@ export interface BaseReconsignmentAnnouncement {
      * @type {any}
      * @memberof BaseReconsignmentAnnouncement
      */
-    'options'?: any | null;
+    'options'?: any;
 }
 
 export const BaseReconsignmentAnnouncementReconsignmentReasonEnum = {
